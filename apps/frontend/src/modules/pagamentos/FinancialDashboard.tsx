@@ -117,16 +117,24 @@ const App: React.FC = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      {inv.status === InvoiceStatus.PENDING ? (
-                        <button 
-                          onClick={() => setShowPayModal(inv)}
-                          className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline"
-                        >
-                          Pagar Agora
+                      <div className="flex gap-2 justify-end">
+                        {inv.status === InvoiceStatus.PENDING ? (
+                          <button 
+                            onClick={() => setShowPayModal(inv)}
+                            className="px-3 py-1.5 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors shadow-sm"
+                            title="Proceder com o pagamento"
+                          >
+                            Pagar
+                          </button>
+                        ) : (
+                          <button className="px-3 py-1.5 text-xs font-bold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors shadow-sm" title="Ver comprovante de pagamento">
+                            Recibo
+                          </button>
+                        )}
+                        <button className="px-3 py-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" title="Descarregar fatura">
+                          Download
                         </button>
-                      ) : (
-                        <button className="text-xs font-bold text-slate-400 hover:text-slate-600">Ver Recibo</button>
-                      )}
+                      </div>
                     </td>
                   </tr>
                 ))}

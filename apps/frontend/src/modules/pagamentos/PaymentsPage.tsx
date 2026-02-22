@@ -41,11 +41,16 @@ const SERVICES: Service[] = [
 const App: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
     setIsPaymentModalOpen(true);
   };
+
+  const filteredServices = SERVICES.filter(s =>
+    s.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#f8fafc]">
@@ -80,6 +85,8 @@ const App: React.FC = () => {
               <input 
                 type="text" 
                 placeholder="O que deseja tratar hoje?" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-white text-gray-900 pl-12 pr-4 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-lg"
               />
             </div>
@@ -112,18 +119,25 @@ const App: React.FC = () => {
           </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {SERVICES.map((service) => (
-              <div 
-                key={service.id}
-                onClick={() => handleServiceClick(service)}
-                className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-transparent hover:border-gray-100 flex flex-col items-center justify-center text-center h-[220px]"
-              >
-                <div className={`${service.color} text-white p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
+            {filteredServices.length > 0 ? (
+              filteredServices.map((service) => (
+                <div 
+                  key={service.id}
+                  onClick={() => handleServiceClick(service)}
+                  className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-transparent hover:border-gray-100 hover:border-yellow-400 flex flex-col items-center justify-center text-center h-[220px] active:scale-95"
+                >
+                  <div className={`${service.color} text-white p-4 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    {service.icon}
+                  </div>
+                  <span className="text-gray-700 font-semibold group-hover:text-gray-900">{service.name}</span>
+                  <span className="text-xs text-gray-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Clique para pagar</span>
                 </div>
-                <span className="text-gray-700 font-semibold group-hover:text-gray-900">{service.name}</span>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12 text-gray-500">
+                <p>Nenhum serviço encontrado para "{searchQuery}"</p>
               </div>
-            ))}
+            )}
           </div>
 
           <footer className="mt-20 pt-10 border-t border-gray-200 text-center text-gray-400 text-sm">

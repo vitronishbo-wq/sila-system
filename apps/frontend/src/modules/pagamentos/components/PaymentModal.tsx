@@ -49,6 +49,28 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleDownloadProof = () => {
+    const content = `COMPROVANTE DE PAGAMENTO\n\nServiço: ${service.name}\nValor: ${amount} AOA\nEntidade: ${entity}\nReferência: ${reference}\nData: ${new Date().toLocaleDateString('pt-PT')}\nMétodo: ${method === 'reference' ? 'Referência' : 'QR Code'}\n\nProcessado via SILA-System v2026.1`;
+    const element = document.createElement('a');
+    element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(content)}`);
+    element.setAttribute('download', `comprovante-${reference.replace(/\s/g, '')}.txt`);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+  const handleShare = (platform: 'whatsapp' | 'email' | 'copy') => {
+    const text = `Referência de Pagamento: ${reference}\nEntidade: ${entity}\nValor: ${amount} AOA`;
+    if (platform === 'whatsapp') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    } else if (platform === 'email') {
+      window.open(`mailto:?subject=Referência de Pagamento&body=${encodeURIComponent(text)}`, '_blank');
+    } else if (platform === 'copy') {
+      copyToClipboard(text);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div className="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
@@ -132,10 +154,11 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
                     <div className="flex justify-between items-center">
                       <span className="text-gray-500 text-sm">Referência</span>
                       <div className="flex items-center gap-3">
-                        <span className="font-mono font-bold text-xl tracking-wider">{reference}</span>
+                        <span className="font-mono font-bold text-xl tracking-wider cursor-pointer p-2 hover:bg-gray-100 rounded-lg transition-colors" onClick={() => copyToClipboard(reference)} title="Clique para copiar">{reference}</span>
                         <button 
                           onClick={() => copyToClipboard(reference)}
                           className="p-2 hover:bg-gray-200 rounded-lg transition-colors text-blue-600"
+                          title="Copiar referência"
                         >
                           {copied ? <CheckCircle2 className="w-5 h-5 text-green-600" /> : <Copy className="w-5 h-5" />}
                         </button>
@@ -145,25 +168,35 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
                 </div>
               ) : (
                 <div className="flex flex-col items-center">
-                   <div className="p-6 bg-white border-2 border-gray-100 rounded-3xl shadow-inner mb-4">
+                   <div className="p-6 bg-white border-2 border-gray-100 rounded-3xl shadow-inner mb-4 hover:border-blue-300 transition-colors cursor-pointer group relative" onClick={() => copyToClipboard(reference)} title="Clique para copiar dados do QR Code">
                       <img 
                         src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${reference}`} 
                         alt="QR Code Pagamento" 
-                        className="w-48 h-48"
+                        className="w-48 h-48 group-hover:opacity-80 transition-opacity"
                       />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl">
+                        <span className="bg-black/60 text-white px-3 py-1 rounded-lg text-xs font-semibold">Copiar dados</span>
+                      </div>
                    </div>
                    <p className="text-sm text-gray-500 text-center">Aponte a câmera do seu aplicativo Multicaixa Express para este QR Code</p>
                 </div>
               )}
 
-              <div className="bg-blue-600 text-white rounded-2xl p-6 flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-blue-200 uppercase font-bold tracking-wider">Total em Kwanza</p>
-                  <p className="text-2xl font-black">{amount} AOA</p>
+              <div className="bg-blue-600 text-white rounded-2xl p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs text-blue-200 uppercase font-bold tracking-wider">Total em Kwanza</p>
+                    <p className="text-2xl font-black">{amount} AOA</p>
+                  </div>
+                  <button onClick={handleDownloadProof} className="bg-white/10 hover:bg-white/20 p-3 rounded-xl transition-all" title="Descarregar comprovante">
+                    <Download className="w-6 h-6" />
+                  </button>
                 </div>
-                <button className="bg-white/10 hover:bg-white/20 p-3 rounded-xl transition-all">
-                  <Download className="w-6 h-6" />
-                </button>
+                <div className="flex gap-2">
+                  <button onClick={() => handleShare('whatsapp')} className="flex-1 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all text-xs font-semibold" title="Partilhar via WhatsApp">WhatsApp</button>
+                  <button onClick={() => handleShare('email')} className="flex-1 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all text-xs font-semibold" title="Enviar via Email">Email</button>
+                  <button onClick={() => handleShare('copy')} className="flex-1 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all text-xs font-semibold" title="Copiar dados">Copiar</button>
+                </div>
               </div>
 
               <div className="flex gap-3">

@@ -73,7 +73,8 @@ const CitizenPortal: React.FC<CitizenPortalProps> = ({ onLogout }) => {
           <h1 className="text-3xl font-bold text-slate-900">Minha FUC</h1>
           <button
             onClick={onLogout}
-            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold"
+            title="Terminar sessão"
           >
             Sair
           </button>
@@ -82,26 +83,28 @@ const CitizenPortal: React.FC<CitizenPortalProps> = ({ onLogout }) => {
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Navegação de abas */}
-        <div className="flex border-b mb-8">
+        <div className="flex border-b mb-8 bg-white rounded-t-lg">
           <button
             onClick={() => setActiveTab('profile')}
-            className={`px-6 py-3 font-medium ${
+            className={`px-6 py-3 font-medium transition-all ${
               activeTab === 'profile'
-                ? 'text-slate-900 border-b-2 border-slate-900'
-                : 'text-gray-600'
+                ? 'text-slate-900 border-b-2 border-slate-900 bg-slate-50'
+                : 'text-gray-600 hover:text-cursor-pointer hover:text-gray-900'
             }`}
+            title="Ver informações pessoais"
           >
-            Perfil
+            👤 Perfil
           </button>
           <button
             onClick={() => setActiveTab('events')}
-            className={`px-6 py-3 font-medium ${
+            className={`px-6 py-3 font-medium transition-all ${
               activeTab === 'events'
-                ? 'text-slate-900 border-b-2 border-slate-900'
-                : 'text-gray-600'
+                ? 'text-slate-900 border-b-2 border-slate-900 bg-slate-50'
+                : 'text-gray-600 hover:text-cursor-pointer hover:text-gray-900'
             }`}
+            title="Ver eventos e atividades"
           >
-            Eventos
+            📋 Eventos
           </button>
         </div>
 
