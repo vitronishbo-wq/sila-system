@@ -15,10 +15,6 @@ from .db import (
 from .repositories import (
     BaseRepository,
     TaxpayerRepository,
-    DeclarationRepository,
-    DebtRepository,
-    PaymentRepository,
-    CertificateRepository,
     AuditRepository,
 )
 
@@ -90,13 +86,9 @@ __all__ = [
     'TaxCertificateModel',
     'TaxAuditModel',
     'TaxSequenceModel',
-    # Repositories
+    # Repositories (DDD: Only Aggregate Root Repository)
     'BaseRepository',
     'TaxpayerRepository',
-    'DeclarationRepository',
-    'DebtRepository',
-    'PaymentRepository',
-    'CertificateRepository',
     'AuditRepository',
     # Integrations
     'AGTException',
