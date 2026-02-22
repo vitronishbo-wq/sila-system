@@ -1,0 +1,15 @@
+[run]
+branch = True
+source =
+    apps/backend/app
+omit =
+    */tests/*
+    */__init__.py
+    */venv/*
+
+[report]
+fail_under = 80
+show_missing = True
+
+[html]
+directory = coverage_html_report

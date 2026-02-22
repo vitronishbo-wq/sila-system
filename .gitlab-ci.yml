@@ -1,0 +1,81 @@
+# GitLab CI/CD para SILA SYSTEM
+# Deploy automático baseado na branch
+
+stages:
+  - deploy
+
+# Variáveis globais
+variables:
+  DOCKER_DRIVER: overlay2
+
+# Deploy ambiente desenvolvimento
+deploy:dev:
+  stage: deploy
+  image: ubuntu:latest
+  only:
+    - dev
+    - develop
+  script:
+    - apt update
+    - apt install -y git curl wget
+    - chmod +x ./deploy_multi_ambiente_ci.sh
+    - ./deploy_multi_ambiente_ci.sh --ci-mode --env=dev
+  artifacts:
+    paths:
+      - logs/deploy_dev_*.log
+      - backups/dev_backup_*.tar.gz
+    expire_in: 7 days
+    when: always
+  tags:
+    - docker
+
+# Deploy ambiente staging
+deploy:staging:
+  stage: deploy
+  image: ubuntu:latest
+  only:
+    - staging
+  script:
+    - apt update
+    - apt install -y git curl wget
+    - chmod +x ./deploy_multi_ambiente_ci.sh
+    - ./deploy_multi_ambiente_ci.sh --ci-mode --env=staging
+  artifacts:
+    paths:
+      - logs/deploy_staging_*.log
+      - backups/staging_backup_*.tar.gz
+    expire_in: 14 days
+    when: always
+  tags:
+    - docker
+
+# Deploy ambiente produção (manual apenas)
+deploy:prod:
+  stage: deploy
+  image: ubuntu:latest
+  only:
+    - tags
+  when: manual
+  script:
+    - apt update
+    - apt install -y git curl wget
+    - chmod +x ./deploy_multi_ambiente_ci.sh
+    - ./deploy_multi_ambiente_ci.sh --ci-mode --env=prod
+  artifacts:
+    paths:
+      - logs/deploy_prod_*.log
+      - backups/prod_backup_*.tar.gz
+    expire_in: 30 days
+    when: always
+  tags:
+    - docker
+
+# Job para limpeza de artefatos antigos
+cleanup:artifacts:
+  stage: .post
+  image: ubuntu:latest
+  script:
+    - echo "🧹 Artefatos antigos podem ser removidos manualmente se necessário"
+  when: always
+  tags:
+    - docker

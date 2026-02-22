@@ -1,0 +1,41 @@
+name: SILA Dependency Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM
+
+jobs:
+  validate-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+  - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+
+    - name: Setup Python
+  uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
+      with:
+        python-version: '3.9'
+
+    - name: Setup Node.js
+  uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
+      with:
+        node-version: '18'
+
+    - name: Download SILA Validator
+      run: |
+        wget -O sila_validator.sh https://raw.githubusercontent.com/sila-system/validator/main/validar_dependencias_sila.sh
+        chmod +x sila_validator.sh
+
+    - name: Run SILA Dependency Validation
+      run: ./sila_validator.sh
+
+    - name: Upload logs on failure
+      if: failure()
+  uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5
+      with:
+        name: sila-logs
+        path: logs/

@@ -1,0 +1,7 @@
+# Security Analysis and SAST Tools
+bandit==1.7.5
+safety==3.0.1
+semgrep==1.45.0
+
+# Security testing
+cryptography==41.0.7

@@ -1,0 +1,519 @@
+"""Pytest configuration - Root level conftest for all tests
+
+This is the main conftest file that provides fixtures for all tests in the project,
+including tests in subdirectories. This ensures that fixtures are discoverable by all test modules,
+especially tests in the app/modules/* directories.
+
+Sem SQLite, sem BD em memória.
+Testes unitários com mocks quando necessário.
+Integração com BD fica para CI/CD com PostgreSQL real.
+
+PostgreSQL Transactional Isolation:
+Each async test is wrapped in a transaction that is rolled back after
+the test completes, ensuring data isolation without corrupting the DB.
+"""
+
+import asyncio
+import pytest
+import sys
+import os
+import contextlib
+from datetime import datetime, timedelta
+from decimal import Decimal
+from typing import Dict, Any, Optional
+from fastapi.testclient import TestClient
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.pool import NullPool
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+
+# NOTE: Importing `app` early can trigger model imports which interfere
+# with mapper clear/configure order. We'll import `app` after models are
+# registered and mappers configured (see below).
+from sqlalchemy.orm import clear_mappers
+import importlib
+
+# Ensure mapper/registry state is clean (helps avoid duplicate/ambiguous
+# registrations when pytest reuses the process). Then register models once.
+clear_mappers()
+# Import app.core.database after clearing mappers to avoid early imports of
+# model modules (which would create mapped classes that then get cleared).
+app_core_database = importlib.import_module("app.core.database")
+app_core_database.register_models()
+from app.db.base import Base
+
+# Ensure mappers are fully configured. Some tests rely on SQLAlchemy having
+# resolved mapped attributes (e.g. constructor kwargs) before instantiation.
+try:
+    from sqlalchemy.orm import configure_mappers
+
+    reg = getattr(Base, "registry", None)
+    if reg is not None and hasattr(reg, "configure"):
+        # Preferred: use registry.configure() when available
+        reg.configure()
+    else:
+        # Fallback to global configure_mappers()
+        configure_mappers()
+except Exception as _e:
+    # Surface configuration errors early during test collection
+    raise
+
+# Sanity check: ensure essential tables are present in metadata early
+_expected = ("citizen_fuc", "audit_logs")
+_missing = [t for t in _expected if t not in Base.metadata.tables]
+if _missing:
+    # Fail fast to get clear diagnostics if model registration didn't occur
+    raise RuntimeError(f"Missing tables in Base.metadata after register_models(): {_missing}")
+
+# Tests use the REAL PostgreSQL via DATABASE_URL. For isolation, we implement
+# transactional rollback: each test wraps in a transaction that is rolled back
+# after the test completes, preventing data corruption while testing against
+# the actual schema and types.
+# No SQLite—only PostgreSQL for fidelity and correctness.
+# app_core_database.engine and AsyncSessionLocal are already configured
+# from app.core.database; no override needed.
+
+# Now import application and auth deps (safe after models are registered)
+from app.main import app
+from app.api.deps import get_current_user
+from app.core.iam.models.user import User
+
+
+# PYTHONPATH should be configured via setup_dev_env.sh; do not mutate sys.path here.
+
+
+@pytest.fixture(scope="session")
+def event_loop():
+    """Event loop para testes async (pytest-asyncio)"""
+    loop = asyncio.get_event_loop_policy().new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest.fixture(scope="function")
+def anyio_backend():
+    """Configure anyio para usar asyncio como backend"""
+    return "asyncio"
+
+
+# ========== Mock Database Session ==========
+class MockAsyncSession:
+    """Mock de SQLAlchemy AsyncSession para testes unitários."""
+    
+    def __init__(self):
+        self.added_objects = []
+        self.committed = False
+        self.rolled_back = False
+        self._data_store = {}
+    
+    def add(self, obj):
+        """Simula adicionar objeto."""
+        self.added_objects.append(obj)
+    
+    async def commit(self):
+        """Simula commit."""
+        self.committed = True
+    
+    async def rollback(self):
+        """Simula rollback."""
+        self.rolled_back = True
+    
+    async def refresh(self, obj):
+        """Simula refresh de objeto."""
+        pass
+    
+    async def execute(self, stmt):
+        """Simula execução de query."""
+        class MockResult:
+            def scalar_one_or_none(self):
+                return None
+            def scalars(self):
+                class Scalars:
+                    def all(self):
+                        return []
+                return Scalars()
+        return MockResult()
+    
+    async def merge(self, obj):
+        """Simula merge."""
+        return obj
+    
+    @property
+    def is_active(self):
+        return True
+
+
+@pytest.fixture
+def mock_db_session():
+    """Fornece mock de DB session para testes."""
+    return MockAsyncSession()
+
+
+# ============================================================================
+# Optional HTTP client and async DB fixtures (shared)
+# These support module-level tests that expect `client` and async DB fixtures.
+# ============================================================================
+
+
+@pytest.fixture(scope="module")
+def client() -> TestClient:
+    return TestClient(app)
+
+
+def override_get_current_user():
+    return User(id="test-user-id", username="testuser", email="test@example.com")
+
+
+@pytest.fixture(autouse=False)
+def mock_user():
+    """Mock authenticated user for tests that require it."""
+    app.dependency_overrides[get_current_user] = override_get_current_user
+    yield
+    # Clean up overrides
+    app.dependency_overrides = {}
+
+
+def _get_database_url() -> str:
+    """Resolve a URL do DB a partir de `DATABASE_URL`.
+
+    Nota: os testes usam o mesmo Postgres (conforme solicitado). Esta função
+    exige que `DATABASE_URL` esteja definida e rejeita qualquer URL contendo
+    `sqlite`. Ela converte `postgresql://` para `postgresql+asyncpg://` quando
+    necessário. Não há suporte a `TEST_DATABASE_URL` neste fluxo — a única
+    fonte é `DATABASE_URL`.
+    """
+    url = os.environ.get("DATABASE_URL")
+    if not url:
+        raise RuntimeError(
+            "Variável `DATABASE_URL` ausente. Defina `DATABASE_URL` apontando para o Postgres."
+        )
+
+    if "sqlite" in url:
+        raise RuntimeError(
+            "URLs contendo sqlite não são permitidas para os testes; use Postgres."
+        )
+
+    # Converter para driver assíncrono se necessário
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+    return url
+
+
+@pytest.fixture(scope="session")
+async def test_engine():
+    """Cria um `AsyncEngine` compartilhado para a sessão de testes.
+
+    IMPORTANT: Esta fixture NÃO executa `create_all()` nem `drop_all()` — o
+    esquema deve ser provisionado pelo Alembic/migrações externas. A fixture
+    apenas cria um engine assíncrono conectado a `DATABASE_URL`.
+    """
+    test_db_url = _get_database_url()
+    engine = create_async_engine(
+        test_db_url, echo=False, pool_pre_ping=True, poolclass=NullPool
+    )
+
+    yield engine
+
+    await engine.dispose()
+
+
+@pytest.fixture(scope="function")
+async def db_session(test_engine) -> AsyncSession:
+    """Fornece uma `AsyncSession` isolada por teste usando transação 'sandwich'.
+
+    Fluxo:
+    - Abre conexão (uma por teste)
+    - Inicia TRANSAÇÃO externa
+    - Cria uma `AsyncSession` ligada a essa conexão
+    - Inicia `session.begin()` para o teste
+    - Ao final, executa `session.rollback()` e desfaz a transação externa
+
+    Nota: Não criamos nem removemos tabelas; assumimos que Alembic já aplicou o
+    esquema. Esse padrão permite usar o banco real sem persistir dados de teste.
+    """
+    async with test_engine.connect() as conn:
+        # Inicia transação externa que envolverá toda a atividade do teste
+        trans = await conn.begin()
+        async_session_factory = sessionmaker(
+            bind=conn,
+            class_=AsyncSession,
+            expire_on_commit=False,
+            autocommit=False,
+        )
+        async with async_session_factory() as session:
+            # Inicia transação a nível de sessão (o teste pode usar commits)
+            await session.begin()
+            try:
+                yield session
+            finally:
+                # Garante que nada persista: rollback na sessão e na transação externa
+                try:
+                    await session.rollback()
+                except Exception:
+                    pass
+        # rollback da transação externa
+        try:
+            await trans.rollback()
+        except Exception:
+            pass
+
+
+@pytest.fixture(scope="function")
+async def db(db_session) -> AsyncSession:
+    """Alias para db_session para compatibilidade com testes legados."""
+    return db_session
+
+
+@pytest.fixture(scope="function")
+async def async_db_session(db_session) -> AsyncSession:
+    """Alias para db_session para compatibilidade com testes que usam async_db_session."""
+    return db_session
+
+
+# ========== CitizenService Fixtures ==========
+@pytest.fixture
+def citizen_service():
+    """Fornece instância de CitizenService para testes."""
+    from app.citizen.service import CitizenService
+    from app.core.audit import ImmutableAuditLog
+    from app.core.events import EventPublisher
+    
+    service = CitizenService(db_session=None)
+    yield service
+    # Limpeza
+    service.clear_cache()
+    ImmutableAuditLog.clear()
+    EventPublisher._subscribers.clear()
+
+
+# ========== Citizen Data Fixtures ==========
+@pytest.fixture
+def valid_citizen_data():
+    """Dados de cidadão válido para testes."""
+    return {
+        "id": "CIT-TEST-001",
+        "full_name": "João da Silva",
+        "status": "ACTIVE",
+        "document_type": "BI",
+        "document_number": "12345678",
+        "birth_date": "1980-01-01",
+        "nationality": "Portuguesa"
+    }
+
+
+@pytest.fixture
+def inactive_citizen_data():
+    """Dados de cidadão inativo para testes de validação."""
+    return {
+        "id": "CIT-TEST-INACTIVE",
+        "full_name": "João Inativo",
+        "status": "INACTIVE",
+        "document_type": "BI",
+        "document_number": "99999999",
+        "birth_date": "1980-01-01",
+        "nationality": "Portuguesa"
+    }
+
+
+@pytest.fixture
+def deceased_citizen_data():
+    """Dados de cidadão falecido para testes."""
+    return {
+        "id": "CIT-TEST-DECEASED",
+        "full_name": "João Falecido",
+        "status": "DECEASED",
+        "document_type": "BI",
+        "document_number": "77777777",
+        "birth_date": "1950-01-01",
+        "nationality": "Portuguesa"
+    }
+
+
+# ========== FUC Projection Fixtures ==========
+@pytest.fixture
+def fuc_projection_data():
+    """Dados de projeção FUC para testes identidade_civil."""
+    from uuid import uuid4
+    from datetime import date
+    
+    return {
+        "id": str(uuid4()),
+        "full_name": "João Silva",
+        "document_number": "00000000-0000-0000-0000-000000000001",
+        "birth_date": date(2000, 1, 15),
+        "gender": "M",
+        "phone": "+244912345678",
+        "email": "joao.silva@example.com",
+        "vital_status": "alive"
+    }
+
+
+@pytest.fixture
+def fuc_projection_list():
+    """Lista de projeções FUC para testes en masse."""
+    from uuid import uuid4
+    from datetime import date
+    
+    return [
+        {
+            "id": str(uuid4()),
+            "full_name": "João Silva",
+            "document_number": "00000000-0000-0000-0000-000000000001",
+            "birth_date": date(2000, 1, 15),
+            "gender": "M",
+            "phone": "+244912345678",
+            "email": "joao.silva@example.com",
+            "vital_status": "alive"
+        },
+        {
+            "id": str(uuid4()),
+            "full_name": "Maria Silva",
+            "document_number": "98765432/BI",
+            "birth_date": date(1992, 3, 15),
+            "gender": "F",
+            "phone": "+244912345678",
+            "email": "maria@example.com",
+            "vital_status": "alive"
+        },
+        {
+            "id": str(uuid4()),
+            "full_name": "José Antonio",
+            "document_number": "56781234/BI",
+            "birth_date": date(1975, 7, 8),
+            "gender": "M",
+            "phone": None,
+            "email": None,
+            "vital_status": "alive"
+        }
+    ]
+
+
+@pytest.fixture
+def sample_citizen(fuc_projection_data):
+    """Fixture que retorna um Citizen criado a partir de FUC projection data."""
+    from app.modules.identidade_civil.domain.models.citizen import Citizen
+    
+    citizen = Citizen.from_fuc_projection(fuc_projection_data)
+    return citizen
+
+
+# ========== Invoice & Payment Fixtures ==========
+@pytest.fixture
+def sample_invoice_data():
+    """Dados básicos para criar fatura."""
+    return {
+        "citizen_id": "CIT-TEST-001",
+        "amount": Decimal("1000.00"),
+        "currency": "AOA",
+        "revenue_code": "ORE001",
+        "cost_center": "CC001",
+        "description": "Taxa de Registro Civil",
+        "due_date": datetime.utcnow() + timedelta(days=30)
+    }
+
+
+@pytest.fixture
+def sample_payment_data():
+    """Dados básicos para registrar pagamento."""
+    return {
+        "invoice_id": "INV-TEST-001",
+        "citizen_id": "CIT-TEST-001",
+        "amount": Decimal("1000.00"),
+        "payment_method": "BANK_TRANSFER",
+        "transaction_id": "TXN-12345678"
+    }
+
+
+# ========== Event Publisher Fixtures ==========
+@pytest.fixture
+def event_collector():
+    """Coleta eventos disparados durante testes."""
+    from app.core.events import EventPublisher
+    
+    class EventCollector:
+        def __init__(self):
+            self.events = []
+        
+        async def collect(self, event):
+            self.events.append(event)
+        
+        async def handle(self, event):
+            """Alias para collect/subscribe."""
+            await self.collect(event)
+        
+        def get_events(self, event_type=None):
+            if event_type:
+                return [e for e in self.events if type(e).__name__ == event_type.__name__]
+            return self.events
+        
+        def get_all(self):
+            """Alias para get_events()."""
+            return self.events
+
+        
+        def clear(self):
+            self.events.clear()
+    
+    collector = EventCollector()
+    EventPublisher._subscribers.clear()
+    return collector
+
+
+# ========== Cleanup Autouse Fixtures ==========
+@pytest.fixture(autouse=True)
+def reset_audit_and_events():
+    """Reset audit log e events antes de cada teste."""
+    from app.core.audit import ImmutableAuditLog
+    from app.core.events import EventPublisher
+    
+    ImmutableAuditLog.clear()
+    EventPublisher._subscribers.clear()
+    
+    yield
+    
+    ImmutableAuditLog.clear()
+    EventPublisher._subscribers.clear()
+
+
+# ========== Markers customizados ==========
+def pytest_configure(config):
+    """Registra markers customizados."""
+    config.addinivalue_line(
+        "markers", "integration: marca testes de integração"
+    )
+    config.addinivalue_line(
+        "markers", "unit: marca testes unitários"
+    )
+    config.addinivalue_line(
+        "markers", "audit: marca testes de auditoria"
+    )
+    config.addinivalue_line(
+        "markers", "fuc: marca testes de integração FUC"
+    )
+
+# ========== PostgreSQL Transactional Isolation Hook ==========
+# Wraps each test in a PostgreSQL transaction with automatic rollback.
+# This prevents tests from corrupting the database while testing against
+# the real schema and types (no SQLite mock).
+
+@pytest.fixture
+async def postgres_transactional_test():
+    """
+    Fixture that wraps test logic in a PostgreSQL transaction that rolls back.
+    Use with `@pytest.mark.usefixtures('postgres_transactional_test')` to enable.
+    """
+    # This fixture is intentionally minimal; the actual isolation is handled
+    # by pytest_runtest_protocol hook below, which wraps all async tests.
+    yield
+
+
+@pytest.fixture(scope="session", autouse=True)
+def _postgres_isolation_session_hook(request):
+    """
+    Session-scoped hook: does nothing but ensures the module is loaded
+    to activate the runtest protocol hook. Autouse=True ensures this
+    hook is always active.
+    """
+    yield

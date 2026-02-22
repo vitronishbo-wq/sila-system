@@ -1,0 +1,26 @@
+{
+  "app": {
+    "title": "SILA - Sistema Integrado Local de Administração",
+    "welcome": "Bem-vindo ao SILA",
+    "error": {
+      "not_found": "Recurso não encontrado",
+      "server_error": "Erro interno do servidor"
+    }
+  },
+  "auth": {
+    "login": "Entrar",
+    "logout": "Sair",
+    "unauthorized": "Não autorizado"
+  },
+  "login": "Entrar",
+  "dashboard": "Painel",
+  "services": "Serviços",
+  "service_catalog": "Catálogo de Serviços",
+  "access": "Acessar",
+  "logout": "Sair",
+  "search_service": "Pesquisar serviço...",
+  "category": "Categoria",
+  "all_categories": "Todas as categorias",
+  "service_list": "Lista de Serviços",
+  "no_service_found": "Nenhum serviço encontrado."
+}

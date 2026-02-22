@@ -1,0 +1,104 @@
+# SILA System - Frontend-Backend Integration Endpoints
+# Used by: scripts/validate_frontend_backend_integration.py
+
+endpoints:
+  # Backend Health & Meta
+  - name: "Backend Health"
+    method: GET
+    url: "http://localhost:8000/health"
+    critical: true
+    expect_status: [200]
+
+  - name: "Backend Status"
+    method: GET
+    url: "http://localhost:8000/status"
+    critical: false
+    expect_status: [200]
+
+  - name: "OpenAPI Schema"
+    method: GET
+    url: "http://localhost:8000/openapi.json"
+    critical: false
+
+  # Authentication endpoints
+  - name: "Auth Login"
+    method: POST
+    url: "http://localhost:8000/api/auth/login"
+    critical: true
+    payload:
+      username: "test@sila.gov.ao"
+      password: "TestPassword123!"
+    expect_status: [200, 401, 422]
+
+  - name: "Auth Logout"
+    method: POST
+    url: "http://localhost:8000/api/auth/logout"
+    critical: false
+    auth: true
+    expect_status: [200, 401]
+
+  # User endpoints
+  - name: "Get User Profile"
+    method: GET
+    url: "http://localhost:8000/api/user/me"
+    critical: true
+    auth: true
+    expect_status: [200, 401, 403]
+
+  - name: "Update User Profile"
+    method: PUT
+    url: "http://localhost:8000/api/user/me"
+    critical: false
+    auth: true
+    payload:
+      full_name: "Test User"
+    expect_status: [200, 400, 401, 403]
+
+  # CORS Preflight Tests
+  - name: "CORS Preflight GET"
+    method: OPTIONS
+    url: "http://localhost:8000/api/items"
+    critical: false
+    headers:
+      Origin: "http://localhost:5173"
+      Access-Control-Request-Method: "GET"
+    expect_status: [200, 204]
+
+  - name: "CORS Preflight POST"
+    method: OPTIONS
+    url: "http://localhost:8000/api/items"
+    critical: false
+    headers:
+      Origin: "http://localhost:5173"
+      Access-Control-Request-Method: "POST"
+    expect_status: [200, 204]
+
+  # API Endpoints
+  - name: "List Items"
+    method: GET
+    url: "http://localhost:8000/api/items"
+    critical: false
+    expect_status: [200, 401]
+
+  - name: "Create Item"
+    method: POST
+    url: "http://localhost:8000/api/items"
+    critical: false
+    auth: true
+    payload:
+      name: "Test Item"
+      description: "Test Description"
+    expect_status: [200, 201, 400, 401, 403]
+
+  # Frontend connectivity
+  - name: "Frontend Root"
+    method: GET
+    url: "http://localhost:5173/"
+    critical: false
+    expect_status: [200, 301, 302]
+
+  - name: "Frontend Static Asset"
+    method: GET
+    url: "http://localhost:5173/index.html"
+    critical: false
+    expect_status: [200, 304]

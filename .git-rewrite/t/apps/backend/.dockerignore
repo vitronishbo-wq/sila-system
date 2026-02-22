@@ -1,0 +1,85 @@
+# ===========================================
+# .dockerignore para Backend SILA
+# Evita copiar arquivos desnecessários para a imagem
+# ===========================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Ambientes virtuais
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Logs
+*.log
+logs/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Documentação
+*.md
+docs/
+
+# Temporários
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# Alembic (manter apenas o necessário)
+alembic.ini
+alembic/versions/*.pyc
+
+# Arquivos de configuração local
+.env.local
+.env.*.local
+
+# Node modules (se houver)
+node_modules/
+
+# Arquivos grandes
+*.tar
+*.tar.gz
+*.zip

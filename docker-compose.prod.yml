@@ -1,0 +1,77 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: sila-db-prod
+    restart: always
+    environment:
+      POSTGRES_DB: sila_db
+      POSTGRES_USER: sila_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U sila_user -d sila_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - sila-network
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile.prod
+    container_name: sila-backend-prod
+    restart: always
+    env_file:
+      - ./apps/backend/.env.prod
+    environment:
+      - DEBUG=false
+      - WORKERS=4
+    volumes:
+      - uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    networks:
+      - sila-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: sila-nginx-prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infrastructure/docker/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infrastructure/docker/frontend.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+      - uploads:/app/uploads:ro
+    depends_on:
+      - backend
+    networks:
+      - sila-network
+
+volumes:
+  postgres_data:
+    driver: local
+  uploads:
+    driver: local
+
+networks:
+  sila-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: sila-br0

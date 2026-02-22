@@ -1,0 +1,159 @@
+/**
+ * Finance Service - Frontend
+ * Único ponto de integração com a API de Finanças do Backend
+ * 
+ * Endpoints:
+ * POST   /api/v1/financas/invoices
+ * GET    /api/v1/financas/invoices/{id}
+ * GET    /api/v1/financas/invoices/citizen/{citizen_id}
+ * POST   /api/v1/financas/payments
+ * GET    /api/v1/financas/payments/citizen/{citizen_id}
+ * POST   /api/v1/financas/payments/confirm (webhook)
+ */
+
+import http from '../../api/http';
+import type {
+  Invoice,
+  Payment,
+  FinanceStats,
+  CreateInvoiceRequest,
+  CreatePaymentRequest
+} from '../types';
+
+class FinanceService {
+  private readonly apiBase = '/api/v1/financas';
+
+  /**
+   * Criar nova fatura
+   */
+  async createInvoice(data: CreateInvoiceRequest): Promise<Invoice> {
+    const response = await http.post<Invoice>(`${this.apiBase}/invoices`, {
+      citizen_id: data.citizen_id,
+      revenue_code: data.revenue_code,
+      cost_center: data.cost_center,
+      service_code: data.service_code,
+      service_name: data.service_name,
+      amount: data.amount,
+      currency: data.currency || 'AOA',
+      due_date: data.due_date || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    });
+    return response;
+  }
+
+  /**
+   * Obter fatura por ID
+   */
+  async getInvoice(invoiceId: string): Promise<Invoice> {
+    const response = await http.get<Invoice>(`${this.apiBase}/invoices/${invoiceId}`);
+    return response;
+  }
+
+  /**
+   * Listar faturas de um cidadão
+   */
+  async getCitizenInvoices(citizenId: string): Promise<Invoice[]> {
+    const response = await http.get<Invoice[]>(`${this.apiBase}/invoices/citizen/${citizenId}`);
+    return response;
+  }
+
+  /**
+   * Registar pagamento
+   */
+  async registerPayment(data: CreatePaymentRequest): Promise<Payment> {
+    const response = await http.post<Payment>(`${this.apiBase}/payments`, {
+      invoice_id: data.invoice_id,
+      citizen_id: data.citizen_id,
+      amount: data.amount,
+      gateway_reference: data.gateway_reference,
+      payment_method: data.payment_method,
+    });
+    return response;
+  }
+
+  /**
+   * Obter histórico de pagamentos de um cidadão
+   */
+  async getCitizenPayments(citizenId: string): Promise<Payment[]> {
+    const response = await http.get<Payment[]>(`${this.apiBase}/payments/citizen/${citizenId}`);
+    return response;
+  }
+
+  /**
+   * Confirmar pagamento via webhook (chamado pelo gateway)
+   */
+  async confirmPaymentWebhook(payload: Record<string, any>): Promise<{ status: string; message: string }> {
+    const response = await http.post<{ status: string; message: string }>(`${this.apiBase}/payments/confirm`, payload);
+    return response;
+  }
+
+  /**
+   * Calcular estatísticas financeiras de um cidadão
+   */
+  async getFinancialStats(citizenId: string): Promise<FinanceStats> {
+    const invoices = await this.getCitizenInvoices(citizenId);
+    const payments = await this.getCitizenPayments(citizenId);
+
+    const totalAmount = invoices.reduce((sum, inv) => sum + inv.amount, 0);
+    const paidAmount = invoices
+      .filter(inv => inv.status === 'paid')
+      .reduce((sum, inv) => sum + inv.amount, 0);
+    const pendingAmount = invoices
+      .filter(inv => inv.status === 'pending')
+      .reduce((sum, inv) => sum + inv.amount, 0);
+    const overdueAmount = invoices
+      .filter(inv => inv.status === 'overdue')
+      .reduce((sum, inv) => sum + inv.amount, 0);
+
+    return {
+      total_invoices: invoices.length,
+      total_amount: totalAmount,
+      paid_amount: paidAmount,
+      pending_amount: pendingAmount,
+      overdue_amount: overdueAmount,
+      payment_rate: totalAmount > 0 ? (paidAmount / totalAmount) * 100 : 0,
+    };
+  }
+
+  /**
+   * @deprecated Usar getCitizenInvoices + getCitizenPayments + aggregação
+   * Mantido para compatibilidade com componentes legados
+   */
+  async getInvoices(citizenId?: string): Promise<Invoice[]> {
+    if (citizenId) {
+      return this.getCitizenInvoices(citizenId);
+    }
+    return [];
+  }
+
+  /**
+   * @deprecated Usar getFinancialStats
+   * Mantido para compatibilidade com componentes legados
+   */
+  async getStats(): Promise<FinanceStats> {
+    return {
+      total_invoices: 0,
+      total_amount: 0,
+      paid_amount: 0,
+      pending_amount: 0,
+      overdue_amount: 0,
+      payment_rate: 0,
+    };
+  }
+
+  /**
+   * @deprecated Usar registerPayment
+   * Mantido para compatibilidade com componentes legados
+   */
+  async processPayment(invoiceId: string, citizenId: string, amount: number): Promise<Payment> {
+    const gatewayRef = `GW-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return this.registerPayment({
+      invoice_id: invoiceId,
+      citizen_id: citizenId,
+      amount: amount,
+      gateway_reference: gatewayRef,
+      payment_method: 'INTERNET_BANKING',
+    });
+  }
+}
+
+export default new FinanceService();

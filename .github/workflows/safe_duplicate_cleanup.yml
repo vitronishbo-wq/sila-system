@@ -1,0 +1,71 @@
+name: Safe Duplicate Cleanup with Index Update and PR
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  deduplicate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install pylint pytest ripgrep fdupes gh
+
+      - name: Detect duplicates (checksums + fdupes)
+        run: |
+          find . -type f -not -path '*/.git/*' -print0 | xargs -0 sha256sum | sort > checksums_sorted.txt
+          sudo apt-get update && sudo apt-get install -y fdupes
+          fdupes -r . > fdupes_raw.txt
+
+      - name: Run safe deduplication script
+        run: |
+          python3 .github/scripts/safe_dedup.py
+
+      - name: Regenerate all_code_index.json and CSV
+        run: |
+          python3 master_index_generator.py . --ext py --json --csv
+
+      - name: Generate full project index + script list
+        run: python3 master_index_generator.py . --ext py sh js ts --json --csv
+
+      - name: Run lint
+        run: |
+          pylint $(git ls-files '*.py')
+
+      - name: Run tests
+        run: |
+          pytest -q
+
+      - name: Run unit tests
+        run: |
+          pytest tests/ --disable-warnings
+
+      - name: Rollback if failures
+        if: failure()
+        run: |
+          git reset --hard HEAD
+          cp -r .cleanup_backup/* . || true
+
+      - name: Create/update PR with cleanup changes
+        if: success()
+        run: |
+          BRANCH_NAME=dedup-cleanup-$(date +'%Y%m%d%H%M%S')
+          git checkout -b $BRANCH_NAME
+          git add -u
+          git commit -m 'cleanup: automated duplicate removal + index update (CI-verified)'
+          git push origin $BRANCH_NAME
+          gh pr create --title 'Automated Duplicate Cleanup + Index Update' --body 'This PR contains CI-verified deduplication and updated project index.' --base main

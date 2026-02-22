@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "lib": ["ES2021", "DOM"],
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "include": ["hooks/**/*", "clients/**/*", "types/**/*", "config/**/*", "utils/**/*", "index.ts"],
+  "exclude": ["node_modules", "dist"]
+}

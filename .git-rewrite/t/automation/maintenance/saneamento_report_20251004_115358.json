@@ -1,0 +1,130 @@
+{
+  "timestamp": "20251004_115358",
+  "steps": [
+    {
+      "step": 1,
+      "name": "Corrigir estrutura de módulos",
+      "actions": [
+        {
+          "action": "generate_modules_structure",
+          "success": true,
+          "output": "🚀 Gerador de Estrutura Detalhada dos Módulos SILA\n==================================================\n🔍 Analisando módulos em: /mnt/hd/home/mint/Downloads/sila-system/backend/app/modules\n  📁 Analisando módulo: address\n  📁 Analisando módulo: appointments\n  📁 Analisando módulo: auth\n  📁 Analisando módulo: citizenship\n  📁 Analisando módulo: commercial\n  📁 Analisando módulo: common\n  📁 Analisando módulo: complaints\n  📁 Analisando módulo: dashboard\n  📁 Analisando módulo: documents\n  📁 Analisando módul"
+        },
+        {
+          "action": "check_module_integrity",
+          "success": true,
+          "output": "/033[95m=== Verificador de Integridade de Módulos ===/033[0m/n\n/033[94mVerificando integridade dos módulos.../033[0m/n\n/033[1mMódulo: address/033[0m\n  /033[92m✓/033[0m __init__.py\n  /033[91m✗/033[0m crud.py\n  /033[92m✓/033[0m endpoints.py\n  /033[91m✗/033[0m models.py\n  /033[91m✗/033[0m schemas.py\n  /033[91m✗/033[0m services.py\n/n/033[93mProblemas encontrados:/033[0m\n  • Arquivo crud.py não encontrado em address\n  • Arquivo models.py não encontrado em address\n  • Arquivo schemas.py não encontrado"
+        }
+      ],
+      "success": true
+    },
+    {
+      "step": 2,
+      "name": "Resolver importações",
+      "actions": [
+        {
+          "action": "fix_imports.py",
+          "success": true,
+          "output": "✅ Criado: backend/app/__pycache__/__init__.py\n✅ Criado: backend/app/modules/dashboard/__init__.py\n✅ Criado: backend/app/modules/complaints/schemas/__init__.py\n✅ __init__.py garantidos em todos os diretórios de backend/app.\nℹ️ endpoints.py já existe em backend/app/modules/appointments/endpoints.py\nℹ️ endpoints.py já existe em backend/app/modules/urbanism/endpoints.py\nℹ️ endpoints.py já existe em backend/app/modules/notifications/endpoints.py\nℹ️ endpoints.py já existe em backend/app/modules/justic"
+        },
+        {
+          "action": "fix_broken_imports.py",
+          "success": false,
+          "output": ""
+        },
+        {
+          "action": "fix_auth_utils_imports.py",
+          "success": true,
+          "output": "🔧 Corrigindo imports de auth_utils...\n\n✅ Correção concluída!\n   📁 Arquivos corrigidos: 0\nℹ️  Nenhum arquivo precisou de correção\n"
+        },
+        {
+          "action": "fix_security_imports.py",
+          "success": true,
+          "output": "🔧 Corrigindo imports de security...\n✅ Corrigido: backend/app/modules/citizenship/services/atualizacao_bi_service.py\n\n✅ Correção concluída!\n   📁 Arquivos corrigidos: 1\n\n📋 Arquivos modificados:\n   - backend/app/modules/citizenship/services/atualizacao_bi_service.py\n\n💾 Backups criados com sufixo: .bak_security_20251004_115358\n🎯 Para commit: git add . && git commit -m 'fix: correct security import paths'\n"
+        },
+        {
+          "action": "detect_and_fix_import_cycles.py",
+          "success": true,
+          "output": "✅ Nenhum ciclo de importação detectado.\n\nArquivos analisados:\n"
+        }
+      ],
+      "success": false
+    },
+    {
+      "step": 3,
+      "name": "Padronizar camadas",
+      "actions": [
+        {
+          "action": "check_and_generate_modules",
+          "success": false,
+          "output": "Timeout após 5 minutos"
+        }
+      ],
+      "success": false
+    },
+    {
+      "step": 4,
+      "name": "Corrigir arquivos corrompidos",
+      "actions": [
+        {
+          "action": "fix_encoding.py",
+          "success": true,
+          "output": "[✓] Arquivo gerado em UTF-8 (sem BOM): /mnt/hd/home/mint/Downloads/sila-system/data/clientes.csv\n"
+        },
+        {
+          "action": "fix_unterminated_strings.py",
+          "success": false,
+          "output": "  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/fix_unterminated_strings.py\", line 12\n    for sila_dev-system, _, files in os.walk(base_dir):\n        ^^^^^^^^^^^^^^^\nSyntaxError: cannot assign to expression\n"
+        },
+        {
+          "action": "fix_syntax_errors_targeted.py",
+          "success": false,
+          "output": ""
+        },
+        {
+          "action": "validate_py_syntax.py",
+          "success": false,
+          "output": "  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/validate_py_syntax.py\", line 10\n    PROJECT_sila_dev-system = Path(__file__).parent.parent\n    ^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?\n"
+        }
+      ],
+      "success": false
+    },
+    {
+      "step": 5,
+      "name": "Validar ambiente",
+      "actions": [
+        {
+          "action": "validate_env.py",
+          "success": false,
+          "output": "Traceback (most recent call last):\n  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/validate_env.py\", line 3, in <module>\n    from dotenv import load_dotenv\nModuleNotFoundError: No module named 'dotenv'\n"
+        },
+        {
+          "action": "padronizar_envs.py",
+          "success": false,
+          "output": "Traceback (most recent call last):\n  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/padronizar_envs.py\", line 4, in <module>\n    from dotenv import dotenv_values\nModuleNotFoundError: No module named 'dotenv'\n"
+        },
+        {
+          "action": "validar_env_critico.py",
+          "success": false,
+          "output": "Traceback (most recent call last):\n  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/validar_env_critico.py\", line 1, in <module>\n    from dotenv import dotenv_values\nModuleNotFoundError: No module named 'dotenv'\n"
+        }
+      ],
+      "success": false
+    },
+    {
+      "step": 6,
+      "name": "Harmonizar frontend/backend",
+      "actions": [
+        {
+          "action": "check-frontend-sync",
+          "success": false,
+          "output": "Traceback (most recent call last):\n  File \"/mnt/hd/home/mint/Downloads/sila-system/scripts/check-frontend-sync.py\", line 18, in <module>\n    import httpx\nModuleNotFoundError: No module named 'httpx'\n"
+        }
+      ],
+      "success": false
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "success": true
+}

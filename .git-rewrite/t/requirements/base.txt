@@ -1,0 +1,23 @@
+# ==================================================
+# SILA System - Base Dependencies
+# ==================================================
+# DEPRECATED: Use requirements.txt na raiz do projeto
+# Este arquivo é mantido para compatibilidade com scripts legados
+
+# Core Framework
+fastapi==0.115.0
+uvicorn[standard]==0.31.0
+
+# Data Validation
+pydantic==2.9.2
+pydantic-settings==2.5.2
+pydantic-core==2.23.4
+
+# Database
+sqlalchemy==2.0.35
+alembic==1.13.3
+psycopg2-binary==2.9.10
+
+# Monitoring
+opentelemetry-instrumentation-fastapi==0.48b0
+opentelemetry-instrumentation-sqlalchemy==0.48b0

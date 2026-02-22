@@ -1,0 +1,70 @@
+name: PR Delta Summary
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  delta-summary:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure jq is installed
+        run: sudo apt-get update -y && sudo apt-get install -y jq
+
+      - name: Decompress report_delta.json.gz (if present)
+        id: decompress
+        run: |
+          if [ -f report_delta.json.gz ]; then
+            gunzip -c report_delta.json.gz > report_delta.json
+            echo "file_present=true" >> $GITHUB_OUTPUT
+          elif [ -f report_delta.json ]; then
+            echo "file_present=true" >> $GITHUB_OUTPUT
+          else
+            echo "file_present=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract delta statistics
+        id: delta
+        if: steps.decompress.outputs.file_present == 'true'
+        run: |
+          ADDED=$(jq '.added_count // 0' report_delta.json)
+          REMOVED=$(jq '.removed_count // 0' report_delta.json)
+          # 'altered' represents total changed entries; adjust as needed
+          ALTERED=$(jq '.added_total + .removed_total // 0' report_delta.json)
+          echo "added=$ADDED" >> $GITHUB_OUTPUT
+          echo "removed=$REMOVED" >> $GITHUB_OUTPUT
+          echo "altered=$ALTERED" >> $GITHUB_OUTPUT
+
+      - name: Update PR body with delta summary
+        if: steps.decompress.outputs.file_present == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const added   = process.env.ADDED   || '${{ steps.delta.outputs.added }}';
+            const removed = process.env.REMOVED || '${{ steps.delta.outputs.removed }}';
+            const altered = process.env.ALTERED || '${{ steps.delta.outputs.altered }}';
+
+            const deltaSection = `\n\n### 📊 Delta Report\n- Added files: ${added}\n- Removed files: ${removed}\n- Altered files: ${altered}`;
+
+            const pr = context.payload.pull_request;
+            const originalBody = pr.body || '';
+
+            // Avoid duplicating the delta report.
+            const cleanedBody = originalBody.replace(/### 📊 Delta Report[\s\S]*$/m, '').trim();
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              body: cleanedBody + deltaSection
+            });

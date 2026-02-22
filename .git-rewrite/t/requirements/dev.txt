@@ -1,0 +1,13 @@
+# ==================================================
+# SILA System - Development Dependencies
+# ==================================================
+# DEPRECATED: Use requirements-dev.txt na raiz do projeto
+# Este arquivo é mantido para compatibilidade com scripts legados
+
+-r base.txt
+
+pytest==8.3.3
+pytest-asyncio==0.24.0
+pytest-cov==5.0.0
+pytest-mock==3.14.0
+bump-pydantic==0.8.0

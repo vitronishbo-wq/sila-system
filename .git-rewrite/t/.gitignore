@@ -1,0 +1,75 @@
+# ============================================================================
+# AMBIENTES VIRTUAIS (NUNCA versionar - reconstruir com requirements.txt)
+# ============================================================================
+.venv/
+venv/
+env/
+.env/
+ENV/
+virtualenv/
+
+# Específico: backend (apps/backend/venv/)
+apps/backend/venv/
+apps/backend/.venv/
+backend/venv/
+backend/.venv/
+
+# Specifico: frontend (se tiver node_modules, já está em Node.js section)
+# frontend/venv/
+# frontend/.venv/
+
+# Ficheiros de configuração com segredos (manter apenas .env.example)
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+apps/backend/config/.env.development
+apps/backend/config/.env.production
+devops/.env.development
+devops/.env.production
+
+# Node.js
+frontend/node_modules/
+
+# Caches do Python
+__pycache__/
+*.pyc
+
+# Relatórios
+relatorios/
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.backup.*
+complete_project_tree*
+
+# Generated project tree snapshots (from generate_project_tree.sh)
+.tree-*.md
+
+# Indexes gerados automaticamente
+all_code_index.*
+all_scripts_list.*
+
+# Diretórios de monitoramento obsoletos (usar devops/monitoring/)
+/monitoring/
+/observability/
+
+# Scripts de scaffolding obsoletos (usar tools/codegen/generate_module.py)
+tools/codegen/*.deprecated
+
+# Scripts de qualidade obsoletos (usar pre-commit hooks)
+scripts/*fix*.py
+scripts/*lint*.py
+scripts/*format*.py
+scripts/auto_fix*.py
+scripts/corrigir*.py
+tools/*fix*.py
+tools/*lint*.py
+tools/*format*.py
+tools/scan_and_fix*.py
+reports/mass_fix_v2/diffs/*.diff

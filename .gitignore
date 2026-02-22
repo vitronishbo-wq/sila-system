@@ -1,0 +1,148 @@
+# ============================================================================
+# AMBIENTES VIRTUAIS (NUNCA versionar - reconstruir com requirements.txt)
+# ============================================================================
+venv/
+env/
+virtualenv/
+
+# Específico: backend (apps/backend/venv/)
+apps/backend/venv/
+apps/backend/.venv/
+backend/venv/
+backend/.venv/
+
+# Specifico: frontend (se tiver node_modules, já está em Node.js section)
+# frontend/venv/
+# frontend/.venv/
+
+# Ficheiros de configuração com segredos (manter apenas .env.example)
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+apps/backend/config/.env.development
+apps/backend/config/.env.production
+devops/.env.development
+devops/.env.production
+# Backend local env files (should not be committed)
+apps/backend/.env
+apps/backend/.env.*
+.env
+.env.local
+.env.*.local
+
+# ============================================================================
+# SEGREDOS & CREDENCIAIS (NEVER versionar)
+# ============================================================================
+# GitHub, GitLab, Bitbucket tokens
+.github_token
+.github_token.txt
+.gitlab-token
+.bitbucket-token
+
+# AWS, Azure, GCP credentials
+.aws/
+.azure/
+credentials.json
+google-cloud-key.json
+service-account-key.json
+
+# SSH keys
+*.pem
+*.key
+*.pub
+!deploy/keys/*.pub
+id_rsa
+id_ed25519
+
+# Docker credentials
+.docker/config.json
+.dockercfg
+
+# HashiCorp Vault
+.vault-token
+.vault-addr
+
+# API keys e tokens
+*.token
+.apikey
+.api_key
+.token
+auth.token
+access.token
+refresh.token
+
+# Private certificates
+*.crt
+*.cer
+private.pem
+certificate.pem
+
+# OAuth2 configs
+oauth2.json
+oauth.json
+
+# Kubernetes secrets
+secret*.yaml
+secrets*.yaml
+values-secrets.yaml
+
+# Node.js
+frontend/node_modules/
+
+# Caches do Python
+__pycache__/
+*.pyc
+
+# Relatórios
+relatorios/
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.backup.*
+complete_project_tree*
+
+# Generated project tree snapshots (from generate_project_tree.sh)
+.tree-*.md
+
+# Indexes gerados automaticamente
+all_code_index.*
+all_scripts_list.*
+
+# Diretórios de monitoramento obsoletos (usar devops/monitoring/)
+/monitoring/
+/observability/
+
+# Scripts de scaffolding obsoletos (usar tools/codegen/generate_module.py)
+tools/codegen/*.deprecated
+
+# Scripts de qualidade obsoletos (usar pre-commit hooks)
+scripts/*fix*.py
+scripts/*lint*.py
+scripts/*format*.py
+scripts/auto_fix*.py
+scripts/corrigir*.py
+tools/*fix*.py
+tools/*lint*.py
+tools/*format*.py
+tools/scan_and_fix*.py
+reports/mass_fix_v2/diffs/*.diff
+.codersinflow
+.vscode
+node_modules
+.venv
+.codex
+out
+dist
+*.vsix
+.claude
+CLAUDE.md
+.DS_Store
+.git
+*.tmp
+__pycache__
+.next

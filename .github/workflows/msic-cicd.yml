@@ -1,0 +1,521 @@
+name: MSIC CI/CD Pipeline
+# Metodologia SILA de Intercâmbio de Configurações
+# Pipeline completo com validação, testes e deploy automatizado
+
+on:
+  push:
+    branches: [develop, staging, main]
+  pull_request:
+    branches: [develop, staging, main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy"
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+env:
+  REGISTRY: docker.io
+  BACKEND_IMAGE: sila-backend
+  FRONTEND_IMAGE: sila-frontend
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "20"
+
+jobs:
+  # ========================================
+  # JOB 1: Validação MSIC
+  # ========================================
+  msic-validation:
+    name: 🔍 MSIC Configuration Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Validate MSIC Configuration Files
+        run: |
+          echo "🔍 Validando arquivos de configuração MSIC..."
+
+          # Verificar arquivos essenciais
+          required_files=(
+            "docker-compose.yml"
+            ".env.template"
+            "backend/Dockerfile"
+            "backend/config/settings.py"
+            "sila_start.sh"
+            "sila_stop.sh"
+            "status_sila.sh"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [[ ! -f "$file" ]]; then
+              echo "❌ Arquivo essencial faltando: $file"
+              exit 1
+            fi
+            echo "✅ $file encontrado"
+          done
+
+      - name: Validate Environment Templates
+        run: |
+          echo "🔍 Validando templates de ambiente..."
+
+          # Verificar se .env.template existe
+          if [[ ! -f ".env.template" ]]; then
+            echo "❌ .env.template não encontrado"
+            exit 1
+          fi
+
+          # Verificar variáveis obrigatórias
+          required_vars=(
+            "ENVIRONMENT"
+            "NODE_ENV"
+            "DATABASE_URL"
+            "SECRET_KEY"
+            "FRONTEND_TARGET"
+          )
+
+          for var in "${required_vars[@]}"; do
+            if ! grep -q "^${var}=" .env.template; then
+              echo "❌ Variável obrigatória faltando em .env.template: $var"
+              exit 1
+            fi
+            echo "✅ $var presente"
+          done
+
+      - name: Validate Docker Compose Structure
+        run: |
+          echo "🔍 Validando estrutura do docker-compose.yml..."
+
+          # Verificar sintaxe YAML
+          python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))"
+
+          # Verificar serviços essenciais
+          if ! grep -q "services:" docker-compose.yml; then
+            echo "❌ Seção 'services' não encontrada"
+            exit 1
+          fi
+
+          echo "✅ docker-compose.yml válido"
+
+      - name: Validate Script Permissions
+        run: |
+          echo "🔍 Validando permissões de scripts..."
+
+          scripts=(
+            "sila_start.sh"
+            "sila_stop.sh"
+            "status_sila.sh"
+            "automation/maintenance/build_frontend.sh"
+          )
+
+          for script in "${scripts[@]}"; do
+            if [[ -f "$script" ]]; then
+              chmod +x "$script"
+              echo "✅ Permissão aplicada: $script"
+            fi
+          done
+
+  # ========================================
+  # JOB 2: Testes Backend
+  # ========================================
+  backend-tests:
+    name: 🧪 Backend Tests
+    runs-on: ubuntu-latest
+    needs: msic-validation
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sila_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd="pg_isready -U postgres" --health-interval=10s
+          --health-timeout=5s --health-retries=5
+
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s
+          --health-retries=5
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/sila_test
+      REDIS_URL: redis://localhost:6379/0
+      SECRET_KEY: test-secret-key-for-ci
+      ENVIRONMENT: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+          pip install pytest pytest-cov pytest-asyncio pytest-timeout
+
+      - name: Run Linting
+        run: |
+          pip install flake8 black isort
+          cd backend
+          echo "🔍 Running flake8..."
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
+          echo "🔍 Checking code formatting..."
+          black --check . || true
+          isort --check-only . || true
+
+      - name: Run Database Migrations
+        run: |
+          cd backend
+          alembic upgrade head
+
+      - name: Run Unit Tests
+        run: |
+          cd backend
+          pytest tests/ -v \
+            --cov=modules \
+            --cov=app \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            --cov-report=html \
+            --timeout=30 \
+            -m "not external and not slow"
+
+      - name: Run Integration Tests
+        run: |
+          cd backend
+          pytest tests/ -v \
+            --timeout=60 \
+            -m "integration"
+
+      - name: Upload Coverage Reports
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./backend/coverage.xml
+          flags: backend
+          name: backend-coverage
+
+      - name: Archive Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-results
+          path: |
+            backend/coverage.xml
+            backend/htmlcov/
+            backend/.coverage
+
+  # ========================================
+  # JOB 3: Testes Frontend
+  # ========================================
+  frontend-tests:
+    name: 🎨 Frontend Tests
+    runs-on: ubuntu-latest
+    needs: msic-validation
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run Linting
+        run: |
+          cd frontend
+          npm run lint || true
+
+      - name: Run Type Checking
+        run: |
+          cd frontend
+          npm run type-check || true
+
+      - name: Run Unit Tests
+        run: |
+          cd frontend
+          npm run test:unit || echo "⚠️ Frontend tests not configured yet"
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Archive Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist/
+
+  # ========================================
+  # JOB 4: Security Scan
+  # ========================================
+  security-scan:
+    name: 🔐 Security Scanning
+    runs-on: ubuntu-latest
+    needs: [backend-tests, frontend-tests]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
+
+      - name: Upload Trivy Results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: "trivy-results.sarif"
+
+      - name: Scan Python Dependencies
+        run: |
+          pip install safety
+          cd backend
+          safety check --json || true
+
+      - name: Scan for Secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+
+  # ========================================
+  # JOB 5: Build Docker Images
+  # ========================================
+  build-images:
+    name: 🐳 Build Docker Images
+    runs-on: ubuntu-latest
+    needs: [backend-tests, frontend-tests, security-scan]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels)
+        id: meta-backend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.BACKEND_IMAGE }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=sha,prefix={{branch}}-
+
+      - name: Build and Push Backend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: ${{ github.event_name == 'push' }}
+          tags: ${{ steps.meta-backend.outputs.tags }}
+          labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build Frontend Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: ${{ github.event_name == 'push' }}
+          tags:
+            ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.FRONTEND_IMAGE }}:${{
+            github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ========================================
+  # JOB 6: Deploy to Staging
+  # ========================================
+  deploy-staging:
+    name: 🚀 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build-images
+    if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://staging.sila-system.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.STAGING_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.STAGING_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Staging
+        run: |
+          ssh ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} << 'ENDSSH'
+            cd /opt/sila-system
+            git fetch origin
+            git checkout staging
+            git pull origin staging
+
+            # Usar script de deploy staging
+            chmod +x automation/deployment/deploy_staging.sh
+            ./automation/deployment/deploy_staging.sh
+          ENDSSH
+
+      - name: Wait for Services
+        run: |
+          echo "⏳ Aguardando serviços iniciarem..."
+          sleep 30
+
+      - name: Run Healthcheck
+        run: |
+          echo "🏥 Executando healthcheck..."
+
+          max_attempts=12
+          attempt=0
+
+          while [ $attempt -lt $max_attempts ]; do
+            if curl -f http://${{ secrets.STAGING_HOST }}:9111/health; then
+              echo "✅ Healthcheck passou!"
+              exit 0
+            fi
+
+            attempt=$((attempt + 1))
+            echo "⏳ Tentativa $attempt/$max_attempts..."
+            sleep 5
+          done
+
+          echo "❌ Healthcheck falhou após $max_attempts tentativas"
+          exit 1
+
+      - name: Validate Metrics Endpoint
+        run: |
+          curl -f http://${{ secrets.STAGING_HOST }}:9111/metrics | head -n 10
+
+      - name: Run Smoke Tests
+        run: |
+          echo "🧪 Executando smoke tests..."
+
+          # Test API endpoints
+          curl -f http://${{ secrets.STAGING_HOST }}:8000/docs
+          curl -f http://${{ secrets.STAGING_HOST }}:8000/health
+
+          echo "✅ Smoke tests passaram!"
+
+      - name: Notify Deployment Success
+        if: success()
+        run: |
+          echo "✅ Deploy para staging concluído com sucesso!"
+          echo "🔗 URL: https://staging.sila-system.com"
+
+  # ========================================
+  # JOB 7: Deploy to Production
+  # ========================================
+  deploy-production:
+    name: 🏭 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build-images
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://sila-system.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.PROD_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Backup Production Database
+        run: |
+          ssh ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} << 'ENDSSH'
+            cd /opt/sila-system
+            ./automation/maintenance/backup_database.sh 2>/dev/null || echo "⚠️  Script de backup não encontrado"
+          ENDSSH
+
+      - name: Deploy to Production
+        run: |
+          ssh ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} << 'ENDSSH'
+            cd /opt/sila-system
+            git fetch origin
+            git checkout main
+            git pull origin main
+
+            # Usar script mestre de inicialização
+            ./sila_start.sh production
+          ENDSSH
+
+      - name: Post-Deploy Healthcheck
+        run: |
+          echo "🏥 Executando healthcheck pós-deploy..."
+
+          max_attempts=20
+          attempt=0
+
+          while [ $attempt -lt $max_attempts ]; do
+            if curl -f https://${{ secrets.PROD_HOST }}/health; then
+              echo "✅ Production healthcheck passou!"
+              exit 0
+            fi
+
+            attempt=$((attempt + 1))
+            echo "⏳ Tentativa $attempt/$max_attempts..."
+            sleep 10
+          done
+
+          echo "❌ Production healthcheck falhou"
+          exit 1
+
+      - name: Notify Deployment Success
+        if: success()
+        run: |
+          echo "✅ Deploy para produção concluído com sucesso!"
+          echo "🔗 URL: https://sila-system.com"

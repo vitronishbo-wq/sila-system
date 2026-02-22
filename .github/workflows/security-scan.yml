@@ -1,0 +1,106 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install security tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install bandit safety
+          pip install -r requirements/security.txt
+
+      - name: Run Bandit Security Scan
+        run: |
+          bandit -r backend/modules/ backend/main.py backend/core/ -f json -o bandit-report.json
+          bandit -r backend/modules/ backend/main.py backend/core/ -f txt -o bandit-report.txt
+
+      - name: Run Safety Dependency Check
+        run: |
+          safety check --json --output safety-report.json || true
+          safety check --output safety-report.txt || true
+
+      - name: Run Custom Security Audit
+        run: |
+          python scripts/security_audit.py
+
+      - name: Upload Security Reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: security-reports
+          path: |
+            bandit-report.json
+            bandit-report.txt
+            safety-report.json
+            safety-report.txt
+            reports/security_audit_report_*.json
+
+      - name: Security Gate Check
+        run: |
+          echo "🔒 Checking security gate results..."
+
+          # Check Bandit results for HIGH severity issues
+          if [ -f bandit-report.json ]; then
+            HIGH_ISSUES=$(python -c "import json; data = json.load(open('bandit-report.json')); print(len([r for r in data.get('results', []) if r.get('issue_severity') == 'HIGH']))")
+            if [ "$HIGH_ISSUES" -gt 0 ]; then
+              echo "❌ SECURITY GATE FAILED: $HIGH_ISSUES HIGH severity issues found"
+              echo "Run 'bandit -r backend/' locally to review issues"
+              exit 1
+            else
+              echo "✅ No HIGH severity issues found"
+            fi
+          fi
+
+          # Check for hardcoded credentials
+          if grep -r "password\s*=\s*['\"][^'\"]{4,}['\"]" backend/modules/ backend/main.py; then
+            echo "❌ SECURITY GATE FAILED: Hardcoded passwords found"
+            exit 1
+          fi
+
+          echo "✅ Security gate passed"
+
+      - name: Comment PR with Security Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+
+            let comment = '## 🔒 Security Scan Results\n\n';
+
+            // Add Bandit results
+            if (fs.existsSync('bandit-report.txt')) {
+              const banditReport = fs.readFileSync('bandit-report.txt', 'utf8');
+              comment += '### Bandit SAST Scan\n```\n' + banditReport.split('\n').slice(-10).join('\n') + '\n```\n\n';
+            }
+
+            // Add Safety results
+            if (fs.existsSync('safety-report.txt')) {
+              const safetyReport = fs.readFileSync('safety-report.txt', 'utf8');
+              comment += '### Safety Dependency Check\n```\n' + safetyReport + '\n```\n\n';
+            }
+
+            comment += '---\n*Security scan completed successfully*';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

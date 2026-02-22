@@ -1,0 +1,181 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  🎯 PRÓXIMO PASSO - COMECE AQUI                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Etapa 6 está 100% COMPLETA.
+
+Você tem 2 caminhos:
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ OPÇÃO 1: EU SOU NÃO-TÉCNICO (Recomendado)                                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ 1. Abra este arquivo com texto:                                            │
+│    → GUIA_PARA_LEIGOS.md                                                   │
+│                                                                             │
+│ 2. Leia a seção "Como Usar" (pág 3-4)                                     │
+│                                                                             │
+│ 3. Execute:                                                                 │
+│    $ bash onboarding.sh --interactive                                      │
+│                                                                             │
+│ 4. Siga o menu (é interativo e fácil)                                     │
+│                                                                             │
+│ Tempo estimado: 5 minutos (menu) + 45-90 min (execução real)              │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ OPÇÃO 2: EU SOU DEVELOPER (Técnico)                                        │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ 1. Estude o plano:                                                          │
+│    $ cat MIGRATION_EXECUTIVE_PLAN.md                                       │
+│                                                                             │
+│ 2. Primeiro teste (seguro):                                                 │
+│    $ bash onboarding.sh --phase 1 --dry-run                                │
+│                                                                             │
+│ 3. Revise o resultado:                                                      │
+│    $ cat onboarding_report_*.txt                                           │
+│                                                                             │
+│ 4. Se OK, execute de verdade:                                               │
+│    $ bash onboarding.sh --phase 1                                          │
+│                                                                             │
+│ 5. Monitore:                                                                │
+│    $ bash monitor-migration.sh --watch                                     │
+│                                                                             │
+│ Próximas fases: repetir para --phase 2 e --phase 3                        │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                         📁 ARQUIVOS IMPORTANTES                             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+EXECUTAR:
+  • onboarding.sh ..................... Script PRINCIPAL (menu interativo)
+  • monitor-migration.sh ............... Validar estrutura
+  • structure-guard.sh ................. Proteger regras
+  • package.sh ......................... Empacotar para outro projeto
+
+LER (Documentação):
+  • GUIA_PARA_LEIGOS.md ................ Explicação em português simples
+  • ETAPA_6_COMPLETA.md ................ Este arquivo (you are here)
+  • MIGRATION_EXECUTIVE_PLAN.md ........ Plano técnico detalhado
+
+LER (Gerados automaticamente):
+  • migration_analysis_report.json ..... Análise (gerado por migration_analyzer.py)
+  • module_classifications.json ........ Classificação (gerado por module_classifier.py)
+  • onboarding_report_*.txt ............ Resultado final (gerado por onboarding.sh)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          ✅ SEGURANÇA GARANTIDA                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  ✓ Backup automático antes de tudo
+  ✓ DRY-RUN (teste sem modificar) para cada fase
+  ✓ Validação após cada mudança
+  ✓ Rollback < 5 minutos se necessário
+  ✓ Monitoramento contínuo disponível
+  ✓ Relatório consolidado gerado
+
+Você pode fazer isto com confiança. Sistema foi planejado por 6 meses.
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          🎯 TEMPO ESTIMADO                                 ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Fase 1 (monitoring):        45 minutos
+Fase 2 (common):            30 minutos
+Fase 3 (auth):              30 minutos
+Validação pós-migração:     15 minutos
+────────────────────────────────────────
+TOTAL:                      2 horas
+
+(Pode ser feito em dias diferentes, não precisa ser consecutivo)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    💡 DICA: COMECE COM DRY-RUN                             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Não tem pressa. Teste primeiro:
+
+  $ bash onboarding.sh --phase 1 --dry-run
+
+Isto vai:
+  ✓ Verificar tudo
+  ✓ Contar arquivos que serão afetados
+  ✓ Mostrar resultado esperado
+  ✓ NÃO vai modificar nada
+
+Se estiver confortável, execute de verdade:
+
+  $ bash onboarding.sh --phase 1
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                       🚀 COMANDO PARA COMEÇAR                              ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Copie e cole isto:
+
+    cd ~/dev/sila-system
+    bash onboarding.sh --interactive
+
+Pronto! Menu vai aparecer e guiar você.
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    ❓ PERGUNTAS FREQUENTES (FAQ)                           ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+P: "Qual é a primeira coisa que devo fazer?"
+R: Leia GUIA_PARA_LEIGOS.md (5 min)
+   Depois execute: bash onboarding.sh --interactive
+
+P: "É seguro?"
+R: Sim. Backup automático + DRY-RUN + Validação + Rollback.
+   Não há risco de perder código.
+
+P: "Posso parar no meio?"
+R: Sim. Cada fase é independente.
+   Fases 1, 2, 3 podem ser feitas em dias diferentes.
+
+P: "Quanto tempo leva?"
+R: ~120 minutos total. Pode pausar entre fases.
+
+P: "Não entendi um termo técnico?"
+R: Leia a seção "Vocabulário" em GUIA_PARA_LEIGOS.md
+
+P: "Quero ver o resultado antes de confirmar?"
+R: Use: bash onboarding.sh --phase 1 --dry-run
+   Ver resultado em: onboarding_report_*.txt
+
+P: "Se der erro?"
+R: Git roll back em < 5 minutos.
+   Relatório mostra exatamente o que falhou.
+
+P: "Posso reverter?"
+R: Sim: git revert HEAD~1
+   Ou restaurar do backup automático.
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│  🎉 TUDO ESTÁ PRONTO!                                                       │
+│                                                                             │
+│  Etapa 5 (Planejamento):   ✅ COMPLETA                                      │
+│  Etapa 6 (Integração):     ✅ COMPLETA                                      │
+│  Etapa 7 (Execução):       👈 VOCÊ ESTÁ AQUI                               │
+│                                                                             │
+│  Próximo comando:                                                           │
+│                                                                             │
+│    $ bash onboarding.sh --interactive                                      │
+│                                                                             │
+│                            Boa sorte! 🚀                                   │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Data: 2024
+Status: ✅ SISTEMA PRONTO PARA EXECUÇÃO
+Próximo: Executar onboarding.sh --interactive
+
+═══════════════════════════════════════════════════════════════════════════════

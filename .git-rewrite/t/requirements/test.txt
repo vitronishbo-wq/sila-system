@@ -1,0 +1,6 @@
+coverage==7.10.6
+factory_boy==3.3.3
+httpx==0.28.1
+pytest==8.4.2
+pytest-asyncio==1.2.0
+pytest-cov==7.0.0

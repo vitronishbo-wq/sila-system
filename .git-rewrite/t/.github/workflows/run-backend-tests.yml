@@ -1,0 +1,48 @@
+name: Run Backend Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+  uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r apps/backend/requirements_test.txt
+          pip install pytest pytest-cov
+
+      - name: Prepare test environment
+        run: |
+          cd apps/backend
+          if [ ! -f ".env.test" ]; then
+            cp .env.example .env.test
+            sed -i 's/^allowed_origins=.*$/allowed_origins=[]/' .env.test
+          fi
+
+      - name: Validate imports
+        run: |
+          python -c "from apps.backend.main import app; print('✅ Main app')"
+          python -c "from apps.backend.modules.location.models import CityModel; print('✅ Location')"
+          python -c "from core.config import settings; print('✅ Config')"
+          python -c "from devops.utils import *; print('✅ DevOps')"
+
+      - name: Run tests with coverage
+        run: |
+          cd apps/backend
+          export ENVIRONMENT=test
+          export PYTHONPATH="$PWD:$PYTHONPATH"
+          pytest --tb=short --cov=app --cov-report=term-missing --capture=no

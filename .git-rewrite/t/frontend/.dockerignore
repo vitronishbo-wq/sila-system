@@ -1,0 +1,62 @@
+# Frontend .dockerignore - Otimizar build layers
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Dependencies
+node_modules/
+npm-debug.log
+npm-error.log
+yarn-error.log
+pnpm-error.log
+
+# Build outputs
+dist/
+build/
+.turbo/
+.next/
+out/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+.nyc_output/
+jest/
+cypress/videos/
+cypress/screenshots/
+
+# Documentation
+README.md
+CHANGELOG.md
+docs/
+
+# Configuration files
+.eslintcache
+.prettierignore
+.husky/
+
+# Logs
+logs/
+*.log
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Package managers lock files (Nginx will handle)
+# Uncomment if needed
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

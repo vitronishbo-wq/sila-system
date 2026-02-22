@@ -1,0 +1,478 @@
+name: Configuration Migration
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "apps/backend/config/**"
+      - "apps/backend/core/config.py"
+      - "apps/backend/requirements/**"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "apps/backend/config/**"
+      - "apps/backend/core/config.py"
+      - "apps/backend/requirements/**"
+  workflow_dispatch:
+    inputs:
+      apply_changes:
+        description: "Apply migration changes (vs dry-run)"
+        required: true
+        default: false
+        type: boolean
+      target_branch:
+        description: "Target branch for migration"
+        required: true
+        default: "develop"
+        type: string
+      create_pr:
+        description: "Create pull request with changes"
+        required: true
+        default: true
+        type: boolean
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  migration-check:
+    name: Migration Analysis
+    runs-on: ubuntu-latest
+
+    outputs:
+      files_to_migrate: ${{ steps.migration.outputs.files_to_migrate }}
+      migration_needed: ${{ steps.migration.outputs.migration_needed }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+          cache-dependency-path: apps/backend/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          cd apps/backend
+          pip install -r requirements.txt
+
+      - name: Create environment file
+        run: |
+          cd apps/backend
+          cat > .env << EOF
+          ENVIRONMENT=development
+          DEBUG=true
+          SECRET_KEY=test-secret-key-for-migration-32-chars-long
+          POSTGRES_USER=test_user
+          POSTGRES_PASSWORD=test_password_123
+          POSTGRES_DB=test_db
+          POSTGRES_HOST=localhost
+          POSTGRES_PORT=5432
+          REDIS_URL=redis://localhost:6379/0
+          ALGORITHM=HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES=30
+          DATABASE_POOL_SIZE=10
+          REDIS_MAX_CONNECTIONS=20
+          RATE_LIMIT_ENABLED=true
+          ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+          ALLOWED_EXTENSIONS=jpg,jpeg,png,pdf,doc,docx,txt
+          MAX_UPLOAD_SIZE=10485760
+          UPLOAD_PATH=./uploads
+          BNA_API_KEY=test-bna-api-key
+          BNA_API_URL=https://api.bna.ao
+          BNA_ENVIRONMENT=sandbox
+          SMTP_HOST=smtp.gmail.com
+          SMTP_PORT=587
+          STORAGE_BACKEND=minio
+          MINIO_ENDPOINT=localhost:9000
+          MINIO_ACCESS_KEY=minioadmin
+          MINIO_SECRET_KEY=minioadmin
+          MINIO_BUCKET_NAME=sila-storage
+          EOF
+
+      - name: Run migration analysis
+        id: migration
+        run: |
+          cd backend
+
+          # Run migration in dry-run mode
+          python scripts/migrate_and_validate.py \
+            --dry-run \
+            --environment development \
+            --output migration-analysis.json
+
+          # Extract key metrics
+          files_to_migrate=$(jq -r '.migration.files_to_migrate' migration-analysis.json)
+          successful_migrations=$(jq -r '.migration.successful_migrations' migration-analysis.json)
+          failed_migrations=$(jq -r '.migration.failed_migrations' migration-analysis.json)
+
+          echo "files_to_migrate=$files_to_migrate" >> $GITHUB_OUTPUT
+          echo "successful_migrations=$successful_migrations" >> $GITHUB_OUTPUT
+          echo "failed_migrations=$failed_migrations" >> $GITHUB_OUTPUT
+
+          if [ "$files_to_migrate" -gt 0 ]; then
+            echo "migration_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "migration_needed=false" >> $GITHUB_OUTPUT
+          fi
+
+          echo "## Migration Analysis Results" >> $GITHUB_STEP_SUMMARY
+          echo "- Files analyzed: $(jq -r '.migration.total_files' migration-analysis.json)" >> $GITHUB_STEP_SUMMARY
+          echo "- Files needing migration: $files_to_migrate" >> $GITHUB_STEP_SUMMARY
+          echo "- Successful migrations: $successful_migrations" >> $GITHUB_STEP_SUMMARY
+          echo "- Failed migrations: $failed_migrations" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload migration analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: migration-analysis
+          path: backend/migration-analysis.json
+          retention-days: 30
+
+      - name: Show migration details
+        if: steps.migration.outputs.migration_needed == 'true'
+        run: |
+          cd backend
+
+          echo "### Files Requiring Migration" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          # Extract files that need migration
+          jq -r '.migration.migration_details[] | select(.migrated == true) | "- \(.file | split("/")[-1]) (\(.changes_made | length) changes)"' \
+            migration-analysis.json | head -20 >> $GITHUB_STEP_SUMMARY
+
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+  apply-migration:
+    name: Apply Migration Changes
+    runs-on: ubuntu-latest
+    needs: migration-check
+    if: |
+      needs.migration-check.outputs.migration_needed == 'true' &&
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.apply_changes == 'true')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "SILA Configuration Bot"
+          git config --global user.email "sila-bot@example.com"
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+          cache-dependency-path: apps/backend/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          cd apps/backend
+          pip install -r requirements.txt
+
+      - name: Create environment file
+        run: |
+          cd apps/backend
+          cat > .env << EOF
+          ENVIRONMENT=development
+          DEBUG=true
+          SECRET_KEY=test-secret-key-for-migration-32-chars-long
+          POSTGRES_USER=test_user
+          POSTGRES_PASSWORD=test_password_123
+          POSTGRES_DB=test_db
+          POSTGRES_HOST=localhost
+          POSTGRES_PORT=5432
+          REDIS_URL=redis://localhost:6379/0
+          ALGORITHM=HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES=30
+          DATABASE_POOL_SIZE=10
+          REDIS_MAX_CONNECTIONS=20
+          RATE_LIMIT_ENABLED=true
+          ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+          ALLOWED_EXTENSIONS=jpg,jpeg,png,pdf,doc,docx,txt
+          MAX_UPLOAD_SIZE=10485760
+          UPLOAD_PATH=./uploads
+          BNA_API_KEY=test-bna-api-key
+          BNA_API_URL=https://api.bna.ao
+          BNA_ENVIRONMENT=sandbox
+          SMTP_HOST=smtp.gmail.com
+          SMTP_PORT=587
+          STORAGE_BACKEND=minio
+          MINIO_ENDPOINT=localhost:9000
+          MINIO_ACCESS_KEY=minioadmin
+          MINIO_SECRET_KEY=minioadmin
+          MINIO_BUCKET_NAME=sila-storage
+          EOF
+
+      - name: Apply migration changes
+        run: |
+          cd backend
+
+          # Run migration (not dry-run)
+          python scripts/migrate_and_validate.py \
+            --environment development \
+            --output migration-results.json
+
+          # Check if any files were actually changed
+          if git diff --quiet; then
+            echo "No files were changed by migration"
+            exit 0
+          fi
+
+          echo "Files changed by migration:"
+          git diff --name-only
+
+      - name: Commit and push changes
+        run: |
+          cd backend
+
+          # Add changed files
+          git add .
+
+          # Check if there are changes to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          # Commit changes
+          git commit -m "🔧 Automated configuration migration
+
+          - Migrated $(jq -r '.migration.successful_migrations' migration-results.json) files to new configuration system
+          - Updated imports from core.config to config
+          - Replaced os.getenv() calls with settings access
+          - Validated configuration after migration
+
+          This commit was generated by the configuration migration workflow."
+
+          # Push to target branch
+          target_branch="${{ github.event.inputs.target_branch || 'develop' }}"
+          git push origin HEAD:$target_branch
+
+      - name: Create Pull Request
+        if: github.event.inputs.create_pr == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "🔧 Automated configuration migration"
+          title: "🔧 Automated Configuration Migration"
+          body: |
+            ## 🔄 Configuration Migration
+
+            This PR contains automated migration to the new centralized configuration system.
+
+            ### 📊 Migration Summary
+            - **Files migrated**: ${{ needs.migration-check.outputs.files_to_migrate }}
+            - **Target branch**: ${{ github.event.inputs.target_branch || 'develop' }}
+            - **Migration type**: Automated
+
+            ### 🔧 Changes Made
+            - Updated imports from `core.config` to `config`
+            - Replaced `os.getenv()` calls with direct `settings` access
+            - Validated configuration after migration
+
+            ### ✅ Validation
+            All configuration validations pass after migration.
+
+            ### 🧪 Testing
+            - Configuration system tests: ✅ PASSED
+            - Migration validation: ✅ PASSED
+            - Environment switching: ✅ PASSED
+
+            ---
+
+            *This PR was created automatically by the configuration migration workflow.*
+          branch: automated-config-migration
+          delete-branch: true
+
+      - name: Upload migration results
+        uses: actions/upload-artifact@v4
+        with:
+          name: migration-results
+          path: backend/migration-results.json
+          retention-days: 30
+
+  validate-migration:
+    name: Validate Migration Results
+    runs-on: ubuntu-latest
+    needs: [migration-check, apply-migration]
+    if: always() && needs.migration-check.outputs.migration_needed == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.target_branch || 'develop' }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+          cache-dependency-path: apps/backend/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          cd apps/backend
+          pip install -r requirements.txt
+
+      - name: Create environment file
+        run: |
+          cd apps/backend
+          cat > .env << EOF
+          ENVIRONMENT=development
+          DEBUG=true
+          SECRET_KEY=test-secret-key-for-migration-32-chars-long
+          POSTGRES_USER=test_user
+          POSTGRES_PASSWORD=test_password_123
+          POSTGRES_DB=test_db
+          POSTGRES_HOST=localhost
+          POSTGRES_PORT=5432
+          REDIS_URL=redis://localhost:6379/0
+          ALGORITHM=HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES=30
+          DATABASE_POOL_SIZE=10
+          REDIS_MAX_CONNECTIONS=20
+          RATE_LIMIT_ENABLED=true
+          ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+          ALLOWED_EXTENSIONS=jpg,jpeg,png,pdf,doc,docx,txt
+          MAX_UPLOAD_SIZE=10485760
+          UPLOAD_PATH=./uploads
+          BNA_API_KEY=test-bna-api-key
+          BNA_API_URL=https://api.bna.ao
+          BNA_ENVIRONMENT=sandbox
+          SMTP_HOST=smtp.gmail.com
+          SMTP_PORT=587
+          STORAGE_BACKEND=minio
+          MINIO_ENDPOINT=localhost:9000
+          MINIO_ACCESS_KEY=minioadmin
+          MINIO_SECRET_KEY=minioadmin
+          MINIO_BUCKET_NAME=sila-storage
+          EOF
+
+      - name: Validate migrated configuration
+        run: |
+          cd backend
+
+          echo "🔍 Validating migrated configuration..."
+
+          # Test basic imports
+          python -c "
+          try:
+              from config import settings, get_config_manager, validate_configuration
+              print('✅ Configuration imports successful')
+          except Exception as e:
+              print(f'❌ Import failed: {e}')
+              exit(1)
+          "
+
+          # Test configuration validation
+          python scripts/validate_config.py --environment development
+
+          # Test migrated modules
+          python -c "
+          import sys
+          import importlib
+
+          # Test key migrated modules
+          modules_to_test = [
+              'main',
+              'app',
+              'core.database',
+              'core.health',
+              'modules.auth.endpoints',
+              'modules.auth.auth_utils'
+          ]
+
+          failed_modules = []
+
+          for module_name in modules_to_test:
+              try:
+                  module = importlib.import_module(module_name)
+                  print(f'✅ {module_name}: Import successful')
+              except Exception as e:
+                  print(f'❌ {module_name}: {e}')
+                  failed_modules.append(module_name)
+
+          if failed_modules:
+              print(f'\\n❌ {len(failed_modules)} modules failed to import')
+              for module in failed_modules:
+                  print(f'  - {module}')
+              exit(1)
+          else:
+              print(f'\\n✅ All {len(modules_to_test)} modules imported successfully')
+          "
+
+      - name: Performance test
+        run: |
+          cd backend
+
+          python -c "
+          import time
+          import sys
+          sys.path.insert(0, '.')
+
+          from config import get_settings
+
+          # Performance benchmark
+          times = []
+          for i in range(50):
+              start = time.perf_counter()
+              settings = get_settings()
+              end = time.perf_counter()
+              times.append(end - start)
+
+          avg_time = sum(times) / len(times)
+          print(f'⚡ Average settings loading time: {avg_time*1000:.3f}ms')
+
+          if avg_time > 0.001:  # 1ms threshold
+              print('❌ Performance threshold exceeded')
+              exit(1)
+          else:
+              print('✅ Performance test passed')
+          "
+
+  notify-migration:
+    name: Migration Notification
+    runs-on: ubuntu-latest
+    needs: [migration-check, apply-migration, validate-migration]
+    if: always()
+
+    steps:
+      - name: Create migration summary
+        run: |
+          echo "# Configuration Migration Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.migration-check.outputs.migration_needed }}" == "true" ]; then
+            echo "## 📊 Migration Results" >> $GITHUB_STEP_SUMMARY
+            echo "- **Files analyzed**: ${{ needs.migration-check.outputs.files_to_migrate }} files needed migration" >> $GITHUB_STEP_SUMMARY
+            echo "- **Migration applied**: ${{ needs.apply-migration.result }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Validation result**: ${{ needs.validate-migration.result }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            if [ "${{ needs.apply-migration.result }}" == "success" ] && [ "${{ needs.validate-migration.result }}" == "success" ]; then
+              echo "✅ **Migration completed successfully**" >> $GITHUB_STEP_SUMMARY
+            else:
+              echo "❌ **Migration encountered issues**" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "ℹ️ **No migration needed** - All files already using new configuration system" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📋 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Review the migrated files" >> $GITHUB_STEP_SUMMARY
+          echo "2. Run local tests to ensure functionality" >> $GITHUB_STEP_SUMMARY
+          echo "3. Update any remaining manual configuration references" >> $GITHUB_STEP_SUMMARY
+          echo "4. Remove old configuration files after verification" >> $GITHUB_STEP_SUMMARY

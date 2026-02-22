@@ -1,0 +1,13 @@
+from sqlalchemy.orm import Session
+from sqlalchemy import select, delete
+from app.citizen.events.models import CitizenEventModel
+from app.citizen.projections.projectors import CitizenProjector
+
+def rebuild_all_projections(db: Session):
+    db.commit()
+    query = select(CitizenEventModel).order_by(CitizenEventModel.created_at.asc())
+    events = db.execute(query).scalars().all()
+    projector = CitizenProjector(db)
+    for event in events:
+        projector.apply_event(event)
+    return len(events)

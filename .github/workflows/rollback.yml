@@ -1,0 +1,63 @@
+name: Rollback Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to rollback"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get previous commit
+        run: |
+          PREVIOUS_COMMIT=$(git log --oneline -1 HEAD~1 | cut -d' ' -f1)
+          echo "PREVIOUS_COMMIT=$PREVIOUS_COMMIT" >> $GITHUB_ENV
+
+      - name: Set up SSH for ${{ github.event.inputs.environment }}
+        run: |
+          mkdir -p ~/.ssh
+          if [ "${{ github.event.inputs.environment }}" = "production" ]; then
+            echo "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/id_rsa
+            echo "DEPLOY_HOST=${{ secrets.PROD_HOST }}" >> $GITHUB_ENV
+            echo "DEPLOY_USER=${{ secrets.PROD_USER }}" >> $GITHUB_ENV
+          else
+            echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
+            echo "DEPLOY_HOST=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+            echo "DEPLOY_USER=${{ secrets.DEPLOY_USER }}" >> $GITHUB_ENV
+          fi
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+
+      - name: Rollback deployment
+        run: |
+          ssh $DEPLOY_USER@$DEPLOY_HOST 'cd /opt/sila-system && git reset --hard $PREVIOUS_COMMIT && docker-compose down && docker-compose up -d'
+
+      - name: Health check after rollback
+        run: |
+          sleep 30
+          curl -f http://$DEPLOY_HOST/health || exit 1
+
+      - name: Notify rollback success
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text:
+            "🔄 Rollback realizado com sucesso para commit $PREVIOUS_COMMIT em ${{
+            github.event.inputs.environment }}"
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

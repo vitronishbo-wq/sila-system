@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""
+SILA System CLI Tool
+Enterprise command-line interface for SILA operations
+"""
+
+import sys
+import os
+import argparse
+from pathlib import Path
+
+# Add project root to Python path
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
+
+def audit_deps():
+    """Run dependency audit."""
+    try:
+        from .sila_installer.scripts.sila_dependency_auditor import SilaDependencyAuditor
+        auditor = SilaDependencyAuditor()
+        auditor.run_audit()
+    except ImportError:
+        # Fallback to direct import
+        sys.path.insert(0, str(project_root / ".sila_installer" / "scripts"))
+        from sila_dependency_auditor import SilaDependencyAuditor
+        auditor = SilaDependencyAuditor()
+        auditor.run_audit()
+
+def install_deps():
+    """Run smart installer."""
+    try:
+        from .sila_installer.scripts.smart_installer import SilaSmartInstaller
+        installer = SilaSmartInstaller()
+        installer.run()
+    except ImportError:
+        sys.path.insert(0, str(project_root / ".sila_installer" / "scripts"))
+        from smart_installer import SilaSmartInstaller
+        installer = SilaSmartInstaller()
+        installer.run()
+
+def health_check():
+    """Run health monitor."""
+    try:
+        from .sila_installer.scripts.health_monitor import HealthMonitor
+        monitor = HealthMonitor()
+        report = monitor.generate_health_report()
+        status = monitor.get_health_status(report)
+        print(f"System Health: {status}")
+        return 0 if status == "healthy" else 1
+    except ImportError:
+        sys.path.insert(0, str(project_root / ".sila_installer" / "scripts"))
+        from health_monitor import HealthMonitor
+        monitor = HealthMonitor()
+        report = monitor.generate_health_report()
+        status = monitor.get_health_status(report)
+        print(f"System Health: {status}")
+        return 0 if status == "healthy" else 1
+
+def main():
+    """Main CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="🚀 SILA System CLI - Enterprise Python Management",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  sila audit deps          # Audit all requirements files
+  sila install             # Run smart installer
+  sila health              # Check system health
+  sila audit deps --fix    # Audit and auto-fix issues
+        """
+    )
+
+    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+
+    # Audit command
+    audit_parser = subparsers.add_parser('audit', help='Audit operations')
+    audit_subparsers = audit_parser.add_subparsers(dest='audit_type')
+
+    deps_parser = audit_subparsers.add_parser('deps', help='Audit dependencies')
+    deps_parser.add_argument('--fix', action='store_true', help='Auto-fix issues')
+
+    # Install command
+    install_parser = subparsers.add_parser('install', help='Install dependencies')
+    install_parser.add_argument('--dry-run', action='store_true', help='Dry run mode')
+
+    # Health command
+    health_parser = subparsers.add_parser('health', help='Check system health')
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return 1
+
+    try:
+        if args.command == 'audit' and args.audit_type == 'deps':
+            print("🔍 Running SILA Dependency Audit...")
+            audit_deps()
+            return 0
+        elif args.command == 'install':
+            print("🚀 Running SILA Smart Installer...")
+            if args.dry_run:
+                os.environ['SILA_DRY_RUN'] = 'true'
+            return install_deps()
+        elif args.command == 'health':
+            print("🏥 Running SILA Health Check...")
+            return health_check()
+        else:
+            parser.print_help()
+            return 1
+    except KeyboardInterrupt:
+        print("\n❌ Operation cancelled by user")
+        return 1
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())

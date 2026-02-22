@@ -1,0 +1,9 @@
+"""
+Payment Endpoints Module
+
+Exports the router for integration with FastAPI application.
+"""
+
+from .router import router
+
+__all__ = ["router"]

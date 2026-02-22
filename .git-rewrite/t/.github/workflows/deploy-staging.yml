@@ -1,0 +1,68 @@
+name: Deploy Ambiente Staging
+
+on:
+  push:
+    branches:
+      - staging
+  pull_request:
+    branches:
+      - staging
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Checkout do código
+  uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Docker Buildx
+  uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435
+
+      - name: Logar no Docker Hub (opcional)
+        if: secrets.DOCKER_USERNAME
+  uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Instalar dependências do sistema
+        run: |
+          sudo apt update
+          sudo apt install -y git curl wget
+
+      - name: Verificar instalação do Docker
+        run: docker --version
+
+      - name: Executar deploy no ambiente staging
+        run: |
+          chmod +x ./deploy_multi_ambiente_ci.sh
+          ./deploy_multi_ambiente_ci.sh --ci-mode --env=staging
+        env:
+          GITHUB_ACTIONS: true
+          CI: true
+
+      - name: Upload dos logs como artefato
+        if: always()
+  uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: logs-staging-${{ github.run_id }}
+          path: |
+            logs/deploy_staging_*.log
+            backups/staging_backup_*.tar.gz
+          retention-days: 14
+
+      - name: Comentário no PR (se aplicável)
+        if: github.event_name == 'pull_request'
+  uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Deploy de homologação executado com sucesso!\n\n📋 Status: ✅ Concluído\n🌍 Ambiente: staging\n📦 Versão: Ver logs para detalhes\n🔗 [Ver workflow](' + context.payload.repository.html_url + '/actions/runs/' + context.runId + ')'
+            })

@@ -1,0 +1,128 @@
+# ===========================================
+# SILA Frontend - Dockerfile Multi-Stage (2025)
+# Adaptado para monorepo com apps/frontend/
+# ===========================================
+
+# ===========================================
+# Base Stage - Dependências comuns
+# ===========================================
+FROM node:20-alpine AS base
+
+LABEL maintainer="SILA System <silahbo@gmail.com>"
+LABEL description="SILA System Frontend - Monorepo 2025"
+
+# Instalar ferramentas básicas
+RUN apk add --no-cache curl git tzdata
+
+# Timezone Angola
+ENV TZ=Africa/Luanda
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+WORKDIR /app
+
+# Copiar package.json do frontend atual
+COPY package*.json ./
+
+# Instalar dependências
+RUN npm ci
+
+# ===========================================
+# Development Stage - Hot Reload (Vite)
+# ===========================================
+FROM base AS dev
+
+LABEL stage="development"
+
+ENV NODE_ENV=development
+
+# Copiar todo o código fonte (corrigido)
+COPY . ./
+
+EXPOSE 5173
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:5173/ || exit 1
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+# ===========================================
+# Builder Stage - Build para produção
+# ===========================================
+FROM base AS builder
+
+LABEL stage="builder"
+
+ENV NODE_ENV=production
+
+# Copiar código fonte (corrigido)
+COPY . ./
+
+# Build da aplicação
+RUN npm run build
+
+# Verificar se o build foi gerado (agora em /app/dist)
+RUN ls -la dist/ || (echo "❌ Build falhou - dist/ não encontrado" && exit 1)
+
+# ===========================================
+# Runtime Stage - Produção com Nginx
+# ===========================================
+FROM nginx:alpine AS runtime
+
+LABEL stage="production"
+LABEL version="2025.1"
+
+RUN apk add --no-cache curl tzdata
+
+ENV TZ=Africa/Luanda
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Remover config padrão
+RUN rm -rf /etc/nginx/conf.d/*
+
+# Copiar build para o Nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Configuração Nginx otimizada (SPA + segurança + gzip)
+RUN cat > /etc/nginx/conf.d/default.conf << 'EOF'
+server {
+    listen 80;
+    server_name localhost;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/json;
+
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /health {
+        access_log off;
+        return 200 "healthy\n";
+        add_header Content-Type text/plain;
+    }
+}
+EOF
+
+# Permissões
+RUN chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/log/nginx
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

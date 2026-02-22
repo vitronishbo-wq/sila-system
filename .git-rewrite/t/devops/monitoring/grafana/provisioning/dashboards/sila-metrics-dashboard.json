@@ -1,0 +1,41 @@
+{
+  "dashboard": {
+    "title": "SILA System Metrics",
+    "panels": [
+      {
+        "title": "Response Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "http_request_duration_seconds",
+            "legendFormat": "{{endpoint}}"
+          }
+        ]
+      },
+      {
+        "title": "Error Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{status=~\"5..\"}[5m]) / rate(http_requests_total[5m])"
+          }
+        ]
+      },
+      {
+        "title": "Resource Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "process_cpu_seconds_total",
+            "legendFormat": "CPU"
+          },
+          {
+            "expr": "process_resident_memory_bytes",
+            "legendFormat": "Memory"
+          }
+        ]
+      }
+    ],
+    "refresh": "30s"
+  }
+}

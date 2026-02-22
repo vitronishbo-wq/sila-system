@@ -1,0 +1,21 @@
+{% extends "notification_base.html" %}
+
+{% block content %}
+<h2>Pagamento Confirmado</h2>
+<p>Olá <span class="highlight">{{ user_name }}</span>,</p>
+<p>Temos o prazer de informar que o seu pagamento foi processado com sucesso.</p>
+
+<div
+    style="background-color: #f8f9fa; padding: 20px; border-radius: 4px; border-left: 4px solid #0056b3; margin: 20px 0;">
+    <p style="margin: 5px 0;"><strong>Referência:</strong> {{ reference }}</p>
+    <p style="margin: 5px 0;"><strong>Valor:</strong> <span class="highlight">{{ amount }} {{ currency | default('AOA')
+            }}</span></p>
+    <p style="margin: 5px 0;"><strong>Data:</strong> {{ date }}</p>
+</div>
+
+<p>O comprovativo oficial já está disponível na sua área pessoal do portal SILA.</p>
+
+<a href="{{ dashboard_url }}" class="btn">Ir para o Portal</a>
+
+<p style="margin-top: 30px;">Obrigado por utilizar os serviços do SILA.</p>
+{% endblock %}

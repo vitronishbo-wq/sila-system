@@ -1,0 +1,75 @@
+# ===========================================
+# Dockerfile otimizado para SILA Backend
+# Versão: 2.0 - Com melhorias de cache e segurança
+# ===========================================
+FROM python:3.11-slim
+
+# ===========================
+# Variáveis de ambiente
+# ===========================
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PATH="/root/.local/bin:$PATH"
+
+# ===========================
+# Metadados da imagem
+# ===========================
+LABEL maintainer="SILA System Team" \
+      version="2.0" \
+      description="Backend FastAPI para Sistema SILA"
+
+# ===========================
+# Atualizar e instalar dependências do SO
+# ===========================
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    build-essential \
+    libpq-dev \
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# ===========================
+# Diretório de trabalho
+# ===========================
+WORKDIR /app
+
+# ===========================
+# Copiar e instalar requirements
+# (Camada separada para melhor cache)
+# ===========================
+COPY backend/requirements.txt .
+RUN pip install --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir gunicorn uvicorn[standard] alembic
+
+# ===========================
+# Copiar código do backend
+# (Após dependências para não invalidar cache)
+# ===========================
+COPY backend/ .
+
+# ===========================
+# Copiar e configurar entrypoint
+# (Garantir que sempre use a versão atualizada)
+# ===========================
+COPY backend/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# ===========================
+# Healthcheck
+# ===========================
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# ===========================
+# Expor porta padrão
+# ===========================
+EXPOSE 8000
+
+# ===========================
+# Entrypoint
+# ===========================
+ENTRYPOINT ["/entrypoint.sh"]
