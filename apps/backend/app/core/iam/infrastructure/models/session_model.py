@@ -9,7 +9,7 @@ class SessionModel(BaseModel):
     """Modelo SQLAlchemy para sessões ativas"""
     __tablename__ = "iam_sessions"
 
-    user_id = Column(String(36), ForeignKey("iam_users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     
     # Dados da sessão
     ip_address = Column(String(50), nullable=True)
@@ -41,7 +41,7 @@ class RefreshTokenModel(BaseModel):
     """Modelo SQLAlchemy para refresh tokens"""
     __tablename__ = "iam_refresh_tokens"
 
-    user_id = Column(String(36), ForeignKey("iam_users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     
     # Hash do token (nunca armazenar o token original)
     token_hash = Column(String(128), unique=True, nullable=False, index=True)

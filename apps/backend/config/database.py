@@ -7,7 +7,7 @@ from config.settings import settings
 # Motor de conexão assíncrona com otimização de Pool
 # Usa o driver asyncpg (postgresql+asyncpg://...) definido no seu .env
 engine = create_async_engine(
-    settings.ASYNC_DATABASE_URL,
+    settings.DATABASE_URL,
     echo=settings.DATABASE_ECHO,
     pool_size=settings.DATABASE_POOL_SIZE,
     max_overflow=settings.DATABASE_MAX_OVERFLOW,

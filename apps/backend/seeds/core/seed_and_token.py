@@ -17,7 +17,7 @@ load_dotenv(backend_root / ".env")
 
 from app.core.settings import settings
 from app.core.database import AsyncSessionLocal
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory
 from app.core.security import get_password_hash, create_access_token
 

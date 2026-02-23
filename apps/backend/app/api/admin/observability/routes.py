@@ -5,7 +5,7 @@ from uuid import UUID
 
 from app.api.deps import get_current_user, get_current_admin_user, get_db
 from app.core.constants import UserRole
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory
 
 router = APIRouter(prefix="/observability", tags=["Observability"])

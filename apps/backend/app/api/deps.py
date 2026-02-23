@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from app.core.database import get_session
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.constants import UserRole
 from app.core.settings import settings
 from app.core.security import ALGORITHM

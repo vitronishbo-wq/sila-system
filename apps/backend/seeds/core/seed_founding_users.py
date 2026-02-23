@@ -18,7 +18,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import AsyncSessionLocal
 from app.core.security import get_password_hash
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory
 from app.core.constants import UserRole, ROLE_TO_LEVEL
 

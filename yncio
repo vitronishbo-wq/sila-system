@@ -1,0 +1,25 @@
+               tablename               
+---------------------------------------
+ alembic_version
+ audit_logs
+ citizenship_atualizacao_b_i
+ citizenship_atualizacao_b_i_documents
+ citizenship_citizens
+ citizenship_service_request_history
+ citizenship_service_requests
+ citizenship_services
+ document_folders
+ document_versions
+ documents
+ identities
+ locations
+ notifications
+ payment_audit_logs
+ payment_transactions
+ payment_webhook_events
+ payment_webhooks
+ payments
+ refunds
+ users
+(21 rows)
+

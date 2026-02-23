@@ -34,7 +34,7 @@ class Service(Base):
     # Territorial link (Optional for global services)
     territory_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("territories.id", ondelete="SET NULL"),
+        ForeignKey("locations.id", ondelete="SET NULL"),
         nullable=True,
         index=True
     )

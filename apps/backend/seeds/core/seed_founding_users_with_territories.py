@@ -117,11 +117,11 @@ def main():
             # Update user with territory_id, role, level
             cursor.execute(
                 """
-                UPDATE iam_users 
-                SET territory_id = %s, role = %s, level = %s
+                UPDATE users 
+                SET region_id = %s, level = %s, status = %s
                 WHERE email = %s
                 """,
-                (territory_id, role, level, email)
+                (territory_id, level, "ACTIVE", email)
             )
             
             if cursor.rowcount > 0:

@@ -5,7 +5,7 @@ REMOVER EM PRODUÇÃO!
 
 from fastapi import APIRouter, Depends, HTTPException
 from app.api.deps import get_current_user
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.constants import UserRole
 import logging
 

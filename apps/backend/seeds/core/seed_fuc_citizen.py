@@ -44,7 +44,7 @@ import os
 from app.core.settings import settings
 from app.core.security import get_password_hash
 from app.core.constants import UserRole, AdminLevel
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory  # ✅ REQUIRED by User.relationship
 from app.citizen.events.models import CitizenEventModel, EventType
 from app.citizen.projections.projectors import CitizenProjector

@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_user, get_db
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.rbac import verify_territorial_access
 from sqlalchemy import text
 

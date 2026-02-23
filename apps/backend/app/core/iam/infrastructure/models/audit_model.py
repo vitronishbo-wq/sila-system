@@ -10,7 +10,7 @@ class AuditLogModel(BaseModel):
     __tablename__ = "iam_audit_logs"
 
     # Usuário (pode ser nulo para ações não autenticadas)
-    user_id = Column(String(36), ForeignKey("iam_users.id", ondelete="SET NULL"), nullable=True, index=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
     username = Column(String(100), nullable=True)  # Denormalizado para histórico
     
     # Ação
@@ -49,7 +49,7 @@ class TokenBlacklistModel(BaseModel):
     token_type = Column(String(20), nullable=False)  # access, refresh
     expires_at = Column(DateTime(timezone=True), nullable=False)
     revoked_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    revoked_by = Column(String(36), ForeignKey("iam_users.id"), nullable=True)
+    revoked_by = Column(String(36), ForeignKey("users.id"), nullable=True)
     reason = Column(String(255), nullable=True)
     
     __table_args__ = (

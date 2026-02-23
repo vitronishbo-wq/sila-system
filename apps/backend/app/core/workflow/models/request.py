@@ -20,7 +20,7 @@ class Request(Base):
     # Territorial link (Local onde o pedido foi iniciado)
     territory_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("territories.id", ondelete="SET NULL"),
+        ForeignKey("locations.id", ondelete="SET NULL"),
         nullable=True,
         index=True
     )

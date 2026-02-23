@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 from app.api.deps import get_current_admin_user, get_db
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.audit.analytics import AuditAnalytics
 from app.core.audit.sla_definitions import (
     SLA_DEFINITIONS,

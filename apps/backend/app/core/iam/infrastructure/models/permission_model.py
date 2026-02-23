@@ -39,10 +39,10 @@ class UserPermissionModel(BaseModel):
     """Permissões diretas atribuídas a usuários (override)"""
     __tablename__ = "iam_user_permissions"
 
-    user_id = Column(String(36), ForeignKey("iam_users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     permission_id = Column(String(36), ForeignKey("iam_permissions.id", ondelete="CASCADE"), nullable=False, index=True)
     granted_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    granted_by = Column(String(36), ForeignKey("iam_users.id"), nullable=True)
+    granted_by = Column(String(36), ForeignKey("users.id"), nullable=True)
     expires_at = Column(DateTime(timezone=True), nullable=True)  # Permissão temporária
     
     # Relacionamentos

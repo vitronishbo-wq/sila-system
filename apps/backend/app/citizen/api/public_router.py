@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
 from app.api.deps import get_current_user, get_current_citizen_user, get_db
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.citizen.events.models import CitizenEventModel
 from app.citizen.core.models import CitizenFUC
 from app.modules.identidade_civil.application.services.citizen_service import CitizenService

@@ -77,7 +77,7 @@ if _missing:
 # Now import application and auth deps (safe after models are registered)
 from app.main import app
 from app.api.deps import get_current_user
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 
 
 # PYTHONPATH should be configured via setup_dev_env.sh; do not mutate sys.path here.

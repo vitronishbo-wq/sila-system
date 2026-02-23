@@ -31,7 +31,7 @@ if not db_url:
         db_port = os.getenv("DB_PORT", "5432")
         db_user = os.getenv("DB_USER", "sila_user")
         db_password = os.getenv("DB_PASSWORD", "Trumanmarcelo_1983")
-        db_name = os.getenv("DB_NAME", "sila_system")
+        db_name = os.getenv("DB_NAME", "sila_db")  # Default para sila_db (não sila_system)
         db_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 else:
     # Convert async URL to sync for Alembic if needed

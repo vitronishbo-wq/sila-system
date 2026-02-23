@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List, Optional, Union
 from functools import lru_cache
+import json
 from pydantic import computed_field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -9,6 +10,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         case_sensitive=False,
         extra="ignore",
+        env_file=".env",
+        env_file_encoding="utf-8",
     )
 
     BASE_DIR: Path = Path(__file__).resolve().parent.parent
@@ -35,30 +38,16 @@ class Settings(BaseSettings):
     SESSION_COOKIE_SECURE: bool = False
 
     # PostgreSQL
-    POSTGRES_SERVER: str = "db"
-    POSTGRES_USER: str = "postgres"
+    POSTGRES_SERVER: str = "127.0.0.1"
+    POSTGRES_USER: str = "sila_user"
     POSTGRES_PASSWORD: str = "Trumanmarcelo_1983"
-    POSTGRES_DB: str = "sila"
+    POSTGRES_DB: str = "sila_db"
     POSTGRES_PORT: str = "5432"
+    DATABASE_URL: str = "postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db"
     DATABASE_ECHO: bool = True
     LOG_FORMAT: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     DATABASE_POOL_SIZE: int = 10
     DATABASE_MAX_OVERFLOW: int = 20
-
-    @computed_field
-    @property
-    def ASYNC_DATABASE_URL(self) -> str:
-        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
-
-    @computed_field
-    @property
-    def SYNC_DATABASE_URL(self) -> str:
-        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
-
-    @computed_field
-    @property
-    def DATABASE_URL(self) -> str:
-        return self.ASYNC_DATABASE_URL
 
     # Redis & Cache
     REDIS_URL: str = "redis://redis:6379/0"
@@ -104,6 +93,25 @@ class Settings(BaseSettings):
     FEATURE_MONITORING: bool = True
     RATE_LIMIT_ENABLED: bool = True
     RATE_LIMIT_PER_MINUTE: int = 60
+
+    @field_validator("DEBUG", mode="before")
+    @classmethod
+    def parse_debug(cls, v: Union[str, bool]) -> bool:
+        if isinstance(v, str):
+            return v.strip().lower() in ('true', '1', 'yes')
+        return v
+
+    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str):
+            try:
+                # Try to parse as JSON
+                return json.loads(v)
+            except (json.JSONDecodeError, ValueError):
+                # Fallback to comma-separated
+                return [x.strip() for x in v.split(",")]
+        return v
 
     @field_validator("ALLOWED_EXTENSIONS", mode="before")
     @classmethod

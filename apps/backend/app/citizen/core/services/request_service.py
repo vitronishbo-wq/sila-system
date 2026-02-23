@@ -13,7 +13,7 @@ from app.core.workflow.models.request import Request
 from app.core.workflow.infrastructure.repositories.request_repository import RequestRepository
 from app.core.constants import EntityStatus
 from app.core.notifications.services.notification_service import NotificationService
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 
 
 class RequestService(BaseRequestService[Request, RequestRepository]):

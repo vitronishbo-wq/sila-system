@@ -11,7 +11,7 @@ from uuid import UUID
 from fastapi import HTTPException, Depends
 
 from app.api.deps import get_current_user, get_current_citizen
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 
 
 async def extract_citizen_id(

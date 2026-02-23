@@ -2,12 +2,14 @@ from app.core.database import Base
 
 # IMPORTAR MODELOS PARA REGISTRAR NO METADATA
 
-# IAM Models
-from app.core.iam.infrastructure.models.user_model import UserModel, UserRoleModel
-from app.core.iam.infrastructure.models.role_model import RoleModel, RolePermissionModel
-from app.core.iam.infrastructure.models.permission_model import PermissionModel, UserPermissionModel
-from app.core.iam.infrastructure.models.session_model import SessionModel, RefreshTokenModel
-from app.core.iam.infrastructure.models.audit_model import AuditLogModel
+# ⚠️ DESABILITAR: IAM Models - Usar modules.identity.models.user.User em vez de UserModel
+# (Evitar conflito de tabela "users" duplicada)
+# from app.core.iam.infrastructure.models.user_model import UserModel, UserRoleModel
+# from app.core.iam.infrastructure.models.role_model import RoleModel, RolePermissionModel
+# from app.core.iam.infrastructure.models.permission_model import PermissionModel, UserPermissionModel
+# from app.core.iam.infrastructure.models.session_model import SessionModel, RefreshTokenModel
+# from app.core.iam.infrastructure.models.audit_model import AuditLogModel
+
 # Core audit model (application-level audit table)
 from app.core.audit_legacy import AuditLog
 

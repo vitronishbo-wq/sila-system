@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_admin_user, get_db
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 
 router = APIRouter(prefix="/statistics", tags=["Statistics"])
 

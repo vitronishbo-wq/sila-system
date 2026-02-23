@@ -23,9 +23,9 @@ class Settings(BaseSettings):
     DB_PORT: int = int(os.getenv("DB_PORT", "5432"))
     DB_USER: str = os.getenv("DB_USER", "sila_user")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD", "Trumanmarcelo_1983")
-    DB_NAME: str = os.getenv("DB_NAME", "sila_system")
+    DB_NAME: str = os.getenv("DB_NAME", "sila_db")  # Default para sila_db (não sila_system)
     # RAW_DATABASE_URL permite sobrescrever totalmente a URL construída
-    # Ex.: export DATABASE_URL="postgresql+asyncpg://user:pass@127.0.0.1:5432/sila_system_test"
+    # Ex.: export DATABASE_URL="postgresql+asyncpg://user:pass@127.0.0.1:5432/sila_db"
     RAW_DATABASE_URL: Optional[str] = os.getenv("DATABASE_URL", None)
     
     @property

@@ -9,7 +9,7 @@ from app.api.public.auth.citizen_schemas import (
     CitizenLinkRequest, CitizenLinkResponse, CitizenProfileResponse,
     CitizenCheckResponse, MFAResponse, ErrorResponse, CitizenCheckRequest
 )
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.iam.application.services.citizen_auth_service import CitizenAuthService
 from app.core.iam.application.services.base_service import (
     AuthenticationError, ValidationError, NotFoundError

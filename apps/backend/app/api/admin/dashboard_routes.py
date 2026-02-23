@@ -9,7 +9,7 @@ from typing import Dict, Any
 from uuid import UUID
 
 from app.api.deps import get_db, get_current_user
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.citizen.core.profile_queries import ProfileQueries
 
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])

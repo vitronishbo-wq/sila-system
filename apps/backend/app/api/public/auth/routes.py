@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_user, get_db
 from app.api.public.auth.schemas import UserRegister
-from app.core.iam.models.user import User
+from modules.identity.models.user import User
 from app.core.constants import UserRole, AdminLevel
 from app.core.security import verify_password, create_access_token, get_password_hash
 import uuid

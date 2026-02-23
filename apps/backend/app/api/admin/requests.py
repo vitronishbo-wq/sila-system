@@ -6,7 +6,7 @@ from uuid import UUID
 
 from app.api.deps import get_db, get_current_user
 from app.core.workflow.models.request import Request
-from app.core.iam.models import User
+from modules.identity.models.user import User
 
 router = APIRouter(prefix="/requests", tags=["admin-requests"])
 

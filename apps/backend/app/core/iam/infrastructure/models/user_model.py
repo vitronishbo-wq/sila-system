@@ -1,64 +1,62 @@
-from sqlalchemy import Column, String, DateTime, Boolean, Integer, ForeignKey, Text, Index, UniqueConstraint, JSON, ForeignKeyConstraint
+from sqlalchemy import Column, String, DateTime, Boolean, Integer, ForeignKey, Index, UniqueConstraint, JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from sqlalchemy.dialects.postgresql import UUID
 
 from .base import BaseModel
 
 
 class UserModel(BaseModel):
-    """Modelo SQLAlchemy para usuários"""
-    __tablename__ = "iam_users"
+    """Modelo SQLAlchemy para usuários - Alinhado com schema real do BD"""
+    __tablename__ = "users"
 
+    # Primary Key (auto-increment INTEGER)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    
+    # UUID for external reference (gen_random_uuid no BD)
+    uuid = Column(String(36), unique=True, index=True, nullable=False)
+    
     # Autenticação
-    username = Column(String(100), unique=True, nullable=False, index=True)
     email = Column(String(255), unique=True, nullable=False, index=True)
-    password_hash = Column(String(255), nullable=False)
-    
-    # Vínculo com cidadão do FUC
-    citizen_id = Column(UUID(as_uuid=True), nullable=True, index=True)
-    
-    # Status
-    status = Column(String(50), nullable=False, default="PENDING_VERIFICATION", index=True)
-    is_superuser = Column(Boolean, default=False, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
     
     # Dados pessoais
     full_name = Column(String(255), nullable=True)
-    phone = Column(String(50), nullable=True)
-    department = Column(String(255), nullable=True)
-    position = Column(String(255), nullable=True)
+    phone = Column(String(20), nullable=True)
+    bi_number = Column(String(20), unique=True, nullable=True, index=True)
     
-    # Controle de segurança
-    failed_login_attempts = Column(Integer, default=0, nullable=False)
-    last_login_at = Column(DateTime(timezone=True), nullable=True)
-    last_login_ip = Column(String(50), nullable=True)
-    password_changed_at = Column(DateTime(timezone=True), nullable=True)
-    password_expires_at = Column(DateTime(timezone=True), nullable=True)
+    # Status
+    is_active = Column(Boolean, default=True, nullable=False)
+    is_verified = Column(Boolean, default=False, nullable=False)
+    status = Column(String(50), default="ACTIVE", nullable=False, index=True)
     
-    # MFA
-    mfa_enabled = Column(Boolean, default=False, nullable=False)
-    mfa_secret = Column(String(255), nullable=True)
-    mfa_type = Column(String(50), default="NONE", nullable=False)
+    # Authorization - Geographic level
+    administrative_level = Column(String(20), default="LOCAL", nullable=False)
     
-    # Metadados
-    custom_metadata = Column(JSON, nullable=True)
+    # Legacy field for compatibility
+    level = Column(String(20), nullable=True)
+    
+    # Geographic assignment - FK to locations (NOT territories!)
+    region_id = Column(
+        Integer,
+        ForeignKey("locations.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True
+    )
+    
+    # Roles - stored as JSON array
+    # Example: ["ADMIN", "USER"] or ["CITIZEN"]
+    roles = Column(JSON, default=lambda: [], nullable=False)
     
     # Timestamps
-    deleted_at = Column(DateTime(timezone=True), nullable=True)  # Soft delete
+    last_login = Column(DateTime(timezone=True), nullable=True)
     
     # Relacionamentos
-    roles = relationship("UserRoleModel", back_populates="user", cascade="all, delete-orphan", foreign_keys="UserRoleModel.user_id")
-    sessions = relationship("SessionModel", back_populates="user", cascade="all, delete-orphan")
-    refresh_tokens = relationship("RefreshTokenModel", back_populates="user", cascade="all, delete-orphan")
-    audit_logs = relationship("AuditLogModel", back_populates="user")
-    permissions_direct = relationship("UserPermissionModel", back_populates="user", cascade="all, delete-orphan", foreign_keys="UserPermissionModel.user_id")
+    region = relationship("LocationModel", foreign_keys=[region_id])
     
     __table_args__ = (
-        Index("ix_iam_users_status_created", "status", "created_at"),
-        Index("ix_iam_users_username_lower", func.lower(username)),
-        Index("ix_iam_users_email_lower", func.lower(email)),
-        Index("ix_iam_users_citizen_id", "citizen_id"),
-        UniqueConstraint("citizen_id", name="uq_iam_users_citizen_id"),
+        Index("idx_users_email_status", "email", "status"),
+        Index("idx_users_is_active", "is_active"),
+        Index("idx_users_created_at", "created_at"),
     )
 
 
@@ -66,10 +64,10 @@ class UserRoleModel(BaseModel):
     """Relacionamento usuário-role"""
     __tablename__ = "iam_user_roles"
 
-    user_id = Column(String(36), ForeignKey("iam_users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     role_id = Column(String(36), ForeignKey("iam_roles.id", ondelete="CASCADE"), nullable=False, index=True)
     assigned_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    assigned_by = Column(String(36), ForeignKey("iam_users.id"), nullable=True)
+    assigned_by = Column(Integer, ForeignKey("users.id"), nullable=True)
     
     # Relacionamentos
     user = relationship("UserModel", back_populates="roles", foreign_keys=[user_id])
