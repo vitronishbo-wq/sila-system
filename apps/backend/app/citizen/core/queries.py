@@ -11,8 +11,7 @@ Qualquer uso deste módulo resultará em erro ou dados incompletos.
 Mantenha apenas para referência histórica até migração total do frontend.
 """
 
-from typing import List, Optional, Dict, Any
-from uuid import UUID
+from typing import Dict, Any
 
 # Stub classes to prevent ImportErrors
 class ProfileQueries:

@@ -2,7 +2,6 @@ import pyotp
 import qrcode
 import io
 import base64
-from typing import Tuple, Optional
 from datetime import datetime, timedelta
 import secrets
 

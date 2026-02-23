@@ -11,14 +11,14 @@ Cada método representa 1 visão administrativa oficial.
 Qualquer alteração requer ADR + validação de arquitetura.
 """
 
-from typing import List, Optional, Dict, Any
+from typing import Optional, Dict, Any
 from uuid import UUID
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_, not_, func, case
+from sqlalchemy import and_, or_, func, case
 
 from app.citizen.core.models import CitizenRequest
-from app.core.territory.models.territory import Territory, TerritoryClosure
+from app.core.territory.models.territory import Territory
 
 
 class FrozenProfileQueries:

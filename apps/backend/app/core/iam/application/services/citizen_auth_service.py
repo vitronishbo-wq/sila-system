@@ -1,15 +1,10 @@
 """Serviço de autenticação para cidadãos"""
 from typing import Optional, Dict, Any
 from sqlalchemy.orm import Session
-from datetime import datetime
 import logging
 from uuid import UUID
 
-from ...domain.models.user import User
-from ...domain.enums.user_status import UserStatus
 from .base_service import BaseService, AuthenticationError, ValidationError, NotFoundError
-from ...infrastructure.security.password_hasher import Argon2PasswordHasher
-from ...infrastructure.repositories.user_repository import UserRepository
 from ...domain.value_objects.email import Email
 
 

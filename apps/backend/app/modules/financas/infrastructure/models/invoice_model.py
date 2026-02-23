@@ -1,11 +1,11 @@
 from datetime import datetime
 from typing import List, Optional
-from sqlalchemy import String, Numeric, DateTime, Enum, ForeignKey
+from sqlalchemy import String, Numeric, DateTime, Enum
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 from app.core.database import Base
-from app.modules.financas.domain.models.enums import InvoiceStatus, PaymentStatus
+from app.modules.financas.domain.models.enums import InvoiceStatus
 
 class InvoiceModel(Base):
     """

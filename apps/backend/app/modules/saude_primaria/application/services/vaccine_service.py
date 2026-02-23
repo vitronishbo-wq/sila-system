@@ -1,15 +1,16 @@
+from app.core.observability import trace
 """Vaccine Service"""
-from typing import Optional, List
+from typing import Optional
 from uuid import UUID
 from datetime import date
 
-from app.modules.saude_primaria.domain.models.vaccine import Vaccine, VaccineDose
-from app.modules.saude_primaria.domain.enums import VaccineStatus
+from app.modules.saude_primaria.domain.models.vaccine import VaccineDose
 
 
 class VaccineService:
     """Application service for vaccine management"""
     
+    @trace()
     async def register_vaccine_dose(
         self,
         citizen_id: UUID,

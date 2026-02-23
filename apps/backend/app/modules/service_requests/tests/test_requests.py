@@ -1,7 +1,6 @@
 """Test requests"""
 import pytest
 from uuid import uuid4
-from datetime import date
 
 from app.modules.service_requests.domain.models.service_request import ServiceRequest
 from app.modules.service_requests.domain.enums import RequestStatus, ServiceType, RequestPriority

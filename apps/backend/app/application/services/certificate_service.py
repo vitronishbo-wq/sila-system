@@ -7,7 +7,7 @@ from ...domain.models.birth_record import BirthRecord
 from ...domain.models.death_record import DeathRecord
 from ...domain.models.marriage_record import MarriageRecord
 from ...domain.enums import CertificateType, CertificateStatus
-from ...domain.value_objects import CertificateNumber, RegistryOffice
+from ...domain.value_objects import CertificateNumber
 from .base_service import BaseService
 
 

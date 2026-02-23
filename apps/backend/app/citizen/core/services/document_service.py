@@ -1,5 +1,5 @@
 import uuid
-from typing import Optional, Dict, Any, List
+from typing import Optional, List
 from datetime import datetime
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,7 +10,6 @@ from app.core.constants import EntityStatus
 from app.citizen.core.services.request_service import RequestService
 from app.core.document.services.document_service import DocumentService as CoreDocumentService
 from app.core.document.models.document_file import DocumentFile
-from app.core.workflow.models.request import Request
 from app.citizen.core.models import CitizenFUC
 from app.modules.identidade_civil.domain.models.document import Document
 

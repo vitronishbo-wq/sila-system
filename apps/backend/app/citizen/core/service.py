@@ -10,7 +10,7 @@ from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.citizen.enums import CitizenStatus
-from app.citizen.exceptions import CitizenNotFoundError, CitizenValidationError
+from app.citizen.exceptions import CitizenNotFoundError
 from app.core.events import CitizenValidated, CitizenValidationFailed
 from app.citizen.core.audit import ImmutableAuditWriter
 from typing import Any as _Any

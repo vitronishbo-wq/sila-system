@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 
 from ...domain.models.birth_record import BirthRecord
 from ...domain.models.citizen_ref import CitizenRef
-from ...domain.enums import EventStatus, CertificateType, CivilEventType
-from ...domain.value_objects import EventNumber, RegistryOffice, Place
+from ...domain.enums import EventStatus
+from ...domain.value_objects import RegistryOffice, Place
 from .base_service import BaseService
 
 

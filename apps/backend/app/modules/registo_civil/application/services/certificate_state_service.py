@@ -1,4 +1,6 @@
+from app.core.observability import trace
 class CivilStateCertificateService:
+    @trace()
     async def issue(self, citizen_id: str):
         # Emissão de certificado de estado civil (Mock)
         return {

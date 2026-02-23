@@ -3,7 +3,6 @@ Testes unitários para CitizenService (Refatorados).
 Valida get_citizen_data e validate_for_billing com cenários de sucesso e falha.
 """
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
 
 from app.modules.financas.application.services.citizen_service import CitizenService
 from app.citizen.enums import CitizenStatus

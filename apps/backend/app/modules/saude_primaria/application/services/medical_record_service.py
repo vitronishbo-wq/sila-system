@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """Medical Record Service"""
 from typing import Optional, List
 from uuid import UUID
@@ -12,6 +13,7 @@ class MedicalRecordService:
     def __init__(self, repository: MedicalRecordRepositoryPort):
         self.repository = repository
     
+    @trace()
     async def create_medical_record(
         self,
         citizen_id: UUID,
@@ -47,14 +49,17 @@ class MedicalRecordService:
         
         return await self.repository.save(record)
     
+    @trace()
     async def get_medical_record(self, record_id: UUID) -> Optional[MedicalRecord]:
         """Get medical record by ID"""
         return await self.repository.get_by_id(record_id)
     
+    @trace()
     async def list_citizen_records(self, citizen_id: UUID, skip: int = 0, limit: int = 100) -> List[MedicalRecord]:
         """List citizen medical records"""
         return await self.repository.get_by_citizen(citizen_id, skip, limit)
     
+    @trace()
     async def update_vital_signs(self, record_id: UUID, vitals: VitalSigns) -> MedicalRecord:
         """Update vital signs"""
         record = await self.repository.get_by_id(record_id)
@@ -64,6 +69,7 @@ class MedicalRecordService:
         record.update_vitals(vitals)
         return await self.repository.update(record)
     
+    @trace()
     async def add_diagnosis(self, record_id: UUID, diagnosis: str, code: Optional[str] = None) -> MedicalRecord:
         """Add diagnosis to record"""
         record = await self.repository.get_by_id(record_id)
@@ -73,6 +79,7 @@ class MedicalRecordService:
         record.add_diagnosis(diagnosis, code)
         return await self.repository.update(record)
     
+    @trace()
     async def add_prescription(self, record_id: UUID, prescription_id: UUID) -> MedicalRecord:
         """Add prescription reference"""
         record = await self.repository.get_by_id(record_id)
@@ -82,6 +89,7 @@ class MedicalRecordService:
         record.add_prescription(prescription_id)
         return await self.repository.update(record)
     
+    @trace()
     async def add_exam_request(self, record_id: UUID, exam_request_id: UUID) -> MedicalRecord:
         """Add exam request reference"""
         record = await self.repository.get_by_id(record_id)
@@ -91,6 +99,7 @@ class MedicalRecordService:
         record.add_exam_request(exam_request_id)
         return await self.repository.update(record)
     
+    @trace()
     async def search_records(self, filters: dict, skip: int = 0, limit: int = 100) -> tuple[List[MedicalRecord], int]:
         """Search medical records"""
         return await self.repository.search(filters, skip, limit)

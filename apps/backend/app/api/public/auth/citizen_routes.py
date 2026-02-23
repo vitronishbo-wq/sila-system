@@ -1,13 +1,12 @@
 """Routes for citizen authentication"""
 from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy.ext.asyncio import AsyncSession
-from datetime import datetime
 
 from app.api.deps import get_db, get_current_user
 from app.api.public.auth.citizen_schemas import (
     CitizenLoginRequest, CitizenLoginResponse, CitizenRegisterRequest,
     CitizenLinkRequest, CitizenLinkResponse, CitizenProfileResponse,
-    CitizenCheckResponse, MFAResponse, ErrorResponse, CitizenCheckRequest
+    CitizenCheckResponse, MFAResponse, ErrorResponse
 )
 from modules.identity.models.user import User
 from app.core.iam.application.services.citizen_auth_service import CitizenAuthService

@@ -3,7 +3,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
-from app.api.deps import get_current_user, get_current_admin_user, get_db
+from app.api.deps import get_current_admin_user, get_db
 from app.core.constants import UserRole
 from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory

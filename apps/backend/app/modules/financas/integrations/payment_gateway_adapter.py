@@ -1,4 +1,4 @@
-from uuid import uuid4, UUID
+from uuid import uuid4
 from datetime import datetime
 from typing import Dict, Any, Optional
 import logging

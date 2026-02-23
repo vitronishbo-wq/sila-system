@@ -5,7 +5,7 @@ Este modelo permite persistir eventos de domínio para auditoria e event sourcin
 """
 import uuid
 from datetime import datetime
-from sqlalchemy import String, Text, DateTime, JSON
+from sqlalchemy import String, DateTime, JSON
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from app.core.database import Base

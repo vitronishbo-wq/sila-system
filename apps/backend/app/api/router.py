@@ -8,14 +8,14 @@ from app.api.public.rbac_test_routes import router as rbac_router
 from app.citizen.api.router import router as fuc_router
 from app.citizen.api.public_router import router as citizen_public_router
 from app.presentation.api.citizen_document_routes import router as citizen_documents_router
-from app.modules.financas.application.api.routes import router as financas_router
+from app.modules.financas.api.router import router as financas_router
 from app.modules.taxpayer.api.router import router as taxpayer_router
 from app.modules.identidade_civil.api.bi_routes import router as ic_bi_router
 from app.modules.identidade_civil.api.atestados_routes import router as ic_atestados_router
 from app.modules.identidade_civil.api.historico_routes import router as ic_historico_router
 from app.modules.identidade_civil.api.validacao_routes import router as ic_validacao_router
-from app.modules.identidade_civil.application.api.citizens.citizens_routes import router as ic_citizens_router
-from app.modules.identidade_civil.application.api.documents.documents_routes import router as ic_documents_router
+from app.modules.identidade_civil.api.citizens.citizens_routes import router as ic_citizens_router
+from app.modules.identidade_civil.api.documents.documents_routes import router as ic_documents_router
 from app.modules.registo_civil.api.router import router as registo_civil_router
 # from app.modules.saude_primaria.api.router import router as saude_primaria_router  # Disabled pending deps
 from app.modules.service_requests.api.router import router as service_requests_router

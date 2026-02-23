@@ -3,13 +3,9 @@ Middleware que redireciona automaticamente para o dashboard correto
 baseado no papel do utilizador.
 """
 
-from fastapi import Request, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.types import ASGIApp
 import logging
-from typing import Dict, Optional
-import json
 
 logger = logging.getLogger(__name__)
 

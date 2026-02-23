@@ -9,7 +9,6 @@ Veja test_all_endpoints_require_authentication() para validação unificada.
 
 ECONOMIA: -60 linhas duplicadas, -6 testes redundantes
 """
-import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app

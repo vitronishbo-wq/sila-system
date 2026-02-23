@@ -1,9 +1,9 @@
 import pytest
-from unittest.mock import MagicMock, patch, AsyncMock
+from unittest.mock import MagicMock, AsyncMock
 from app.modules.financas.application.services.payment_service import PaymentService
-from app.modules.financas.schemas.payment_schema import CreatePaymentSchema
+from app.modules.financas.api.schemas.payment_schema import CreatePaymentSchema
 from app.modules.financas.exceptions import DuplicatePaymentError, InvoiceNotFoundError
-from app.modules.financas.domain.models.enums import PaymentStatus, InvoiceStatus
+from app.modules.financas.domain.models.enums import InvoiceStatus
 from app.modules.financas.domain.models.invoice import Invoice
 from datetime import datetime, timezone, timedelta
 

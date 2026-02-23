@@ -1,5 +1,4 @@
-from fastapi import Depends, HTTPException, status, Request
-from typing import Optional, List
+from fastapi import HTTPException, status, Request
 from uuid import UUID
 
 from .rate_limiter import RateLimiter

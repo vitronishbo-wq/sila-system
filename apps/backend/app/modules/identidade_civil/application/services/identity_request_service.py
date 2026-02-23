@@ -1,6 +1,6 @@
-from typing import Optional, List, Dict, Any
+from app.core.observability import trace
+from typing import Optional, Dict, Any
 from uuid import UUID
-from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.services.base_request_service import BaseRequestService
@@ -24,6 +24,7 @@ class IdentityRequestService(BaseRequestService[IdentityRequest, IdentityRequest
     def default_status(self) -> str:
         return RequestStatus.PENDING.value
     
+    @trace()
     async def create_request_model(
         self,
         citizen_id: UUID,
@@ -41,11 +42,13 @@ class IdentityRequestService(BaseRequestService[IdentityRequest, IdentityRequest
             
         return req
     
+    @trace()
     async def get_user_from_citizen_id(self, citizen_id: UUID) -> Optional[UUID]:
         """No SILA, citizen_id costuma ser o próprio user_id no namespace do cidadão."""
         return citizen_id
 
     # Extensões específicas do domínio de Identidade
+    @trace()
     async def add_note(self, request_id: UUID, operator: str, text: str):
         request = await self.repo.get_by_id(request_id)
         if not request:
@@ -54,6 +57,7 @@ class IdentityRequestService(BaseRequestService[IdentityRequest, IdentityRequest
         request.add_note(operator, text)
         return await self.repo.save(request)
 
+    @trace()
     async def transition(self, request_id: UUID, new_status: RequestStatus, reason: str = None, updated_by: UUID = None):
         """Atualiza estado com auditoria e notificações da base."""
         # Se não houver updated_by, assume SYSTEM ou o próprio ID (compatibilidade)

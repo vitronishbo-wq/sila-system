@@ -1,6 +1,4 @@
-from typing import Optional
 from datetime import datetime
-import json
 
 from ..models.audit_model import TokenBlacklistModel
 from sqlalchemy.orm import Session

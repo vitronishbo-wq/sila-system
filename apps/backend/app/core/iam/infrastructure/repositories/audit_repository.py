@@ -1,6 +1,6 @@
 from typing import Optional, List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, func, desc
+from sqlalchemy import func, desc
 from datetime import datetime, timedelta
 
 from ..models.audit_model import AuditLogModel

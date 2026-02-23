@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, Boolean, JSON, Index
+from sqlalchemy import Column, String, DateTime, Boolean
 from sqlalchemy.sql import func
 import uuid
 

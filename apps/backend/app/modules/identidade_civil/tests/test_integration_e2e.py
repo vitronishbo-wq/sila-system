@@ -8,9 +8,7 @@ import pytest
 import uuid
 from datetime import date, datetime
 
-from sqlalchemy.orm import sessionmaker
 
-from app.core.database import Base
 from app.modules.identidade_civil.domain.models.bi_record import BIRecord
 from app.modules.identidade_civil.domain.models.identity_request import IdentityRequest
 from app.modules.identidade_civil.infrastructure.repositories.bi_repository import BIRepository

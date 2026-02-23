@@ -5,7 +5,6 @@ from datetime import date
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, func
-from sqlalchemy.orm import selectinload
 
 from app.modules.saude_primaria.domain.models.appointment import Appointment
 from app.modules.saude_primaria.application.ports.appointment_repository_port import AppointmentRepositoryPort

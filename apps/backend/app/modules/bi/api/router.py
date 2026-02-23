@@ -7,6 +7,8 @@ from .schemas.report_schema import RunReportSchema, ReportSchema
 
 router = APIRouter(prefix="/bi", tags=["bi"])
 
+# middleware será adicionado na app principal
+
 
 @router.get("/kpis", response_model=list[KPIResponse], dependencies=[Depends(require_permission("bi:view"))])
 def list_kpis():

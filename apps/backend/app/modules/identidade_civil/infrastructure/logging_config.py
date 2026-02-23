@@ -5,10 +5,9 @@ Configuração centralizada de logging com contexto de auditoria,
 rastreamento distribuído e integração com sistemas de observabilidade.
 """
 import logging
-import json
 from datetime import datetime
 from contextlib import contextmanager
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 
 
 class StructuredLogger:

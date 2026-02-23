@@ -1,11 +1,12 @@
-from typing import List, Optional, Dict, Any, Tuple
+from app.core.observability import trace
+from typing import List, Optional, Dict, Any
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import HTTPException, status
 from datetime import datetime
 
 from app.core.services.base_request_service import BaseRequestService
-from app.modules.saude_primaria.infrastructure.db.healthcare_model import (
+from app.modules.saude_primaria.infrastructure.models.healthcare_model import (
     HealthcareRequestModel, 
     MaternalRecordModel,
     PostNatalRecordModel,
@@ -42,6 +43,7 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
     def default_status(self) -> str:
         return AppointmentStatus.PENDING.value
 
+    @trace()
     async def create_request_model(
         self,
         citizen_id: UUID,
@@ -77,10 +79,12 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
             
         return db_request
 
+    @trace()
     async def get_user_from_citizen_id(self, citizen_id: UUID) -> Optional[UUID]:
         return citizen_id
 
     # ========== Template Overrides ==========
+    @trace()
     async def _validate_create_request(self, citizen_id: UUID, request_data: Dict[str, Any], **kwargs) -> None:
         data = request_data.get("data_obj")
         if data.preferred_date and data.preferred_date < datetime.utcnow():
@@ -90,6 +94,7 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
             )
 
     # ========== Legacy/Wrapper Methods ==========
+    @trace()
     async def create_request(self, citizen_id: UUID, data: HealthcareRequestCreate) -> HealthcareRequestResponse:
         """Wrapper para o método de template da base."""
         # Usamos o BaseRequestService.create_request
@@ -102,11 +107,13 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
         setattr(saved, "metadata", getattr(saved, "metadata_json", None))
         return HealthcareRequestResponse.model_validate(saved)
 
+    @trace()
     async def get_citizen_requests(self, citizen_id: UUID) -> List[HealthcareRequestResponse]:
         """Recuperação via repositório."""
         requests, _ = await self.list_requests(citizen_id=citizen_id)
         return [HealthcareRequestResponse.model_validate(req) for req in requests]
 
+    @trace()
     async def schedule_request(self, request_id: UUID, schedule_data: HealthcareScheduleUpdate, professional_id: UUID) -> HealthcareRequestResponse:
         """Transição de estado para Agendado."""
         db_request = await self.repo.get_by_id(request_id)
@@ -124,6 +131,7 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
         
         return HealthcareRequestResponse.model_validate(saved)
 
+    @trace()
     async def update_status(self, request_id: UUID, status_data: HealthcareStatusUpdate, professional_id: UUID) -> HealthcareRequestResponse:
         """Gestão de estados do ciclo de vida clínico."""
         db_request = await self.repo.get_by_id(request_id)
@@ -140,6 +148,7 @@ class HealthcareService(BaseRequestService[HealthcareRequestModel, HealthcareRep
         
         return HealthcareRequestResponse.model_validate(saved)
 
+    @trace()
     async def cancel_request(self, request_id: UUID, cancel_data: HealthcareCancelRequest, performer_id: UUID) -> HealthcareRequestResponse:
         """Cancelamento com motivo obrigatório."""
         db_request = await self.repo.get_by_id(request_id)

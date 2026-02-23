@@ -1,9 +1,7 @@
 from typing import Optional, List, Dict, Any
-from datetime import datetime, timedelta
+from datetime import datetime
 from sqlalchemy.orm import Session
 from app.modules.statistics.infrastructure.repositories.statistics_repository import StatisticsRepository
-from app.modules.statistics.infrastructure.models.statistic_model import StatisticModel
-from app.modules.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
 
 
 class StatisticsService:

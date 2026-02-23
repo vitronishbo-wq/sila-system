@@ -3,7 +3,7 @@ from typing import Optional, List, Tuple
 from uuid import UUID
 
 from app.modules.workflow.domain.models.workflow_task import WorkflowTask
-from app.modules.workflow.domain.enums import TaskStatus, TaskPriority
+from app.modules.workflow.domain.enums import TaskStatus
 
 
 class TaskRepositoryPort(ABC):

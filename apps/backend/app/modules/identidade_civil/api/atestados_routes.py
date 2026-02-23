@@ -1,7 +1,6 @@
 
 from fastapi import APIRouter, HTTPException, Depends, status
-from typing import Dict, Any, List
-import uuid
+from typing import Dict, Any
 from uuid import UUID
 import logging
 from datetime import datetime
@@ -12,7 +11,7 @@ from app.core.notifications.services.notification_service import NotificationSer
 
 # Importações de domínio e integrações conforme a arquitetura SILA
 from ..domain.models.bi_event import BIEvent, BIEventType
-from ..domain.models.identity_request import IdentityRequest, RequestStatus
+from ..domain.models.identity_request import RequestStatus
 from ..integrations.citizen_fuc_client import CitizenFUCClient
 from ..application.services.identity_request_service import IdentityRequestService
 

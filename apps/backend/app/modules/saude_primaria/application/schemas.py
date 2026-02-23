@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime, date
-from typing import Optional, Any, Dict, List, Literal
+from typing import Optional, Any, Dict
 from uuid import UUID
 from app.modules.saude_primaria.domain.enums import HealthcareServiceType, AppointmentStatus, MaternalRiskLevel, ChronicSeverity, NotificationChannel
 

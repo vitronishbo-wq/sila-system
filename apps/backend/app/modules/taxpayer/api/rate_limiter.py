@@ -1,5 +1,5 @@
 import time
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple
 from collections import defaultdict
 
 

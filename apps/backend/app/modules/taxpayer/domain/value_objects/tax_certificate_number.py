@@ -1,7 +1,6 @@
 """TaxCertificateNumber Value Object - Número de Certidão Fiscal"""
 from dataclasses import dataclass
 import re
-from datetime import datetime
 
 
 @dataclass(frozen=True)

@@ -2,7 +2,6 @@
 from dataclasses import dataclass
 import re
 from uuid import UUID
-from datetime import datetime
 
 
 @dataclass(frozen=True)

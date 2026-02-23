@@ -1,3 +1,4 @@
+from app.core.observability import trace
 from app.modules.registo_civil.infrastructure.repositories.cemetery_inspection_repository import CemeteryInspectionRepository
 from app.modules.registo_civil.infrastructure.models.cemetery_inspection_model import CemeteryInspectionRecord
 
@@ -6,6 +7,7 @@ class CemeteryInspectionService:
         for k, v in kwargs.items(): setattr(self, k, v)
         self.repo = repo
 
+    @trace()
     async def register_inspection(self, data: dict):
         record = CemeteryInspectionRecord(
             cemetery_name=data["cemetery_name"],

@@ -1,7 +1,4 @@
-import os
-import shutil
 from pathlib import Path
-from uuid import UUID
 
 class LocalStorage:
     """Implementação simples de storage local para o SILA."""

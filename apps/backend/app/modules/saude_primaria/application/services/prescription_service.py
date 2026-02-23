@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """Prescription Service"""
 from typing import Optional, List
 from uuid import UUID
@@ -13,6 +14,7 @@ class PrescriptionService:
     def __init__(self, repository: PrescriptionRepositoryPort):
         self.repository = repository
     
+    @trace()
     async def create_prescription(
         self,
         citizen_id: UUID,
@@ -52,18 +54,22 @@ class PrescriptionService:
         
         return await self.repository.save(prescription)
     
+    @trace()
     async def get_prescription(self, prescription_id: UUID) -> Optional[Prescription]:
         """Get prescription by ID"""
         return await self.repository.get_by_id(prescription_id)
     
+    @trace()
     async def list_citizen_prescriptions(self, citizen_id: UUID, skip: int = 0, limit: int = 100) -> List[Prescription]:
         """List citizen prescriptions"""
         return await self.repository.get_by_citizen(citizen_id, skip, limit)
     
+    @trace()
     async def get_active_prescriptions(self, citizen_id: UUID) -> List[Prescription]:
         """Get active prescriptions for citizen"""
         return await self.repository.get_active_by_citizen(citizen_id)
     
+    @trace()
     async def dispense_prescription(self, prescription_id: UUID, items_dispensed: Optional[List[str]] = None) -> Prescription:
         """Dispense prescription"""
         prescription = await self.repository.get_by_id(prescription_id)
@@ -73,6 +79,7 @@ class PrescriptionService:
         prescription.dispense(items_dispensed)
         return await self.repository.update(prescription)
     
+    @trace()
     async def cancel_prescription(self, prescription_id: UUID, reason: str, cancelled_by: UUID) -> Prescription:
         """Cancel prescription"""
         prescription = await self.repository.get_by_id(prescription_id)
@@ -82,10 +89,12 @@ class PrescriptionService:
         prescription.cancel(reason, cancelled_by)
         return await self.repository.update(prescription)
     
+    @trace()
     async def check_expired_prescriptions(self) -> List[Prescription]:
         """Check for expired prescriptions"""
         return await self.repository.get_expired()
     
+    @trace()
     async def search_prescriptions(self, filters: dict, skip: int = 0, limit: int = 100) -> tuple[List[Prescription], int]:
         """Search prescriptions"""
         return await self.repository.search(filters, skip, limit)

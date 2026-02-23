@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from datetime import datetime
-from sqlalchemy.orm import Session
 from .deps import require_permission, get_statistics_service
 from .schemas.statistics_schema import StatisticCreateSchema, StatisticSchema, StatisticDetailSchema
 from .schemas.timeseries_schema import TimeSeriesPointSchema, TimeSeriesSchema
 from ..application.services.statistics_service import StatisticsService
 
 router = APIRouter(prefix="/statistics", tags=["statistics"])
+
+# middleware será adicionado na app principal
 
 
 # ==================== STATISTIC ENDPOINTS ====================

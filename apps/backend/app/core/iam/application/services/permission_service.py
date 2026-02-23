@@ -2,7 +2,7 @@ from typing import Optional, List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
 from datetime import datetime
 
-from .base_service import BaseService, ValidationError, NotFoundError, ConflictError
+from .base_service import BaseService, ValidationError, NotFoundError
 
 
 class PermissionService(BaseService):

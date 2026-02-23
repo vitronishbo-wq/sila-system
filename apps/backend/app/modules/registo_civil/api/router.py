@@ -6,6 +6,8 @@ from .certificates.certificate_routes import router as certificates
 
 router = APIRouter()
 
+# middleware será adicionado na app principal
+
 # Eventos Civis
 router.include_router(birth_events, prefix="/events")
 router.include_router(marriage_events, prefix="/events")

@@ -1,9 +1,6 @@
 from app.modules.workflow.api.deps import can_view_instance
-from app.modules.workflow.api.schemas.workflow_schema import (
-    WorkflowStartRequest, WorkflowTransitionRequest,
-    WorkflowInstanceResponse, WorkflowDefinitionResponse,
-    WorkflowStateResponse, WorkflowTransitionResponse,
-    WorkflowHistoryResponse
+from app.modules.workflow.api.schemas.workflow_schema import (    WorkflowStartRequest, WorkflowTransitionRequest,
+    WorkflowInstanceResponse, WorkflowHistoryResponse
 )
 from app.modules.workflow.api.schemas.task_schema import (
     TaskResponse, TaskAssignRequest, TaskCompleteRequest,
@@ -19,6 +16,8 @@ from app.modules.workflow.api.deps import get_workflow_engine
 from app.modules.workflow.application.services.workflow_engine import WorkflowEngine
 
 router = APIRouter(prefix="/workflow", tags=["Workflow"])
+
+# middleware será adicionado na app principal
 
 
 @router.post("/start", response_model=WorkflowInstanceResponse)

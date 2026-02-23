@@ -1,6 +1,6 @@
 from typing import TypeVar, Generic, Type, Optional, List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
-from sqlalchemy import desc, func
+from sqlalchemy import desc
 from datetime import datetime
 
 from ..models.base import BaseModel

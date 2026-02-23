@@ -1,6 +1,5 @@
-from fastapi import Depends, HTTPException, status, Request
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import Optional
 from uuid import UUID
 
 from app.core.database import get_session

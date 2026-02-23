@@ -1,6 +1,5 @@
 import pytest
 import uuid
-from datetime import datetime
 
 @pytest.mark.asyncio
 async def test_register_birth_success(client, db_session):

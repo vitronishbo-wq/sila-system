@@ -1,5 +1,4 @@
 """Modelos principais para cidadãos."""
-import uuid
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4

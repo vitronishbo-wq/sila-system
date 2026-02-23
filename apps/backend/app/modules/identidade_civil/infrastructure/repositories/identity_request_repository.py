@@ -9,12 +9,12 @@ from datetime import datetime
 import uuid
 from typing import Optional
 
-from sqlalchemy import Column, String, DateTime, JSON, select, and_, func, desc
+from sqlalchemy import Column, String, DateTime, JSON, select, func, desc
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import Base
-from typing import Any, Tuple
+from typing import Any
 
 
 def _sanitize_for_json(obj):

@@ -1,9 +1,7 @@
-import uuid
-from sqlalchemy import String, Boolean, Integer, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import String, Boolean, Integer
+from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
-from app.core.constants import UserRole
 
 
 class Permission(Base):

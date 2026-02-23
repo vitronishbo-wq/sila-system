@@ -1,5 +1,4 @@
 import pytest
-from datetime import datetime
 
 @pytest.mark.asyncio
 async def test_register_marriage_success(client, db_session):

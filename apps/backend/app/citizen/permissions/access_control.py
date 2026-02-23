@@ -1,12 +1,8 @@
-import uuid
-from typing import List, Optional
 from sqlalchemy.orm import Session
-from sqlalchemy import select, desc
+from sqlalchemy import select
 from .policies import (
     DataSegment, 
-    PermissionPolicyModel, 
-    PermissionPolicyCreate, 
-    PermissionPolicyUpdate
+    PermissionPolicyModel
 )
 # from app.citizen.events.models import AccessLogModel
 

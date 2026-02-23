@@ -3,9 +3,9 @@ Módulo de Analytics sobre AuditLogs.
 Foco: SLA, Anomalias e Métricas Operacionais.
 Leitura e Agregação apenas. Zero efeitos colaterais.
 """
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 from datetime import datetime, timedelta
-from sqlalchemy import select, func, desc, and_
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import Base

@@ -2,7 +2,7 @@
 import logging
 import time
 import json
-from typing import Callable, Any
+from typing import Callable
 from functools import wraps
 from datetime import datetime
 import os

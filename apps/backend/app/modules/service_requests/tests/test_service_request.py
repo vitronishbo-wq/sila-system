@@ -1,13 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
 from uuid import uuid4
-from datetime import datetime
-from sqlalchemy.orm import Session
 
 from app.main import app
-from app.modules.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
-from app.modules.service_requests.domain.enums import ServiceType, ServiceRequestStatus
-from app.core.database import get_db
 
 
 @pytest.fixture

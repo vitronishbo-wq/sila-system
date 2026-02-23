@@ -4,17 +4,15 @@ Integra com módulos de Registo Civil, Identidade Civil e Finanças via Services
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 from uuid import UUID
 
-from app.api.deps import get_current_user, get_db_async
+from app.api.deps import get_db_async
 from app.api.dependencies import extract_citizen_id
 from app.core.helpers import safe_get, safe_isoformat, safe_enum_value
 from app.citizen.core.services.document_service import CitizenDocumentService
 from app.citizen.core.services.request_service import RequestService
-from app.modules.financas.application.services.invoice_service import InvoiceService
 from app.modules.financas.infrastructure.repositories.invoice_repository import InvoiceRepository
 
 # Adapters antigos removidos em favor de injeção direta de serviços core

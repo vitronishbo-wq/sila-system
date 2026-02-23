@@ -26,19 +26,19 @@ from .infrastructure.repositories.citizen_repository import CitizenRepository
 from .infrastructure.repositories.document_repository import DocumentRepository
 
 # Services
-from .services.citizen_query_service import CitizenQueryService
-from .services.alter_data_service import AlterDataService
-from .services.bi_event_handler import handle_bi_event, event_handler
+from .application.services.citizen_query_service import CitizenQueryService
+from .application.services.alter_data_service import AlterDataService
+from .application.services.bi_event_handler import handle_bi_event, event_handler
 
 # Integrations
 from .integrations.citizen_fuc_client import CitizenFUCClient
 
 # API Routes
-from .application.api.citizens.citizens_routes import router as citizens_router
-from .application.api.documents.documents_routes import router as documents_router
+from .api.citizens.citizens_routes import router as citizens_router
+from .api.documents.documents_routes import router as documents_router
 
 # Utils
-from .utils import (
+from app.core.utils.identity_safe import (
     safe_get,
     safe_getitem,
     safe_isoformat,

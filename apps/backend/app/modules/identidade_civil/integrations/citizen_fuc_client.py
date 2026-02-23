@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from app.core.settings import settings
 
+from app.core.resilience import ResilientClient
 logger = logging.getLogger(__name__)
 
 
@@ -36,7 +37,7 @@ class CitizenFUCClient:
 
     async def _get_client(self) -> httpx.AsyncClient:
         if self._client is None:
-            self._client = httpx.AsyncClient(base_url=self.base_url, timeout=self.timeout)
+            self._client = ResilientClient(base_url=self.base_url, timeout=self.timeout)
         return self._client
 
     async def close(self) -> None:

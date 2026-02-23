@@ -7,13 +7,11 @@ Implementação robusta com SQLAlchemy, auditoria e versionamento.
 import uuid
 import logging
 from typing import Optional, List
-from datetime import date
 
 from sqlalchemy import select, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.modules.identidade_civil.domain.models.bi_record import BIRecord
-from app.modules.identidade_civil.exceptions import NotFoundException
 
 logger = logging.getLogger("identidade_civil.repository.bi")
 

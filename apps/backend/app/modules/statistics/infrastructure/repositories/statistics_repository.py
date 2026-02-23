@@ -1,6 +1,6 @@
 from typing import List, Optional, Dict, Any
 from datetime import datetime
-from sqlalchemy import and_, select, delete as sa_delete, func
+from sqlalchemy import and_
 from sqlalchemy.orm import Session
 from ..models.timeseries_model import TimeSeriesModel
 from ..models.statistic_model import StatisticModel

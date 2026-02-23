@@ -1,7 +1,6 @@
 """Event bus port"""
 from abc import ABC, abstractmethod
 from typing import Dict, Any
-from uuid import UUID
 
 
 class EventBusPort(ABC):

@@ -3,7 +3,6 @@ from sqlalchemy import select
 from uuid import UUID
 from typing import List, Optional
 from app.core.workflow.models.request import Request
-from app.core.constants import EntityStatus
 
 class RequestRepository:
     def __init__(self, db: AsyncSession, **kwargs):

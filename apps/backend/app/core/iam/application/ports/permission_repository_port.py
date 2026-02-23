@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Optional, List, Set, Tuple
 
 from app.core.iam.domain.models.permission import Permission
-from app.core.iam.domain.enums.user_status import ResourceType, ActionType
+from app.core.iam.domain.enums.user_status import ResourceType
 
 
 class PermissionRepositoryPort(ABC):

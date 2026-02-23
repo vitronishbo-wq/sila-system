@@ -1,20 +1,25 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Query
-from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List, Optional
+from fastapi import APIRouter, Depends, Query
+from typing import Optional
 from uuid import UUID
 
-from app.core.database import get_session
 from app.core.exceptions import InvalidRequestError
-from .deps import get_request_service, get_request_or_404, require_request_permission
+from .deps import get_request_service
 from .schemas.request_schema import (
-    ServiceRequestCreate, ServiceRequestResponse, ServiceRequestDetailResponse,
-    ServiceRequestListResponse, ServiceRequestStatusUpdate, ServiceRequestAssign,
-    ServiceRequestSearch, ServiceRequestStatsResponse
+    ServiceRequestCreate,
+    ServiceRequestResponse,
+    ServiceRequestDetailResponse,
+    ServiceRequestListResponse,
+    ServiceRequestStatusUpdate,
+    ServiceRequestAssign,
+    ServiceRequestSearch,
+    ServiceRequestStatsResponse
 )
 from ..application.services.request_service import RequestService
-from ..domain.enums import ServiceType, ServiceRequestStatus
+from ..domain.enums import ServiceType
 
 router = APIRouter(prefix="/service-requests", tags=["Pedidos de Serviço"])
+
+# middleware será adicionado na app principal
 
 
 @router.post("/", response_model=ServiceRequestResponse, status_code=201)
@@ -176,7 +181,6 @@ async def update_service_request_status(
     """
     Atualiza status de um pedido
     """
-    from app.core.exceptions import StatusTransitionError
     
     try:
         # For now, use a default user_id - integrate with IAM later

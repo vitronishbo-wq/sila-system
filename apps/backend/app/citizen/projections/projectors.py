@@ -1,9 +1,8 @@
-import uuid
 from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from app.citizen.events.models import CitizenEventModel, EventType
-from app.citizen.core.models import CitizenFUC, VitalStatus
+from app.citizen.core.models import CitizenFUC
 
 
 class CitizenProjector:

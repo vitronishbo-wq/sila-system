@@ -3,8 +3,6 @@ Audit Handlers — Processamento de eventos citizen → registos de auditoria fi
 Integração cross-module: citizen events disparam registos imutáveis no financial_audit_logs.
 """
 import logging
-from datetime import datetime, timezone
-from typing import Optional
 
 from sqlalchemy.ext.asyncio import AsyncSession
 

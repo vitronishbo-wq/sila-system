@@ -1,15 +1,15 @@
+from app.core.observability import trace
 import uuid
 import logging
 from datetime import datetime, timezone
-from typing import List, Optional
+from typing import List
 
 from app.modules.financas.domain.models.invoice import Invoice
 from app.modules.financas.domain.models.enums import InvoiceStatus
 from app.modules.financas.application.ports.invoice_repository_port import InvoiceRepositoryPort
-from app.modules.financas.schemas.invoice_schema import CreateInvoiceSchema
+from app.modules.financas.api.schemas.invoice_schema import CreateInvoiceSchema
 from app.modules.financas.exceptions import (
     InvoiceNotFoundError, 
-    InvalidInvoiceStateError, 
     DomainValidationError,
     FUCError
 )
@@ -34,6 +34,7 @@ class InvoiceService:
         self.repository = repository
         self.fuc_client = FUCClient()
 
+    @trace()
     async def create_invoice(self, data: CreateInvoiceSchema) -> Invoice:
         """
         Emite uma nova fatura oficial com validações financeiras.
@@ -86,6 +87,7 @@ class InvoiceService:
         logger.info(f"Fatura {saved_invoice.reference} emitida: {saved_invoice.id}")
         return saved_invoice
 
+    @trace()
     async def get_invoice(self, invoice_id: str) -> Invoice:
         """Recupera fatura por ID com validação."""
         invoice = await self.repository.get_by_id(invoice_id)
@@ -94,11 +96,13 @@ class InvoiceService:
             raise InvoiceNotFoundError(invoice_id)
         return invoice
 
+    @trace()
     async def list_citizen_invoices(self, citizen_id: str) -> List[Invoice]:
         """Lista histórico de faturas de um cidadão."""
         logger.info(f"Recuperando faturas do cidadão: {citizen_id}")
         return await self.repository.get_by_citizen(citizen_id)
 
+    @trace()
     async def cancel_invoice(self, invoice_id: str, reason: str = "Cancelamento administrativo") -> Invoice:
         """
         Cancela fatura com validação de estado.
@@ -115,6 +119,7 @@ class InvoiceService:
         logger.info(f"Fatura {invoice_id} cancelada: {reason}")
         return updated_invoice
 
+    @trace()
     async def mark_overdue(self, invoice_id: str) -> Invoice:
         """
         Marca fatura como OVERDUE se data limite ultrapassada.
@@ -134,6 +139,7 @@ class InvoiceService:
         
         return invoice
 
+    @trace()
     async def get_pending_by_citizen(self, citizen_id: str) -> List[Invoice]:
         """Recupera faturas pendentes de um cidadão."""
         invoices = await self.repository.get_pending(citizen_id)

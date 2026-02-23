@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, List, Any
+from typing import Optional, Any
 from uuid import UUID, uuid4
 
 

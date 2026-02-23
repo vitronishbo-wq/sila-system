@@ -1,7 +1,7 @@
 """Exam Request Domain Model"""
 from dataclasses import dataclass, field
 from datetime import datetime, date
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any
 from uuid import UUID, uuid4
 
 from ..enums import ExamStatus, PriorityLevel

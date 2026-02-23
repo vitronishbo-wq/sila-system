@@ -1,14 +1,14 @@
+from app.core.observability import trace
 import uuid
 import logging
 from datetime import datetime, timezone
 from typing import List, Optional
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.modules.financas.domain.models.payment import Payment
 from app.modules.financas.domain.models.enums import PaymentStatus, InvoiceStatus
 from app.modules.financas.application.ports.payment_repository_port import PaymentRepositoryPort
 from app.modules.financas.application.ports.invoice_repository_port import InvoiceRepositoryPort
-from app.modules.financas.schemas.payment_schema import CreatePaymentSchema
+from app.modules.financas.api.schemas.payment_schema import CreatePaymentSchema
 from app.modules.financas.exceptions import (
     DuplicatePaymentError, 
     InvoiceNotFoundError, 
@@ -42,6 +42,7 @@ class PaymentService:
         self.payment_repo = payment_repository
         self.invoice_repo = invoice_repository
 
+    @trace()
     async def register_payment(self, data: CreatePaymentSchema) -> Payment:
         """
         Processa um pagamento com IDEMPOTÊNCIA garantida.
@@ -127,15 +128,18 @@ class PaymentService:
             logger.error(f"Falha ao processar pagamento: {str(e)}")
             raise
 
+    @trace()
     async def get_payment_history(self, citizen_id: str) -> List[Payment]:
         """Recupera histórico de pagamentos do cidadão."""
         logger.info(f"Recuperando histórico de pagamentos: {citizen_id}")
         return await self.payment_repo.get_by_citizen(citizen_id)
 
+    @trace()
     async def get_payment_by_reference(self, reference: str) -> Optional[Payment]:
         """Busca pagamento por referência (ideal para reconciliação)."""
         return await self.payment_repo.get_by_gateway_ref(reference)
 
+    @trace()
     async def list_payments_by_invoice(self, invoice_id: str) -> List[Payment]:
         """Lista todos os pagamentos associados a uma fatura."""
         logger.info(f"Recuperando pagamentos da fatura: {invoice_id}")

@@ -5,11 +5,10 @@ conforme o contexto da operação.
 """
 import logging
 from typing import Any, Dict, Optional
-from datetime import datetime, timezone
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.events import BaseEvent, CitizenValidated, CitizenValidationFailed
+from app.core.events import CitizenValidated, CitizenValidationFailed
 
 logger = logging.getLogger(__name__)
 

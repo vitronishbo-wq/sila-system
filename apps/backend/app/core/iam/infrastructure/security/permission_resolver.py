@@ -1,5 +1,4 @@
-from typing import Set, List, Dict, Optional
-from functools import lru_cache
+from typing import Set, List, Dict
 from datetime import datetime
 
 from ..repositories.permission_repository import PermissionRepository

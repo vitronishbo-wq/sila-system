@@ -7,7 +7,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime, timedelta, timezone
 
 from app.modules.financas.application.services.invoice_service import InvoiceService
-from app.modules.financas.schemas.invoice_schema import CreateInvoiceSchema
+from app.modules.financas.api.schemas.invoice_schema import CreateInvoiceSchema
 from app.modules.financas.domain.models.invoice import Invoice
 from app.modules.financas.domain.models.enums import InvoiceStatus
 from app.modules.financas.exceptions import DomainValidationError, InvalidInvoiceStateError, FUCError

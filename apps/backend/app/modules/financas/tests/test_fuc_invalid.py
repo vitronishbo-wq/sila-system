@@ -5,7 +5,7 @@ Garante que invoices NUNCA podem ser criadas sem validação FUC.
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from app.modules.financas.application.services.invoice_service import InvoiceService
-from app.modules.financas.schemas.invoice_schema import CreateInvoiceSchema
+from app.modules.financas.api.schemas.invoice_schema import CreateInvoiceSchema
 from app.modules.financas.exceptions import DomainValidationError
 from app.modules.financas.application.services.citizen_service import CitizenService
 

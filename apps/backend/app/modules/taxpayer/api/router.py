@@ -1,18 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query, Request
-from typing import List, Optional
+from typing import Optional
 from uuid import UUID
 from datetime import datetime
 import logging
 
-from .deps import (
-    get_current_user, get_current_user_optional,
-    can_access_taxpayer, require_taxpayer_permission,
+from .deps import (    get_current_user, can_access_taxpayer, require_taxpayer_permission,
     get_rate_limiter
 )
 from .schemas import *
 from .rate_limiter import RateLimiter
 
 router = APIRouter(prefix="/taxpayer", tags=["Contribuintes"])
+
+# middleware será adicionado na app principal
 logger = logging.getLogger(__name__)
 
 

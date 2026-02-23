@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List, Tuple
-from datetime import datetime
 
 from app.core.iam.domain.models.user import User
 from app.core.iam.domain.value_objects.email import Email

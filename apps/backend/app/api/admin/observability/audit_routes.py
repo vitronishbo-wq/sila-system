@@ -5,7 +5,6 @@ Expõe métricas, anomalias e timeline via REST interno.
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import datetime, timedelta
-from typing import Optional
 
 from app.api.deps import get_current_admin_user, get_db
 from modules.identity.models.user import User
@@ -14,7 +13,6 @@ from app.core.audit.sla_definitions import (
     SLA_DEFINITIONS,
     SLO_TARGETS,
     ANOMALY_THRESHOLDS,
-    get_sla_for_service,
     evaluate_sla_status,
 )
 

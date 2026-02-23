@@ -1,7 +1,6 @@
 """Schemas for citizen authentication"""
 from pydantic import BaseModel, EmailStr, Field, validator
-from typing import Optional, List, Dict, Any
-from uuid import UUID
+from typing import Optional, Dict, Any
 
 
 class CitizenLoginRequest(BaseModel):

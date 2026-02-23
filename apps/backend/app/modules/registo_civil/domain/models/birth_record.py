@@ -1,6 +1,5 @@
 from datetime import datetime
-from typing import Optional
-from sqlalchemy import Column, String, DateTime, JSON
+from sqlalchemy import Column, String, DateTime
 from app.core.database import Base
 import uuid
 

@@ -1,3 +1,4 @@
+from app.core.observability import trace
 import logging
 from typing import Optional, Dict, Any
 from datetime import datetime, timedelta
@@ -28,6 +29,7 @@ class CitizenService:
         self.db = db_session
         self._cache: Dict[str, Dict[str, Any]] = {}
 
+    @trace()
     async def validate_for_billing(self, citizen_id: str) -> bool:
         """
         Valida se cidadão está ATIVO para operações financeiras.
@@ -65,6 +67,7 @@ class CitizenService:
             logger.error(f"Erro ao validar cidadão {citizen_id}: {str(e)}")
             raise FUCError("Falha na validação de identidade - tente novamente")
 
+    @trace()
     async def get_citizen_data(self, citizen_id: str) -> Dict[str, Any]:
         """
         Recupera dados oficiais do cidadão do FUC.

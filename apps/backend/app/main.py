@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.router import api_router
 from app.core.settings import settings
 from app.api.middleware.role_router import RoleBasedRoutingMiddleware
+from app.core.observability import observability_middleware
 
 app = FastAPI(
     title="SILA System API",
@@ -19,6 +20,9 @@ app = FastAPI(
     version="2026.1"
 )
 
+
+# Observability Middleware (Global)
+app.add_middleware(observability_middleware.__class__, observability_middleware)
 
 # CORS Configuration
 app.add_middleware(

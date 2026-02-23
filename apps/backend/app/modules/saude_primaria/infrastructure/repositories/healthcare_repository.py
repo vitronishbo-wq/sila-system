@@ -3,7 +3,7 @@ from uuid import UUID
 from sqlalchemy import select, func, desc
 from sqlalchemy.orm import joinedload
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.saude_primaria.infrastructure.db.healthcare_model import HealthcareRequestModel
+from app.modules.saude_primaria.infrastructure.models.healthcare_model import HealthcareRequestModel
 
 class HealthcareRepository:
     def __init__(self, db: AsyncSession):

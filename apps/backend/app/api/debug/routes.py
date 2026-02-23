@@ -3,10 +3,9 @@ Endpoint de diagnóstico para identificar problemas de autenticação
 REMOVER EM PRODUÇÃO!
 """
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from app.api.deps import get_current_user
 from modules.identity.models.user import User
-from app.core.constants import UserRole
 import logging
 
 router = APIRouter(prefix="/debug", tags=["debug"])

@@ -1,5 +1,4 @@
 import uuid
-from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.orm import Session
 from sqlalchemy import select
@@ -8,9 +7,6 @@ from app.core.database import get_db
 from app.citizen.permissions.access_control import AccessControlEngine
 from app.citizen.permissions.policies import (
     # PermissionPolicy, 
-    PermissionPolicyCreate, 
-    PermissionPolicyUpdate,
-    # AccessLog,
     DataSegment
 )
 from app.citizen.events.models import CitizenEventModel

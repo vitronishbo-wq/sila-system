@@ -1,3 +1,4 @@
+from app.core.observability import trace
 from app.modules.registo_civil.infrastructure.repositories.civil_event_repository import CivilEventRepository
 from app.modules.registo_civil.integrations.fuc_client import FUCClient
 from app.modules.registo_civil.domain.models.civil_event import CivilEventRecord
@@ -8,6 +9,7 @@ class LateBirthService:
         self.repo = repo
         self.fuc = fuc
 
+    @trace()
     async def register(self, data: dict):
         citizen_id = await self.fuc.create_or_link(data)
         event = CivilEventRecord(

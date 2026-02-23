@@ -1,3 +1,4 @@
+from app.core.observability import trace
 from typing import Optional, List, Dict, Any, Tuple
 from uuid import UUID
 from datetime import datetime
@@ -7,7 +8,6 @@ from app.core.services.base_request_service import BaseRequestService
 
 from ...domain.models.service_request import ServiceRequest
 from ...domain.enums import ServiceType, RequestChannel, RequestPriority, ServiceRequestStatus
-from ..ports.request_repository_port import RequestRepositoryPort
 from ..ports.request_service_port import RequestServicePort
 from .request_factory import RequestFactory
 from ...infrastructure.repositories.request_repository import RequestRepository
@@ -36,6 +36,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         """Initial status for service requests (DRAFT)"""
         return ServiceRequestStatus.DRAFT.value
     
+    @trace()
     async def create_request_model(
         self,
         citizen_id: UUID,
@@ -61,12 +62,14 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         draft.request_number = request_number
         return draft
     
+    @trace()
     async def get_user_from_citizen_id(self, citizen_id: UUID) -> Optional[UUID]:
         """For service requests, citizen_id IS the user"""
         return citizen_id
     
     # ========== Override Extension Hook for Workflow Integration ==========
     
+    @trace()
     async def _post_save_create(self, saved_request: ServiceRequest, created_by: UUID) -> None:
         """After save: Notify citizen and start workflow"""
         await super()._post_save_create(saved_request, created_by)
@@ -77,6 +80,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
     
     # ========== RequestServicePort Methods (Backward Compatible) ==========
     
+    @trace()
     async def create_request(self, citizen_id: UUID, created_by: UUID,
                        service_type: ServiceType, title: str,
                        description: Optional[str] = None,
@@ -99,15 +103,18 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
             }
         )
     
+    @trace()
     async def get_request(self, request_id: UUID, user_id: UUID, is_citizen: bool = False) -> Optional[ServiceRequest]:
         """Busca um pedido por ID com verificação de permissão"""
         return await super().get_request(request_id, user_id, is_citizen)
     
+    @trace()
     async def list_citizen_requests(self, citizen_id: UUID, skip: int = 0, limit: int = 100) -> List[ServiceRequest]:
         """Lista pedidos de um cidadão"""
         requests, _ = await super().list_requests(skip=skip, limit=limit, citizen_id=citizen_id)
         return requests
     
+    @trace()
     async def list_operator_requests(self, user_id: UUID, status: Optional[str] = None,
                                skip: int = 0, limit: int = 100) -> List[ServiceRequest]:
         """
@@ -117,6 +124,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         requests, _ = await self.repo.get_by_assignee(user_id, status_enum, skip, limit)
         return requests
     
+    @trace()
     async def list_pending_requests(self, skip: int = 0, limit: int = 100) -> List[ServiceRequest]:
         """
         Lista pedidos pendentes (não atribuídos)
@@ -124,6 +132,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         requests, _ = await self.repo.get_by_status(ServiceRequestStatus.SUBMITTED, skip, limit)
         return requests
     
+    @trace()
     async def submit_request(self, request_id: UUID, submitted_by: UUID) -> ServiceRequest:
         """
         Submete um pedido (rascunho -> submetido)
@@ -145,6 +154,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         
         return saved
     
+    @trace()
     async def assign_request(self, request_id: UUID, assigned_to: UUID, assigned_by: UUID) -> ServiceRequest:
         """
         Atribui um pedido a um operador
@@ -168,6 +178,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         
         return saved
     
+    @trace()
     async def change_status(self, request_id: UUID, new_status: str,
                       changed_by: UUID, reason: Optional[str] = None) -> ServiceRequest:
         """
@@ -189,6 +200,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
             reason=reason
         )
     
+    @trace()
     async def link_workflow(self, request_id: UUID, workflow_instance_id: UUID) -> ServiceRequest:
         """
         Vincula workflow ao pedido
@@ -201,6 +213,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         request.link_workflow(workflow_instance_id)
         return await self.repo.save(request)
     
+    @trace()
     async def search_requests(self, query: str, filters: dict = None,
                        skip: int = 0, limit: int = 100) -> Tuple[List[ServiceRequest], int]:
         """
@@ -208,6 +221,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         """
         return await self.repo.search(query, filters, skip, limit)
     
+    @trace()
     async def get_statistics(self) -> Dict[str, Any]:
         """
         Estatísticas gerais
@@ -236,6 +250,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepository], Requ
         
         return new in transitions.get(current, [])
     
+    @trace()
     async def _start_workflow(self, request: ServiceRequest):
         """Inicia workflow para o pedido"""
         try:

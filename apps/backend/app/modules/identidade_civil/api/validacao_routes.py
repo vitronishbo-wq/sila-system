@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from typing import Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..services.alter_data_service import AlterDataService
+from ..application.services.alter_data_service import AlterDataService
 from ..integrations.citizen_fuc_client import CitizenFUCClient
 
 # Segurança e DB

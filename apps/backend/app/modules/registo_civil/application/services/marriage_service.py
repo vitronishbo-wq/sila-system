@@ -1,3 +1,4 @@
+from app.core.observability import trace
 import logging
 from datetime import datetime
 from app.modules.registo_civil.application.ports.marriage_repository_port import MarriageRepositoryPort
@@ -12,6 +13,7 @@ class MarriageService:
         self.repo = repo
         self.fuc = fuc
 
+    @trace()
     async def register(self, data: dict):
         logger.info(f"Processando registro de casamento: {data.get('spouse1_id')} & {data.get('spouse2_id')}")
         

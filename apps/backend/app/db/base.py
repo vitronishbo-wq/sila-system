@@ -11,16 +11,13 @@ from app.core.database import Base
 # from app.core.iam.infrastructure.models.audit_model import AuditLogModel
 
 # Core audit model (application-level audit table)
-from app.core.audit_legacy import AuditLog
 
 # Citizen models (ensure registration during lazy import)
 from app.citizen.core.models import CitizenFUC
 
 # Identidade Civil: garantir registro dos modelos para Alembic
-from app.modules.identidade_civil.domain.models.bi_record import BIRecord
-from app.modules.identidade_civil.infrastructure.repositories.identity_request_repository import IdentityRequestModel
 
-from app.modules.saude_primaria.infrastructure.db.healthcare_model import (
+from app.modules.saude_primaria.infrastructure.models.healthcare_model import (
 	HealthcareRequestModel,
 	MaternalRecordModel,
 	PostNatalRecordModel,
@@ -55,9 +52,6 @@ from app.modules.workflow.infrastructure.models.workflow_history_model import Wo
 # from app.modules.identidade_civil....
 # from app.modules.registo_civil....
 # Financas Models (Bloco Finanças)
-from app.modules.financas.infrastructure.models.invoice_model import InvoiceModel
-from app.modules.financas.infrastructure.models.payment_model import PaymentModel
-from app.modules.financas.infrastructure.models.audit_log_model import FinancialAuditModel
 
 # Taxpayer module (AGT) - imported lazily in `_register_taxpayer_models` to avoid circular imports
 

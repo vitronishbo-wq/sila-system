@@ -1,11 +1,9 @@
 import logging
 from typing import List, Optional
-from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 
 from ...domain.models.payment import Payment
-from ...domain.models.enums import PaymentStatus
 from ..models.payment_model import PaymentModel
 
 logger = logging.getLogger(__name__)

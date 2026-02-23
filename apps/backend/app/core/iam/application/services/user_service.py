@@ -1,4 +1,4 @@
-from typing import Optional, List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple
 from sqlalchemy.orm import Session
 from datetime import datetime
 

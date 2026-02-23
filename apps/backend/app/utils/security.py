@@ -4,7 +4,7 @@ Utilitários de segurança para IAM
 import re
 import secrets
 from typing import Optional
-from datetime import datetime, timedelta
+from datetime import datetime
 import hashlib
 import hmac
 

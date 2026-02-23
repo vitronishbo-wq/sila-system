@@ -1,6 +1,6 @@
 """TaxPeriod Value Object - Período Fiscal"""
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date
 import re
 from typing import Optional
 

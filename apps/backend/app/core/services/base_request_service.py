@@ -20,11 +20,9 @@ Architecture:
 from abc import ABC, abstractmethod
 from typing import Optional, List, Dict, Any, TypeVar, Generic, Tuple
 from uuid import UUID
-from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.audit import audit_log
-from app.core.constants import EntityStatus
 
 # Type variables for flexibility
 TRequest = TypeVar('TRequest')  # Request model type (Request, ServiceRequest, etc.)

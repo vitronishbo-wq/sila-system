@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, Set, List
+from typing import Optional, Set
 from uuid import uuid4, UUID
 
 from ..enums.user_status import UserStatus

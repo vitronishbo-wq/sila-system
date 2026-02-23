@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 import uuid
-from uuid import UUID
 import logging
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,7 +9,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ..integrations.citizen_fuc_client import CitizenFUCClient
 from ..domain.models.bi_event import BIEventType
 from ..application.services.identity_request_service import IdentityRequestService
-from ..domain.models.identity_request import RequestStatus
 
 # Segurança e DB
 from app.api.deps import get_current_user, get_db, get_notification_service

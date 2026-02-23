@@ -1,12 +1,11 @@
 from typing import Optional, List, Tuple
 from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import or_, func
+from sqlalchemy import func
 from datetime import datetime
 from uuid import UUID
 
 from ..models.user_model import UserModel, UserRoleModel
-from ..models.role_model import RoleModel
-from ..models.permission_model import PermissionModel, UserPermissionModel
+from ..models.permission_model import UserPermissionModel
 from .base_repository import BaseRepository
 
 

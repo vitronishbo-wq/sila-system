@@ -1,5 +1,4 @@
 from uuid import UUID
-from datetime import datetime
 from typing import Optional, Dict, Any, List
 
 from ...domain.models.service_request import ServiceRequest

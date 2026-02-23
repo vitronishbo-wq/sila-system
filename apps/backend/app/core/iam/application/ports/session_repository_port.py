@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
-from datetime import datetime
 
 from app.core.iam.domain.models.session import Session
 from app.core.iam.domain.value_objects.token import RefreshToken

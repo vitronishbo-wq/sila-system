@@ -1,7 +1,6 @@
 from typing import Optional, List
 from sqlalchemy.orm import Session as SQLSession
-from sqlalchemy import and_
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from ..models.session_model import SessionModel, RefreshTokenModel
 from .base_repository import BaseRepository

@@ -1,7 +1,7 @@
 from typing import Optional, List, Tuple
 from uuid import UUID
 from sqlalchemy.orm import Session
-from sqlalchemy import desc, and_
+from sqlalchemy import desc
 from datetime import datetime
 
 from app.modules.workflow.domain.models.workflow_definition import WorkflowDefinition
@@ -16,7 +16,6 @@ from app.modules.workflow.infrastructure.models.workflow_transition_model import
 from app.modules.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
 from app.modules.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
 from app.modules.workflow.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.core.database import Base
 
 
 class WorkflowRepository(WorkflowRepositoryPort):

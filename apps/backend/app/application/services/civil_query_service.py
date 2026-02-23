@@ -3,9 +3,7 @@ from datetime import date
 from sqlalchemy.orm import Session
 
 from ...domain.models.birth_record import BirthRecord
-from ...domain.models.death_record import DeathRecord
 from ...domain.models.marriage_record import MarriageRecord
-from ...domain.models.certificate_record import CertificateRecord
 from ...domain.enums import CivilEventType
 from .base_service import BaseService
 

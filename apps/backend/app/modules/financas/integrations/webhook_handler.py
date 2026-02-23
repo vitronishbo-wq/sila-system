@@ -2,11 +2,9 @@ import hmac
 import hashlib
 import json
 from typing import Dict, Any, Optional
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from app.modules.financas.application.ports.payment_repository_port import PaymentRepositoryPort
 from app.modules.financas.application.ports.invoice_repository_port import InvoiceRepositoryPort
-from app.modules.financas.exceptions import PaymentError, FinanceError
-from app.modules.financas.domain.models.audit_log import FinancialAudit
 from app.modules.financas.domain.models.enums import PaymentStatus, InvoiceStatus
 import logging
 import os

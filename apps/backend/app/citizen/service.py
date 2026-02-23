@@ -9,10 +9,9 @@ Este serviço é responsável por:
 import logging
 from typing import Dict, Any, Optional
 from datetime import datetime
-import asyncio
 
 from app.citizen.enums import CitizenStatus
-from app.citizen.exceptions import CitizenValidationError, CitizenNotFoundError
+from app.citizen.exceptions import CitizenNotFoundError
 from app.core.events import (
     EventPublisher, CitizenValidated, CitizenValidationFailed
 )

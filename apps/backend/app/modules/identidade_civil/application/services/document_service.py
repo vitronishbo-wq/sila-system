@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """
 Serviço de Documentos - Módulo Identidade Civil
 
@@ -5,7 +6,7 @@ REFATORADO: Agora usa DocumentRepository em vez de acesso direto ao ORM.
 """
 import uuid
 import logging
-from datetime import datetime, date
+from datetime import datetime
 from typing import List, Optional, Dict, Any
 from uuid import UUID
 
@@ -32,6 +33,7 @@ class DocumentService:
         self.citizen_repo = CitizenRepository(session)
         self.session = session
 
+    @trace()
     async def _format_document_short(self, document: Document) -> Dict[str, Any]:
         """Formata documento para listagens (sem dados do cidadão)."""
         return {
@@ -43,6 +45,7 @@ class DocumentService:
             "document_number": document.document_number,
         }
 
+    @trace()
     async def _format_document_full(self, document: Document) -> Dict[str, Any]:
         """Formata documento com detalhes completos incluindo cidadão."""
         citizen = await self.citizen_repo.get_by_id(document.citizen_id)
@@ -62,6 +65,7 @@ class DocumentService:
             "rejection_reason": document.rejection_reason,
         }
 
+    @trace()
     async def list_documents(
         self, skip: int = 0, limit: int = 20
     ) -> List[Dict[str, Any]]:
@@ -69,6 +73,7 @@ class DocumentService:
         documents = await self.document_repo.list_all(limit=limit, offset=skip)
         return [await self._format_document_short(doc) for doc in documents]
 
+    @trace()
     async def get_by_id(self, document_id: str) -> Dict[str, Any]:
         """Recupera documento por ID com detalhes completos."""
         try:
@@ -82,6 +87,7 @@ class DocumentService:
         
         return await self._format_document_full(document)
 
+    @trace()
     async def get_by_citizen(self, citizen_id: str) -> List[Dict[str, Any]]:
         """Lista documentos de um cidadão."""
         try:
@@ -92,6 +98,7 @@ class DocumentService:
         documents = await self.document_repo.get_by_citizen(cid)
         return [await self._format_document_short(doc) for doc in documents]
 
+    @trace()
     async def create(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Cria novo pedido de documento."""
         try:
@@ -121,6 +128,7 @@ class DocumentService:
         })
         return await self._format_document_full(created)
 
+    @trace()
     async def update_status(
         self, document_id: str, status: str, 
         notes: Optional[str] = None, 

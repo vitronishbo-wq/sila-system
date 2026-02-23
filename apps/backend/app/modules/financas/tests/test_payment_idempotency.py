@@ -1,11 +1,10 @@
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 from app.modules.financas.integrations.webhook_handler import WebhookHandler
-from app.modules.financas.domain.models.enums import PaymentStatus, InvoiceStatus
+from app.modules.financas.domain.models.enums import InvoiceStatus
 from app.modules.financas.domain.models.invoice import Invoice
 from datetime import datetime, timezone, timedelta
 import json
-import uuid
 
 @pytest.mark.asyncio
 async def test_payment_idempotency_duplicate_nonce():

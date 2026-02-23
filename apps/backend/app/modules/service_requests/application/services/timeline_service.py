@@ -1,10 +1,10 @@
+from app.core.observability import trace
 """Timeline service"""
 from uuid import UUID
 from typing import List, Dict, Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..domain.models.service_request import ServiceRequest
 from ..infrastructure.repositories.request_repository import RequestRepository
 from ..infrastructure.repositories.event_repository import EventRepository
 from ..infrastructure.repositories.attachment_repository import AttachmentRepository
@@ -28,6 +28,7 @@ class TimelineService:
         self.attachment_repo = attachment_repo
         self.workflow_client = workflow_client
 
+    @trace()
     async def get_timeline(self, request_id: UUID) -> List[Dict[str, Any]]:
         """Get complete request timeline"""
         timeline = []
@@ -71,6 +72,7 @@ class TimelineService:
         
         return timeline
 
+    @trace()
     async def get_summary(self, request_id: UUID) -> Dict[str, Any]:
         """Get request summary with latest state"""
         request = await self.request_repo.get_by_id(request_id)

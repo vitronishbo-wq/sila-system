@@ -1,7 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
 from ...domain.models.audit_log import FinancialAudit
 from ..models.audit_log_model import FinancialAuditModel

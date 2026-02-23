@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.modules.registo_civil.application.ports.death_repository_port import DeathRepositoryPort

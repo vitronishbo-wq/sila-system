@@ -1,8 +1,7 @@
 """Saúde Primária API Router"""
 from fastapi import APIRouter, Depends, HTTPException, status, Query
-from typing import Optional, List
+from typing import List
 from uuid import UUID
-from datetime import date, time
 
 from app.modules.saude_primaria.application.services.appointment_service import AppointmentService
 from app.modules.saude_primaria.application.services.prescription_service import PrescriptionService
@@ -19,7 +18,6 @@ from app.modules.saude_primaria.api.deps import (
 from app.modules.saude_primaria.api.schemas.appointment_schema import (
     AppointmentCreateSchema,
     AppointmentResponseSchema,
-    AppointmentConfirmSchema,
     AppointmentCancelSchema,
     AppointmentRescheduleSchema,
     AppointmentAssignSchema,
@@ -39,13 +37,10 @@ from app.modules.saude_primaria.api.schemas.medical_record_schema import (
 from app.modules.saude_primaria.api.schemas.vaccine_schema import (
     VaccineDoseCreateSchema,
     VaccineDoseResponseSchema,
-    VaccineDoseScheduleSchema,
-    VaccineReactionSchema,
 )
 from app.modules.saude_primaria.api.schemas.health_unit_schema import (
     HealthUnitCreateSchema,
     HealthUnitResponseSchema,
-    HealthUnitSpecialtySchema,
     HealthProfessionalRegisterSchema,
     HealthProfessionalResponseSchema,
 )
@@ -57,6 +52,10 @@ router = APIRouter(
     tags=["Saúde Primária"],
     responses={404: {"description": "Not found"}},
 )
+
+# middleware será adicionado na app principal
+
+# middleware será adicionado na app principal
 
 # ==================== APPOINTMENTS ====================
 

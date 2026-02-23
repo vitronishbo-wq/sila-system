@@ -4,7 +4,6 @@ import logging
 import os
 from functools import lru_cache
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
 
 try:
     from jose import jwt, JWTError

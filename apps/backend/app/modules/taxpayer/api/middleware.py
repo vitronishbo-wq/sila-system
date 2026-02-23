@@ -4,7 +4,6 @@ from typing import Callable
 import time
 import logging
 from uuid import UUID
-import json
 
 logger = logging.getLogger(__name__)
 

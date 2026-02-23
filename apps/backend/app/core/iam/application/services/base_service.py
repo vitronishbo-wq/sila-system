@@ -1,7 +1,6 @@
 from typing import Optional, TypeVar, Generic
 from sqlalchemy.orm import Session
 import logging
-from datetime import datetime
 
 from ...infrastructure.repositories.user_repository import UserRepository
 from ...infrastructure.repositories.role_repository import RoleRepository

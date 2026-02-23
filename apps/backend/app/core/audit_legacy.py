@@ -1,6 +1,4 @@
-from sqlalchemy.orm import Session
 from sqlalchemy import Column, String, DateTime, JSON, Integer
-from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
 import uuid
 import logging

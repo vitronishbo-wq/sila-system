@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """Request lifecycle service"""
 from uuid import UUID
 from typing import Optional, Dict, Any
@@ -27,6 +28,7 @@ class RequestLifecycleService:
         self.event_repo = event_repo
         self.workflow_client = workflow_client
 
+    @trace()
     async def create_request(
         self,
         citizen_id: UUID,
@@ -91,6 +93,7 @@ class RequestLifecycleService:
         
         return saved
 
+    @trace()
     async def transition_request(
         self,
         request_id: UUID,
@@ -123,6 +126,7 @@ class RequestLifecycleService:
         
         return success
 
+    @trace()
     async def close_request(
         self,
         request_id: UUID,

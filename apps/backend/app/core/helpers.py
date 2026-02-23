@@ -4,7 +4,6 @@ Shared helpers for safe attribute access across modules.
 Provides utilities for null-safe field access, isoformat conversion,
 and enum handling to prevent AttributeError crashes in APIs.
 """
-from datetime import datetime, date
 from typing import Any, Optional, TypeVar
 
 T = TypeVar('T')

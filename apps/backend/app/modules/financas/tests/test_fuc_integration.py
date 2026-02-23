@@ -6,7 +6,7 @@ import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from app.modules.financas.application.services.citizen_service import CitizenService
 from app.citizen.enums import CitizenStatus
-from app.core.audit import audit_log, ImmutableAuditLog
+from app.core.audit import ImmutableAuditLog
 
 @pytest.fixture
 def citizen_service():
@@ -79,7 +79,6 @@ async def test_failed_validation_audited(citizen_service):
     Validação falhada deve ser registrada em auditoria.
     Nota: O mock do audit_log global é necessário se não houver DB.
     """
-    from app.core import audit
     mock_audit = AsyncMock()
     
     with patch("app.modules.financas.application.services.citizen_service.audit_log", new=mock_audit):

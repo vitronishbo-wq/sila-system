@@ -3,7 +3,7 @@ import secrets
 import string
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from typing import Optional, List
+from typing import List
 
 
 class PasswordPolicy:

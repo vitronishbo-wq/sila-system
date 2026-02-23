@@ -1,5 +1,6 @@
-from typing import Optional, List, Dict, Any
-from ...services.citizen_query_service import CitizenQueryService
+from app.core.observability import trace
+from typing import Optional, List, Any
+from .citizen_query_service import CitizenQueryService
 
 class CitizenService:
     """
@@ -13,10 +14,12 @@ class CitizenService:
     def __init__(self, query_service: Optional[CitizenQueryService] = None, **kwargs):
         self.query_service = query_service or CitizenQueryService()
 
+    @trace()
     async def get_citizen(self, citizen_id: str) -> Optional[Any]:
         """Proxy para consulta soberana no FUC."""
         return await self.query_service.get_by_fuc_id(citizen_id)
 
+    @trace()
     async def find_all(self, name_filter: Optional[str] = None) -> List[Any]:
         """Proxy para busca na base do FUC."""
         criteria = {"name": name_filter} if name_filter else {}

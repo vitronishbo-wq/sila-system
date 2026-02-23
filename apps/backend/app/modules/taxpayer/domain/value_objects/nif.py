@@ -1,7 +1,6 @@
 """NIF Value Object - Número de Identificação Fiscal Angolano"""
 from dataclasses import dataclass
 import re
-from typing import Optional
 
 
 @dataclass(frozen=True)

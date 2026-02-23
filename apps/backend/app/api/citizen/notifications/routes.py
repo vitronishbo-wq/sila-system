@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_current_user, get_current_citizen_user, get_db
+from app.api.deps import get_current_citizen_user, get_db
 from modules.identity.models.user import User
 from app.core.notifications.models.notification import Notification
 

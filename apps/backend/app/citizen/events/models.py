@@ -7,7 +7,6 @@ from sqlalchemy import String, Enum, DateTime, Text, Index
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 from app.core.database import Base
-from app.citizen.permissions.policies import DataSegment
 
 class EventType(str, enum.Enum):
     BIRTH_REGISTRATION = "BIRTH_REGISTRATION"

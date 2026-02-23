@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List
 from app.modules.registo_civil.domain.models.cemetery_inspection_record import CemeteryInspectionRecord
 
 class CemeteryInspectionRepositoryPort(ABC):

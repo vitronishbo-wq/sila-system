@@ -1,3 +1,4 @@
+from app.core.observability import trace
 import logging
 from datetime import datetime
 from app.modules.registo_civil.application.ports.death_repository_port import DeathRepositoryPort
@@ -12,6 +13,7 @@ class DeathService:
         self.repo = repo
         self.fuc = fuc
 
+    @trace()
     async def register(self, data: dict):
         logger.info(f"Processando registro de óbito: {data.get('citizen_id')}")
         

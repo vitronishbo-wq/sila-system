@@ -1,4 +1,3 @@
-import uuid
 from typing import Dict, Any
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer

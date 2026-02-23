@@ -1,14 +1,13 @@
 from typing import Optional, List, Tuple
 from uuid import UUID
 from sqlalchemy.orm import Session
-from sqlalchemy import desc, and_, or_
+from sqlalchemy import or_
 from datetime import datetime
 
 from app.modules.workflow.domain.models.workflow_task import WorkflowTask
 from app.modules.workflow.domain.enums import TaskStatus, TaskPriority
 from app.modules.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
 from app.modules.workflow.application.ports.task_repository_port import TaskRepositoryPort
-from app.core.database import Base
 
 
 class TaskRepository(TaskRepositoryPort):

@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """Health Unit Service"""
 from typing import Optional, List
 from uuid import UUID
@@ -12,6 +13,7 @@ class HealthUnitService:
     def __init__(self, repository: HealthUnitRepositoryPort):
         self.repository = repository
     
+    @trace()
     async def create_health_unit(
         self,
         code: str,
@@ -47,18 +49,22 @@ class HealthUnitService:
         
         return await self.repository.save_unit(unit)
     
+    @trace()
     async def get_health_unit(self, unit_id: UUID) -> Optional[HealthUnit]:
         """Get health unit by ID"""
         return await self.repository.get_unit_by_id(unit_id)
     
+    @trace()
     async def list_municipal_units(self, municipality: str) -> List[HealthUnit]:
         """List health units by municipality"""
         return await self.repository.get_units_by_municipality(municipality)
     
+    @trace()
     async def list_active_units(self, skip: int = 0, limit: int = 100) -> List[HealthUnit]:
         """List active health units"""
         return await self.repository.get_active_units(skip, limit)
     
+    @trace()
     async def add_specialty(self, unit_id: UUID, specialty: str) -> HealthUnit:
         """Add specialty to health unit"""
         unit = await self.repository.get_unit_by_id(unit_id)
@@ -68,6 +74,7 @@ class HealthUnitService:
         unit.add_specialty(specialty)
         return await self.repository.update_unit(unit)
     
+    @trace()
     async def register_professional(
         self,
         user_id: UUID,
@@ -85,6 +92,7 @@ class HealthUnitService:
         
         return await self.repository.save_professional(professional)
     
+    @trace()
     async def get_unit_professionals(self, health_unit_id: UUID) -> List[HealthProfessional]:
         """Get health unit professionals"""
         return await self.repository.get_professionals_by_unit(health_unit_id)

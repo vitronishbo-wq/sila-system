@@ -3,7 +3,7 @@ Testes de proteção contra replay attacks em webhooks.
 Garante que webhooks fora da janela temporal são rejeitados.
 """
 import pytest
-from unittest.mock import MagicMock, AsyncMock
+from unittest.mock import MagicMock
 from app.modules.financas.integrations.webhook_handler import WebhookHandler
 from datetime import datetime, timezone, timedelta
 import json

@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+from app.core.observability import trace
 from app.modules.registo_civil.application.ports.birth_repository_port import BirthRepositoryPort
 from app.modules.registo_civil.integrations.fuc_client import FUCClient
 from app.modules.registo_civil.domain.models.birth_record import BirthRecord
@@ -12,6 +13,7 @@ class BirthService:
         self.repo = repo
         self.fuc = fuc
 
+    @trace()
     async def register(self, data: dict):
         logger.info(f"Processando registro de nascimento: {data.get('nub')}")
         

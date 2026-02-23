@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
 from app.modules.financas.domain.models.enums import InvoiceStatus
 from app.modules.financas.exceptions import DomainValidationError

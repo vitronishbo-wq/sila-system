@@ -5,7 +5,6 @@ from datetime import datetime
 
 from ..models.role_model import RoleModel, RolePermissionModel
 from ..models.user_model import UserRoleModel
-from ..models.permission_model import PermissionModel
 from .base_repository import BaseRepository
 
 

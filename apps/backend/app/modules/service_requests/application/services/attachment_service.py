@@ -1,3 +1,4 @@
+from app.core.observability import trace
 """Attachment service"""
 from uuid import UUID
 from typing import List
@@ -23,6 +24,7 @@ class AttachmentService:
         self.attachment_repo = attachment_repo
         self.event_repo = event_repo
 
+    @trace()
     async def upload_attachment(
         self,
         request_id: UUID,
@@ -59,10 +61,12 @@ class AttachmentService:
         
         return saved
 
+    @trace()
     async def get_attachments(self, request_id: UUID) -> List[Attachment]:
         """Get all attachments for request"""
         return await self.attachment_repo.get_by_request(request_id)
 
+    @trace()
     async def delete_attachment(self, attachment_id: UUID, actor_id: UUID) -> bool:
         """Delete attachment"""
         attachment = await self.attachment_repo.get_by_id(attachment_id)

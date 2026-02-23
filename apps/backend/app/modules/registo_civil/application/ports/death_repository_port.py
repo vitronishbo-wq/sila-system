@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional, List
+from typing import Optional
 from app.modules.registo_civil.domain.models.death_record import DeathRecord
 
 class DeathRepositoryPort(ABC):

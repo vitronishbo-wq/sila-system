@@ -6,7 +6,7 @@ em produção com auditoria e versionamento.
 """
 import uuid
 from datetime import date, datetime
-from sqlalchemy import String, Date, DateTime, Integer, ForeignKey
+from sqlalchemy import String, Date, DateTime, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from app.core.database import Base

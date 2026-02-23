@@ -1,6 +1,5 @@
-from typing import Optional, List, Set, Tuple, Dict
+from typing import Optional, List, Set, Tuple
 from sqlalchemy.orm import Session
-from sqlalchemy import func, and_
 from datetime import datetime
 
 from ..models.permission_model import PermissionModel, UserPermissionModel
