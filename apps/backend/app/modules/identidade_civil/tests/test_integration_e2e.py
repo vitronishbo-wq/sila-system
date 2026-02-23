@@ -8,7 +8,6 @@ import pytest
 import uuid
 from datetime import date, datetime
 
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.core.database import Base
