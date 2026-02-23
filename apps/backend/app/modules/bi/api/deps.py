@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException
 
-from ...integrations.iam_client import IAMClient
+from app.core.iam_unified import IAMClient
 
 
 def get_current_user(token: str = Depends(IAMClient.get_current_user)):

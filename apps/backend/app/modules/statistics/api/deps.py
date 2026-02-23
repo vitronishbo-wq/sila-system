@@ -1,7 +1,7 @@
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from ..integrations.iam_client import IAMClient
+from app.core.iam_unified import IAMClient
 from ..infrastructure.repositories.statistics_repository import StatisticsRepository
 from ..application.services.statistics_service import StatisticsService
 

@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from app.api.deps import get_db, get_current_user
 from app.modules.statistics.kpis_service import KPIService
-from app.core.events import get_recent_events
+from app.core.events_unified import get_recent_events
 
 router = APIRouter(prefix="/dashboard", tags=["admin-dashboard"])
 

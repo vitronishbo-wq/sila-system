@@ -11,7 +11,7 @@ from app.modules.workflow.domain.models.workflow_history import WorkflowHistory
 from app.modules.workflow.domain.enums import WorkflowStatus, TaskStatus, TaskPriority, EntityType
 from app.modules.workflow.infrastructure.repositories.workflow_repository import WorkflowRepository
 from app.modules.workflow.infrastructure.repositories.task_repository import TaskRepository
-from app.modules.workflow.integrations.iam_client import IAMClient
+from app.core.iam_unified import IAMClient
 from app.modules.workflow.integrations.notification_client import NotificationClient
 
 
