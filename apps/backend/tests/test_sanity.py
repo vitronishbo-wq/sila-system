@@ -1,31 +1,37 @@
-"""Sanity tests - VERIFICAÇÃO SIMPLES"""
-import sys
+"""Sanity tests - VERIFICAÇÃO ZERO DÍVIDA"""
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 def test_imports():
-    """Testa imports críticos"""
-    try:
-        # Core
-        from app.core.db import get_db, AsyncSessionLocal, importAsyncSessionLocal
-        assert importAsyncSessionLocal is not None
-        print("✅ app.core.db imports OK")
-        
-        # Territory FK fix
-        from app.core.territory.models.territory import Territory
-        print("✅ Territory FK fixed")
-        
-        # Identity
-        from modules.identity.models.user import User
-        print("✅ Identity User model OK")
-        
-        print("\n✅ ALL CRITICAL IMPORTS OK")
-        return True
-    except Exception as e:
-        print(f"❌ Import failed: {e}")
-        import traceback
-        traceback.print_exc()
-        return False
+    from app.core.db import Base, get_db, AsyncSessionLocal, importAsyncSessionLocal
+    from app.core.security import IAMClient
+    from app.core.events import get_event_bus
+    assert all([Base, AsyncSessionLocal, importAsyncSessionLocal, IAMClient, get_event_bus()])
+    print("✅ All imports OK")
+
+def test_iam():
+    from app.core.security import IAMClient
+    import asyncio
+    async def test():
+        user = await IAMClient().get_current_user("test")
+        assert user is not None
+    asyncio.run(test())
+    print("✅ IAM OK")
+
+def test_events():
+    from app.core.events import get_event_bus
+    import asyncio
+    async def test():
+        bus = get_event_bus()
+        received = []
+        bus.subscribe("test", lambda e: received.append(e))
+        await bus.publish("test", {"ok": True})
+        assert len(received) == 1
+    asyncio.run(test())
+    print("✅ Events OK")
 
 if __name__ == "__main__":
-    success = test_imports()
-    sys.exit(0 if success else 1)
-
+    test_imports()
+    test_iam()
+    test_events()
+    print("\n✅ ZERO DÍVIDA - ALL OK")

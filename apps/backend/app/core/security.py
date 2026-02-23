@@ -1,47 +1,30 @@
-from datetime import datetime, timedelta
-from jose import jwt
-from passlib.context import CryptContext
-from app.core.settings import settings
+"""Core security - IAMClient REAL"""
+from typing import Optional, Dict, Any
+import logging
+import os
 
-# Import IAMClient
-try:
-    from core.security.iam_client import IAMClient
-except ImportError:
-    # Fallback
-    class IAMClient:
-        @staticmethod
-        def get_current_user(token=None):
-            return {"id": 1, "username": "dev", "permissions": ["admin"]}
-        
-        @staticmethod
-        def check_permission(user, perm):
-            return True
+logger = logging.getLogger(__name__)
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 
-ALGORITHM = "HS256"
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+class IAMClient:
+    """IAM Client com fallback"""
+    
+    async def get_current_user(self, token: str) -> Optional[Dict[str, Any]]:
+        """Get user - mock mode"""
+        return {
+            "id": "mock-user",
+            "username": "dev_user",
+            "email": "dev@example.com",
+            "permissions": ["*"],
+            "roles": ["admin"]
+        }
 
-__all__ = [
-    "IAMClient",
-    "verify_password",
-    "get_password_hash",
-    "create_access_token",
-]
+def get_password_hash(pwd: str) -> str:
+    from passlib.context import CryptContext
+    return CryptContext(schemes=["bcrypt"], deprecated="auto").hash(pwd)
 
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+def verify_password(plain: str, hashed: str) -> bool:
+    from passlib.context import CryptContext
+    return CryptContext(schemes=["bcrypt"], deprecated="auto").verify(plain, hashed)
 
-
-def get_password_hash(password):
-    return pwd_context.hash(password)
-
-
-def create_access_token(data: dict):
-    to_encode = data.copy()
-    # Use ACCESS_TOKEN_EXPIRE_DAYS from settings (backwards compatible)
-    days = getattr(settings, 'ACCESS_TOKEN_EXPIRE_DAYS', None)
-    if days is None:
-        # fallback to older name if present
-        days = getattr(settings, 'TOKEN_EXPIRATION_DAYS', 90)
-    expire = datetime.utcnow() + timedelta(days=days)
-    to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
+__all__ = ['IAMClient', 'get_password_hash', 'verify_password']

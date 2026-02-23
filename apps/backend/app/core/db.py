@@ -47,3 +47,14 @@ async def get_transaction():
 
 # Alias compatibilidade (CRÍTICO para imports faltantes)
 importAsyncSessionLocal = AsyncSessionLocal
+
+async def check_connection() -> bool:
+    """Check database connection"""
+    try:
+        from sqlalchemy import text
+        async with engine.connect() as conn:
+            await conn.execute(text("SELECT 1"))
+            return True
+    except Exception as e:
+        logger.error(f"DB error: {e}")
+        return False
