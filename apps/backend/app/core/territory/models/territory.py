@@ -17,7 +17,7 @@ class Territory(Base):
     # Permite que um município não tenha comuna, ou uma província seja o topo
     parent_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), 
-        ForeignKey("locations.id", ondelete="CASCADE"), 
+        ForeignKey("territories.id", ondelete="CASCADE"), 
         nullable=True
     )
     

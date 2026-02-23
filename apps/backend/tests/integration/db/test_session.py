@@ -2,7 +2,7 @@
 import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.db.importAsyncSessionLocal import engine, get_db
+from app.core.db import engine, get_db, AsyncSessionLocal
 
 
 @pytest.mark.asyncio

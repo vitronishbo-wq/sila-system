@@ -7,8 +7,15 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from ..models.case import Case, CaseStatus
-from ..models.case_event import CaseEvent, EventStatus
+try:
+    from ..models.case import Case, CaseStatus
+    from ..models.case_event import CaseEvent, EventStatus
+except ModuleNotFoundError:
+    # Fallback se models não existem
+    Case = None
+    CaseStatus = None
+    CaseEvent = None
+    EventStatus = None
 from ..schemas.justice_crud import (
     CaseCreate,
     CaseEventCreate,

@@ -11,7 +11,7 @@ from fastapi import status
 from fastapi.testclient import TestClient
 
 from app.main import app
-from core.db.models.postgres import postgres
+from app.core.db import Base
 from modules.citizenship import models, schemas
 
 # Dados de teste

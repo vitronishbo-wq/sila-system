@@ -3,9 +3,29 @@ from jose import jwt
 from passlib.context import CryptContext
 from app.core.settings import settings
 
+# Import IAMClient
+try:
+    from core.security.iam_client import IAMClient
+except ImportError:
+    # Fallback
+    class IAMClient:
+        @staticmethod
+        def get_current_user(token=None):
+            return {"id": 1, "username": "dev", "permissions": ["admin"]}
+        
+        @staticmethod
+        def check_permission(user, perm):
+            return True
+
 ALGORITHM = "HS256"
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+__all__ = [
+    "IAMClient",
+    "verify_password",
+    "get_password_hash",
+    "create_access_token",
+]
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)

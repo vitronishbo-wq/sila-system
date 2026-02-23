@@ -6,6 +6,39 @@ from dataclasses import dataclass, field
 
 logger = logging.getLogger(__name__)
 
+# Singleton event bus
+_event_bus = None
+
+def get_event_bus():
+    """Get event bus singleton"""
+    global _event_bus
+    if _event_bus is None:
+        _event_bus = EventBus()
+    return _event_bus
+
+class EventBus:
+    """Simple event bus for local pub/sub"""
+    def __init__(self):
+        self.handlers: Dict[str, list] = {}
+    
+    async def publish(self, event_type: str, payload: Dict[str, Any]):
+        """Publish event"""
+        handlers = self.handlers.get(event_type, [])
+        for handler in handlers:
+            try:
+                if hasattr(handler, "__await__"):
+                    await handler(payload)
+                else:
+                    handler(payload)
+            except Exception as e:
+                logger.error(f"Handler error: {e}")
+    
+    async def subscribe(self, event_type: str, handler):
+        """Subscribe to event"""
+        if event_type not in self.handlers:
+            self.handlers[event_type] = []
+        self.handlers[event_type].append(handler)
+
 @dataclass
 class BaseEvent:
     event_id: str = field(default_factory=lambda: f"evt-{int(datetime.utcnow().timestamp())}")
