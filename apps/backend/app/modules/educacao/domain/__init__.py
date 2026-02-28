@@ -1,0 +1,29 @@
+from app.modules.educacao.domain.models import (
+    AnoLetivo,
+    CicloEnsino,
+    Escola,
+    InscricaoBasica,
+    InscricaoSecundaria,
+    InscricaoSuperior,
+    InscricaoTecnico,
+    Matricula,
+    StatusMatricula,
+    TipoEscola,
+    Turma,
+    Turno,
+)
+
+__all__ = [
+    "Matricula",
+    "StatusMatricula",
+    "Escola",
+    "TipoEscola",
+    "CicloEnsino",
+    "Turma",
+    "Turno",
+    "AnoLetivo",
+    "InscricaoBasica",
+    "InscricaoSecundaria",
+    "InscricaoSuperior",
+    "InscricaoTecnico",
+]

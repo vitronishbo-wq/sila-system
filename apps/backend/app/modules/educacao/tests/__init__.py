@@ -1,0 +1,1 @@
+# Educacao module tests package.
