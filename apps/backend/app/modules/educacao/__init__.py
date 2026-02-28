@@ -1,21 +1,56 @@
 """Educacao module - matriculas escolares e catalogo institucional."""
 
 from app.modules.educacao.api.router import router
-from app.modules.educacao.application.services import InscricaoService, MatriculaService
+from app.modules.educacao.application.services import (
+    BoletimService,
+    CertificadoService,
+    ConcursoService,
+    EmpregoService,
+    FormacaoService,
+    InscricaoService,
+    MatriculaService,
+    PropinaService,
+    TransferenciaService,
+    UniversidadeService,
+)
 from app.modules.educacao.infrastructure.models import (
     AnoLetivoModel,
+    BoletimModel,
+    CertificadoModel,
+    ConcursoModel,
+    EmpregoModel,
     EscolaModel,
+    FormacaoModel,
     InscricaoModel,
     MatriculaModel,
+    PropinaModel,
+    TransferenciaModel,
     TurmaModel,
+    UniversidadeModel,
 )
 
 __all__ = [
     "router",
     "MatriculaService",
     "InscricaoService",
+    "BoletimService",
+    "CertificadoService",
+    "TransferenciaService",
+    "PropinaService",
+    "EmpregoService",
+    "ConcursoService",
+    "FormacaoService",
+    "UniversidadeService",
     "MatriculaModel",
     "InscricaoModel",
+    "BoletimModel",
+    "CertificadoModel",
+    "TransferenciaModel",
+    "PropinaModel",
+    "EmpregoModel",
+    "ConcursoModel",
+    "FormacaoModel",
+    "UniversidadeModel",
     "EscolaModel",
     "TurmaModel",
     "AnoLetivoModel",
