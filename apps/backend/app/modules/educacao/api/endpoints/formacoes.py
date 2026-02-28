@@ -1,0 +1,24 @@
+from app.modules.educacao.api.deps import get_formacao_service
+from app.modules.educacao.api.endpoints._workflow_endpoints import build_workflow_router
+from app.modules.educacao.api.schemas.formacao_schema import FormacaoCancelar, FormacaoConcluir, FormacaoCreate, FormacaoResponse
+
+router = build_workflow_router(
+    tag="Educacao - Formacoes",
+    get_service=get_formacao_service,
+    create_schema=FormacaoCreate,
+    response_schema=FormacaoResponse,
+    concluir_schema=FormacaoConcluir,
+    cancelar_schema=FormacaoCancelar,
+    routes=[
+        ("/formacoes/profissional", "formacao_profissional"),
+        ("/programas/alfabetizacao", "alfabetizacao"),
+        ("/credenciamentos", "credenciamento"),
+        ("/formacoes/certificadas", "formacao_certificada"),
+        ("/formacoes/reconversao", "reconversao"),
+        ("/estagios/publicos", "estagio_publico"),
+        ("/formacoes/avancadas", "formacao_avancada"),
+        ("/certificacoes/competencias", "certificacao_competencias"),
+        ("/capacitacoes/qualidade", "capacitacao_qualidade"),
+        ("/formacoes/gestores", "formacao_gestores"),
+    ],
+)
