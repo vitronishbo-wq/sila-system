@@ -1,0 +1,68 @@
+"""Repositorios de infraestrutura do modulo turismo."""
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_operador_turistico_repository import SQLAlchemyOperadorTuristicoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_agencia_viagens_repository import SQLAlchemyAgenciaViagensRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_guia_turismo_repository import SQLAlchemyGuiaTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_hotel_repository import SQLAlchemyHotelRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_pousada_repository import SQLAlchemyPousadaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_atracao_turistica_repository import SQLAlchemyAtracaoTuristicaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_ponto_turistico_repository import SQLAlchemyPontoTuristicoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_evento_turistico_repository import SQLAlchemyEventoTuristicoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_pacote_turistico_repository import SQLAlchemyPacoteTuristicoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_roteiro_repository import SQLAlchemyRoteiroRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_reserva_hotel_repository import SQLAlchemyReservaHotelRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_reserva_pacote_repository import SQLAlchemyReservaPacoteRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_avaliacao_repository import SQLAlchemyAvaliacaoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_reclamacao_turismo_repository import SQLAlchemyReclamacaoTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_cadastro_turista_repository import SQLAlchemyCadastroTuristaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_visitante_repository import SQLAlchemyVisitanteRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_fluxo_turistico_repository import SQLAlchemyFluxoTuristicoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_ocupacao_hoteleira_repository import SQLAlchemyOcupacaoHoteleiraRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_tarifa_hotel_repository import SQLAlchemyTarifaHotelRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_temporada_repository import SQLAlchemyTemporadaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_promocao_turistica_repository import SQLAlchemyPromocaoTuristicaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_licenca_turismo_repository import SQLAlchemyLicencaTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_cadastur_repository import SQLAlchemyCadasturRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_registro_guia_repository import SQLAlchemyRegistroGuiaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_credencial_repository import SQLAlchemyCredencialRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_fiscalizacao_turismo_repository import SQLAlchemyFiscalizacaoTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_auto_infracao_turismo_repository import SQLAlchemyAutoInfracaoTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_multa_turismo_repository import SQLAlchemyMultaTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_classificacao_hoteleira_repository import SQLAlchemyClassificacaoHoteleiraRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_certificacao_turistica_repository import SQLAlchemyCertificacaoTuristicaRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_estatistica_turismo_repository import SQLAlchemyEstatisticaTurismoRepository
+from app.modules.turismo.infrastructure.repositories.sqlalchemy_receita_turistica_repository import SQLAlchemyReceitaTuristicaRepository
+
+__all__ = [
+    "SQLAlchemyOperadorTuristicoRepository",
+    "SQLAlchemyAgenciaViagensRepository",
+    "SQLAlchemyGuiaTurismoRepository",
+    "SQLAlchemyHotelRepository",
+    "SQLAlchemyPousadaRepository",
+    "SQLAlchemyAtracaoTuristicaRepository",
+    "SQLAlchemyPontoTuristicoRepository",
+    "SQLAlchemyEventoTuristicoRepository",
+    "SQLAlchemyPacoteTuristicoRepository",
+    "SQLAlchemyRoteiroRepository",
+    "SQLAlchemyReservaHotelRepository",
+    "SQLAlchemyReservaPacoteRepository",
+    "SQLAlchemyAvaliacaoRepository",
+    "SQLAlchemyReclamacaoTurismoRepository",
+    "SQLAlchemyCadastroTuristaRepository",
+    "SQLAlchemyVisitanteRepository",
+    "SQLAlchemyFluxoTuristicoRepository",
+    "SQLAlchemyOcupacaoHoteleiraRepository",
+    "SQLAlchemyTarifaHotelRepository",
+    "SQLAlchemyTemporadaRepository",
+    "SQLAlchemyPromocaoTuristicaRepository",
+    "SQLAlchemyLicencaTurismoRepository",
+    "SQLAlchemyCadasturRepository",
+    "SQLAlchemyRegistroGuiaRepository",
+    "SQLAlchemyCredencialRepository",
+    "SQLAlchemyFiscalizacaoTurismoRepository",
+    "SQLAlchemyAutoInfracaoTurismoRepository",
+    "SQLAlchemyMultaTurismoRepository",
+    "SQLAlchemyClassificacaoHoteleiraRepository",
+    "SQLAlchemyCertificacaoTuristicaRepository",
+    "SQLAlchemyEstatisticaTurismoRepository",
+    "SQLAlchemyReceitaTuristicaRepository",
+]

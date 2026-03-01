@@ -1,0 +1,68 @@
+from fastapi import APIRouter
+
+from app.modules.turismo.api.endpoints import (
+    operadores_turisticos_router,
+    agencias_viagens_router,
+    guias_turismo_router,
+    hoteis_router,
+    pousadas_router,
+    resorts_router,
+    atracao_turisticas_router,
+    pontos_turisticos_router,
+    eventos_router,
+    pacotes_router,
+    roteiros_router,
+    reservas_router,
+    avaliacoes_router,
+    reclamacoes_turismo_router,
+    cadastro_turistas_router,
+    fluxo_turistico_router,
+    ocupacao_hoteleira_router,
+    tarifas_hotel_router,
+    temporadas_router,
+    promocoes_turisticas_router,
+    licencas_turismo_router,
+    cadastur_router,
+    registros_guia_router,
+    fiscalizacoes_turismo_router,
+    autos_infracao_turismo_router,
+    multas_turismo_router,
+    classificacoes_hoteleiras_router,
+    certificacoes_turisticas_router,
+    estatisticas_turismo_router,
+    chegadas_turistas_router,
+    receitas_turisticas_router,
+)
+
+router = APIRouter(prefix="/turismo", tags=["Turismo"])
+router.include_router(operadores_turisticos_router)
+router.include_router(agencias_viagens_router)
+router.include_router(guias_turismo_router)
+router.include_router(hoteis_router)
+router.include_router(pousadas_router)
+router.include_router(resorts_router)
+router.include_router(atracao_turisticas_router)
+router.include_router(pontos_turisticos_router)
+router.include_router(eventos_router)
+router.include_router(pacotes_router)
+router.include_router(roteiros_router)
+router.include_router(reservas_router)
+router.include_router(avaliacoes_router)
+router.include_router(reclamacoes_turismo_router)
+router.include_router(cadastro_turistas_router)
+router.include_router(fluxo_turistico_router)
+router.include_router(ocupacao_hoteleira_router)
+router.include_router(tarifas_hotel_router)
+router.include_router(temporadas_router)
+router.include_router(promocoes_turisticas_router)
+router.include_router(licencas_turismo_router)
+router.include_router(cadastur_router)
+router.include_router(registros_guia_router)
+router.include_router(fiscalizacoes_turismo_router)
+router.include_router(autos_infracao_turismo_router)
+router.include_router(multas_turismo_router)
+router.include_router(classificacoes_hoteleiras_router)
+router.include_router(certificacoes_turisticas_router)
+router.include_router(estatisticas_turismo_router)
+router.include_router(chegadas_turistas_router)
+router.include_router(receitas_turisticas_router)
