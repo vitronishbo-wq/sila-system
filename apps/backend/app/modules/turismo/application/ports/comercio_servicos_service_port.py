@@ -1,7 +1,13 @@
 from __future__ import annotations
 
-from app.modules.turismo.application.ports import BaseIntegrationServicePort
+from abc import ABC, abstractmethod
 
 
-class ComercioServicosServicePort(BaseIntegrationServicePort):
-    pass
+class ComercioServicosServicePort(ABC):
+    @abstractmethod
+    async def list_parceiros_turisticos(self, *, municipio: str) -> list[str]:
+        pass
+
+    @abstractmethod
+    async def agencia_cnpj_ativo(self, *, cnpj: str) -> bool:
+        pass
