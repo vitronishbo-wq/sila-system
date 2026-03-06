@@ -80,6 +80,7 @@ A IA tem permissão para modificar o código de forma agressiva, mas **deve vali
 5. Execute `make lint` para validar o estilo de código.
 6. Se houver mudanças de esquema, gere o script Alembic em `apps/backend/alembic/versions`.
 7. Execute `make migration-domain-report` para atualizar o inventário por domínio.
+8. Em `apps/backend/app/main.py`, mantenha `app.include_router(saude_router)` para garantir montagem explícita de `saude_primaria`.
 
 ### 🧭 Auditoria de Sobreposição de Domínio (obrigatória antes de fusões)
 Antes de consolidar, fundir ou mover módulos entre domínios, execute o scanner de sobreposição:
