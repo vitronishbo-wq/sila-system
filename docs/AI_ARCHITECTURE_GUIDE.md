@@ -174,6 +174,11 @@ Toda mudança **reitora de arquitetura** deve atualizar este arquivo **no mesmo 
 - [ ] os relatórios de arquitetura foram regenerados?
 - [ ] a ordem segura foi respeitada: scan -> plan -> validate deps -> migrate -> merge gradual?
 
+Atualização estrutural registrada em 2026-03-07:
+- limpeza de diretórios fantasmas com chaves literais em módulos.
+- scripts geradores indevidos removidos de `app/modules` e consolidados em `apps/backend/scripts/module_tools`.
+- guardrails adicionais de auditoria/boundaries ativos em `scripts/guardrails`.
+
 ---
 > [!IMPORTANT]
 > A autonomia total da IA (`approval_policy = "never"`) é um privilégio que depende da conformidade total com este guia. Em caso de dúvida, consulte `TEMPLATE_DDD_MODULE.py`.
