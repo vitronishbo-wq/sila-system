@@ -121,6 +121,15 @@ O bootstrap de módulos deve usar `apps/backend/app/core/module_registry.py` com
 - escopo de bootstrap (`api`, `main`, `none`)
 - metadados de roteamento (`prefix`, `tags`)
 
+Regra operacional (2026-03-07):
+- `apps/backend/app/api/router.py` deve montar módulos exclusivamente via `_mount_registry_modules()`.
+- evitar adicionar imports manuais de routers de módulos no `api/router.py` (exceto canais core fora do registry).
+- todo novo módulo deve entrar no `MODULES` com `bootstrap_scope` explícito; sem isso, é considerado não-publicado.
+- validar sincronização com:
+  ```bash
+  python3 scripts/guardrails/check_module_registry_sync.py --modules-root apps/backend/app/modules
+  ```
+
 ### 🗃️ Estratégia de Migrations por Domínio
 As migrações devem seguir a estratégia em `docs/architecture/migration_strategy.md`.
 Inventário automático:
