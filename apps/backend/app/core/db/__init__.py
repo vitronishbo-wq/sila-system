@@ -138,6 +138,7 @@ Base = declarative_base(cls=CoreBase)
 
 # Singleton instance
 db = Database()
+engine = db.engine
 
 # Aliases para compatibilidade
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
@@ -145,17 +146,38 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async for session in db.get_session():
         yield session
 
+get_session = get_db
 transaction = db.transaction
 AsyncSessionLocal = db.session_factory
 importAsyncSessionLocal = db.session_factory
+async_session_factory = db.session_factory
+get_async_db = get_db
+
+
+def get_engine() -> AsyncEngine:
+    """Compatibility helper for scripts/tests expecting an engine getter."""
+    return db.engine
+
+
+def register_models() -> None:
+    """Compatibility hook for suites that force metadata registration."""
+    # Lazy import to avoid circular dependencies at module import time.
+    import app.db.base  # noqa: F401
+
 
 __all__ = [
     'Base',
     'db',
+    'engine',
     'get_db',
+    'get_session',
+    'get_async_db',
     'transaction',
     'AsyncSessionLocal',
+    'async_session_factory',
     'importAsyncSessionLocal',
+    'get_engine',
+    'register_models',
     'Database',
     'DatabaseConfig',
     'CoreBase'

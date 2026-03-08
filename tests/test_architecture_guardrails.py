@@ -175,3 +175,12 @@ def test_compat_citizen_repositories_delegate_to_canonical_identity_adapter():
         assert "select(" not in text, (
             f"{rel} contains direct SQL logic; keep SQL only in canonical identity adapter"
         )
+
+
+def test_no_platform_shared_imports():
+    root = REPO_ROOT / "apps" / "backend" / "app"
+    for py in root.rglob("*.py"):
+        text = py.read_text(encoding="utf-8", errors="ignore")
+        assert "app.platform.shared" not in text, (
+            f"Legacy platform.shared import found in {py.relative_to(REPO_ROOT)}"
+        )

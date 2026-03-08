@@ -12,3 +12,6 @@ class StatusGeral(str, Enum):
     ATIVO = "ativo"
     INATIVO = "inativo"
     DELETADO = "deletado"
+
+
+__all__ = ["StatusMatricula", "StatusGeral"]
