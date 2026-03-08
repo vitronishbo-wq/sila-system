@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import String, Text, DateTime, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.database import Base
+from app.core.db import Base
 
 
 class NotificationType(str, enum.Enum):
