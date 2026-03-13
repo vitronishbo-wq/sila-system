@@ -1,7 +1,13 @@
 {
-  "generated_at": "2026-03-13T13:37:27.187961+00:00",
+  "generated_at": "2026-03-13T13:53:16.017983+00:00",
   "modules_scanned": 26,
-  "files_scanned": 6586,
-  "edges": [],
+  "files_scanned": 6567,
+  "edges": [
+    {
+      "source": "identity",
+      "target": "core",
+      "weight": 1
+    }
+  ],
   "cycles": []
 }

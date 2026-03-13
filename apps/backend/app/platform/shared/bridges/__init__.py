@@ -1,7 +1,7 @@
 """Compatibility bridge for shared platform imports.
 
-This module proxies app.platform.shared.bridges.* to app.core.bridges.* to keep
-legacy import paths working.
+This module proxies legacy shared-bridges imports to app.core.bridges.* to keep
+older paths working without referencing the deprecated namespace directly.
 """
 from __future__ import annotations
 

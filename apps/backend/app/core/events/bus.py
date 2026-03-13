@@ -1,7 +1,7 @@
 """Event bus assíncrono em memória para integração intercontexto."""
 import asyncio
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Callable
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,11 @@ class EventBus:
         return _NoopAwaitable()
 
     async def publish(self, event_type: str, data: Any=None) -> dict[str, Any]:
-        event = {'type': event_type, 'data': data, 'timestamp': datetime.utcnow().isoformat()}
+        event = {
+            'type': event_type,
+            'data': data,
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+        }
         for handler in self._handlers.get(event_type, []):
             try:
                 if asyncio.iscoroutinefunction(handler):

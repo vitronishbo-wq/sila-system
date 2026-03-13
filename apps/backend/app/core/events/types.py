@@ -1,11 +1,11 @@
 """Tipos de eventos de domínio usados pelos bounded contexts."""
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 @dataclass(slots=True)
 class DomainEvent:
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 @dataclass(slots=True)
 class CitizenValidated(DomainEvent):

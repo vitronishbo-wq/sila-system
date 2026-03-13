@@ -3,7 +3,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Callable, Optional, List
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 class Event:
@@ -12,7 +12,7 @@ class Event:
     def __init__(self, event_type: str, payload: Dict[str, Any]):
         self.event_type = event_type
         self.payload = payload
-        self.timestamp = datetime.utcnow()
+        self.timestamp = datetime.now(timezone.utc)
         self.id = id(self)
     
     def __repr__(self):
@@ -97,4 +97,3 @@ def get_event_bus() -> EventBusPort:
     if _event_bus is None:
         _event_bus = InMemoryEventBus()
     return _event_bus
-

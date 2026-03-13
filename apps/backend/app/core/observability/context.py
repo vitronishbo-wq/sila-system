@@ -20,7 +20,7 @@ Uso:
 import contextvars
 import uuid
 from typing import Optional, Dict, Any, Iterable, Tuple
-from datetime import datetime
+from datetime import datetime, timezone
 _request_id_var: contextvars.ContextVar[str] = contextvars.ContextVar('request_id', default=None)
 _user_id_var: contextvars.ContextVar[Optional[str]] = contextvars.ContextVar('user_id', default=None)
 _tenant_id_var: contextvars.ContextVar[Optional[str]] = contextvars.ContextVar('tenant_id', default=None)
@@ -60,7 +60,7 @@ def set_request_context(request_id: Optional[str]=None, user_id: Optional[str]=N
     _service_name_var.set(service_name)
     _trace_id_var.set(trace_id or request_id)
     _span_id_var.set(span_id)
-    _start_time_var.set(datetime.utcnow())
+    _start_time_var.set(datetime.now(timezone.utc))
     if user_roles is not None:
         _user_roles_var.set(tuple(user_roles))
     return request_id
@@ -90,7 +90,7 @@ def set_security_context(user_id: Optional[str]=None, tenant_id: Optional[str]=N
     if roles is not None:
         _user_roles_var.set(tuple(roles))
     if _start_time_var.get() is None:
-        _start_time_var.set(datetime.utcnow())
+        _start_time_var.set(datetime.now(timezone.utc))
     return current_request
 
 def get_request_id() -> str:
@@ -137,7 +137,7 @@ def get_duration_ms() -> float:
     start_time = get_start_time()
     if not start_time:
         return 0.0
-    duration = datetime.utcnow() - start_time
+    duration = datetime.now(timezone.utc) - start_time
     return duration.total_seconds() * 1000
 
 def get_context_dict() -> Dict[str, Any]:

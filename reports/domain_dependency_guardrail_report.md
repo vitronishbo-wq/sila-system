@@ -1,11 +1,11 @@
 # Domain Dependency Guardrail Report
 
-- Generated at: `2026-03-13 13:37:32Z`
+- Generated at: `2026-03-13 13:53:18Z`
 - Status: PASSED
 
 ## Summary
 
-- Observed edges: **0**
+- Observed edges: **1**
 - Declared modules: **8**
 - Graph violations: **0**
 - Policy violations: **0**

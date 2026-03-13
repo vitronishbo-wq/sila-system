@@ -36,7 +36,7 @@ async def status_endpoint():
     return {
         "status": "healthy",
         "service": "payment",
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
 

@@ -1,18 +1,20 @@
 # Module Dependencies Report
 
-- Generated at: `2026-03-13 13:37:27Z`
+- Generated at: `2026-03-13 13:53:16Z`
 - Scope: `apps/backend/app/modules`
 
 ## Summary
 
 - Modules scanned: **26**
-- Python files parsed: **6586**
-- Dependency edges (distinct): **0**
+- Python files parsed: **6567**
+- Dependency edges (distinct): **1**
 - Circular dependency groups: **0**
 
 ## Top Dependency Edges
 
-- No cross-module imports detected.
+| Source | Target | Import count |
+| --- | --- | ---: |
+| `identity` | `core` | 1 |
 
 ## Hotspots
 
@@ -20,37 +22,38 @@
 
 | Module | Outbound imports | Distinct targets |
 | --- | ---: | ---: |
-| `audit` | 0 | 0 |
-| `api` | 0 | 0 |
-| `documents` | 0 | 0 |
+| `identity` | 1 | 1 |
+| `economy` | 0 | 0 |
 | `educacao` | 0 | 0 |
+| `audit` | 0 | 0 |
+| `industry` | 0 | 0 |
+| `public_security` | 0 | 0 |
+| `society` | 0 | 0 |
+| `documents` | 0 | 0 |
+| `governance` | 0 | 0 |
+| `intelligence` | 0 | 0 |
+| `infrastructure_sector` | 0 | 0 |
+| `procurement` | 0 | 0 |
+| `tourism` | 0 | 0 |
+| `saude` | 0 | 0 |
+| `resources` | 0 | 0 |
+| `logistics` | 0 | 0 |
 | `justice` | 0 | 0 |
 | `civil_protection` | 0 | 0 |
-| `public_security` | 0 | 0 |
-| `migration_service` | 0 | 0 |
-| `society` | 0 | 0 |
-| `resources` | 0 | 0 |
-| `economy` | 0 | 0 |
-| `tourism` | 0 | 0 |
-| `identity` | 0 | 0 |
-| `logistics` | 0 | 0 |
 | `energy` | 0 | 0 |
-| `intelligence` | 0 | 0 |
-| `procurement` | 0 | 0 |
-| `infrastructure_sector` | 0 | 0 |
-| `operations` | 0 | 0 |
-| `governance` | 0 | 0 |
-| `saude` | 0 | 0 |
-| `infrastructure` | 0 | 0 |
-| `payment` | 0 | 0 |
 | `xroad` | 0 | 0 |
+| `operations` | 0 | 0 |
 | `compliance` | 0 | 0 |
-| `industry` | 0 | 0 |
+| `migration_service` | 0 | 0 |
+| `payment` | 0 | 0 |
+| `infrastructure` | 0 | 0 |
+| `api` | 0 | 0 |
 
 ### Inbound
 
 | Module | Inbound imports |
 | --- | ---: |
+| `core` | 1 |
 
 ## Circular Dependencies
 
@@ -60,6 +63,11 @@
 
 ```mermaid
 graph LR
+  identity -->|1| core
 ```
 
 ## Evidence Samples
+
+### `identity` -> `core`
+
+- `identity/infrastructure/repositories/citizen_repository.py:1 from app.core.bridges.citizen_repository_bridge import CitizenRepository as CanonicalCitizenRepository`
