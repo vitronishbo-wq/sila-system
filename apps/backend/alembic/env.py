@@ -1,10 +1,11 @@
-"""Alembic environment"""
-import asyncio
-from logging.config import fileConfig
-from sqlalchemy.ext.asyncio import async_engine_from_config
-from alembic import context
 import os
 import sys
+import asyncio
+from logging.config import fileConfig
+
+from alembic import context
+from sqlalchemy import text
+from sqlalchemy.ext.asyncio import async_engine_from_config
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
@@ -37,6 +38,22 @@ async def run_async_migrations():
     await connectable.dispose()
 
 def do_run_migrations(connection):
+    # Alembic defaults `alembic_version.version_num` to VARCHAR(32), but this
+    # repository uses longer revision IDs. Ensure capacity before running.
+    with connection.begin():
+        connection.execute(
+            text(
+                """
+                CREATE TABLE IF NOT EXISTS alembic_version (
+                    version_num VARCHAR(128) NOT NULL PRIMARY KEY
+                )
+                """
+            )
+        )
+        connection.execute(
+            text("ALTER TABLE alembic_version ALTER COLUMN version_num TYPE VARCHAR(128)")
+        )
+
     context.configure(connection=connection, target_metadata=target_metadata)
     with context.begin_transaction():
         context.run_migrations()

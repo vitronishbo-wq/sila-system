@@ -1,0 +1,2 @@
+from app.modules.resources.pecuaria.application.services import AnimalService, PecuaristaService, ProducaoService, PropriedadeService, RebanhoService, ReproducaoService, SanidadeService
+__all__ = ['PecuaristaService', 'PropriedadeService', 'RebanhoService', 'AnimalService', 'ProducaoService', 'SanidadeService', 'ReproducaoService']

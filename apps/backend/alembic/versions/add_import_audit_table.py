@@ -8,7 +8,7 @@ from uuid import uuid4
 
 # revision identifiers, used by Alembic.
 revision = "add_import_audit_table"
-down_revision = None
+down_revision = "20260220_001_create_citizen_documents"
 branch_labels = None
 depends_on = None
 

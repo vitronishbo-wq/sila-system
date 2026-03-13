@@ -5,9 +5,7 @@ This module contains tests for citizen-related operations such as
 creating, retrieving, updating, and deleting citizen records.
 """
 
-from typing import Any, Dict
 
-import pytest
 from fastapi import status
 
 

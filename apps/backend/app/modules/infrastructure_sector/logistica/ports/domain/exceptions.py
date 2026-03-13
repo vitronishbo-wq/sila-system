@@ -1,0 +1,2 @@
+class PortosLogisticaError(Exception):
+    pass

@@ -1,0 +1,2 @@
+class TaxpayerError(Exception):
+    pass

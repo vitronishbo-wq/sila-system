@@ -16,7 +16,11 @@ env:
   IMAGE_NAME: sila-backend
 
 jobs:
+  backend-guardrails:
+    uses: ./.github/workflows/reusable-backend-guardrails.yml
+
   build-and-test:
+    needs: backend-guardrails
     runs-on: ubuntu-latest
     timeout-minutes: 90
     permissions:
@@ -91,6 +95,7 @@ jobs:
         run: |
           cd apps/backend
           pip install pytest-cov
+          export STRICT_ASYNC=1
           pytest tests/ -v \
             --cov=modules \
             --cov-report=xml \

@@ -10,12 +10,7 @@ Fluxo de Negócio:
 - Registro de problema de saneamento → Monitoramento automático → Notificação stakeholders
 """
 
-import asyncio
-import json
 from datetime import datetime, timedelta, timezone
-from decimal import Decimal
-from unittest.mock import AsyncMock, Mock, patch
-from uuid import uuid4
 
 import pytest
 

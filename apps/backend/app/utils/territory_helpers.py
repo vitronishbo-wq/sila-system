@@ -3,19 +3,12 @@
 
 Funções compartilhadas para criar/recuperar territórios.
 """
-
 import uuid
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.territory.models.territory import Territory
 
-
-async def get_or_create_territory(
-    session: AsyncSession,
-    name: str,
-    type: str,
-    parent_id: uuid.UUID = None
-) -> Territory:
+async def get_or_create_territory(session: AsyncSession, name: str, type: str, parent_id: uuid.UUID=None) -> Territory:
     """
     Recupera um território existente ou o cria se não existir.
     
@@ -32,31 +25,14 @@ async def get_or_create_territory(
         >>> angola = await get_or_create_territory(session, "Angola", "country")
         >>> huambo = await get_or_create_territory(session, "Huambo", "province", angola.id)
     """
-    
-    # Buscar território existente
-    res = await session.execute(
-        select(Territory).where(
-            Territory.name == name,
-            Territory.type == type
-        ).limit(1)
-    )
+    res = await session.execute(select(Territory).where(Territory.name == name, Territory.type == type).limit(1))
     territory = res.scalar_one_or_none()
-    
-    # Se não existe, criar
     if not territory:
-        territory = Territory(
-            id=uuid.uuid4(),
-            name=name,
-            type=type,
-            parent_id=parent_id
-        )
+        territory = Territory(id=uuid.uuid4(), name=name, type=type, parent_id=parent_id)
         session.add(territory)
         await session.flush()
-        print(f"📍 Criado: {name} ({type})")
+        print(f'📍 Criado: {name} ({type})')
     else:
-        print(f"ℹ️  Existe: {name} ({type})")
-    
+        print(f'ℹ️  Existe: {name} ({type})')
     return territory
-
-
-__all__ = ["get_or_create_territory"]
+__all__ = ['get_or_create_territory']

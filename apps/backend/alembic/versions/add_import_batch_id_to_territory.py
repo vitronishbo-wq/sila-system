@@ -7,7 +7,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = "add_import_batch_id_to_territory"
-down_revision = None
+down_revision = "add_import_audit_table"
 branch_labels = None
 depends_on = None
 

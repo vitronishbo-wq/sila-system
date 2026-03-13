@@ -2,7 +2,6 @@
 FASE 5: Unit Tests expandidos para módulo Payment
 """
 
-from datetime import datetime
 from decimal import Decimal
 
 import pytest

@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  # Alert Handler Service - Processa alertas e orquestra notificações
+  alert-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile.alerts
+    container_name: alert-handler
+    environment:
+      # Slack
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      
+      # Email (SMTP)
+      - SMTP_SERVER=${SMTP_SERVER:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - ALERT_FROM_EMAIL=${ALERT_FROM_EMAIL:-alerts@sila.ao}
+      - SECURITY_EMAIL=${SECURITY_EMAIL:-security@sila.ao}
+      
+      # Elasticsearch
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      
+      # Logging
+      - LOG_LEVEL=INFO
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./apps/backend/app/core/observability/alert_handler.py:/app/alert_handler.py:ro
+      - ./apps/backend/app/core/observability/anomaly_detector.py:/app/anomaly_detector.py:ro
+      - alert_logs:/var/log/alerts
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+  # Alertmanager (Prometheus) - Gerenciamento de alertas com silenciamento
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager_data:/alertmanager
+    ports:
+      - "9093:9093"
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--cluster.listen-address=0.0.0.0:9094'
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+  # Prometheus - Time series database para métricas de alertas
+  prometheus:
+    image: prom/prometheus:v2.50.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alert-rules.yml:/etc/prometheus/alert-rules.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    environment:
+      - TZ=Africa/Luanda
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+  # Grafana - Dashboards para alertas e anomalias
+  grafana:
+    image: grafana/grafana:10.2.2
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-elasticsearch-datasource
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana-dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+    depends_on:
+      - elasticsearch
+      - prometheus
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+volumes:
+  alertmanager_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  alert_logs:
+    driver: local
+
+networks:
+  elk_network:
+    external: true

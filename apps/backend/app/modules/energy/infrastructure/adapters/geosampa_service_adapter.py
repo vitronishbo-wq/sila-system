@@ -1,0 +1,2 @@
+class GeosampaServiceAdapter:
+    pass

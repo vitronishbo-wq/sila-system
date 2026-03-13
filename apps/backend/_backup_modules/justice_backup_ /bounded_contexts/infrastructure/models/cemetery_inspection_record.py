@@ -1,0 +1,2 @@
+class CemeteryInspectionRecord:
+    pass

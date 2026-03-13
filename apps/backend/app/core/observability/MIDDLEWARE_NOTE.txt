@@ -1,0 +1,4 @@
+"""
+Nota: ObservabilityMiddleware já existe em core/observability/middleware.py
+Aqui está o resumo da integração completa de observabilidade.
+"""

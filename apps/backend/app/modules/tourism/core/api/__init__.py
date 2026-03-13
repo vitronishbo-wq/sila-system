@@ -1,0 +1,2 @@
+from app.modules.tourism.api.router import router
+__all__ = ['router']

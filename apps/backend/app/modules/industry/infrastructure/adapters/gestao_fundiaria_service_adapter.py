@@ -1,0 +1,2 @@
+class GestaoFundiariaServiceAdapter:
+    pass

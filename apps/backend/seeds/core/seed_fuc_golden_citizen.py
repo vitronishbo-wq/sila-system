@@ -17,13 +17,11 @@ Arquitetura:
 """
 
 import logging
-import sys
-import os
 from uuid import UUID, uuid4
 from datetime import date
 from pathlib import Path
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 # Setup: Adiciona o root do backend ao path para imports de 'app.*'
 backend_root = Path(__file__).resolve().parent.parent.parent
@@ -33,10 +31,9 @@ from app.core.settings import settings
 from app.core.security import get_password_hash
 from app.core.constants import UserRole, AdminLevel
 from modules.identity.models.user import User
-from app.core.territory.models.territory import Territory  # ✅ REQUIRED by User.relationship
 
-from app.citizen.events.models import CitizenEventModel, EventType
-from app.citizen.projections.projectors import CitizenProjector
+from app.modules.justice.civil_registry.events.models import CitizenEventModel, EventType
+from app.modules.justice.civil_registry.projections.projectors import CitizenProjector
 
 # ════════════════════════════════════════════════════════════════════
 # 🏛️ IDENTIDADE FIXA (CANÓNICA) — O ÚNICO HARDCODE PERMITIDO

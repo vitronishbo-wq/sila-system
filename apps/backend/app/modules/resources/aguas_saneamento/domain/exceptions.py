@@ -1,0 +1,2 @@
+class AguasSaneamentoError(Exception):
+    pass

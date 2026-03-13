@@ -1,0 +1,2 @@
+class AviacaoCivilError(Exception):
+    pass

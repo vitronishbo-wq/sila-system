@@ -1,0 +1,2 @@
+class ComercioExternoError(Exception):
+    pass

@@ -1,0 +1,5 @@
+from app.modules.economy.trade.external.api.deps import get_despachante_service
+from app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
+from app.modules.economy.trade.external.api.schemas.despachante_schema import CancelamentoDespachanteInput, DespachanteCreate, DespachanteResponse, HabilitacaoDespachanteInput, SuspensaoDespachanteInput
+from app.modules.economy.trade.external.exceptions import DespachanteAlreadyExistsError, DespachanteNotFoundError, InvalidDespachanteStateError
+router = build_operador_logistico_router(prefix='/despachantes', tag='Comercio Externo - Despachantes', get_service=get_despachante_service, create_schema=DespachanteCreate, habilitacao_schema=HabilitacaoDespachanteInput, suspensao_schema=SuspensaoDespachanteInput, cancelamento_schema=CancelamentoDespachanteInput, response_schema=DespachanteResponse, already_exists_error_cls=DespachanteAlreadyExistsError, not_found_error_cls=DespachanteNotFoundError, invalid_state_error_cls=InvalidDespachanteStateError)

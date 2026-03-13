@@ -1,21 +1,20 @@
 import asyncio
 import sys
-from pathlib import Path
 
 # Add backend dir to sys.path
 sys.path.insert(0, "/app")
 
 from sqlalchemy import select
-from core.db.session import async_session_factory
+from app.core.db import async_session_factory
 from modules.identity.models.user import User
 
 async def check_users():
     async with async_session_factory() as session:
         from sqlalchemy import func
         result = await session.execute(
-            select(User.level, func.count(User.id))
+            select(User.administrative_level, func.count(User.id))
             .where(User.email.like("truman%@sila.gov.ao"))
-            .group_by(User.level)
+            .group_by(User.administrative_level)
         )
         counts = result.all()
         

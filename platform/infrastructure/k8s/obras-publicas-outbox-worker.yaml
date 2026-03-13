@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obras-publicas-outbox-worker
+  namespace: sila-system
+  labels:
+    app: obras-publicas-outbox-worker
+    tier: worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: obras-publicas-outbox-worker
+  template:
+    metadata:
+      labels:
+        app: obras-publicas-outbox-worker
+        tier: worker
+    spec:
+      containers:
+        - name: outbox-worker
+          image: sila/backend:latest
+          command: ["python", "-m", "app.modules.obras_publicas.infrastructure.messaging.runner"]
+          ports:
+            - name: metrics
+              containerPort: 9108
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: sila-secrets
+                  key: DATABASE_URL
+            - name: READ_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: sila-secrets
+                  key: READ_DATABASE_URL
+                  optional: true
+            - name: OP_OUTBOX_BATCH_SIZE
+              value: "100"
+            - name: OP_OUTBOX_MAX_FAILED_ATTEMPTS
+              value: "20"
+            - name: OP_OUTBOX_POLL_INTERVAL_SECONDS
+              value: "1.5"
+            - name: OP_BI_TOPIC
+              value: "obras_publicas_events"
+            - name: OP_ENABLE_BI_STREAMING
+              value: "1"
+            - name: OP_BI_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+            - name: OP_OTEL_EXPORTER_ENDPOINT
+              value: "http://otel-collector:4317"
+            - name: OP_OTEL_SERVICE_NAME
+              value: "obras_publicas_outbox_worker"
+            - name: OP_WORKER_METRICS_PORT
+              value: "9108"
+            - name: OP_REGION_CODE
+              value: "A"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "print('ok')"]
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "print('ready')"]
+            initialDelaySeconds: 10
+            periodSeconds: 20

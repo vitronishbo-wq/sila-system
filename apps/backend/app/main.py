@@ -1,129 +1,110 @@
-# Logging setup (must be first)
-from app.core.logging import setup_logging  # noqa
+import json
+import time
+from contextlib import asynccontextmanager
 
-# Importa todos os models workflow e service_requests para garantir registro único
-import app.modules.workflow.infrastructure.models  # noqa
-from app.modules.service_requests.infrastructure.models.service_request_model import ServiceRequestModel  # noqa
-from app.modules.saude.infrastructure.models.appointment_model import AppointmentModel  # noqa
-from app.modules.saude.infrastructure.models.prescription_model import PrescriptionModel  # noqa
-from app.modules.saude.infrastructure.models.medical_record_model import MedicalRecordModel  # noqa
-from app.modules.saude.infrastructure.models.vaccine_model import VaccineModel, VaccineDoseModel  # noqa
-from app.modules.saude.infrastructure.models.health_unit_model import HealthUnitModel, HealthProfessionalModel  # noqa
-from app.modules.saude.infrastructure.models.exam_request_model import ExamRequestModel  # noqa
-from app.modules.saude.infrastructure.models.exame_model import ExameImagemModel, ExameLaboratorialModel  # noqa
-from app.modules.saude.infrastructure.models.internamento_model import InternamentoModel  # noqa
-from app.modules.saude.infrastructure.models.urgencia_model import (
-    AmbulanciaModel,
-    FilaHospitalarModel,
-    UrgenciaModel,
-)  # noqa
-from app.modules.saude.infrastructure.models.vigilancia_model import (
-    AlertaSaudeModel,
-    ControleVetorModel,
-    ControleZoonoseModel,
-    MonitorizacaoHidricaModel,
-    NotificacaoSurtoModel,
-    VigilanciaEpidemiologicaModel,
-)  # noqa
-from app.modules.saude.infrastructure.models.inspecao_model import (
-    ApreensaoProdutoModel,
-    ControleAbatePublicoModel,
-    ControleQualidadeAlimentoModel,
-    FiscalizacaoAlimentoModel,
-    FiscalizacaoCadeiaFrioModel,
-    InspecaoSanitariaModel,
-    InspecaoTransporteAlimentarModel,
-    LicencaSanitariaModel,
-    LicencaTemporariaModel,
-)  # noqa
-from app.modules.saude.infrastructure.models.programa_model import (
-    ProgramaHIVModel,
-    ProgramaMalariaModel,
-    ProgramaPreventivoModel,
-)  # noqa
-from app.modules.saude.infrastructure.models.rastreio_model import (
-    RastreioTuberculoseModel,
-    TriagemDiabetesModel,
-)  # noqa
-from app.modules.saude.infrastructure.models.relatorio_model import (
-    AvaliacaoRiscoSanitarioModel,
-    EducacaoSanitariaModel,
-    EmergenciaSanitariaModel,
-    RelatorioSegurancaAlimentarModel,
-)  # noqa
-from fastapi import APIRouter, FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.router import api_router
-from app.core.module_registry import iter_bootstrap_modules, load_module_router
-from app.core.settings import settings
-from app.api.middleware.role_router import RoleBasedRoutingMiddleware
-from app.core.observability import ObservabilityMiddleware
-from app.core.database import engine
-from app.modules.obras_publicas.infrastructure.observability import (
-    instrument_fastapi,
-    instrument_sqlalchemy,
-    setup_tracing,
-)
 
-try:
-    from app.modules.saude_primaria.api.router import router as saude_router
-except Exception:  # pragma: no cover - defensive bootstrap path
-    saude_router = APIRouter()
+from app.platform.observability.logger import get_sila_logger
+from app.platform.runtime.compat_router import router as compat_router
+from app.platform.runtime.health_router import router as health_router
+from app.platform.runtime.loader import discover_and_register_routers
+from app.core.events.bridge.event_bus_bridge import EventBusBridge
+from app.core.events.workers.projection_worker import ProjectionWorker
+from app.modules.identity.middleware.trust_middleware import TrustEvaluationMiddleware
 
-app = FastAPI(
-    title="SILA System API",
-    description="Sistema Integrado de Logística de Angola",
-    version="2026.1"
-)
-
-# Observability Middleware (Global)
-app.add_middleware(ObservabilityMiddleware)
-
-# CORS Configuration
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.get_cors_origins(),
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Role-Based Routing Middleware
-app.add_middleware(RoleBasedRoutingMiddleware)
+logger = get_sila_logger('sila-core')
 
 
-# Centralized Router (includes Health Check via public_router)
-app.include_router(api_router, prefix="/api")
-app.include_router(saude_router)
-
-_mount_errors: list[str] = []
-for _spec in iter_bootstrap_modules("main"):
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application lifespan management for event sourcing infrastructure.
+    
+    Startup:
+      1. Create event bus bridge (Outbox + EventStore atomic publisher)
+      2. Create projection worker (Redis XREADGROUP consumer for CQRS)
+      3. Start worker listening to event stream
+    
+    Shutdown:
+      1. Stop projection worker gracefully
+      2. Clean up connections
+    """
     try:
-        _router = load_module_router(_spec)
-    except Exception as exc:  # pragma: no cover - defensive bootstrap path
-        _mount_errors.append(f"{_spec.name}: {exc!r}")
-        continue
-    app.include_router(_router)
+        bridge = EventBusBridge()
+        worker = ProjectionWorker()
+        await worker.start()
+        logger.info('✓ Event bus bridge initialized (EventBusBridge)')
+        logger.info('✓ Projection worker started (listening to event_stream in Redis)')
+        logger.info('✓ CQRS denormalization pipeline active')
+    except Exception as e:
+        logger.error(f'✗ Failed to initialize event sourcing: {e}')
+        raise
+    yield
+    try:
+        await worker.stop()
+        logger.info('✓ Projection worker stopped gracefully')
+    except Exception as e:
+        logger.error(f'✗ Error stopping projection worker: {e}')
 
-if _mount_errors:
-    _details = "\n".join(f"- {item}" for item in _mount_errors)
-    raise RuntimeError(
-        "Failed to load one or more main-scope module routers from module_registry:\n"
-        f"{_details}"
+
+def create_app():
+    """
+    Create and configure FastAPI application with sovereign trust engine.
+    
+    Architecture:
+    - DDD-compliant singleton entry point
+    - Event sourcing enabled (EventBusBridge + ProjectionWorker)
+    - Sovereign trust evaluation middleware (40/40/20 model)
+    - Auto-discovered routers from modules/*/api/router.py
+    - CORS middleware for cross-origin requests
+    """
+    app = FastAPI(
+        title='SILA Sovereign Platform - Event Sourcing Enabled',
+        version='20.2',
+        docs_url='/docs',
+        redoc_url='/redoc',
+        lifespan=lifespan
     )
 
+    logger.info('Booting SILA platform')
 
-@app.on_event("startup")
-async def startup_obras_publicas_observability() -> None:
-    setup_tracing()
-    instrument_fastapi(app)
-    instrument_sqlalchemy(engine)
+    # Middleware stack (order matters: CORS first, then Trust Evaluation)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_methods=['*'],
+        allow_headers=['*'],
+        allow_credentials=True
+    )
+    app.add_middleware(TrustEvaluationMiddleware)
+
+    # Health and info routers
+    app.include_router(health_router)
+    app.include_router(compat_router)
+
+    # Auto-discover and register all module routers
+    report = discover_and_register_routers(app)
+    logger.info(
+        f'Router discovery summary: '
+        f'loaded={len(report["loaded"])} '
+        f'skipped={len(report["skipped"])} '
+        f'failed={len(report["failed"])}'
+    )
+    if report['failed']:
+        logger.warning(
+            json.dumps(
+                {
+                    'event': 'router_load_failures',
+                    'failures': report['failed']
+                },
+                ensure_ascii=False
+            )
+        )
+
+    logger.info('✓ SILA platform initialized (Clean State)')
+    return app
 
 
-@app.get("/")
-async def root():
-    return {
-        "message": "SILA System API is running",
-        "environment": settings.API_ENV,
-        "docs": "/docs"
-    }
+# Create app singleton
+app = create_app()

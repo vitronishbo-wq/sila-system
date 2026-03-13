@@ -1,0 +1,6 @@
+from app.modules.logistics.infrastructure.repositories.sqlalchemy_bilhetagem_repository import SQLAlchemyBilhetagemRepository
+from app.modules.logistics.infrastructure.repositories.sqlalchemy_frota_repository import SQLAlchemyFrotaRepository
+from app.modules.logistics.infrastructure.repositories.sqlalchemy_linha_repository import SQLAlchemyLinhaRepository
+from app.modules.logistics.infrastructure.repositories.sqlalchemy_veiculo_repository import SQLAlchemyVeiculoRepository
+from app.modules.logistics.infrastructure.repositories.sqlalchemy_viagem_repository import SQLAlchemyViagemRepository
+__all__ = ['SQLAlchemyViagemRepository', 'SQLAlchemyFrotaRepository', 'SQLAlchemyLinhaRepository', 'SQLAlchemyVeiculoRepository', 'SQLAlchemyBilhetagemRepository']

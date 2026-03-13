@@ -14,37 +14,27 @@ Execução:
 
 import asyncio
 import uuid
-from datetime import datetime, timedelta
-from typing import Optional
+from datetime import datetime
 
 # FastAPI / SQLAlchemy
 from sqlalchemy import select
-from app.core.database import AsyncSessionLocal
+from app.core.db import AsyncSessionLocal
 from app.core.settings import settings
 
 # Domain models
-from app.modules.service_requests.domain.models.service_request import ServiceRequest
-from app.modules.service_requests.domain.models.request_event import RequestEvent
-from app.modules.service_requests.domain.value_objects.priority import Priority
-from app.modules.service_requests.domain.value_objects.request_number import RequestNumber
-from app.modules.service_requests.domain.enums import (
+from app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
+from app.modules.governance.service_requests.domain.value_objects.request_number import RequestNumber
+from app.modules.governance.service_requests.domain.enums import (
     ServiceType,
     RequestChannel,
-    RequestStatus,
-    RequestPriority,
-    EventType,
 )
 
 # Infrastructure models
-from app.modules.service_requests.infrastructure.models.request_model import RequestModel
-from app.modules.service_requests.infrastructure.models.request_event_model import RequestEventModel
+from app.modules.governance.service_requests.infrastructure.models.request_model import RequestModel
 
 # Repositories
-from app.modules.service_requests.infrastructure.repositories.request_repository import (
+from app.modules.governance.service_requests.infrastructure.repositories.request_repository import (
     RequestRepository,
-)
-from app.modules.service_requests.infrastructure.repositories.event_repository import (
-    EventRepository,
 )
 
 

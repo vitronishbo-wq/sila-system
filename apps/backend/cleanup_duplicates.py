@@ -8,8 +8,7 @@ import subprocess
 import shutil
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
-import json
+from typing import Dict, Tuple
 
 class DuplicatesCleaner:
     def __init__(self, backend_path: str):

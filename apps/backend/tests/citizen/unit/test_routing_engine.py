@@ -1,10 +1,6 @@
 """Testes unitários do Routing Engine"""
 
-import pytest
-from uuid import uuid4
-from datetime import datetime
 
-from app.citizen.core.routing_engine import RoutingEngine, RequestState
 
 
 def test_routing_engine_commune_only():

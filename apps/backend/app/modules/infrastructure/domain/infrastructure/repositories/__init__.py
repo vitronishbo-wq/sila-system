@@ -1,0 +1,5 @@
+from app.modules.infrastructure.infrastructure.repositories.sqlalchemy_edital_repository import SQLAlchemyEditalRepository
+from app.modules.infrastructure.infrastructure.repositories.sqlalchemy_licitacao_repository import SQLAlchemyLicitacaoRepository
+from app.modules.infrastructure.infrastructure.repositories.sqlalchemy_obra_repository import SQLAlchemyObraRepository
+from app.modules.infrastructure.infrastructure.repositories.sqlalchemy_projeto_repository import SQLAlchemyProjetoRepository
+__all__ = ['SQLAlchemyObraRepository', 'SQLAlchemyProjetoRepository', 'SQLAlchemyLicitacaoRepository', 'SQLAlchemyEditalRepository']

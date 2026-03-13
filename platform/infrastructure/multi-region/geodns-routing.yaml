@@ -1,0 +1,12 @@
+routing:
+  policy: geo
+  records:
+    - region: africa-west
+      target: api-a.sila.gov.ao
+      health_check: https://api-a.sila.gov.ao/api/health
+    - region: africa-south
+      target: api-b.sila.gov.ao
+      health_check: https://api-b.sila.gov.ao/api/health
+  failover:
+    enabled: true
+    mode: active-active

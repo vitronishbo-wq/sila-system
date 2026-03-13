@@ -2,7 +2,7 @@ import asyncio
 from uuid import uuid4
 from pathlib import Path
 from sqlalchemy import select
-from core.db.session import get_async_db
+from app.core.db import get_async_db
 from modules.identity.models.user import User
 from modules.documents.models.documents import Document, DocumentStatus
 from datetime import datetime

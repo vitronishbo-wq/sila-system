@@ -1,0 +1,57 @@
+name: Reusable Backend Guardrails
+
+on:
+  workflow_call:
+
+jobs:
+  backend-guardrails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: sila_user
+          POSTGRES_PASSWORD: sila_pass
+          POSTGRES_DB: sila_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sila_user -d sila_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+asyncpg://sila_user:sila_pass@127.0.0.1:5432/sila_ci
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install "poetry==1.8.3"
+
+      - name: Install backend dependencies
+        run: |
+          poetry -C apps/backend install --with dev --no-interaction --no-root
+
+      - name: Wait for Postgres
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y postgresql-client
+          until pg_isready -h 127.0.0.1 -p 5432 -U sila_user -d sila_ci -t 1; do
+            echo "waiting for postgres..."
+            sleep 1
+          done
+
+      - name: Run centralized guardrails
+        run: |
+          poetry -C apps/backend run bash ../../.github/scripts/run_backend_guardrails.sh

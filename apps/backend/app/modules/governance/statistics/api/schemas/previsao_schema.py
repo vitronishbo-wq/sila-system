@@ -1,0 +1,4 @@
+from app.modules.governance.statistics.api.schemas.generic_named_schema import NamedEntityCreate as PrevisaoCreate
+from app.modules.governance.statistics.api.schemas.generic_named_schema import NamedEntityListResponse as PrevisaoListResponse
+from app.modules.governance.statistics.api.schemas.generic_named_schema import NamedEntityResponse as PrevisaoResponse
+from app.modules.governance.statistics.api.schemas.generic_named_schema import NamedEntityUpdate as PrevisaoUpdate

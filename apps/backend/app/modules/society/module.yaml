@@ -1,0 +1,18 @@
+name: society
+type: macro_domain
+version: 1.0.0
+
+exposes:
+  api_routers:
+    - app.modules.society.api.router
+  public_models: []
+  events_published: []
+
+requires:
+  domains:
+    - economy
+    - justice
+    - infrastructure
+  core_services: []
+
+subdomains: []

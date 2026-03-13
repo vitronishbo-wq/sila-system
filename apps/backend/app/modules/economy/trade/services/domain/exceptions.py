@@ -1,0 +1,2 @@
+class ComercioServicosError(Exception):
+    pass

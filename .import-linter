@@ -1,0 +1,36 @@
+[importlinter]
+root_packages = app.modules
+
+[importlinter:contract:hexagonal-purity]
+name = Hexagonal Architecture Purity
+type = layers
+layers =
+    api
+    application
+    domain
+containers =
+    app.modules.identity
+    app.modules.justice
+    app.modules.saude
+    app.modules.educacao
+ignore_imports =
+    app.modules.xroad.domain.envelope
+
+[importlinter:contract:no-infra-in-domain]
+name = Domain Independence
+type = forbidden
+source_modules =
+    app.modules.*.core.domain
+forbidden_modules =
+    app.modules.*.infrastructure
+    app.modules.*.api
+    sqlalchemy.*
+    pydantic.main
+
+[importlinter:contract:industry-isolation]
+name = Industry Sector Independence
+type = forbidden
+source_modules =
+    app.modules.industry
+forbidden_modules =
+    app.modules.economy.core.infrastructure

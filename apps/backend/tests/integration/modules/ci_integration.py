@@ -5,7 +5,6 @@ Verifica se os novos módulos atendem aos critérios de qualidade.
 """
 
 import json
-import os
 import subprocess
 import sys
 from datetime import datetime

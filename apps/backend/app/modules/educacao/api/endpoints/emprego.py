@@ -1,23 +1,4 @@
 from app.modules.educacao.api.deps import get_emprego_service
 from app.modules.educacao.api.endpoints._workflow_endpoints import build_workflow_router
 from app.modules.educacao.api.schemas.emprego_schema import EmpregoCancelar, EmpregoConcluir, EmpregoCreate, EmpregoResponse
-
-router = build_workflow_router(
-    tag="Educacao - Emprego e Trabalho",
-    get_service=get_emprego_service,
-    create_schema=EmpregoCreate,
-    response_schema=EmpregoResponse,
-    concluir_schema=EmpregoConcluir,
-    cancelar_schema=EmpregoCancelar,
-    routes=[
-        ("/emprego/candidatos", "candidato_emprego"),
-        ("/emprego/ofertas", "oferta_emprego"),
-        ("/emprego/mediacoes", "mediacao_emprego"),
-        ("/emprego/declaracoes-desemprego", "declaracao_desemprego"),
-        ("/trabalho/reclamacoes", "reclamacao_trabalhista"),
-        ("/trabalho/mediacoes", "mediacao_conflito"),
-        ("/trabalho/fiscalizacoes", "fiscalizacao_trabalho"),
-        ("/trabalho/contratos", "registo_contrato"),
-        ("/certificacoes/profissionais", "certificacao_profissional"),
-    ],
-)
+router = build_workflow_router(tag='Educacao - Emprego e Trabalho', get_service=get_emprego_service, create_schema=EmpregoCreate, response_schema=EmpregoResponse, concluir_schema=EmpregoConcluir, cancelar_schema=EmpregoCancelar, routes=[('/emprego/candidatos', 'candidato_emprego'), ('/emprego/ofertas', 'oferta_emprego'), ('/emprego/mediacoes', 'mediacao_emprego'), ('/emprego/declaracoes-desemprego', 'declaracao_desemprego'), ('/trabalho/reclamacoes', 'reclamacao_trabalhista'), ('/trabalho/mediacoes', 'mediacao_conflito'), ('/trabalho/fiscalizacoes', 'fiscalizacao_trabalho'), ('/trabalho/contratos', 'registo_contrato'), ('/certificacoes/profissionais', 'certificacao_profissional')])

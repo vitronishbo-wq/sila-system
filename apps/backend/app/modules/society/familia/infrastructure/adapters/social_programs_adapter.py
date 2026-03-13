@@ -1,0 +1,2 @@
+class SocialProgramsAdapter:
+    pass

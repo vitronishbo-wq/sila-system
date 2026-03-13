@@ -1,0 +1,4 @@
+from app.modules.society.emprego.api.deps import get_concurso_service
+from app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
+from app.modules.society.emprego.api.schemas.concurso_schema import ConcursoAction, ConcursoCancel, ConcursoCreate, ConcursoResponse
+router = build_workflow_router(tag='Emprego - Concursos', get_service=get_concurso_service, create_schema=ConcursoCreate, action_schema=ConcursoAction, cancel_schema=ConcursoCancel, response_schema=ConcursoResponse, routes=[('/concursos/inscricoes', 'concurso_publico'), ('/concursos/resultados', 'resultado_concurso'), ('/mobilidade/funcao-publica', 'mobilidade_publica'), ('/avaliacoes/desempenho-publico', 'avaliacao_desempenho')])

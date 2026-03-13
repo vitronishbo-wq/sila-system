@@ -1,0 +1,2 @@
+from app.modules.society.familia.domain.exceptions.family_exceptions import BiologicalCoherenceError, CitizenAlreadyInActiveFamilyError, ExclusiveMarriageError, FamilyDomainError, HeadMustBeAdultError, MinorRequiresGuardianError
+__all__ = ['FamilyDomainError', 'CitizenAlreadyInActiveFamilyError', 'HeadMustBeAdultError', 'BiologicalCoherenceError', 'ExclusiveMarriageError', 'MinorRequiresGuardianError']

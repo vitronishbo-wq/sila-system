@@ -1,0 +1,14 @@
+name: infrastructure_sector
+type: macro_domain
+version: 1.0.0
+description: Infrastructure and utilities sector coordination
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains:
+  - app.modules.infrastructure
+  - app.modules.logistics
+  core_services: []
+subdomains: []

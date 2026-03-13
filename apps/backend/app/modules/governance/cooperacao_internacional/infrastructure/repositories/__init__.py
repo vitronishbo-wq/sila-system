@@ -1,0 +1,4 @@
+from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
+from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
+from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
+__all__ = ['InMemoryAcordoRepository', 'InMemoryProjetoCooperacaoRepository', 'InMemoryVistoRepository']

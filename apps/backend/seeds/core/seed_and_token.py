@@ -1,10 +1,9 @@
 import asyncio
 import uuid
-import sys
 import os
 from pathlib import Path
 from sqlalchemy import select
-from datetime import datetime, timedelta
+from datetime import datetime
 from jose import jwt
 from dotenv import load_dotenv
 
@@ -15,10 +14,8 @@ backend_root = Path(__file__).resolve().parent.parent.parent
 # Carrega variáveis de ambiente do .env
 load_dotenv(backend_root / ".env")
 
-from app.core.settings import settings
-from app.core.database import AsyncSessionLocal
+from app.core.db import AsyncSessionLocal
 from modules.identity.models.user import User
-from app.core.territory.models.territory import Territory
 from app.core.security import get_password_hash, create_access_token
 
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "central@sila.gov.ao")

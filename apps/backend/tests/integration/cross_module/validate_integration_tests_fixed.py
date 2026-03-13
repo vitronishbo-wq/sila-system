@@ -8,10 +8,8 @@ sem depender de frameworks externos como FastAPI ou pytest.
 
 import sys
 import time
-import traceback
 from datetime import datetime
 from pathlib import Path
-from unittest.mock import Mock
 
 
 class MockTestResult:

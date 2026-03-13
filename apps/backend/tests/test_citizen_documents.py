@@ -6,10 +6,10 @@ Testa integração com service adapters e validação de segurança
 import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import Mock, AsyncMock, patch
-from uuid import uuid4, UUID
+from uuid import uuid4
 
 from app.main import app
-from app.citizen.adapters import (
+from app.modules.justice.civil_registry.adapters import (
     CertificateServiceAdapter,
     AttestationServiceAdapter,
     FinancesServiceAdapter,

@@ -1,12 +1,11 @@
 from modules.documents.schemas.documents import DocumentCreate
 from modules.documents.services.document_service import DocumentService
 from modules.identity.models.user import User
-from core.db.session import AsyncSessionLocal
-from core.db import base  # Registra todos os modelos
+from app.core.db import AsyncSessionLocal
 import asyncio
 import os
 import sys
-from uuid import uuid4, UUID
+from uuid import uuid4
 from fastapi import UploadFile
 from io import BytesIO
 

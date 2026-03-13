@@ -1,0 +1,1 @@
+"""Compatibility application namespace for operations."""

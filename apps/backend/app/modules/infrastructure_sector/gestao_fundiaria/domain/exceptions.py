@@ -1,0 +1,2 @@
+class GestaoFundiariaError(Exception):
+    pass

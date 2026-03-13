@@ -2,8 +2,8 @@
 
 from typing import AsyncGenerator
 
-from core.db.session import AsyncSessionLocal
-from core.security import IAMClient
+from app.core.db import AsyncSessionLocal
+from app.core.security import IAMClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -30,11 +30,11 @@ def get_events():
             data: PaymentCreate,
             events = Depends(get_events)
         ):
-            from core.events import get_event_bus
+            from app.core.events import get_event_bus
             bus = get_event_bus()
             await bus.publish("payment.created", {...})
     """
-    from core.events import get_event_bus
+    from app.core.events import get_event_bus
     return get_event_bus()
 
 

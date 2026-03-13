@@ -2,7 +2,6 @@
 Factory for creating License test instances.
 """
 import uuid
-from datetime import datetime, timezone
 import factory
 from faker import Faker
 from modules.identity.models.identity import Identity

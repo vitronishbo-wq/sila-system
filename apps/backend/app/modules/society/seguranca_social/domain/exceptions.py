@@ -1,0 +1,2 @@
+class SegurancaSocialError(Exception):
+    pass

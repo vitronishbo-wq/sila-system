@@ -1,0 +1,1 @@
+"""Camada de dominio do modulo pescas industriais."""

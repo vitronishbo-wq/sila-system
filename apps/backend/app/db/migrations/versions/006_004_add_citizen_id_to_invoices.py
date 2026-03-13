@@ -10,22 +10,13 @@ arquitectural de que citizen_id é parte integrante do contrato de faturação.
 """
 from alembic import op
 import sqlalchemy as sa
-
 revision = '004_add_citizen_id'
 down_revision = '001_create_invoices_table'
 branch_labels = None
 depends_on = None
 
-
 def upgrade():
-    # citizen_id já existe no modelo Invoice desde a criação.
-    # Esta migração garante retrocompatibilidade caso a tabela tenha sido
-    # criada sem este campo em ambientes legados.
-    op.add_column(
-        'invoices',
-        sa.Column('citizen_id', sa.String(length=50), nullable=False, index=True),
-    )
-
+    op.add_column('invoices', sa.Column('citizen_id', sa.String(length=50), nullable=False, index=True))
 
 def downgrade():
     op.drop_column('invoices', 'citizen_id')

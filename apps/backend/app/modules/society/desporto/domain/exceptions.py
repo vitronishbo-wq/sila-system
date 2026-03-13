@@ -1,0 +1,2 @@
+class DesportoError(Exception):
+    pass

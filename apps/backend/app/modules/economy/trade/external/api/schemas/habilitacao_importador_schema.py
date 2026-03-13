@@ -1,0 +1,14 @@
+from __future__ import annotations
+from app.modules.economy.trade.external.api.schemas.habilitacao_schema_base import HabilitacaoAprovacaoInput, HabilitacaoCreateBase, HabilitacaoRejeicaoInput, HabilitacaoResponseBase
+
+class HabilitacaoImportadorCreate(HabilitacaoCreateBase):
+    pass
+
+class HabilitacaoImportadorAprovacaoInput(HabilitacaoAprovacaoInput):
+    pass
+
+class HabilitacaoImportadorRejeicaoInput(HabilitacaoRejeicaoInput):
+    pass
+
+class HabilitacaoImportadorResponse(HabilitacaoResponseBase):
+    pass

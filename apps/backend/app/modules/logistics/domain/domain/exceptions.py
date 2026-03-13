@@ -1,0 +1,2 @@
+class TransportesLogisticaError(Exception):
+    pass

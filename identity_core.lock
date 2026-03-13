@@ -1,0 +1,13 @@
+  app/modules/identity/core/domain/entities/role.py
+  app/modules/identity/core/domain/entities/citizen.py
+  app/modules/identity/core/domain/entities/credential.py
+  app/modules/identity/core/application/services/credential_signer.py
+  app/modules/identity/core/application/services/trust_engine.py
+  app/modules/identity/core/application/services/user_service.py
+  app/modules/identity/core/application/services/revocation_service.py
+  app/modules/identity/core/infrastructure/repositories/credential_repo.py
+  app/modules/identity/core/infrastructure/repositories/user_repo.py
+  app/modules/identity/core/infrastructure/security/jwt_engine.py
+  app/modules/identity/core/infrastructure/models/user_model.py
+  app/modules/identity/core/ports/justice_verifier_port.py
+  app/modules/identity/core/ports/audit_event_port.py

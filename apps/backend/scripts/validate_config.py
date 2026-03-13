@@ -23,7 +23,7 @@ import sys
 import json
 import argparse
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any
 
 # Add backend directory to Python path
 backend_path = Path(__file__).parent.parent

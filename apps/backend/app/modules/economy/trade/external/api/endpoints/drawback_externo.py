@@ -1,0 +1,5 @@
+from app.modules.economy.trade.external.api.deps import get_drawback_externo_service
+from app.modules.economy.trade.external.api.endpoints._habilitacao_router import build_habilitacao_router
+from app.modules.economy.trade.external.api.schemas.drawback_externo_schema import DrawbackExternoAprovacaoInput, DrawbackExternoCreate, DrawbackExternoRejeicaoInput, DrawbackExternoResponse
+from app.modules.economy.trade.external.exceptions import DrawbackExternoAlreadyExistsError, DrawbackExternoNotFoundError, InvalidDrawbackExternoStateError
+router = build_habilitacao_router(prefix='/drawback_externo', tag='Comercio Externo - Drawback Externo', get_service=get_drawback_externo_service, create_schema=DrawbackExternoCreate, aprovacao_schema=DrawbackExternoAprovacaoInput, rejeicao_schema=DrawbackExternoRejeicaoInput, response_schema=DrawbackExternoResponse, already_exists_error_cls=DrawbackExternoAlreadyExistsError, not_found_error_cls=DrawbackExternoNotFoundError, invalid_state_error_cls=InvalidDrawbackExternoStateError)

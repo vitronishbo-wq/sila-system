@@ -1,0 +1,3 @@
+from app.modules.infrastructure_sector.meteorologia.api.schemas.estacao_schema import EstacaoCreateSchema, EstacaoResponseSchema, EstacaoUpdateSchema
+from app.modules.infrastructure_sector.meteorologia.api.schemas.observacao_schema import AlertaResponseSchema, ObservacaoCreateSchema, ObservacaoResponseSchema
+__all__ = ['EstacaoCreateSchema', 'EstacaoUpdateSchema', 'EstacaoResponseSchema', 'ObservacaoCreateSchema', 'ObservacaoResponseSchema', 'AlertaResponseSchema']

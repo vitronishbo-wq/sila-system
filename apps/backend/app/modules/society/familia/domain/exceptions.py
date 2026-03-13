@@ -1,0 +1,2 @@
+class FamiliaError(Exception):
+    pass

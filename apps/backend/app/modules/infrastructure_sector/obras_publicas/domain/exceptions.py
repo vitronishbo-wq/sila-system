@@ -1,0 +1,1 @@
+class ObrasPublicasError(Exception): pass

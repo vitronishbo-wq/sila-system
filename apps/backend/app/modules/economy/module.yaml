@@ -1,0 +1,20 @@
+name: economy
+type: macro_domain
+version: 1.0.0
+
+exposes:
+  api_routers:
+    - app.modules.economy.api.router
+  public_models: []
+  public_interfaces:
+    - app.modules.economy.domain
+  events_published: []
+
+requires:
+  domains:
+    - procurement
+    - identity
+    - infrastructure
+  core_services: []
+
+subdomains: []

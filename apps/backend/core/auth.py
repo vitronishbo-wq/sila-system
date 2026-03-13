@@ -1,6 +1,7 @@
 import jwt
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Optional
+from uuid import UUID
 from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel
 from config.settings import settings
@@ -26,6 +27,13 @@ def _encode(payload: Dict[str, Any], secret: str, expires_delta: timedelta) -> s
     now = datetime.now(timezone.utc)
     expire = now + expires_delta
     to_encode.update({"exp": expire, "iat": now})
+    
+    # 🔧 Convert UUID objects to strings for JSON serialization
+    to_encode = {
+        k: str(v) if isinstance(v, UUID) else v 
+        for k, v in to_encode.items()
+    }
+    
     return jwt.encode(to_encode, secret, algorithm=ALGORITHM)
 
 def create_access_token(

@@ -11,17 +11,42 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_GUIDE = "docs/AI_ARCHITECTURE_GUIDE.md"
 DEFAULT_RECTOR_PATHS = (
+    "Makefile",
     "apps/backend/app/core/module_registry.py",
     "apps/backend/app/api/router.py",
     "apps/backend/app/main.py",
     "scripts/run_guardrails.sh",
+    "scripts/guardrails/run_guardrails.sh",
+    "scripts/guardrails/run_all_guardrails.sh",
+    "scripts/guardrails/check_ai_bootstrap_stack.py",
+    "scripts/architecture/run_analysis.py",
+    "scripts/ai/ai_scope_filter.py",
+    "scripts/ai/bootstrap_context.sh",
+    "scripts/ai/generate_module_architecture_docs.py",
+    "scripts/ai/generate_architecture_graph.py",
+    "scripts/ai/generate_ai_domain_kernel.py",
+    "AI_FILE_SCOPE.yaml",
+    "docs/AI_CONTEXT.md",
+    "docs/AI_BOOTSTRAP_PROMPT.md",
+    "docs/AI_DOMAIN_KERNEL.md",
+    "docs/architecture/REPOSITORY_MAP.yaml",
+    "docs/architecture/entrypoints/",
+    "docs/architecture/domains/",
+    "ARCHITECTURE_INDEX.yaml",
+    "ARCHITECTURE_DEPENDENCIES.yaml",
+    "API_MAP.yaml",
+    "AI_ENTRYPOINTS.yaml",
+    "docs/AI_ARCHITECTURE_GRAPH.yaml",
+    "reports/ai_domain_kernel_visual_report.md",
     "scripts/domain_overlap_analysis.py",
     "scripts/module_dependency_analysis.py",
+    "scripts/architecture/generate_architecture_index.py",
     "scripts/architecture_map_report.py",
     "scripts/module_health_report.py",
     "scripts/migration_domain_inventory.py",
     "scripts/guardrails/check_core_namespace.py",
     "scripts/guardrails/check_module_registry_sync.py",
+    "scripts/guardrails/check_domain_dependencies.py",
     "scripts/guardrails/check_architecture_guide_sync.py",
     "docs/architecture/module_federation_plan.md",
     "docs/architecture/migration_strategy.md",
@@ -85,7 +110,14 @@ def changed_files_from_base(base_ref: str) -> set[str]:
 
 def is_rector_path(path: str, rector_paths: tuple[str, ...]) -> bool:
     normalized = path.replace("\\", "/")
-    return any(normalized == marker for marker in rector_paths)
+    for marker in rector_paths:
+        if marker.endswith("/"):
+            if normalized.startswith(marker):
+                return True
+            continue
+        if normalized == marker:
+            return True
+    return False
 
 
 def main() -> int:

@@ -1,0 +1,2 @@
+class EducacaoError(Exception):
+    pass

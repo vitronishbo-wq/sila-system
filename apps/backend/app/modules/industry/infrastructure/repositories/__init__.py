@@ -1,0 +1,2 @@
+from app.modules.industry.infrastructure.repositories.sqlalchemy_estabelecimento_industrial_repository import SQLAlchemyEstabelecimentoIndustrialRepository
+__all__ = ['SQLAlchemyEstabelecimentoIndustrialRepository']

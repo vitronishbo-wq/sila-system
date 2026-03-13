@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-mirrormaker2
+  namespace: sila-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-mirrormaker2
+  template:
+    metadata:
+      labels:
+        app: kafka-mirrormaker2
+    spec:
+      containers:
+        - name: mm2
+          image: confluentinc/cp-kafka:7.6.1
+          command:
+            - /bin/bash
+            - -ec
+            - |
+              cat >/tmp/mm2.properties <<'EOF'
+              clusters=A,B
+              A.bootstrap.servers=kafka-a:9092
+              B.bootstrap.servers=kafka-b:9092
+              A->B.enabled=true
+              B->A.enabled=true
+              A->B.topics=obras_publicas_events
+              B->A.topics=obras_publicas_events
+              replication.policy.class=org.apache.kafka.connect.mirror.IdentityReplicationPolicy
+              EOF
+              connect-mirror-maker /tmp/mm2.properties

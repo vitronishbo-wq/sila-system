@@ -1,0 +1,2 @@
+from app.modules.society.assistencia_social.application.services import AtendimentoService, BeneficiarioService, BeneficioService, CadastroUnicoService, CriancaRiscoService, IdosoVulneravelService, PCDService, ProgramaSocialService, SituacaoRuaService, VisitaDomiciliarService
+__all__ = ['AtendimentoService', 'BeneficiarioService', 'BeneficioService', 'CadastroUnicoService', 'CriancaRiscoService', 'IdosoVulneravelService', 'PCDService', 'ProgramaSocialService', 'SituacaoRuaService', 'VisitaDomiciliarService']

@@ -1,0 +1,10 @@
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Any
+from uuid import UUID
+
+class RequestServicePort(ABC):
+
+    @abstractmethod
+    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict[str, Any] | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None) -> UUID | None:
+        pass

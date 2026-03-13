@@ -1,0 +1,2 @@
+from app.modules.intelligence.defesa_consumidor.infrastructure.repositories.sqlalchemy_reclamacao_repository import SQLAlchemyReclamacaoRepository
+__all__ = ['SQLAlchemyReclamacaoRepository']

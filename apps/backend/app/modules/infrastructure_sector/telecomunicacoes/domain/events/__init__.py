@@ -1,0 +1,1 @@
+"""Domain events namespace for telecomunicacoes."""

@@ -1,0 +1,2 @@
+class ProtecaoDadosError(Exception):
+    pass

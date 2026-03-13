@@ -6,10 +6,8 @@ Este script ajuda a configurar o sistema de health check para diferentes
 ambientes (desenvolvimento, teste, produção) e valida as configurações.
 """
 
-import os
 import sys
 from pathlib import Path
-import json
 import argparse
 from typing import Dict, Any
 

@@ -14,9 +14,8 @@ import asyncio
 import logging
 from uuid import uuid4
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.database import AsyncSessionLocal
+from app.core.db import AsyncSessionLocal
 from app.core.security import get_password_hash
 from modules.identity.models.user import User
 from app.core.territory.models.territory import Territory

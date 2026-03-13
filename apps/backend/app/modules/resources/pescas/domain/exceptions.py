@@ -1,0 +1,2 @@
+class PescasError(Exception):
+    pass

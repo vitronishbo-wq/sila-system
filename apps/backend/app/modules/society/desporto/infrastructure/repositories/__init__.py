@@ -1,0 +1,6 @@
+from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_atleta_repository import SQLAlchemyAtletaRepository
+from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_clube_repository import SQLAlchemyClubeRepository
+from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_competicao_repository import SQLAlchemyCompeticaoRepository
+from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_estadio_repository import SQLAlchemyEstadioRepository
+from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_jogo_repository import SQLAlchemyJogoRepository
+__all__ = ['SQLAlchemyAtletaRepository', 'SQLAlchemyCompeticaoRepository', 'SQLAlchemyClubeRepository', 'SQLAlchemyJogoRepository', 'SQLAlchemyEstadioRepository']

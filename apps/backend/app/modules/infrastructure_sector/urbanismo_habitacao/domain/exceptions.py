@@ -1,0 +1,2 @@
+class UrbanismoHabitacaoError(Exception):
+    pass

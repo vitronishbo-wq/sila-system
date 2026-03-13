@@ -1,0 +1,19 @@
+name: public_budget
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+description: Public budget orchestration (LDO, LOA, execution, ministerial control)
+
+exposes:
+  api_routers:
+    - app.modules.economy.public_budget.api.router:router
+  public_models: []
+  events_published: []
+
+requires:
+  domains: []
+  core_services:
+    - persistence
+
+subdomains: []

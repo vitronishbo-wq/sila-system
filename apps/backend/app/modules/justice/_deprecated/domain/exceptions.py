@@ -1,0 +1,1 @@
+class DeprecatedError(Exception): pass

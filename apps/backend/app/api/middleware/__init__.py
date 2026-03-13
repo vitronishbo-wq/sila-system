@@ -1,1 +1,1 @@
-# Auto-generated package marker
+"""Compatibility middleware package for legacy `app.api.*` imports."""

@@ -1,0 +1,5 @@
+from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_inspecao_repository import SQLAlchemyInspecaoRepository
+from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_lote_producao_repository import SQLAlchemyLoteProducaoRepository
+from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_produto_processado_repository import SQLAlchemyProdutoProcessadoRepository
+from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_unidade_processamento_repository import SQLAlchemyUnidadeProcessamentoRepository
+__all__ = ['SQLAlchemyUnidadeProcessamentoRepository', 'SQLAlchemyProdutoProcessadoRepository', 'SQLAlchemyLoteProducaoRepository', 'SQLAlchemyInspecaoRepository']

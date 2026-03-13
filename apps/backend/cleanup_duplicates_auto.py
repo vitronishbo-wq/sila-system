@@ -8,7 +8,7 @@ import subprocess
 import shutil
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Tuple
 from datetime import datetime
 
 class AutoCleaner:

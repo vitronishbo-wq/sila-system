@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-03-13T05:40:30.644846+00:00",
+  "tables": {
+    "energy_invoices": {
+      "seq_scan": 7,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "idx_tup_fetch": 0
+    },
+    "toll_passages": {
+      "seq_scan": 4,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "idx_tup_fetch": 0
+    }
+  },
+  "indexes": [
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "energy_invoices_pkey",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "ix_energy_invoices_consumo_id",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "ix_energy_invoices_cpf_titular",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "ix_energy_invoices_mes_referencia",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "ix_energy_invoices_status",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "ix_energy_invoices_unidade_consumidora_id",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "toll_passages",
+      "indexrelname": "ix_toll_passages_gantry_id",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "toll_passages",
+      "indexrelname": "ix_toll_passages_occurred_at",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "toll_passages",
+      "indexrelname": "ix_toll_passages_vehicle_did",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "toll_passages",
+      "indexrelname": "toll_passages_pkey",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    },
+    {
+      "table_name": "energy_invoices",
+      "indexrelname": "uq_energy_invoices_numero_fatura",
+      "idx_scan": 0,
+      "idx_tup_read": 0,
+      "idx_tup_fetch": 0
+    }
+  ],
+  "notes": [
+    "Indices com idx_scan muito baixo apos carga indicam possivel ausencia de consultas usando esses campos."
+  ],
+  "sizes": {
+    "energy_invoices": 1302528,
+    "toll_passages": 770048
+  }
+}

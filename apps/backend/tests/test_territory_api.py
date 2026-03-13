@@ -9,7 +9,6 @@ Estratégia:
 
 import pytest
 from uuid import UUID
-from unittest.mock import AsyncMock, MagicMock, patch
 
 from app.core.territory.models.territory import Territory
 

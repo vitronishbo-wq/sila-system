@@ -1,0 +1,1 @@
+from app.modules.justice.bounded_contexts.vital_events.api.birth_routes import *

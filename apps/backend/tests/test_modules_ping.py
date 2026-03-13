@@ -3,11 +3,33 @@ Testes de endpoints /ping para todos os módulos do SILA Backend
 Verifica se cada módulo está respondendo corretamente
 """
 
-from typing import Any, Dict
 
 import httpx
 import pytest
 from pydantic import BaseModel, ValidationError
+
+WORKING_MODULES = [
+    "urbanism",
+    "justice",
+    "commercial",
+    "education",
+    "address",
+    "registry",
+    "reports",
+    "identity",
+    "social",
+    "common",
+    "governance",
+    "journeys",
+    "services",
+    "training",
+    "internal",
+]
+
+
+@pytest.fixture
+def working_modules():
+    return WORKING_MODULES
 
 
 class ModulePingResponse(BaseModel):
@@ -25,23 +47,7 @@ class TestModulePingEndpoints:
 
     @pytest.mark.parametrize(
         "module_name",
-        [
-            "urbanism",
-            "justice",
-            "commercial",
-            "education",
-            "address",
-            "registry",
-            "reports",
-            "identity",
-            "social",
-            "common",
-            "governance",
-            "journeys",
-            "services",
-            "training",
-            "internal",
-        ],
+        WORKING_MODULES,
     )
     async def test_working_module_ping_async(
         self, async_client: httpx.AsyncClient, module_name: str

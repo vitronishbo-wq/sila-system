@@ -7,11 +7,15 @@ on:
     branches: [main]
 
 jobs:
+  backend-guardrails:
+    uses: ./.github/workflows/reusable-backend-guardrails.yml
+
   test-backend:
+    needs: backend-guardrails
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-  uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -44,5 +48,6 @@ jobs:
         run: |
           cd apps/backend
           export ENVIRONMENT=test
+          export STRICT_ASYNC=1
           export PYTHONPATH="$PWD:$PYTHONPATH"
           pytest --tb=short --cov=app --cov-report=term-missing --capture=no

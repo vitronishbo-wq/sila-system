@@ -1,0 +1,4 @@
+from app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
+from app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
+from app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
+__all__ = ['PesquisadorRepositoryPort', 'InstituicaoPesquisaRepositoryPort', 'ProjetoPesquisaRepositoryPort']

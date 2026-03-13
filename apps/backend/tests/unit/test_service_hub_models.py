@@ -4,7 +4,6 @@ FASE 5: Unit Tests para módulo Service Hub
 
 from enum import Enum
 
-import pytest
 
 
 class ServiceStatus(Enum):

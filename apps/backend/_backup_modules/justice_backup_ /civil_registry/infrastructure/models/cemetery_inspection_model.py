@@ -1,0 +1,1 @@
+from app.modules.justice.bounded_contexts.cemetery_management.infrastructure.cemetery_inspection_model import *

@@ -1,0 +1,143 @@
+# Prometheus Alert Rules - Fase 18.2
+
+groups:
+  - name: security_alerts
+    interval: 30s
+    rules:
+      # Alert Handler health check
+      - alert: AlertHandlerDown
+        expr: up{job="alert-handler"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: alert-handler
+        annotations:
+          summary: "Alert Handler is down"
+          description: "Alert Handler service has been unavailable for 2 minutes"
+
+      # High alert volume
+      - alert: HighAlertVolume
+        expr: |
+          rate(alert_handler_alerts_processed_total[5m]) > 100
+        for: 5m
+        labels:
+          severity: high
+          component: alert-handler
+        annotations:
+          summary: "High alert processing volume"
+          description: "Alert processing rate exceeded 100 alerts/sec (current: {{ $value }})"
+
+      # Alert processing latency
+      - alert: HighAlertLatency
+        expr: |
+          histogram_quantile(0.95, alert_handler_alert_processing_duration_seconds) > 1
+        for: 5m
+        labels:
+          severity: high
+          component: alert-handler
+        annotations:
+          summary: "High alert processing latency"
+          description: "95th percentile alert latency exceeded 1 second (current: {{ $value }}s)"
+
+      # Deduplicator cache size
+      - alert: HighDuplicatesCacheSize
+        expr: |
+          alert_handler_duplicates_cache_size > 10000
+        for: 10m
+        labels:
+          severity: medium
+          component: deduplicator
+        annotations:
+          summary: "Deduplicator cache growing large"
+          description: "Duplicate detection cache size: {{ $value }} entries"
+
+  - name: anomaly_detection
+    interval: 60s
+    rules:
+      # Anomaly detector high score events
+      - alert: HighAnomalyScore
+        expr: |
+          rate(anomaly_detector_anomalies_total{severity="critical"}[5m]) > 0
+        for: 5m
+        labels:
+          severity: critical
+          component: anomaly-detector
+        annotations:
+          summary: "Critical anomalies detected"
+          description: "{{ $value }} critical anomalies per second detected"
+
+      # Anomaly detector learning phase
+      - alert: AnomalyDetectorLearning
+        expr: |
+          anomaly_detector_profiles_learning > 10
+        for: 10m
+        labels:
+          severity: low
+          component: anomaly-detector
+        annotations:
+          summary: "Anomaly detector learning phase active"
+          description: "{{ $value }} user profiles in learning phase"
+
+  - name: elasticsearch
+    interval: 30s
+    rules:
+      # Elasticsearch cluster health
+      - alert: ElasticsearchClusterRed
+        expr: |
+          elasticsearch_cluster_health_status{status="red"} == 1
+        for: 2m
+        labels:
+          severity: critical
+          component: elasticsearch
+        annotations:
+          summary: "Elasticsearch cluster unhealthy"
+          description: "Elasticsearch cluster is in red status"
+
+      # Elasticsearch audit index lag
+      - alert: AuditIndexLag
+        expr: |
+          increase(elasticsearch_indices_docs_count{index=~"sila-audit-.*"}[5m]) == 0
+        for: 10m
+        labels:
+          severity: high
+          component: elasticsearch
+        annotations:
+          summary: "Audit index not receiving events"
+          description: "No new documents in sila-audit-* indices for 10 minutes"
+
+  - name: infrastructure
+    interval: 30s
+    rules:
+      # Alertmanager down
+      - alert: AlertMangerDown
+        expr: up{job="alertmanager"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: alertmanager
+        annotations:
+          summary: "Alertmanager is down"
+          description: "Alertmanager service has been unavailable for 2 minutes"
+
+      # Prometheus high memory usage
+      - alert: PrometheusHighMemory
+        expr: |
+          container_memory_usage_bytes{container_name="prometheus"} > 1073741824
+        for: 5m
+        labels:
+          severity: high
+          component: infrastructure
+        annotations:
+          summary: "Prometheus high memory usage"
+          description: "Prometheus memory usage exceeded 1GB"
+
+      # Grafana down
+      - alert: GrafanaDown
+        expr: up{job="grafana"} == 0
+        for: 2m
+        labels:
+          severity: medium
+          component: grafana
+        annotations:
+          summary: "Grafana is down"
+          description: "Grafana dashboard service has been unavailable for 2 minutes"

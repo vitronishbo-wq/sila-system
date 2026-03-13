@@ -1,0 +1,17 @@
+name: events
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+description: Universal module manifest for SILA System
+
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+
+requires:
+  domains: []
+  core_services: []
+
+subdomains: []

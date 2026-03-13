@@ -1,0 +1,190 @@
+# Alertmanager Configuration - Fase 18.2
+
+global:
+  resolve_timeout: 5m
+  slack_api_url: '${SLACK_WEBHOOK_URL}'
+  smtp_from: '${ALERT_FROM_EMAIL}'
+  smtp_smarthost: '${SMTP_SERVER}:${SMTP_PORT}'
+  smtp_auth_username: '${SMTP_USER}'
+  smtp_auth_password: '${SMTP_PASSWORD}'
+
+# Template files
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+# Root route with all parameters, which are inherited by the child
+# routes and can be overwritten on each route.
+route:
+  receiver: 'default'
+  group_by: ['alertname', 'severity', 'component']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+
+  # Security-critical alerts - immediate escalation
+  routes:
+    - match:
+        severity: 'critical'
+      receiver: 'security-critical'
+      group_wait: 10s
+      group_interval: 1m
+      repeat_interval: 1h
+      continue: true
+
+    # Security high alerts - Slack immediately
+    - match:
+        severity: 'high'
+        component: 'alert-handler'
+      receiver: 'security-high'
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 4h
+      continue: true
+
+    # Anomaly detection - escalate high scores
+    - match:
+        component: 'anomaly-detector'
+        severity: 'critical'
+      receiver: 'anomaly-critical'
+      group_wait: 10s
+      group_interval: 1m
+      repeat_interval: 2h
+      continue: true
+
+    # Elasticsearch infrastructure - high priority
+    - match:
+        component: 'elasticsearch'
+      receiver: 'infrastructure-alerts'
+      group_wait: 1m
+      group_interval: 5m
+      repeat_interval: 6h
+      continue: true
+
+    # Generic infrastructure alerts
+    - match:
+        component: 'infrastructure'
+      receiver: 'infrastructure-alerts'
+      group_wait: 2m
+      group_interval: 10m
+      repeat_interval: 12h
+
+# Receivers
+receivers:
+  # Default receiver - logs
+  - name: 'default'
+    webhook_configs:
+      - url: 'http://127.0.0.1:8080/webhooks/system-health'
+        send_resolved: true
+
+  # Security critical - Email + Slack + Webhook
+  - name: 'security-critical'
+    email_configs:
+      - to: '${SECURITY_EMAIL}'
+        from: '${ALERT_FROM_EMAIL}'
+        smarthost: '${SMTP_SERVER}:${SMTP_PORT}'
+        auth_username: '${SMTP_USER}'
+        auth_password: '${SMTP_PASSWORD}'
+        headers:
+          Subject: '[CRITICAL] SILA Security Alert'
+        html: |-
+          <h2>Critical Security Alert</h2>
+          <p><strong>Alert:</strong> {{ .GroupLabels.alertname }}</p>
+          <p><strong>Component:</strong> {{ .GroupLabels.component }}</p>
+          <table>
+          {{ range .Alerts }}
+          <tr>
+            <td>{{ .Labels.severity }}</td>
+            <td>{{ .Annotations.summary }}</td>
+            <td>{{ .Annotations.description }}</td>
+          </tr>
+          {{ end }}
+          </table>
+
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#security-critical'
+        title: '🚨 CRITICAL Security Alert'
+        text: |-
+          *Component:* {{ .GroupLabels.component }}
+          *Alert:* {{ .GroupLabels.alertname }}
+          {{ range .Alerts }}
+          • {{ .Annotations.summary }}
+            {{ .Annotations.description }}
+          {{ end }}
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+        send_resolved: true
+
+    webhook_configs:
+      - url: 'http://127.0.0.1:8080/webhooks/security-critical'
+        send_resolved: true
+
+  # Security high alerts - Slack only
+  - name: 'security-high'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#security-alerts'
+        title: '⚠️ HIGH Security Alert'
+        text: |-
+          *Alert:* {{ .GroupLabels.alertname }}
+          {{ range .Alerts }}
+          • {{ .Annotations.summary }}
+          {{ end }}
+        color: 'warning'
+        send_resolved: true
+
+    webhook_configs:
+      - url: 'http://127.0.0.1:8080/webhooks/security-alert'
+        send_resolved: true
+
+  # Anomaly detection critical
+  - name: 'anomaly-critical'
+    email_configs:
+      - to: '${SECURITY_EMAIL}'
+        from: '${ALERT_FROM_EMAIL}'
+        subject: '[ANOMALY] High Risk Behavior Detected'
+
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#security-alerts'
+        title: '🔴 Anomaly Detected'
+        color: 'danger'
+
+    webhook_configs:
+      - url: 'http://127.0.0.1:8080/webhooks/security-critical'
+
+  # Infrastructure alerts
+  - name: 'infrastructure-alerts'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#infrastructure'
+        title: '💬 Infrastructure Alert'
+        text: |-
+          *Alert:* {{ .GroupLabels.alertname }}
+          *Component:* {{ .GroupLabels.component }}
+          {{ range .Alerts }}
+          • {{ .Annotations.summary }}
+          {{ end }}
+        color: 'warning'
+        send_resolved: true
+
+    webhook_configs:
+      - url: 'http://127.0.0.1:8080/webhooks/system-health'
+
+# Inhibition rules prevent alerts with certain labels
+# from being sent if an alert matching another set of labels
+# is firing.
+inhibit_rules:
+  # Inhibit all alerts if infrastructure is down
+  - source_match:
+      severity: 'critical'
+      component: 'alert-handler'
+    target_match:
+      severity: 'high'
+    equal: ['component']
+
+  # Inhibit medium/low if high is firing
+  - source_match:
+      severity: 'high'
+    target_match_re:
+      severity: 'medium|low'
+    equal: ['component', 'alertname']

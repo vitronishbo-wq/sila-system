@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-03-13T05:15:44.260732Z",
+  "status": "OK",
+  "metrics": {
+    "total_matriculas": 2,
+    "total_anos_letivos": 2,
+    "total_turmas": 7,
+    "orphan_matriculas": 0,
+    "matriculas_turma_ano_mismatch": 0,
+    "matriculas_sem_turma": 0
+  },
+  "samples": {
+    "orphan_matriculas": [],
+    "matriculas_turma_ano_mismatch": [],
+    "matriculas_sem_turma": []
+  },
+  "notes": [
+    "Propinas: tabela educacao_propinas armazena valores em metadata_json; validacao de Kz deve ser feita na camada de aplicacao."
+  ]
+}

@@ -1,0 +1,2 @@
+class CulturaError(Exception):
+    pass

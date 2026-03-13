@@ -1,0 +1,2 @@
+class MarriageRecord:
+    pass

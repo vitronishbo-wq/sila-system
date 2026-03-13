@@ -16,9 +16,7 @@ Usage:
   python seed_angola_dpa_v3.py --check   # Apenas verificar estado atual
 """
 
-import uuid
 import psycopg2
-import sys
 import argparse
 from pathlib import Path
 from dotenv import load_dotenv

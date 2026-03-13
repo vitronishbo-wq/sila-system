@@ -1,12 +1,10 @@
 
-from core.security import get_password_hash
-from core.db.session import SessionLocal
+from app.core.security import get_password_hash
 from modules.identity.models.user import User
 import asyncio
 from sqlalchemy import select
 
 async def reset_password():
-    from core.db.session import get_async_db
     from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
     from sqlalchemy.orm import sessionmaker
     from config.settings import settings

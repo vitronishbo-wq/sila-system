@@ -1,0 +1,1 @@
+from app.modules.governance.statistics.application.events.definitions import *

@@ -1,0 +1,25 @@
+from __future__ import annotations
+from fastapi import Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.api.deps import get_db
+from app.modules.intelligence.ciencia_pesquisa.application.services.instituicao_pesquisa_service import InstituicaoPesquisaService
+from app.modules.intelligence.ciencia_pesquisa.application.services.pesquisador_service import PesquisadorService
+from app.modules.intelligence.ciencia_pesquisa.application.services.projeto_pesquisa_service import ProjetoPesquisaService
+from app.modules.intelligence.ciencia_pesquisa.infrastructure.repositories.sqlalchemy_instituicao_pesquisa_repository import SQLAlchemyInstituicaoPesquisaRepository
+from app.modules.intelligence.ciencia_pesquisa.infrastructure.repositories.sqlalchemy_pesquisador_repository import SQLAlchemyPesquisadorRepository
+from app.modules.intelligence.ciencia_pesquisa.infrastructure.repositories.sqlalchemy_projeto_pesquisa_repository import SQLAlchemyProjetoPesquisaRepository
+
+async def get_projeto_pesquisa_service(session: AsyncSession=Depends(get_db)) -> ProjetoPesquisaService:
+    projeto_repo = SQLAlchemyProjetoPesquisaRepository(session)
+    instituicao_repo = SQLAlchemyInstituicaoPesquisaRepository(session)
+    pesquisador_repo = SQLAlchemyPesquisadorRepository(session)
+    return ProjetoPesquisaService(projeto_repo=projeto_repo, instituicao_repo=instituicao_repo, pesquisador_repo=pesquisador_repo)
+
+async def get_pesquisador_service(session: AsyncSession=Depends(get_db)) -> PesquisadorService:
+    instituicao_repo = SQLAlchemyInstituicaoPesquisaRepository(session)
+    pesquisador_repo = SQLAlchemyPesquisadorRepository(session)
+    return PesquisadorService(pesquisador_repo=pesquisador_repo, instituicao_repo=instituicao_repo)
+
+async def get_instituicao_pesquisa_service(session: AsyncSession=Depends(get_db)) -> InstituicaoPesquisaService:
+    instituicao_repo = SQLAlchemyInstituicaoPesquisaRepository(session)
+    return InstituicaoPesquisaService(instituicao_repo=instituicao_repo)

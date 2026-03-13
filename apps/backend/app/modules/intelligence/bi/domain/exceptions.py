@@ -1,0 +1,2 @@
+class BiError(Exception):
+    pass

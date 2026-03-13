@@ -1,0 +1,2 @@
+class ArquivoNacionalError(Exception):
+    pass

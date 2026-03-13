@@ -12,8 +12,6 @@ Fluxo de Negócio:
 
 import asyncio
 from datetime import datetime, timedelta, timezone
-from decimal import Decimal
-from unittest.mock import AsyncMock, Mock
 from uuid import uuid4
 
 import pytest
@@ -51,6 +49,10 @@ class MockHealthService:
 
     async def record_vital_signs(self, patient_id, vital_data):
         """Registra sinais vitais do paciente."""
+        patient = next((p for p in self.patients if p["id"] == patient_id), None)
+        if not patient:
+            raise ValueError("Paciente não encontrado")
+
         vital_sign = {
             "id": len(self.vital_signs) + 1,
             "patient_id": patient_id,
@@ -155,10 +157,11 @@ class MockHealthService:
 class MockHealthMonitoringService:
     """Mock do MonitoringService especializado para saúde."""
 
-    def __init__(self):
+    def __init__(self, health_service=None):
         self.health_alerts = []
         self.monitoring_sessions = []
         self.escalation_rules = []
+        self.health_service = health_service
 
     async def create_health_alert(self, alert_data):
         """Cria alerta de saúde."""
@@ -189,14 +192,49 @@ class MockHealthMonitoringService:
 
     async def analyze_trends(self, patient_id, time_range_hours=24):
         """Analisa tendências de saúde do paciente."""
-        # Simular análise de tendências
+        vitals = []
+        if self.health_service is not None:
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=time_range_hours)
+            vitals = [
+                v
+                for v in self.health_service.vital_signs
+                if v["patient_id"] == patient_id and v["recorded_at"] >= cutoff
+            ]
+
+        bp_trend = "STABLE"
+        hr_trend = "STABLE"
+        overall_risk = "LOW"
+        if len(vitals) >= 2:
+            first_systolic = vitals[0].get("blood_pressure_systolic", 120)
+            last_systolic = vitals[-1].get("blood_pressure_systolic", 120)
+            if last_systolic > first_systolic:
+                bp_trend = "INCREASING"
+            elif last_systolic < first_systolic:
+                bp_trend = "DECREASING"
+
+            first_hr = vitals[0].get("heart_rate", 70)
+            last_hr = vitals[-1].get("heart_rate", 70)
+            if last_hr > first_hr:
+                hr_trend = "INCREASING"
+            elif last_hr < first_hr:
+                hr_trend = "DECREASING"
+
+            max_systolic = max(v.get("blood_pressure_systolic", 120) for v in vitals)
+            max_diastolic = max(v.get("blood_pressure_diastolic", 80) for v in vitals)
+            if max_systolic >= 180 or max_diastolic >= 120:
+                overall_risk = "HIGH"
+            elif max_systolic >= 140 or max_diastolic >= 90:
+                overall_risk = "MEDIUM"
+            else:
+                overall_risk = "LOW"
+
         trends = {
             "patient_id": patient_id,
             "time_range_hours": time_range_hours,
-            "blood_pressure_trend": "STABLE",
-            "heart_rate_trend": "INCREASING",
+            "blood_pressure_trend": bp_trend,
+            "heart_rate_trend": hr_trend,
             "temperature_trend": "STABLE",
-            "overall_risk": "MEDIUM",
+            "overall_risk": overall_risk,
             "recommendations": [
                 "Continuar monitoramento",
                 "Agendar consulta de acompanhamento",
@@ -316,9 +354,9 @@ class TestHealthMonitoringNotificationFlow:
         return MockHealthService()
 
     @pytest.fixture
-    def monitoring_service(self):
+    def monitoring_service(self, health_service):
         """Fixture para HealthMonitoringService."""
-        return MockHealthMonitoringService()
+        return MockHealthMonitoringService(health_service=health_service)
 
     @pytest.fixture
     def notification_service(self):

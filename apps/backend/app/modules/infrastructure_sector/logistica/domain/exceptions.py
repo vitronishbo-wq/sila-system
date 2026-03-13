@@ -1,0 +1,2 @@
+class LogisticaError(Exception):
+    pass

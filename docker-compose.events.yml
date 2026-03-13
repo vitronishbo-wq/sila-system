@@ -1,0 +1,48 @@
+"""Docker Compose configuration for Event Bus infrastructure.
+
+To use this, merge with docker-compose.yml or run standalone:
+  docker-compose -f docker-compose.events.yml up -d
+"""
+
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: sila-redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - sila-network
+    restart: unless-stopped
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: sila-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - sila-network
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  sila-network:
+    driver: bridge

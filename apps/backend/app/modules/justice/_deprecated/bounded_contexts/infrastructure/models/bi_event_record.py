@@ -1,0 +1,2 @@
+class BIEventRecord:
+    pass

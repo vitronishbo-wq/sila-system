@@ -1,0 +1,9 @@
+from app.modules.resources.florestas.infrastructure.adapters.agricultura_service_adapter import AgriculturaServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.ambiente_service_adapter import AmbienteServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.comercio_externo_service_adapter import ComercioExternoServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.energia_service_adapter import EnergiaServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.geosampa_service_adapter import GeosampaServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.gestao_fundiaria_service_adapter import GestaoFundiariaServiceAdapter
+from app.modules.resources.florestas.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
+__all__ = ['AgriculturaServiceAdapter', 'AmbienteServiceAdapter', 'CitizenServiceAdapter', 'ComercioExternoServiceAdapter', 'EnergiaServiceAdapter', 'GeosampaServiceAdapter', 'GestaoFundiariaServiceAdapter', 'RequestServiceAdapter']

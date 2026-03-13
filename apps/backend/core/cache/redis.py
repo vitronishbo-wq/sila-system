@@ -1,4 +1,4 @@
-from redis.asyncio import Redis, from_url
+from redis.asyncio import from_url
 from config.settings import settings
 
 # Initialize Redis client using settings

@@ -1,0 +1,2 @@
+class IgualdadeError(Exception):
+    pass

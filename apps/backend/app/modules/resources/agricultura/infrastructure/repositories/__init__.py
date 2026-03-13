@@ -1,0 +1,2 @@
+from app.modules.resources.agricultura.infrastructure.repositories.sqlalchemy_produtor_repository import SQLAlchemyProdutorRepository
+__all__ = ['SQLAlchemyProdutorRepository']

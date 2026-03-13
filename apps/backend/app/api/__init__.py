@@ -1,3 +1,1 @@
-"""Package initialization (consolidated)."""
-
-__all__ = []
+"""Compatibility API package for legacy imports."""

@@ -1,0 +1,2 @@
+class SQLAlchemyDependencyRepository:
+    pass

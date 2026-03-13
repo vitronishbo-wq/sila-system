@@ -1,17 +1,12 @@
 from __future__ import annotations
-
 import uuid
-
 from sqlalchemy import Date, DateTime, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-
-from app.core.database import Base
-
+from app.core.db import Base
 
 class EmpregoModel(Base):
-    __tablename__ = "educacao_empregos"
-
+    __tablename__ = 'educacao_empregos'
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_processo: Mapped[str] = mapped_column(String(64), unique=True, nullable=False, index=True)
     service_type: Mapped[str] = mapped_column(String(64), nullable=False, index=True)

@@ -204,6 +204,7 @@ class TestBasicEndpoints:
             response_time < 5.0
         ), f"Endpoint {endpoint} demorou demais: {response_time:.2f}s"
 
+    @pytest.mark.asyncio
     async def test_health_endpoint_async_real(
         self, async_client: httpx.AsyncClient, test_settings
     ):

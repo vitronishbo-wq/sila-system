@@ -1,0 +1,117 @@
+system: sila-system
+generated_at: '2026-03-07T20:55:07Z'
+modules:
+  economy:
+    path: apps/backend/app/modules/economy
+    domain_group: economy
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on: []
+  educacao:
+    path: apps/backend/app/modules/educacao
+    domain_group: educacao
+    layered_architecture: true
+    entities:
+      - AnoLetivo
+      - CicloEnsino
+      - Escola
+      - InscricaoBasica
+      - InscricaoSecundaria
+      - InscricaoSuperior
+      - InscricaoTecnico
+      - Matricula
+      - StatusFluxo
+      - StatusMatricula
+      - TipoEscola
+      - TipoInscricao
+      - Turma
+      - Turno
+      - WorkflowRecord
+    use_cases:
+      - BoletimService
+      - CertificadoService
+      - ConcursoService
+      - EmpregoService
+      - FormacaoService
+      - InscricaoService
+      - MatriculaService
+      - PropinaService
+      - TransferenciaService
+      - UniversidadeService
+      - WorkflowService
+      - aprovar_transferencia
+      - ativar_matricula
+      - cancel_record
+      - cancelar_inscricao
+      - conclude_record
+      - confirmar_inscricao
+      - create_record
+      - criar_inscricao_basica
+      - criar_inscricao_secundaria
+      - criar_inscricao_superior
+      - criar_inscricao_tecnico
+      - criar_matricula
+      - get_record
+      - list_records
+      - listar_por_cidadao
+      - rejeitar_transferencia
+      - solicitar_transferencia
+    api: []
+    depends_on: []
+  governance:
+    path: apps/backend/app/modules/governance
+    domain_group: governance
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on: []
+  infrastructure_sector:
+    path: apps/backend/app/modules/infrastructure_sector
+    domain_group: infrastructure_sector
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on: []
+  intelligence:
+    path: apps/backend/app/modules/intelligence
+    domain_group: intelligence
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on:
+      - economy
+      - governance
+  justice:
+    path: apps/backend/app/modules/justice
+    domain_group: justice
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on: []
+  resources:
+    path: apps/backend/app/modules/resources
+    domain_group: resources
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on:
+      - economy
+      - infrastructure_sector
+  society:
+    path: apps/backend/app/modules/society
+    domain_group: society
+    layered_architecture: true
+    entities: []
+    use_cases: []
+    api: []
+    depends_on:
+      - economy
+      - infrastructure_sector
+      - justice

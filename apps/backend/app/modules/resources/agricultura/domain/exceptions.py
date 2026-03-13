@@ -1,0 +1,2 @@
+class AgriculturaError(Exception):
+    pass

@@ -1,0 +1,1 @@
+"""Domain layer do modulo Familia."""

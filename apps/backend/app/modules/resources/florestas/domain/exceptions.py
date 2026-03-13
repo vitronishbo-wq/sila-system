@@ -1,0 +1,2 @@
+class FlorestasError(Exception):
+    pass

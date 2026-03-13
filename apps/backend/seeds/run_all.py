@@ -1,6 +1,6 @@
 import asyncio
 import sys
-from app.core.database import AsyncSessionLocal
+from app.core.db import AsyncSessionLocal
 
 from seeds.core.seed_angola_provinces import seed_territories
 from seeds.catalog import seed_catalog

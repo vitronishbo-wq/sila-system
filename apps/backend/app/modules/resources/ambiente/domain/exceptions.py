@@ -1,0 +1,2 @@
+class AmbienteError(Exception):
+    pass

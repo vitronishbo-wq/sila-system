@@ -8,16 +8,4 @@ from .matricula_routes import router as matricula_router
 from .propinas import router as propinas_router
 from .transferencias import router as transferencias_router
 from .universidade import router as universidade_router
-
-__all__ = [
-    "matricula_router",
-    "inscricoes_router",
-    "boletins_router",
-    "certificados_router",
-    "transferencias_router",
-    "propinas_router",
-    "emprego_router",
-    "concursos_router",
-    "formacoes_router",
-    "universidade_router",
-]
+__all__ = ['matricula_router', 'inscricoes_router', 'boletins_router', 'certificados_router', 'transferencias_router', 'propinas_router', 'emprego_router', 'concursos_router', 'formacoes_router', 'universidade_router']

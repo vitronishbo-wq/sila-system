@@ -1,0 +1,2 @@
+class AguasSaneamentoServiceAdapter:
+    pass

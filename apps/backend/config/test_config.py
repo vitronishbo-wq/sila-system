@@ -9,7 +9,6 @@ import os
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any, Dict
 
 # Add the backend directory to Python path for testing
 backend_path = Path(__file__).parent.parent
@@ -45,7 +44,7 @@ def test_settings_instance():
     print("Testing settings instance...")
 
     try:
-        from config import settings, get_settings
+        from config import settings
 
         # Test basic properties
         assert hasattr(settings, "PROJECT_NAME")
@@ -125,7 +124,7 @@ def test_config_manager():
     print("Testing configuration manager...")
 
     try:
-        from config import get_config_manager, Settings
+        from config import get_config_manager
 
         manager = get_config_manager()
 

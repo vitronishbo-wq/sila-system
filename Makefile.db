@@ -1,0 +1,92 @@
+# 🛠️ MAKEFILE - SILA SYSTEM (Acesso Local ao Banco)
+# Comandos simplificados para gerenciar o banco de dados sem Docker
+
+.PHONY: help db-connect db-inspect db-seed db-clean db-status db-query
+
+# Variáveis de ambiente
+DB_USER ?= sila_user
+DB_PASSWORD ?= Trumanmarcelo_1983
+DB_HOST ?= localhost
+DB_PORT ?= 5432
+DB_NAME ?= sila_db
+
+help:
+	@echo "🛠️  SILA System - Comandos de Banco de Dados (Local)"
+	@echo ""
+	@echo "Conexão e Inspeção:"
+	@echo "  make db-connect      → Conectar ao banco de dados interativamente"
+	@echo "  make db-inspect      → Inspecionar tabela locations (províncias, etc)"
+	@echo "  make db-status       → Verificar status da conexão"
+	@echo ""
+	@echo "Seed e Dados:"
+	@echo "  make db-seed         → Executar seed completo (Lei 14/24 + Hierarquia)"
+	@echo "  make db-clean        → Limpar tabela locations (truncate)"
+	@echo ""
+	@echo "Queries Úteis:"
+	@echo "  make db-count-provinces    → Contar províncias"
+	@echo "  make db-list-provinces     → Listar todas as províncias"
+	@echo "  make db-count-all          → Contar todos os registros"
+	@echo ""
+
+# 🔌 Conecta ao banco interativamente
+db-connect:
+	@echo "🔓 Conectando ao PostgreSQL ($(DB_HOST):$(DB_PORT)/$(DB_NAME))..."
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME)
+
+# 📊 Inspeciona a tabela locations
+db-inspect:
+	@echo "📊 Inspecionando tabela locations..."
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -c "SELECT * FROM locations LIMIT 10;"
+
+# 🔍 Verifica status da conexão
+db-status:
+	@echo "🔍 Testando conexão..."
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -c "SELECT version();" && echo "✅ Conexão OK"
+
+# 🌍 Contar províncias
+db-count-provinces:
+	@echo "🌍 Total de Províncias:"
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -t -c "SELECT COUNT(*) FROM locations WHERE type = 'PROVINCIA';"
+
+# 📋 Listar todas as províncias
+db-list-provinces:
+	@echo "📋 Províncias Cadastradas:"
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -c "SELECT id, name, type FROM locations WHERE type = 'PROVINCIA' ORDER BY id;"
+
+# 📍 Contar todos os registros
+db-count-all:
+	@echo "📊 Contagem de Registros:"
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) << SQL
+	SELECT 
+		'Províncias' as tipo, COUNT(*) as total FROM locations WHERE type = 'PROVINCIA'
+	UNION ALL
+	SELECT 'Municípios', COUNT(*) FROM locations WHERE type = 'MUNICIPIO'
+	UNION ALL
+	SELECT 'Comunas', COUNT(*) FROM locations WHERE type = 'COMUNA'
+	UNION ALL
+	SELECT 'TOTAL', COUNT(*) FROM locations;
+SQL
+
+# 🧹 Limpa a tabela locations
+db-clean:
+	@echo "⚠️  Limpando tabela locations..."
+	@PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -c "TRUNCATE TABLE locations CASCADE; ALTER SEQUENCE locations_id_seq RESTART WITH 1;"
+	@echo "✅ Tabela limpa"
+
+# 🌱 Executa seed completo
+db-seed:
+	@echo "🌱 Executando seed completo (Lei 14/24) - master script..."
+	@python3 apps/backend/seeds/run_master_seed.py
+	@echo "✅ Seed concluído"
+
+# 🧪 Teste rápido
+db-test:
+	@echo "🧪 Teste de Conexão + Inspeção..."
+	@make db-status
+	@echo ""
+	@make db-count-all
+
+# ⚡ Script rápido de query customizada
+db-query:
+	@read -p "Enter SQL query: " QUERY; \
+	PGPASSWORD=$(DB_PASSWORD) psql -h $(DB_HOST) -p $(DB_PORT) -U $(DB_USER) -d $(DB_NAME) -c "$$QUERY"

@@ -5,7 +5,6 @@ This module contains tests for user-related operations such as
 retrieving, updating, and managing user accounts.
 """
 
-from typing import Any, Dict
 
 import pytest
 from fastapi import status

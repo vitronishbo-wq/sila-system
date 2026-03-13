@@ -1,0 +1,2 @@
+from app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaError, EstatisticaNotFoundError, EstatisticaValidationError
+__all__ = ['EstatisticaError', 'EstatisticaValidationError', 'EstatisticaNotFoundError', 'EstatisticaConflictError']

@@ -2,9 +2,10 @@ from pathlib import Path
 
 class LocalStorage:
     """Implementação simples de storage local para o SILA."""
-    
-    def __init__(self, base_path: str = "storage", **kwargs):
-        for k, v in kwargs.items(): setattr(self, k, v)
+
+    def __init__(self, base_path: str='storage', **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
         self.base_path = Path(base_path)
         self.base_path.mkdir(parents=True, exist_ok=True)
 
@@ -12,11 +13,9 @@ class LocalStorage:
         """Guarda ficheiro e retorna caminho relativo."""
         folder = self.base_path / sub_folder
         folder.mkdir(parents=True, exist_ok=True)
-        
         file_path = folder / file_name
-        with open(file_path, "wb") as f:
+        with open(file_path, 'wb') as f:
             f.write(content)
-            
         return str(Path(sub_folder) / file_name)
 
     def delete_file(self, relative_path: str):

@@ -2,7 +2,6 @@ from typing import Optional
 from uuid import UUID
 from datetime import date, datetime
 from pydantic import BaseModel, EmailStr, ConfigDict
-
 from app.domain.enums import Gender, MaritalStatus, CitizenStatus
 
 class CitizenBase(BaseModel):
@@ -32,7 +31,7 @@ class CitizenBase(BaseModel):
     geo_coordinates: Optional[str] = None
     status: CitizenStatus = CitizenStatus.ACTIVE
     is_verified: bool = False
-    verification_level: str = "basic"
+    verification_level: str = 'basic'
 
 class CitizenCreate(CitizenBase):
     created_by: str
@@ -70,7 +69,6 @@ class CitizenUpdate(BaseModel):
 
 class CitizenInDB(CitizenBase):
     model_config = ConfigDict(from_attributes=True)
-    
     id: UUID
     created_at: datetime
     updated_at: datetime

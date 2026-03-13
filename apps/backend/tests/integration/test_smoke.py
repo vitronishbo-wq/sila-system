@@ -2,9 +2,7 @@
 Smoke test to verify the test environment is working.
 """
 
-import asyncio
 import logging
-import os
 import sys
 
 # Configure logging

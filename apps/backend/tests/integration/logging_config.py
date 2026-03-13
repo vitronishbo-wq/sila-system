@@ -5,7 +5,6 @@ Test-specific logging configuration that disables structured logging and ensures
 import json
 import logging
 import sys
-from typing import Any, Dict, Optional
 
 
 class PlainTextFormatter(logging.Formatter):

@@ -5,7 +5,7 @@ Revises:
 Create Date: 2023-10-27 10:00:00.000000
 
 """
-from alembic import op
+from alembic import context, op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
@@ -16,7 +16,92 @@ branch_labels = None
 depends_on = None
 
 def upgrade():
+    offline = context.is_offline_mode()
+    existing_tables = set()
+    bind = None
+
+    if not offline:
+        bind = op.get_bind()
+        inspector = sa.inspect(bind)
+        existing_tables = set(inspector.get_table_names())
+
+        # Idempotency guard for environments where health schema was already provisioned.
+        if "saude_requests" in existing_tables:
+            return
+
     # Criação dos tipos ENUM no PostgreSQL para garantir integridade com o domínio SILA
+    if offline:
+        op.execute(
+            """
+            DO $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'healthcareservicetype') THEN
+                    CREATE TYPE healthcareservicetype AS ENUM (
+                        '022_consulta_medica_geral',
+                        '023_consulta_medica_especializada',
+                        '029_atendimento_de_saude_materno_infantil',
+                        '030_planeamento_familiar',
+                        '032_assistencia_pre_natal',
+                        '033_assistencia_pos_natal',
+                        '035_aconselhamento_nutricional',
+                        '040_apoio_psicologico_comunitario',
+                        '0968_acompanhamento_de_doentes_cronicos',
+                        '0969_alertas_de_saude_personalizados',
+                        '756_educacao_alimentar_comunitaria',
+                        '758_monitorizacao_nutricional_comunitaria'
+                    );
+                END IF;
+            END
+            $$;
+            """
+        )
+        op.execute(
+            """
+            DO $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'appointmentstatus') THEN
+                    CREATE TYPE appointmentstatus AS ENUM (
+                        'pending', 'scheduled', 'in_progress', 'completed', 'cancelled', 'no_show'
+                    );
+                END IF;
+            END
+            $$;
+            """
+        )
+        op.execute(
+            """
+            DO $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'maternalrisklevel') THEN
+                    CREATE TYPE maternalrisklevel AS ENUM ('low', 'medium', 'high');
+                END IF;
+            END
+            $$;
+            """
+        )
+        op.execute(
+            """
+            DO $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'chronicseverity') THEN
+                    CREATE TYPE chronicseverity AS ENUM ('mild', 'moderate', 'severe');
+                END IF;
+            END
+            $$;
+            """
+        )
+        op.execute(
+            """
+            DO $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'notificationchannel') THEN
+                    CREATE TYPE notificationchannel AS ENUM ('sms', 'email', 'app');
+                END IF;
+            END
+            $$;
+            """
+        )
+
     saude_service_type = postgresql.ENUM(
         '022_consulta_medica_geral', 
         '023_consulta_medica_especializada', 
@@ -30,24 +115,49 @@ def upgrade():
         '0969_alertas_de_saude_personalizados', 
         '756_educacao_alimentar_comunitaria', 
         '758_monitorizacao_nutricional_comunitaria', 
-        name='healthcareservicetype'
+        name='healthcareservicetype',
+        create_type=False,
     )
-    saude_service_type.create(op.get_bind())
+    if not offline:
+        saude_service_type.create(bind, checkfirst=True)
     
     appointment_status = postgresql.ENUM(
         'pending', 'scheduled', 'in_progress', 'completed', 'cancelled', 'no_show', 
-        name='appointmentstatus'
+        name='appointmentstatus',
+        create_type=False,
     )
-    appointment_status.create(op.get_bind())
+    if not offline:
+        appointment_status.create(bind, checkfirst=True)
     
-    maternal_risk_level = postgresql.ENUM('low', 'medium', 'high', name='maternalrisklevel')
-    maternal_risk_level.create(op.get_bind())
+    maternal_risk_level = postgresql.ENUM(
+        'low',
+        'medium',
+        'high',
+        name='maternalrisklevel',
+        create_type=False,
+    )
+    if not offline:
+        maternal_risk_level.create(bind, checkfirst=True)
     
-    chronic_severity = postgresql.ENUM('mild', 'moderate', 'severe', name='chronicseverity')
-    chronic_severity.create(op.get_bind())
+    chronic_severity = postgresql.ENUM(
+        'mild',
+        'moderate',
+        'severe',
+        name='chronicseverity',
+        create_type=False,
+    )
+    if not offline:
+        chronic_severity.create(bind, checkfirst=True)
     
-    notification_channel = postgresql.ENUM('sms', 'email', 'app', name='notificationchannel')
-    notification_channel.create(op.get_bind())
+    notification_channel = postgresql.ENUM(
+        'sms',
+        'email',
+        'app',
+        name='notificationchannel',
+        create_type=False,
+    )
+    if not offline:
+        notification_channel.create(bind, checkfirst=True)
 
     # Tabela Principal: saude_requests (Workflow Motor)
     op.create_table(
@@ -167,8 +277,8 @@ def downgrade():
     op.drop_table('saude_maternal_records')
     op.drop_table('saude_requests')
     
-    sa.Enum(name='notificationchannel').drop(op.get_bind())
-    sa.Enum(name='chronicseverity').drop(op.get_bind())
-    sa.Enum(name='maternalrisklevel').drop(op.get_bind())
-    sa.Enum(name='appointmentstatus').drop(op.get_bind())
-    sa.Enum(name='healthcareservicetype').drop(op.get_bind())
+    op.execute("DROP TYPE IF EXISTS notificationchannel")
+    op.execute("DROP TYPE IF EXISTS chronicseverity")
+    op.execute("DROP TYPE IF EXISTS maternalrisklevel")
+    op.execute("DROP TYPE IF EXISTS appointmentstatus")
+    op.execute("DROP TYPE IF EXISTS healthcareservicetype")

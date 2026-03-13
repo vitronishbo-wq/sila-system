@@ -1,0 +1,2 @@
+class PescasIndustriaisError(Exception):
+    pass

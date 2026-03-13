@@ -1,132 +1,139 @@
-"""
-Tests for DocumentService.
-"""
+"""Unit tests for DocumentService with isolated dependencies."""
 
-import os
-import shutil
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
-from uuid import uuid4
-from pathlib import Path
+import types
 from io import BytesIO
+from pathlib import Path
+from types import SimpleNamespace
+from uuid import uuid4
+from unittest.mock import AsyncMock, MagicMock, patch
 
+import pytest
 from fastapi import UploadFile
 
+from modules.documents.schemas.documents import DocumentCreate, DocumentStatus
 from modules.documents.services.document_service import DocumentService
-from modules.documents.models.documents import Document
-from modules.documents.schemas.documents import DocumentCreate, DocumentSearchFilters, DocumentStatus
-from modules.identity.models.user import User  # Register User model
-from modules.location.models.region import Region  # Register Region
-from modules.identity.models.identity import Identity  # Register Identity
 
-# Temporary test directory
+
 TEST_UPLOAD_DIR = Path("media/test_documents")
 
 
-@pytest.fixture(autouse=True)
-def setup_teardown_storage():
-    """Setup and teardown test storage."""
-    # Patch the UPLOAD_DIR in the service
-    with patch("modules.documents.services.document_service.UPLOAD_DIR", TEST_UPLOAD_DIR):
-        TEST_UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-        yield
-        if TEST_UPLOAD_DIR.exists():
-            shutil.rmtree(TEST_UPLOAD_DIR)
+class FakeDocument:
+    """Lightweight stand-in for ORM Document model."""
+
+    _next_id = 1
+
+    def __init__(self, **kwargs):
+        self.id = FakeDocument._next_id
+        FakeDocument._next_id += 1
+        self.current_version_id = None
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+
+class FakeDocumentVersion:
+    """Lightweight stand-in for ORM DocumentVersion model."""
+
+    _next_id = 1
+
+    def __init__(self, **kwargs):
+        self.id = FakeDocumentVersion._next_id
+        FakeDocumentVersion._next_id += 1
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 
 @pytest.fixture
 def mock_db_session():
-    """Mock async database session."""
     session = AsyncMock()
     mock_result = MagicMock()
     mock_scalars = MagicMock()
     mock_result.scalars.return_value = mock_scalars
 
-    # Setup execute to return the mock result
     session.execute = AsyncMock(return_value=mock_result)
     session.add = MagicMock()
-
-    # Store helpers
+    session.flush = AsyncMock()
+    session.commit = AsyncMock()
+    session.refresh = AsyncMock()
+    session.delete = AsyncMock()
     session._mock_scalars = mock_scalars
     return session
 
 
+@pytest.fixture(autouse=True)
+def patch_upload_dir():
+    with patch("modules.documents.services.document_service.UPLOAD_DIR", TEST_UPLOAD_DIR):
+        yield
+
+
 @pytest.mark.asyncio
-async def test_upload_document_success(mock_db_session):
-    """Test successful document upload."""
+async def test_create_single_document_success(mock_db_session):
     owner_id = uuid4()
-
-    # Prepare create data
-    doc_create = DocumentCreate(
-        title="Test Doc",
-        description="A test document",
-        is_public=False
+    file = UploadFile(
+        filename="test.txt",
+        file=BytesIO(b"abc"),
+        headers={"content-type": "text/plain"},
     )
+    metadata = DocumentCreate(title="Test Doc", description="A test document")
+    service = DocumentService(mock_db_session)
 
-    # Prepare mock file
-    file_content = b"Content of the test file"
-    file = UploadFile(filename="test.txt", file=BytesIO(
-        file_content), headers={"content-type": "text/plain"})
+    fake_ocr_task = SimpleNamespace(delay=MagicMock())
+    fake_tasks_module = types.SimpleNamespace(process_document_ocr_task=fake_ocr_task)
 
-    # Execute
-    result = await DocumentService.upload_document(
-        db=mock_db_session,
-        file=file,
-        metadata=doc_create,
-        owner_id=owner_id
-    )
+    with (
+        patch.object(
+            service,
+            "_save_file",
+            AsyncMock(return_value=("media/test_documents/temp/test.txt", 3, "checksum")),
+        ),
+        patch("modules.documents.services.document_service.Document", FakeDocument),
+        patch("modules.documents.services.document_service.DocumentVersion", FakeDocumentVersion),
+        patch.dict("sys.modules", {"modules.documents.tasks": fake_tasks_module}),
+    ):
+        result = await service.create_single_document(file=file, metadata=metadata, owner_id=owner_id)
 
-    # Verify DB calls
-    mock_db_session.add.assert_called_once()
-    mock_db_session.commit.assert_awaited()
-    mock_db_session.refresh.assert_awaited()
-
-    # Verify file saved
     assert result.title == "Test Doc"
     assert result.owner_id == owner_id
-    assert os.path.exists(result.file_path)
-
-    # Verify content
-    with open(result.file_path, "rb") as f:
-        saved_content = f.read()
-        assert saved_content == file_content
+    assert result.status == DocumentStatus.PENDING
+    assert result.current_version_id is not None
+    assert mock_db_session.add.call_count == 2
+    mock_db_session.commit.assert_awaited_once()
+    mock_db_session.refresh.assert_awaited_once()
+    fake_ocr_task.delay.assert_called_once()
 
 
 @pytest.mark.asyncio
 async def test_get_document_by_id(mock_db_session):
-    """Test retrieving document by ID."""
     doc_id = uuid4()
-    mock_doc = Document(id=doc_id, title="Found Doc")
+    expected = SimpleNamespace(id=doc_id, title="Found Doc")
+    mock_db_session._mock_scalars.first.return_value = expected
+    service = DocumentService(mock_db_session)
 
-    mock_db_session._mock_scalars.first.return_value = mock_doc
+    result = await service.get_document_by_id(doc_id)
 
-    result = await DocumentService.get_document_by_id(mock_db_session, doc_id)
-
-    assert result.id == doc_id
-    assert result.title == "Found Doc"
+    assert result is expected
+    mock_db_session.execute.assert_awaited_once()
 
 
 @pytest.mark.asyncio
 async def test_delete_document_soft(mock_db_session):
-    """Test soft deletion."""
     doc_id = uuid4()
-    mock_doc = Document(id=doc_id, title="To Delete", status="active", file_path="dummy/path")
+    mock_doc = SimpleNamespace(id=doc_id, title="To Delete", status=DocumentStatus.PENDING)
+    service = DocumentService(mock_db_session)
+    service.get_document_by_id = AsyncMock(return_value=mock_doc)
 
-    mock_db_session._mock_scalars.first.return_value = mock_doc
-
-    success = await DocumentService.delete_document(mock_db_session, doc_id, hard_delete=False)
+    success = await service.delete_document(doc_id, hard_delete=False)
 
     assert success is True
     assert mock_doc.status == DocumentStatus.DELETED
-    mock_db_session.commit.assert_awaited()
+    mock_db_session.commit.assert_awaited_once()
 
 
 @pytest.mark.asyncio
 async def test_delete_document_not_found(mock_db_session):
-    """Test delete when doc not found."""
-    mock_db_session._mock_scalars.first.return_value = None
+    service = DocumentService(mock_db_session)
+    service.get_document_by_id = AsyncMock(return_value=None)
 
-    success = await DocumentService.delete_document(mock_db_session, uuid4())
+    success = await service.delete_document(uuid4())
 
     assert success is False
     mock_db_session.commit.assert_not_called()

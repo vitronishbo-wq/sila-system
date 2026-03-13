@@ -7,10 +7,9 @@ implementado, garantindo consistência na camada de acesso a dados.
 """
 
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 
 class CRUDValidationResult:

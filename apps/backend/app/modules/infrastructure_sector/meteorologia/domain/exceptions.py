@@ -1,0 +1,2 @@
+class MeteorologiaError(Exception):
+    pass

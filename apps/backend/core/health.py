@@ -1,4 +1,3 @@
-import os
 
 import redis
 from fastapi import APIRouter

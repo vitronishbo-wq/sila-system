@@ -4,14 +4,11 @@ Utilitários de Acesso Seguro (Safe Helpers)
 Fornece funções para acesso seguro a atributos de objetos,
 evitando AttributeError e facilitando acesso a valores opcionais.
 """
-
 from typing import Any, Optional, TypeVar, Callable
 from datetime import date, datetime
+T = TypeVar('T')
 
-T = TypeVar("T")
-
-
-def safe_get(obj: Any, attr_name: str, default: Any = None) -> Any:
+def safe_get(obj: Any, attr_name: str, default: Any=None) -> Any:
     """
     Acesso seguro a atributo de objeto, retornando valor padrão se não existir.
     
@@ -33,15 +30,13 @@ def safe_get(obj: Any, attr_name: str, default: Any = None) -> Any:
         0
     """
     try:
-        # If obj is a dict, prefer dict access
         if isinstance(obj, dict):
             return obj.get(attr_name, default)
         return getattr(obj, attr_name, default)
     except (AttributeError, TypeError):
         return default
 
-
-def safe_getitem(obj: dict, key: str, default: Any = None) -> Any:
+def safe_getitem(obj: dict, key: str, default: Any=None) -> Any:
     """
     Acesso seguro a item de dicionário.
     
@@ -63,7 +58,6 @@ def safe_getitem(obj: dict, key: str, default: Any = None) -> Any:
     if not isinstance(obj, dict):
         return default
     return obj.get(key, default)
-
 
 def safe_isoformat(dt: Optional[datetime]) -> Optional[str]:
     """
@@ -92,8 +86,7 @@ def safe_isoformat(dt: Optional[datetime]) -> Optional[str]:
     except (AttributeError, TypeError):
         return None
 
-
-def safe_int(value: Any, default: int = 0) -> int:
+def safe_int(value: Any, default: int=0) -> int:
     """
     Converte valor para inteiro de forma segura.
     
@@ -115,8 +108,7 @@ def safe_int(value: Any, default: int = 0) -> int:
     except (ValueError, TypeError):
         return default
 
-
-def safe_float(value: Any, default: float = 0.0) -> float:
+def safe_float(value: Any, default: float=0.0) -> float:
     """
     Converte valor para float de forma segura.
     
@@ -132,8 +124,7 @@ def safe_float(value: Any, default: float = 0.0) -> float:
     except (ValueError, TypeError):
         return default
 
-
-def safe_str(value: Any, default: str = "") -> str:
+def safe_str(value: Any, default: str='') -> str:
     """
     Converte valor para string de forma segura.
     
@@ -151,8 +142,7 @@ def safe_str(value: Any, default: str = "") -> str:
     except (ValueError, TypeError):
         return default
 
-
-def safe_bool(value: Any, default: bool = False) -> bool:
+def safe_bool(value: Any, default: bool=False) -> bool:
     """
     Converte valor para bool de forma segura.
     
@@ -168,13 +158,12 @@ def safe_bool(value: Any, default: bool = False) -> bool:
     if isinstance(value, bool):
         return value
     if isinstance(value, str):
-        return value.lower() in ("true", "1", "yes", "sim", "on")
+        return value.lower() in ('true', '1', 'yes', 'sim', 'on')
     if isinstance(value, (int, float)):
         return bool(value)
     return default
 
-
-def safe_apply(obj: Any, attr_name: str, transformer: Callable[[Any], T], default: T = None) -> T:
+def safe_apply(obj: Any, attr_name: str, transformer: Callable[[Any], T], default: T=None) -> T:
     """
     Aplica uma função de transformação a um atributo de forma segura.
     
@@ -197,10 +186,8 @@ def safe_apply(obj: Any, attr_name: str, transformer: Callable[[Any], T], defaul
         0.0
     """
     try:
-        # Primeiro tenta como atributo
         value = getattr(obj, attr_name, None)
         if value is None and isinstance(obj, dict):
-            # Se não achou como atributo, tenta como chave de dicionário
             value = obj.get(attr_name, None)
         if value is None:
             return default
@@ -208,8 +195,7 @@ def safe_apply(obj: Any, attr_name: str, transformer: Callable[[Any], T], defaul
     except (AttributeError, TypeError, ValueError, KeyError):
         return default
 
-
-def safe_or_raise(obj: Any, attr_name: str, error_message: Optional[str] = None) -> Any:
+def safe_or_raise(obj: Any, attr_name: str, error_message: Optional[str]=None) -> Any:
     """
     Acesso a atributo com exceção clara se falhar.
     

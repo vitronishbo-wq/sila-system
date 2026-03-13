@@ -1,0 +1,7 @@
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_car_repository import SQLAlchemyCARRepository
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_condicionante_repository import SQLAlchemyCondicionanteRepository
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_estudo_repository import SQLAlchemyEstudoRepository
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_imovel_repository import SQLAlchemyImovelRepository
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_licenca_repository import SQLAlchemyLicencaRepository
+from app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_proprietario_repository import SQLAlchemyProprietarioRepository
+__all__ = ['SQLAlchemyProprietarioRepository', 'SQLAlchemyImovelRepository', 'SQLAlchemyCARRepository', 'SQLAlchemyLicencaRepository', 'SQLAlchemyEstudoRepository', 'SQLAlchemyCondicionanteRepository']

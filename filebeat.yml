@@ -1,0 +1,77 @@
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat.inputs:
+# Input 1: Ler todos os logs de containers
+- type: container
+  enabled: true
+  paths:
+    - '/var/lib/docker/containers/*/*.log'
+  
+  # Parser JSON para logs estruturados
+  json.message_key: log
+  json.keys_under_root: false
+  json.add_error_key: true
+  
+  # Decorar com informações do container
+  docker:
+    container.id: "${data.docker.container.id}"
+    container.image.name: "${data.docker.container.image.name}"
+    container.name: "${data.docker.container.name}"
+  
+  # Mutate processor quebra o log JSON
+  processors:
+    - add_docker_metadata:
+        host: "unix:///var/run/docker.sock"
+    
+    # Decompor JSON logs
+    - script:
+        lang: javascript
+        source: |
+          function process(event) {
+            var message = event.Get("message");
+            if (typeof message === 'string') {
+              try {
+                var parsed = JSON.parse(message);
+                event.Put("json", parsed);
+                // Sobe campos importantes para root
+                if (parsed.user_id) event.Put("user_id", parsed.user_id);
+                if (parsed.tenant_id) event.Put("tenant_id", parsed.tenant_id);
+                if (parsed.request_id) event.Put("request_id", parsed.request_id);
+                if (parsed.trace_id) event.Put("trace_id", parsed.trace_id);
+                if (parsed.action) event.Put("action", parsed.action);
+                if (parsed.resource) event.Put("resource", parsed.resource);
+              } catch(e) {
+                // Não é JSON, deixa como string
+              }
+            }
+          }
+
+# Input 2: Ler logs da aplicação Python (se disponível)
+- type: log
+  enabled: false
+  paths:
+    - '/app/logs/*.json'
+  json.message_key: log
+  json.keys_under_root: true
+  json.add_error_key: true
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  index: "sila-logs-%{+yyyy.MM.dd}"
+  bulk_max_size: 2000
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0640
+
+# Monitoramento
+monitoring.enabled: true
+monitoring.cluster_uuid: null
+monitoring.metrics.period: 30s

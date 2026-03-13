@@ -1,0 +1,2 @@
+class OperationsError(Exception):
+    pass

@@ -1,0 +1,13 @@
+name: resources
+type: macro_domain
+version: 1.0.0
+description: Natural resources sector coordination
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains:
+  - app.modules.energy
+  core_services: []
+subdomains: []

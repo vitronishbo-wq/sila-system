@@ -5,10 +5,8 @@ Este arquivo demonstra o padrão refatorado para testes de integração,
 focando em interações de API em vez de fluxos end-to-end.
 """
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
-from fastapi.testclient import TestClient
 
 
 class TestAuthenticationAPI:

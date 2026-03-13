@@ -1,0 +1,2 @@
+class JusticeError(Exception):
+    pass

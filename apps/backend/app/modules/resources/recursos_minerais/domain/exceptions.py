@@ -1,0 +1,2 @@
+class RecursosMineraisError(Exception):
+    pass

@@ -1,0 +1,2 @@
+class RequestServiceAdapter:
+    pass

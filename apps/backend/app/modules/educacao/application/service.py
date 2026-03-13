@@ -1,7 +1,4 @@
 """Compatibility layer for educacao services."""
-
-from app.modules.educacao.application.services import MatriculaService
-
+from app.modules.educacao.application.matricula_service import MatriculaService
 EducacaoService = MatriculaService
-
-__all__ = ["MatriculaService", "EducacaoService"]
+__all__ = ['MatriculaService', 'EducacaoService']

@@ -1,0 +1,2 @@
+class SocietyError(Exception):
+    pass

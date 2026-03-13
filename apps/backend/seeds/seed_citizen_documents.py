@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from app.infrastructure.models.citizen_document_model import CitizenDocumentModel, DocumentTypeEnum, Base
+from app.infrastructure.models.citizen_document_model import CitizenDocumentModel, DocumentTypeEnum
 
 DATABASE_URL = "postgresql+asyncpg://user:password@localhost:5432/sila_system"
 engine = create_async_engine(DATABASE_URL, echo=True)

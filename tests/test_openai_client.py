@@ -22,6 +22,7 @@ def _make_resp(status=200, data=None):
 def test_generate_text_success(monkeypatch):
     module_name = "apps.backend.services.openai_client"
     mod = importlib.import_module(module_name)
+    monkeypatch.setattr(mod, "API_KEY", "test-key")
 
     # Replace requests.post with a fake that returns a controlled response
     def fake_post(url, headers, data, timeout):

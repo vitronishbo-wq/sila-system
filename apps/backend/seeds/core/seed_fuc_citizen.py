@@ -38,16 +38,14 @@ import logging
 import uuid
 from datetime import date
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session, sessionmaker
-import os
+from sqlalchemy.orm import sessionmaker
 
 from app.core.settings import settings
 from app.core.security import get_password_hash
 from app.core.constants import UserRole, AdminLevel
 from modules.identity.models.user import User
-from app.core.territory.models.territory import Territory  # ✅ REQUIRED by User.relationship
-from app.citizen.events.models import CitizenEventModel, EventType
-from app.citizen.projections.projectors import CitizenProjector
+from app.modules.justice.civil_registry.events.models import CitizenEventModel, EventType
+from app.modules.justice.civil_registry.projections.projectors import CitizenProjector
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,2 @@
+from app.modules.society.desporto.infrastructure.persistence.outbox import InMemoryOutboxRepository, SQLAlchemyOutboxRepository
+__all__ = ['InMemoryOutboxRepository', 'SQLAlchemyOutboxRepository']

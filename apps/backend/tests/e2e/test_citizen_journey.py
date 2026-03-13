@@ -2,8 +2,6 @@
 
 import pytest
 import asyncio
-from httpx import AsyncClient
-from typing import AsyncGenerator
 from uuid import uuid4
 from datetime import datetime, timedelta
 

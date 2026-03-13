@@ -1,7 +1,7 @@
 """Create citizen table for identidade_civil module
 
 Revision ID: 002_create_citizen_table
-Revises: 20231027_001_add_saude_primaria
+Revises: 001
 Create Date: 2026-02-16 00:00:00.000000
 
 """
@@ -11,7 +11,7 @@ from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
 revision = '002_create_citizen_table'
-down_revision = '20231027_001_add_saude_primaria'
+down_revision = '001'
 branch_labels = None
 depends_on = None
 

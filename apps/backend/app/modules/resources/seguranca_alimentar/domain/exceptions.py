@@ -1,0 +1,2 @@
+class SegurancaAlimentarError(Exception):
+    pass

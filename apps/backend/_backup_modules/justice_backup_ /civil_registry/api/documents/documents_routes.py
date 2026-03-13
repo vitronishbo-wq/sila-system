@@ -1,0 +1,1 @@
+from app.modules.justice.bounded_contexts.identity_documents.api.documents_routes import *

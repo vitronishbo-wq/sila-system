@@ -1,0 +1,1 @@
+from app.modules.justice.bounded_contexts.civil_registry_core.domain.aggregates.citizen_aggregate import *

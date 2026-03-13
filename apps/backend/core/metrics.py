@@ -10,7 +10,6 @@ from prometheus_client import (
 )
 import time
 import logging
-from functools import wraps
 
 # Create a registry for metrics
 registry = CollectorRegistry()

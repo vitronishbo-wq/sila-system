@@ -13,7 +13,6 @@ Fluxo de Negócio:
 import asyncio
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
-from unittest.mock import AsyncMock, Mock
 from uuid import uuid4
 
 import pytest
@@ -155,6 +154,7 @@ class MockFinanceService:
         self.payments = []
         self.invoices = []
         self.transactions = []
+        self._transient_failed_invoices = set()
         self.fees = {
             "ACADEMIC_CERTIFICATE": Decimal("5000.00"),
             "JUDICIAL_VALIDATION": Decimal("7500.00"),
@@ -179,13 +179,26 @@ class MockFinanceService:
         """Processa pagamento."""
         invoice = next((inv for inv in self.invoices if inv["id"] == invoice_id), None)
         if not invoice:
-            raise ValueError("Fatura não encontrida")
+            raise ValueError("Fatura não encontrada")
+
+        method = payment_data.get("method", "BANK_TRANSFER")
+        allowed_methods = {"BANK_TRANSFER", "CREDIT_CARD", "PIX", "CASH"}
+        if method not in allowed_methods:
+            raise ValueError(f"Método de pagamento inválido: {method}")
+
+        # Simula erro transitório para validar retry determinístico em teste.
+        if (
+            payment_data.get("simulate_transient_failure_once")
+            and invoice_id not in self._transient_failed_invoices
+        ):
+            self._transient_failed_invoices.add(invoice_id)
+            raise RuntimeError("Falha transitória no gateway de pagamento")
 
         payment = {
             "id": len(self.payments) + 1,
             "invoice_id": invoice_id,
             "amount": invoice["amount"],
-            "method": payment_data.get("method", "BANK_TRANSFER"),
+            "method": method,
             "status": "COMPLETED",
             "processed_at": datetime.now(timezone.utc),
             "transaction_id": str(uuid4()),
@@ -452,17 +465,26 @@ class TestEducationJusticeFinanceFlow:
             {"customer_id": str(uuid4()), "items": [{"type": "ACADEMIC_CERTIFICATE"}]}
         )
 
-        # Simular falha no pagamento
-        with pytest.raises(Exception):
-            await finance_service.process_payment(
-                invoice["id"], {"method": "INVALID_METHOD"}
-            )
+        payment = None
+        attempts = 0
+        last_error = None
+        for _ in range(2):
+            attempts += 1
+            try:
+                payment = await finance_service.process_payment(
+                    invoice["id"],
+                    {
+                        "method": "BANK_TRANSFER",
+                        "simulate_transient_failure_once": True,
+                    },
+                )
+                break
+            except RuntimeError as exc:
+                last_error = exc
 
-        # Tentar pagamento correto
-        payment = await finance_service.process_payment(
-            invoice["id"], {"method": "BANK_TRANSFER"}
-        )
-
+        assert last_error is not None
+        assert attempts == 2
+        assert payment is not None
         assert payment["status"] == "COMPLETED"
         assert invoice["status"] == "PAID"
 

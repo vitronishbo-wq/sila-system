@@ -1,4 +1,4 @@
-from app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort
-from app.modules.educacao.application.services import MatriculaService
-
-__all__ = ["MatriculaRepositoryPort", "EscolaRepositoryPort", "MatriculaService"]
+"""Educacao application layer - ports and interfaces"""
+# Avoid circular imports: don't import concrete services in __init__
+from app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TurmaRepositoryPort
+__all__ = ['MatriculaRepositoryPort', 'TurmaRepositoryPort', 'EscolaRepositoryPort']

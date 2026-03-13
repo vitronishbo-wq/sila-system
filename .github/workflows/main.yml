@@ -1,33 +1,12 @@
-name: CI
+name: Legacy CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout código
-  uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
-
-    - name: Setup Python
-  uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
-      with:
-        python-version: '3.11'
-
-    - name: Instalar dependências
-      run: |
-        pip install -r requirements.txt
-
-    - name: Validar documentação
-      run: |
-        make map-docs
-        make validate-docs
-
-    - name: Rodar testes
-      run: |
-        pytest
+  backend-guardrails:
+    uses: ./.github/workflows/reusable-backend-guardrails.yml

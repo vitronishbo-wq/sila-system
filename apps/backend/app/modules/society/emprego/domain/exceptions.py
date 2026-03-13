@@ -1,0 +1,2 @@
+class EmpregoError(Exception):
+    pass

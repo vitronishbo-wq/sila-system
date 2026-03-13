@@ -8,7 +8,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.auth import decode_access_token
+from app.core.auth import decode_access_token
 from config.database import get_db
 from .iam_client import IAMClient
 

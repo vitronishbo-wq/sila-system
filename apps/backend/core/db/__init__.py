@@ -1,9 +1,10 @@
-"""Database Module.
+"""Database module compatibility facade.
 
-Exports the Base class and session management utilities for SQLAlchemy ORM.
+All ORM models must use the canonical Base from ``app.core.database``.
+This package re-exports that Base for legacy imports.
 """
 
-from config.database import Base
+from app.core.db import Base
 
 # Optional session imports - only import when needed
 try:

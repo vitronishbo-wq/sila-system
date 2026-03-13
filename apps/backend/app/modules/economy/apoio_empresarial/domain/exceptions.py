@@ -1,0 +1,2 @@
+class ApoioEmpresarialError(Exception):
+    pass

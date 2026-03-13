@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from typing import Any, Dict, Optional
 
 from fastapi.testclient import TestClient
-from core.auth import create_access_token
+from app.core.auth import create_access_token
 from config.settings import settings
 
 def get_auth_headers(client: TestClient, email: str, password: str) -> Dict[str, str]:

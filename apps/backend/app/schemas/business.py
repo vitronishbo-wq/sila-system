@@ -4,7 +4,7 @@ from typing import Optional
 
 class PaymentBase(BaseModel):
     amount: float
-    provider: str = "multicaixa"
+    provider: str = 'multicaixa'
 
 class PaymentCreate(PaymentBase):
     request_id: Optional[int] = None
@@ -33,7 +33,6 @@ class ProcessRead(BaseModel):
     updated_at: datetime
     model_config = ConfigDict(from_attributes=True)
 
-
 class ServiceRead(BaseModel):
     id: int
     code: str
@@ -42,7 +41,6 @@ class ServiceRead(BaseModel):
     is_active: bool
     model_config = ConfigDict(from_attributes=True)
 
-
 class CitizenRead(BaseModel):
     id: int
     full_name: str
@@ -50,7 +48,6 @@ class CitizenRead(BaseModel):
     province: str
     municipality: str
     model_config = ConfigDict(from_attributes=True)
-
 
 class RequestRead(BaseModel):
     id: int

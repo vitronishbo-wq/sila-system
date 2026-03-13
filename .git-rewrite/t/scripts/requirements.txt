@@ -1,3 +1,0 @@
-# Requisitos Python
-requests
-pytest

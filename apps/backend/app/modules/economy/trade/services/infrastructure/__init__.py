@@ -1,0 +1,1 @@
+"""Camada de infraestrutura do modulo comercio_servicos."""

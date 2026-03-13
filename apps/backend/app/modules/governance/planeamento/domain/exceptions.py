@@ -1,0 +1,2 @@
+class PlaneamentoError(Exception):
+    pass

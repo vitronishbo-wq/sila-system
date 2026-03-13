@@ -2,7 +2,6 @@
 Configuration validation utilities for SILA system.
 """
 
-import os
 from typing import Any, List, Tuple
 from urllib.parse import urlparse
 from .settings import settings

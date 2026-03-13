@@ -1,0 +1,16 @@
+name: justice
+type: macro_domain
+version: 1.0.0
+
+exposes:
+  api_routers:
+    - app.modules.justice.api.router
+  public_models:
+    - app.modules.justice.civil_registry.infrastructure.models
+  events_published: []
+
+requires:
+  domains: []
+  core_services: []
+
+subdomains: []

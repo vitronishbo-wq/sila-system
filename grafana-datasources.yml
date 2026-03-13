@@ -1,0 +1,46 @@
+# Grafana Datasources Configuration - Phase 18.2
+# Place in: platform/infrastructure/grafana/provisioning/datasources/
+
+apiVersion: 1
+
+datasources:
+  # Elasticsearch - Audit logs and event data
+  - name: 'Elasticsearch'
+    type: 'elasticsearch'
+    access: 'proxy'
+    url: 'http://elasticsearch:9200'
+    jsonData:
+      esVersion: '8.0.0'
+      timeField: '@timestamp'
+      logMessageField: 'message'
+      logLevelField: 'level'
+      dataLinks: []
+    isDefault: false
+
+  # Prometheus - Metrics and alert rules
+  - name: 'Prometheus'
+    type: 'prometheus'
+    access: 'proxy'
+    url: 'http://prometheus:9090'
+    jsonData:
+      timeInterval: '30s'
+      externalUrl: 'http://prometheus:9090'
+    isDefault: true
+
+  # Loki (optional) - Log aggregation
+  - name: 'Loki'
+    type: 'loki'
+    access: 'proxy'
+    url: 'http://loki:3100'
+    jsonData:
+      derivedFields:
+        - name: 'trace_id'
+          matcherRegex: 'trace_id=(\w+)'
+          url: 'http://jaeger:16686/trace/$${__value.raw}'
+    isDefault: false
+
+  # TestData - For dashboard testing
+  - name: 'TestData'
+    type: 'testdata'
+    access: 'proxy'
+    isDefault: false

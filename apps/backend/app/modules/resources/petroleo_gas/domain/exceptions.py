@@ -1,0 +1,2 @@
+class PetroleoGasError(Exception):
+    pass

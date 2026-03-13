@@ -1,0 +1,2 @@
+class IndustriaError(Exception):
+    pass

@@ -1,0 +1,21 @@
+name: procurement
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+description: Procurement engine for tenders, contracts and public purchasing
+
+exposes:
+  api_routers:
+    - app.modules.procurement.api.router:router
+  public_models: []
+  events_published: []
+
+requires:
+  domains:
+    - economy.public_budget
+    - economy.core
+  core_services:
+    - persistence
+
+subdomains: []

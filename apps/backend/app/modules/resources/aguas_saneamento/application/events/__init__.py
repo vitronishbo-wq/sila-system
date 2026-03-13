@@ -1,0 +1,3 @@
+from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
+from app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry, deserialize_event, serialize_event
+__all__ = ['FaturaEmitidaEvent', 'FaturaPagamentoRegistradoEvent', 'AguasEventRegistry', 'serialize_event', 'deserialize_event']

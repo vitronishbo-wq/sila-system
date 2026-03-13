@@ -16,18 +16,13 @@ Architecture:
 - Notification service: Optional, injected for cross-cutting concerns
 - Audit logging: Automatic, centralized in base class
 """
-
 from abc import ABC, abstractmethod
 from typing import Optional, List, Dict, Any, TypeVar, Generic, Tuple
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.core.audit import audit_log
-
-# Type variables for flexibility
-TRequest = TypeVar('TRequest')  # Request model type (Request, ServiceRequest, etc.)
-TRepository = TypeVar('TRepository')  # Repository type
-
+TRequest = TypeVar('TRequest')
+TRepository = TypeVar('TRepository')
 
 class BaseRequestService(ABC, Generic[TRequest, TRepository]):
     """
@@ -46,15 +41,8 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
     - create_request_model(): Instantiate domain request entity
     - get_user_from_citizen_id(): Map citizen_id to user for notifications
     """
-    
-    def __init__(
-        self,
-        db: AsyncSession,
-        repository: Optional[TRepository] = None,
-        notification_service: Optional[Any] = None,
-        audit_enabled: bool = True,
-        **kwargs
-    ):
+
+    def __init__(self, db: AsyncSession, repository: Optional[TRepository]=None, notification_service: Optional[Any]=None, audit_enabled: bool=True, **kwargs):
         """
         Initialize base request service.
         
@@ -69,13 +57,9 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         self.repo = repository or self.get_repository()
         self.notification_svc = notification_service
         self.audit_enabled = audit_enabled
-        
-        # Store domain-specific dependencies
         for k, v in kwargs.items():
             setattr(self, k, v)
-    
-    # ========== Abstract Methods ==========
-    
+
     @abstractmethod
     def get_repository(self) -> TRepository:
         """
@@ -89,7 +73,7 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
                 return RequestRepository(self.db)
         """
         pass
-    
+
     @abstractmethod
     def default_status(self) -> str:
         """
@@ -101,14 +85,9 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             str: Status value as string
         """
         pass
-    
+
     @abstractmethod
-    async def create_request_model(
-        self,
-        citizen_id: UUID,
-        request_data: Dict[str, Any],
-        **kwargs
-    ) -> TRequest:
+    async def create_request_model(self, citizen_id: UUID, request_data: Dict[str, Any], **kwargs) -> TRequest:
         """
         Factory method to create domain-specific request entity.
         
@@ -123,7 +102,7 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             TRequest: Instantiated request model (not yet saved)
         """
         pass
-    
+
     @abstractmethod
     async def get_user_from_citizen_id(self, citizen_id: UUID) -> Optional[UUID]:
         """
@@ -136,17 +115,8 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             Optional[UUID]: User ID if found, None otherwise
         """
         pass
-    
-    # ========== Template Methods ==========
-    # These orchestrate the workflow; subclasses can override post/pre hooks
-    
-    async def create_request(
-        self,
-        citizen_id: UUID,
-        created_by: UUID,
-        request_data: Dict[str, Any],
-        **kwargs
-    ) -> TRequest:
+
+    async def create_request(self, citizen_id: UUID, created_by: UUID, request_data: Dict[str, Any], **kwargs) -> TRequest:
         """
         Template method: Create new request.
         
@@ -167,34 +137,16 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         Returns:
             TRequest: Saved request entity
         """
-        # 1. Validation (can be overridden in subclass)
         await self._validate_create_request(citizen_id, request_data, **kwargs)
-        
-        # 2. Create command/request model
         request = await self.create_request_model(citizen_id, request_data, **kwargs)
-        
-        # 3. Pre-save hook
         await self._pre_save_create(request)
-        
-        # 4. Save to repository
         saved = await self.repo.save(request)
-        
-        # 5. Post-save hook
         await self._post_save_create(saved, created_by)
-        
-        # 6. Audit
         if self.audit_enabled:
             await self._audit_create(saved, created_by)
-        
         return saved
-    
-    async def get_request(
-        self,
-        request_id: UUID,
-        user_id: UUID,
-        is_citizen: bool = False,
-        **kwargs
-    ) -> Optional[TRequest]:
+
+    async def get_request(self, request_id: UUID, user_id: UUID, is_citizen: bool=False, **kwargs) -> Optional[TRequest]:
         """
         Template method: Retrieve single request with permission check.
         
@@ -213,23 +165,13 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             Optional[TRequest]: Request if accessible, None otherwise
         """
         request = await self.repo.get_by_id(request_id)
-        
         if not request:
             return None
-        
-        # Permission check (can be overridden)
         if not await self._check_read_permission(request, user_id, is_citizen, **kwargs):
             return None
-        
         return request
-    
-    async def list_requests(
-        self,
-        skip: int = 0,
-        limit: int = 100,
-        citizen_id: Optional[UUID] = None,
-        **filters
-    ) -> Tuple[List[TRequest], int]:
+
+    async def list_requests(self, skip: int=0, limit: int=100, citizen_id: Optional[UUID]=None, **filters) -> Tuple[List[TRequest], int]:
         """
         Template method: List requests with optional citizen filter.
         
@@ -244,17 +186,12 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         """
         if citizen_id:
             return await self.repo.get_by_citizen(citizen_id, skip, limit, **filters)
-        
-        # If no citizen_id, use a generic list method from repository if it exists
         if hasattr(self.repo, 'list_all'):
             return await self.repo.list_all(skip, limit, **filters)
-        
-        # Fallback to search if available
         if hasattr(self.repo, 'search'):
-            return await self.repo.search(query="", filters=filters, skip=skip, limit=limit)
-            
-        return [], 0
-    
+            return await self.repo.search(query='', filters=filters, skip=skip, limit=limit)
+        return ([], 0)
+
     async def get_request_status(self, request_id: UUID) -> Optional[str]:
         """
         Get current status of a request.
@@ -269,16 +206,8 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         """
         request = await self.repo.get_by_id(request_id)
         return request.status if request else None
-    
-    # ========== Extension Hooks ==========
-    # Subclasses override these to add domain-specific logic
-    
-    async def _validate_create_request(
-        self,
-        citizen_id: UUID,
-        request_data: Dict[str, Any],
-        **kwargs
-    ) -> None:
+
+    async def _validate_create_request(self, citizen_id: UUID, request_data: Dict[str, Any], **kwargs) -> None:
         """
         Validate create request input.
         
@@ -296,7 +225,7 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             ValueError: If validation fails
         """
         pass
-    
+
     async def _pre_save_create(self, request: TRequest) -> None:
         """
         Hook before saving new request to database.
@@ -309,23 +238,18 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             request: Unsaved request model (can modify in place)
         """
         pass
-    
+
     async def _post_save_create(self, saved_request: TRequest, created_by: UUID) -> None:
         """
         Hook after saving new request to database.
         """
-        # Default: Notify citizen if service configured
         if self.notification_svc:
             try:
                 user_id = await self.get_user_from_citizen_id(saved_request.citizen_id)
                 if user_id:
-                    await self.notification_svc.notify_request_created(
-                        user_id=user_id,
-                        request_id=saved_request.id,
-                        request_data={"status": saved_request.status}
-                    )
+                    await self.notification_svc.notify_request_created(user_id=user_id, request_id=saved_request.id, request_data={'status': saved_request.status})
             except Exception as e:
-                print(f"Warning: Notification failed for request {saved_request.id}: {e}")
+                print(f'Warning: Notification failed for request {saved_request.id}: {e}')
 
     async def _post_status_change(self, request: TRequest, old_status: str, new_status: str, updated_by: UUID) -> None:
         """
@@ -335,22 +259,11 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             try:
                 user_id = await self.get_user_from_citizen_id(request.citizen_id)
                 if user_id:
-                    await self.notification_svc.notify_request_status_changed(
-                        user_id=user_id,
-                        request_id=request.id,
-                        old_status=old_status,
-                        new_status=new_status
-                    )
+                    await self.notification_svc.notify_request_status_changed(user_id=user_id, request_id=request.id, old_status=old_status, new_status=new_status)
             except Exception as e:
-                print(f"Warning: Status notification failed for request {request.id}: {e}")
-    
-    async def _check_read_permission(
-        self,
-        request: TRequest,
-        user_id: UUID,
-        is_citizen: bool = False,
-        **kwargs
-    ) -> bool:
+                print(f'Warning: Status notification failed for request {request.id}: {e}')
+
+    async def _check_read_permission(self, request: TRequest, user_id: UUID, is_citizen: bool=False, **kwargs) -> bool:
         """
         Check if user has permission to read request.
         
@@ -368,12 +281,9 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             bool: True if access allowed, False otherwise
         """
         if is_citizen:
-            # Citizens can only read their own requests
             return hasattr(request, 'citizen_id') and request.citizen_id == user_id
-        
-        # Non-citizens (operators, admins) allowed by default
         return True
-    
+
     async def _audit_create(self, saved_request: TRequest, created_by: UUID) -> None:
         """
         Log creation to audit trail.
@@ -386,29 +296,9 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
             saved_request: Saved request entity
             created_by: User UUID who created request
         """
-        await audit_log(
-            action="REQUEST_CREATED",
-            actor_id=str(created_by),
-            resource_id=str(saved_request.id),
-            resource_type=self.__class__.__name__,
-            new_value={
-                "citizen_id": str(saved_request.citizen_id) if hasattr(saved_request, 'citizen_id') else None,
-                "status": saved_request.status if hasattr(saved_request, 'status') else None,
-            },
-            db=self.db
-        )
-    
-    # ========== Utility Methods ==========
-    # Common operations shared across all request services
-    
-    async def update_status(
-        self,
-        request_id: UUID,
-        new_status: str,
-        updated_by: UUID,
-        reason: Optional[str] = None,
-        **kwargs
-    ) -> Optional[TRequest]:
+        await audit_log(action='REQUEST_CREATED', actor_id=str(created_by), resource_id=str(saved_request.id), resource_type=self.__class__.__name__, new_value={'citizen_id': str(saved_request.citizen_id) if hasattr(saved_request, 'citizen_id') else None, 'status': saved_request.status if hasattr(saved_request, 'status') else None}, db=self.db)
+
+    async def update_status(self, request_id: UUID, new_status: str, updated_by: UUID, reason: Optional[str]=None, **kwargs) -> Optional[TRequest]:
         """
         Update request status with audit trail.
         
@@ -425,29 +315,14 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         request = await self.repo.get_by_id(request_id)
         if not request:
             return None
-        
         old_status = request.status if hasattr(request, 'status') else None
         request.status = new_status
-        
         updated = await self.repo.save(request)
-        
-        # Trigger hooks
         await self._post_status_change(updated, str(old_status), str(new_status), updated_by)
-        
         if self.audit_enabled:
-            await audit_log(
-                action="REQUEST_STATUS_UPDATED",
-                actor_id=str(updated_by),
-                resource_id=str(request_id),
-                resource_type=self.__class__.__name__,
-                old_value={"status": str(old_status)},
-                new_value={"status": str(new_status)},
-                metadata={"reason": reason} if reason else {},
-                db=self.db
-            )
-        
+            await audit_log(action='REQUEST_STATUS_UPDATED', actor_id=str(updated_by), resource_id=str(request_id), resource_type=self.__class__.__name__, old_value={'status': str(old_status)}, new_value={'status': str(new_status)}, metadata={'reason': reason} if reason else {}, db=self.db)
         return updated
-    
+
     async def count_by_citizen(self, citizen_id: UUID) -> int:
         """
         Count total requests for a citizen.
@@ -461,7 +336,6 @@ class BaseRequestService(ABC, Generic[TRequest, TRepository]):
         _, total = await self.repo.get_by_citizen(citizen_id, skip=0, limit=1)
         return total
 
-
 class BaseRequestServiceSync(ABC):
     """
     Synchronous variant of BaseRequestService for legacy services.
@@ -471,14 +345,8 @@ class BaseRequestServiceSync(ABC):
     
     Not recommended for new code; use BaseRequestService for async.
     """
-    
-    def __init__(
-        self,
-        repository: TRepository,
-        notification_service: Optional[Any] = None,
-        audit_enabled: bool = True,
-        **kwargs
-    ):
+
+    def __init__(self, repository: TRepository, notification_service: Optional[Any]=None, audit_enabled: bool=True, **kwargs):
         """
         Initialize sync request service.
         
@@ -491,21 +359,15 @@ class BaseRequestServiceSync(ABC):
         self.repo = repository
         self.notification_svc = notification_service
         self.audit_enabled = audit_enabled
-        
         for k, v in kwargs.items():
             setattr(self, k, v)
-    
+
     @abstractmethod
     def default_status(self) -> str:
         """Define initial request status."""
         pass
-    
+
     @abstractmethod
-    def create_request_model(
-        self,
-        citizen_id: UUID,
-        request_data: Dict[str, Any],
-        **kwargs
-    ) -> TRequest:
+    def create_request_model(self, citizen_id: UUID, request_data: Dict[str, Any], **kwargs) -> TRequest:
         """Factory method for domain-specific request entity."""
         pass

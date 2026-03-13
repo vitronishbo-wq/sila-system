@@ -73,14 +73,47 @@ Para evitar loops de importação e inconsistências no runtime do Python, **use
 
 ### 🚨 Guardrails de Arquitetura
 A IA tem permissão para modificar o código de forma agressiva, mas **deve validar a integridade** antes de submeter as mudanças:
-1. Execute `make architecture-report` para regenerar mapa arquitetural, overlap, dependências e saúde dos módulos.
-2. O pipeline deve incluir `python3 scripts/guardrails/check_module_registry_sync.py --modules-root apps/backend/app/modules`.
-3. O pipeline deve incluir `python3 scripts/guardrails/check_architecture_guide_sync.py` para validar atualização do guia em mudanças reitoras.
-4. Execute `make architecture-guardrails` para garantir que o DDD não foi quebrado.
-5. Execute `make lint` para validar o estilo de código.
-6. Se houver mudanças de esquema, gere o script Alembic em `apps/backend/alembic/versions`.
-7. Execute `make migration-domain-report` para atualizar o inventário por domínio.
-8. Em `apps/backend/app/main.py`, mantenha `app.include_router(saude_router)` para garantir montagem explícita de `saude_primaria`.
+1. Execute `make sovereign-ritual` para aplicar o protocolo completo (GPS + auditoria + constituição + validação de dependências).
+2. Execute `python3 scripts/arch_compiler.py` para compilar os contratos `module.yaml` em `reports/module_manifest_graph.json`.
+2. O pipeline deve incluir `python3 scripts/guardrails/check_ai_bootstrap_stack.py --repo-root .`.
+3. O pipeline deve incluir `python3 scripts/guardrails/check_module_registry_sync.py --modules-root apps/backend/app/modules`.
+4. O pipeline deve incluir `python3 scripts/guardrails/check_architecture_guide_sync.py` para validar atualização do guia em mudanças reitoras.
+5. Execute `make architecture-guardrails` para garantir que o DDD não foi quebrado.
+6. Execute `make lint` para validar o estilo de código.
+7. Se houver mudanças de esquema, gere o script Alembic em `apps/backend/alembic/versions`.
+8. Execute `make migration-domain-report` para atualizar o inventário por domínio.
+9. Execute `make architecture-docs` para regenerar `apps/backend/app/modules/*/ARCHITECTURE.md` e `reports/module_architecture_docs_visual_report.md`.
+10. Execute `make architecture-index` para regenerar a camada semântica (`ARCHITECTURE_INDEX.yaml`, `ARCHITECTURE_DEPENDENCIES.yaml`, `API_MAP.yaml`, `AI_ENTRYPOINTS.yaml`, `docs/AI_CONTEXT.md`, `docs/AI_BOOTSTRAP_PROMPT.md`, `docs/architecture/REPOSITORY_MAP.yaml`, `docs/architecture/entrypoints/*`, `docs/architecture/domains/*`, `docs/AI_ARCHITECTURE_GRAPH.yaml`, `reports/architecture_index_visual_report.md` e `reports/ai_architecture_graph_visual_report.md`).
+11. Execute `python3 scripts/guardrails/check_domain_dependencies.py --observed-json reports/module_dependency_graph.json --declared-graph docs/AI_ARCHITECTURE_GRAPH.yaml --policy-yaml docs/architecture/domain_dependency_policy.yaml --repo-root .` para bloquear imports entre módulos fora do grafo declarado e da política YAML.
+12. Execute `make domain-kernel` para regenerar `docs/AI_DOMAIN_KERNEL.md` e `reports/ai_domain_kernel_visual_report.md`.
+
+### 🧭 AI Entry Ritual (obrigatorio em tarefas grandes)
+Sequência padrão:
+1. Contexto da arquitetura
+2. Domínio afetado
+3. Escopo da tarefa
+4. Arquivos relevantes
+5. Ação pedida
+
+Arquivo de bootstrap:
+- `docs/AI_BOOTSTRAP_PROMPT.md`
+
+Comando de automação:
+```bash
+bash scripts/ai/bootstrap_context.sh
+```
+
+Leitura por domínio:
+- `docs/architecture/domains/<domain>/ARCHITECTURE.md`
+- `apps/backend/app/modules/<module>/ARCHITECTURE.md`
+
+Quando usar bootstrap:
+- Nova feature: sim
+- Refactor: sim
+- Novo módulo: sim
+- Mudança estrutural: sim
+- Debug simples: não obrigatório
+- Pergunta pequena: não obrigatório
 
 ### 🧭 Auditoria de Sobreposição de Domínio (obrigatória antes de fusões)
 Antes de consolidar, fundir ou mover módulos entre domínios, execute o scanner de sobreposição:
@@ -142,6 +175,84 @@ python3 scripts/migration_domain_inventory.py \
 ### 🛡️ AI Safety Pipeline
 Consulte o documento [AI_GUARDRAILS.md](./AI_GUARDRAILS.md) para detalhes técnicos sobre como rodar as ferramentas de proteção.
 
+### 🧠 AI Context Gateway (obrigatorio)
+Agentes de IA devem iniciar contexto por:
+1. `docs/AI_BOOTSTRAP_PROMPT.md`
+2. `docs/AI_CONTEXT.md`
+3. `docs/architecture/entrypoints/SYSTEM_OVERVIEW.md`
+4. `docs/architecture/REPOSITORY_MAP.yaml`
+5. `docs/architecture/entrypoints/DOMAIN_MAP.md`
+6. `docs/architecture/entrypoints/API_ENTRYPOINTS.md`
+7. `docs/architecture/domains/<domain>/ARCHITECTURE.md` (se houver domínio alvo)
+8. `apps/backend/app/modules/<module>/ARCHITECTURE.md` (se houver módulo alvo)
+9. `docs/AI_ARCHITECTURE_GRAPH.yaml`
+10. `docs/AI_DOMAIN_KERNEL.md`
+
+### 📁 AI File Scope (obrigatorio para agentes)
+Agentes de IA devem limitar varredura aos padrões `include` definidos em `AI_FILE_SCOPE.yaml`.
+
+Diretorios proibidos para scanning:
+- `venv/`
+- `.venv/`
+- `node_modules/`
+- `site-packages/`
+- `dist/`
+- `build/`
+- `__pycache__/`
+- `.git/`
+
+Comando utilitario:
+```bash
+python3 scripts/ai/ai_scope_filter.py --repo-root . --print-count
+```
+
+Regra operacional:
+- automacoes de arquitetura devem residir sob `scripts/guardrails`, `scripts/architecture` e `scripts/ai`.
+- evitar manter logica duplicada em `apps/backend/tools/architecture`.
+
+### 🧭 Architecture Index (obrigatorio para monorepos grandes)
+Para reduzir leitura de contexto por agentes, os seguintes artefatos devem existir e estar atualizados:
+- `ARCHITECTURE_INDEX.yaml`
+- `ARCHITECTURE_DEPENDENCIES.yaml`
+- `API_MAP.yaml`
+- `AI_ENTRYPOINTS.yaml`
+- `docs/AI_ARCHITECTURE_GRAPH.yaml`
+- `docs/AI_DOMAIN_KERNEL.md`
+- `docs/AI_CONTEXT.md`
+- `docs/AI_BOOTSTRAP_PROMPT.md`
+- `docs/architecture/REPOSITORY_MAP.yaml`
+- `docs/architecture/entrypoints/SYSTEM_OVERVIEW.md`
+- `docs/architecture/entrypoints/BACKEND_ARCHITECTURE.md`
+- `docs/architecture/entrypoints/DOMAIN_MAP.md`
+- `docs/architecture/entrypoints/API_ENTRYPOINTS.md`
+- `docs/architecture/entrypoints/DATA_FLOW.md`
+- `docs/architecture/domains/*/ARCHITECTURE.md`
+- `apps/backend/app/modules/*/ARCHITECTURE.md`
+- `reports/module_architecture_docs_visual_report.md`
+- `reports/architecture_index_visual_report.md`
+- `reports/ai_architecture_graph_visual_report.md`
+- `reports/domain_dependency_guardrail_report.md`
+- `reports/ai_domain_kernel_visual_report.md`
+
+Comando unico de geracao:
+```bash
+make architecture-docs
+make domain-kernel
+make architecture-index
+```
+
+Fonte geradora:
+- `scripts/ai/generate_module_architecture_docs.py`
+- `scripts/architecture/generate_architecture_index.py`
+- `scripts/ai/generate_architecture_graph.py`
+- `scripts/ai/generate_ai_domain_kernel.py`
+- `scripts/guardrails/check_domain_dependencies.py`
+
+Regra anti-duplicacao:
+- os artefatos acima sao **gerados automaticamente** e nao devem ser mantidos manualmente.
+- qualquer mudanca de estrutura deve ser feita na fonte unica (`module_registry` e scripts de analise) e refletida via `make architecture-index`.
+- arquivos legados/duplicados de mapeamento arquitetural fora deste stack devem ser removidos.
+
 ---
 
 ## 🧭 4. Governança do Guia (Mudanças Reitoras)
@@ -178,6 +289,9 @@ Atualização estrutural registrada em 2026-03-07:
 - limpeza de diretórios fantasmas com chaves literais em módulos.
 - scripts geradores indevidos removidos de `app/modules` e consolidados em `apps/backend/scripts/module_tools`.
 - guardrails adicionais de auditoria/boundaries ativos em `scripts/guardrails`.
+- scanner de arquitetura consolidado em `scripts/architecture/run_analysis.py`.
+- escopo de leitura para IA formalizado em `AI_FILE_SCOPE.yaml` + `scripts/ai/ai_scope_filter.py`.
+- ritual de bootstrap formalizado em `docs/AI_BOOTSTRAP_PROMPT.md` + `scripts/ai/bootstrap_context.sh`.
 
 ---
 > [!IMPORTANT]

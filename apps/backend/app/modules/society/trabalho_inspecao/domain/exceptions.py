@@ -1,0 +1,2 @@
+class TrabalhoInspecaoError(Exception):
+    pass

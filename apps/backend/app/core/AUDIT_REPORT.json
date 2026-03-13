@@ -1,0 +1,124 @@
+{
+  "timestamp": "2026-03-10T04:23:28.609578",
+  "core_path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core",
+  "modules_found": 13,
+  "total_findings": 6,
+  "findings_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 6
+  },
+  "conformance_score": 100.0,
+  "modules": {
+    "iam": {
+      "status": "✅",
+      "description": "Identity & Access Management",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\iam"
+    },
+    "rbac": {
+      "status": "✅",
+      "description": "Role-Based Access Control",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\rbac"
+    },
+    "audit": {
+      "status": "✅",
+      "description": "Audit trail & SLA",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\audit"
+    },
+    "exceptions": {
+      "status": "✅",
+      "description": "Exceções centralizadas",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\exceptions"
+    },
+    "observability": {
+      "status": "✅",
+      "description": "Logging, tracing, metrics",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\observability"
+    },
+    "resilience": {
+      "status": "✅",
+      "description": "Circuit breaker, retry policies",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\resilience"
+    },
+    "events": {
+      "status": "✅",
+      "description": "Event bus",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\events"
+    },
+    "rate_limit": {
+      "status": "✅",
+      "description": "Rate limiting",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\rate_limit"
+    },
+    "locks": {
+      "status": "✅",
+      "description": "Distributed locks",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\locks"
+    },
+    "feature_flags": {
+      "status": "✅",
+      "description": "Feature toggles",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\feature_flags"
+    },
+    "territory": {
+      "status": "✅",
+      "description": "Territorial hierarchy",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\territory"
+    },
+    "db": {
+      "status": "✅",
+      "description": "Database layer (SQLAlchemy)",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\db"
+    },
+    "bridges": {
+      "status": "✅",
+      "description": "Cross-domain bridges",
+      "path": "\\\\wsl.localhost\\Ubuntu-24.04\\home\\dev03wsl\\sila-system\\apps\\backend\\app\\core\\bridges"
+    }
+  },
+  "findings": [
+    {
+      "severity": "low",
+      "category": "imports",
+      "message": "✅ IAM importa exceções centralizadas (correto)",
+      "location": "core/iam/application/services/base_service.py",
+      "suggestion": "Manter este padrão"
+    },
+    {
+      "severity": "low",
+      "category": "documentation",
+      "message": "✅ Documentação arquitetural encontrada",
+      "location": "core/ARCHITECTURE.md",
+      "suggestion": "Manter atualizado"
+    },
+    {
+      "severity": "low",
+      "category": "structure",
+      "message": "✅ Todas 6 exceções centralizadas estão presentes",
+      "location": "core/exceptions/__init__.py",
+      "suggestion": ""
+    },
+    {
+      "severity": "low",
+      "category": "structure",
+      "message": "✅ iam/domain encontrado",
+      "location": "core/iam/domain",
+      "suggestion": ""
+    },
+    {
+      "severity": "low",
+      "category": "structure",
+      "message": "✅ iam/application encontrado",
+      "location": "core/iam/application",
+      "suggestion": ""
+    },
+    {
+      "severity": "low",
+      "category": "structure",
+      "message": "✅ iam/infrastructure encontrado",
+      "location": "core/iam/infrastructure",
+      "suggestion": ""
+    }
+  ]
+}

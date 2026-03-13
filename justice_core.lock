@@ -1,0 +1,12 @@
+  app/modules/justice/core/domain/entities/verification_case.py
+  app/modules/justice/core/domain/entities/bi_record.py
+  app/modules/justice/core/domain/entities/verification_result.py
+  app/modules/justice/core/application/services/bi_verifier_service.py
+  app/modules/justice/core/application/services/case_service.py
+  app/modules/justice/core/application/services/audit_service.py
+  app/modules/justice/core/infrastructure/repositories/case_repo.py
+  app/modules/justice/core/infrastructure/repositories/bi_repo.py
+  app/modules/justice/core/infrastructure/models/justice_models.py
+  app/modules/justice/core/infrastructure/adapters/x_road_adapter.py
+  app/modules/justice/core/ports/identity_verifier_port.py
+  app/modules/justice/core/ports/audit_logger_port.py

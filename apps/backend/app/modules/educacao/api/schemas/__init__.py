@@ -7,54 +7,7 @@ from .formacao_schema import FormacaoCancelar, FormacaoConcluir, FormacaoCreate,
 from .inscricao_schema import InscricaoCancelar, InscricaoConfirmar, InscricaoCreate, InscricaoResponse
 from .matricula_schema import MatriculaAtivar, MatriculaCreate, MatriculaListFilter, MatriculaResponse
 from .propina_schema import PropinaCancelar, PropinaConcluir, PropinaCreate, PropinaResponse
-from .transferencia_schema import TransferenciaCancelar, TransferenciaConcluir, TransferenciaCreate, TransferenciaResponse
+from .transferencia_schema import TransferenciaAprovar, TransferenciaCreate, TransferenciaRejeitar, TransferenciaResponse
 from .universidade_schema import UniversidadeCancelar, UniversidadeConcluir, UniversidadeCreate, UniversidadeResponse
 from .workflow_schema import WorkflowCancelar, WorkflowConcluir, WorkflowCreate, WorkflowResponse
-
-__all__ = [
-    "MatriculaCreate",
-    "MatriculaAtivar",
-    "MatriculaResponse",
-    "MatriculaListFilter",
-    "EscolaResponse",
-    "InscricaoCreate",
-    "InscricaoConfirmar",
-    "InscricaoCancelar",
-    "InscricaoResponse",
-    "WorkflowCreate",
-    "WorkflowConcluir",
-    "WorkflowCancelar",
-    "WorkflowResponse",
-    "BoletimCreate",
-    "BoletimConcluir",
-    "BoletimCancelar",
-    "BoletimResponse",
-    "CertificadoCreate",
-    "CertificadoConcluir",
-    "CertificadoCancelar",
-    "CertificadoResponse",
-    "TransferenciaCreate",
-    "TransferenciaConcluir",
-    "TransferenciaCancelar",
-    "TransferenciaResponse",
-    "PropinaCreate",
-    "PropinaConcluir",
-    "PropinaCancelar",
-    "PropinaResponse",
-    "EmpregoCreate",
-    "EmpregoConcluir",
-    "EmpregoCancelar",
-    "EmpregoResponse",
-    "ConcursoCreate",
-    "ConcursoConcluir",
-    "ConcursoCancelar",
-    "ConcursoResponse",
-    "FormacaoCreate",
-    "FormacaoConcluir",
-    "FormacaoCancelar",
-    "FormacaoResponse",
-    "UniversidadeCreate",
-    "UniversidadeConcluir",
-    "UniversidadeCancelar",
-    "UniversidadeResponse",
-]
+__all__ = ['MatriculaCreate', 'MatriculaAtivar', 'MatriculaResponse', 'MatriculaListFilter', 'EscolaResponse', 'InscricaoCreate', 'InscricaoConfirmar', 'InscricaoCancelar', 'InscricaoResponse', 'WorkflowCreate', 'WorkflowConcluir', 'WorkflowCancelar', 'WorkflowResponse', 'BoletimCreate', 'BoletimConcluir', 'BoletimCancelar', 'BoletimResponse', 'CertificadoCreate', 'CertificadoConcluir', 'CertificadoCancelar', 'CertificadoResponse', 'TransferenciaCreate', 'TransferenciaAprovar', 'TransferenciaRejeitar', 'TransferenciaResponse', 'PropinaCreate', 'PropinaConcluir', 'PropinaCancelar', 'PropinaResponse', 'EmpregoCreate', 'EmpregoConcluir', 'EmpregoCancelar', 'EmpregoResponse', 'ConcursoCreate', 'ConcursoConcluir', 'ConcursoCancelar', 'ConcursoResponse', 'FormacaoCreate', 'FormacaoConcluir', 'FormacaoCancelar', 'FormacaoResponse', 'UniversidadeCreate', 'UniversidadeConcluir', 'UniversidadeCancelar', 'UniversidadeResponse']

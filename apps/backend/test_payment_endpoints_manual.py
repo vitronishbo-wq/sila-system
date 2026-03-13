@@ -4,14 +4,13 @@ Manual test script for payment endpoints validation
 """
 
 import asyncio
-import sys
 from httpx import AsyncClient
 from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 # Import payment module components
 from modules.payment.endpoints.payment_endpoints import router as payment_router
-from core.db.session import get_db
+from app.core.db import get_db
 
 # Setup FastAPI app
 app = FastAPI(title="SILA Payment API Test")

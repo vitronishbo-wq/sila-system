@@ -1,7 +1,0 @@
-module,service_key,service_name_pt,service_name_en,service_type
-health,AgendamentoConsulta,Agendamento de Consulta,Medical Appointment,citizen
-health,SolicitacaoExame,Solicitação de Exame,Lab Test Request,citizen
-citizenship,EmissaoBI,Emissão de BI,ID Card Issuance,citizen
-education,MatriculaEscolar,Matrícula Escolar,School Enrollment,citizen
-commercial,AberturaProcesso,Abertura de Processo,Process Opening,internal
-urbanism,LicencaConstrucao,Licença de Construção,Building Permit,internal

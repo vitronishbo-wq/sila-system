@@ -1,0 +1,232 @@
+# Module Architecture
+
+Domain: comercio_externo
+
+Path:
+/home/dev03wsl/sila-system/apps/backend/app/modules/comercio_externo
+
+## Purpose
+
+Gerir capacidades do dominio governamental `comercio_externo` no contexto federado `economy`.
+
+## Core Responsibilities
+
+- Modelar regras de negocio do modulo `comercio_externo`.
+- Orquestrar casos de uso na camada `application`.
+- Expor capacidades publicas via camada `api`.
+
+## Architecture
+
+DDD + Clean Architecture
+
+Layers:
+
+- domain
+- application
+- infrastructure
+- api
+- tests
+
+## Key Entities
+
+- AcordoComercial
+- Ademe
+- AdmissaoTemporaria
+- AdvancePaymentBond
+- AeroportoAlfandegado
+- AgenteCarga
+- Airwaybill
+- Aladi
+- AnaliseRisco
+- AperfeicoamentoAtivo
+- AperfeicoamentoPassivo
+- Apreensao
+- ArbitragemCambio
+- ArmazemAlfandegado
+- Armazenagem
+- ArmazenagemAlfandegada
+- AssinaturaDigitalAduaneira
+- AutoInfracaoAduaneiro
+- AutorizacaoExportacao
+- AutorizacaoImportacao
+- Awb
+- BalancaComercial
+- BalancoPagamentos
+- Baldeacao
+- BankGuarantee
+- BidBond
+- BillOfLading
+- Bl
+- BlocoEconomico
+- CanalAmarelo
+- CanalCinza
+- CanalParametrizacao
+- CanalVerde
+- CanalVermelho
+- CancelamentoRadar
+- Capatazia
+- CartaCredito
+- CertificadoAnalise
+- CertificadoDigitalAduaneiro
+- CertificadoFitossanitario
+- CertificadoFumigacao
+- CertificadoOrigem
+- CertificadoQualidade
+- CertificadoZoossanitario
+- Cfr
+- Cif
+- Cip
+- CoberturaCambial
+- Cobranca
+- CobrancaDocumentaria
+- CofinsImportacao
+- CommercialInvoice
+- ConferenciaAduaneira
+- ConferenciaDocumental
+- ConferenciaFisica
+- ConhecimentoEmbarque
+- ContratoCambio
+- ContratoCambioExportacao
+- ContratoCambioImportacao
+- ContratoExportacao
+- ContratoImportacao
+- ConversaoMoeda
+- CotacaoCambio
+- Cpt
+- CreditoDocumentario
+- Dap
+- Ddp
+- De
+- DeclaracaoAduaneira
+- DeclaracaoExportacao
+- DeclaracaoImportacao
+- DeclaracaoUnica
+- DefesaAduaneira
+- DepositoAlfandegado
+- DepositoEspecial
+- DepositoIndustrial
+- DepositoSobControle
+- Desembaraco
+- Despachante
+- DespachoAduaneiro
+
+## Use Cases
+
+- AcordoComercialService
+- AdemeService
+- AdmissaoTemporariaService
+- AdvancePaymentBondService
+- AeroportoAlfandegadoService
+- AgenteCargaService
+- AirwaybillService
+- AladiService
+- AnaliseRiscoService
+- AperfeicoamentoAtivoService
+- AperfeicoamentoPassivoService
+- ApreensaoService
+- ArbitragemCambioService
+- ArmazemAlfandegadoService
+- ArmazenagemAlfandegadaService
+- ArmazenagemService
+- AssinaturaDigitalAduaneiraService
+- AutoInfracaoAduaneiroService
+- AutorizacaoExportacaoService
+- AutorizacaoImportacaoService
+- AwbService
+- BalancaComercialService
+- BalancoPagamentosService
+- BaldeacaoService
+- BankGuaranteeService
+- BidBondService
+- BillOfLadingService
+- BlService
+- BlocoEconomicoService
+- CanalAmareloService
+- CanalCinzaService
+- CanalParametrizacaoService
+- CanalVerdeService
+- CanalVermelhoService
+- CancelamentoRadarService
+- CapataziaService
+- CartaCreditoService
+- CertificadoAnaliseService
+- CertificadoDigitalAduaneiroService
+- CertificadoFitossanitarioService
+- CertificadoFumigacaoService
+- CertificadoOrigemService
+- CertificadoQualidadeService
+- CertificadoZoossanitarioService
+- CfrService
+- CifService
+- CipService
+- CoberturaCambialService
+- CobrancaDocumentariaService
+- CobrancaService
+- CofinsImportacaoService
+- CommercialInvoiceService
+- ConferenciaAduaneiraService
+- ConferenciaDocumentalService
+- ConferenciaFisicaService
+- ConhecimentoEmbarqueService
+- ContratoCambioExportacaoService
+- ContratoCambioImportacaoService
+- ContratoCambioService
+- ContratoExportacaoService
+- ContratoImportacaoService
+- ConversaoMoedaService
+- CotacaoCambioService
+- CptService
+- CreditoDocumentarioService
+- DapService
+- DdpService
+- DeService
+- DeclaracaoAduaneiraService
+- DeclaracaoExportacaoService
+- DeclaracaoImportacaoService
+- DeclaracaoUnicaService
+- DefesaAduaneiraService
+- DepositoAlfandegadoService
+- DepositoEspecialService
+- DepositoIndustrialService
+- DepositoSobControleService
+- DesembaracoService
+- DespachanteService
+- DespachoAduaneiroService
+- DespachoExportacaoService
+- DespachoImportacaoService
+- DestinoProdutoService
+- DiService
+- DpdService
+- DpuService
+- DrawbackExternoService
+- DrawbackIntegradoService
+- DrawbackInternoService
+- DrawbackIsencaoService
+- DrawbackRestituicaoService
+- DrawbackService
+- DrawbackSubstituicaoService
+- DrawbackSuspensaoService
+- DrawbackVerdeAmareloService
+- DuService
+- EntrepostoAduaneiroService
+- EstacaoAduaneiraService
+- EstatisticaExportacaoService
+- EstatisticaImportacaoService
+
+## Public API
+
+- Nenhum endpoint detectado automaticamente no diretório `api`.
+
+## Dependencies
+
+- Sem dependencias externas de modulo detectadas.
+
+## Notes for AI Agents
+
+Regras importantes para IA:
+
+- Nao acessar outros dominios diretamente.
+- Usar `application` services/handlers como orquestracao.
+- Manter separacao DDD entre `domain`, `application`, `infrastructure` e `api`.
+
+_Auto-generated by `scripts/ai/generate_module_architecture_docs.py`. Nao editar manualmente; regenerar via `make architecture-docs`._

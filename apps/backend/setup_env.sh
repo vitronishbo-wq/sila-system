@@ -24,6 +24,6 @@ fi
 
 # Exporta variáveis para a sessão atual (útil para rodar scripts locais)
 export POSTGRES_PASSWORD=Trumanmarcelo_1983
-export DATABASE_URL=postgresql+asyncpg://sila_user:Trumanmarcelo_1983@db:5432/sila_db
+export DATABASE_URL=postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db
 
 echo "🚀 Ambiente pronto! Use 'source .venv/bin/activate' para entrar."

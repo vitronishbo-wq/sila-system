@@ -1,0 +1,2 @@
+class PecuariaError(Exception):
+    pass

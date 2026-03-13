@@ -11,19 +11,4 @@ from .propina_model import PropinaModel
 from .transferencia_model import TransferenciaModel
 from .turma_model import TurmaModel
 from .universidade_model import UniversidadeModel
-
-__all__ = [
-    "MatriculaModel",
-    "EscolaModel",
-    "TurmaModel",
-    "AnoLetivoModel",
-    "InscricaoModel",
-    "BoletimModel",
-    "CertificadoModel",
-    "TransferenciaModel",
-    "PropinaModel",
-    "EmpregoModel",
-    "ConcursoModel",
-    "FormacaoModel",
-    "UniversidadeModel",
-]
+__all__ = ['MatriculaModel', 'EscolaModel', 'TurmaModel', 'AnoLetivoModel', 'InscricaoModel', 'BoletimModel', 'CertificadoModel', 'TransferenciaModel', 'PropinaModel', 'EmpregoModel', 'ConcursoModel', 'FormacaoModel', 'UniversidadeModel']

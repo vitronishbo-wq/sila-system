@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 MODULE_ROOTS=("apps/backend/app/modules")
 RUN_ARCHITECTURE_SCAN="${GUARDRAILS_RUN_ARCHITECTURE_SCAN:-1}"
-ARCHITECTURE_SCAN_CMD="${GUARDRAILS_ARCHITECTURE_SCAN_CMD:-python3 apps/backend/tools/architecture/run_analysis.py}"
+ARCHITECTURE_SCAN_CMD="${GUARDRAILS_ARCHITECTURE_SCAN_CMD:-python3 scripts/architecture/run_analysis.py}"
 SCAN_BEFORE_REPORT="${GUARDRAILS_SCAN_BEFORE_REPORT:-reports/architecture_scan_before.json}"
 SCAN_AFTER_REPORT="${GUARDRAILS_SCAN_AFTER_REPORT:-reports/architecture_scan_after.json}"
 REFACTOR_REPORT="${GUARDRAILS_REFACTOR_REPORT:-reports/architecture_refactor_report.json}"
@@ -57,31 +57,51 @@ load_allowlist_phase() {
 }
 
 if [[ "$RUN_ARCHITECTURE_SCAN" == "1" ]]; then
-  echo "[1/9] Running enterprise architecture scan..."
+  echo "[1/15] Running enterprise architecture scan..."
   bash -lc "$ARCHITECTURE_SCAN_CMD"
 else
-  echo "[1/9] Skipping enterprise architecture scan (GUARDRAILS_RUN_ARCHITECTURE_SCAN=0)."
+  echo "[1/15] Skipping enterprise architecture scan (GUARDRAILS_RUN_ARCHITECTURE_SCAN=0)."
 fi
 
-echo "[2/9] Enforcing core namespace guardrail..."
+echo "[2/15] Generating module architecture docs..."
+python3 scripts/ai/generate_module_architecture_docs.py --refresh-dependencies
+
+echo "[3/15] Generating AI architecture graph artifacts..."
+python3 scripts/ai/generate_architecture_graph.py
+
+echo "[4/15] Generating AI domain kernel artifacts..."
+python3 scripts/ai/generate_ai_domain_kernel.py
+
+echo "[5/15] Generating architecture index artifacts..."
+python3 scripts/architecture/generate_architecture_index.py
+
+echo "[6/15] Enforcing AI bootstrap/context stack guardrail..."
+python3 scripts/guardrails/check_ai_bootstrap_stack.py --repo-root .
+
+echo "[7/15] Enforcing core namespace guardrail..."
 python3 scripts/guardrails/check_core_namespace.py --root apps/backend
 
-echo "[3/9] Enforcing module registry synchronization guardrail..."
+echo "[8/15] Enforcing module registry synchronization guardrail..."
 python3 scripts/guardrails/check_module_registry_sync.py --modules-root apps/backend/app/modules
 
+echo "[9/15] Enforcing domain dependency graph guardrail..."
+python3 scripts/guardrails/check_domain_dependencies.py \
+  --observed-json reports/module_dependency_graph.json \
+  --declared-graph docs/AI_ARCHITECTURE_GRAPH.yaml
+
 if [[ "${GUARDRAILS_ENFORCE_GUIDE_SYNC:-1}" == "1" ]]; then
-  echo "[4/9] Enforcing AI architecture guide sync guardrail..."
+  echo "[10/15] Enforcing AI architecture guide sync guardrail..."
   python3 scripts/guardrails/check_architecture_guide_sync.py
 else
-  echo "[4/9] Skipping AI architecture guide sync guardrail (GUARDRAILS_ENFORCE_GUIDE_SYNC=0)."
+  echo "[10/15] Skipping AI architecture guide sync guardrail (GUARDRAILS_ENFORCE_GUIDE_SYNC=0)."
 fi
 
-echo "[5/9] Scanning architecture (before refactor)..."
+echo "[11/15] Scanning architecture (before refactor)..."
 python3 scripts/architecture_scan.py \
   --roots "${MODULE_ROOTS[@]}" \
   --json-out "$SCAN_BEFORE_REPORT"
 
-echo "[6/9] Applying safe refactors..."
+echo "[12/15] Applying safe refactors..."
 REFACTOR_ARGS=(
   --roots "${MODULE_ROOTS[@]}"
   --report-out "$REFACTOR_REPORT"
@@ -91,20 +111,20 @@ if [[ "$REFACTOR_DRY_RUN" == "1" ]]; then
 fi
 python3 scripts/refactor_modules.py "${REFACTOR_ARGS[@]}"
 
-echo "[7/9] Scanning architecture (after refactor)..."
+echo "[13/15] Scanning architecture (after refactor)..."
 python3 scripts/architecture_scan.py \
   --roots "${MODULE_ROOTS[@]}" \
   --json-out "$SCAN_AFTER_REPORT" \
   --fail-on-violations
 
-echo "[8/9] Running backend architecture guardrails..."
-if [[ -f "apps/backend/scripts/architecture_guardrails.sh" ]]; then
-  bash apps/backend/scripts/architecture_guardrails.sh
+echo "[14/15] Running backend architecture guardrails..."
+if [[ -f "scripts/guardrails/architecture_guardrails.sh" ]]; then
+  ROOT_DIR="$ROOT_DIR" bash scripts/guardrails/architecture_guardrails.sh
 else
-  echo "Guardrails script not found at apps/backend/scripts/architecture_guardrails.sh; skipping."
+  echo "Guardrails script not found at scripts/guardrails/architecture_guardrails.sh; skipping."
 fi
 
-echo "[9/9] Running tests..."
+echo "[15/15] Running tests..."
 if [[ "${SKIP_TESTS:-0}" == "1" ]]; then
   echo "Skipping tests because SKIP_TESTS=1."
 else

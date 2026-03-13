@@ -1,0 +1,23 @@
+system: sila-system
+generated_at: '2026-03-07T21:49:57Z'
+source: reports/module_dependency_graph.json
+modules:
+  economy:
+    depends_on: []
+  educacao:
+    depends_on: []
+  governance:
+    depends_on: []
+  infrastructure_sector:
+    depends_on: []
+  intelligence:
+    depends_on: []
+  justice:
+    depends_on: []
+  resources:
+    depends_on: []
+  society:
+    depends_on:
+      - economy
+      - infrastructure_sector
+      - justice

@@ -1,9 +1,0 @@
-# Production Security Requirements
-cryptography>=41.0.0
-bcrypt>=4.0.0
-passlib[bcrypt]>=1.7.4
-python-jose[cryptography]>=3.3.0
-
-# Security scanning (dev only)
-bandit>=1.7.0
-safety>=3.0.0

@@ -1,0 +1,177 @@
+[
+  {
+    "name": "audit",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "civil_protection",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "compliance",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "documents",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "economy",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "educacao",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "energy",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "governance",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "identity",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "industry",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "infrastructure",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "infrastructure_sector",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "intelligence",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "justice",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "logistics",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "migration_service",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "operations",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "payment",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "procurement",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "public_security",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "resources",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "saude",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "society",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "tourism",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  },
+  {
+    "name": "xroad",
+    "had_core_only": false,
+    "created_dirs": [],
+    "created_files": [],
+    "lifecycle_added": false
+  }
+]

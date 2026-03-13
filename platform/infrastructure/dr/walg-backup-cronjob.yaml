@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: op-postgres-walg-backup
+  namespace: sila-system
+spec:
+  schedule: "0 1 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: wal-g-backup
+              image: ghcr.io/wal-g/wal-g:latest
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  wal-g backup-push /var/lib/postgresql/data
+              env:
+                - name: WALG_S3_PREFIX
+                  value: s3://gov-backup/op
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: sila-secrets
+                      key: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: sila-secrets
+                      key: AWS_SECRET_ACCESS_KEY
+              volumeMounts:
+                - name: postgres-data
+                  mountPath: /var/lib/postgresql/data
+          volumes:
+            - name: postgres-data
+              persistentVolumeClaim:
+                claimName: sila-postgres-pvc

@@ -1,0 +1,21 @@
+name: saude
+type: macro_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+description: Healthcare sector module covering medical services, appointments, prescriptions and health monitoring
+
+exposes:
+  api_routers:
+    - app.modules.saude.api.router:router
+  public_models: []
+  events_published: []
+
+requires:
+  domains:
+    - society
+    - identity
+    - governance
+  core_services: []
+
+subdomains: []

@@ -1,0 +1,1337 @@
+[
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort",
+    "updated": "from app.modules.industry.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.industry.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.industry.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.comercio_externo_service_port import ComercioExternoServicePort",
+    "updated": "from app.modules.industry.application.ports.comercio_externo_service_port import ComercioExternoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.energia_service_port import EnergiaServicePort",
+    "updated": "from app.modules.industry.application.ports.energia_service_port import EnergiaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.estabelecimento_industrial_repository_port import EstabelecimentoIndustrialRepositoryPort",
+    "updated": "from app.modules.industry.application.ports.estabelecimento_industrial_repository_port import EstabelecimentoIndustrialRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.financas_impostos_service_port import FinancasImpostosServicePort",
+    "updated": "from app.modules.industry.application.ports.financas_impostos_service_port import FinancasImpostosServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.geosampa_service_port import GeosampaServicePort",
+    "updated": "from app.modules.industry.application.ports.geosampa_service_port import GeosampaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort",
+    "updated": "from app.modules.industry.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.industry.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort",
+    "updated": "from app.modules.industry.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/ports/__init__.py",
+    "original": "from app.modules.industry.core.application.ports.urbanismo_service_port import UrbanismoServicePort",
+    "updated": "from app.modules.industry.application.ports.urbanismo_service_port import UrbanismoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/application/services/estabelecimento_industrial_service.py",
+    "original": "from app.modules.industry.core.application.ports import EstabelecimentoIndustrialRepositoryPort",
+    "updated": "from app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/industry/core/infrastructure/repositories/sqlalchemy_estabelecimento_industrial_repository.py",
+    "original": "from app.modules.industry.core.application.ports import EstabelecimentoIndustrialRepositoryPort",
+    "updated": "from app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.payment_repository_port import PaymentRepositoryPort",
+    "updated": "from app.modules.economy.application.ports.payment_repository_port import PaymentRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.invoice_repository_port import InvoiceRepositoryPort",
+    "updated": "from app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.educacao_service_port import EducacaoServicePort",
+    "updated": "from app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.juventude_service_port import JuventudeServicePort",
+    "updated": "from app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.emprego_service_port import EmpregoServicePort",
+    "updated": "from app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.saude_service_port import SaudeServicePort",
+    "updated": "from app.modules.economy.application.ports.saude_service_port import SaudeServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort",
+    "updated": "from app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/payment_service.py",
+    "original": "from app.modules.economy.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.invoice_repository_port import InvoiceRepositoryPort",
+    "updated": "from app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.educacao_service_port import EducacaoServicePort",
+    "updated": "from app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.juventude_service_port import JuventudeServicePort",
+    "updated": "from app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.emprego_service_port import EmpregoServicePort",
+    "updated": "from app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.saude_service_port import SaudeServicePort",
+    "updated": "from app.modules.economy.application.ports.saude_service_port import SaudeServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort",
+    "updated": "from app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/core/application/invoice_service.py",
+    "original": "from app.modules.economy.core.application.ports.identidade_service_port import IdentidadeServicePort",
+    "updated": "from app.modules.economy.application.ports.identidade_service_port import IdentidadeServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.energy.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.central_geradora_repository_port import CentralGeradoraRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.central_geradora_repository_port import CentralGeradoraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.consumo_repository_port import ConsumoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.consumo_repository_port import ConsumoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.energy.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.fatura_repository_port import FaturaRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.fatura_repository_port import FaturaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.financas_publicas_service_port import FinancasPublicasServicePort",
+    "updated": "from app.modules.energy.application.ports.financas_publicas_service_port import FinancasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.geosampa_service_port import GeosampaServicePort",
+    "updated": "from app.modules.energy.application.ports.geosampa_service_port import GeosampaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort",
+    "updated": "from app.modules.energy.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.obras_publicas_service_port import ObrasPublicasServicePort",
+    "updated": "from app.modules.energy.application.ports.obras_publicas_service_port import ObrasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.energy.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.linha_transmissao_repository_port import LinhaTransmissaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.linha_transmissao_repository_port import LinhaTransmissaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.ons_service_port import ONSServicePort",
+    "updated": "from app.modules.energy.application.ports.ons_service_port import ONSServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.subestacao_repository_port import SubestacaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.subestacao_repository_port import SubestacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.urbanismo_service_port import UrbanismoServicePort",
+    "updated": "from app.modules.energy.application.ports.urbanismo_service_port import UrbanismoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/ports/__init__.py",
+    "original": "from app.modules.energy.core.application.ports.usina_repository_port import UsinaRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.usina_repository_port import UsinaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/geracao_service.py",
+    "original": "from app.modules.energy.core.application.ports import CentralGeradoraRepositoryPort, LinhaTransmissaoRepositoryPort, SubestacaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import CentralGeradoraRepositoryPort, LinhaTransmissaoRepositoryPort, SubestacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/central_geradora_service.py",
+    "original": "from app.modules.energy.core.application.ports import CentralGeradoraRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import CentralGeradoraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/faturamento_service.py",
+    "original": "from app.modules.energy.core.application.ports import ConsumoRepositoryPort, FaturaRepositoryPort, ONSServicePort, OutboxRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import ConsumoRepositoryPort, FaturaRepositoryPort, ONSServicePort, OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/subestacao_service.py",
+    "original": "from app.modules.energy.core.application.ports import SubestacaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import SubestacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/linha_transmissao_service.py",
+    "original": "from app.modules.energy.core.application.ports import LinhaTransmissaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import LinhaTransmissaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/consumo_service.py",
+    "original": "from app.modules.energy.core.application.ports import ConsumoRepositoryPort, OutboxRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import ConsumoRepositoryPort, OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/application/services/usina_service.py",
+    "original": "from app.modules.energy.core.application.ports import UsinaRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import UsinaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/persistence/outbox.py",
+    "original": "from app.modules.energy.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/persistence/repository.py",
+    "original": "from app.modules.energy.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/adapters/ons_adapter.py",
+    "original": "from app.modules.energy.core.application.ports.ons_service_port import ONSServicePort",
+    "updated": "from app.modules.energy.application.ports.ons_service_port import ONSServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_central_geradora_repository.py",
+    "original": "from app.modules.energy.core.application.ports import CentralGeradoraRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import CentralGeradoraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_usina_repository.py",
+    "original": "from app.modules.energy.core.application.ports import UsinaRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import UsinaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_linha_transmissao_repository.py",
+    "original": "from app.modules.energy.core.application.ports import LinhaTransmissaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import LinhaTransmissaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_subestacao_repository.py",
+    "original": "from app.modules.energy.core.application.ports import SubestacaoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import SubestacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_consumo_repository.py",
+    "original": "from app.modules.energy.core.application.ports import ConsumoRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import ConsumoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/energy/core/infrastructure/repositories/sqlalchemy_fatura_repository.py",
+    "original": "from app.modules.energy.core.application.ports import FaturaRepositoryPort",
+    "updated": "from app.modules.energy.application.ports import FaturaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.logistics.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.bilhetagem_repository_port import BilhetagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports.bilhetagem_repository_port import BilhetagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.logistics.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.comercio_externo_service_port import ComercioExternoServicePort",
+    "updated": "from app.modules.logistics.application.ports.comercio_externo_service_port import ComercioExternoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.financas_service_port import FinancasServicePort",
+    "updated": "from app.modules.logistics.application.ports.financas_service_port import FinancasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.frota_repository_port import FrotaRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports.frota_repository_port import FrotaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.geosampa_service_port import GeosampaServicePort",
+    "updated": "from app.modules.logistics.application.ports.geosampa_service_port import GeosampaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.linha_repository_port import LinhaRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports.linha_repository_port import LinhaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.obras_publicas_service_port import ObrasPublicasServicePort",
+    "updated": "from app.modules.logistics.application.ports.obras_publicas_service_port import ObrasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.logistics.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.seguranca_publica_service_port import SegurancaPublicaServicePort",
+    "updated": "from app.modules.logistics.application.ports.seguranca_publica_service_port import SegurancaPublicaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.logistics.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.urbanismo_service_port import UrbanismoServicePort",
+    "updated": "from app.modules.logistics.application.ports.urbanismo_service_port import UrbanismoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.veiculo_repository_port import VeiculoRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports.veiculo_repository_port import VeiculoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.viagem_repository_port import ViagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports.viagem_repository_port import ViagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.logistics.core.application.ports.workflow_service_port import WorkflowServicePort",
+    "updated": "from app.modules.logistics.application.ports.workflow_service_port import WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/services/frota_service.py",
+    "original": "from app.modules.logistics.core.application.ports import FinancasServicePort, FrotaRepositoryPort, SegurancaPublicaServicePort, ServiceRequestsServicePort, WorkflowServicePort",
+    "updated": "from app.modules.logistics.application.ports import FinancasServicePort, FrotaRepositoryPort, SegurancaPublicaServicePort, ServiceRequestsServicePort, WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/services/viagem_service.py",
+    "original": "from app.modules.logistics.core.application.ports import ViagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import ViagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/services/linha_service.py",
+    "original": "from app.modules.logistics.core.application.ports import GeosampaServicePort, LinhaRepositoryPort, ObrasPublicasServicePort, UrbanismoServicePort, VeiculoRepositoryPort, WorkflowServicePort",
+    "updated": "from app.modules.logistics.application.ports import GeosampaServicePort, LinhaRepositoryPort, ObrasPublicasServicePort, UrbanismoServicePort, VeiculoRepositoryPort, WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/services/bilhetagem_service.py",
+    "original": "from app.modules.logistics.core.application.ports import BilhetagemRepositoryPort, FinancasServicePort, WorkflowServicePort",
+    "updated": "from app.modules.logistics.application.ports import BilhetagemRepositoryPort, FinancasServicePort, WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/application/services/operacao_analytics_service.py",
+    "original": "from app.modules.logistics.core.application.ports import BilhetagemRepositoryPort, ViagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import BilhetagemRepositoryPort, ViagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/service_requests_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.logistics.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/financas_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.financas_service_port import FinancasServicePort",
+    "updated": "from app.modules.logistics.application.ports.financas_service_port import FinancasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/obras_publicas_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.obras_publicas_service_port import ObrasPublicasServicePort",
+    "updated": "from app.modules.logistics.application.ports.obras_publicas_service_port import ObrasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/ambiente_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.logistics.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/urbanismo_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.urbanismo_service_port import UrbanismoServicePort",
+    "updated": "from app.modules.logistics.application.ports.urbanismo_service_port import UrbanismoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/seguranca_publica_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.seguranca_publica_service_port import SegurancaPublicaServicePort",
+    "updated": "from app.modules.logistics.application.ports.seguranca_publica_service_port import SegurancaPublicaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/comercio_externo_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.comercio_externo_service_port import ComercioExternoServicePort",
+    "updated": "from app.modules.logistics.application.ports.comercio_externo_service_port import ComercioExternoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/request_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.logistics.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/citizen_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.logistics.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/geosampa_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.geosampa_service_port import GeosampaServicePort",
+    "updated": "from app.modules.logistics.application.ports.geosampa_service_port import GeosampaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/adapters/workflow_service_adapter.py",
+    "original": "from app.modules.logistics.core.application.ports.workflow_service_port import WorkflowServicePort",
+    "updated": "from app.modules.logistics.application.ports.workflow_service_port import WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/repositories/sqlalchemy_frota_repository.py",
+    "original": "from app.modules.logistics.core.application.ports import FrotaRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import FrotaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/repositories/sqlalchemy_veiculo_repository.py",
+    "original": "from app.modules.logistics.core.application.ports import VeiculoRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import VeiculoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/repositories/sqlalchemy_linha_repository.py",
+    "original": "from app.modules.logistics.core.application.ports import LinhaRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import LinhaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/repositories/sqlalchemy_bilhetagem_repository.py",
+    "original": "from app.modules.logistics.core.application.ports import BilhetagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import BilhetagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/logistics/core/domain/infrastructure/repositories/sqlalchemy_viagem_repository.py",
+    "original": "from app.modules.logistics.core.application.ports import ViagemRepositoryPort",
+    "updated": "from app.modules.logistics.application.ports import ViagemRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.edital_repository_port import EditalRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.financas_publicas_service_port import FinancasPublicasServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.financas_publicas_service_port import FinancasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.justica_service_port import JusticaServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.justica_service_port import JusticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.licitacao_repository_port import LicitacaoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.obra_repository_port import ObraRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.projeto_repository_port import ProjetoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.transportes_service_port import TransportesServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/ports/__init__.py",
+    "original": "from app.modules.infrastructure.core.application.ports.workflow_service_port import WorkflowServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.workflow_service_port import WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.financas_publicas_service_port import FinancasPublicasServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.financas_publicas_service_port import FinancasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.obra_repository_port import ObraRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.transportes_service_port import TransportesServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/obra_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.workflow_service_port import WorkflowServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.workflow_service_port import WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/licitacao_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.licitacao_repository_port import LicitacaoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/projeto_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.projeto_repository_port import ProjetoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/application/services/edital_service.py",
+    "original": "from app.modules.infrastructure.core.application.ports.edital_repository_port import EditalRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/persistence/outbox_repository.py",
+    "original": "from app.modules.infrastructure.core.application.ports.outbox_repository_port import OutboxRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/aguas_saneamento_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/service_requests_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.service_requests_service_port import ServiceRequestsServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.service_requests_service_port import ServiceRequestsServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/justica_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.justica_service_port import JusticaServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.justica_service_port import JusticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/financas_publicas_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.financas_publicas_service_port import FinancasPublicasServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.financas_publicas_service_port import FinancasPublicasServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/ambiente_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/urbanismo_habitacao_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/transportes_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.transportes_service_port import TransportesServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/request_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/citizen_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/gestao_fundiaria_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/adapters/workflow_service_adapter.py",
+    "original": "from app.modules.infrastructure.core.application.ports.workflow_service_port import WorkflowServicePort",
+    "updated": "from app.modules.infrastructure.application.ports.workflow_service_port import WorkflowServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/repositories/sqlalchemy_licitacao_repository.py",
+    "original": "from app.modules.infrastructure.core.application.ports.licitacao_repository_port import LicitacaoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/repositories/sqlalchemy_edital_repository.py",
+    "original": "from app.modules.infrastructure.core.application.ports.edital_repository_port import EditalRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/repositories/sqlalchemy_obra_repository.py",
+    "original": "from app.modules.infrastructure.core.application.ports.obra_repository_port import ObraRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure/core/domain/infrastructure/repositories/sqlalchemy_projeto_repository.py",
+    "original": "from app.modules.infrastructure.core.application.ports.projeto_repository_port import ProjetoRepositoryPort",
+    "updated": "from app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/core/application/matricula_service.py",
+    "original": "from app.modules.educacao.core.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TurmaRepositoryPort",
+    "updated": "from app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TurmaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/guia_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/cultura_service_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseIntegrationServicePort",
+    "updated": "from app.modules.tourism.application.ports import BaseIntegrationServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.operador_turistico_repository_port import OperadorTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.operador_turistico_repository_port import OperadorTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.guia_turismo_repository_port import GuiaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.guia_turismo_repository_port import GuiaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.condutor_visitantes_repository_port import CondutorVisitantesRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.condutor_visitantes_repository_port import CondutorVisitantesRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.hotel_repository_port import HotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.pousada_repository_port import PousadaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.pousada_repository_port import PousadaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.resort_repository_port import ResortRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.resort_repository_port import ResortRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.ponto_turistico_repository_port import PontoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.ponto_turistico_repository_port import PontoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.evento_turistico_repository_port import EventoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.evento_turistico_repository_port import EventoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.pacote_turistico_repository_port import PacoteTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.pacote_turistico_repository_port import PacoteTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.roteiro_repository_port import RoteiroRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.reserva_pacote_repository_port import ReservaPacoteRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reserva_pacote_repository_port import ReservaPacoteRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.avaliacao_repository_port import AvaliacaoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.avaliacao_repository_port import AvaliacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.reclamacao_turismo_repository_port import ReclamacaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reclamacao_turismo_repository_port import ReclamacaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.cadastro_turista_repository_port import CadastroTuristaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.cadastro_turista_repository_port import CadastroTuristaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.visitante_repository_port import VisitanteRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.visitante_repository_port import VisitanteRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.fluxo_turistico_repository_port import FluxoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.fluxo_turistico_repository_port import FluxoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.ocupacao_hoteleira_repository_port import OcupacaoHoteleiraRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.ocupacao_hoteleira_repository_port import OcupacaoHoteleiraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.tarifa_hotel_repository_port import TarifaHotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.tarifa_hotel_repository_port import TarifaHotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.temporada_repository_port import TemporadaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.temporada_repository_port import TemporadaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.promocao_turistica_repository_port import PromocaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.promocao_turistica_repository_port import PromocaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.licenca_turismo_repository_port import LicencaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.licenca_turismo_repository_port import LicencaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.cadastur_repository_port import CadasturRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.cadastur_repository_port import CadasturRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.credencial_repository_port import CredencialRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.credencial_repository_port import CredencialRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.fiscalizacao_turismo_repository_port import FiscalizacaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.fiscalizacao_turismo_repository_port import FiscalizacaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.auto_infracao_turismo_repository_port import AutoInfracaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.auto_infracao_turismo_repository_port import AutoInfracaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.multa_turismo_repository_port import MultaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.multa_turismo_repository_port import MultaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.classificacao_hoteleira_repository_port import ClassificacaoHoteleiraRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.classificacao_hoteleira_repository_port import ClassificacaoHoteleiraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.certificacao_turistica_repository_port import CertificacaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.certificacao_turistica_repository_port import CertificacaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.estatistica_turismo_repository_port import EstatisticaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.estatistica_turismo_repository_port import EstatisticaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.chegada_turistas_repository_port import ChegadaTuristasRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.chegada_turistas_repository_port import ChegadaTuristasRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.receita_turistica_repository_port import ReceitaTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.receita_turistica_repository_port import ReceitaTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.tourism.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort",
+    "updated": "from app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.ambiente_service_port import AmbienteServicePort",
+    "updated": "from app.modules.tourism.application.ports.ambiente_service_port import AmbienteServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.cultura_service_port import CulturaServicePort",
+    "updated": "from app.modules.tourism.application.ports.cultura_service_port import CulturaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.comercio_servicos_service_port import ComercioServicosServicePort",
+    "updated": "from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/__init__.py",
+    "original": "from app.modules.tourism.core.application.ports.geosampa_service_port import GeosampaServicePort",
+    "updated": "from app.modules.tourism.application.ports.geosampa_service_port import GeosampaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/operador_turistico_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/credencial_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/tarifa_hotel_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/multa_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/avaliacao_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/fluxo_turistico_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/geosampa_service_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseIntegrationServicePort",
+    "updated": "from app.modules.tourism.application.ports import BaseIntegrationServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/condutor_visitantes_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/evento_turistico_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/ponto_turistico_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/promocao_turistica_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/registro_guia_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/receita_turistica_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/ocupacao_hoteleira_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/estatistica_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/visitante_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/cadastur_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/resort_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/temporada_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/auto_infracao_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/pacote_turistico_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/classificacao_hoteleira_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/ambiente_service_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseIntegrationServicePort",
+    "updated": "from app.modules.tourism.application.ports import BaseIntegrationServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/fiscalizacao_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/cadastro_turista_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/licenca_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/reclamacao_turismo_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/reserva_hotel_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/chegada_turistas_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/ports/reserva_pacote_repository_port.py",
+    "original": "from app.modules.tourism.core.application.ports import BaseRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports import BaseRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/meio_hospedagem_service.py",
+    "original": "from app.modules.tourism.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/meio_hospedagem_service.py",
+    "original": "from app.modules.tourism.core.application.ports.hotel_repository_port import HotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/meio_hospedagem_service.py",
+    "original": "from app.modules.tourism.core.application.ports.pousada_repository_port import PousadaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.pousada_repository_port import PousadaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/meio_hospedagem_service.py",
+    "original": "from app.modules.tourism.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.tourism.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/atracao_service.py",
+    "original": "from app.modules.tourism.core.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/roteiro_service.py",
+    "original": "from app.modules.tourism.core.application.ports.comercio_servicos_service_port import ComercioServicosServicePort",
+    "updated": "from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/roteiro_service.py",
+    "original": "from app.modules.tourism.core.application.ports.roteiro_repository_port import RoteiroRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/roteiro_service.py",
+    "original": "from app.modules.tourism.core.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort",
+    "updated": "from app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/agencia_viagens_service.py",
+    "original": "from app.modules.tourism.core.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/agencia_viagens_service.py",
+    "original": "from app.modules.tourism.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/agencia_viagens_service.py",
+    "original": "from app.modules.tourism.core.application.ports.comercio_servicos_service_port import ComercioServicosServicePort",
+    "updated": "from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/application/services/agencia_viagens_service.py",
+    "original": "from app.modules.tourism.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.tourism.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/adapters/transportes_logistica_service_adapter.py",
+    "original": "from app.modules.tourism.core.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort",
+    "updated": "from app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/adapters/request_service_adapter.py",
+    "original": "from app.modules.tourism.core.application.ports.request_service_port import RequestServicePort",
+    "updated": "from app.modules.tourism.application.ports.request_service_port import RequestServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/adapters/citizen_service_adapter.py",
+    "original": "from app.modules.tourism.core.application.ports.citizen_service_port import CitizenServicePort",
+    "updated": "from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/adapters/comercio_servicos_service_adapter.py",
+    "original": "from app.modules.tourism.core.application.ports.comercio_servicos_service_port import ComercioServicosServicePort",
+    "updated": "from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_fluxo_turistico_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.fluxo_turistico_repository_port import FluxoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.fluxo_turistico_repository_port import FluxoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_multa_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.multa_turismo_repository_port import MultaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.multa_turismo_repository_port import MultaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_cadastur_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.cadastur_repository_port import CadasturRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.cadastur_repository_port import CadasturRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_credencial_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.credencial_repository_port import CredencialRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.credencial_repository_port import CredencialRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_agencia_viagens_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_pacote_turistico_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.pacote_turistico_repository_port import PacoteTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.pacote_turistico_repository_port import PacoteTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_receita_turistica_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.receita_turistica_repository_port import ReceitaTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.receita_turistica_repository_port import ReceitaTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_cadastro_turista_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.cadastro_turista_repository_port import CadastroTuristaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.cadastro_turista_repository_port import CadastroTuristaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_operador_turistico_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.operador_turistico_repository_port import OperadorTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.operador_turistico_repository_port import OperadorTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_hotel_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.hotel_repository_port import HotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_evento_turistico_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.evento_turistico_repository_port import EventoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.evento_turistico_repository_port import EventoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_registro_guia_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_atracao_turistica_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.atracao_turistica_repository_port import AtracaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_guia_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.guia_turismo_repository_port import GuiaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.guia_turismo_repository_port import GuiaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_promocao_turistica_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.promocao_turistica_repository_port import PromocaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.promocao_turistica_repository_port import PromocaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_reclamacao_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.reclamacao_turismo_repository_port import ReclamacaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reclamacao_turismo_repository_port import ReclamacaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_ocupacao_hoteleira_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.ocupacao_hoteleira_repository_port import OcupacaoHoteleiraRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.ocupacao_hoteleira_repository_port import OcupacaoHoteleiraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_pousada_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.pousada_repository_port import PousadaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.pousada_repository_port import PousadaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_temporada_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.temporada_repository_port import TemporadaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.temporada_repository_port import TemporadaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_roteiro_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.roteiro_repository_port import RoteiroRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_ponto_turistico_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.ponto_turistico_repository_port import PontoTuristicoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.ponto_turistico_repository_port import PontoTuristicoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_tarifa_hotel_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.tarifa_hotel_repository_port import TarifaHotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.tarifa_hotel_repository_port import TarifaHotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_reserva_pacote_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.reserva_pacote_repository_port import ReservaPacoteRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reserva_pacote_repository_port import ReservaPacoteRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_auto_infracao_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.auto_infracao_turismo_repository_port import AutoInfracaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.auto_infracao_turismo_repository_port import AutoInfracaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_reserva_hotel_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_fiscalizacao_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.fiscalizacao_turismo_repository_port import FiscalizacaoTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.fiscalizacao_turismo_repository_port import FiscalizacaoTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_classificacao_hoteleira_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.classificacao_hoteleira_repository_port import ClassificacaoHoteleiraRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.classificacao_hoteleira_repository_port import ClassificacaoHoteleiraRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_certificacao_turistica_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.certificacao_turistica_repository_port import CertificacaoTuristicaRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.certificacao_turistica_repository_port import CertificacaoTuristicaRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_avaliacao_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.avaliacao_repository_port import AvaliacaoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.avaliacao_repository_port import AvaliacaoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_licenca_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.licenca_turismo_repository_port import LicencaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.licenca_turismo_repository_port import LicencaTurismoRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_visitante_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.visitante_repository_port import VisitanteRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.visitante_repository_port import VisitanteRepositoryPort"
+  },
+  {
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/tourism/core/infrastructure/repositories/sqlalchemy_estatistica_turismo_repository.py",
+    "original": "from app.modules.tourism.core.application.ports.estatistica_turismo_repository_port import EstatisticaTurismoRepositoryPort",
+    "updated": "from app.modules.tourism.application.ports.estatistica_turismo_repository_port import EstatisticaTurismoRepositoryPort"
+  }
+]

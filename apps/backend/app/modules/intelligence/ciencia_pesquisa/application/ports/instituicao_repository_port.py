@@ -1,0 +1,2 @@
+from app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
+__all__ = ['InstituicaoPesquisaRepositoryPort']

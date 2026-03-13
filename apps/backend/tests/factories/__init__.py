@@ -6,8 +6,10 @@ import factory
 from datetime import date
 from uuid import uuid4
 
-from app.modules.identidade_civil.domain.models.citizen import Citizen
-from app.modules.identidade_civil.infrastructure.models.citizen_model import CitizenModel
+from app.core.bridges.identity_bridge import CitizenFUC
+
+Citizen = CitizenFUC
+CitizenModel = CitizenFUC
 
 
 class CitizenFactory(factory.Factory):

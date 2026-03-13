@@ -1,0 +1,38 @@
+from __future__ import annotations
+from fastapi import Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.api.deps import get_db
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.alvara_service import AlvaraService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.habite_se_service import HabiteSeService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.plano_diretor_service import PlanoDiretorService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.licenciamento_urbano_service import LicenciamentoUrbanoService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.loteamento_service import LoteamentoService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.operacao_urbana_service import OperacaoUrbanaService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.parcelamento_service import ParcelamentoService
+from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.zoneamento_service import ZoneamentoService
+from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyAlvaraRepository, SQLAlchemyHabiteSeRepository, SQLAlchemyLicencaUrbanisticaRepository, SQLAlchemyLoteamentoRepository, SQLAlchemyOperacaoUrbanaRepository, SQLAlchemyParcelamentoRepository, SQLAlchemyPlanoDiretorRepository, SQLAlchemyZoneamentoRepository
+from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.adapters import AguasSaneamentoServiceAdapter, AmbienteServiceAdapter, FinancasServiceAdapter, GestaoFundiariaServiceAdapter, ObrasPublicasServiceAdapter, RequestServiceAdapter, TransportesServiceAdapter, WorkflowServiceAdapter
+
+async def get_plano_diretor_service(session: AsyncSession=Depends(get_db)) -> PlanoDiretorService:
+    return PlanoDiretorService(plano_diretor_repo=SQLAlchemyPlanoDiretorRepository(session))
+
+async def get_zoneamento_service(session: AsyncSession=Depends(get_db)) -> ZoneamentoService:
+    return ZoneamentoService(zoneamento_repo=SQLAlchemyZoneamentoRepository(session))
+
+async def get_operacao_urbana_service(session: AsyncSession=Depends(get_db)) -> OperacaoUrbanaService:
+    return OperacaoUrbanaService(operacao_urbana_repo=SQLAlchemyOperacaoUrbanaRepository(session))
+
+async def get_parcelamento_service(session: AsyncSession=Depends(get_db)) -> ParcelamentoService:
+    return ParcelamentoService(parcelamento_repo=SQLAlchemyParcelamentoRepository(session))
+
+async def get_loteamento_service(session: AsyncSession=Depends(get_db)) -> LoteamentoService:
+    return LoteamentoService(loteamento_repo=SQLAlchemyLoteamentoRepository(session), gestao_fundiaria_adapter=GestaoFundiariaServiceAdapter(), ambiente_adapter=AmbienteServiceAdapter(), obras_publicas_adapter=ObrasPublicasServiceAdapter(), aguas_saneamento_adapter=AguasSaneamentoServiceAdapter(), transportes_adapter=TransportesServiceAdapter(), workflow_adapter=WorkflowServiceAdapter(), financas_adapter=FinancasServiceAdapter())
+
+async def get_licenciamento_urbano_service(session: AsyncSession=Depends(get_db)) -> LicenciamentoUrbanoService:
+    return LicenciamentoUrbanoService(licenca_repo=SQLAlchemyLicencaUrbanisticaRepository(session), ambiente_adapter=AmbienteServiceAdapter(), request_service=RequestServiceAdapter(), workflow_adapter=WorkflowServiceAdapter(), financas_adapter=FinancasServiceAdapter())
+
+async def get_alvara_service(session: AsyncSession=Depends(get_db)) -> AlvaraService:
+    return AlvaraService(alvara_repo=SQLAlchemyAlvaraRepository(session))
+
+async def get_habite_se_service(session: AsyncSession=Depends(get_db)) -> HabiteSeService:
+    return HabiteSeService(habite_se_repo=SQLAlchemyHabiteSeRepository(session))

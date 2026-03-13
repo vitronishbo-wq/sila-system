@@ -29,12 +29,11 @@ class CitizenCreateSchema(BaseModel):
     street: str
     house_number: str
     geo_coordinates: Optional[str] = None
-    verification_level: Optional[str] = "BASIC"
+    verification_level: Optional[str] = 'BASIC'
     created_by: str
     updated_by: str
 
 class CitizenUpdateSchema(BaseModel):
-    # Todos os campos opcionais para PATCH
     national_id_number: Optional[str] = None
     nif: Optional[str] = None
     passport_number: Optional[str] = None

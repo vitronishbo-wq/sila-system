@@ -1,0 +1,122 @@
+version: '3.8'
+
+services:
+  # Elasticsearch - Engine de busca e armazenamento de logs
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+  # Logstash - Pipeline de processamento e enriquecimento de logs
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: logstash
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    environment:
+      - "LS_JAVA_OPTS=-Xmx256m -Xms256m"
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./logstash_patterns/:/usr/share/logstash/patterns/:ro
+      - logstash_data:/usr/share/logstash/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - elk_network
+    restart: unless-stopped
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+
+  # Filebeat - Coleta de logs dos containers
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.11.0
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - filebeat_data:/usr/share/filebeat/data
+    environment:
+      - strict.perms=false
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - elk_network
+    restart: unless-stopped
+    command: filebeat -e -strict.perms=false -c /usr/share/filebeat/filebeat.yml
+
+  # Kibana - Interface de visualização
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - xpack.security.enabled=false
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: curl -s http://localhost:5601/api/status >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+  # Redis - Message broker para Event Bus (já existente, incluído para completude)
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - elk_network
+    restart: unless-stopped
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  logstash_data:
+    driver: local
+  filebeat_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  elk_network:
+    driver: bridge

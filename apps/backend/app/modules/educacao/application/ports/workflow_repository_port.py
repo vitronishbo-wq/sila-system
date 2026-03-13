@@ -1,13 +1,11 @@
 from __future__ import annotations
-
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-
 from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
-
 class WorkflowRepositoryPort(ABC):
+
     @abstractmethod
     async def save(self, item: WorkflowRecord) -> WorkflowRecord:
         pass
@@ -17,7 +15,7 @@ class WorkflowRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None = None) -> list[WorkflowRecord]:
+    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None=None) -> list[WorkflowRecord]:
         pass
 
     @abstractmethod

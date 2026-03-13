@@ -24,11 +24,10 @@ Opções:
 import argparse
 import asyncio
 import json
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict
 
 # Adiciona o diretório backend ao path
 script_dir = Path(__file__).parent

@@ -1,19 +1,4 @@
 from app.modules.educacao.api.deps import get_boletim_service
 from app.modules.educacao.api.endpoints._workflow_endpoints import build_workflow_router
 from app.modules.educacao.api.schemas.boletim_schema import BoletimCancelar, BoletimConcluir, BoletimCreate, BoletimResponse
-
-router = build_workflow_router(
-    tag="Educacao - Boletins",
-    get_service=get_boletim_service,
-    create_schema=BoletimCreate,
-    response_schema=BoletimResponse,
-    concluir_schema=BoletimConcluir,
-    cancelar_schema=BoletimCancelar,
-    routes=[
-        ("/boletins", "boletim"),
-        ("/vagas", "vaga"),
-        ("/avaliacoes", "avaliacao"),
-        ("/educacao-especial", "educacao_especial"),
-        ("/educacao-comunitaria", "educacao_comunitaria"),
-    ],
-)
+router = build_workflow_router(tag='Educacao - Boletins', get_service=get_boletim_service, create_schema=BoletimCreate, response_schema=BoletimResponse, concluir_schema=BoletimConcluir, cancelar_schema=BoletimCancelar, routes=[('/boletins', 'boletim'), ('/vagas', 'vaga'), ('/avaliacoes', 'avaliacao'), ('/educacao-especial', 'educacao_especial'), ('/educacao-comunitaria', 'educacao_comunitaria')])

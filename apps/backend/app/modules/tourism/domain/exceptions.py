@@ -1,0 +1,2 @@
+class TurismoError(Exception):
+    pass

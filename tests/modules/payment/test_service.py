@@ -182,7 +182,11 @@ async def test_create_payment_success(payment_service: PaymentService, mock_db_s
     # Mock the reference generation
     payment_service._generate_reference = AsyncMock(return_value="PAY-TEST-123")
 
-    result = await payment_service.create_payment(payment_data, user_id=1)
+    with (
+        patch("modules.payment.services.payment_service.Payment", MockPayment),
+        patch("modules.payment.services.payment_service.PaymentTransaction", MockTransaction),
+    ):
+        result = await payment_service.create_payment(payment_data, user_id=1)
 
     assert result is not None
     assert result.amount == float(Decimal("100.50"))
@@ -311,7 +315,7 @@ async def test_create_refund_full_refund(
     )
 
     with patch(
-        "apps.backend.modules.payment.services.payment_service.PaymentTransaction",
+        "modules.payment.services.payment_service.PaymentTransaction",
         return_value=mock_transaction,
     ):
         refund_data = RefundCreate(reason="Test refund")
@@ -358,7 +362,7 @@ async def test_create_refund_partial_refund(
     )
 
     with patch(
-        "apps.backend.modules.payment.services.payment_service.PaymentTransaction",
+        "modules.payment.services.payment_service.PaymentTransaction",
         return_value=mock_transaction,
     ):
         refund_data = RefundCreate(amount=float(refund_amount), reason="Partial refund")

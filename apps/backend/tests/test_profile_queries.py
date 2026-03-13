@@ -11,8 +11,8 @@ from uuid import uuid4
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 
-from app.citizen.core.profile_queries import ProfileQueries
-# from app.citizen.core.models import CitizenRequest  # TODO: Import CitizenRequest when it exists
+from app.modules.justice.civil_registry.application.services.queries import ProfileQueries
+# from app.core.bridges.identity_bridge import CitizenRequest  # TODO: Import CitizenRequest when it exists
 
 # All tests temporarily skipped due to missing CitizenRequest model
 pytestmark = pytest.mark.skip(reason="CitizenRequest model not yet implemented")

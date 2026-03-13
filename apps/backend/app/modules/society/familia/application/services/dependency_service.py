@@ -1,0 +1,2 @@
+class DependencyService:
+    pass

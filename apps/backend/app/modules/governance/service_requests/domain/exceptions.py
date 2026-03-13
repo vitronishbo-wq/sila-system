@@ -1,0 +1,2 @@
+class ServiceRequestsError(Exception):
+    pass

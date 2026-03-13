@@ -1,0 +1,41 @@
+include:
+  - docs/tree.md
+  - docs/AI_BOOTSTRAP_PROMPT.md
+  - docs/AI_CONTEXT.md
+  - docs/AI_ARCHITECTURE_GUIDE.md
+  - docs/architecture/**
+  - ARCHITECTURE_INDEX.yaml
+  - ARCHITECTURE_DEPENDENCIES.yaml
+  - API_MAP.yaml
+  - AI_ENTRYPOINTS.yaml
+  - docs/AI_ARCHITECTURE_GRAPH.yaml
+  - docs/AI_DOMAIN_KERNEL.md
+  - AI_FILE_SCOPE.yaml
+  - apps/backend/app/main.py
+  - apps/backend/app/api/router.py
+  - apps/backend/app/core/module_registry.py
+  - apps/backend/app/modules/*/ARCHITECTURE.md
+  - apps/backend/app/modules/**/api/router.py
+  - scripts/architecture/**
+  - scripts/arch_compiler.py
+  - scripts/guardrails/**
+  - scripts/ai/bootstrap_context.sh
+  - scripts/ai/generate_module_architecture_docs.py
+  - scripts/ai/generate_architecture_graph.py
+  - scripts/ai/generate_ai_domain_kernel.py
+  - scripts/ai/ai_scope_filter.py
+
+exclude_dirs:
+  - venv
+  - .venv
+  - node_modules
+  - site-packages
+  - dist
+  - build
+  - __pycache__
+  - .git
+  - .mypy_cache
+  - .pytest_cache
+
+max_file_size_kb: 200
+max_lines: 800

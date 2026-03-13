@@ -1,0 +1,39 @@
+scope: op-cluster
+namespace: /service/op-cluster/
+name: patroni-node
+
+restapi:
+  listen: 0.0.0.0:8008
+  connect_address: patroni-node:8008
+
+etcd:
+  host: etcd:2379
+
+bootstrap:
+  dcs:
+    ttl: 30
+    loop_wait: 10
+    retry_timeout: 10
+    maximum_lag_on_failover: 1048576
+    postgresql:
+      use_pg_rewind: true
+      use_slots: true
+  initdb:
+    - encoding: UTF8
+    - data-checksums
+  pg_hba:
+    - host replication replicator 0.0.0.0/0 md5
+    - host all all 0.0.0.0/0 md5
+
+postgresql:
+  listen: 0.0.0.0:5432
+  connect_address: patroni-node:5432
+  data_dir: /var/lib/postgresql/data
+  bin_dir: /usr/lib/postgresql/15/bin
+  authentication:
+    replication:
+      username: replicator
+      password: change-me
+    superuser:
+      username: postgres
+      password: change-me

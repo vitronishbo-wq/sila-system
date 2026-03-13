@@ -1,0 +1,151 @@
+{
+  "nodes": [
+    "_deprecated",
+    "administracao_local",
+    "agricultura",
+    "aguas_saneamento",
+    "ambiente",
+    "apoio_empresarial",
+    "arquivo_nacional",
+    "assistencia_social",
+    "audit",
+    "aviacao_civil",
+    "bi",
+    "ciencia_pesquisa",
+    "civil_protection",
+    "comercio_externo",
+    "comercio_servicos",
+    "compliance",
+    "cooperacao_internacional",
+    "core",
+    "cultura",
+    "defesa_consumidor",
+    "desporto",
+    "economy",
+    "educacao",
+    "educacao.core",
+    "emprego",
+    "energy",
+    "events",
+    "familia",
+    "florestas",
+    "gestao_fundiaria",
+    "governance",
+    "identity",
+    "igualdade",
+    "industria",
+    "infrastructure_sector",
+    "infrastructure_sector.obras_publicas",
+    "intelligence",
+    "justice",
+    "justice.core",
+    "juventude",
+    "logistica",
+    "meteorologia",
+    "migration_service",
+    "obras_publicas",
+    "operations",
+    "patrimonio_cultural",
+    "pecuaria",
+    "pescas",
+    "pescas_industriais",
+    "petroleo_gas",
+    "planeamento",
+    "portos_logistica",
+    "procurement",
+    "public_budget",
+    "public_security",
+    "recursos_minerais",
+    "resources",
+    "saude",
+    "seguranca_alimentar",
+    "seguranca_social",
+    "service_requests",
+    "society",
+    "state_audit",
+    "statistics",
+    "taxpayer",
+    "tecnologia_inovacao",
+    "telecomunicacoes",
+    "trabalho_inspecao",
+    "trade",
+    "transportes_logistica",
+    "turismo",
+    "urbanismo_habitacao",
+    "workflow"
+  ],
+  "edges": [
+    {
+      "from": "economy",
+      "to": "identity"
+    },
+    {
+      "from": "economy",
+      "to": "infrastructure"
+    },
+    {
+      "from": "economy",
+      "to": "procurement"
+    },
+    {
+      "from": "energy",
+      "to": "infrastructure"
+    },
+    {
+      "from": "energy",
+      "to": "resources"
+    },
+    {
+      "from": "infrastructure_sector",
+      "to": "app.modules.infrastructure"
+    },
+    {
+      "from": "infrastructure_sector",
+      "to": "app.modules.logistics"
+    },
+    {
+      "from": "procurement",
+      "to": "economy.core"
+    },
+    {
+      "from": "procurement",
+      "to": "economy.public_budget"
+    },
+    {
+      "from": "resources",
+      "to": "app.modules.energy"
+    },
+    {
+      "from": "saude",
+      "to": "governance"
+    },
+    {
+      "from": "saude",
+      "to": "identity"
+    },
+    {
+      "from": "saude",
+      "to": "society"
+    },
+    {
+      "from": "society",
+      "to": "economy"
+    },
+    {
+      "from": "society",
+      "to": "infrastructure"
+    },
+    {
+      "from": "society",
+      "to": "justice"
+    },
+    {
+      "from": "state_audit",
+      "to": "economy.public_budget"
+    },
+    {
+      "from": "state_audit",
+      "to": "procurement"
+    }
+  ]
+}

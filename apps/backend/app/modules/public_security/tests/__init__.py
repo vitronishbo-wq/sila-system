@@ -1,0 +1,1 @@
+"""Tests do modulo seguranca_publica."""

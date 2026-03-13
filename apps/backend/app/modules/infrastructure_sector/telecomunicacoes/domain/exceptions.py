@@ -1,0 +1,2 @@
+class TelecomunicacoesError(Exception):
+    pass

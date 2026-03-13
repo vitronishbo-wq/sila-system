@@ -1,0 +1,3 @@
+from .sqlalchemy_beneficiario_repository import SQLAlchemyBeneficiarioRepository
+from .sqlalchemy_pensao_repository import SQLAlchemyPensaoRepository
+__all__ = ['SQLAlchemyBeneficiarioRepository', 'SQLAlchemyPensaoRepository']

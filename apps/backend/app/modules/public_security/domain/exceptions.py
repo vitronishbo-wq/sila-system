@@ -1,0 +1,2 @@
+class SegurancaPublicaError(Exception):
+    pass

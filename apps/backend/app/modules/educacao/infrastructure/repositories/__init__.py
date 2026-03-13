@@ -6,20 +6,8 @@ from .sqlalchemy_escola_repository import SQLAlchemyEscolaRepository
 from .sqlalchemy_formacao_repository import SQLAlchemyFormacaoRepository
 from .sqlalchemy_inscricao_repository import SQLAlchemyInscricaoRepository
 from .sqlalchemy_matricula_repository import SQLAlchemyMatriculaRepository
+from .sqlalchemy_turma_repository import SQLAlchemyTurmaRepository
 from .sqlalchemy_propina_repository import SQLAlchemyPropinaRepository
 from .sqlalchemy_transferencia_repository import SQLAlchemyTransferenciaRepository
 from .sqlalchemy_universidade_repository import SQLAlchemyUniversidadeRepository
-
-__all__ = [
-    "SQLAlchemyMatriculaRepository",
-    "SQLAlchemyEscolaRepository",
-    "SQLAlchemyInscricaoRepository",
-    "SQLAlchemyBoletimRepository",
-    "SQLAlchemyCertificadoRepository",
-    "SQLAlchemyTransferenciaRepository",
-    "SQLAlchemyPropinaRepository",
-    "SQLAlchemyEmpregoRepository",
-    "SQLAlchemyConcursoRepository",
-    "SQLAlchemyFormacaoRepository",
-    "SQLAlchemyUniversidadeRepository",
-]
+__all__ = ['SQLAlchemyMatriculaRepository', 'SQLAlchemyTurmaRepository', 'SQLAlchemyEscolaRepository', 'SQLAlchemyInscricaoRepository', 'SQLAlchemyBoletimRepository', 'SQLAlchemyCertificadoRepository', 'SQLAlchemyTransferenciaRepository', 'SQLAlchemyPropinaRepository', 'SQLAlchemyEmpregoRepository', 'SQLAlchemyConcursoRepository', 'SQLAlchemyFormacaoRepository', 'SQLAlchemyUniversidadeRepository']

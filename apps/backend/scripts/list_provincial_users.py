@@ -29,7 +29,7 @@ async def list_administrative_users(export_path=None):
             regions = {r.id: r for r in res_r.scalars().all()}
 
             # 2. Fetch all admin users
-            stmt_u = select(User).where(User.level.in_([
+            stmt_u = select(User).where(User.administrative_level.in_([
                 AdministrativeLevel.CENTRAL,
                 AdministrativeLevel.PROVINCIAL,
                 AdministrativeLevel.MUNICIPAL,
@@ -56,7 +56,7 @@ async def list_administrative_users(export_path=None):
                 path = get_path(u.region_id)
                 region = regions.get(u.region_id)
                 processed_users.append({
-                    "level": u.level.value if hasattr(u.level, 'value') else str(u.level),
+                    "level": u.administrative_level.value if hasattr(u.administrative_level, 'value') else str(u.administrative_level),
                     "email": u.email,
                     "region_name": region.name if region else "ANGOLA",
                     "region_type": region.type if region else "PAIS",
@@ -66,7 +66,7 @@ async def list_administrative_users(export_path=None):
                         AdministrativeLevel.PROVINCIAL: 1,
                         AdministrativeLevel.MUNICIPAL: 2,
                         AdministrativeLevel.COMMUNAL: 3
-                    }.get(u.level, 99)
+                    }.get(u.administrative_level, 99)
                 })
 
             # Sort: Central first, then by Top Region (Province), then by Level, then by Region Name

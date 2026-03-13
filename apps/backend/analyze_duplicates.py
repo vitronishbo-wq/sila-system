@@ -4,7 +4,6 @@
 import os
 import subprocess
 from pathlib import Path
-from collections import defaultdict
 
 BACKEND_PATH = Path("/home/dev12cls/sila-system/apps/backend")
 

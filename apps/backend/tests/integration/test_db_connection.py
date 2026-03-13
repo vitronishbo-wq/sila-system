@@ -34,7 +34,7 @@ async def test_database_connection():
     from sqlalchemy import text
     from sqlalchemy.ext.asyncio import AsyncSession
 
-    from core.db.session import Base, get_engine
+    from app.core.db import get_engine
 
     logger.info("Testing database connection...")
 

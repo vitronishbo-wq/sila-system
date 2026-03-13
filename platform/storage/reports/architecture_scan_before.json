@@ -1,0 +1,13 @@
+{
+  "roots": [
+    "apps/backend/app/modules"
+  ],
+  "modules_scanned": 62,
+  "required_layers": [
+    "application",
+    "domain",
+    "infrastructure"
+  ],
+  "violations_count": 0,
+  "violations": []
+}

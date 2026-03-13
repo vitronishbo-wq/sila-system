@@ -1,44 +1,11 @@
-name: SILA CI
+name: SILA Legacy CI
 
 on:
   push:
-    branches: ["main", "dev"]
+    branches: [main, dev]
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pip-audit
-
-      - name: Run full validation
-        run: make ci
-
-      - name: Run pre-commit hooks
-        run: |
-          pip install pre-commit
-          pre-commit run --all-files --hook-stage push
-
-      - name: Generate validation reports
-        run: make precommit-report
-        if: always()
-
-      - name: Upload reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: validation-reports
-          path: reports/pre-commit/
+  backend-guardrails:
+    uses: ./.github/workflows/reusable-backend-guardrails.yml

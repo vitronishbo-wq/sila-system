@@ -1,5 +1,4 @@
 import requests
-import sys
 
 BASE_URL = "http://localhost:8000/api/v1"
 # We'll try admin123 first as per user request, and fallback to sila123 if needed

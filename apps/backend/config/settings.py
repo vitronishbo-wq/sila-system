@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import List, Optional, Union
 from functools import lru_cache
 import json
-from pydantic import computed_field, field_validator
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

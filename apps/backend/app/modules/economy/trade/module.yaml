@@ -1,0 +1,15 @@
+name: trade
+type: sub_domain
+version: 1.0.0
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+authority:
+  entities:
+  - Cidadao
+  - CertidaoNascimento

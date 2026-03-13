@@ -3,9 +3,6 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.main import app
-from core.db.session import get_db
-from modules.appointments.schemas import AppointmentCreate
 
 
 @pytest.mark.asyncio

@@ -2,7 +2,6 @@
 import sys
 from sqlalchemy.orm import configure_mappers
 try:
-    from config.database import Base
     configure_mappers()
     print("✅ Mappers configured successfully")
 except Exception as e:

@@ -10,7 +10,8 @@ import re
 from pathlib import Path
 
 
-ILLEGAL_IMPORT_PATTERN = re.compile(r"from app\.modules\.([a-zA-Z0-9_]+)")
+FROM_IMPORT_PATTERN = re.compile(r"from app\.modules\.([a-zA-Z0-9_]+)")
+IMPORT_PATTERN = re.compile(r"import app\.modules\.([a-zA-Z0-9_]+)")
 
 
 def count_lines(file_path: Path) -> int:
@@ -18,17 +19,29 @@ def count_lines(file_path: Path) -> int:
         return sum(1 for _ in f)
 
 
-def scan_file_for_imports(file_path: Path, current_module: str, report: dict[str, list[str]]) -> None:
+def scan_file_for_imports(
+    file_path: Path,
+    current_module: str,
+    report: dict[str, object],
+    dependency_map: dict[str, set[str]],
+) -> None:
     with file_path.open("r", encoding="utf-8", errors="ignore") as f:
         content = f.read()
 
-    matches = ILLEGAL_IMPORT_PATTERN.findall(content)
-    for target in matches:
+    matches = FROM_IMPORT_PATTERN.findall(content) + IMPORT_PATTERN.findall(content)
+    for target in sorted(set(matches)):
         if target != current_module:
             report["illegal_imports"].append(f"{file_path} -> imports module '{target}'")
+            dependency_map.setdefault(current_module, set()).add(target)
 
 
-def scan_module(module_path: Path, module_name: str, max_file_lines: int, report: dict[str, list[str]]) -> None:
+def scan_module(
+    module_path: Path,
+    module_name: str,
+    max_file_lines: int,
+    report: dict[str, object],
+    dependency_map: dict[str, set[str]],
+) -> None:
     report["modules"].append(module_name)
 
     router = module_path / "api" / "router.py"
@@ -62,7 +75,7 @@ def scan_module(module_path: Path, module_name: str, max_file_lines: int, report
             if lines > max_file_lines:
                 report["large_files"].append(f"{file_path} ({lines} lines)")
 
-            scan_file_for_imports(file_path, module_name, report)
+            scan_file_for_imports(file_path, module_name, report, dependency_map)
 
 
 def print_section(title: str, items: list[str]) -> None:
@@ -99,7 +112,7 @@ def main() -> int:
         print(f"Modules directory not found: {base_path}")
         return 2
 
-    report: dict[str, list[str]] = {
+    report: dict[str, object] = {
         "modules": [],
         "missing_router": [],
         "missing_tests": [],
@@ -109,11 +122,13 @@ def main() -> int:
         "large_files": [],
         "module_scripts": [],
         "weird_dirs": [],
+        "module_coupling": {},
     }
+    dependency_map: dict[str, set[str]] = {}
 
     modules = sorted([p for p in base_path.iterdir() if p.is_dir() and p.name != "__pycache__"])
     for module in modules:
-        scan_module(module, module.name, args.max_file_lines, report)
+        scan_module(module, module.name, args.max_file_lines, report, dependency_map)
 
         api_dir = module / "api"
         has_style_a = (
@@ -134,6 +149,15 @@ def main() -> int:
                 style = "partial_api"
             report["api_style_nonstandard"].append(f"{module.name}: {style}")
 
+    report["module_coupling"] = {
+        module: len(targets)
+        for module, targets in sorted(
+            dependency_map.items(),
+            key=lambda item: (len(item[1]), item[0]),
+            reverse=True,
+        )
+    }
+
     print("====================================")
     print("ARCHITECTURE AUDIT REPORT")
     print("====================================")
@@ -146,6 +170,17 @@ def main() -> int:
     print_section("\nLarge files (> max-file-lines):", report["large_files"])
     print_section("\nScripts inside modules:", report["module_scripts"])
     print_section("\nWeird directories:", report["weird_dirs"])
+    print("\nModule coupling (>10 deps):")
+    high_coupling = [
+        (module, count)
+        for module, count in report["module_coupling"].items()
+        if count > 10
+    ]
+    if not high_coupling:
+        print(" - none")
+    else:
+        for module, count in high_coupling:
+            print(f" - {module}: {count}")
     print("\nAudit completed.")
 
     output_path = Path(args.output_json)
