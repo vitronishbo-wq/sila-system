@@ -5,7 +5,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_licitacao_servi
 from apps.backend.app.modules.infrastructure.api.schemas.licitacao_schema import LicitacaoAberturaInput, LicitacaoAdjudicacaoInput, LicitacaoCreate, LicitacaoHomologacaoInput, LicitacaoMotivoInput, LicitacaoResponse
 from apps.backend.app.modules.infrastructure.application.services.licitacao_service import LicitacaoService
 from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from apps.backend.app.modules.infrastructure.core.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
 router = APIRouter(prefix='/licitacoes', tags=['Obras Publicas - Licitacoes'])
 
 @router.post('/', response_model=LicitacaoResponse, status_code=status.HTTP_201_CREATED)

@@ -2,21 +2,21 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges import CitizenRepository
-from app.core.db import AsyncSessionLocal
+from app.domain.bridges import CitizenRepository
+from app.domain.db import AsyncSessionLocal
 from apps.backend.app.modules.society.familia.application.events.bus import event_bus
 from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
 from apps.backend.app.modules.society.familia.application.services.family_projection_handler import FamilyProjectionHandler
 from apps.backend.app.modules.society.familia.application.services.family_query_service import FamilyQueryService
 from apps.backend.app.modules.society.familia.domain.events import FamilyCreatedEvent, FamilyDissolvedEvent, FamilyHeadTransferredEvent, FamilyMemberAddedEvent, FamilyMemberRemovedEvent
-from app.core.events import DomainEvent
+from app.domain.events import DomainEvent
 from apps.backend.app.modules.society.familia.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
 from apps.backend.app.modules.society.familia.infrastructure.adapters.civil_registry_adapter import CivilRegistryAdapter
 from apps.backend.app.modules.society.familia.infrastructure.repositories.outbox_repository import OutboxRepository
 from apps.backend.app.modules.society.familia.infrastructure.repositories.redis_projection_repository import RedisProjectionRepository
 from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import SQLAlchemyFamilyAggregateRepository
 from apps.backend.app.modules.society.familia.infrastructure.event_handlers.on_citizen_deceased import on_citizen_deceased
-from app.core.events import EventBusAdapter
+from app.domain.events import EventBusAdapter
 _subscriptions_configured = False
 _core_subscriptions_configured = False
 

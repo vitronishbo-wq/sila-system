@@ -11,7 +11,7 @@ from apps.backend.app.modules.industry.api.endpoints.estabelecimentos_industriai
 from apps.backend.app.modules.industry.application.services import EstabelecimentoIndustrialService
 from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
 from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
-from apps.backend.app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError
+from apps.backend.app.modules.industry.domain.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError
 from apps.backend.app.modules.industry.infrastructure.repositories import SQLAlchemyEstabelecimentoIndustrialRepository
 
 @pytest.mark.asyncio

@@ -2,7 +2,7 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges import ServiceRequestLifecycleBridge
+from app.domain.bridges import ServiceRequestLifecycleBridge
 from apps.backend.app.modules.civil_protection.application.services.atendimento_service import AtendimentoService
 from apps.backend.app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
 from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService

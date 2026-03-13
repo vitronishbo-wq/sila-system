@@ -3,7 +3,7 @@
 This module imports all handlers and registers them with the global registry.
 Called during application startup.
 """
-from app.core.events.registry import HandlerRegistry
+from app.domain.events.registry import HandlerRegistry
 from .handlers import EducacaoUserLoginHandler, EducacaoUserLogoutHandler
 _user_login_handler = EducacaoUserLoginHandler()
 _user_logout_handler = EducacaoUserLogoutHandler()

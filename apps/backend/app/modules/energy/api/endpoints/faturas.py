@@ -5,7 +5,7 @@ from apps.backend.app.modules.energy.api.deps import get_faturamento_service
 from apps.backend.app.modules.energy.api.schemas.fatura_schema import FaturaEnergiaResponse, FaturaGerarPorConsumoInput, FaturaPagamentoInput
 from apps.backend.app.modules.energy.application.services import FaturamentoService
 from apps.backend.app.modules.energy.domain.enums import StatusFaturaEnergia
-from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
 router = APIRouter(prefix='/faturas', tags=['Energia - Faturas'])
 
 @router.post('/gerar-por-consumo', response_model=FaturaEnergiaResponse, status_code=status.HTTP_201_CREATED)

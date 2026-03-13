@@ -5,7 +5,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_obra_service
 from apps.backend.app.modules.infrastructure.api.schemas.obra_schema import EventStoreEntryResponse, ObraAditivoInput, ObraConclusaoInput, ObraContratacaoInput, ObraCreate, ObraRehydratedStateResponse, ObraEntregaInput, ObraFiscalizacaoInput, ObraInicioExecucaoInput, ObraMedicaoDetalhadaInput, ObraProgressoInput, ObraResponse, ObraSuspensaoInput, ObraTermoRecebimentoInput, ObraValorInput
 from apps.backend.app.modules.infrastructure.application.services.obra_service import ObraService
 from apps.backend.app.modules.infrastructure.domain.enums import StatusObra
-from apps.backend.app.modules.infrastructure.core.exceptions import ObraAlreadyExistsError, ObraNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import ObraAlreadyExistsError, ObraNotFoundError
 router = APIRouter(prefix='/obras', tags=['Obras Publicas - Obras'])
 
 def _resolve_request_context(*, x_tenant_id: str | None, x_correlation_id: str | None) -> tuple[str, str | None]:

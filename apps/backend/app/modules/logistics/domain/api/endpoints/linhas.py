@@ -5,7 +5,7 @@ from apps.backend.app.modules.logistics.api.deps import get_linha_service
 from apps.backend.app.modules.logistics.api.schemas.linha_schema import LinhaCreate, LinhaIndicadoresInput, LinhaResponse, LinhaTarifaInput, LinhaVincularVeiculoInput, VeiculoCreate, VeiculoResponse
 from apps.backend.app.modules.logistics.application.services import LinhaService
 from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo
-from apps.backend.app.modules.logistics.core.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
+from apps.backend.app.modules.logistics.domain.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
 router = APIRouter(prefix='/linhas', tags=['Transportes Logistica - Linhas'])
 
 def _has_capability(service: LinhaService, method_name: str) -> bool:

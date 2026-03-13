@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Boolean, Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import ARRAY, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class AtletaModel(Base):
     __tablename__ = 'desporto_atletas'

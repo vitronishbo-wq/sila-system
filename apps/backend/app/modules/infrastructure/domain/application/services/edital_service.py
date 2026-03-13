@@ -4,7 +4,7 @@ from uuid import UUID
 from apps.backend.app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort
 from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
 from apps.backend.app.modules.infrastructure.domain.models.edital import Edital
-from apps.backend.app.modules.infrastructure.core.exceptions import EditalAlreadyExistsError, EditalNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import EditalAlreadyExistsError, EditalNotFoundError
 
 class EditalService:
 

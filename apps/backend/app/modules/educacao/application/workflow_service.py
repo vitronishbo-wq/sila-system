@@ -4,7 +4,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
 
-from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
+from app.domain.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.educacao.application.ports.workflow_repository_port import (
     WorkflowRepositoryPort,
 )

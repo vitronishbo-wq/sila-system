@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.core.bridges.emprego_bridge import CandidatoRepositoryPort
+from app.domain.bridges.emprego_bridge import CandidatoRepositoryPort
 from apps.backend.app.modules.society.seguranca_social.application.ports import EmpregoServicePort
 
 class EmpregoServiceAdapter(EmpregoServicePort):

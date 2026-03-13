@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class ParcelamentoModel(Base):
     __tablename__ = 'urbanismo_habitacao_parcelamentos'

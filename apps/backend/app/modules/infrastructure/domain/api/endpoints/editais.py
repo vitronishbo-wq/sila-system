@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from apps.backend.app.modules.infrastructure.core_publicas.api.deps import get_edital_service
-from apps.backend.app.modules.infrastructure.core_publicas.api.schemas.edital_schema import EditalCreate, EditalEncerramentoInput, EditalMotivoInput, EditalResponse, EditalRetificacaoInput
-from apps.backend.app.modules.infrastructure.core_publicas.application.services.edital_service import EditalService
-from apps.backend.app.modules.infrastructure.core_publicas.domain.enums import StatusEdital
-from apps.backend.app.modules.infrastructure.core_publicas.exceptions import EditalAlreadyExistsError, EditalNotFoundError
+from apps.backend.app.modules.infrastructure.domain_publicas.api.deps import get_edital_service
+from apps.backend.app.modules.infrastructure.domain_publicas.api.schemas.edital_schema import EditalCreate, EditalEncerramentoInput, EditalMotivoInput, EditalResponse, EditalRetificacaoInput
+from apps.backend.app.modules.infrastructure.domain_publicas.application.services.edital_service import EditalService
+from apps.backend.app.modules.infrastructure.domain_publicas.domain.enums import StatusEdital
+from apps.backend.app.modules.infrastructure.domain_publicas.exceptions import EditalAlreadyExistsError, EditalNotFoundError
 router = APIRouter(prefix='/editais', tags=['Obras Publicas - Editais'])
 
 @router.post('/', response_model=EditalResponse, status_code=status.HTTP_201_CREATED)

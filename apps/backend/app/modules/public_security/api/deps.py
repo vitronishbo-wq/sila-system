@@ -2,7 +2,7 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges import ServiceRequestLifecycleBridge
+from app.domain.bridges import ServiceRequestLifecycleBridge
 from apps.backend.app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
 from apps.backend.app.modules.public_security.application.services.evidencia_service import EvidenciaService
 from apps.backend.app.modules.public_security.application.services.investigacao_service import InvestigacaoService

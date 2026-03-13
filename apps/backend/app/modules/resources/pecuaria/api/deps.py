@@ -2,7 +2,7 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.resources.pecuaria.application.services.animal_service import AnimalService
 from apps.backend.app.modules.resources.pecuaria.application.services.pecuarista_service import PecuaristaService
 from apps.backend.app.modules.resources.pecuaria.application.services.producao_service import ProducaoService

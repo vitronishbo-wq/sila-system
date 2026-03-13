@@ -2,7 +2,7 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges import ServiceRequestLifecycleBridge
+from app.domain.bridges import ServiceRequestLifecycleBridge
 from apps.backend.app.modules.infrastructure_sector.meteorologia.application.services import AlertaMeteorologicoService, EstacaoService, ProcessamentoService
 from apps.backend.app.modules.infrastructure_sector.meteorologia.infrastructure.adapters import RequestServiceAdapter
 from apps.backend.app.modules.infrastructure_sector.meteorologia.infrastructure.repositories import SQLAlchemyEstacaoRepository, SQLAlchemyObservacaoRepository

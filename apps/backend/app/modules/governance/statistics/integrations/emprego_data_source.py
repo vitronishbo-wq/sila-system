@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
-from app.core.bridges.society_statistics_models_bridge import CandidatoModel, ContratoModel, OfertaModel
+from app.domain.bridges.society_statistics_models_bridge import CandidatoModel, ContratoModel, OfertaModel
 from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class EmpregoDataSource(BaseDataSource):

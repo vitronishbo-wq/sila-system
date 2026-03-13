@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from ...core.application.ports.asset_reporting_port import AssetReportingPort
+from ...domain.application.ports.asset_reporting_port import AssetReportingPort
 
 
 class InfrastructureAssetAdapter(AssetReportingPort):

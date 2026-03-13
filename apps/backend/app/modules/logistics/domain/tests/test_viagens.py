@@ -11,7 +11,7 @@ from apps.backend.app.modules.logistics.api.endpoints.viagens import router as v
 from apps.backend.app.modules.logistics.application.services import ViagemService
 from apps.backend.app.modules.logistics.domain.enums import StatusViagem
 from apps.backend.app.modules.logistics.domain.models import Viagem
-from apps.backend.app.modules.logistics.core.exceptions import ViagemConflictError, ViagemNotFoundError
+from apps.backend.app.modules.logistics.domain.exceptions import ViagemConflictError, ViagemNotFoundError
 from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyViagemRepository
 
 @pytest.mark.asyncio

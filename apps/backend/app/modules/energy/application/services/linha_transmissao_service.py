@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.energy.application.ports import LinhaTransmissaoRepositoryPort
 from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
 from apps.backend.app.modules.energy.domain.models import LinhaTransmissao
-from apps.backend.app.modules.energy.core.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
 
 class LinhaTransmissaoService:
 

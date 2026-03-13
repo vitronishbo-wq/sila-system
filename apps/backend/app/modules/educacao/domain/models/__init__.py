@@ -2,7 +2,7 @@ from importlib import import_module
 from pathlib import Path
 import sys
 
-from apps.backend.app.modules.educacao.core.domain import (
+from apps.backend.app.modules.educacao.domain.domain import (
     AnoLetivo,
     CicloEnsino,
     Escola,
@@ -52,5 +52,5 @@ _SUBMODULES = [
 
 for _mod in _SUBMODULES:
     sys.modules[f"{__name__}.{_mod}"] = import_module(
-        f"app.modules.educacao.core.domain.{_mod}"
+        f"app.modules.educacao.domain.domain.{_mod}"
     )

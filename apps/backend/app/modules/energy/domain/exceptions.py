@@ -1,0 +1,2 @@
+class EnergyException(Exception):
+    pass

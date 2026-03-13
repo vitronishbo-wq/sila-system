@@ -1,11 +1,11 @@
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
-from app.core.db import get_session
+from app.domain.db import get_session
 from app.api.deps import get_notification_service
-from app.core.bridges import CitizenRepository
-from app.core.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_juventude_programa_repository, make_saude_health_unit_repository
-from app.core.notifications.services.notification_service import NotificationService
+from app.domain.bridges import CitizenRepository
+from app.domain.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_juventude_programa_repository, make_saude_health_unit_repository
+from app.domain.notifications.services.notification_service import NotificationService
 from ..application.services.request_service import RequestService
 from ..infrastructure.clients import AssistenciaClient, EducacaoClient, EmpregoClient, IdentidadeClient, JuventudeClient, SaudeClient
 from ..infrastructure.repositories.request_repository import RequestRepository
@@ -55,7 +55,7 @@ async def get_request_or_404(request_id: UUID, service: RequestService=Depends(g
     """Dependency para buscar pedido com verificação de acesso"""
     request = await service.get_request(request_id, UUID(identity.user_id) if identity else request_id, identity.is_citizen if identity else False)
     if not request:
-        from app.core.exceptions import RequestNotFoundError
+        from app.domain.exceptions import RequestNotFoundError
         raise RequestNotFoundError(request_id).to_http_exception()
     return request
 
@@ -63,7 +63,7 @@ def require_request_permission(permission: str):
     """Dependency para verificar permissão em pedido"""
 
     async def decorator(request=Depends(get_request_or_404), identity=Depends(lambda: None)):
-        from app.core.exceptions import AccessDeniedError
+        from app.domain.exceptions import AccessDeniedError
         if permission == 'view':
             if identity and (not RequestPermissions.can_view_request(request.citizen_id, identity)):
                 raise AccessDeniedError('acessar este pedido').to_http_exception()

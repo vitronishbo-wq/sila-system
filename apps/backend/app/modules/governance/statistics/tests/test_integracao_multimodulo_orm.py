@@ -4,8 +4,8 @@ from decimal import Decimal
 from uuid import uuid4
 import pytest
 from sqlalchemy import func, select, text
-from app.core.bridges.identity_bridge import BIEventRecord, BIRecord, CitizenFUC
-from app.core.bridges.society_statistics_models_bridge import AppointmentModel, BeneficiarioModel, BeneficioModel, CadastroUnicoModel, CandidatoModel, ContratoModel, InternamentoModel, JovemModel, MatriculaModel, OfertaModel, ProgramaJuvenilModel, TurmaModel, VaccineDoseModel
+from app.domain.bridges.identity_bridge import BIEventRecord, BIRecord, CitizenFUC
+from app.domain.bridges.society_statistics_models_bridge import AppointmentModel, BeneficiarioModel, BeneficioModel, CadastroUnicoModel, CandidatoModel, ContratoModel, InternamentoModel, JovemModel, MatriculaModel, OfertaModel, ProgramaJuvenilModel, TurmaModel, VaccineDoseModel
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
 from apps.backend.app.modules.governance.statistics.api.deps import get_statistics_service
 from apps.backend.app.modules.governance.statistics.application.services.statistics_service import StatisticsService

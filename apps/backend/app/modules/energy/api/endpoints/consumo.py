@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from apps.backend.app.modules.energy.api.deps import get_consumo_service
 from apps.backend.app.modules.energy.api.schemas.consumo_schema import ConsumoLeituraInput, ConsumoResponse
 from apps.backend.app.modules.energy.application.services import ConsumoService
-from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import ConsumoNotFoundError
 router = APIRouter(prefix='/consumos', tags=['Energia - Consumo'])
 
 @router.post('/', response_model=ConsumoResponse, status_code=status.HTTP_201_CREATED)

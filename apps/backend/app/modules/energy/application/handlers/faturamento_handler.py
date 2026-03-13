@@ -1,7 +1,7 @@
 from __future__ import annotations
 from apps.backend.app.modules.energy.application.events.definitions import LeituraRealizadaEvent
 from apps.backend.app.modules.energy.application.services.faturamento_service import FaturamentoService
-from apps.backend.app.modules.energy.core.exceptions import FaturaEnergiaAlreadyExistsError
+from apps.backend.app.modules.energy.domain.exceptions import FaturaEnergiaAlreadyExistsError
 
 class FaturamentoHandler:
 

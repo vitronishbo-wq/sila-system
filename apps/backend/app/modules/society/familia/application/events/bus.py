@@ -1,2 +1,2 @@
-from app.core.events import EventBusAdapter
+from app.domain.events import EventBusAdapter
 event_bus = EventBusAdapter()

@@ -1,7 +1,7 @@
 from __future__ import annotations
 import pytest_asyncio
 from sqlalchemy.orm import configure_mappers
-from app.core.db import AsyncSessionLocal, register_models
+from app.domain.db import AsyncSessionLocal, register_models
 from app.db.base import Base
 register_models()
 reg = getattr(Base, 'registry', None)

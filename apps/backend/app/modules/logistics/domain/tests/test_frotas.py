@@ -11,7 +11,7 @@ from apps.backend.app.modules.logistics.api.deps import get_frota_service
 from apps.backend.app.modules.logistics.api.endpoints.frotas import router as frotas_router
 from apps.backend.app.modules.logistics.application.services import FrotaService
 from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
-from apps.backend.app.modules.logistics.core.exceptions import FrotaNotFoundError
+from apps.backend.app.modules.logistics.domain.exceptions import FrotaNotFoundError
 from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyFrotaRepository
 
 @pytest.mark.asyncio

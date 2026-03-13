@@ -5,7 +5,7 @@ from apps.backend.app.modules.energy.api.deps import get_central_geradora_servic
 from apps.backend.app.modules.energy.api.schemas.central_geradora_schema import CentralGeradoraCreate, CentralGeradoraDataInput, CentralGeradoraResponse
 from apps.backend.app.modules.energy.application.services import CentralGeradoraService
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
-from apps.backend.app.modules.energy.core.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
+from apps.backend.app.modules.energy.domain.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
 router = APIRouter(prefix='/central_geradora', tags=['Energia - Central Geradora'])
 
 @router.post('/', response_model=CentralGeradoraResponse, status_code=status.HTTP_201_CREATED)

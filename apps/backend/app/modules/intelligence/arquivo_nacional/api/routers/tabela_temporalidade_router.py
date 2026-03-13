@@ -3,7 +3,7 @@ from typing import List, Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import get_db
+from app.domain.db import get_db
 from apps.backend.app.modules.intelligence.arquivo_nacional.application.services.tabela_temporalidade_service import TabelaTemporalidadeService
 from apps.backend.app.modules.intelligence.arquivo_nacional.api.schemas import TabelaTemporalidadeCreateSchema, TabelaTemporalidadeResponseSchema, RegraTemporalidadeCreateSchema, RegraTemporalidadeResponseSchema, EventoTemporalidadeCreateSchema, EventoTemporalidadeResponseSchema, TabelaTemporalidadeUpdateSchema, RegraTemporalidadeUpdateSchema, AplicarTemporalidadeSchema
 router = APIRouter()

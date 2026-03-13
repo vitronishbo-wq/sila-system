@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import Depends
 from app.api.deps import get_db
-from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
 from apps.backend.app.modules.resources.agricultura.application.services.certificacao_service import CertificacaoService
 from apps.backend.app.modules.resources.agricultura.application.services.comercializacao_service import ComercializacaoService

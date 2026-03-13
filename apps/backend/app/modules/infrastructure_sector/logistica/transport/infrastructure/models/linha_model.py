@@ -2,7 +2,7 @@
 from sqlalchemy import Column, String, Integer, DateTime, Boolean, UUID, ForeignKey
 from sqlalchemy.sql import func
 import uuid
-from app.core.db import Base
+from app.domain.db import Base
 
 
 class LinhaModel(Base):

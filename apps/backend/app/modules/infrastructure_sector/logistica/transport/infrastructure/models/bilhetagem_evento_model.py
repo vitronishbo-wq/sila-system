@@ -2,7 +2,7 @@
 from sqlalchemy import Column, String, DateTime, UUID, ForeignKey
 from sqlalchemy.sql import func
 import uuid
-from app.core.db import Base
+from app.domain.db import Base
 
 
 class BilhetagemEventoModel(Base):

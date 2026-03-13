@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from app.core.db import AsyncSessionLocal
+from app.domain.db import AsyncSessionLocal
 from apps.backend.app.modules.infrastructure.infrastructure.persistence.saga_model import SagaInstanceModel
 
 class SQLAlchemySagaRepository:

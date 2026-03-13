@@ -1,6 +1,6 @@
 from fastapi import Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import get_db
+from app.domain.db import get_db
 from ..infrastructure.repositories.statistics_repository import StatisticsRepository
 from ..application.services.statistics_service import StatisticsService
 from ..integrations.data_sources import DataSources

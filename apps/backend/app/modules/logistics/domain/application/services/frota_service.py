@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.logistics.application.ports import FinancasServicePort, FrotaRepositoryPort, SegurancaPublicaServicePort, ServiceRequestsServicePort, WorkflowServicePort
 from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
 from apps.backend.app.modules.logistics.domain.models import FiscalizacaoTransporte, Frota, Manutencao, Tarifa
-from apps.backend.app.modules.logistics.core.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
+from apps.backend.app.modules.logistics.domain.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
 
 class FrotaService:
 

@@ -10,7 +10,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_edital_service
 from apps.backend.app.modules.infrastructure.api.endpoints.editais import router as editais_router
 from apps.backend.app.modules.infrastructure.application.services.edital_service import EditalService
 from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
-from apps.backend.app.modules.infrastructure.core.exceptions import EditalNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import EditalNotFoundError
 from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyEditalRepository
 
 @pytest.mark.asyncio

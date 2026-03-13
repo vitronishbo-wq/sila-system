@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import Date, DateTime, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class FormacaoModel(Base):
     __tablename__ = 'educacao_formacoes'

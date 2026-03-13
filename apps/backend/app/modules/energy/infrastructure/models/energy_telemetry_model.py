@@ -6,7 +6,7 @@ from sqlalchemy import DateTime, Float, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.core.db import Base
+from app.domain.db import Base
 
 
 class EnergyTelemetryModel(Base):

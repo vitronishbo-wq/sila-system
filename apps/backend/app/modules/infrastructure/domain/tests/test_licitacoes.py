@@ -11,7 +11,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_licitacao_servi
 from apps.backend.app.modules.infrastructure.api.endpoints.licitacoes import router as licitacoes_router
 from apps.backend.app.modules.infrastructure.application.services.licitacao_service import LicitacaoService
 from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from apps.backend.app.modules.infrastructure.core.exceptions import LicitacaoNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import LicitacaoNotFoundError
 from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyLicitacaoRepository
 
 @pytest.mark.asyncio

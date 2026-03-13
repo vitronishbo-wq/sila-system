@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.energy.application.ports import UsinaRepositoryPort
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina, TipoUsina
 from apps.backend.app.modules.energy.domain.models import Usina
-from apps.backend.app.modules.energy.core.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
 
 class UsinaService:
 

@@ -8,7 +8,7 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import AsyncSessionLocal, Base, engine
+from app.domain.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
 from apps.backend.app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService

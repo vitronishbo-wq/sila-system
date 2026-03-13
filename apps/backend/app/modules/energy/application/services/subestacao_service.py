@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.energy.application.ports import SubestacaoRepositoryPort
 from apps.backend.app.modules.energy.domain.enums import ClasseTensao, StatusInfraEnergia
 from apps.backend.app.modules.energy.domain.models import Subestacao
-from apps.backend.app.modules.energy.core.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
 
 class SubestacaoService:
 

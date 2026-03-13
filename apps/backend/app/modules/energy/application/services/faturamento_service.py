@@ -6,7 +6,7 @@ from apps.backend.app.modules.energy.application.events.definitions import Fatur
 from apps.backend.app.modules.energy.application.ports import ConsumoRepositoryPort, FaturaRepositoryPort, ONSServicePort, OutboxRepositoryPort
 from apps.backend.app.modules.energy.domain.enums import BandeiraTarifaria, StatusFaturaEnergia
 from apps.backend.app.modules.energy.domain.models import FaturaEnergia
-from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
 from apps.backend.app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
 
 class FaturamentoService:

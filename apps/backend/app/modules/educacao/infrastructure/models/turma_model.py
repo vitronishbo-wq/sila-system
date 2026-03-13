@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import Boolean, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class TurmaModel(Base):
     __tablename__ = 'educacao_turmas'

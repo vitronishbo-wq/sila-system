@@ -22,7 +22,7 @@ from apps.backend.app.modules.infrastructure.domain.models.fiscalizacao_obra imp
 from apps.backend.app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
 from apps.backend.app.modules.infrastructure.domain.models.obra import Obra
 from apps.backend.app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
-from apps.backend.app.modules.infrastructure.core.exceptions import ObraAlreadyExistsError, ObraNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import ObraAlreadyExistsError, ObraNotFoundError
 
 class ObraService:
 

@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Text, DateTime, Boolean, UUID
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from app.core.db import Base
+from app.domain.db import Base
 
 
 class EditalModel(Base):

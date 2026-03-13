@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort
 from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
 from apps.backend.app.modules.infrastructure.domain.models.licitacao import Licitacao
-from apps.backend.app.modules.infrastructure.core.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
 
 class LicitacaoService:
 

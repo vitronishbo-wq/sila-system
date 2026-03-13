@@ -9,7 +9,7 @@ from ..application.services.identity_request_service import IdentityRequestServi
 from ..infrastructure.repositories.identity_request_repository import IdentityRequestRepository
 from app.api.deps import get_current_user, get_db, get_notification_service
 from app.models.iam_user import IamUser as User
-from app.core.notifications.services.notification_service import NotificationService
+from app.domain.notifications.services.notification_service import NotificationService
 logger = logging.getLogger('identidade_civil.api.bi')
 router = APIRouter(prefix='/identidade/bi', tags=['Identidade Civil - Ciclo de Vida do BI'])
 

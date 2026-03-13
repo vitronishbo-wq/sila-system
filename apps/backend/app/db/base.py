@@ -1,23 +1,23 @@
 from app.core.db import Base
 from app.core.bridges.identity_bridge import CitizenFUC
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.healthcare_model import HealthcareRequestModel, MaternalRecordModel, PostNatalRecordModel, ChronicMonitoringModel, NutritionRecordModel, PsychologySessionModel, HealthAlertModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.healthcare_model import HealthcareRequestModel, MaternalRecordModel, PostNatalRecordModel, ChronicMonitoringModel, NutritionRecordModel, PsychologySessionModel, HealthAlertModel
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
 from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.appointment_model import AppointmentModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.prescription_model import PrescriptionModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.medical_record_model import MedicalRecordModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.vaccine_model import VaccineModel, VaccineDoseModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.health_unit_model import HealthUnitModel, HealthProfessionalModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.exam_request_model import ExamRequestModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.exame_model import ExameImagemModel, ExameLaboratorialModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.internamento_model import InternamentoModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.urgencia_model import AmbulanciaModel, FilaHospitalarModel, UrgenciaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.vigilancia_model import AlertaSaudeModel, ControleVetorModel, ControleZoonoseModel, MonitorizacaoHidricaModel, NotificacaoSurtoModel, VigilanciaEpidemiologicaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.inspecao_model import ApreensaoProdutoModel, ControleAbatePublicoModel, ControleQualidadeAlimentoModel, FiscalizacaoAlimentoModel, FiscalizacaoCadeiaFrioModel, InspecaoSanitariaModel, InspecaoTransporteAlimentarModel, LicencaSanitariaModel, LicencaTemporariaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.programa_model import ProgramaHIVModel, ProgramaMalariaModel, ProgramaPreventivoModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.rastreio_model import RastreioTuberculoseModel, TriagemDiabetesModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.core.infrastructure.models.relatorio_model import AvaliacaoRiscoSanitarioModel, EducacaoSanitariaModel, EmergenciaSanitariaModel, RelatorioSegurancaAlimentarModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.appointment_model import AppointmentModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.prescription_model import PrescriptionModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.medical_record_model import MedicalRecordModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.vaccine_model import VaccineModel, VaccineDoseModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.health_unit_model import HealthUnitModel, HealthProfessionalModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.exam_request_model import ExamRequestModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.exame_model import ExameImagemModel, ExameLaboratorialModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.internamento_model import InternamentoModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.urgencia_model import AmbulanciaModel, FilaHospitalarModel, UrgenciaModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.vigilancia_model import AlertaSaudeModel, ControleVetorModel, ControleZoonoseModel, MonitorizacaoHidricaModel, NotificacaoSurtoModel, VigilanciaEpidemiologicaModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.inspecao_model import ApreensaoProdutoModel, ControleAbatePublicoModel, ControleQualidadeAlimentoModel, FiscalizacaoAlimentoModel, FiscalizacaoCadeiaFrioModel, InspecaoSanitariaModel, InspecaoTransporteAlimentarModel, LicencaSanitariaModel, LicencaTemporariaModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.programa_model import ProgramaHIVModel, ProgramaMalariaModel, ProgramaPreventivoModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.rastreio_model import RastreioTuberculoseModel, TriagemDiabetesModel
+# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.relatorio_model import AvaliacaoRiscoSanitarioModel, EducacaoSanitariaModel, EmergenciaSanitariaModel, RelatorioSegurancaAlimentarModel
 from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
 from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
 from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel

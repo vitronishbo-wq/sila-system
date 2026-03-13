@@ -7,7 +7,7 @@ from uuid import uuid4
 import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import AsyncSessionLocal, Base, engine
+from app.domain.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.society.juventude.application.services.auxilio_service import AuxilioService
 from apps.backend.app.modules.society.juventude.application.services.formacao_service import FormacaoService
 from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService

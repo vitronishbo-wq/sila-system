@@ -5,7 +5,7 @@ from apps.backend.app.modules.energy.api.deps import get_linha_transmissao_servi
 from apps.backend.app.modules.energy.api.schemas.linha_transmissao_schema import LinhaTransmissaoCreate, LinhaTransmissaoDataInput, LinhaTransmissaoResponse
 from apps.backend.app.modules.energy.application.services import LinhaTransmissaoService
 from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
-from apps.backend.app.modules.energy.core.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
 router = APIRouter(prefix='/linha_transmissao', tags=['Energia - Linha Transmissao'])
 
 @router.post('/', response_model=LinhaTransmissaoResponse, status_code=status.HTTP_201_CREATED)

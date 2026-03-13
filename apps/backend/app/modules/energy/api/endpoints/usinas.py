@@ -5,7 +5,7 @@ from apps.backend.app.modules.energy.api.deps import get_usina_service
 from apps.backend.app.modules.energy.api.schemas.usina_schema import UsinaCreate, UsinaDataInput, UsinaMotivoInput, UsinaPotenciaInput, UsinaResponse
 from apps.backend.app.modules.energy.application.services import UsinaService
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina
-from apps.backend.app.modules.energy.core.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
 router = APIRouter(prefix='/usinas', tags=['Energia - Usinas'])
 
 @router.post('/', response_model=UsinaResponse, status_code=status.HTTP_201_CREATED)

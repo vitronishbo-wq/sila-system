@@ -6,7 +6,7 @@ from apps.backend.app.modules.industry.application.ports import EstabelecimentoI
 from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
 from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
 from apps.backend.app.modules.industry.domain.shared import get_porte, get_ramo
-from apps.backend.app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
+from apps.backend.app.modules.industry.domain.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
 logger = logging.getLogger(__name__)
 
 class EstabelecimentoIndustrialService:

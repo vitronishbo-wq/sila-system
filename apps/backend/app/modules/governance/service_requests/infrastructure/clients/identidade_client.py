@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.core.bridges import CitizenRepositoryPort
+from app.domain.bridges import CitizenRepositoryPort
 from apps.backend.app.modules.governance.service_requests.application.ports import IdentidadeClientPort
 
 class IdentidadeClient(IdentidadeClientPort):

@@ -2,7 +2,7 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from app.core.db import get_db
+from app.domain.db import get_db
 from apps.backend.app.modules.justice.bounded_contexts.permissions.access_control import AccessControlEngine
 from apps.backend.app.modules.justice.bounded_contexts.permissions.policies import DataSegment
 from apps.backend.app.modules.justice.bounded_contexts.events.models import CitizenEventModel

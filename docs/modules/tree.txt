@@ -1,3 +1,6 @@
+(.venv) dev03wsl@Rochete-consultoria:~/sila-system/apps/backend/app/modules$ ls
+__init__.py  api    civil_protection  conftest.py  economy   energy      identity  infrastructure         intelligence  logistics          operations  procurement      resources  society  xroad
+__pycache__  audit  compliance        documents    educacao  governance  industry  infrastructure_sector  justice       migration_service  payment     public_security  saude      tourism
 (.venv) dev03wsl@Rochete-consultoria:~/sila-system/apps/backend/app/modules$ tree -L 9 -I "venv|__pycache__|*.egg-info|node_modules|dist|build"
 .
 ├── __init__.py
@@ -254,8 +257,15 @@
 │   │   │   ├── health.py
 │   │   │   └── router.py
 │   │   ├── application
+│   │   ├── documents.py
 │   │   ├── domain
-│   │   └── infrastructure
+│   │   ├── infrastructure
+│   │   ├── schemas
+│   │   │   ├── __init__.py
+│   │   │   └── documents.py
+│   │   └── services
+│   │       ├── __init__.py
+│   │       └── document_service.py
 │   ├── domain
 │   │   ├── __init__.py
 │   │   ├── api
@@ -2453,6 +2463,7 @@
 │   │   │   ├── emprego_repository_port.py
 │   │   │   ├── escola_repository_port.py
 │   │   │   ├── formacao_repository_port.py
+│   │   │   ├── identity_service_port.py
 │   │   │   ├── inscricao_repository_port.py
 │   │   │   ├── matricula_repository_port.py
 │   │   │   ├── propina_repository_port.py
@@ -2543,6 +2554,8 @@
 │   │   └── tests
 │   ├── domain
 │   │   ├── __init__.py
+│   │   ├── academic
+│   │   │   └── __init__.py
 │   │   ├── api
 │   │   │   ├── __init__.py
 │   │   │   ├── health.py
@@ -2557,7 +2570,12 @@
 │   │   ├── models
 │   │   │   ├── __init__.py
 │   │   │   └── ano_letivo.py
-│   │   └── value_objects
+│   │   ├── professional
+│   │   │   └── __init__.py
+│   │   ├── value_objects
+│   │   └── workflow
+│   │       └── strategies
+│   │           └── __init__.py
 │   ├── exceptions.py
 │   ├── infrastructure
 │   │   ├── __init__.py
@@ -5292,6 +5310,7 @@
 │   │   ├── application
 │   │   ├── domain
 │   │   ├── infrastructure
+│   │   ├── legacy_adapters
 │   │   └── models
 │   │       ├── __init__.py
 │   │       └── traffic_violation_model.py
@@ -5600,7 +5619,11 @@
 │   │   │   └── router.py
 │   │   ├── application
 │   │   ├── domain
-│   │   └── infrastructure
+│   │   ├── infrastructure
+│   │   └── services
+│   │       ├── __init__.py
+│   │       ├── payment_service.py
+│   │       └── webhook_service.py
 │   ├── domain
 │   │   ├── __init__.py
 │   │   ├── api
@@ -5610,6 +5633,7 @@
 │   │   ├── application
 │   │   ├── domain
 │   │   └── infrastructure
+│   ├── enums.py
 │   ├── infrastructure
 │   │   ├── __init__.py
 │   │   ├── api
@@ -5619,6 +5643,11 @@
 │   │   ├── application
 │   │   ├── domain
 │   │   └── infrastructure
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── enums.py
+│   │   └── payment.py
+│   ├── payment.py
 │   └── services
 │       ├── __init__.py
 │       ├── api
@@ -8695,16 +8724,20 @@
     │   ├── domain
     │   ├── infrastructure
     │   └── xroad_service.py
-    └── domain
+    ├── domain
+    │   ├── __init__.py
+    │   ├── api
+    │   │   ├── __init__.py
+    │   │   ├── health.py
+    │   │   └── router.py
+    │   ├── application
+    │   ├── audit_log.py
+    │   ├── domain
+    │   ├── envelope.py
+    │   └── infrastructure
+    └── infrastructure
         ├── __init__.py
-        ├── api
-        │   ├── __init__.py
-        │   ├── health.py
-        │   └── router.py
-        ├── application
-        ├── domain
-        ├── envelope.py
-        └── infrastructure
+        └── audit_repository.py
 
-1619 directories, 7087 files
+1629 directories, 7107 files
 (.venv) dev03wsl@Rochete-consultoria:~/sila-system/apps/backend/app/modules$

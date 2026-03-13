@@ -2,11 +2,11 @@ from __future__ import annotations
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.core.bridges import CitizenRepository
-from app.core.bridges.identity_bridge import CitizenFUC
-from app.core.bridges.society_domain_enums_bridge import EscolaridadeEmprego, EscolaridadeJuventude, FaixaEtaria, FaixaVulnerabilidade, HealthUnitType, SituacaoBeneficiario, SituacaoOcupacional, SituacaoProfissional, StatusCandidato, StatusMatricula, StatusPrograma, TipoPrograma, Turno
-from app.core.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_juventude_programa_repository, make_saude_health_unit_repository
-from app.core.bridges.society_statistics_models_bridge import BeneficiarioModel, CandidatoModel, HealthUnitModel, JovemModel, MatriculaModel, ProgramaJuvenilModel, TurmaModel
+from app.domain.bridges import CitizenRepository
+from app.domain.bridges.identity_bridge import CitizenFUC
+from app.domain.bridges.society_domain_enums_bridge import EscolaridadeEmprego, EscolaridadeJuventude, FaixaEtaria, FaixaVulnerabilidade, HealthUnitType, SituacaoBeneficiario, SituacaoOcupacional, SituacaoProfissional, StatusCandidato, StatusMatricula, StatusPrograma, TipoPrograma, Turno
+from app.domain.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_juventude_programa_repository, make_saude_health_unit_repository
+from app.domain.bridges.society_statistics_models_bridge import BeneficiarioModel, CandidatoModel, HealthUnitModel, JovemModel, MatriculaModel, ProgramaJuvenilModel, TurmaModel
 from apps.backend.app.modules.governance.service_requests.domain.enums import ServiceType
 from apps.backend.app.modules.governance.service_requests.infrastructure.clients.assistencia_client import AssistenciaClient
 from apps.backend.app.modules.governance.service_requests.infrastructure.clients.educacao_client import EducacaoClient

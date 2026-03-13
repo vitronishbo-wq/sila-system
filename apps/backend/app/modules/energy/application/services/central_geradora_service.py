@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.energy.application.ports import CentralGeradoraRepositoryPort
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
 from apps.backend.app.modules.energy.domain.models import CentralGeradora
-from apps.backend.app.modules.energy.core.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
+from apps.backend.app.modules.energy.domain.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
 
 class CentralGeradoraService:
 

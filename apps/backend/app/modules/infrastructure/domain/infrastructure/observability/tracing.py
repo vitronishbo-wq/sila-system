@@ -27,7 +27,7 @@ def setup_tracing() -> None:
     if endpoint:
         exporter = OTLPSpanExporter(endpoint=endpoint, insecure=True)
         provider.add_span_processor(BatchSpanProcessor(exporter))
-    _tracer = trace.get_tracer('app.modules.infrastructure.core_publicas')
+    _tracer = trace.get_tracer('app.modules.infrastructure.domain_publicas')
 
 def instrument_fastapi(app) -> None:
     global _fastapi_instrumented

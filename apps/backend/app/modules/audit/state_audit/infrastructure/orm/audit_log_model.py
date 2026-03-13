@@ -1,5 +1,5 @@
 from sqlalchemy import Column, DateTime, JSON, String
-from app.core.db import Base
+from app.domain.db import Base
 
 class AuditLogModel(Base):
     __tablename__ = 'audit_logs'

@@ -11,7 +11,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_obra_service
 from apps.backend.app.modules.infrastructure.api.endpoints.obras import router as obras_router
 from apps.backend.app.modules.infrastructure.application.services.obra_service import ObraService
 from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
-from apps.backend.app.modules.infrastructure.core.exceptions import ObraNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import ObraNotFoundError
 from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyObraRepository
 
 @pytest.mark.asyncio

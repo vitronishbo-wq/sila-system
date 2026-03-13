@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query
 from typing import Optional
 from uuid import UUID
 from sqlalchemy import String, cast, select
-from app.core.exceptions import InvalidRequestError
+from app.domain.exceptions import InvalidRequestError
 from app.api.deps import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from .deps import get_request_service
@@ -58,7 +58,7 @@ async def get_service_request(request_id: UUID, service: RequestService=Depends(
     """
     request = await service.get_request(request_id, request_id)
     if not request:
-        from app.core.exceptions import RequestNotFoundError
+        from app.domain.exceptions import RequestNotFoundError
         raise RequestNotFoundError(request_id).to_http_exception()
     return request
 
@@ -67,7 +67,7 @@ async def submit_service_request(request_id: UUID, service: RequestService=Depen
     """
     Submete um pedido (rascunho -> submetido)
     """
-    from app.core.exceptions import UnauthorizedError, InvalidRequestError
+    from app.domain.exceptions import UnauthorizedError, InvalidRequestError
     try:
         submitted_by = UUID('00000000-0000-0000-0000-000000000001')
         request = await service.submit_request(request_id, submitted_by)

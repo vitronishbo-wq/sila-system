@@ -1,4 +1,4 @@
-from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
+from app.domain.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.educacao.application.ports import UniversidadeRepositoryPort
 from apps.backend.app.modules.educacao.application.workflow_service import WorkflowService
 

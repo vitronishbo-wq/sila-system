@@ -5,7 +5,7 @@ import uuid
 from sqlalchemy import DateTime, Numeric, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class ObraDashboardReadModel(Base):
     __tablename__ = 'op_dashboard_read'

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from sqlalchemy import DateTime, JSON, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class OutboxEventModel(Base):
     __tablename__ = 'est_outbox_events'

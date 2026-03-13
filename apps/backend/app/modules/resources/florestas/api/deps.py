@@ -2,8 +2,8 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.core.bridges.resources_external_services_bridge import get_exportador_service, get_imovel_service
-from app.core.territory.service import TerritoryService
+from app.domain.bridges.resources_external_services_bridge import get_exportador_service, get_imovel_service
+from app.domain.territory.service import TerritoryService
 from apps.backend.app.modules.resources.agricultura.api.deps import get_propriedade_service
 from apps.backend.app.modules.resources.ambiente.api.deps import get_cadastro_service
 from apps.backend.app.modules.energy.api.deps import get_geracao_service

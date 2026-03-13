@@ -6,7 +6,7 @@ from apps.backend.app.modules.energy.application.services import CentralGeradora
 from apps.backend.app.modules.energy.infrastructure.adapters import ANEELAdapter, ONSAdapter
 from apps.backend.app.modules.energy.infrastructure.persistence import SQLAlchemyOutboxRepository
 from apps.backend.app.modules.energy.infrastructure.repositories import SQLAlchemyCentralGeradoraRepository, SQLAlchemyConsumoRepository, SQLAlchemyFaturaRepository, SQLAlchemyLinhaTransmissaoRepository, SQLAlchemySubestacaoRepository, SQLAlchemyUsinaRepository
-from apps.backend.app.modules.energy.core.workers import OutboxWorker
+from apps.backend.app.modules.energy.domain.workers import OutboxWorker
 usina_repo_singleton = SQLAlchemyUsinaRepository()
 usina_service_singleton = UsinaService(usina_repo=usina_repo_singleton)
 central_geradora_repo_singleton = SQLAlchemyCentralGeradoraRepository()

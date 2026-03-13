@@ -4,7 +4,7 @@ from sqlalchemy import DateTime, ForeignKey, Numeric, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
-from app.core.db import Base
+from app.domain.db import Base
 
 class OperationalPaymentModel(Base):
     __tablename__ = 'operational_payments'

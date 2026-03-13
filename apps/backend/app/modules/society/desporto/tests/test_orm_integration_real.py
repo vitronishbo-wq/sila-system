@@ -6,7 +6,7 @@ from uuid import uuid4
 import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import AsyncSessionLocal, Base, engine
+from app.domain.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
 from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
 from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService

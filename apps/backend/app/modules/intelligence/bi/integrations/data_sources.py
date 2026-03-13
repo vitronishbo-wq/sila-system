@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Any
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.bridges.intelligence_bi_sources_bridge import DespesaModel, InvoiceModel, OrcamentoModel, PaymentModel, ReceitaModel, StatisticsDataSources
+from app.domain.bridges.intelligence_bi_sources_bridge import DespesaModel, InvoiceModel, OrcamentoModel, PaymentModel, ReceitaModel, StatisticsDataSources
 
 class FinancasDataSource:
     """Metricas financeiras do modulo de pagamentos do cidadao."""

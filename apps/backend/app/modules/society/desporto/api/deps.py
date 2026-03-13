@@ -3,8 +3,8 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from importlib import import_module
 from app.api.deps import get_db
-from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.core.bridges.society_repository_bridges import make_educacao_escola_repository
+from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from app.domain.bridges.society_repository_bridges import make_educacao_escola_repository
 from apps.backend.app.modules.society.desporto.application.events import event_bus
 from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
 from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
@@ -32,23 +32,23 @@ async def get_atleta_service(session: AsyncSession=Depends(get_db)) -> AtletaSer
 async def get_competicao_service(session: AsyncSession=Depends(get_db)) -> CompeticaoService:
     turismo_module = import_module('app.modules.economy.turismo.api.deps')
     get_atracao_service = getattr(turismo_module, 'get_atracao_service')
-    obras_module = import_module('app.modules.infrastructure.core.api.deps')
+    obras_module = import_module('app.modules.infrastructure.domain.api.deps')
     get_obra_service = getattr(obras_module, 'get_obra_service')
     return CompeticaoService(competicao_repo=SQLAlchemyCompeticaoRepository(session), turismo_service=TurismoServiceAdapter(await get_atracao_service()), educacao_service=EducacaoServiceAdapter(make_educacao_escola_repository(session)), obras_publicas_service=ObrasPublicasServiceAdapter(get_obra_service()), request_service=RequestServiceAdapter(ServiceRequestLifecycleBridge(session)))
 
 async def get_clube_service(session: AsyncSession=Depends(get_db)) -> ClubeService:
-    obras_module = import_module('app.modules.infrastructure.core.api.deps')
+    obras_module = import_module('app.modules.infrastructure.domain.api.deps')
     get_obra_service = getattr(obras_module, 'get_obra_service')
     return ClubeService(clube_repo=SQLAlchemyClubeRepository(session), educacao_service=EducacaoServiceAdapter(make_educacao_escola_repository(session)), obras_publicas_service=ObrasPublicasServiceAdapter(get_obra_service()), request_service=RequestServiceAdapter(ServiceRequestLifecycleBridge(session)))
 
 async def get_jogo_service(session: AsyncSession=Depends(get_db)) -> JogoService:
     turismo_module = import_module('app.modules.economy.turismo.api.deps')
     get_atracao_service = getattr(turismo_module, 'get_atracao_service')
-    obras_module = import_module('app.modules.infrastructure.core.api.deps')
+    obras_module = import_module('app.modules.infrastructure.domain.api.deps')
     get_obra_service = getattr(obras_module, 'get_obra_service')
     return JogoService(jogo_repo=SQLAlchemyJogoRepository(session), competicao_repo=SQLAlchemyCompeticaoRepository(session), clube_repo=SQLAlchemyClubeRepository(session), turismo_service=TurismoServiceAdapter(await get_atracao_service()), obras_publicas_service=ObrasPublicasServiceAdapter(get_obra_service()), request_service=RequestServiceAdapter(ServiceRequestLifecycleBridge(session)), event_bus=event_bus, outbox_repo=_outbox_repo)
 
 async def get_estadio_service(session: AsyncSession=Depends(get_db)) -> EstadioService:
-    obras_module = import_module('app.modules.infrastructure.core.api.deps')
+    obras_module = import_module('app.modules.infrastructure.domain.api.deps')
     get_obra_service = getattr(obras_module, 'get_obra_service')
     return EstadioService(estadio_repo=SQLAlchemyEstadioRepository(session), obras_publicas_service=ObrasPublicasServiceAdapter(get_obra_service()), request_service=RequestServiceAdapter(ServiceRequestLifecycleBridge(session)), event_bus=event_bus, outbox_repo=_outbox_repo)

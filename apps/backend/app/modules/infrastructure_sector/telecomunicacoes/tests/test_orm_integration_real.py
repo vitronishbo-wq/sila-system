@@ -7,7 +7,7 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.db import AsyncSessionLocal, Base, engine
+from app.domain.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.espectro_service import EspectroService
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService

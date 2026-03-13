@@ -2,8 +2,8 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 from app.api.deps import get_db
-from app.core.bridges import CitizenRepository
-from app.core.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_assistencia_visita_repository, make_educacao_matricula_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_saude_appointment_repository
+from app.domain.bridges import CitizenRepository
+from app.domain.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_assistencia_visita_repository, make_educacao_matricula_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_saude_appointment_repository
 from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
 from apps.backend.app.modules.governance.workflow.infrastructure.adapters import AssistenciaSocialAdapter, EducacaoAdapter, EmpregoAdapter, IdentidadeAdapter, JuventudeAdapter, SaudeAdapter
 from apps.backend.app.modules.governance.workflow.infrastructure.repositories.task_repository import TaskRepository

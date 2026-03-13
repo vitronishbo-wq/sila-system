@@ -5,7 +5,7 @@ from uuid import UUID
 from apps.backend.app.modules.logistics.application.ports import BilhetagemRepositoryPort, FinancasServicePort, WorkflowServicePort
 from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
 from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica
-from apps.backend.app.modules.logistics.core.exceptions import BilhetagemNotFoundError
+from apps.backend.app.modules.logistics.domain.exceptions import BilhetagemNotFoundError
 
 class BilhetagemService:
 

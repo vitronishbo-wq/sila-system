@@ -11,7 +11,7 @@ from apps.backend.app.modules.infrastructure.api.deps import get_projeto_service
 from apps.backend.app.modules.infrastructure.api.endpoints.projetos import router as projetos_router
 from apps.backend.app.modules.infrastructure.application.services.projeto_service import ProjetoService
 from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from apps.backend.app.modules.infrastructure.core.exceptions import ProjetoNotFoundError
+from apps.backend.app.modules.infrastructure.domain.exceptions import ProjetoNotFoundError
 from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyProjetoRepository
 
 @pytest.mark.asyncio

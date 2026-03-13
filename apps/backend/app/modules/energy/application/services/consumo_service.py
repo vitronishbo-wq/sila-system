@@ -7,7 +7,7 @@ from apps.backend.app.modules.energy.application.ports import ConsumoRepositoryP
 from apps.backend.app.modules.energy.domain.enums import TipoLeituraEnergia
 from apps.backend.app.modules.energy.domain.models import ConsumoEnergia
 from apps.backend.app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
-from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError
+from apps.backend.app.modules.energy.domain.exceptions import ConsumoNotFoundError
 
 class ConsumoService:
 

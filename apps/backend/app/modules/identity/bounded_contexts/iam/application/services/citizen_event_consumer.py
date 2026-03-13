@@ -1,4 +1,4 @@
-from app.core.bridges.identity_bridge import IdentityBridge
+from app.domain.bridges.identity_bridge import IdentityBridge
 
 
 class CitizenEventConsumer:

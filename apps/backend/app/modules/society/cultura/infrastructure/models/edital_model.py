@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Boolean, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class EditalModel(Base):
     __tablename__ = 'cultura_editais'

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any, Optional
 from uuid import UUID
-from app.core.bridges import ServiceRequestLifecycleBridge
+from app.domain.bridges import ServiceRequestLifecycleBridge
 from apps.backend.app.modules.society.emprego.application.ports import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):

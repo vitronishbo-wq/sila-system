@@ -4,7 +4,7 @@ from datetime import date, datetime
 from sqlalchemy import Date, DateTime, String, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.core.db import Base
+from app.domain.db import Base
 
 class DependencyModel(Base):
     __tablename__ = 'dependency_records'

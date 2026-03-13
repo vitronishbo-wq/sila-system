@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any
 from uuid import UUID
-from app.core.bridges import ServiceRequestLifecycleBridge
+from app.domain.bridges import ServiceRequestLifecycleBridge
 from apps.backend.app.modules.resources.pecuaria.application.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
