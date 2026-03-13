@@ -10,7 +10,7 @@ from apps.backend.app.modules.payment.models.enums import (
     TransactionStatus,
     TransactionType,
 )
-from apps.backend.app.modules.payment.schemas.payment import RefundResponse
+from apps.backend.app.modules.payment.application.schemas.payment import RefundResponse
 
 
 class Payment:

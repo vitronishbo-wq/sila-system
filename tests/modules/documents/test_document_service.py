@@ -10,8 +10,13 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from fastapi import UploadFile
 
-from apps.backend.app.modules.documents.schemas.documents import DocumentCreate, DocumentStatus
-from apps.backend.app.modules.documents.services.document_service import DocumentService
+from apps.backend.app.modules.documents.application.schemas.documents import (
+    DocumentCreate,
+    DocumentStatus,
+)
+from apps.backend.app.modules.documents.application.services.document_service import (
+    DocumentService,
+)
 
 
 TEST_UPLOAD_DIR = Path("media/test_documents")
@@ -61,7 +66,10 @@ def mock_db_session():
 
 @pytest.fixture(autouse=True)
 def patch_upload_dir():
-    with patch("modules.documents.services.document_service.UPLOAD_DIR", TEST_UPLOAD_DIR):
+    with patch(
+        "apps.backend.app.modules.documents.application.services.document_service.UPLOAD_DIR",
+        TEST_UPLOAD_DIR,
+    ):
         yield
 
 
@@ -85,9 +93,18 @@ async def test_create_single_document_success(mock_db_session):
             "_save_file",
             AsyncMock(return_value=("media/test_documents/temp/test.txt", 3, "checksum")),
         ),
-        patch("modules.documents.services.document_service.Document", FakeDocument),
-        patch("modules.documents.services.document_service.DocumentVersion", FakeDocumentVersion),
-        patch.dict("sys.modules", {"modules.documents.tasks": fake_tasks_module}),
+        patch(
+            "apps.backend.app.modules.documents.application.services.document_service.Document",
+            FakeDocument,
+        ),
+        patch(
+            "apps.backend.app.modules.documents.application.services.document_service.DocumentVersion",
+            FakeDocumentVersion,
+        ),
+        patch.dict(
+            "sys.modules",
+            {"apps.backend.app.modules.documents.tasks": fake_tasks_module},
+        ),
     ):
         result = await service.create_single_document(file=file, metadata=metadata, owner_id=owner_id)
 

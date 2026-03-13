@@ -6,7 +6,10 @@ from typing import Any
 
 from fastapi import UploadFile
 
-from apps.backend.app.modules.documents.schemas.documents import DocumentCreate, DocumentStatus
+from apps.backend.app.modules.documents.application.schemas.documents import (
+    DocumentCreate,
+    DocumentStatus,
+)
 
 UPLOAD_DIR = Path("media/documents")
 

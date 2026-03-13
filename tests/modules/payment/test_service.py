@@ -9,14 +9,16 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime, timezone
 from decimal import Decimal
 
-from apps.backend.app.modules.payment.services.payment_service import PaymentService
+from apps.backend.app.modules.payment.application.services.payment_service import (
+    PaymentService,
+)
 from apps.backend.app.modules.payment.models.enums import (
     PaymentStatus,
     TransactionStatus,
     PaymentMethod,
     TransactionType,
 )
-from apps.backend.app.modules.payment.schemas.payment import (
+from apps.backend.app.modules.payment.application.schemas.payment import (
     PaymentCreate,
     RefundCreate,
     RefundResponse,
@@ -183,8 +185,14 @@ async def test_create_payment_success(payment_service: PaymentService, mock_db_s
     payment_service._generate_reference = AsyncMock(return_value="PAY-TEST-123")
 
     with (
-        patch("modules.payment.services.payment_service.Payment", MockPayment),
-        patch("modules.payment.services.payment_service.PaymentTransaction", MockTransaction),
+        patch(
+            "apps.backend.app.modules.payment.application.services.payment_service.Payment",
+            MockPayment,
+        ),
+        patch(
+            "apps.backend.app.modules.payment.application.services.payment_service.PaymentTransaction",
+            MockTransaction,
+        ),
     ):
         result = await payment_service.create_payment(payment_data, user_id=1)
 
@@ -315,7 +323,7 @@ async def test_create_refund_full_refund(
     )
 
     with patch(
-        "modules.payment.services.payment_service.PaymentTransaction",
+        "apps.backend.app.modules.payment.application.services.payment_service.PaymentTransaction",
         return_value=mock_transaction,
     ):
         refund_data = RefundCreate(reason="Test refund")
@@ -362,7 +370,7 @@ async def test_create_refund_partial_refund(
     )
 
     with patch(
-        "modules.payment.services.payment_service.PaymentTransaction",
+        "apps.backend.app.modules.payment.application.services.payment_service.PaymentTransaction",
         return_value=mock_transaction,
     ):
         refund_data = RefundCreate(amount=float(refund_amount), reason="Partial refund")

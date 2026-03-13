@@ -1,5 +1,7 @@
-from apps.backend.app.modules.documents.schemas.documents import DocumentCreate
-from apps.backend.app.modules.documents.services.document_service import DocumentService
+from apps.backend.app.modules.documents.application.schemas.documents import DocumentCreate
+from apps.backend.app.modules.documents.application.services.document_service import (
+    DocumentService,
+)
 from apps.backend.app.modules.identity.models.user import User
 from app.core.db import AsyncSessionLocal
 import asyncio
