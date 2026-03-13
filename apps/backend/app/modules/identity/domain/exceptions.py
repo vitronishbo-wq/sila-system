@@ -1,2 +1,0 @@
-class IdentityException(Exception):
-    pass
