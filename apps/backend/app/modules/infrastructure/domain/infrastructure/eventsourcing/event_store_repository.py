@@ -7,7 +7,7 @@ from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from apps.backend.app.domain.db import AsyncSessionLocal
+from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.modules.infrastructure.infrastructure.eventsourcing.event_store_model import EventStoreModel
 
 class EventStoreConcurrencyError(RuntimeError):

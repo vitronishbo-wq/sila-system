@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from apps.backend.app.domain.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
+from apps.backend.app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TurmaRepositoryPort
 from apps.backend.app.modules.educacao.domain.models import CicloEnsino, Matricula, StatusMatricula
 from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, IdadeMinimaNaoAtendidaError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaAlreadyExistsError, TurmaNotFoundError, TurmaSemVagasError

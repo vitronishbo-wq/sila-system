@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from apps.backend.app.domain.db import AsyncSessionLocal
+from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.modules.society.familia.application.events.bus import event_bus as familia_event_bus
 from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
 from apps.backend.app.modules.society.familia.infrastructure.repositories.outbox_repository import OutboxRepository

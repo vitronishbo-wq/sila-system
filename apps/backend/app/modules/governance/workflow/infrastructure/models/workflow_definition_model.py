@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID, ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class WorkflowDefinitionModel(Base):
     """Modelo SQLAlchemy para definição de workflow"""

@@ -5,7 +5,7 @@ from uuid import UUID, uuid4
 from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
-from apps.backend.app.domain.catalog.models.service import Service
+from apps.backend.app.core.catalog.models.service import Service
 from apps.backend.app.modules.intelligence.operations.domain.enums import OrderStatus, PaymentStatus
 from apps.backend.app.modules.intelligence.operations.domain.state_machine import assert_order_transition
 from apps.backend.app.modules.intelligence.operations.infrastructure.models.order_model import OperationalOrderDocumentModel, OperationalOrderModel

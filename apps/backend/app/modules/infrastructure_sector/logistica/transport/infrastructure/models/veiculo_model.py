@@ -2,7 +2,7 @@
 from sqlalchemy import Column, String, Integer, DateTime, Boolean, UUID, ForeignKey
 from sqlalchemy.sql import func
 import uuid
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 
 class VeiculoModel(Base):

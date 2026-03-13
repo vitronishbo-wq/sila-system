@@ -3,7 +3,7 @@ import asyncio
 from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker
-from apps.backend.app.domain.db import AsyncSessionLocal
+from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.bus import event_bus
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.registry import deserialize_event
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.persistence.outbox_model import OutboxEventModel

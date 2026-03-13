@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import CheckConstraint, DateTime, Index, String, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class EstacaoMeteorologicaModel(Base):
     __tablename__ = 'meteorologia_estacoes'

@@ -5,7 +5,7 @@ import socket
 from datetime import datetime, timedelta, timezone
 from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from apps.backend.app.domain.db import AsyncSessionLocal
+from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.modules.society.desporto.application.events import deserialize_event, serialize_event
 from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxMessage, OutboxRepositoryPort
 from apps.backend.app.modules.society.desporto.infrastructure.models.outbox_event_model import OutboxEventModel

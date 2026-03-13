@@ -3,8 +3,8 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from importlib import import_module
 from apps.backend.app.api.deps import get_db
-from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from apps.backend.app.domain.bridges.society_repository_bridges import make_educacao_escola_repository
+from apps.backend.app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.core.bridges.society_repository_bridges import make_educacao_escola_repository
 from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
 from apps.backend.app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
 from apps.backend.app.modules.society.cultura.application.services.edital_service import EditalService

@@ -6,7 +6,7 @@ from sqlalchemy import Date, DateTime, Numeric, String, Text
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class ImportadorModel(Base):
     __tablename__ = 'comercio_externo_importadores'

@@ -4,7 +4,7 @@ from sqlalchemy import DateTime, ForeignKey, JSON, Numeric, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class OperationalOrderModel(Base):
     __tablename__ = 'operational_orders'

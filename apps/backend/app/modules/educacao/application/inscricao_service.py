@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from apps.backend.app.domain.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
+from apps.backend.app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort, InscricaoRepositoryPort
 from apps.backend.app.modules.educacao.domain.enums import TipoInscricao
 from apps.backend.app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica

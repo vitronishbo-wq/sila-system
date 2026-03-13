@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Boolean, Date, DateTime, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class CadastroUnicoModel(Base):
     __tablename__ = 'assistencia_social_cadastros_unicos'

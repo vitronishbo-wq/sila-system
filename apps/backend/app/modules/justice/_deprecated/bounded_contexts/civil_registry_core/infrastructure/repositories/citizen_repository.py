@@ -7,8 +7,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.application.ports.citizen_repository_port import (
     CitizenRepositoryPort,
 )
-from apps.backend.app.domain.database.repositories import BaseRepository
-from apps.backend.app.domain.bridges.identity_bridge import CitizenFUC
+from apps.backend.app.core.database.repositories import BaseRepository
+from apps.backend.app.core.bridges.identity_bridge import CitizenFUC
 logger = logging.getLogger('identity.repository.citizen')
 
 class CitizenRepository(BaseRepository, CitizenRepositoryPort):

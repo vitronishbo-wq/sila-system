@@ -2,8 +2,8 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from apps.backend.app.api.deps import get_db
-from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from apps.backend.app.domain.bridges.resources_external_services_bridge import get_estabelecimento_industrial_service
+from apps.backend.app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.core.bridges.resources_external_services_bridge import get_estabelecimento_industrial_service
 from apps.backend.app.modules.resources.pescas.api.deps import get_armador_service
 from apps.backend.app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
 from apps.backend.app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService

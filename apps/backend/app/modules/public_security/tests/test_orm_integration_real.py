@@ -5,7 +5,7 @@ from datetime import date, datetime, timedelta
 import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.domain.db import AsyncSessionLocal, Base, engine
+from apps.backend.app.core.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
 from apps.backend.app.modules.public_security.application.services.evidencia_service import EvidenciaService
 from apps.backend.app.modules.public_security.application.services.investigacao_service import InvestigacaoService

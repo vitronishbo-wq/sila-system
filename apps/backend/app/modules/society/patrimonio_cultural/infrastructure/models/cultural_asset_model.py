@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import DateTime, Float, JSON, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class CulturalAssetModel(Base):
     __tablename__ = 'patrimonio_cultural_assets'

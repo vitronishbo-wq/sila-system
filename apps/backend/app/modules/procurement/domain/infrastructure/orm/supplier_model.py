@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class SupplierModel(Base):
     __tablename__ = 'procurement_suppliers'

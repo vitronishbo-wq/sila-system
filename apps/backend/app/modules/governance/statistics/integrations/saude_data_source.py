@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
-from apps.backend.app.domain.bridges.society_statistics_models_bridge import AppointmentModel, InternamentoModel, VaccineDoseModel
+from apps.backend.app.core.bridges.society_statistics_models_bridge import AppointmentModel, InternamentoModel, VaccineDoseModel
 from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class SaudeDataSource(BaseDataSource):

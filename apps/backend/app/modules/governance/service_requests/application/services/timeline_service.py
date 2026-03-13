@@ -1,4 +1,4 @@
-from apps.backend.app.domain.observability import trace
+from apps.backend.app.core.observability import trace
 'Timeline service'
 from uuid import UUID
 from typing import List, Dict, Any

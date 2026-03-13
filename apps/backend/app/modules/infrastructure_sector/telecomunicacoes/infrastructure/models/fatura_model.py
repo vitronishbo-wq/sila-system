@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Date, DateTime, Numeric, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from apps.backend.app.domain.db import Base
+from apps.backend.app.core.db import Base
 
 class FaturaTelecomModel(Base):
     __tablename__ = 'telecom_faturas'

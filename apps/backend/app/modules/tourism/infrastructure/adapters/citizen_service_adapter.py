@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from apps.backend.app.domain.bridges import CitizenRepositoryPort
+from apps.backend.app.core.bridges import CitizenRepositoryPort
 from apps.backend.app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort
 
 class CitizenServiceAdapter(CitizenServicePort):

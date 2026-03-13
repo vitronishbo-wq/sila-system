@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.domain.db import get_db
+from apps.backend.app.core.db import get_db
 from apps.backend.app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
 from apps.backend.app.modules.intelligence.bi.application.services.kpi_service import KPIService
 from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources

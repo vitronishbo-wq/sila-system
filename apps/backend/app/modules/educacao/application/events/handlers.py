@@ -3,8 +3,8 @@
 These handlers react to domain events from other modules.
 They enable loose coupling between bounded contexts.
 """
-from apps.backend.app.domain.events.handlers import EventHandler
-from apps.backend.app.domain.observability.enterprise_logging import get_logger
+from apps.backend.app.core.events.handlers import EventHandler
+from apps.backend.app.core.observability.enterprise_logging import get_logger
 logger = get_logger('modules.educacao.events')
 
 class EducacaoUserLoginHandler(EventHandler):

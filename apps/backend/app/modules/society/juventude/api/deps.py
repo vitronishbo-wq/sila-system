@@ -2,8 +2,8 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from apps.backend.app.api.deps import get_db
-from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from apps.backend.app.domain.bridges.society_repository_bridges import make_educacao_matricula_repository
+from apps.backend.app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.core.bridges.society_repository_bridges import make_educacao_matricula_repository
 from apps.backend.app.modules.society.emprego.infrastructure.repositories.sqlalchemy_candidato_repository import SQLAlchemyCandidatoRepository
 from apps.backend.app.modules.society.juventude.application.services.auxilio_service import AuxilioService
 from apps.backend.app.modules.society.juventude.application.services.acompanhamento_juvenil_service import AcompanhamentoJuvenilService

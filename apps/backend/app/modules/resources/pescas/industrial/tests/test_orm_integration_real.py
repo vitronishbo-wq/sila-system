@@ -7,7 +7,7 @@ from uuid import uuid4
 import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.domain.db import AsyncSessionLocal, Base, engine
+from apps.backend.app.core.db import AsyncSessionLocal, Base, engine
 from apps.backend.app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
 from apps.backend.app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
 from apps.backend.app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
