@@ -1,2 +1,0 @@
-from apps.backend.app.modules.migration_service.domain.entities import AutorizacaoResidencia, EntradaSaidaTipo, Naturalizacao, NaturalizacaoStatus, PostoFronteiraTipo, RegistroEntradaSaida, ResidenciaStatus, ResidenciaTipo, Visto, VistoStatus, VistoTipo
-__all__ = ['Visto', 'AutorizacaoResidencia', 'Naturalizacao', 'RegistroEntradaSaida', 'VistoTipo', 'VistoStatus', 'ResidenciaTipo', 'ResidenciaStatus', 'NaturalizacaoStatus', 'EntradaSaidaTipo', 'PostoFronteiraTipo']

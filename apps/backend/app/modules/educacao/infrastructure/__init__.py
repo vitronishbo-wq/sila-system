@@ -1,3 +1,0 @@
-from apps.backend.app.modules.educacao.infrastructure.models import AnoLetivoModel, EscolaModel, MatriculaModel, TurmaModel
-from apps.backend.app.modules.educacao.infrastructure.repositories import SQLAlchemyEscolaRepository, SQLAlchemyMatriculaRepository, SQLAlchemyTurmaRepository
-__all__ = ['MatriculaModel', 'EscolaModel', 'TurmaModel', 'AnoLetivoModel', 'SQLAlchemyMatriculaRepository', 'SQLAlchemyEscolaRepository', 'SQLAlchemyTurmaRepository']

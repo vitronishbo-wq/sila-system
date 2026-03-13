@@ -1,2 +1,1 @@
-class JusticeError(Exception):
-    pass
+class CoreError(Exception): pass

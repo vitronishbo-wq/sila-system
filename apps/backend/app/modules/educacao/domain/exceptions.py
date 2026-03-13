@@ -1,2 +1,1 @@
-class EducacaoError(Exception):
-    pass
+class CoreError(Exception): pass

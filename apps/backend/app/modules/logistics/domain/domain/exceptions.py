@@ -1,2 +1,0 @@
-class TransportesLogisticaError(Exception):
-    pass

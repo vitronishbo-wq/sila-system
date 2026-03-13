@@ -1,2 +1,0 @@
-from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica, Bilhete, DemandaOperacional, FiscalizacaoTransporte, Frota, Linha, Manutencao, QualidadeServico, Rodovia, Tarifa, Veiculo, Viagem
-__all__ = ['Rodovia', 'Veiculo', 'Linha', 'Viagem', 'Bilhete', 'Frota', 'Manutencao', 'Tarifa', 'FiscalizacaoTransporte', 'BilhetagemEletronica', 'DemandaOperacional', 'QualidadeServico']
