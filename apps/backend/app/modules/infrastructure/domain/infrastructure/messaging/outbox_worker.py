@@ -6,8 +6,8 @@ import time
 from importlib import import_module
 from typing import Awaitable, Callable
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from app.domain.db import AsyncSessionLocal
-from app.domain.db import engine as write_engine
+from apps.backend.app.domain.db import AsyncSessionLocal
+from apps.backend.app.domain.db import engine as write_engine
 from apps.backend.app.modules.infrastructure.application.events.registry import EVENT_HANDLERS
 from apps.backend.app.modules.infrastructure.application.sagas.execucao_obra_saga import ExecucaoObraSaga
 from apps.backend.app.modules.infrastructure.infrastructure.observability.tracing import instrument_sqlalchemy, setup_tracing, start_span

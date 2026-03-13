@@ -2,9 +2,9 @@ from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from importlib import import_module
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.domain.bridges.society_repository_bridges import make_educacao_escola_repository
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.domain.bridges.society_repository_bridges import make_educacao_escola_repository
 from apps.backend.app.modules.society.desporto.application.events import event_bus
 from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
 from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService

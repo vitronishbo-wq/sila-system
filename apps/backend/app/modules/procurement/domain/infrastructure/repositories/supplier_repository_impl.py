@@ -1,4 +1,4 @@
-from app.platform.persistence.base_repository import BaseRepository
+from apps.backend.app.platform.persistence.base_repository import BaseRepository
 from ...domain.repositories.supplier_repository import SupplierRepository
 from ..orm.supplier_model import SupplierModel
 

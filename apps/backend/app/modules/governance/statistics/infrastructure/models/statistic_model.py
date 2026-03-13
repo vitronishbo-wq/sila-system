@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, Index
 from sqlalchemy.sql import func
 from sqlalchemy import DateTime
-from app.db.base import Base
+from apps.backend.app.db.base import Base
 
 class StatisticModel(Base):
     __tablename__ = 'statistics'

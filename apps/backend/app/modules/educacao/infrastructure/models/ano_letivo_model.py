@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import Boolean, Date, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class AnoLetivoModel(Base):
     __tablename__ = 'educacao_anos_letivos'

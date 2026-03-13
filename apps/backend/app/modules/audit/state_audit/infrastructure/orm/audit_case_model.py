@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, DateTime, String
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class AuditCaseModel(Base):
     __tablename__ = 'audit_cases'

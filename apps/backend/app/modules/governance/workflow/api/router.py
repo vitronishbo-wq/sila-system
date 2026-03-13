@@ -4,8 +4,8 @@ from apps.backend.app.modules.governance.workflow.api.schemas.task_schema import
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from uuid import UUID
-from app.api.deps import get_identity_context
-from app.domain.identity import IdentityContext
+from apps.backend.app.api.deps import get_identity_context
+from apps.backend.app.domain.identity import IdentityContext
 from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
 router = APIRouter(prefix='/workflow', tags=['Workflow'])
 

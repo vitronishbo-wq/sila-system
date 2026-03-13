@@ -8,7 +8,7 @@ Prefix: /api/v1/xroad
 from fastapi import APIRouter, HTTPException, Request
 from starlette.responses import JSONResponse
 
-from app.platform.observability.logger import get_sila_logger
+from apps.backend.app.platform.observability.logger import get_sila_logger
 from apps.backend.app.modules.xroad.domain.envelope import (
     SILAEnvelope,
     SILAEnvelopeResponse,

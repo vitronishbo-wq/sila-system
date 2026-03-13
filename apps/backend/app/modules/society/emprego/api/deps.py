@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import Depends
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.society.emprego.application.services import CandidatoService, CertificacaoService, ConcursoService, FormacaoService, MediacaoService, OfertaService, TrabalhoService
 from apps.backend.app.modules.society.emprego.infrastructure.adapters import CitizenServiceAdapter, RequestServiceAdapter
 from apps.backend.app.modules.society.emprego.infrastructure.repositories import SQLAlchemyCandidatoRepository, SQLAlchemyCertificacaoRepository, SQLAlchemyConcursoRepository, SQLAlchemyFormacaoRepository, SQLAlchemyMediacaoRepository, SQLAlchemyOfertaRepository, SQLAlchemyReclamacaoRepository

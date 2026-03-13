@@ -4,7 +4,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from app.api.deps import get_db
+from apps.backend.app.api.deps import get_db
 from apps.backend.app.modules.governance.statistics.api.router import router as estatistica_router
 from apps.backend.app.modules.governance.statistics.infrastructure.models.agregacao_model import AgregacaoModel
 from apps.backend.app.modules.governance.statistics.infrastructure.models.alerta_model import AlertaModel

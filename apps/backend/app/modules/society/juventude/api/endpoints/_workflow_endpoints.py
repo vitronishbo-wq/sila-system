@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any, Callable
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.api.deps import get_current_user
+from apps.backend.app.api.deps import get_current_user
 
 def build_workflow_router(*, tag: str, get_service: Callable, create_schema: Any, response_schema: Any, concluir_schema: Any, cancelar_schema: Any, routes: list[tuple[str, str]]) -> APIRouter:
     router = APIRouter(tags=[tag])

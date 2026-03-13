@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Text, Float, DateTime, Boolean, UUID, For
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 
 class LicitacaoModel(Base):

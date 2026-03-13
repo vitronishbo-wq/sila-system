@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID, ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class ServiceRequestModel(Base):
     """Modelo SQLAlchemy para pedidos de serviço"""

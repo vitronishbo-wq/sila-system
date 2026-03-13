@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Boolean, DateTime, Integer, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class CriancaRiscoModel(Base):
     __tablename__ = 'assistencia_social_criancas_risco'

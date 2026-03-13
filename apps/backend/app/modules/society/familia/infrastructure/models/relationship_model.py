@@ -4,7 +4,7 @@ from datetime import date, datetime
 from sqlalchemy import Date, DateTime, String, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class RelationshipModel(Base):
     __tablename__ = 'family_relationships'

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
 from apps.backend.app.modules.tourism.application.services.atracao_service import AtracaoService
 from apps.backend.app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService

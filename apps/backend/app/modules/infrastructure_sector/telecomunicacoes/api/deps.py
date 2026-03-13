@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events import event_bus
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import FaturaTelecomGeradaEvent, QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.handlers import AnatelHandler, FaturamentoHandler, QualidadeHandler

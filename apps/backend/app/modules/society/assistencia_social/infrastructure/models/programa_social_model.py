@@ -5,7 +5,7 @@ from decimal import Decimal
 from sqlalchemy import Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class ProgramaSocialModel(Base):
     __tablename__ = 'assistencia_social_programas'

@@ -6,7 +6,7 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from app.domain.db import AsyncSessionLocal
+from apps.backend.app.domain.db import AsyncSessionLocal
 from apps.backend.app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort
 from apps.backend.app.modules.infrastructure.infrastructure.persistence.outbox_model import OutboxEventConsumptionModel, OutboxEventModel
 from apps.backend.app.modules.infrastructure.infrastructure.governance.event_governance import EventGovernanceService

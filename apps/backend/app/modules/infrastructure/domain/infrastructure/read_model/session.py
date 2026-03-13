@@ -2,7 +2,7 @@ from __future__ import annotations
 import os
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
-from app.domain.settings import settings
+from apps.backend.app.domain.settings import settings
 READ_DATABASE_URL = os.environ.get('READ_DATABASE_URL', settings.DATABASE_URL)
 if READ_DATABASE_URL.startswith('postgresql://'):
     READ_DATABASE_URL = READ_DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://', 1)

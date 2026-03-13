@@ -8,9 +8,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
-from app.api.deps import get_db, get_identity_context
-from app.domain.bridges.identity_bridge import CitizenFUC
-from app.domain.identity import IdentityContext
+from apps.backend.app.api.deps import get_db, get_identity_context
+from apps.backend.app.domain.bridges.identity_bridge import CitizenFUC
+from apps.backend.app.domain.identity import IdentityContext
 from apps.backend.app.modules.governance.workflow.api.router import router as workflow_router
 from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
 from apps.backend.app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
@@ -26,7 +26,7 @@ from apps.backend.app.modules.governance.workflow.infrastructure.repositories.wo
 def _database_url() -> str:
     url = os.environ.get('DATABASE_URL')
     if not url:
-        from app.domain.settings import settings
+        from apps.backend.app.domain.settings import settings
         url = str(settings.DATABASE_URL or '')
     if not url:
         raise RuntimeError('DATABASE_URL é obrigatório para testes de endpoint do workflow.')
@@ -36,7 +36,7 @@ def _database_url() -> str:
 
 @pytest_asyncio.fixture(scope='session')
 async def workflow_test_engine():
-    from app.domain.db import Base, register_models
+    from apps.backend.app.domain.db import Base, register_models
     register_models()
     registry = getattr(Base, 'registry', None)
     if registry is not None and hasattr(registry, 'configure'):
@@ -47,7 +47,7 @@ async def workflow_test_engine():
 
 @pytest_asyncio.fixture(scope='function')
 async def session_factory(workflow_test_engine):
-    from app.domain.db import Base
+    from apps.backend.app.domain.db import Base
     required_tables = [CitizenFUC.__table__, WorkflowDefinitionModel.__table__, WorkflowStateModel.__table__, WorkflowTransitionModel.__table__, WorkflowInstanceModel.__table__, WorkflowTaskModel.__table__, WorkflowHistoryModel.__table__]
     async with workflow_test_engine.begin() as connection:
         await connection.run_sync(lambda sync_connection: Base.metadata.create_all(sync_connection, tables=required_tables, checkfirst=True))

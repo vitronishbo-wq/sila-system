@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql import func
 from sqlalchemy import DateTime
-from app.db.base import Base
+from apps.backend.app.db.base import Base
 
 class AggregationModel(Base):
     __tablename__ = 'statistics_aggregations'

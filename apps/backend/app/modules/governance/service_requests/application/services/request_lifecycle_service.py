@@ -1,4 +1,4 @@
-from app.domain.observability import trace
+from apps.backend.app.domain.observability import trace
 'Request lifecycle service'
 from uuid import UUID
 from typing import Optional, Dict, Any

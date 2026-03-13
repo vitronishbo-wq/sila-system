@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from sqlalchemy import Boolean, DateTime, Float, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class ReclamacaoModel(Base):
     __tablename__ = 'dc_reclamacoes'

@@ -4,7 +4,7 @@ from decimal import Decimal
 from sqlalchemy import Date, DateTime, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class PensaoModel(Base):
     __tablename__ = 'seguranca_social_pensoes'

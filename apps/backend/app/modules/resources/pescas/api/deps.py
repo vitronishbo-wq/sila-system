@@ -4,8 +4,8 @@ from typing import Any
 from uuid import UUID
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from apps.backend.app.modules.resources.pescas.application.ports import ArmadorRepositoryPort
 from apps.backend.app.modules.resources.pescas.application.services import ArmadorService, CapturaService, ComercializacaoService, DefesoService, DesembarqueService, EmbarcacaoService, FiscalizacaoService, LicenciamentoPescaService, PescadorService, ProducaoPescaService, QuotaService, RastreabilidadeService
 from apps.backend.app.modules.resources.pescas.domain.models.armador import Armador

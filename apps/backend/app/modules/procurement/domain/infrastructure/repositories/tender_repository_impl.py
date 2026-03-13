@@ -1,4 +1,4 @@
-from app.platform.persistence.base_repository import BaseRepository
+from apps.backend.app.platform.persistence.base_repository import BaseRepository
 from ...domain.repositories.tender_repository import TenderRepository
 from ..orm.tender_model import TenderModel
 

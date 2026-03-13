@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date, datetime
 from uuid import uuid4
-from app.domain.events.base_event import BaseEvent
-from app.domain.observability.context import get_request_id
+from apps.backend.app.domain.events.base_event import BaseEvent
+from apps.backend.app.domain.observability.context import get_request_id
 from ..models.citizen import Citizen
 from ..models.bi_record import BIRecord
 

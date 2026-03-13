@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import DateTime, JSON, String, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class SagaInstanceModel(Base):
     __tablename__ = 'op_sagas'

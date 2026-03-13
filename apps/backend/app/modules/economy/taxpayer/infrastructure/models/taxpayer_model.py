@@ -3,7 +3,7 @@ from datetime import datetime
 from uuid import uuid4
 from sqlalchemy import Column, String, DateTime, Integer
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
-from app.db.base import Base
+from apps.backend.app.db.base import Base
 from ...domain.enums.taxpayer_status import TaxpayerStatus
 
 class TaxpayerModel(Base):

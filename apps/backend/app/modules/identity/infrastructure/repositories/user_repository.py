@@ -3,7 +3,7 @@ from typing import Any
 
 from sqlalchemy.future import select
 
-from app.domain.database.session import AsyncSessionLocal
+from apps.backend.app.domain.database.session import AsyncSessionLocal
 from ..models.user_model import UserModel
 
 

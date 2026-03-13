@@ -1,4 +1,4 @@
-from app.domain.observability import trace
+from apps.backend.app.domain.observability import trace
 import uuid
 import logging
 from datetime import datetime, timezone

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
-from app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.domain.bridges.society_repository_bridges import make_educacao_matricula_repository
+from apps.backend.app.api.deps import get_db
+from apps.backend.app.domain.bridges import CitizenRepository, ServiceRequestLifecycleBridge
+from apps.backend.app.domain.bridges.society_repository_bridges import make_educacao_matricula_repository
 from apps.backend.app.modules.society.assistencia_social.application.services import AtendimentoService, BeneficiarioService, BeneficioService, CadastroUnicoService, CriancaRiscoService, IdosoVulneravelService, PCDService, ProgramaSocialService, SituacaoRuaService, VisitaDomiciliarService
 from apps.backend.app.modules.society.assistencia_social.infrastructure.adapters import CitizenServiceAdapter, EducacaoServiceAdapter, EmpregoServiceAdapter, JuventudeServiceAdapter, RequestServiceAdapter, SaudeServiceAdapter
 from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories import SQLAlchemyAtendimentoRepository, SQLAlchemyBeneficiarioRepository, SQLAlchemyBeneficioRepository, SQLAlchemyCadastroUnicoRepository, SQLAlchemyCriancaRiscoRepository, SQLAlchemyIdosoVulneravelRepository, SQLAlchemyPCDRepository, SQLAlchemyProgramaSocialRepository, SQLAlchemySituacaoRuaRepository, SQLAlchemyVisitaDomiciliarRepository

@@ -2,7 +2,7 @@
 from sqlalchemy import Column, String, DateTime, UUID, ForeignKey
 from sqlalchemy.sql import func
 import uuid
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 
 class ViagemModel(Base):

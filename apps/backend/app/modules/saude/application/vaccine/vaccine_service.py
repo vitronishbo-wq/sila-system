@@ -4,7 +4,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 
-from app.domain.observability import trace
+from apps.backend.app.domain.observability import trace
 from apps.backend.app.modules.saude.application.ports import JuventudeServicePort, WorkflowServicePort
 from apps.backend.app.modules.saude.domain.entities.vaccine import VaccineDose
 

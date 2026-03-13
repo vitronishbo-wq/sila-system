@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Float, String
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class ContractModel(Base):
     __tablename__ = 'procurement_contracts'

@@ -1,7 +1,7 @@
 import os
 import pytest
 from fastapi.testclient import TestClient
-from app.main import app
+from apps.backend.app.main import app
 client = TestClient(app)
 
 @pytest.mark.e2e

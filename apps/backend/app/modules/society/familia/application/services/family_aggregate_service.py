@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
 from fastapi import HTTPException, status
-from app.domain.events import EventBusPort
+from apps.backend.app.domain.events import EventBusPort
 from apps.backend.app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
 from apps.backend.app.modules.society.familia.application.ports.civil_registry_service_port import CivilRegistryServicePort
 from apps.backend.app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort

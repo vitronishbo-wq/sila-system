@@ -4,7 +4,7 @@ from datetime import date, datetime
 from sqlalchemy import Boolean, Date, DateTime, Integer, String, Text, func
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class RiscoEvasaoModel(Base):
     __tablename__ = 'juventude_riscos_evasao'

@@ -4,7 +4,7 @@ from datetime import date, datetime
 from sqlalchemy import Date, DateTime, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class UnidadeManejoModel(Base):
     __tablename__ = 'florestas_unidades_manejo'

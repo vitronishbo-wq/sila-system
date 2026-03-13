@@ -1,9 +1,9 @@
-from app.domain.observability import trace
+from apps.backend.app.domain.observability import trace
 from typing import Optional, List, Dict, Any, Tuple
 from uuid import UUID
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.domain.services.base_request_service import BaseRequestService
+from apps.backend.app.domain.services.base_request_service import BaseRequestService
 from ...domain.models.service_request import ServiceRequest
 from ...domain.enums import ServiceType, RequestChannel, RequestPriority, ServiceRequestStatus
 from ..ports.domain_client_port import DomainClientPort

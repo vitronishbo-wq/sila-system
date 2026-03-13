@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
-from app.domain.bridges.society_statistics_models_bridge import BeneficiarioModel, BeneficioModel, CadastroUnicoModel
+from apps.backend.app.domain.bridges.society_statistics_models_bridge import BeneficiarioModel, BeneficioModel, CadastroUnicoModel
 from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class AssistenciaDataSource(BaseDataSource):

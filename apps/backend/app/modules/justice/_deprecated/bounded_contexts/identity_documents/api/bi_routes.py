@@ -7,9 +7,9 @@ from ..integrations.citizen_fuc_client import CitizenFUCClient
 from ..infrastructure.models.bi_event import BIEventType
 from ..application.services.identity_request_service import IdentityRequestService
 from ..infrastructure.repositories.identity_request_repository import IdentityRequestRepository
-from app.api.deps import get_current_user, get_db, get_notification_service
-from app.models.iam_user import IamUser as User
-from app.domain.notifications.services.notification_service import NotificationService
+from apps.backend.app.api.deps import get_current_user, get_db, get_notification_service
+from apps.backend.app.models.iam_user import IamUser as User
+from apps.backend.app.domain.notifications.services.notification_service import NotificationService
 logger = logging.getLogger('identidade_civil.api.bi')
 router = APIRouter(prefix='/identidade/bi', tags=['Identidade Civil - Ciclo de Vida do BI'])
 

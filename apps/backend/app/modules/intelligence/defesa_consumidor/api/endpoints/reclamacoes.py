@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
+from apps.backend.app.api.deps import get_db
 from apps.backend.app.modules.intelligence.defesa_consumidor.api.schemas.reclamacao_schema import ReclamacaoCreate, ReclamacaoListaResponse, ReclamacaoResponse
 from apps.backend.app.modules.intelligence.defesa_consumidor.application.services.reclamacao_service import ReclamacaoService
 from apps.backend.app.modules.intelligence.defesa_consumidor.infrastructure.repositories.sqlalchemy_reclamacao_repository import SQLAlchemyReclamacaoRepository

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from sqlalchemy import Boolean, DateTime, Float, JSON, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class MetricaModel(Base):
     __tablename__ = 'est_metricas'

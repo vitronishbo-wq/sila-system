@@ -2,7 +2,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Protocol
 from uuid import UUID
-from app.domain.enums import StatusMatricula
+from apps.backend.app.domain.enums import StatusMatricula
 from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
 
 class _MatriculaSnapshot(Protocol):

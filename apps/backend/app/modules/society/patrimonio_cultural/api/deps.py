@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_db
+from apps.backend.app.api.deps import get_db
 from apps.backend.app.modules.society.patrimonio_cultural.application.ports import TourismServicePort
 from apps.backend.app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
 from apps.backend.app.modules.society.patrimonio_cultural.infrastructure.repositories import SQLAlchemyCulturalAssetRepository

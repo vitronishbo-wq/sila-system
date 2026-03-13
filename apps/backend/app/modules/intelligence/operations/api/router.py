@@ -1,7 +1,7 @@
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.api.deps import get_identity_context
-from app.domain.identity import IdentityContext
+from apps.backend.app.api.deps import get_identity_context
+from apps.backend.app.domain.identity import IdentityContext
 from apps.backend.app.modules.intelligence.operations.api.deps import get_operations_service
 from apps.backend.app.modules.intelligence.operations.api.schemas import OrderAttachDocumentsRequest, OrderCreateRequest, OrderResponse, PaymentResponse, ReceiptResponse, ServiceCatalogItemResponse
 from apps.backend.app.modules.intelligence.operations.application.services.operations_service import OperationsService

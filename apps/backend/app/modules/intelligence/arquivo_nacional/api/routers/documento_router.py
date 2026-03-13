@@ -3,7 +3,7 @@ from typing import List, Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.domain.db import get_db
+from apps.backend.app.domain.db import get_db
 from apps.backend.app.modules.intelligence.arquivo_nacional.application.services.documento_service import DocumentoService
 from apps.backend.app.modules.intelligence.arquivo_nacional.api.schemas import DocumentoCreateSchema, DocumentoResponseSchema, DocumentoDigitalizacaoSchema, DocumentoRestricaoSchema, DocumentoConservacaoSchema, DocumentoFaseSchema, DocumentoEliminacaoSchema
 router = APIRouter()

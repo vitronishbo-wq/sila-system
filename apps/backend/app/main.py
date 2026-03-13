@@ -1,9 +1,16 @@
 import json
+import os
+import sys
 import time
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+# Ensure monorepo root on sys.path so apps.backend.* imports resolve when running from apps/backend
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+if _REPO_ROOT not in sys.path:
+    sys.path.append(_REPO_ROOT)
 
 from app.platform.observability.logger import get_sila_logger
 from app.platform.runtime.compat_router import router as compat_router

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.api.deps import get_current_user
+from apps.backend.app.api.deps import get_current_user
 from apps.backend.app.modules.educacao.api.deps import get_transferencia_service
 from apps.backend.app.modules.educacao.api.schemas.transferencia_schema import TransferenciaAprovar, TransferenciaCreate, TransferenciaRejeitar, TransferenciaResponse
 from apps.backend.app.modules.educacao.application.transferencia_service import TransferenciaService

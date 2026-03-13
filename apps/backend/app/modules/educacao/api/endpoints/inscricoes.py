@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.api.deps import get_current_user
+from apps.backend.app.api.deps import get_current_user
 from apps.backend.app.modules.educacao.api.deps import get_inscricao_service
 from apps.backend.app.modules.educacao.api.schemas.inscricao_schema import InscricaoCancelar, InscricaoConfirmar, InscricaoCreate, InscricaoResponse
 from apps.backend.app.modules.educacao.application.inscricao_service import InscricaoService

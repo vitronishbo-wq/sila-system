@@ -2,7 +2,7 @@ import inspect
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
 from uuid import UUID
-from app.domain.security import IAMClient
+from apps.backend.app.domain.security import IAMClient
 from apps.backend.app.modules.governance.workflow.application.ports.assistencia_social_adapter_port import AssistenciaSocialAdapterPort
 from apps.backend.app.modules.governance.workflow.application.ports.educacao_adapter_port import EducacaoAdapterPort
 from apps.backend.app.modules.governance.workflow.application.ports.emprego_adapter_port import EmpregoAdapterPort

@@ -3,7 +3,7 @@ import uuid
 from sqlalchemy import Date, DateTime, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.domain.db import Base
+from apps.backend.app.domain.db import Base
 
 class AlfabetizacaoModel(Base):
     __tablename__ = 'emprego_alfabetizacoes'

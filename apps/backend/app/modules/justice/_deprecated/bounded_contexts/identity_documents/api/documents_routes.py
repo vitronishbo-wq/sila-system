@@ -2,11 +2,11 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.api.deps import get_current_user, get_db
-from app.models.iam_user import IamUser as User
+from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.models.iam_user import IamUser as User
 from apps.backend.app.modules.justice.bounded_contexts.application.services.document_service import DocumentService
 from apps.backend.app.modules.justice.bounded_contexts.infrastructure.repositories.document_repository import DocumentRepository
-from app.domain.bridges.citizen_repository_bridge import CitizenRepository
+from apps.backend.app.domain.bridges.citizen_repository_bridge import CitizenRepository
 router = APIRouter(prefix='/documents', tags=['Documents'])
 
 class DocumentCreate(BaseModel):

@@ -5,7 +5,7 @@ from typing import Any
 from uuid import UUID, uuid4
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from app.domain.db import AsyncSessionLocal
+from apps.backend.app.domain.db import AsyncSessionLocal
 from apps.backend.app.modules.resources.aguas_saneamento.application.events.registry import serialize_event
 from apps.backend.app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry
 from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort

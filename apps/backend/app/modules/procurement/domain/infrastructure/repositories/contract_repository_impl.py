@@ -1,4 +1,4 @@
-from app.platform.persistence.base_repository import BaseRepository
+from apps.backend.app.platform.persistence.base_repository import BaseRepository
 from ...domain.repositories.contract_repository import ContractRepository
 from ..orm.contract_model import ContractModel
 
