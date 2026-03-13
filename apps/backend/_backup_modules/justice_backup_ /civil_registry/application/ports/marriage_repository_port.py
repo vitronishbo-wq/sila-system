@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
-from app.modules.justice.bounded_contexts.infrastructure.models.marriage_record import MarriageRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.marriage_record import MarriageRecord
 
 class MarriageRepositoryPort(ABC):
     """Porta (Interface) para o Repositório de Casamentos."""

@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, StatusAeronavegabilidade, TipoAeronave
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, StatusAeronavegabilidade, TipoAeronave
 
 @dataclass
 class Aeronave:

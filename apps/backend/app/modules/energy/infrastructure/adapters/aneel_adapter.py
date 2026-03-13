@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.energy.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.energy.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class ANEELAdapter:
 

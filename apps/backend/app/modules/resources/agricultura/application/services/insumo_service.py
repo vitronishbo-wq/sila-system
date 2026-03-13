@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.domain.models.insumo import Insumo
-from app.modules.resources.agricultura.exceptions import InsumoNotFoundError
+from apps.backend.app.modules.resources.agricultura.domain.models.insumo import Insumo
+from apps.backend.app.modules.resources.agricultura.exceptions import InsumoNotFoundError
 
 class InsumoService:
 

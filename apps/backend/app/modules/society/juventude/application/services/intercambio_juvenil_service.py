@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import IntercambioJuvenilRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusIntercambio
-from app.modules.society.juventude.domain.models.intercambio_juvenil import IntercambioJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import IntercambioJuvenilRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusIntercambio
+from apps.backend.app.modules.society.juventude.domain.models.intercambio_juvenil import IntercambioJuvenil
 
 class IntercambioJuvenilService:
 

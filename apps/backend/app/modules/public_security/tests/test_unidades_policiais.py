@@ -1,9 +1,9 @@
 from __future__ import annotations
 import asyncio
 import pytest
-from app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
-from app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
-from app.modules.public_security.tests._fakes import FakeRequestService, InMemoryUnidadePolicialRepository
+from apps.backend.app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
+from apps.backend.app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
+from apps.backend.app.modules.public_security.tests._fakes import FakeRequestService, InMemoryUnidadePolicialRepository
 
 def test_cadastrar_unidade_sucesso() -> None:
 

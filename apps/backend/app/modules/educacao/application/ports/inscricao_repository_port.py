@@ -2,11 +2,11 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.educacao.domain.enums import TipoInscricao
-from app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
-from app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
-from app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
-from app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
+from apps.backend.app.modules.educacao.domain.enums import TipoInscricao
+from apps.backend.app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
+from apps.backend.app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
+from apps.backend.app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
+from apps.backend.app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
 InscricaoEntity = InscricaoBasica | InscricaoSecundaria | InscricaoSuperior | InscricaoTecnico
 
 class InscricaoRepositoryPort(ABC):

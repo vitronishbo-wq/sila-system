@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.desporto.api.deps import get_competicao_service
-from app.modules.society.desporto.api.schemas.competicao_schema import CompeticaoCreate, CompeticaoResponse, CompeticaoUpdate
-from app.modules.society.desporto.application.services.competicao_service import CompeticaoService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+from apps.backend.app.modules.society.desporto.api.deps import get_competicao_service
+from apps.backend.app.modules.society.desporto.api.schemas.competicao_schema import CompeticaoCreate, CompeticaoResponse, CompeticaoUpdate
+from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
 router = APIRouter(prefix='/competicoes', tags=['Desporto - Competicoes'])
 
 @router.post('/', response_model=CompeticaoResponse, status_code=status.HTTP_201_CREATED)

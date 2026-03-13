@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.application.events import VistoAprovadoEvent, event_bus
-from app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import VistoRepositoryPort
-from app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, TipoVisto
-from app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
-from app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.governance.cooperacao_internacional.application.events import VistoAprovadoEvent, event_bus
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import VistoRepositoryPort
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, TipoVisto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
 
 class VistoService:
 

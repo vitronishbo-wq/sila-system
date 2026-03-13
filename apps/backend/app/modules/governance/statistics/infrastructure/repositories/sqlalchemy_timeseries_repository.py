@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import datetime
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.timeseries_repository_port import TimeSeriesRepositoryPort
-from app.modules.governance.statistics.domain.models.timeseries import TimeSeries
-from app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
+from apps.backend.app.modules.governance.statistics.application.ports.timeseries_repository_port import TimeSeriesRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.models.timeseries import TimeSeries
+from apps.backend.app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
 
 class SQLAlchemyTimeSeriesRepository(TimeSeriesRepositoryPort):
 

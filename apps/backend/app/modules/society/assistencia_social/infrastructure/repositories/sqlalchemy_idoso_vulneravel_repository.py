@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.idoso_vulneravel_repository_port import IdosoVulneravelRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
-from app.modules.society.assistencia_social.domain.models import IdosoVulneravel
-from app.modules.society.assistencia_social.infrastructure.models.idoso_vulneravel_model import IdosoVulneravelModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.idoso_vulneravel_repository_port import IdosoVulneravelRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
+from apps.backend.app.modules.society.assistencia_social.domain.models import IdosoVulneravel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.idoso_vulneravel_model import IdosoVulneravelModel
 
 class SQLAlchemyIdosoVulneravelRepository(IdosoVulneravelRepositoryPort):
 

@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.fatura_repository_port import FaturaRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusFaturaTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.fatura_model import FaturaTelecomModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.fatura_repository_port import FaturaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusFaturaTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.fatura_model import FaturaTelecomModel
 
 class SQLAlchemyFaturaRepository(FaturaRepositoryPort):
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 import asyncio
 from datetime import datetime
-from app.modules.governance.cooperacao_internacional.domain.enums import StatusAcordo, TipoAcordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import StatusAcordo, TipoAcordo
 
 class TratadoMonitorWorker:
 

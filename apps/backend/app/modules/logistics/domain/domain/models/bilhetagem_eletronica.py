@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
+from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
 
 @dataclass
 class BilhetagemEletronica:

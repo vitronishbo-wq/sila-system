@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.resources.ambiente.domain.enums import TipoEstudoAmbiental
-from app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
+from apps.backend.app.modules.resources.ambiente.domain.enums import TipoEstudoAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
 
 class RIMA(EstudoImpacto):
 

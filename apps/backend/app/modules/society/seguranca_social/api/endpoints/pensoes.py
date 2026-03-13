@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.seguranca_social.api.deps import get_pensao_service
-from app.modules.society.seguranca_social.api.schemas.pensao_schema import PensaoAction, PensaoCreate, PensaoFilter, PensaoMotivo, PensaoResponse
-from app.modules.society.seguranca_social.application.services import PensaoService
-from app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, BeneficiarioNotFoundError, PensaoAlreadyExistsError, PensaoNotFoundError
+from apps.backend.app.modules.society.seguranca_social.api.deps import get_pensao_service
+from apps.backend.app.modules.society.seguranca_social.api.schemas.pensao_schema import PensaoAction, PensaoCreate, PensaoFilter, PensaoMotivo, PensaoResponse
+from apps.backend.app.modules.society.seguranca_social.application.services import PensaoService
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, BeneficiarioNotFoundError, PensaoAlreadyExistsError, PensaoNotFoundError
 router = APIRouter(prefix='/pensoes', tags=['Seguranca Social - Pensoes'])
 
 @router.post('/', response_model=PensaoResponse, status_code=status.HTTP_201_CREATED)

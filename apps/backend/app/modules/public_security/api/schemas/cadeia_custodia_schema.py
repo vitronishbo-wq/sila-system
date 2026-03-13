@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.public_security.domain.enums import StatusCadeiaCustodia
+from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
 
 class CadeiaCustodiaCreate(BaseModel):
     prova_id: UUID

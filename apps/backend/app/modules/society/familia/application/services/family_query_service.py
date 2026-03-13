@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import HTTPException, status
-from app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
-from app.modules.society.familia.application.ports.projection_repository_port import ProjectionRepositoryPort
-from app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.familia.domain.enums import MemberRole
+from apps.backend.app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
+from apps.backend.app.modules.society.familia.application.ports.projection_repository_port import ProjectionRepositoryPort
+from apps.backend.app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole
 
 class FamilyQueryService:
 

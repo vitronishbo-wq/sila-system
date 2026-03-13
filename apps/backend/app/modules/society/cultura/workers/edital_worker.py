@@ -1,7 +1,7 @@
 from __future__ import annotations
 import asyncio
 from datetime import datetime
-from app.modules.society.cultura.domain.enums import FaseEditalCultural
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural
 
 class EditalWorker:
 

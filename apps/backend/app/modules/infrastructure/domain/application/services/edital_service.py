@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusEdital
-from app.modules.infrastructure.domain.models.edital import Edital
-from app.modules.infrastructure.core.exceptions import EditalAlreadyExistsError, EditalNotFoundError
+from apps.backend.app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
+from apps.backend.app.modules.infrastructure.domain.models.edital import Edital
+from apps.backend.app.modules.infrastructure.core.exceptions import EditalAlreadyExistsError, EditalNotFoundError
 
 class EditalService:
 

@@ -2,8 +2,8 @@ import time
 import uuid
 from typing import Any, Dict, Optional
 
-from app.modules.identity.infrastructure.security.jwt_engine import SovereignJWT
-from app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import (
+from apps.backend.app.modules.identity.infrastructure.security.jwt_engine import SovereignJWT
+from apps.backend.app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import (
     DEFAULT_REVOCATION_REPOSITORY,
     RevocationRepository,
 )

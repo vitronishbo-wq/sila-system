@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
 
 class BeneficiarioCreate(BaseModel):
     citizen_id: UUID

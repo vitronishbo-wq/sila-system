@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from decimal import Decimal
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.ambiente_service_port import AmbienteServicePort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import DesapropriacaoRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao, TipoDesapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoAlreadyExistsError, DesapropriacaoNotFoundError, ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import DesapropriacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao, TipoDesapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoAlreadyExistsError, DesapropriacaoNotFoundError, ImovelNotFoundError
 
 class DesapropriacaoService:
 

@@ -2,25 +2,25 @@ from __future__ import annotations
 from fastapi import Depends
 from app.api.deps import get_db
 from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
-from app.modules.resources.agricultura.application.services.certificacao_service import CertificacaoService
-from app.modules.resources.agricultura.application.services.comercializacao_service import ComercializacaoService
-from app.modules.resources.agricultura.application.services.credito_service import CreditoService
-from app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
-from app.modules.resources.agricultura.application.services.equipamento_service import EquipamentoService
-from app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
-from app.modules.resources.agricultura.application.services.fitossanidade_service import FitossanidadeService
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
-from app.modules.resources.agricultura.application.services.plantio_service import PlantioService
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
-from app.modules.resources.agricultura.infrastructure.adapters import CitizenServiceAdapter, RequestServiceAdapter
-from app.modules.resources.agricultura.infrastructure.repositories import SQLAlchemyProdutorRepository
+from apps.backend.app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
+from apps.backend.app.modules.resources.agricultura.application.services.certificacao_service import CertificacaoService
+from apps.backend.app.modules.resources.agricultura.application.services.comercializacao_service import ComercializacaoService
+from apps.backend.app.modules.resources.agricultura.application.services.credito_service import CreditoService
+from apps.backend.app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
+from apps.backend.app.modules.resources.agricultura.application.services.equipamento_service import EquipamentoService
+from apps.backend.app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
+from apps.backend.app.modules.resources.agricultura.application.services.fitossanidade_service import FitossanidadeService
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
+from apps.backend.app.modules.resources.agricultura.application.services.plantio_service import PlantioService
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
+from apps.backend.app.modules.resources.agricultura.infrastructure.adapters import CitizenServiceAdapter, RequestServiceAdapter
+from apps.backend.app.modules.resources.agricultura.infrastructure.repositories import SQLAlchemyProdutorRepository
 propriedade_service_singleton = PropriedadeService()
 producao_service_singleton = ProducaoService()
 insumo_service_singleton = InsumoService()

@@ -4,9 +4,9 @@ from datetime import date
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.educacao.application.inscricao_service import InscricaoService
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
+from apps.backend.app.modules.educacao.application.inscricao_service import InscricaoService
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
 
 def test_inscricao_basica_domain_transitions():
     inscricao = InscricaoBasica(id=uuid4(), numero_processo='INS/BASICA/2026/0001', citizen_id=uuid4(), escola_id=uuid4(), data_inscricao=date.today())

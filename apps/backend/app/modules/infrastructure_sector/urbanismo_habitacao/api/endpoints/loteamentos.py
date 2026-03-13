@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_loteamento_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.loteamento_schema import LoteamentoConclusaoInput, LoteamentoCreate, LoteamentoImplantacaoInput, LoteamentoInicioInput, LoteamentoMotivoInput, LoteamentoResponse
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.loteamento_service import LoteamentoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LoteamentoAlreadyExistsError, LoteamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_loteamento_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.loteamento_schema import LoteamentoConclusaoInput, LoteamentoCreate, LoteamentoImplantacaoInput, LoteamentoInicioInput, LoteamentoMotivoInput, LoteamentoResponse
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.loteamento_service import LoteamentoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LoteamentoAlreadyExistsError, LoteamentoNotFoundError
 router = APIRouter(prefix='/loteamentos', tags=['Urbanismo Habitacao - Loteamentos'])
 
 def _ensure_loteamento_create_adapters(service: LoteamentoService) -> None:

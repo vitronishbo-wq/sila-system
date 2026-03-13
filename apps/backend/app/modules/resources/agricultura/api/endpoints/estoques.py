@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_estoque_service
-from app.modules.resources.agricultura.api.schemas.estoque_schema import EstoqueCreate, EstoqueResponse
-from app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
-from app.modules.resources.agricultura.exceptions import EstoqueNotFoundError, InsumoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_estoque_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.estoque_schema import EstoqueCreate, EstoqueResponse
+from apps.backend.app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
+from apps.backend.app.modules.resources.agricultura.exceptions import EstoqueNotFoundError, InsumoNotFoundError
 router = APIRouter(prefix='/estoques', tags=['Agricultura - estoques'])
 
 @router.post('/', response_model=EstoqueResponse, status_code=status.HTTP_201_CREATED)

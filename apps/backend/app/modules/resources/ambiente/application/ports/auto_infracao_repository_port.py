@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
-from app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
+from apps.backend.app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
 
 class AutoInfracaoRepositoryPort(ABC):
 

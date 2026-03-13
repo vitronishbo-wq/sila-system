@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_fiscalizacao_service
-from app.modules.resources.ambiente.api.schemas.fiscalizacao_schema import FiscalizacaoCancelamentoInput, FiscalizacaoConclusaoInput, FiscalizacaoCreate, FiscalizacaoResponse
-from app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
-from app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
-from app.modules.resources.ambiente.exceptions import FiscalizacaoNotFoundError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_fiscalizacao_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.fiscalizacao_schema import FiscalizacaoCancelamentoInput, FiscalizacaoConclusaoInput, FiscalizacaoCreate, FiscalizacaoResponse
+from apps.backend.app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
+from apps.backend.app.modules.resources.ambiente.exceptions import FiscalizacaoNotFoundError, LicencaNotFoundError
 router = APIRouter(prefix='/fiscalizacoes', tags=['Ambiente - Fiscalizacoes'])
 
 @router.post('/', response_model=FiscalizacaoResponse, status_code=status.HTTP_201_CREATED)

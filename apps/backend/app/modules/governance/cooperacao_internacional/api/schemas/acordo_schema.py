@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, StatusAcordo, TipoAcordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, StatusAcordo, TipoAcordo
 
 class ParteAssinaturaInput(BaseModel):
     entidade_id: UUID

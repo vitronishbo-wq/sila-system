@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.industrial.api.deps import get_lote_producao_service
-from app.modules.resources.pescas.industrial.api.schemas.lote_producao_schema import LoteProducaoCreate, LoteProducaoResponse, LoteProducaoUpdate
-from app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
-from app.modules.resources.pescas.industrial.domain.enums import StatusLoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.api.deps import get_lote_producao_service
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.lote_producao_schema import LoteProducaoCreate, LoteProducaoResponse, LoteProducaoUpdate
+from apps.backend.app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusLoteProducao
 router = APIRouter(prefix='/lotes-producao', tags=['Pescas Industriais - Lotes de Producao'])
 
 @router.post('/', response_model=LoteProducaoResponse, status_code=status.HTTP_201_CREATED)

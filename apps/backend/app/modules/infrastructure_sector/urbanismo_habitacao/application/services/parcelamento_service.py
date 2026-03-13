@@ -1,10 +1,10 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.parcelamento_repository_port import ParcelamentoRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.parcelamento import Parcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoAlreadyExistsError, ParcelamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.parcelamento_repository_port import ParcelamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.parcelamento import Parcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoAlreadyExistsError, ParcelamentoNotFoundError
 
 class ParcelamentoService:
 

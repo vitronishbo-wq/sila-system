@@ -2,10 +2,10 @@ import pytest
 from httpx import AsyncClient, ASGITransport
 from fastapi import FastAPI
 from unittest.mock import AsyncMock
-from app.modules.governance.administracao_local.application.service import AdministracaoLocalService
-from app.modules.governance.administracao_local.presentation.router import router
-from app.modules.governance.administracao_local.presentation.dependencies import get_administracao_service
-from app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.application.service import AdministracaoLocalService
+from apps.backend.app.modules.governance.administracao_local.presentation.router import router
+from apps.backend.app.modules.governance.administracao_local.presentation.dependencies import get_administracao_service
+from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
 
 @pytest.fixture
 def mock_service():

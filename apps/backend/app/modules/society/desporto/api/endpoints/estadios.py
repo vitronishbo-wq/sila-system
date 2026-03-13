@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.desporto.api.deps import get_estadio_service
-from app.modules.society.desporto.api.schemas.estadio_schema import EstadioCreate, EstadioResponse, EstadioUpdate
-from app.modules.society.desporto.application.services.estadio_service import EstadioService
+from apps.backend.app.modules.society.desporto.api.deps import get_estadio_service
+from apps.backend.app.modules.society.desporto.api.schemas.estadio_schema import EstadioCreate, EstadioResponse, EstadioUpdate
+from apps.backend.app.modules.society.desporto.application.services.estadio_service import EstadioService
 router = APIRouter(prefix='/estadios', tags=['Desporto - Estadios'])
 
 @router.post('/', response_model=EstadioResponse, status_code=status.HTTP_201_CREATED)

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from decimal import Decimal
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.geosampa_service_port import GeosampaServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.geosampa_service_port import GeosampaServicePort
 
 class GeosampaServiceAdapter(GeosampaServicePort):
 

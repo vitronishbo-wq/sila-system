@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
 
 class PensaoCreate(BaseModel):
     beneficiario_id: UUID

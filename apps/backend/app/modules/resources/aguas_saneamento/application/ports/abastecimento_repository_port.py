@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
-from app.modules.resources.aguas_saneamento.domain.models.abastecimento import AbastecimentoAgua
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.abastecimento import AbastecimentoAgua
 
 class AbastecimentoRepositoryPort(ABC):
 

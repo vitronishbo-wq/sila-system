@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.kpi_repository_port import KPIRepositoryPort
-from app.modules.governance.statistics.domain.enums import StatusKPI
-from app.modules.governance.statistics.domain.models.kpi import KPI
-from app.modules.governance.statistics.infrastructure.models.kpi_model import KPIModel
+from apps.backend.app.modules.governance.statistics.application.ports.kpi_repository_port import KPIRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
+from apps.backend.app.modules.governance.statistics.domain.models.kpi import KPI
+from apps.backend.app.modules.governance.statistics.infrastructure.models.kpi_model import KPIModel
 
 class SQLAlchemyKPIRepository(KPIRepositoryPort):
 

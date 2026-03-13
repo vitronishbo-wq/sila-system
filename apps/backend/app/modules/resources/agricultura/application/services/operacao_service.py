@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.domain.models.operacao import Operacao
-from app.modules.resources.agricultura.exceptions import OperacaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.domain.models.operacao import Operacao
+from apps.backend.app.modules.resources.agricultura.exceptions import OperacaoNotFoundError
 
 class OperacaoService:
 

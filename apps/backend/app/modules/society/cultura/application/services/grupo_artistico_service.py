@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
-from app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import TipoGrupoArtistico
-from app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
+from apps.backend.app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
+from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
 
 class GrupoArtisticoService:
 

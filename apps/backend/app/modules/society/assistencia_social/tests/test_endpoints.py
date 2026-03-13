@@ -5,12 +5,12 @@ from unittest.mock import AsyncMock
 from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.assistencia_social.api.deps import get_beneficiario_service, get_beneficio_service, get_cadastro_unico_service
-from app.modules.society.assistencia_social.api.router import router as assistencia_social_router
-from app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
-from app.modules.society.assistencia_social.domain.enums import TipoBeneficio
-from app.modules.society.assistencia_social.domain.models import Beneficio
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, InMemoryCadastroUnicoRepo
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_beneficiario_service, get_beneficio_service, get_cadastro_unico_service
+from apps.backend.app.modules.society.assistencia_social.api.router import router as assistencia_social_router
+from apps.backend.app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import TipoBeneficio
+from apps.backend.app.modules.society.assistencia_social.domain.models import Beneficio
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, InMemoryCadastroUnicoRepo
 
 def _build_client(overrides: dict) -> TestClient:
     app = FastAPI()

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.cultura.domain.enums import TipoGrupoArtistico
+from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
 
 class GrupoArtisticoCreate(BaseModel):
     nome: str = Field(..., min_length=3)

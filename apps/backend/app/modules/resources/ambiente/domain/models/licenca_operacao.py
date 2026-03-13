@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.resources.ambiente.domain.enums import TipoLicenca
-from app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.enums import TipoLicenca
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
 
 class LicencaOperacao(LicencaAmbiental):
 

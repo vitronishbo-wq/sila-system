@@ -3,8 +3,8 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
 
 @dataclass(frozen=True)
 class DomainEvent:

@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_imovel_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.imoveis import router as imoveis_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, RegimePropriedade, SituacaoDominial, TipoImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_imovel_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.imoveis import router as imoveis_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, RegimePropriedade, SituacaoDominial, TipoImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository
 
 @pytest.mark.asyncio
 async def test_imovel_service_fluxo_sucesso():

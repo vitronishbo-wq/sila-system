@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import DespachanteRepositoryPort
-from app.modules.economy.trade.external.application.services.operador_logistico_service_base import OperadorLogisticoServiceBase
-from app.modules.economy.trade.external.domain.models import Despachante
-from app.modules.economy.trade.external.exceptions import DespachanteAlreadyExistsError, DespachanteNotFoundError, InvalidDespachanteStateError
+from apps.backend.app.modules.economy.trade.external.application.ports import DespachanteRepositoryPort
+from apps.backend.app.modules.economy.trade.external.application.services.operador_logistico_service_base import OperadorLogisticoServiceBase
+from apps.backend.app.modules.economy.trade.external.domain.models import Despachante
+from apps.backend.app.modules.economy.trade.external.exceptions import DespachanteAlreadyExistsError, DespachanteNotFoundError, InvalidDespachanteStateError
 
 class DespachanteService(OperadorLogisticoServiceBase[Despachante]):
 

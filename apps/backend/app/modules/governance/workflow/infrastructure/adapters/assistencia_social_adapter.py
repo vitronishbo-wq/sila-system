@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from typing import Any
 from uuid import UUID
-from app.modules.governance.workflow.application.ports.assistencia_social_adapter_port import AssistenciaSocialAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.assistencia_social_adapter_port import AssistenciaSocialAdapterPort
 
 class AssistenciaSocialAdapter(AssistenciaSocialAdapterPort):
 

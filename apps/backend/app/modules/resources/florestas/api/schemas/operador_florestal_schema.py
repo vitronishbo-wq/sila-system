@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
 
 class OperadorFlorestalCreate(BaseModel):
     nome: str = Field(..., min_length=3)

@@ -1,12 +1,12 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.desporto.application.events import EstadioCadastradoEvent, EventBus
-from app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
-from app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
-from app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
-from app.modules.society.desporto.domain.models.estadio import Estadio
+from apps.backend.app.modules.society.desporto.application.events import EstadioCadastradoEvent, EventBus
+from apps.backend.app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
+from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
 
 class EstadioService:
 

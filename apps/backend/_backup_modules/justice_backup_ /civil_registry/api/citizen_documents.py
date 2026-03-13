@@ -7,8 +7,8 @@ from app.api.dependencies import extract_citizen_id
 from app.core.bridges.finance_bridge import InvoiceRepository
 from app.core.utils.dates import safe_isoformat
 from app.core.utils.parsing import safe_enum_value, safe_get
-from app.modules.justice.bounded_contexts.application.services.services.document_service import CitizenDocumentService
-from app.modules.justice.bounded_contexts.application.services.services.request_service import RequestService
+from apps.backend.app.modules.justice.bounded_contexts.application.services.services.document_service import CitizenDocumentService
+from apps.backend.app.modules.justice.bounded_contexts.application.services.services.request_service import RequestService
 router = APIRouter(prefix='/api/citizen', tags=['citizen-documents'])
 
 @router.get('/certidoes')

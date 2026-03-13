@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import DrawbackVerdeAmareloRepositoryPort
-from app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
-from app.modules.economy.trade.external.domain.models import DrawbackVerdeAmarelo
-from app.modules.economy.trade.external.exceptions import DrawbackVerdeAmareloAlreadyExistsError, DrawbackVerdeAmareloNotFoundError, InvalidDrawbackVerdeAmareloStateError
+from apps.backend.app.modules.economy.trade.external.application.ports import DrawbackVerdeAmareloRepositoryPort
+from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
+from apps.backend.app.modules.economy.trade.external.domain.models import DrawbackVerdeAmarelo
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackVerdeAmareloAlreadyExistsError, DrawbackVerdeAmareloNotFoundError, InvalidDrawbackVerdeAmareloStateError
 
 class DrawbackVerdeAmareloService(HabilitacaoServiceBase[DrawbackVerdeAmarelo]):
 

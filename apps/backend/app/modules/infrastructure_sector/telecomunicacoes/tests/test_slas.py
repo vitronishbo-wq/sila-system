@@ -3,10 +3,10 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoOperadora, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryOperadoraRepository, InMemorySLARepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoOperadora, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryOperadoraRepository, InMemorySLARepository
 
 def test_criar_sla_sucesso() -> None:
 

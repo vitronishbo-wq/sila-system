@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
-from app.modules.society.desporto.domain.models.clube import Clube
-from app.modules.society.desporto.infrastructure.models.clube_model import ClubeModel
+from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
+from apps.backend.app.modules.society.desporto.domain.models.clube import Clube
+from apps.backend.app.modules.society.desporto.infrastructure.models.clube_model import ClubeModel
 
 class SQLAlchemyClubeRepository(ClubeRepositoryPort):
 

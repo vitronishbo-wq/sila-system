@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from app.modules.infrastructure.domain.models.licitacao import Licitacao
+from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+from apps.backend.app.modules.infrastructure.domain.models.licitacao import Licitacao
 
 class LicitacaoRepositoryPort(ABC):
 

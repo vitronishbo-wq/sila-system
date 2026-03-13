@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
 
 class VistoRepositoryPort(ABC):
 

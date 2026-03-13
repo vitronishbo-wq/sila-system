@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.plano_diretor_repository_port import PlanoDiretorRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.plano_diretor import PlanoDiretor
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import PlanoDiretorAlreadyExistsError, PlanoDiretorNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.plano_diretor_repository_port import PlanoDiretorRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.plano_diretor import PlanoDiretor
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import PlanoDiretorAlreadyExistsError, PlanoDiretorNotFoundError
 
 class PlanoDiretorService:
 

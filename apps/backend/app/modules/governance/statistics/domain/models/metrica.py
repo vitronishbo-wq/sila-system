@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any
-from app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
+from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
 
 @dataclass(slots=True)
 class Metrica:

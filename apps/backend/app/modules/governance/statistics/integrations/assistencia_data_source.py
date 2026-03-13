@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
 from app.core.bridges.society_statistics_models_bridge import BeneficiarioModel, BeneficioModel, CadastroUnicoModel
-from app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
+from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class AssistenciaDataSource(BaseDataSource):
     """Metricas do modulo Assistencia Social via ORM."""

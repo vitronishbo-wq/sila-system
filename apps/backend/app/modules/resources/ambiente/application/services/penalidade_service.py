@@ -1,15 +1,15 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports.auto_infracao_repository_port import AutoInfracaoRepositoryPort
-from app.modules.resources.ambiente.application.ports.embargo_repository_port import EmbargoRepositoryPort
-from app.modules.resources.ambiente.application.ports.fiscalizacao_repository_port import FiscalizacaoRepositoryPort
-from app.modules.resources.ambiente.application.ports.multa_repository_port import MultaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, StatusEmbargo, StatusFiscalizacao, StatusMulta, TipoAutoInfracao
-from app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
-from app.modules.resources.ambiente.domain.models.embargo import Embargo
-from app.modules.resources.ambiente.domain.models.multa import Multa
-from app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, EmbargoNotFoundError, FiscalizacaoNotFoundError, MultaNotFoundError
+from apps.backend.app.modules.resources.ambiente.application.ports.auto_infracao_repository_port import AutoInfracaoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.application.ports.embargo_repository_port import EmbargoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.application.ports.fiscalizacao_repository_port import FiscalizacaoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.application.ports.multa_repository_port import MultaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, StatusEmbargo, StatusFiscalizacao, StatusMulta, TipoAutoInfracao
+from apps.backend.app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
+from apps.backend.app.modules.resources.ambiente.domain.models.embargo import Embargo
+from apps.backend.app.modules.resources.ambiente.domain.models.multa import Multa
+from apps.backend.app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, EmbargoNotFoundError, FiscalizacaoNotFoundError, MultaNotFoundError
 
 class PenalidadeService:
 

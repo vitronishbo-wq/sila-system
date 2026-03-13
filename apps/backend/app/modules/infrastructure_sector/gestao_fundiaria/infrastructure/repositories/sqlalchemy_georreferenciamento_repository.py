@@ -3,9 +3,9 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.georreferenciamento_repository_port import GeorreferenciamentoRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.georreferenciamento import Georreferenciamento
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.georreferenciamento_model import GeorreferenciamentoModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.georreferenciamento_repository_port import GeorreferenciamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.georreferenciamento import Georreferenciamento
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.georreferenciamento_model import GeorreferenciamentoModel
 
 class SQLAlchemyGeorreferenciamentoRepository(GeorreferenciamentoRepositoryPort):
 

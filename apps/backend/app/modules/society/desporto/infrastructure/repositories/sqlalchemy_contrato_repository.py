@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.contrato_repository_port import ContratoRepositoryPort
-from app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
-from app.modules.society.desporto.domain.models.contrato import Contrato
-from app.modules.society.desporto.infrastructure.models.contrato_model import ContratoModel
+from apps.backend.app.modules.society.desporto.application.ports.contrato_repository_port import ContratoRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
+from apps.backend.app.modules.society.desporto.domain.models.contrato import Contrato
+from apps.backend.app.modules.society.desporto.infrastructure.models.contrato_model import ContratoModel
 
 class SQLAlchemyContratoRepository(ContratoRepositoryPort):
 

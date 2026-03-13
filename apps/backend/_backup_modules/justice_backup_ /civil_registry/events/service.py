@@ -2,7 +2,7 @@ import uuid
 from typing import Any, Dict
 from sqlalchemy.orm import Session
 from .models import CitizenEventModel, EventType
-from app.modules.justice.bounded_contexts.projections.projectors import CitizenProjector
+from apps.backend.app.modules.justice.bounded_contexts.projections.projectors import CitizenProjector
 
 def register_event(db: Session, citizen_id: uuid.UUID, event_type: EventType, payload: Dict[str, Any], legal_basis: str, service_id: str, performed_by: str) -> CitizenEventModel:
     if isinstance(event_type, str):

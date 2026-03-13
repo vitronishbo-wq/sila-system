@@ -216,7 +216,7 @@ class ServiceRegistry:
 
         # Check if register_service import exists
         import_statement = (
-            "from app.modules.service_hub.services import register_service"
+            "from apps.backend.app.modules.service_hub.services import register_service"
         )
         if import_statement not in content:
             # Add import after last import
@@ -269,7 +269,7 @@ def {names['service_slug']}_handler(data):
         # Add route registration if router exists
         if "router = APIRouter()" in content:
             # Add route import and include
-            route_import = f"from app.modules.{names['module_name']}.routes.{names['service_slug']} import router as {names['service_slug']}_router\n"
+            route_import = f"from apps.backend.app.modules.{names['module_name']}.routes.{names['service_slug']} import router as {names['service_slug']}_router\n"
             route_include = f"router.include_router({names['service_slug']}_router)\n"
 
             lines = content.split("\n")

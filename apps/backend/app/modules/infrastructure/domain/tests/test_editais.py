@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure.api.deps import get_edital_service
-from app.modules.infrastructure.api.endpoints.editais import router as editais_router
-from app.modules.infrastructure.application.services.edital_service import EditalService
-from app.modules.infrastructure.domain.enums import StatusEdital
-from app.modules.infrastructure.core.exceptions import EditalNotFoundError
-from app.modules.infrastructure.infrastructure.repositories import SQLAlchemyEditalRepository
+from apps.backend.app.modules.infrastructure.api.deps import get_edital_service
+from apps.backend.app.modules.infrastructure.api.endpoints.editais import router as editais_router
+from apps.backend.app.modules.infrastructure.application.services.edital_service import EditalService
+from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
+from apps.backend.app.modules.infrastructure.core.exceptions import EditalNotFoundError
+from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyEditalRepository
 
 @pytest.mark.asyncio
 async def test_edital_service_fluxo_sucesso():

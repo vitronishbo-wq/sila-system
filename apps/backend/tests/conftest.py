@@ -400,7 +400,7 @@ async def db_session(async_session_factory) -> 'AsyncSession':
 @pytest.fixture
 def citizen_service():
     """Fornece instância de CitizenService para testes."""
-    from app.modules.justice.civil_registry.service import CitizenService
+    from apps.backend.app.modules.justice.civil_registry.service import CitizenService
     from app.core.audit import ImmutableAuditLog
     from app.core.events import EventPublisher
     

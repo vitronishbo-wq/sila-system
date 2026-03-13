@@ -11,7 +11,7 @@ from app.platform.runtime.health_router import router as health_router
 from app.platform.runtime.loader import discover_and_register_routers
 from app.core.events.bridge.event_bus_bridge import EventBusBridge
 from app.core.events.workers.projection_worker import ProjectionWorker
-from app.modules.identity.middleware.trust_middleware import TrustEvaluationMiddleware
+from apps.backend.app.modules.identity.middleware.trust_middleware import TrustEvaluationMiddleware
 
 logger = get_sila_logger('sila-core')
 

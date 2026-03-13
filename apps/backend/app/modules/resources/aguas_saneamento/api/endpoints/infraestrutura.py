@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.aguas_saneamento.api.deps import get_infraestrutura_service
-from app.modules.resources.aguas_saneamento.api.schemas.infraestrutura_schema import InfraestruturaAtivacaoInput, InfraestruturaCreate, InfraestruturaMotivoInput, InfraestruturaResponse
-from app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.resources.aguas_saneamento.exceptions import InfraestruturaAlreadyExistsError, InfraestruturaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_infraestrutura_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.infraestrutura_schema import InfraestruturaAtivacaoInput, InfraestruturaCreate, InfraestruturaMotivoInput, InfraestruturaResponse
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import InfraestruturaAlreadyExistsError, InfraestruturaNotFoundError
 router = APIRouter(prefix='/infraestrutura', tags=['Aguas Saneamento - Infraestrutura'])
 
 @router.post('/', response_model=InfraestruturaResponse, status_code=status.HTTP_201_CREATED)

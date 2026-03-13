@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, StatusVisto, TipoVisto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, StatusVisto, TipoVisto
 
 class VistoCreate(BaseModel):
     tipo: TipoVisto

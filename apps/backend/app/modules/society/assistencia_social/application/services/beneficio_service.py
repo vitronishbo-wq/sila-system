@@ -1,10 +1,10 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.assistencia_social.application.ports import BeneficiarioRepositoryPort, BeneficioRepositoryPort, EmpregoServicePort, PCDRepositoryPort, ProgramaSocialRepositoryPort, RequestServicePort, SaudeServicePort
-from app.modules.society.assistencia_social.application.services._codegen import next_codigo
-from app.modules.society.assistencia_social.domain.enums import TipoBeneficio
-from app.modules.society.assistencia_social.domain.models import Beneficio
+from apps.backend.app.modules.society.assistencia_social.application.ports import BeneficiarioRepositoryPort, BeneficioRepositoryPort, EmpregoServicePort, PCDRepositoryPort, ProgramaSocialRepositoryPort, RequestServicePort, SaudeServicePort
+from apps.backend.app.modules.society.assistencia_social.application.services._codegen import next_codigo
+from apps.backend.app.modules.society.assistencia_social.domain.enums import TipoBeneficio
+from apps.backend.app.modules.society.assistencia_social.domain.models import Beneficio
 
 class BeneficioService:
 

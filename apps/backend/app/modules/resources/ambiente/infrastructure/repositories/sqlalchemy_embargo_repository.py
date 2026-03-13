@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.embargo_repository_port import EmbargoRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusEmbargo
-from app.modules.resources.ambiente.domain.models.embargo import Embargo
+from apps.backend.app.modules.resources.ambiente.application.ports.embargo_repository_port import EmbargoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEmbargo
+from apps.backend.app.modules.resources.ambiente.domain.models.embargo import Embargo
 
 class SQLAlchemyEmbargoRepository(EmbargoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

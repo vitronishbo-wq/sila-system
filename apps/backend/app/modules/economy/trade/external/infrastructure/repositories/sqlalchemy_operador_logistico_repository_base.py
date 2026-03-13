@@ -3,10 +3,10 @@ from typing import Generic, TypeVar
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import OperadorLogisticoRepositoryPort
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
-from app.modules.economy.trade.external.domain.models import OperadorLogisticoBase
-from app.modules.economy.trade.external.infrastructure.models.operador_logistico_columns_mixin import OperadorLogisticoColumnsMixin
+from apps.backend.app.modules.economy.trade.external.application.ports import OperadorLogisticoRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.models import OperadorLogisticoBase
+from apps.backend.app.modules.economy.trade.external.infrastructure.models.operador_logistico_columns_mixin import OperadorLogisticoColumnsMixin
 TOperadorLogistico = TypeVar('TOperadorLogistico', bound=OperadorLogisticoBase)
 TOperadorLogisticoModel = TypeVar('TOperadorLogisticoModel', bound=OperadorLogisticoColumnsMixin)
 

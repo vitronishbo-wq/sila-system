@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_plantio_service
-from app.modules.resources.agricultura.api.schemas.plantio_schema import PlantioCancelamentoInput, PlantioCreate, PlantioResponse
-from app.modules.resources.agricultura.application.services.plantio_service import PlantioService
-from app.modules.resources.agricultura.domain.enums import StatusPlantio
-from app.modules.resources.agricultura.exceptions import PlantioNotFoundError, SafraNotFoundError, TalhaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_plantio_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.plantio_schema import PlantioCancelamentoInput, PlantioCreate, PlantioResponse
+from apps.backend.app.modules.resources.agricultura.application.services.plantio_service import PlantioService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusPlantio
+from apps.backend.app.modules.resources.agricultura.exceptions import PlantioNotFoundError, SafraNotFoundError, TalhaoNotFoundError
 router = APIRouter(prefix='/plantios', tags=['Agricultura - plantios'])
 
 @router.post('/', response_model=PlantioResponse, status_code=status.HTTP_201_CREATED)

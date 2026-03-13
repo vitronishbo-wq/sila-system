@@ -2,11 +2,11 @@ from __future__ import annotations
 import asyncio
 from decimal import Decimal
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.beneficio_service import BeneficioService
-from app.modules.society.assistencia_social.application.services.pcd_service import PCDService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusBeneficio
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEmpregoService, FakeRequestService, FakeSaudeService, InMemoryBeneficiarioRepo, InMemoryBeneficioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo, InMemoryProgramaRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficio_service import BeneficioService
+from apps.backend.app.modules.society.assistencia_social.application.services.pcd_service import PCDService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusBeneficio
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEmpregoService, FakeRequestService, FakeSaudeService, InMemoryBeneficiarioRepo, InMemoryBeneficioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo, InMemoryProgramaRepo
 
 def test_fluxo_bpc_pcd_aprova_e_ativa_pcd() -> None:
 

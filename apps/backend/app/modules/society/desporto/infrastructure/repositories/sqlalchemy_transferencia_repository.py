@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.transferencia_repository_port import TransferenciaRepositoryPort
-from app.modules.society.desporto.domain.enums import StatusTransferencia
-from app.modules.society.desporto.domain.models.transferencia import Transferencia
-from app.modules.society.desporto.infrastructure.models.transferencia_model import TransferenciaModel
+from apps.backend.app.modules.society.desporto.application.ports.transferencia_repository_port import TransferenciaRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import StatusTransferencia
+from apps.backend.app.modules.society.desporto.domain.models.transferencia import Transferencia
+from apps.backend.app.modules.society.desporto.infrastructure.models.transferencia_model import TransferenciaModel
 
 class SQLAlchemyTransferenciaRepository(TransferenciaRepositoryPort):
 

@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoOperadora, TipoPlano, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryAssinanteRepository, InMemoryOperadoraRepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoOperadora, TipoPlano, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryAssinanteRepository, InMemoryOperadoraRepository
 
 def test_cadastrar_assinante_sucesso() -> None:
 

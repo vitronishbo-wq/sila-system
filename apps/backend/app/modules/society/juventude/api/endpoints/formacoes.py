@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_formacao_service
-from app.modules.society.juventude.api.schemas.formacao_schema import FormacaoCreate, FormacaoResponse, FormacaoStatusUpdate
-from app.modules.society.juventude.application.services.formacao_service import FormacaoService
-from app.modules.society.juventude.domain.enums import StatusFormacao
+from apps.backend.app.modules.society.juventude.api.deps import get_formacao_service
+from apps.backend.app.modules.society.juventude.api.schemas.formacao_schema import FormacaoCreate, FormacaoResponse, FormacaoStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.formacao_service import FormacaoService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusFormacao
 router = APIRouter(prefix='/formacoes', tags=['Juventude - Formacoes'])
 
 @router.post('/', response_model=FormacaoResponse, status_code=status.HTTP_201_CREATED)

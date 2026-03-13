@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.society.cultura.application.events import BemTombadoEvent
+from apps.backend.app.modules.society.cultura.application.events import BemTombadoEvent
 
 def build_iphan_handler(iphan_adapter):
 

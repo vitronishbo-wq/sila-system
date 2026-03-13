@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
-from app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
-from app.modules.intelligence.ciencia_pesquisa.infrastructure.models.pesquisador_model import PesquisadorModel
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.pesquisador_model import PesquisadorModel
 
 class SQLAlchemyPesquisadorRepository(PesquisadorRepositoryPort):
 

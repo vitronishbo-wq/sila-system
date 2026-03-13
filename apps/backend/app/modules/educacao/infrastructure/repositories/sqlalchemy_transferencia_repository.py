@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
-from app.modules.educacao.application.ports import TransferenciaRepositoryPort
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
-from app.modules.educacao.infrastructure.models.transferencia_model import TransferenciaModel
-from app.modules.educacao.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
+from apps.backend.app.modules.educacao.application.ports import TransferenciaRepositoryPort
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.infrastructure.models.transferencia_model import TransferenciaModel
+from apps.backend.app.modules.educacao.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
 
 class SQLAlchemyTransferenciaRepository(SQLAlchemyWorkflowRepository, TransferenciaRepositoryPort):
 

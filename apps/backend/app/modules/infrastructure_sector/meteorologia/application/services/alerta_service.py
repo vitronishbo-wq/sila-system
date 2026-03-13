@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timezone
 from typing import Any
 from uuid import UUID
-from app.modules.infrastructure_sector.meteorologia.application.ports import AlertaServicePort, RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports import AlertaServicePort, RequestServicePort
 logger = logging.getLogger(__name__)
 
 class AlertaMeteorologicoService(AlertaServicePort):

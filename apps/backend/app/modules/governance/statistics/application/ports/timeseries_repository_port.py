@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import datetime
-from app.modules.governance.statistics.domain.models.timeseries import TimeSeries
+from apps.backend.app.modules.governance.statistics.domain.models.timeseries import TimeSeries
 
 class TimeSeriesRepositoryPort(ABC):
 

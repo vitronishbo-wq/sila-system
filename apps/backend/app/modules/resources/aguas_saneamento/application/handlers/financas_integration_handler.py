@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
-from app.modules.resources.aguas_saneamento.application.ports.financas_gateway_port import FinancasGatewayPort
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.financas_gateway_port import FinancasGatewayPort
 
 class FinancasIntegrationHandler:
 

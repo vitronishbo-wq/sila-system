@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.justice.bounded_contexts.infrastructure.models.cemetery_inspection_model import CemeteryInspectionRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.cemetery_inspection_model import CemeteryInspectionRecord
 
 class CemeteryInspectionRepository:
 

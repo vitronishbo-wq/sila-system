@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento
-from app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
 
 class ProjetoPesquisaService:
 

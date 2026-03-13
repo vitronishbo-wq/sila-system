@@ -2,7 +2,7 @@ from __future__ import annotations
 from importlib import import_module
 from sqlalchemy.orm import Session
 from app.platform.persistence.unit_of_work import UnitOfWork
-from app.modules.economy.infrastructure.repositories.tax_ledger_repository import TaxLedgerRepository
+from apps.backend.app.modules.economy.infrastructure.repositories.tax_ledger_repository import TaxLedgerRepository
 from ...domain.services.treasury_ledger_engine import TreasuryLedgerEngine
 from ...infrastructure.repositories.treasury_account_repository import TreasuryAccountRepository
 

@@ -6,13 +6,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.seguranca_social.api.deps import get_pensao_service
-from app.modules.society.seguranca_social.api.endpoints.pensoes import router as pensoes_router
-from app.modules.society.seguranca_social.application.services.pensao_service import PensaoService
-from app.modules.society.seguranca_social.domain.enums import RegimeSegurancaSocial, TipoBeneficiario, TipoPensao
-from app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
-from app.modules.society.seguranca_social.domain.models.pensao import Pensao
-from app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, PensaoAlreadyExistsError, PensaoNotFoundError
+from apps.backend.app.modules.society.seguranca_social.api.deps import get_pensao_service
+from apps.backend.app.modules.society.seguranca_social.api.endpoints.pensoes import router as pensoes_router
+from apps.backend.app.modules.society.seguranca_social.application.services.pensao_service import PensaoService
+from apps.backend.app.modules.society.seguranca_social.domain.enums import RegimeSegurancaSocial, TipoBeneficiario, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.models.pensao import Pensao
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, PensaoAlreadyExistsError, PensaoNotFoundError
 
 def _build_service(pensao_repo, beneficiario_repo, request_service) -> PensaoService:
     return PensaoService(pensao_repo=pensao_repo, beneficiario_repo=beneficiario_repo, request_service=request_service)

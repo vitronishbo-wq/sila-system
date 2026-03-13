@@ -2,10 +2,10 @@ from __future__ import annotations
 import json
 import os
 from typing import Any
-from app.modules.infrastructure.infrastructure.observability.tracing import start_span
-from app.modules.infrastructure.infrastructure.resilience.bulkhead import AsyncBulkhead
-from app.modules.infrastructure.infrastructure.resilience.rate_limit import AsyncRateLimiter
-from app.modules.infrastructure.infrastructure.resilience.timeout import with_timeout
+from apps.backend.app.modules.infrastructure.infrastructure.observability.tracing import start_span
+from apps.backend.app.modules.infrastructure.infrastructure.resilience.bulkhead import AsyncBulkhead
+from apps.backend.app.modules.infrastructure.infrastructure.resilience.rate_limit import AsyncRateLimiter
+from apps.backend.app.modules.infrastructure.infrastructure.resilience.timeout import with_timeout
 
 class BIProducer:
 

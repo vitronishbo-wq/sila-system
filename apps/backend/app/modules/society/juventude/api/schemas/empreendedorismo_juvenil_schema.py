@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
 
 class EmpreendedorismoJuvenilCreate(BaseModel):
     jovem_id: UUID

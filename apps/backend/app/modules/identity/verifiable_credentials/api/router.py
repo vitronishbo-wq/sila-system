@@ -1,10 +1,10 @@
 import os
 from typing import Optional
 from fastapi import APIRouter, Query, Header, HTTPException, status
-from app.modules.identity.verifiable_credentials.application.services.revocation_service import (
+from apps.backend.app.modules.identity.verifiable_credentials.application.services.revocation_service import (
     RevocationService,
 )
-from app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import (
+from apps.backend.app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import (
     DEFAULT_REVOCATION_REPOSITORY,
 )
 

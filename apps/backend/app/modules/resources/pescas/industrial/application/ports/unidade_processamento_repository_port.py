@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pescas.industrial.domain.enums import TipoProcessamento
-from app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import TipoProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
 
 class UnidadeProcessamentoRepositoryPort(ABC):
 

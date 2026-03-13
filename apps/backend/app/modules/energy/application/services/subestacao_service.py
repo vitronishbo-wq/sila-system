@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import SubestacaoRepositoryPort
-from app.modules.energy.domain.enums import ClasseTensao, StatusInfraEnergia
-from app.modules.energy.domain.models import Subestacao
-from app.modules.energy.core.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
+from apps.backend.app.modules.energy.application.ports import SubestacaoRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import ClasseTensao, StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import Subestacao
+from apps.backend.app.modules.energy.core.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
 
 class SubestacaoService:
 

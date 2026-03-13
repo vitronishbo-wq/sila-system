@@ -1,4 +1,4 @@
-from app.modules.society.desporto.domain.enums import EstadoRelvado, ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, StatusContrato, StatusCompeticao, StatusJogo, StatusTransferencia, TipoAtleta, TipoClube, TipoCompeticao, TipoContrato, TipoEstadio
-from app.modules.society.desporto.domain.models import Atleta, Clube, Competicao, Contrato, Estadio, Jogo, Transferencia
-from app.modules.society.desporto.domain.value_objects import NumeroCamisa, Placar
+from apps.backend.app.modules.society.desporto.domain.enums import EstadoRelvado, ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, StatusContrato, StatusCompeticao, StatusJogo, StatusTransferencia, TipoAtleta, TipoClube, TipoCompeticao, TipoContrato, TipoEstadio
+from apps.backend.app.modules.society.desporto.domain.models import Atleta, Clube, Competicao, Contrato, Estadio, Jogo, Transferencia
+from apps.backend.app.modules.society.desporto.domain.value_objects import NumeroCamisa, Placar
 __all__ = ['TipoAtleta', 'ModalidadeDesportiva', 'PosicaoAtleta', 'PePreferencial', 'StatusAtleta', 'StatusContrato', 'StatusTransferencia', 'TipoCompeticao', 'StatusCompeticao', 'TipoClube', 'StatusJogo', 'TipoContrato', 'TipoEstadio', 'EstadoRelvado', 'Atleta', 'Clube', 'Competicao', 'Jogo', 'Estadio', 'Transferencia', 'Contrato', 'NumeroCamisa', 'Placar']

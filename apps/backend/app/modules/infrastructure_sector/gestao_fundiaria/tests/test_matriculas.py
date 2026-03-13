@@ -7,13 +7,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_matricula_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.matriculas import router as matriculas_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusMatriculaImovel, TipoImovel, TipoRegistro
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import MatriculaImovelNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyMatriculaImovelRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_matricula_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.matriculas import router as matriculas_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusMatriculaImovel, TipoImovel, TipoRegistro
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import MatriculaImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyMatriculaImovelRepository
 
 class _JusticaValida:
 

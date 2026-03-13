@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
 
 @dataclass
 class InstituicaoPesquisa:

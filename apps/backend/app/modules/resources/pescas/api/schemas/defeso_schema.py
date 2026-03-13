@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
+from apps.backend.app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
 
 class DefesoCreate(BaseModel):
     periodo: PeriodoDefesoTipo

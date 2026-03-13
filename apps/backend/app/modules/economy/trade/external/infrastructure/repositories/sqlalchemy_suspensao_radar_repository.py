@@ -1,9 +1,9 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import SuspensaoRadarRepositoryPort
-from app.modules.economy.trade.external.domain.models import SuspensaoRadar
-from app.modules.economy.trade.external.infrastructure.models import SuspensaoRadarModel
-from app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_habilitacao_repository_base import SQLAlchemyHabilitacaoRepositoryBase
+from apps.backend.app.modules.economy.trade.external.application.ports import SuspensaoRadarRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.models import SuspensaoRadar
+from apps.backend.app.modules.economy.trade.external.infrastructure.models import SuspensaoRadarModel
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_habilitacao_repository_base import SQLAlchemyHabilitacaoRepositoryBase
 
 class SQLAlchemySuspensaoRadarRepository(SQLAlchemyHabilitacaoRepositoryBase[SuspensaoRadar, SuspensaoRadarModel], SuspensaoRadarRepositoryPort):
 

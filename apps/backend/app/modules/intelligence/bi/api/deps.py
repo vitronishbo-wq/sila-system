@@ -2,9 +2,9 @@ from __future__ import annotations
 from fastapi import Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_db
-from app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
-from app.modules.intelligence.bi.application.services.kpi_service import KPIService
-from app.modules.intelligence.bi.integrations.data_sources import DataSources
+from apps.backend.app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
+from apps.backend.app.modules.intelligence.bi.application.services.kpi_service import KPIService
+from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources
 
 def get_current_user(token: str=Depends(lambda: 'dev-token')):
     if not token:

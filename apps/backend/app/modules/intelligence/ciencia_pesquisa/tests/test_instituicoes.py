@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from datetime import date
 import pytest
-from app.modules.intelligence.ciencia_pesquisa.application.services.instituicao_pesquisa_service import InstituicaoPesquisaService
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.services.instituicao_pesquisa_service import InstituicaoPesquisaService
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository
 
 def test_cadastrar_instituicao_sucesso() -> None:
 

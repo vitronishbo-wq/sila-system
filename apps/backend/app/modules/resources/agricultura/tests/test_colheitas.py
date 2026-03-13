@@ -5,15 +5,15 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_colheita_service
-from app.modules.resources.agricultura.api.endpoints.colheitas import router as colheitas_router
-from app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.domain.enums import TipoCultura, TipoPropriedade
-from app.modules.resources.agricultura.exceptions import ColheitaNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_colheita_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.colheitas import router as colheitas_router
+from apps.backend.app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoCultura, TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import ColheitaNotFoundError
 
 @pytest.mark.asyncio
 async def test_colheita_service_registrar():

@@ -1,2 +1,2 @@
-from app.modules.society.cultura.api.router import router
+from apps.backend.app.modules.society.cultura.api.router import router
 __all__ = ['router']

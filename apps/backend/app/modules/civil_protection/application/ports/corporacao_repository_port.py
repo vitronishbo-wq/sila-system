@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.civil_protection.domain.enums import StatusCorporacao
-from app.modules.civil_protection.domain.models.corporacao import Corporacao
+from apps.backend.app.modules.civil_protection.domain.enums import StatusCorporacao
+from apps.backend.app.modules.civil_protection.domain.models.corporacao import Corporacao
 
 class CorporacaoRepositoryPort(ABC):
 

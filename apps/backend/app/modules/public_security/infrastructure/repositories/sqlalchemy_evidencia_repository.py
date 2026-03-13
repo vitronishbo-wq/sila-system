@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.evidencia_repository_port import EvidenciaRepositoryPort
-from app.modules.public_security.domain.enums import StatusEvidencia, TipoEvidencia
-from app.modules.public_security.domain.models.evidencia import Evidencia
-from app.modules.public_security.infrastructure.models.evidencia_model import EvidenciaModel
+from apps.backend.app.modules.public_security.application.ports.evidencia_repository_port import EvidenciaRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusEvidencia, TipoEvidencia
+from apps.backend.app.modules.public_security.domain.models.evidencia import Evidencia
+from apps.backend.app.modules.public_security.infrastructure.models.evidencia_model import EvidenciaModel
 
 class SQLAlchemyEvidenciaRepository(EvidenciaRepositoryPort):
 

@@ -1,4 +1,4 @@
-from app.modules.justice.justica.domain.exceptions import AdvogadoNaoEncontradoException, JusticaException, MagistradoNaoEncontradoException, ParteInvalidaException, ProcessoNaoEncontradoException, RecursoForaPrazoException, SentencaJaProferidaException
+from apps.backend.app.modules.justice.justica.domain.exceptions import AdvogadoNaoEncontradoException, JusticaException, MagistradoNaoEncontradoException, ParteInvalidaException, ProcessoNaoEncontradoException, RecursoForaPrazoException, SentencaJaProferidaException
 
 class JusticaError(Exception):
     pass

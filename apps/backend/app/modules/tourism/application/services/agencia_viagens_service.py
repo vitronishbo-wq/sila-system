@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort
-from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
-from app.modules.tourism.application.ports.request_service_port import RequestServicePort
-from app.modules.tourism.domain.models.agencia_viagens import AgenciaViagens
+from apps.backend.app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
+from apps.backend.app.modules.tourism.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.tourism.domain.models.agencia_viagens import AgenciaViagens
 
 class AgenciaViagensService:
 

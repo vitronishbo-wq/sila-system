@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from uuid import UUID, uuid4
-from app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, StatusAcordo, TipoAcordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, StatusAcordo, TipoAcordo
 
 @dataclass
 class Acordo:

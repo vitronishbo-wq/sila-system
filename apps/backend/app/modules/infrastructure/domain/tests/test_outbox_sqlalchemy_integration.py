@@ -8,8 +8,8 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from app.modules.infrastructure.application.events.definitions import AditivoAssinadoEvent
-from app.modules.infrastructure.infrastructure.persistence.outbox_repository import SQLAlchemyOutboxRepository
+from apps.backend.app.modules.infrastructure.application.events.definitions import AditivoAssinadoEvent
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.outbox_repository import SQLAlchemyOutboxRepository
 
 def _get_database_url() -> str:
     url = os.environ.get('DATABASE_URL', 'postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db')

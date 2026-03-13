@@ -3,11 +3,11 @@ from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
 from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
-from app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TransferenciaRepositoryPort, TurmaRepositoryPort
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models import Matricula, StatusMatricula
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
-from app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaNotFoundError, TransferenciaDuplicadaError, TransferenciaEstadoInvalidoError, TransferenciaNotFoundError, TurmaNotFoundError, TurmaSemVagasError
+from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort, MatriculaRepositoryPort, TransferenciaRepositoryPort, TurmaRepositoryPort
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models import Matricula, StatusMatricula
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaNotFoundError, TransferenciaDuplicadaError, TransferenciaEstadoInvalidoError, TransferenciaNotFoundError, TurmaNotFoundError, TurmaSemVagasError
 
 class TransferenciaService:
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from decimal import Decimal
-from app.modules.infrastructure.infrastructure.adapters.financas_publicas_adapter import FinancasPublicasAdapter
+from apps.backend.app.modules.infrastructure.infrastructure.adapters.financas_publicas_adapter import FinancasPublicasAdapter
 
 async def handle_medicao(payload: dict, tenant_id: str, correlation_id: str) -> None:
     adapter = FinancasPublicasAdapter(tenant_id=tenant_id)

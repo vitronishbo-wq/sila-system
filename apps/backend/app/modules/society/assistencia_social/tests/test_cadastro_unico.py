@@ -2,8 +2,8 @@ from __future__ import annotations
 import asyncio
 from decimal import Decimal
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, FakeRequestService, InMemoryCadastroUnicoRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, FakeRequestService, InMemoryCadastroUnicoRepo
 
 def test_cadastro_unico_dispara_alertas_e_programas() -> None:
 

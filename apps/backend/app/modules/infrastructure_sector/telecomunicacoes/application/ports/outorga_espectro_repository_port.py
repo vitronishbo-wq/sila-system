@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
 
 class OutorgaEspectroRepositoryPort(ABC):
 

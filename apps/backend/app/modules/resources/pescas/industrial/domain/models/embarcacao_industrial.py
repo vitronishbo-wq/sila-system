@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
+from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
 
 @dataclass
 class EmbarcacaoIndustrial(Embarcacao):

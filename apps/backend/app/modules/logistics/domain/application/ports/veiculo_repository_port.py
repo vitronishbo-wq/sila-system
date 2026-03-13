@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
-from app.modules.logistics.domain.models import Veiculo
+from apps.backend.app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
+from apps.backend.app.modules.logistics.domain.models import Veiculo
 
 class VeiculoRepositoryPort(ABC):
 

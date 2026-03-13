@@ -4,8 +4,8 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_current_user, get_db
 from app.models.iam_user import IamUser as User
-from app.modules.justice.bounded_contexts.application.services.document_service import DocumentService
-from app.modules.justice.bounded_contexts.infrastructure.repositories.document_repository import DocumentRepository
+from apps.backend.app.modules.justice.bounded_contexts.application.services.document_service import DocumentService
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.repositories.document_repository import DocumentRepository
 from app.core.bridges.citizen_repository_bridge import CitizenRepository
 router = APIRouter(prefix='/documents', tags=['Documents'])
 

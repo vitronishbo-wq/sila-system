@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_exportador_service
-from app.modules.economy.trade.external.api.endpoints.exportadores import router as exportadores_router
-from app.modules.economy.trade.external.application.services import ExportadorService
-from app.modules.economy.trade.external.domain.enums import RegimeExportacao, StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import ExportadorAlreadyExistsError, ExportadorNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryExportadorRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_exportador_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.exportadores import router as exportadores_router
+from apps.backend.app.modules.economy.trade.external.application.services import ExportadorService
+from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeExportacao, StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import ExportadorAlreadyExistsError, ExportadorNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryExportadorRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_exportador():

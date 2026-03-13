@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.public_security.domain.enums import StatusInvestigacao
+from apps.backend.app.modules.public_security.domain.enums import StatusInvestigacao
 
 class InvestigacaoCreate(BaseModel):
     ocorrencia_id: UUID

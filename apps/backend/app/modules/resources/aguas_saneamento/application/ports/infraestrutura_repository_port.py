@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.resources.aguas_saneamento.domain.models.infraestrutura import InfraestruturaHidrica
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.infraestrutura import InfraestruturaHidrica
 
 class InfraestruturaRepositoryPort(ABC):
 

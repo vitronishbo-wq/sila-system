@@ -3,11 +3,11 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import OneracaoRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoOneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.oneracao_model import OneracaoModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import OneracaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.oneracao_model import OneracaoModel
 
 class SQLAlchemyOneracaoRepository(OneracaoRepositoryPort):
     """Repository real em SQLAlchemy/AsyncSession com fallback in-memory."""

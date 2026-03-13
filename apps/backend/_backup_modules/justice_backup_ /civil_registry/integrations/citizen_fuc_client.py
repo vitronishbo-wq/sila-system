@@ -5,7 +5,7 @@ import logging
 import httpx
 from pydantic import BaseModel, Field
 from app.core.settings import settings
-from app.modules.justice.bounded_contexts.application.ports.citizen_fuc_client_port import CitizenFUCClientPort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.citizen_fuc_client_port import CitizenFUCClientPort
 from app.core.resilience import ResilientClient
 logger = logging.getLogger(__name__)
 

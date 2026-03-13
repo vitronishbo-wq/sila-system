@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
 
 @dataclass
 class CadastroUnico:

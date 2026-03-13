@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao
-from app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
 
 class InspecaoSanitariaIndustrialRepositoryPort(ABC):
 

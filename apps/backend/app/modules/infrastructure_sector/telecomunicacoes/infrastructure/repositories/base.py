@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
 
 class BaseRepositoryWithOutbox:
 

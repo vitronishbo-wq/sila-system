@@ -12,8 +12,8 @@ else:
 
 try:
     from config.database import AsyncSessionLocal
-    from modules.identity.models.user import User, AdministrativeLevel
-    from modules.location.models.region import Region
+    from apps.backend.app.modules.identity.models.user import User, AdministrativeLevel
+    from apps.backend.app.modules.location.models.region import Region
 except ImportError as e:
     print(f"❌ Error importing modules: {e}")
     sys.exit(1)

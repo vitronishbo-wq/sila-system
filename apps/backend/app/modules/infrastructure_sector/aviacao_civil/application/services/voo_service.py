@@ -1,14 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.infrastructure_sector.aviacao_civil.application.events import VooDecoladoEvent, VooPousadoEvent, VooProgramadoEvent, event_bus
-from app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import AeronaveRepositoryPort
-from app.modules.infrastructure_sector.aviacao_civil.application.ports.voo_repository_port import VooRepositoryPort
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import NaturezaVoo, RegrasVoo, StatusAeronavegabilidade, StatusVoo, TipoVoo
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.voo import Voo
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.decea_adapter import DeceaAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.meteorologia_adapter import MeteorologiaAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.events import VooDecoladoEvent, VooPousadoEvent, VooProgramadoEvent, event_bus
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import AeronaveRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.voo_repository_port import VooRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import NaturezaVoo, RegrasVoo, StatusAeronavegabilidade, StatusVoo, TipoVoo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.voo import Voo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.decea_adapter import DeceaAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.meteorologia_adapter import MeteorologiaAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
 
 class VooService:
 

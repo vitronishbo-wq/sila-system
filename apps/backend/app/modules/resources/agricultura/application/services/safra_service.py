@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.models.safra import Safra
-from app.modules.resources.agricultura.exceptions import SafraNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.models.safra import Safra
+from apps.backend.app.modules.resources.agricultura.exceptions import SafraNotFoundError
 
 class SafraService:
 

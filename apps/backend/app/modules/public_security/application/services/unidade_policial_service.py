@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
-from app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
+from apps.backend.app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
 
 class UnidadePolicialService:
 

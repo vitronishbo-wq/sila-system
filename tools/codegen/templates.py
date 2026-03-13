@@ -76,7 +76,7 @@ Serviços de negócio para o módulo {module_title}.
 
 from typing import List, Dict, Any, Optional
 
-from app.modules.service_hub.services import register_service
+from apps.backend.app.modules.service_hub.services import register_service
 from . import crud, models, schemas
 
 # Implemente seus serviços aqui
@@ -203,8 +203,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from app.db.session import get_db
-from app.modules.{module_name}.models.{service_slug} import {model_name}
-from app.modules.{module_name}.schemas.{service_slug} import {model_name}Create, {model_name}Read, {model_name}Update
+from apps.backend.app.modules.{module_name}.models.{service_slug} import {model_name}
+from apps.backend.app.modules.{module_name}.schemas.{service_slug} import {model_name}Create, {model_name}Read, {model_name}Update
 from app.auth_utils import get_current_active_user
 
 router = APIRouter(prefix="/api/{api_slug}", tags=["{display_name}"])
@@ -295,8 +295,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from app.db.session import get_db
-from app.modules.{module_name}.models.{service_slug} import {model_name}
-from app.modules.{module_name}.schemas.{service_slug} import {model_name}Create, {model_name}Read, {model_name}Update
+from apps.backend.app.modules.{module_name}.models.{service_slug} import {model_name}
+from apps.backend.app.modules.{module_name}.schemas.{service_slug} import {model_name}Create, {model_name}Read, {model_name}Update
 
 router = APIRouter(prefix="/internal/{api_slug}", tags=["{display_name}"])
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.infrastructure.models.outbox_event_model import OutboxEventModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.outbox_event_model import OutboxEventModel
 
 class SQLAlchemyOutboxRepository:
 

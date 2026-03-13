@@ -3,10 +3,10 @@ from datetime import datetime, timezone
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
-from app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
-from app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
-from app.modules.infrastructure_sector.meteorologia.infrastructure.models.estacao_model import EstacaoMeteorologicaModel
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.infrastructure.models.estacao_model import EstacaoMeteorologicaModel
 
 class SQLAlchemyEstacaoRepository(EstacaoRepositoryPort):
 

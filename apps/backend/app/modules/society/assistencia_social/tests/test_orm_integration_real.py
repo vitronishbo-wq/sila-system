@@ -9,31 +9,31 @@ from sqlalchemy import text
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
-from app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
-from app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
-from app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
-from app.modules.society.assistencia_social.application.services.idoso_vulneravel_service import IdosoVulneravelService
-from app.modules.society.assistencia_social.application.services.pcd_service import PCDService
-from app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
-from app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
-from app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, PublicoAlvo, StatusAcompanhamento, TipoAtendimento
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, FakeSaudeService
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
+from apps.backend.app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
+from apps.backend.app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
+from apps.backend.app.modules.society.assistencia_social.application.services.idoso_vulneravel_service import IdosoVulneravelService
+from apps.backend.app.modules.society.assistencia_social.application.services.pcd_service import PCDService
+from apps.backend.app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
+from apps.backend.app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
+from apps.backend.app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, PublicoAlvo, StatusAcompanhamento, TipoAtendimento
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeJuventudeService, FakeSaudeService
 
 def _tables():
-    from app.modules.society.assistencia_social.infrastructure.models.atendimento_model import AtendimentoModel
-    from app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import BeneficiarioModel
-    from app.modules.society.assistencia_social.infrastructure.models.beneficio_model import BeneficioModel
-    from app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import CadastroUnicoModel
-    from app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import CriancaRiscoModel
-    from app.modules.society.assistencia_social.infrastructure.models.idoso_vulneravel_model import IdosoVulneravelModel
-    from app.modules.society.assistencia_social.infrastructure.models.pcd_model import PCDModel
-    from app.modules.society.assistencia_social.infrastructure.models.programa_social_model import ProgramaSocialModel
-    from app.modules.society.assistencia_social.infrastructure.models.situacao_rua_model import SituacaoRuaModel
-    from app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import VisitaDomiciliarModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.atendimento_model import AtendimentoModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import BeneficiarioModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficio_model import BeneficioModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import CadastroUnicoModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import CriancaRiscoModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.idoso_vulneravel_model import IdosoVulneravelModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.pcd_model import PCDModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.programa_social_model import ProgramaSocialModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.situacao_rua_model import SituacaoRuaModel
+    from apps.backend.app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import VisitaDomiciliarModel
     if not hasattr(BeneficiarioModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [CadastroUnicoModel.__table__, BeneficiarioModel.__table__, ProgramaSocialModel.__table__, BeneficioModel.__table__, AtendimentoModel.__table__, VisitaDomiciliarModel.__table__, SituacaoRuaModel.__table__, CriancaRiscoModel.__table__, IdosoVulneravelModel.__table__, PCDModel.__table__]
@@ -71,15 +71,15 @@ def test_fluxo_real_orm_assistencia_social() -> None:
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_atendimento_repository import SQLAlchemyAtendimentoRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficiario_repository import SQLAlchemyBeneficiarioRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_cadastro_unico_repository import SQLAlchemyCadastroUnicoRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_crianca_risco_repository import SQLAlchemyCriancaRiscoRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_idoso_vulneravel_repository import SQLAlchemyIdosoVulneravelRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_pcd_repository import SQLAlchemyPCDRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_programa_social_repository import SQLAlchemyProgramaSocialRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_situacao_rua_repository import SQLAlchemySituacaoRuaRepository
-            from app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_visita_domiciliar_repository import SQLAlchemyVisitaDomiciliarRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_atendimento_repository import SQLAlchemyAtendimentoRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficiario_repository import SQLAlchemyBeneficiarioRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_cadastro_unico_repository import SQLAlchemyCadastroUnicoRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_crianca_risco_repository import SQLAlchemyCriancaRiscoRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_idoso_vulneravel_repository import SQLAlchemyIdosoVulneravelRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_pcd_repository import SQLAlchemyPCDRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_programa_social_repository import SQLAlchemyProgramaSocialRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_situacao_rua_repository import SQLAlchemySituacaoRuaRepository
+            from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_visita_domiciliar_repository import SQLAlchemyVisitaDomiciliarRepository
             cadastro_repo = SQLAlchemyCadastroUnicoRepository(session)
             beneficiario_repo = SQLAlchemyBeneficiarioRepository(session)
             programa_repo = SQLAlchemyProgramaSocialRepository(session)

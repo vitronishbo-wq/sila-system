@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.justice.bounded_contexts.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.emprego_service_port import EmpregoServicePort
 
 class EmpregoServiceAdapter(EmpregoServicePort):
 

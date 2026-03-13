@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
-from app.modules.civil_protection.application.ports.despacho_repository_port import DespachoRepositoryPort
-from app.modules.civil_protection.application.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
-from app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
-from app.modules.civil_protection.domain.enums import StatusDespacho, StatusOcorrenciaEmergencial
-from app.modules.civil_protection.domain.models.despacho import Despacho
+from apps.backend.app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.despacho_repository_port import DespachoRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.civil_protection.domain.enums import StatusDespacho, StatusOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
 
 class DespachoService:
 

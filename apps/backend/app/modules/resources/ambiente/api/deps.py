@@ -1,11 +1,11 @@
 from __future__ import annotations
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
-from app.modules.resources.ambiente.application.services.estudo_service import EstudoService
-from app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
-from app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
-from app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
-from app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyAutoInfracaoRepository, SQLAlchemyCARRepository, SQLAlchemyCondicionanteRepository, SQLAlchemyEmbargoRepository, SQLAlchemyEstudoRepository, SQLAlchemyFiscalizacaoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyMultaRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
+from apps.backend.app.modules.resources.ambiente.application.services.estudo_service import EstudoService
+from apps.backend.app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
+from apps.backend.app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
+from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyAutoInfracaoRepository, SQLAlchemyCARRepository, SQLAlchemyCondicionanteRepository, SQLAlchemyEmbargoRepository, SQLAlchemyEstudoRepository, SQLAlchemyFiscalizacaoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyMultaRepository, SQLAlchemyProprietarioRepository
 proprietario_repo_singleton = SQLAlchemyProprietarioRepository()
 imovel_repo_singleton = SQLAlchemyImovelRepository()
 car_repo_singleton = SQLAlchemyCARRepository()

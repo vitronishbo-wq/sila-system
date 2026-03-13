@@ -1,5 +1,5 @@
-from app.modules.governance.administracao_local.domain.entities import AdministradorLocal
-from app.modules.governance.administracao_local.infrastructure.models import AdministradorModel
+from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.infrastructure.models import AdministradorModel
 
 class AdministradorMapper:
 

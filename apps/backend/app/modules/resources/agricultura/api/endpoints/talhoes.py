@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_talhao_service
-from app.modules.resources.agricultura.api.schemas.talhao_schema import TalhaoCreate, TalhaoResponse
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.domain.enums import StatusTalhao
-from app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError, TalhaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_talhao_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.talhao_schema import TalhaoCreate, TalhaoResponse
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusTalhao
+from apps.backend.app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError, TalhaoNotFoundError
 router = APIRouter(prefix='/talhoes', tags=['Agricultura - talhoes'])
 
 @router.post('/', response_model=TalhaoResponse, status_code=status.HTTP_201_CREATED)

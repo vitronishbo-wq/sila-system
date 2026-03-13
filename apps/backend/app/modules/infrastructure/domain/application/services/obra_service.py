@@ -2,27 +2,27 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
-from app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort
-from app.modules.infrastructure.application.ports.financas_publicas_service_port import FinancasPublicasServicePort
-from app.modules.infrastructure.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
-from app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort
-from app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.infrastructure.infrastructure.eventsourcing.event_store_repository import SQLAlchemyEventStoreRepository
-from app.modules.infrastructure.infrastructure.multi_region.global_id import generate_global_id
-from app.modules.infrastructure.application.ports.service_requests_service_port import ServiceRequestsServicePort
-from app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort
-from app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort
-from app.modules.infrastructure.application.ports.workflow_service_port import WorkflowServicePort
-from app.modules.infrastructure.application.events.definitions import AditivoAssinadoEvent, MedicaoAprovadaEvent, ObraConcluidaEvent, ObraCriadaEvent, ObraIniciadaEvent
-from app.modules.infrastructure.application.eventsourcing.obra_event_aggregate import rehydrate_obra
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
-from app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
-from app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
-from app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
-from app.modules.infrastructure.domain.models.obra import Obra
-from app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
-from app.modules.infrastructure.core.exceptions import ObraAlreadyExistsError, ObraNotFoundError
+from apps.backend.app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
+from apps.backend.app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.infrastructure.application.ports.financas_publicas_service_port import FinancasPublicasServicePort
+from apps.backend.app.modules.infrastructure.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
+from apps.backend.app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort
+from apps.backend.app.modules.infrastructure.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.infrastructure.infrastructure.eventsourcing.event_store_repository import SQLAlchemyEventStoreRepository
+from apps.backend.app.modules.infrastructure.infrastructure.multi_region.global_id import generate_global_id
+from apps.backend.app.modules.infrastructure.application.ports.service_requests_service_port import ServiceRequestsServicePort
+from apps.backend.app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort
+from apps.backend.app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort
+from apps.backend.app.modules.infrastructure.application.ports.workflow_service_port import WorkflowServicePort
+from apps.backend.app.modules.infrastructure.application.events.definitions import AditivoAssinadoEvent, MedicaoAprovadaEvent, ObraConcluidaEvent, ObraCriadaEvent, ObraIniciadaEvent
+from apps.backend.app.modules.infrastructure.application.eventsourcing.obra_event_aggregate import rehydrate_obra
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+from apps.backend.app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
+from apps.backend.app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
+from apps.backend.app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
+from apps.backend.app.modules.infrastructure.domain.models.obra import Obra
+from apps.backend.app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
+from apps.backend.app.modules.infrastructure.core.exceptions import ObraAlreadyExistsError, ObraNotFoundError
 
 class ObraService:
 
@@ -158,7 +158,7 @@ class ObraService:
         return saved
 
     async def registrar_aditivo(self, codigo_obra: str, *, tipo: str, justificativa: str, valor_aditivo: Decimal=Decimal('0'), prazo_adicional_dias: int=0, data_assinatura: date | None=None, tenant_id: str='default', correlation_id: str | None=None) -> Obra:
-        from app.modules.infrastructure.domain.enums import TipoAditivo
+        from apps.backend.app.modules.infrastructure.domain.enums import TipoAditivo
         item = await self._obter_ou_erro(codigo_obra)
         aditivo = AditivoContratual.registrar(tipo=TipoAditivo(tipo), justificativa=justificativa, valor_aditivo=valor_aditivo, prazo_adicional_dias=prazo_adicional_dias, data_assinatura=data_assinatura)
         item.registrar_aditivo(aditivo)

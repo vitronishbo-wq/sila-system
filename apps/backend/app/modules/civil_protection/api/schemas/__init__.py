@@ -1,6 +1,6 @@
-from app.modules.civil_protection.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoFinalizacao, AtendimentoResponse, AtendimentoStatusUpdate
-from app.modules.civil_protection.api.schemas.bombeiro_schema import BombeiroCreate, BombeiroResponse, BombeiroStatusUpdate
-from app.modules.civil_protection.api.schemas.corporacao_schema import CorporacaoCreate, CorporacaoResponse, CorporacaoStatusUpdate
-from app.modules.civil_protection.api.schemas.ocorrencia_emergencial_schema import OcorrenciaEmergencialCreate, OcorrenciaEmergencialResponse, OcorrenciaEmergencialStatusUpdate
-from app.modules.civil_protection.api.schemas.despacho_schema import DespachoCreate, DespachoResponse, DespachoStatusUpdate
+from apps.backend.app.modules.civil_protection.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoFinalizacao, AtendimentoResponse, AtendimentoStatusUpdate
+from apps.backend.app.modules.civil_protection.api.schemas.bombeiro_schema import BombeiroCreate, BombeiroResponse, BombeiroStatusUpdate
+from apps.backend.app.modules.civil_protection.api.schemas.corporacao_schema import CorporacaoCreate, CorporacaoResponse, CorporacaoStatusUpdate
+from apps.backend.app.modules.civil_protection.api.schemas.ocorrencia_emergencial_schema import OcorrenciaEmergencialCreate, OcorrenciaEmergencialResponse, OcorrenciaEmergencialStatusUpdate
+from apps.backend.app.modules.civil_protection.api.schemas.despacho_schema import DespachoCreate, DespachoResponse, DespachoStatusUpdate
 __all__ = ['CorporacaoCreate', 'CorporacaoResponse', 'CorporacaoStatusUpdate', 'BombeiroCreate', 'BombeiroResponse', 'BombeiroStatusUpdate', 'OcorrenciaEmergencialCreate', 'OcorrenciaEmergencialResponse', 'OcorrenciaEmergencialStatusUpdate', 'DespachoCreate', 'DespachoResponse', 'DespachoStatusUpdate', 'AtendimentoCreate', 'AtendimentoResponse', 'AtendimentoStatusUpdate', 'AtendimentoFinalizacao']

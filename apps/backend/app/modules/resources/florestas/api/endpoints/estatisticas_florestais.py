@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends
-from app.modules.resources.florestas.api.deps import get_estatistica_florestal_service
-from app.modules.resources.florestas.api.schemas.estatistica_florestal_schema import DashboardEstatisticoFlorestal, IntegracaoTransversalFlorestal, ResumoOperacionalFlorestal
-from app.modules.resources.florestas.application.services.estatistica_florestal_service import EstatisticaFlorestalService
+from apps.backend.app.modules.resources.florestas.api.deps import get_estatistica_florestal_service
+from apps.backend.app.modules.resources.florestas.api.schemas.estatistica_florestal_schema import DashboardEstatisticoFlorestal, IntegracaoTransversalFlorestal, ResumoOperacionalFlorestal
+from apps.backend.app.modules.resources.florestas.application.services.estatistica_florestal_service import EstatisticaFlorestalService
 router = APIRouter(prefix='/estatisticas-florestais', tags=['Florestas - Estatisticas Florestais'])
 
 @router.get('/', response_model=DashboardEstatisticoFlorestal)

@@ -7,14 +7,14 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.ambiente.api.deps import get_fiscalizacao_service
-from app.modules.resources.ambiente.api.endpoints.fiscalizacoes import router as fiscalizacoes_router
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
-from app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusFiscalizacao, StatusLicenca, TipoImovel, TipoLicenca
-from app.modules.resources.ambiente.exceptions import FiscalizacaoNotFoundError
-from app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyFiscalizacaoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.resources.ambiente.api.deps import get_fiscalizacao_service
+from apps.backend.app.modules.resources.ambiente.api.endpoints.fiscalizacoes import router as fiscalizacoes_router
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.application.services.fiscalizacao_service import FiscalizacaoService
+from apps.backend.app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusFiscalizacao, StatusLicenca, TipoImovel, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.exceptions import FiscalizacaoNotFoundError
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyFiscalizacaoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
 
 @pytest.mark.asyncio
 async def test_fiscalizacao_service_fluxo_sucesso():

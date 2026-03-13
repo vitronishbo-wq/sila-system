@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
+from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
 
 class MetricaCreate(BaseModel):
     nome: str = Field(..., min_length=3, max_length=200)

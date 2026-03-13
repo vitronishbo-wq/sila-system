@@ -1,7 +1,7 @@
 from typing import Any, Dict, Optional
 from pydantic import BaseModel
 from fastapi import APIRouter, HTTPException, status
-from app.modules.identity.oidc_provider.application.oidc_service import OIDCService
+from apps.backend.app.modules.identity.oidc_provider.application.oidc_service import OIDCService
 
 router = APIRouter()
 service = OIDCService()

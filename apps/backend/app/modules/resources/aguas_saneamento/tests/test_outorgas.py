@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.aguas_saneamento.api.deps import get_outorga_service
-from app.modules.resources.aguas_saneamento.api.endpoints.outorgas import router as outorgas_router
-from app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoCaptacao, TipoOutorga, TipoUso
-from app.modules.resources.aguas_saneamento.exceptions import OutorgaNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyOutorgaRepository
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_outorga_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.endpoints.outorgas import router as outorgas_router
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoCaptacao, TipoOutorga, TipoUso
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import OutorgaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyOutorgaRepository
 
 @pytest.mark.asyncio
 async def test_outorga_service_fluxo_sucesso():

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
 
 @dataclass
 class InfraestruturaHidrica:

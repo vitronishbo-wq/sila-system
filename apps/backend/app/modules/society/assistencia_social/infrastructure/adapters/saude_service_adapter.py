@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.assistencia_social.application.ports import SaudeServicePort
+from apps.backend.app.modules.society.assistencia_social.application.ports import SaudeServicePort
 
 class SaudeServiceAdapter(SaudeServicePort):
 

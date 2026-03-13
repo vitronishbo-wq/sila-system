@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_beneficiario_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.beneficiario_schema import BeneficiarioCreate, BeneficiarioMotivo, BeneficiarioResponse
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_beneficiario_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.beneficiario_schema import BeneficiarioCreate, BeneficiarioMotivo, BeneficiarioResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
 router = APIRouter(prefix='/beneficiarios', tags=['Assistencia Social - Beneficiarios'])
 
 @router.post('/', response_model=BeneficiarioResponse, status_code=status.HTTP_201_CREATED)

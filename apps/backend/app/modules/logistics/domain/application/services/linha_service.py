@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.logistics.application.ports import GeosampaServicePort, LinhaRepositoryPort, ObrasPublicasServicePort, UrbanismoServicePort, VeiculoRepositoryPort, WorkflowServicePort
-from app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo, TipoViagem
-from app.modules.logistics.domain.models import Linha, Veiculo
-from app.modules.logistics.core.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
+from apps.backend.app.modules.logistics.application.ports import GeosampaServicePort, LinhaRepositoryPort, ObrasPublicasServicePort, UrbanismoServicePort, VeiculoRepositoryPort, WorkflowServicePort
+from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo, TipoViagem
+from apps.backend.app.modules.logistics.domain.models import Linha, Veiculo
+from apps.backend.app.modules.logistics.core.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
 
 class LinhaService:
 

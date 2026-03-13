@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.workflow_service_port import WorkflowServicePort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.workflow_service_port import WorkflowServicePort
 
 class WorkflowServiceAdapter(WorkflowServicePort):
 

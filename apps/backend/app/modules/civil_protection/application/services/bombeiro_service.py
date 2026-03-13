@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
-from app.modules.civil_protection.application.ports.corporacao_repository_port import CorporacaoRepositoryPort
-from app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
-from app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao
-from app.modules.civil_protection.domain.models.bombeiro import Bombeiro
+from apps.backend.app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.corporacao_repository_port import CorporacaoRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao
+from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
 
 class BombeiroService:
 

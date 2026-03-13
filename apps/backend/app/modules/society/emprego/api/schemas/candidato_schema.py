@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
 
 class CandidatoCreate(BaseModel):
     citizen_id: UUID

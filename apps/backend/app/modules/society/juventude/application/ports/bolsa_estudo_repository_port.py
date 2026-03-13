@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
+from apps.backend.app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
 
 class BolsaEstudoRepositoryPort(ABC):
 

@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.aguas_saneamento.api.deps import get_faturamento_service
-from app.modules.resources.aguas_saneamento.api.endpoints.faturas import router as faturas_router
-from app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
-from app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
-from app.modules.resources.aguas_saneamento.exceptions import FaturaNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyFaturaRepository
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_faturamento_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.endpoints.faturas import router as faturas_router
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import FaturaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyFaturaRepository
 
 @pytest.mark.asyncio
 async def test_faturamento_service_fluxo_sucesso():

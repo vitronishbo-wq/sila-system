@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.pescas.domain.enums import ModalidadePesca, TipoEmbarcacao
+from apps.backend.app.modules.resources.pescas.domain.enums import ModalidadePesca, TipoEmbarcacao
 
 @dataclass
 class Embarcacao:

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_pcd_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.pcd_schema import PCDCreate, PCDResponse
-from app.modules.society.assistencia_social.application.services.pcd_service import PCDService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_pcd_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.pcd_schema import PCDCreate, PCDResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.pcd_service import PCDService
 router = APIRouter(prefix='/pcd', tags=['Assistencia Social - PcD'])
 
 @router.post('/', response_model=PCDResponse, status_code=status.HTTP_201_CREATED)

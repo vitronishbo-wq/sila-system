@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.resources.ambiente.domain.enums import StatusMulta
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusMulta
 
 @dataclass
 class Multa:

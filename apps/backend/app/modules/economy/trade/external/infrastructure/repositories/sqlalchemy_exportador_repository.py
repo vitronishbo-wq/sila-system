@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import ExportadorRepositoryPort
-from app.modules.economy.trade.external.domain.enums import RegimeExportacao, StatusHabilitacao, TipoOperador, TipoPessoa
-from app.modules.economy.trade.external.domain.models import Exportador
-from app.modules.economy.trade.external.infrastructure.models import ExportadorModel
+from apps.backend.app.modules.economy.trade.external.application.ports import ExportadorRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeExportacao, StatusHabilitacao, TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.models import Exportador
+from apps.backend.app.modules.economy.trade.external.infrastructure.models import ExportadorModel
 
 class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
 

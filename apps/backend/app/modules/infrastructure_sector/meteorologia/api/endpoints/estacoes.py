@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.infrastructure_sector.meteorologia.api.deps import get_estacao_service
-from app.modules.infrastructure_sector.meteorologia.api.schemas import EstacaoCreateSchema, EstacaoResponseSchema, EstacaoUpdateSchema
-from app.modules.infrastructure_sector.meteorologia.application.services.estacao_service import EstacaoService
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.deps import get_estacao_service
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.schemas import EstacaoCreateSchema, EstacaoResponseSchema, EstacaoUpdateSchema
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.services.estacao_service import EstacaoService
 router = APIRouter(prefix='/estacoes', tags=['Meteorologia - Estacoes'])
 
 @router.post('/', response_model=EstacaoResponseSchema, status_code=status.HTTP_201_CREATED)

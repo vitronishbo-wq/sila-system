@@ -1,8 +1,8 @@
 from __future__ import annotations
 import httpx
-from app.modules.society.desporto.application.ports.federacao_service_port import FederacaoServicePort
-from app.modules.society.desporto.infrastructure.resilience.circuit_breaker import circuit_breaker
-from app.modules.society.desporto.infrastructure.resilience.retry import with_retry
+from apps.backend.app.modules.society.desporto.application.ports.federacao_service_port import FederacaoServicePort
+from apps.backend.app.modules.society.desporto.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.society.desporto.infrastructure.resilience.retry import with_retry
 
 class FederacaoServiceAdapter(FederacaoServicePort):
 

@@ -7,18 +7,18 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.society.cultura.application.services.artista_service import ArtistaService
-from app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
-from app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusEventoCultural, StatusPatrimonioImaterial, StatusTombamento, TipoArtista, TipoEventoCultural, TipoGrupoArtistico, TipoPatrimonio
-from app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeTurismoService
+from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
+from apps.backend.app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
+from apps.backend.app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusEventoCultural, StatusPatrimonioImaterial, StatusTombamento, TipoArtista, TipoEventoCultural, TipoGrupoArtistico, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeTurismoService
 
 def _tables():
-    from app.modules.society.cultura.infrastructure.models.artista_model import ArtistaModel
-    from app.modules.society.cultura.infrastructure.models.bem_cultural_model import BemCulturalModel
-    from app.modules.society.cultura.infrastructure.models.evento_cultural_model import EventoCulturalModel
-    from app.modules.society.cultura.infrastructure.models.grupo_artistico_model import GrupoArtisticoModel
-    from app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import PatrimonioImaterialModel
+    from apps.backend.app.modules.society.cultura.infrastructure.models.artista_model import ArtistaModel
+    from apps.backend.app.modules.society.cultura.infrastructure.models.bem_cultural_model import BemCulturalModel
+    from apps.backend.app.modules.society.cultura.infrastructure.models.evento_cultural_model import EventoCulturalModel
+    from apps.backend.app.modules.society.cultura.infrastructure.models.grupo_artistico_model import GrupoArtisticoModel
+    from apps.backend.app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import PatrimonioImaterialModel
     if not hasattr(ArtistaModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [ArtistaModel.__table__, BemCulturalModel.__table__, EventoCulturalModel.__table__, GrupoArtisticoModel.__table__, PatrimonioImaterialModel.__table__]
@@ -50,13 +50,13 @@ def test_fluxo_real_orm_artista_bem_evento() -> None:
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.society.cultura.infrastructure.repositories.sqlalchemy_artista_repository import SQLAlchemyArtistaRepository
-            from app.modules.society.cultura.infrastructure.repositories.sqlalchemy_bem_cultural_repository import SQLAlchemyBemCulturalRepository
-            from app.modules.society.cultura.infrastructure.repositories.sqlalchemy_evento_cultural_repository import SQLAlchemyEventoCulturalRepository
-            from app.modules.society.cultura.infrastructure.repositories.sqlalchemy_grupo_artistico_repository import SQLAlchemyGrupoArtisticoRepository
-            from app.modules.society.cultura.infrastructure.repositories.sqlalchemy_patrimonio_imaterial_repository import SQLAlchemyPatrimonioImaterialRepository
-            from app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
-            from app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
+            from apps.backend.app.modules.society.cultura.infrastructure.repositories.sqlalchemy_artista_repository import SQLAlchemyArtistaRepository
+            from apps.backend.app.modules.society.cultura.infrastructure.repositories.sqlalchemy_bem_cultural_repository import SQLAlchemyBemCulturalRepository
+            from apps.backend.app.modules.society.cultura.infrastructure.repositories.sqlalchemy_evento_cultural_repository import SQLAlchemyEventoCulturalRepository
+            from apps.backend.app.modules.society.cultura.infrastructure.repositories.sqlalchemy_grupo_artistico_repository import SQLAlchemyGrupoArtisticoRepository
+            from apps.backend.app.modules.society.cultura.infrastructure.repositories.sqlalchemy_patrimonio_imaterial_repository import SQLAlchemyPatrimonioImaterialRepository
+            from apps.backend.app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
+            from apps.backend.app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
             artista_repo = SQLAlchemyArtistaRepository(session)
             bem_repo = SQLAlchemyBemCulturalRepository(session)
             evento_repo = SQLAlchemyEventoCulturalRepository(session)

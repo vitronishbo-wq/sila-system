@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.familia.domain.exceptions.family_exceptions import HeadMustBeAdultError
+from apps.backend.app.modules.society.familia.domain.exceptions.family_exceptions import HeadMustBeAdultError
 
 class HeadMustBeAdultRule:
 

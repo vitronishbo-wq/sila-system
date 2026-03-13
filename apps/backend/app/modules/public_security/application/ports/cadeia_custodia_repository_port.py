@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.public_security.domain.enums import StatusCadeiaCustodia
-from app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
+from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
+from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
 
 class CadeiaCustodiaRepositoryPort(ABC):
 

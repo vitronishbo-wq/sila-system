@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.florestas.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
-from app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
+from apps.backend.app.modules.resources.florestas.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
 
 class GestaoFundiariaServiceAdapter(GestaoFundiariaServicePort):
 

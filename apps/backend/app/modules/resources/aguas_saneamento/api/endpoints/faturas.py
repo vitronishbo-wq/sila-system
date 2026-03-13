@@ -1,12 +1,12 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, status
-from app.modules.resources.aguas_saneamento.api.deps import get_faturamento_service, get_outbox_worker
-from app.modules.resources.aguas_saneamento.api.schemas.fatura_schema import FaturaEmitirInput, FaturaMotivoInput, FaturaPagamentoInput, FaturaResponse
-from app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
-from app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
-from app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
-from app.modules.resources.aguas_saneamento.exceptions import FaturaAlreadyExistsError, FaturaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_faturamento_service, get_outbox_worker
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.fatura_schema import FaturaEmitirInput, FaturaMotivoInput, FaturaPagamentoInput, FaturaResponse
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
+from apps.backend.app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import FaturaAlreadyExistsError, FaturaNotFoundError
 router = APIRouter(prefix='/faturas', tags=['Aguas Saneamento - Faturamento'])
 
 @router.post('/', response_model=FaturaResponse, status_code=status.HTTP_201_CREATED)

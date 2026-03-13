@@ -3,9 +3,9 @@ from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
-from app.modules.economy.trade.services.domain.models.porte_comercial import PorteComercio
-from app.modules.economy.trade.services.domain.models.ramo_comercial import RamoComercio
+from apps.backend.app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
+from apps.backend.app.modules.economy.trade.services.domain.models.porte_comercial import PorteComercio
+from apps.backend.app.modules.economy.trade.services.domain.models.ramo_comercial import RamoComercio
 
 @dataclass
 class EstabelecimentoComercial:

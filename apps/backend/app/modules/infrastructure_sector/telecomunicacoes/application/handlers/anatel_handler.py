@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.adapters.anatel_adapter import AnatelAdapter
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.adapters.anatel_adapter import AnatelAdapter
 
 class AnatelHandler:
 

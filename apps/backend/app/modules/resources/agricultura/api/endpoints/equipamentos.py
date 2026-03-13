@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_equipamento_service
-from app.modules.resources.agricultura.api.schemas.equipamento_schema import EquipamentoCreate, EquipamentoResponse, UsoEquipamentoInput
-from app.modules.resources.agricultura.application.services.equipamento_service import EquipamentoService
-from app.modules.resources.agricultura.domain.enums import StatusEquipamento, TipoEquipamento
-from app.modules.resources.agricultura.exceptions import EquipamentoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_equipamento_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.equipamento_schema import EquipamentoCreate, EquipamentoResponse, UsoEquipamentoInput
+from apps.backend.app.modules.resources.agricultura.application.services.equipamento_service import EquipamentoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEquipamento, TipoEquipamento
+from apps.backend.app.modules.resources.agricultura.exceptions import EquipamentoNotFoundError
 router = APIRouter(prefix='/equipamentos', tags=['Agricultura - equipamentos'])
 
 @router.post('/', response_model=EquipamentoResponse, status_code=status.HTTP_201_CREATED)

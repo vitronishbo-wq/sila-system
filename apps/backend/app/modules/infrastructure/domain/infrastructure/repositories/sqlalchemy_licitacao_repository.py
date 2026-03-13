@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from app.modules.infrastructure.domain.models.licitacao import Licitacao
-from app.modules.infrastructure.infrastructure.models.licitacao_model import LicitacaoModel
+from apps.backend.app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+from apps.backend.app.modules.infrastructure.domain.models.licitacao import Licitacao
+from apps.backend.app.modules.infrastructure.infrastructure.models.licitacao_model import LicitacaoModel
 
 class SQLAlchemyLicitacaoRepository(LicitacaoRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

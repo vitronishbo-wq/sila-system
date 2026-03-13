@@ -3,9 +3,9 @@ from datetime import datetime
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pescas.application.ports import CapturaRepositoryPort
-from app.modules.resources.pescas.domain.models.captura import Captura
-from app.modules.resources.pescas.infrastructure.models.captura_model import CapturaModel
+from apps.backend.app.modules.resources.pescas.application.ports import CapturaRepositoryPort
+from apps.backend.app.modules.resources.pescas.domain.models.captura import Captura
+from apps.backend.app.modules.resources.pescas.infrastructure.models.captura_model import CapturaModel
 
 class SQLAlchemyCapturaRepository(CapturaRepositoryPort):
 

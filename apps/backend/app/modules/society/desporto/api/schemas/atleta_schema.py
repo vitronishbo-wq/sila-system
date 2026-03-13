@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
 
 class AtletaCreate(BaseModel):
     nome: str = Field(..., min_length=3)

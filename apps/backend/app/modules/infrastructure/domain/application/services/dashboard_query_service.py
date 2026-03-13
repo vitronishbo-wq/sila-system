@@ -1,7 +1,7 @@
 from __future__ import annotations
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.infrastructure.read_model.dashboard_model import ObraDashboardReadModel
+from apps.backend.app.modules.infrastructure.infrastructure.read_model.dashboard_model import ObraDashboardReadModel
 
 class DashboardQueryService:
 

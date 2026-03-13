@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_artista_service
-from app.modules.society.cultura.api.schemas.artista_schema import ArtistaCreate, ArtistaResponse, ArtistaUpdate
-from app.modules.society.cultura.application.services.artista_service import ArtistaService
-from app.modules.society.cultura.domain.enums import TipoArtista
+from apps.backend.app.modules.society.cultura.api.deps import get_artista_service
+from apps.backend.app.modules.society.cultura.api.schemas.artista_schema import ArtistaCreate, ArtistaResponse, ArtistaUpdate
+from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista
 router = APIRouter(prefix='/artistas', tags=['Cultura - Artistas'])
 
 @router.post('/', response_model=ArtistaResponse, status_code=status.HTTP_201_CREATED)

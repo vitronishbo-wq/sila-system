@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure.domain.enums import StatusObra
-from app.modules.infrastructure.domain.models.obra import Obra
+from apps.backend.app.modules.infrastructure.domain.enums import StatusObra
+from apps.backend.app.modules.infrastructure.domain.models.obra import Obra
 
 class ObraRepositoryPort(ABC):
 

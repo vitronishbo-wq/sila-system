@@ -7,16 +7,16 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.ambiente.api.deps import get_condicionante_service, get_estudo_service
-from app.modules.resources.ambiente.api.endpoints.condicionantes import router as condicionantes_router
-from app.modules.resources.ambiente.api.endpoints.estudos import router as estudos_router
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
-from app.modules.resources.ambiente.application.services.estudo_service import EstudoService
-from app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusCondicionante, StatusEstudoAmbiental, StatusLicenca, TipoEstudoAmbiental, TipoImovel, TipoLicenca
-from app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, EstudoNotFoundError
-from app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyCondicionanteRepository, SQLAlchemyEstudoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.resources.ambiente.api.deps import get_condicionante_service, get_estudo_service
+from apps.backend.app.modules.resources.ambiente.api.endpoints.condicionantes import router as condicionantes_router
+from apps.backend.app.modules.resources.ambiente.api.endpoints.estudos import router as estudos_router
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
+from apps.backend.app.modules.resources.ambiente.application.services.estudo_service import EstudoService
+from apps.backend.app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusCondicionante, StatusEstudoAmbiental, StatusLicenca, TipoEstudoAmbiental, TipoImovel, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, EstudoNotFoundError
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyCondicionanteRepository, SQLAlchemyEstudoRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
 
 @pytest.mark.asyncio
 async def test_fluxo_estudo_e_condicionante_sucesso():

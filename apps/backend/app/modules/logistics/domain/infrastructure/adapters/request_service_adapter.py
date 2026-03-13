@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.logistics.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.logistics.application.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

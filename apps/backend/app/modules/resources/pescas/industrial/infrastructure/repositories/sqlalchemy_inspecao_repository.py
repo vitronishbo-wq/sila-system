@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
-from app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
-from app.modules.resources.pescas.industrial.infrastructure.models.inspecao_model import InspecaoModel
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.inspecao_model import InspecaoModel
 
 class SQLAlchemyInspecaoRepository(InspecaoSanitariaIndustrialRepositoryPort):
 

@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from uuid import uuid4
 import pytest
-from app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
-from app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, FakeTurismoService, InMemoryPatrimonioImaterialRepository
+from apps.backend.app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, FakeTurismoService, InMemoryPatrimonioImaterialRepository
 
 def test_patrimonio_imaterial_registro_sucesso() -> None:
 

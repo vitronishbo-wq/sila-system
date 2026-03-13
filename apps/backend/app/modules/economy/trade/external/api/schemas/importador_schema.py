@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.economy.trade.external.domain.enums import RegimeImportacao, StatusHabilitacao, TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeImportacao, StatusHabilitacao, TipoOperador, TipoPessoa
 
 class ImportadorCreate(BaseModel):
     razao_social: str

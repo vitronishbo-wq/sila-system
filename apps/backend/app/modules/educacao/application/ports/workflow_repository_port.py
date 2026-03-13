@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
 class WorkflowRepositoryPort(ABC):
 

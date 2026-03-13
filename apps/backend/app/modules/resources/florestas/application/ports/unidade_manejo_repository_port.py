@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.florestas.domain.enums import TipoManejo
-from app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoManejo
+from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
 
 class UnidadeManejoRepositoryPort(ABC):
 

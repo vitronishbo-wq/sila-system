@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date, datetime, timedelta
 from typing import Any, Dict, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.services.statistics_service import StatisticsService
-from app.modules.governance.statistics.infrastructure.repositories.statistics_repository import StatisticsRepository
-from app.modules.governance.statistics.integrations.data_sources import DataSources
+from apps.backend.app.modules.governance.statistics.application.services.statistics_service import StatisticsService
+from apps.backend.app.modules.governance.statistics.infrastructure.repositories.statistics_repository import StatisticsRepository
+from apps.backend.app.modules.governance.statistics.integrations.data_sources import DataSources
 
 class KPIService:
     """Faixada de KPIs para dashboards executivos."""

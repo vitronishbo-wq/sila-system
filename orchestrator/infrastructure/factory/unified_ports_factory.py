@@ -23,13 +23,13 @@ from datetime import datetime
 # ============================================================================
 
 # These imports are OK because we're importing ABSTRACT ports, not concrete
-from app.modules.health.core.application.ports.identity_service_port import (
+from apps.backend.app.modules.health.core.application.ports.identity_service_port import (
     IdentityServicePort as HealthIdentityServicePort,
     CitizenIdentity,
     VerificationResult,
     SignatureVerificationResult,
 )
-from app.modules.educacao.core.application.ports.identity_service_port import (
+from apps.backend.app.modules.educacao.core.application.ports.identity_service_port import (
     IdentityServicePort as EducacaoIdentityServicePort,
     CitizenIdentity as EducacaoCitizenIdentity,  # Same DTO
     VerificationResult as EducacaoVerificationResult,  # Same DTO
@@ -168,7 +168,7 @@ class OrchestratorFactory:
             # In production, this imports actual identity core
             # For now, it's a placeholder
             try:
-                from app.modules.identity.core import IdentityCore
+                from apps.backend.app.modules.identity.core import IdentityCore
                 self._identity_service = IdentityCore()
             except ImportError:
                 # Identity core not available in test environment

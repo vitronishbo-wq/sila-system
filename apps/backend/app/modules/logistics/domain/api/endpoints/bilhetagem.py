@@ -2,11 +2,11 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.logistics.api.deps import get_bilhetagem_service
-from app.modules.logistics.api.schemas.bilhetagem_schema import BilhetagemEventoCreate, BilhetagemEventoResponse, BilhetagemReconciliacaoInput
-from app.modules.logistics.application.services import BilhetagemService
-from app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira
-from app.modules.logistics.core.exceptions import BilhetagemNotFoundError
+from apps.backend.app.modules.logistics.api.deps import get_bilhetagem_service
+from apps.backend.app.modules.logistics.api.schemas.bilhetagem_schema import BilhetagemEventoCreate, BilhetagemEventoResponse, BilhetagemReconciliacaoInput
+from apps.backend.app.modules.logistics.application.services import BilhetagemService
+from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira
+from apps.backend.app.modules.logistics.core.exceptions import BilhetagemNotFoundError
 router = APIRouter(prefix='/bilhetagem', tags=['Transportes Logistica - Bilhetagem'])
 
 def _has_capability(service: BilhetagemService, method_name: str) -> bool:

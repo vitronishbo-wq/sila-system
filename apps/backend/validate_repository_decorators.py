@@ -15,7 +15,7 @@ from pathlib import Path
 # Adiciona o caminho do backend aos imports
 sys.path.insert(0, '/home/dev03wsl/sila-system/apps/backend')
 
-from app.modules.identity.infrastructure.repositories.user_repository import UserRepository
+from apps.backend.app.modules.identity.infrastructure.repositories.user_repository import UserRepository
 
 
 def check_method_exists(repo_class, method_name):

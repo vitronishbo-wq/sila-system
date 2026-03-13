@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_insumo_service
-from app.modules.resources.agricultura.api.schemas.insumo_schema import InsumoCreate, InsumoResponse, MovimentoInsumoInput
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.exceptions import InsumoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_insumo_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.insumo_schema import InsumoCreate, InsumoResponse, MovimentoInsumoInput
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.exceptions import InsumoNotFoundError
 router = APIRouter(prefix='/insumos', tags=['Agricultura - insumos'])
 
 @router.post('/', response_model=InsumoResponse, status_code=status.HTTP_201_CREATED)

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.tendencia_repository_port import TendenciaRepositoryPort
-from app.modules.governance.statistics.infrastructure.models.tendencia_model import TendenciaModel
-from app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
+from apps.backend.app.modules.governance.statistics.application.ports.tendencia_repository_port import TendenciaRepositoryPort
+from apps.backend.app.modules.governance.statistics.infrastructure.models.tendencia_model import TendenciaModel
+from apps.backend.app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
 
 class SQLAlchemyTendenciaRepository(SQLAlchemyNamedRepository, TendenciaRepositoryPort):
 

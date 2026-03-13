@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.fiscalizacao_repository_port import FiscalizacaoRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
-from app.modules.resources.ambiente.domain.models.fiscalizacao import Fiscalizacao
+from apps.backend.app.modules.resources.ambiente.application.ports.fiscalizacao_repository_port import FiscalizacaoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
+from apps.backend.app.modules.resources.ambiente.domain.models.fiscalizacao import Fiscalizacao
 
 class SQLAlchemyFiscalizacaoRepository(FiscalizacaoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

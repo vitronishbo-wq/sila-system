@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.api.deps import get_especie_catalog_service
-from app.modules.resources.pescas.api.schemas.especie_schema import EspecieCreate, EspecieResponse
+from apps.backend.app.modules.resources.pescas.api.deps import get_especie_catalog_service
+from apps.backend.app.modules.resources.pescas.api.schemas.especie_schema import EspecieCreate, EspecieResponse
 router = APIRouter(prefix='/especies', tags=['Pescas - Especies'])
 
 @router.post('/', response_model=EspecieResponse, status_code=status.HTTP_201_CREATED)

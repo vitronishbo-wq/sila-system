@@ -17,7 +17,7 @@ from app.core.observability.enterprise_logging import get_logger, setup_enterpri
 from app.core.observability.context import set_request_context
 logger = get_logger('workers.event_worker')
 try:
-    from app.modules.educacao.application.events import handlers as educacao_handlers
+    from apps.backend.app.modules.educacao.application.events import handlers as educacao_handlers
 except ImportError:
     logger.warning('educacao_handlers not found')
 

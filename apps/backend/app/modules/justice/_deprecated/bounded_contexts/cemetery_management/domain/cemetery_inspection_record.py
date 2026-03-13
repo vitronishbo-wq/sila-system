@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, String, DateTime, JSON
-from app.modules.justice.bounded_contexts.shared import Base
+from apps.backend.app.modules.justice.bounded_contexts.shared import Base
 import uuid
 
 class CemeteryInspectionRecord(Base):

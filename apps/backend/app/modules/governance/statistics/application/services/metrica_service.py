@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.governance.statistics.application.ports.metrica_repository_port import MetricaRepositoryPort
-from app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
-from app.modules.governance.statistics.domain.models.metrica import Metrica
-from app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.application.ports.metrica_repository_port import MetricaRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
+from apps.backend.app.modules.governance.statistics.domain.models.metrica import Metrica
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
 
 class MetricaService:
 

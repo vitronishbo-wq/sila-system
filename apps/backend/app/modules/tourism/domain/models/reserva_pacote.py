@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from uuid import uuid4
-from app.modules.tourism.domain.models import BaseTurismoModel
+from apps.backend.app.modules.tourism.domain.models import BaseTurismoModel
 
 @dataclass
 class ReservaPacote(BaseTurismoModel):

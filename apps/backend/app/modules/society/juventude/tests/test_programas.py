@@ -3,9 +3,9 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.society.juventude.application.services.programa_service import ProgramaService
-from app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
-from app.modules.society.juventude.tests._fakes import InMemoryProgramaRepository
+from apps.backend.app.modules.society.juventude.application.services.programa_service import ProgramaService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
+from apps.backend.app.modules.society.juventude.tests._fakes import InMemoryProgramaRepository
 
 def test_criar_programa_sucesso() -> None:
 

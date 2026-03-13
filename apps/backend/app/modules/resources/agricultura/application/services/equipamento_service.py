@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.domain.enums import StatusEquipamento, TipoEquipamento
-from app.modules.resources.agricultura.domain.models.equipamento import Equipamento
-from app.modules.resources.agricultura.exceptions import EquipamentoNotFoundError
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEquipamento, TipoEquipamento
+from apps.backend.app.modules.resources.agricultura.domain.models.equipamento import Equipamento
+from apps.backend.app.modules.resources.agricultura.exceptions import EquipamentoNotFoundError
 
 class EquipamentoService:
 

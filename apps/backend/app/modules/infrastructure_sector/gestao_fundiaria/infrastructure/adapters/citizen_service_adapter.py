@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.citizen_service_port import CitizenServicePort
 
 class CitizenServiceAdapter(CitizenServicePort):
 

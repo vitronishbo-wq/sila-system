@@ -1,7 +1,7 @@
 import asyncio
 import uuid
-from app.modules.xroad.application.xroad_service import XRoadInterconnect
-from app.modules.xroad.domain.envelope import SILAEnvelope
+from apps.backend.app.modules.xroad.application.xroad_service import XRoadInterconnect
+from apps.backend.app.modules.xroad.domain.envelope import SILAEnvelope
 
 async def run_stress_test():
     service = XRoadInterconnect()

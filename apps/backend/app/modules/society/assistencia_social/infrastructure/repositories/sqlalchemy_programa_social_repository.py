@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.programa_social_repository_port import ProgramaSocialRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
-from app.modules.society.assistencia_social.domain.models import ProgramaSocial
-from app.modules.society.assistencia_social.infrastructure.models.programa_social_model import ProgramaSocialModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.programa_social_repository_port import ProgramaSocialRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
+from apps.backend.app.modules.society.assistencia_social.domain.models import ProgramaSocial
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.programa_social_model import ProgramaSocialModel
 
 class SQLAlchemyProgramaSocialRepository(ProgramaSocialRepositoryPort):
 

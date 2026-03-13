@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
 
 class QualidadeServicoRepositoryPort(ABC):
 

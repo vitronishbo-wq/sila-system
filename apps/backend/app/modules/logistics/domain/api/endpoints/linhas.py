@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.logistics.api.deps import get_linha_service
-from app.modules.logistics.api.schemas.linha_schema import LinhaCreate, LinhaIndicadoresInput, LinhaResponse, LinhaTarifaInput, LinhaVincularVeiculoInput, VeiculoCreate, VeiculoResponse
-from app.modules.logistics.application.services import LinhaService
-from app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo
-from app.modules.logistics.core.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
+from apps.backend.app.modules.logistics.api.deps import get_linha_service
+from apps.backend.app.modules.logistics.api.schemas.linha_schema import LinhaCreate, LinhaIndicadoresInput, LinhaResponse, LinhaTarifaInput, LinhaVincularVeiculoInput, VeiculoCreate, VeiculoResponse
+from apps.backend.app.modules.logistics.application.services import LinhaService
+from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo
+from apps.backend.app.modules.logistics.core.exceptions import LinhaAlreadyExistsError, LinhaNotFoundError, VeiculoAlreadyExistsError, VeiculoNotFoundError
 router = APIRouter(prefix='/linhas', tags=['Transportes Logistica - Linhas'])
 
 def _has_capability(service: LinhaService, method_name: str) -> bool:

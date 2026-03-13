@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.aviacao_civil.api.deps import get_ocorrencia_service
-from app.modules.infrastructure_sector.aviacao_civil.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse
-from app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import OcorrenciaService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.deps import get_ocorrencia_service
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import OcorrenciaService
 router = APIRouter(prefix='/ocorrencias', tags=['Aviacao Civil - Ocorrencias'])
 
 @router.post('/', response_model=OcorrenciaResponse, status_code=status.HTTP_201_CREATED)

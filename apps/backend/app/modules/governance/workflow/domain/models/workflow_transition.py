@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 from uuid import UUID, uuid4
-from app.modules.governance.workflow.domain.enums import TransitionType, AssignmentType
+from apps.backend.app.modules.governance.workflow.domain.enums import TransitionType, AssignmentType
 
 @dataclass
 class WorkflowTransition:

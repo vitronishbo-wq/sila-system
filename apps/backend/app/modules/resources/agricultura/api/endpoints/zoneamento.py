@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_zoneamento_service
-from app.modules.resources.agricultura.api.schemas.zoneamento_schema import CadastroAmbientalCreate, CadastroAmbientalPendenciaInput, CadastroAmbientalResponse, CadastroAmbientalValidacaoInput, ZoneamentoCreate, ZoneamentoResponse, ZoneamentoRevogacaoInput
-from app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
-from app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
-from app.modules.resources.agricultura.exceptions import CadastroAmbientalNotFoundError, PropriedadeNotFoundError, ZoneamentoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_zoneamento_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.zoneamento_schema import CadastroAmbientalCreate, CadastroAmbientalPendenciaInput, CadastroAmbientalResponse, CadastroAmbientalValidacaoInput, ZoneamentoCreate, ZoneamentoResponse, ZoneamentoRevogacaoInput
+from apps.backend.app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
+from apps.backend.app.modules.resources.agricultura.exceptions import CadastroAmbientalNotFoundError, PropriedadeNotFoundError, ZoneamentoNotFoundError
 router = APIRouter(prefix='/zoneamento', tags=['Agricultura - zoneamento'])
 
 @router.post('/', response_model=ZoneamentoResponse, status_code=status.HTTP_201_CREATED)

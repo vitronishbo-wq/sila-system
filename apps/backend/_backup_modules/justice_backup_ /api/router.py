@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from app.modules.justice.bounded_contexts.civil_registry_core.api.router import router as citizen_router
-from app.modules.justice.bounded_contexts.identity_documents.api.router import router as documents_router
-from app.modules.justice.bounded_contexts.vital_events.api.router import router as events_router
-from app.modules.justice.bounded_contexts.cemetery_management.api.router import router as cemetery_router
+from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.api.router import router as citizen_router
+from apps.backend.app.modules.justice.bounded_contexts.identity_documents.api.router import router as documents_router
+from apps.backend.app.modules.justice.bounded_contexts.vital_events.api.router import router as events_router
+from apps.backend.app.modules.justice.bounded_contexts.cemetery_management.api.router import router as cemetery_router
 router = APIRouter(prefix='/justice', tags=['justice'])
 router.include_router(citizen_router)
 router.include_router(documents_router)

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
 
 class EspectroRepositoryPort(ABC):
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.multa_repository_port import MultaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusMulta
-from app.modules.resources.ambiente.domain.models.multa import Multa
+from apps.backend.app.modules.resources.ambiente.application.ports.multa_repository_port import MultaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusMulta
+from apps.backend.app.modules.resources.ambiente.domain.models.multa import Multa
 
 class SQLAlchemyMultaRepository(MultaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

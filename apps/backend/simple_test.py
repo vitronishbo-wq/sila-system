@@ -2,7 +2,7 @@
 print("Starting simple test...")
 
 try:
-    from modules.payment import payment_router
+    from apps.backend.app.modules.payment import payment_router
 
     print("✅ Payment router imported")
 

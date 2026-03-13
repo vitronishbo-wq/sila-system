@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_operacao_service
-from app.modules.resources.agricultura.api.schemas.operacao_schema import OperacaoCreate, OperacaoResponse
-from app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
-from app.modules.resources.agricultura.exceptions import InsumoNotFoundError, OperacaoNotFoundError, SafraNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_operacao_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.operacao_schema import OperacaoCreate, OperacaoResponse
+from apps.backend.app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
+from apps.backend.app.modules.resources.agricultura.exceptions import InsumoNotFoundError, OperacaoNotFoundError, SafraNotFoundError
 router = APIRouter(prefix='/operacoes', tags=['Agricultura - operacoes'])
 
 @router.post('/', response_model=OperacaoResponse, status_code=status.HTTP_201_CREATED)

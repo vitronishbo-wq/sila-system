@@ -1,9 +1,9 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import ConsumoRepositoryPort
-from app.modules.energy.domain.models import ConsumoEnergia
-from app.modules.energy.infrastructure.models import ConsumoEnergiaModel
+from apps.backend.app.modules.energy.application.ports import ConsumoRepositoryPort
+from apps.backend.app.modules.energy.domain.models import ConsumoEnergia
+from apps.backend.app.modules.energy.infrastructure.models import ConsumoEnergiaModel
 
 class SQLAlchemyConsumoRepository(ConsumoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

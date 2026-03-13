@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List, Tuple
 from uuid import UUID
-from app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
-from app.modules.governance.workflow.domain.enums import TaskStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
+from apps.backend.app.modules.governance.workflow.domain.enums import TaskStatus
 
 class TaskRepositoryPort(ABC):
     """Interface do repositório de tarefas"""

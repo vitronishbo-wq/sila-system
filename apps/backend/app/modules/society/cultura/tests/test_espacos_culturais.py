@@ -1,8 +1,8 @@
 from __future__ import annotations
 import asyncio
-from app.modules.society.cultura.application.services.espaco_cultural_service import EspacoCulturalService
-from app.modules.society.cultura.domain.enums import TipoEspacoCultural
-from app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryEspacoCulturalRepository
+from apps.backend.app.modules.society.cultura.application.services.espaco_cultural_service import EspacoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryEspacoCulturalRepository
 
 def test_cadastrar_espaco_cultural_sucesso() -> None:
 

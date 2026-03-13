@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
 
 class EspectroCreate(BaseModel):
     tipo: TipoEspectro

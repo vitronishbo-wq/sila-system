@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
-from app.modules.public_security.domain.enums import StatusProva, TipoProva
-from app.modules.public_security.domain.models.prova_pericial import ProvaPericial
-from app.modules.public_security.infrastructure.models.prova_pericial_model import ProvaPericialModel
+from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusProva, TipoProva
+from apps.backend.app.modules.public_security.domain.models.prova_pericial import ProvaPericial
+from apps.backend.app.modules.public_security.infrastructure.models.prova_pericial_model import ProvaPericialModel
 
 class SQLAlchemyProvaPericialRepository(ProvaPericialRepositoryPort):
 

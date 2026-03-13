@@ -3,7 +3,7 @@ import base64
 from datetime import datetime
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
-from app.modules.identity.verifiable_credentials.domain.entities.credential import VerifiableCredential
+from apps.backend.app.modules.identity.verifiable_credentials.domain.entities.credential import VerifiableCredential
 
 class CredentialSigner:
     def sign(self, vc: VerifiableCredential, private_key_pem: bytes) -> VerifiableCredential:

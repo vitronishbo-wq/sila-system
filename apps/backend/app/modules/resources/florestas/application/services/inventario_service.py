@@ -1,8 +1,8 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
-from app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
+from apps.backend.app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
 
 class InventarioService:
 

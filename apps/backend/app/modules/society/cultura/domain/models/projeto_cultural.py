@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
 
 @dataclass
 class ProjetoCultural:

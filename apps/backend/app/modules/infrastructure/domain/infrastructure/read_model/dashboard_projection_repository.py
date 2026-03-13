@@ -4,7 +4,7 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.infrastructure.read_model.dashboard_model import DashboardProjectionOffsetModel, ObraDashboardReadModel
+from apps.backend.app.modules.infrastructure.infrastructure.read_model.dashboard_model import DashboardProjectionOffsetModel, ObraDashboardReadModel
 
 class DashboardProjectionRepository:
 

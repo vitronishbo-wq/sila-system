@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.alvara_repository_port import AlvaraRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import AlvaraAlreadyExistsError, AlvaraNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.alvara_repository_port import AlvaraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import AlvaraAlreadyExistsError, AlvaraNotFoundError
 
 class AlvaraService:
 

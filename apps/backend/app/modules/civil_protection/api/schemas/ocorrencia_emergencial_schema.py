@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
 
 class OcorrenciaEmergencialCreate(BaseModel):
     corporacao_id: UUID

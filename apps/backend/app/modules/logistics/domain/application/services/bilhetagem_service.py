@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
-from app.modules.logistics.application.ports import BilhetagemRepositoryPort, FinancasServicePort, WorkflowServicePort
-from app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
-from app.modules.logistics.domain.models import BilhetagemEletronica
-from app.modules.logistics.core.exceptions import BilhetagemNotFoundError
+from apps.backend.app.modules.logistics.application.ports import BilhetagemRepositoryPort, FinancasServicePort, WorkflowServicePort
+from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
+from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica
+from apps.backend.app.modules.logistics.core.exceptions import BilhetagemNotFoundError
 
 class BilhetagemService:
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_mandado_service
-from app.modules.public_security.api.schemas.mandado_schema import MandadoCreate, MandadoResponse, MandadoStatusUpdate
-from app.modules.public_security.application.services.mandado_service import MandadoService
-from app.modules.public_security.domain.enums import StatusMandado, TipoMandado
+from apps.backend.app.modules.public_security.api.deps import get_mandado_service
+from apps.backend.app.modules.public_security.api.schemas.mandado_schema import MandadoCreate, MandadoResponse, MandadoStatusUpdate
+from apps.backend.app.modules.public_security.application.services.mandado_service import MandadoService
+from apps.backend.app.modules.public_security.domain.enums import StatusMandado, TipoMandado
 router = APIRouter(prefix='/mandados', tags=['Seguranca Publica - Mandados'])
 
 @router.post('/', response_model=MandadoResponse, status_code=status.HTTP_201_CREATED)

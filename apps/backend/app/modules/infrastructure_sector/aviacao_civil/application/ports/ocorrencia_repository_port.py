@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.ocorrencia import Ocorrencia
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.ocorrencia import Ocorrencia
 
 class OcorrenciaRepositoryPort(ABC):
 

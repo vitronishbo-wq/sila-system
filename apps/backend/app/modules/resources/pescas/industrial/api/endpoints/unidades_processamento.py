@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.industrial.api.deps import get_unidade_processamento_service
-from app.modules.resources.pescas.industrial.api.schemas.unidade_processamento_schema import UnidadeProcessamentoCreate, UnidadeProcessamentoResponse, UnidadeProcessamentoUpdateCapacidade
-from app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
-from app.modules.resources.pescas.industrial.domain.enums import TipoProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.api.deps import get_unidade_processamento_service
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.unidade_processamento_schema import UnidadeProcessamentoCreate, UnidadeProcessamentoResponse, UnidadeProcessamentoUpdateCapacidade
+from apps.backend.app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import TipoProcessamento
 router = APIRouter(prefix='/unidades-processamento', tags=['Pescas Industriais - Unidades de Processamento'])
 
 @router.post('/', response_model=UnidadeProcessamentoResponse, status_code=status.HTTP_201_CREATED)

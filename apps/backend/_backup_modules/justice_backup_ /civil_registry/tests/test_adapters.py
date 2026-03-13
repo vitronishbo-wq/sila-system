@@ -1,7 +1,7 @@
 import pytest
 from uuid import uuid4
-from app.modules.justice.bounded_contexts.application.services.service import CitizenService
-from app.modules.justice.bounded_contexts.enums import CitizenStatus
+from apps.backend.app.modules.justice.bounded_contexts.application.services.service import CitizenService
+from apps.backend.app.modules.justice.bounded_contexts.enums import CitizenStatus
 
 class MockFUCAdapter:
 

@@ -3,7 +3,7 @@ from datetime import date
 from typing import Any, Optional
 from uuid import UUID
 from app.core.bridges import ServiceRequestLifecycleBridge
-from app.modules.society.emprego.application.ports import RequestServicePort
+from apps.backend.app.modules.society.emprego.application.ports import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

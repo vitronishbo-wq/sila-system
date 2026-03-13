@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.society.cultura.domain.enums import TipoEspacoCultural
+from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
 
 @dataclass
 class EspacoCultural:

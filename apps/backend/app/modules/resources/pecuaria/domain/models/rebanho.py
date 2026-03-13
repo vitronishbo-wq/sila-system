@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.resources.pecuaria.domain.enums import StatusRebanho, TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusRebanho, TipoAnimal
 
 @dataclass
 class Rebanho:

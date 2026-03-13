@@ -1,4 +1,4 @@
-from app.modules.saude.domain.entities import (
+from apps.backend.app.modules.saude.domain.entities import (
     MedicalRecord,
     Prescription,
     PrescriptionItem,
@@ -6,13 +6,13 @@ from app.modules.saude.domain.entities import (
     VigilanciaEpidemiologica,
     VitalSigns,
 )
-from app.modules.saude.domain.enums import (
+from apps.backend.app.modules.saude.domain.enums import (
     HealthUnitType,
     MedicationType,
     PrescriptionStatus,
     VigilanciaStatus,
 )
-from app.modules.saude.domain.exceptions import (
+from apps.backend.app.modules.saude.domain.exceptions import (
     MedicalRecordNotFoundError,
     PatientNotFoundError,
     SaudeDomainError,

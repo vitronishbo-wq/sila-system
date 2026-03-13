@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.society.juventude.domain.enums import StatusFormacao
+from apps.backend.app.modules.society.juventude.domain.enums import StatusFormacao
 
 @dataclass
 class FormacaoJuvenil:

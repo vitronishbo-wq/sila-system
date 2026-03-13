@@ -1,4 +1,4 @@
-from app.modules.educacao.api.schemas.workflow_schema import WorkflowCancelar, WorkflowConcluir, WorkflowCreate, WorkflowResponse
+from apps.backend.app.modules.educacao.api.schemas.workflow_schema import WorkflowCancelar, WorkflowConcluir, WorkflowCreate, WorkflowResponse
 
 class PropinaCreate(WorkflowCreate):
     pass

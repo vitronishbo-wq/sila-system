@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.cooperacao_internacional.api.deps import get_acordo_service
-from app.modules.governance.cooperacao_internacional.api.schemas.acordo_schema import AcordoAssinarInput, AcordoCreate, AcordoRatificarInput, AcordoResponse, AcordoVigorInput
-from app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
+from apps.backend.app.modules.governance.cooperacao_internacional.api.deps import get_acordo_service
+from apps.backend.app.modules.governance.cooperacao_internacional.api.schemas.acordo_schema import AcordoAssinarInput, AcordoCreate, AcordoRatificarInput, AcordoResponse, AcordoVigorInput
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
 router = APIRouter(prefix='/acordos', tags=['Cooperacao Internacional - Acordos'])
 
 @router.post('/', response_model=AcordoResponse, status_code=status.HTTP_201_CREATED)

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
-from app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
 
 class FaturaRepositoryPort(ABC):
 

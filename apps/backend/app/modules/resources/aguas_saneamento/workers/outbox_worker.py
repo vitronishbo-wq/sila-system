@@ -1,8 +1,8 @@
 from __future__ import annotations
 import asyncio
-from app.modules.resources.aguas_saneamento.application.bus import EventBus
-from app.modules.resources.aguas_saneamento.application.events.registry import deserialize_event
-from app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.application.bus import EventBus
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.registry import deserialize_event
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
 
 class OutboxWorker:
 

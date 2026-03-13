@@ -1,6 +1,6 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
-from app.modules.governance.statistics.application.services.statistics_service import StatisticsService
+from apps.backend.app.modules.governance.statistics.application.services.statistics_service import StatisticsService
 
 def test_register_and_record_placeholder():
 

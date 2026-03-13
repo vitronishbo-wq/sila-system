@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.industry.api.router import router as industria_router
+from apps.backend.app.modules.industry.api.router import router as industria_router
 
 def test_http_catalogo_ramos_retorna_lista():
     app = FastAPI()

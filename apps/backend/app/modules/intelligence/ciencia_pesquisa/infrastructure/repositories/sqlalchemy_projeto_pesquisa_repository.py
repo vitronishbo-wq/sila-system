@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.infrastructure.models.projeto_pesquisa_model import ProjetoPesquisaModel
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.projeto_pesquisa_model import ProjetoPesquisaModel
 
 class SQLAlchemyProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
 

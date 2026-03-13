@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import StatusCertificacao
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCertificacao
 
 class CertificacaoCreate(BaseModel):
     codigo_propriedade: str

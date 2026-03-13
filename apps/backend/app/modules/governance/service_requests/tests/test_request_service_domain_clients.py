@@ -2,8 +2,8 @@ from __future__ import annotations
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.governance.service_requests.application.services.request_service import RequestService
-from app.modules.governance.service_requests.domain.enums import RequestChannel, RequestPriority, ServiceType
+from apps.backend.app.modules.governance.service_requests.application.services.request_service import RequestService
+from apps.backend.app.modules.governance.service_requests.domain.enums import RequestChannel, RequestPriority, ServiceType
 
 @pytest.mark.asyncio
 async def test_create_request_uses_identity_validation_first() -> None:

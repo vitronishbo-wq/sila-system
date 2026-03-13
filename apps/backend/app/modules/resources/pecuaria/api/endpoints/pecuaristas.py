@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pecuaria.api.deps import get_pecuarista_service
-from app.modules.resources.pecuaria.api.schemas.pecuarista_schema import PecuaristaAtivarInput, PecuaristaCreate, PecuaristaFilter, PecuaristaResponse
-from app.modules.resources.pecuaria.application.services.pecuarista_service import PecuaristaService
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_pecuarista_service
+from apps.backend.app.modules.resources.pecuaria.api.schemas.pecuarista_schema import PecuaristaAtivarInput, PecuaristaCreate, PecuaristaFilter, PecuaristaResponse
+from apps.backend.app.modules.resources.pecuaria.application.services.pecuarista_service import PecuaristaService
 router = APIRouter(prefix='/pecuaristas', tags=['Pecuaria - Pecuaristas'])
 
 @router.post('/', response_model=PecuaristaResponse, status_code=status.HTTP_201_CREATED)

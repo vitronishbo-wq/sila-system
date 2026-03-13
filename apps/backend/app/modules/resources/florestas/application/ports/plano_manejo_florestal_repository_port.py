@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
 
 class PlanoManejoFlorestalRepositoryPort(ABC):
 

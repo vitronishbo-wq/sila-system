@@ -1,12 +1,12 @@
-from app.modules.society.assistencia_social.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
-from app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import BeneficiarioRepositoryPort
-from app.modules.society.assistencia_social.application.ports.beneficio_repository_port import BeneficioRepositoryPort
-from app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import CadastroUnicoRepositoryPort
-from app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import CriancaRiscoRepositoryPort
-from app.modules.society.assistencia_social.application.ports.idoso_vulneravel_repository_port import IdosoVulneravelRepositoryPort
-from app.modules.society.assistencia_social.application.ports.pcd_repository_port import PCDRepositoryPort
-from app.modules.society.assistencia_social.application.ports.programa_social_repository_port import ProgramaSocialRepositoryPort
-from app.modules.society.assistencia_social.application.ports.situacao_rua_repository_port import SituacaoRuaRepositoryPort
-from app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import VisitaDomiciliarRepositoryPort
-from app.modules.society.assistencia_social.application.ports.services_port import CitizenServicePort, EducacaoServicePort, EmpregoServicePort, JuventudeServicePort, RequestServicePort, SaudeServicePort
+from apps.backend.app.modules.society.assistencia_social.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import BeneficiarioRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.beneficio_repository_port import BeneficioRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import CadastroUnicoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import CriancaRiscoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.idoso_vulneravel_repository_port import IdosoVulneravelRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.pcd_repository_port import PCDRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.programa_social_repository_port import ProgramaSocialRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.situacao_rua_repository_port import SituacaoRuaRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import VisitaDomiciliarRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.application.ports.services_port import CitizenServicePort, EducacaoServicePort, EmpregoServicePort, JuventudeServicePort, RequestServicePort, SaudeServicePort
 __all__ = ['AtendimentoRepositoryPort', 'BeneficiarioRepositoryPort', 'BeneficioRepositoryPort', 'CadastroUnicoRepositoryPort', 'CriancaRiscoRepositoryPort', 'IdosoVulneravelRepositoryPort', 'PCDRepositoryPort', 'ProgramaSocialRepositoryPort', 'SituacaoRuaRepositoryPort', 'VisitaDomiciliarRepositoryPort', 'CitizenServicePort', 'EducacaoServicePort', 'EmpregoServicePort', 'JuventudeServicePort', 'RequestServicePort', 'SaudeServicePort']

@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
-from app.modules.society.juventude.domain.enums import TipoBolsa
-from app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
-from app.modules.society.juventude.infrastructure.models.bolsa_estudo_model import BolsaEstudoModel
+from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import TipoBolsa
+from apps.backend.app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
+from apps.backend.app.modules.society.juventude.infrastructure.models.bolsa_estudo_model import BolsaEstudoModel
 
 class SQLAlchemyBolsaEstudoRepository(BolsaEstudoRepositoryPort):
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
 
 class ProjetoPesquisaCreate(BaseModel):
     titulo: str = Field(..., min_length=5)

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_investigacao_service
-from app.modules.public_security.api.schemas.investigacao_schema import InvestigacaoCreate, InvestigacaoResponse, InvestigacaoStatusUpdate
-from app.modules.public_security.application.services.investigacao_service import InvestigacaoService
-from app.modules.public_security.domain.enums import StatusInvestigacao
+from apps.backend.app.modules.public_security.api.deps import get_investigacao_service
+from apps.backend.app.modules.public_security.api.schemas.investigacao_schema import InvestigacaoCreate, InvestigacaoResponse, InvestigacaoStatusUpdate
+from apps.backend.app.modules.public_security.application.services.investigacao_service import InvestigacaoService
+from apps.backend.app.modules.public_security.domain.enums import StatusInvestigacao
 router = APIRouter(prefix='/investigacoes', tags=['Seguranca Publica - Investigacoes'])
 
 @router.post('/', response_model=InvestigacaoResponse, status_code=status.HTTP_201_CREATED)

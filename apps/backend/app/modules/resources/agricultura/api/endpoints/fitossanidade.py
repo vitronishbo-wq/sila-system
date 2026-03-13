@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_fitossanidade_service
-from app.modules.resources.agricultura.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse
-from app.modules.resources.agricultura.application.services.fitossanidade_service import FitossanidadeService
-from app.modules.resources.agricultura.domain.enums import StatusOcorrencia
-from app.modules.resources.agricultura.exceptions import OcorrenciaNotFoundError, PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_fitossanidade_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse
+from apps.backend.app.modules.resources.agricultura.application.services.fitossanidade_service import FitossanidadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusOcorrencia
+from apps.backend.app.modules.resources.agricultura.exceptions import OcorrenciaNotFoundError, PropriedadeNotFoundError
 router = APIRouter(prefix='/fitossanidade', tags=['Agricultura - fitossanidade'])
 
 @router.post('/', response_model=OcorrenciaResponse, status_code=status.HTTP_201_CREATED)

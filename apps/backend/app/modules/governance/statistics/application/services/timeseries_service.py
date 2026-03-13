@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import datetime
-from app.modules.governance.statistics.application.ports.metrica_repository_port import MetricaRepositoryPort
-from app.modules.governance.statistics.application.ports.timeseries_repository_port import TimeSeriesRepositoryPort
-from app.modules.governance.statistics.domain.models.timeseries import TimeSeries
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.application.ports.metrica_repository_port import MetricaRepositoryPort
+from apps.backend.app.modules.governance.statistics.application.ports.timeseries_repository_port import TimeSeriesRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.models.timeseries import TimeSeries
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 
 class TimeSeriesService:
 

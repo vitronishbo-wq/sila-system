@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort, TourismServicePort
-from app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
-from app.modules.society.patrimonio_cultural.domain.models import CulturalAsset
+from apps.backend.app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort, TourismServicePort
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models import CulturalAsset
 
 class InMemoryCulturalAssetRepository(CulturalAssetRepositoryPort):
 

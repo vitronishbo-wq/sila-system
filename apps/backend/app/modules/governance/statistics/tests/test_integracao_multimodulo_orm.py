@@ -6,18 +6,18 @@ import pytest
 from sqlalchemy import func, select, text
 from app.core.bridges.identity_bridge import BIEventRecord, BIRecord, CitizenFUC
 from app.core.bridges.society_statistics_models_bridge import AppointmentModel, BeneficiarioModel, BeneficioModel, CadastroUnicoModel, CandidatoModel, ContratoModel, InternamentoModel, JovemModel, MatriculaModel, OfertaModel, ProgramaJuvenilModel, TurmaModel, VaccineDoseModel
-from app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
-from app.modules.governance.statistics.api.deps import get_statistics_service
-from app.modules.governance.statistics.application.services.statistics_service import StatisticsService
-from app.modules.governance.statistics.infrastructure.models.statistic_model import StatisticModel
-from app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
-from app.modules.governance.statistics.infrastructure.repositories.statistics_repository import StatisticsRepository
-from app.modules.governance.statistics.integrations.data_sources import DataSources
-from app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
-from app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
-from app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
-from app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
-from app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
+from apps.backend.app.modules.governance.statistics.api.deps import get_statistics_service
+from apps.backend.app.modules.governance.statistics.application.services.statistics_service import StatisticsService
+from apps.backend.app.modules.governance.statistics.infrastructure.models.statistic_model import StatisticModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
+from apps.backend.app.modules.governance.statistics.infrastructure.repositories.statistics_repository import StatisticsRepository
+from apps.backend.app.modules.governance.statistics.integrations.data_sources import DataSources
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
 SOURCE_REQUIREMENTS = {'educacao': {'educacao_turmas', 'educacao_matriculas'}, 'juventude': {'juventude_jovens', 'juventude_programas'}, 'emprego': {'emprego_candidatos', 'emprego_ofertas', 'emprego_contratos'}, 'saude': {'appointments', 'vaccine_doses', 'health_internamentos'}, 'assistencia': {'assistencia_social_beneficiarios', 'assistencia_social_beneficios', 'assistencia_social_cadastros_unicos'}, 'identidade': {'citizen_fuc', 'bi_records', 'bi_events'}, 'workflow': {'wf_definitions', 'wf_states', 'wf_transitions', 'wf_instances', 'wf_tasks'}, 'service_requests': {'service_requests'}}
 
 async def _available_tables(db_session, table_names: set[str]) -> set[str]:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.agricultura.domain.enums import StatusCertificacao
-from app.modules.resources.agricultura.domain.models.certificacao import Certificacao
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCertificacao
+from apps.backend.app.modules.resources.agricultura.domain.models.certificacao import Certificacao
 
 class CertificacaoRepositoryPort(ABC):
 

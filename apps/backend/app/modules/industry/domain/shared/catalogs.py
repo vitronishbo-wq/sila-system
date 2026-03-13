@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial
-from app.modules.industry.domain.models.porte_industrial import Porte
-from app.modules.industry.domain.models.ramo_industrial import Ramo
+from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial
+from apps.backend.app.modules.industry.domain.models.porte_industrial import Porte
+from apps.backend.app.modules.industry.domain.models.ramo_industrial import Ramo
 RAMOS_CATALOG: dict[RamoIndustrial, str] = {RamoIndustrial.EXTRATIVA: 'Industria extrativa', RamoIndustrial.TRANSFORMACAO: 'Industria de transformacao', RamoIndustrial.ALIMENTAR: 'Industria alimentar', RamoIndustrial.BEBIDAS: 'Industria de bebidas', RamoIndustrial.TEXTIL: 'Industria textil', RamoIndustrial.QUIMICA: 'Industria quimica', RamoIndustrial.METALURGICA: 'Industria metalurgica', RamoIndustrial.ELETRONICA: 'Industria eletronica', RamoIndustrial.VEICULOS: 'Industria de veiculos'}
 PORTES_CATALOG: dict[PorteIndustrial, str] = {PorteIndustrial.MICRO: 'Micro industria', PorteIndustrial.PEQUENA: 'Pequena industria', PorteIndustrial.MEDIA: 'Media industria', PorteIndustrial.GRANDE: 'Grande industria'}
 

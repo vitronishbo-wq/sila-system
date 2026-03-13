@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_operacao_urbana_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.operacoes_urbanas import router as operacoes_urbanas_router
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.operacao_urbana_service import OperacaoUrbanaService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaNotFoundError
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyOperacaoUrbanaRepository
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_operacao_urbana_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.operacoes_urbanas import router as operacoes_urbanas_router
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.operacao_urbana_service import OperacaoUrbanaService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyOperacaoUrbanaRepository
 
 @pytest.mark.asyncio
 async def test_operacao_urbana_service_fluxo_sucesso():

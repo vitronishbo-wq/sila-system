@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_politica_juventude_service
-from app.modules.society.juventude.api.schemas.politica_juventude_schema import PoliticaJuventudeCreate, PoliticaJuventudeResponse, PoliticaJuventudeStatusUpdate
-from app.modules.society.juventude.application.services.politica_juventude_service import PoliticaJuventudeService
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusPoliticaJuventude
+from apps.backend.app.modules.society.juventude.api.deps import get_politica_juventude_service
+from apps.backend.app.modules.society.juventude.api.schemas.politica_juventude_schema import PoliticaJuventudeCreate, PoliticaJuventudeResponse, PoliticaJuventudeStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.politica_juventude_service import PoliticaJuventudeService
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusPoliticaJuventude
 router = APIRouter(prefix='/politicas-juventude', tags=['Juventude - Politicas'])
 
 @router.post('/', response_model=PoliticaJuventudeResponse, status_code=status.HTTP_201_CREATED)

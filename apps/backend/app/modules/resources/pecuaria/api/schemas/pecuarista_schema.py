@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pecuaria.domain.enums import StatusPecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusPecuarista
 
 class PecuaristaCreate(BaseModel):
     nome: str

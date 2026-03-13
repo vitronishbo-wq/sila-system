@@ -4,10 +4,10 @@ from uuid import UUID
 from app.api.deps import get_db
 from app.core.bridges import CitizenRepository
 from app.core.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_assistencia_visita_repository, make_educacao_matricula_repository, make_educacao_turma_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_saude_appointment_repository
-from app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
-from app.modules.governance.workflow.infrastructure.adapters import AssistenciaSocialAdapter, EducacaoAdapter, EmpregoAdapter, IdentidadeAdapter, JuventudeAdapter, SaudeAdapter
-from app.modules.governance.workflow.infrastructure.repositories.task_repository import TaskRepository
-from app.modules.governance.workflow.infrastructure.repositories.workflow_repository import WorkflowRepository
+from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
+from apps.backend.app.modules.governance.workflow.infrastructure.adapters import AssistenciaSocialAdapter, EducacaoAdapter, EmpregoAdapter, IdentidadeAdapter, JuventudeAdapter, SaudeAdapter
+from apps.backend.app.modules.governance.workflow.infrastructure.repositories.task_repository import TaskRepository
+from apps.backend.app.modules.governance.workflow.infrastructure.repositories.workflow_repository import WorkflowRepository
 
 async def can_view_instance(instance_id: UUID, db: AsyncSession=Depends(get_db)):
     """Verifica se pode visualizar instância"""

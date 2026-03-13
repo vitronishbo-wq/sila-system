@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
 
 class LicitacaoCreate(BaseModel):
     objeto: str

@@ -1,7 +1,7 @@
 from typing import Optional
 import httpx
 from app.core.settings import settings
-from app.modules.justice.bounded_contexts.application.ports import CitizenPort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports import CitizenPort
 
 class FUCCitizenAdapter(CitizenPort):
     """Single FUC adapter for citizen read/validation."""

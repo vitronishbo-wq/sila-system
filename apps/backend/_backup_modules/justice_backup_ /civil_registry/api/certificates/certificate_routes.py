@@ -1,6 +1,6 @@
 import logging
 from fastapi import APIRouter, Depends, HTTPException
-from app.modules.justice.bounded_contexts.application.services.certificate_service import CertificateService
+from apps.backend.app.modules.justice.bounded_contexts.application.services.certificate_service import CertificateService
 logger = logging.getLogger('sila.registo_civil.api')
 router = APIRouter(tags=['Registo Civil - Certidões'])
 

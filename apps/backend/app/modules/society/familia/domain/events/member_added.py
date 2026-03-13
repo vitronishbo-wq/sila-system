@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID
-from app.modules.society.familia.domain.enums import MemberRole
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole
 
 @dataclass(frozen=True)
 class FamilyMemberAddedEvent:

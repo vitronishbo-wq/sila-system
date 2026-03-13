@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusEdital
-from app.modules.infrastructure.domain.models.edital import Edital
-from app.modules.infrastructure.infrastructure.models.edital_model import EditalModel
+from apps.backend.app.modules.infrastructure.application.ports.edital_repository_port import EditalRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
+from apps.backend.app.modules.infrastructure.domain.models.edital import Edital
+from apps.backend.app.modules.infrastructure.infrastructure.models.edital_model import EditalModel
 
 class SQLAlchemyEditalRepository(EditalRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.application.ports import CapturaRepositoryPort, LicencaPescaRepositoryPort
-from app.modules.resources.pescas.domain.enums import StatusLicenca
-from app.modules.resources.pescas.domain.models.captura import Captura
+from apps.backend.app.modules.resources.pescas.application.ports import CapturaRepositoryPort, LicencaPescaRepositoryPort
+from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
+from apps.backend.app.modules.resources.pescas.domain.models.captura import Captura
 
 class CapturaService:
 

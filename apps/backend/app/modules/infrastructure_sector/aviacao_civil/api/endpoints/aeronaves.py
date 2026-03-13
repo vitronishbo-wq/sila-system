@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.aviacao_civil.api.deps import get_aeronave_service
-from app.modules.infrastructure_sector.aviacao_civil.api.schemas.aeronave_schema import AeronaveCreate, AeronaveResponse
-from app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.deps import get_aeronave_service
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.schemas.aeronave_schema import AeronaveCreate, AeronaveResponse
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
 router = APIRouter(prefix='/aeronaves', tags=['Aviacao Civil - Aeronaves'])
 
 @router.post('/', response_model=AeronaveResponse, status_code=status.HTTP_201_CREATED)

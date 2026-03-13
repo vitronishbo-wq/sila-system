@@ -5,11 +5,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pecuaria.api.deps import get_rebanho_service
-from app.modules.resources.pecuaria.api.endpoints.rebanhos import router as rebanhos_router
-from app.modules.resources.pecuaria.application.services.rebanho_service import RebanhoService
-from app.modules.resources.pecuaria.domain.enums import TipoAnimal
-from app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_rebanho_service
+from apps.backend.app.modules.resources.pecuaria.api.endpoints.rebanhos import router as rebanhos_router
+from apps.backend.app.modules.resources.pecuaria.application.services.rebanho_service import RebanhoService
+from apps.backend.app.modules.resources.pecuaria.domain.enums import TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
 
 @pytest.mark.asyncio
 async def test_rebanho_service_cadastro_sucesso():

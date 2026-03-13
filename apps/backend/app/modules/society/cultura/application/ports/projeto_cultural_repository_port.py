@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.cultura.domain.enums import StatusProjetoCultural, TipoProjetoCultural
-from app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.enums import StatusProjetoCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
 
 class ProjetoCulturalRepositoryPort:
 

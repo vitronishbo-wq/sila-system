@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
 
 @dataclass
 class Pensao:

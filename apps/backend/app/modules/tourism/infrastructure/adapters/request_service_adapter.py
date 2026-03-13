@@ -3,7 +3,7 @@ from datetime import date
 from typing import Any
 from uuid import UUID
 from app.core.bridges import ServiceRequestLifecycleBridge
-from app.modules.tourism.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.tourism.application.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

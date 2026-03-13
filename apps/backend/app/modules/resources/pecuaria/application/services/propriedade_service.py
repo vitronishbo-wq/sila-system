@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.pecuaria.application.ports import PropriedadePecuariaRepositoryPort
-from app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
+from apps.backend.app.modules.resources.pecuaria.application.ports import PropriedadePecuariaRepositoryPort
+from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
 
 class PropriedadeService:
 

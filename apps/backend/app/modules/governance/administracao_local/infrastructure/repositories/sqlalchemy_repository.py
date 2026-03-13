@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.modules.governance.administracao_local.infrastructure.models import AdministradorModel
-from app.modules.governance.administracao_local.infrastructure.mappers import AdministradorMapper
-from app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.infrastructure.models import AdministradorModel
+from apps.backend.app.modules.governance.administracao_local.infrastructure.mappers import AdministradorMapper
+from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
 
 class Repository:
 

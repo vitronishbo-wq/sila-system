@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.patrimonio_cultural.api.deps import get_cultural_asset_service
-from app.modules.society.patrimonio_cultural.api.router import router as patrimonio_cultural_router
-from app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
-from app.modules.society.patrimonio_cultural.tests._fakes import FakeTourismService, InMemoryCulturalAssetRepository
+from apps.backend.app.modules.society.patrimonio_cultural.api.deps import get_cultural_asset_service
+from apps.backend.app.modules.society.patrimonio_cultural.api.router import router as patrimonio_cultural_router
+from apps.backend.app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
+from apps.backend.app.modules.society.patrimonio_cultural.tests._fakes import FakeTourismService, InMemoryCulturalAssetRepository
 
 def _build_client() -> TestClient:
     app = FastAPI()

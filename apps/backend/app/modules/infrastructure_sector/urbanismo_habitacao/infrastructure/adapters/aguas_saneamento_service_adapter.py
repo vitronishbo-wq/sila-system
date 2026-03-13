@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
 
 class AguasSaneamentoServiceAdapter(AguasSaneamentoServicePort):
 

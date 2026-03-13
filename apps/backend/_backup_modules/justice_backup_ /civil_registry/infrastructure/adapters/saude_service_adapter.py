@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 from uuid import UUID
-from app.modules.justice.bounded_contexts.application.ports.saude_service_port import SaudeServicePort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.saude_service_port import SaudeServicePort
 from app.core.resilience import circuit_breaker, with_retry
 
 class SaudeServiceAdapter(SaudeServicePort):

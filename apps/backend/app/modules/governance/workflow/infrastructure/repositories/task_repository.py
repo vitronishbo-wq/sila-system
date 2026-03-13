@@ -3,10 +3,10 @@ from uuid import UUID
 from datetime import datetime
 from sqlalchemy import and_, func, or_, select, desc
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.workflow.application.ports.task_repository_port import TaskRepositoryPort
-from app.modules.governance.workflow.domain.enums import TaskPriority, TaskStatus
-from app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
-from app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
+from apps.backend.app.modules.governance.workflow.application.ports.task_repository_port import TaskRepositoryPort
+from apps.backend.app.modules.governance.workflow.domain.enums import TaskPriority, TaskStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
 
 class TaskRepository(TaskRepositoryPort):
     """Implementação async do repositório de tarefas."""

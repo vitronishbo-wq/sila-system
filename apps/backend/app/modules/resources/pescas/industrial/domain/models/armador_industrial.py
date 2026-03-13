@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.armador import Armador
+from apps.backend.app.modules.resources.pescas.domain.models.armador import Armador
 
 @dataclass
 class ArmadorIndustrial(Armador):

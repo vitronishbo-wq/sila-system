@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
-from app.modules.governance.statistics.domain.enums import TipoDashboard
+from apps.backend.app.modules.governance.statistics.domain.enums import TipoDashboard
 
 @dataclass(slots=True)
 class Dashboard:

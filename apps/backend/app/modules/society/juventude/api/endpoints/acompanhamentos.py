@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_acompanhamento_juvenil_service
-from app.modules.society.juventude.api.schemas.acompanhamento_juvenil_schema import AcompanhamentoJuvenilCreate, AcompanhamentoJuvenilEncerrar, AcompanhamentoJuvenilEvolucao, AcompanhamentoJuvenilResponse
-from app.modules.society.juventude.application.services.acompanhamento_juvenil_service import AcompanhamentoJuvenilService
-from app.modules.society.juventude.domain.enums import StatusAcompanhamento
+from apps.backend.app.modules.society.juventude.api.deps import get_acompanhamento_juvenil_service
+from apps.backend.app.modules.society.juventude.api.schemas.acompanhamento_juvenil_schema import AcompanhamentoJuvenilCreate, AcompanhamentoJuvenilEncerrar, AcompanhamentoJuvenilEvolucao, AcompanhamentoJuvenilResponse
+from apps.backend.app.modules.society.juventude.application.services.acompanhamento_juvenil_service import AcompanhamentoJuvenilService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusAcompanhamento
 router = APIRouter(prefix='/acompanhamentos', tags=['Juventude - Acompanhamentos'])
 
 @router.post('/', response_model=AcompanhamentoJuvenilResponse, status_code=status.HTTP_201_CREATED)

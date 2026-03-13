@@ -1,6 +1,6 @@
 from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
-from app.modules.educacao.application.ports import FormacaoRepositoryPort
-from app.modules.educacao.application.workflow_service import WorkflowService
+from apps.backend.app.modules.educacao.application.ports import FormacaoRepositoryPort
+from apps.backend.app.modules.educacao.application.workflow_service import WorkflowService
 
 class FormacaoService(WorkflowService):
 

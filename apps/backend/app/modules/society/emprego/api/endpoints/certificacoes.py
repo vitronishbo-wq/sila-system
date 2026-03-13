@@ -1,4 +1,4 @@
-from app.modules.society.emprego.api.deps import get_certificacao_service
-from app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
-from app.modules.society.emprego.api.schemas.certificacao_schema import CertificacaoAction, CertificacaoCancel, CertificacaoCreate, CertificacaoResponse
+from apps.backend.app.modules.society.emprego.api.deps import get_certificacao_service
+from apps.backend.app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
+from apps.backend.app.modules.society.emprego.api.schemas.certificacao_schema import CertificacaoAction, CertificacaoCancel, CertificacaoCreate, CertificacaoResponse
 router = build_workflow_router(tag='Emprego - Certificacoes', get_service=get_certificacao_service, create_schema=CertificacaoCreate, action_schema=CertificacaoAction, cancel_schema=CertificacaoCancel, response_schema=CertificacaoResponse, routes=[('/certificacoes/profissionais', 'certificacao_profissional'), ('/certificacoes/competencias', 'certificacao_competencias'), ('/capacitacoes/qualidade', 'capacitacao_qualidade'), ('/formacoes/gestores', 'formacao_gestores')])

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import CentralGeradoraRepositoryPort
-from app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
-from app.modules.energy.domain.models import CentralGeradora
-from app.modules.energy.core.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
+from apps.backend.app.modules.energy.application.ports import CentralGeradoraRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import CentralGeradora
+from apps.backend.app.modules.energy.core.exceptions import CentralGeradoraNotFoundError, InvalidCentralGeradoraStateError
 
 class CentralGeradoraService:
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_agregacao_service
-from app.modules.governance.statistics.api.schemas.agregacao_schema import AgregacaoCreate, AgregacaoListResponse, AgregacaoResponse, AgregacaoUpdate
-from app.modules.governance.statistics.application.services.agregacao_service import AgregacaoService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_agregacao_service
+from apps.backend.app.modules.governance.statistics.api.schemas.agregacao_schema import AgregacaoCreate, AgregacaoListResponse, AgregacaoResponse, AgregacaoUpdate
+from apps.backend.app.modules.governance.statistics.application.services.agregacao_service import AgregacaoService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/agregacoes', tags=['Estatistica - Agregacoes'])
 
 @router.post('/', response_model=AgregacaoResponse, status_code=status.HTTP_201_CREATED)

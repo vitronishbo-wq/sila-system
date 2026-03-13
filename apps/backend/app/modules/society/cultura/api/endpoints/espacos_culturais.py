@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_espaco_cultural_service
-from app.modules.society.cultura.api.schemas.espaco_cultural_schema import EspacoCulturalCreate, EspacoCulturalResponse, EspacoCulturalUpdate
-from app.modules.society.cultura.application.services.espaco_cultural_service import EspacoCulturalService
-from app.modules.society.cultura.domain.enums import TipoEspacoCultural
+from apps.backend.app.modules.society.cultura.api.deps import get_espaco_cultural_service
+from apps.backend.app.modules.society.cultura.api.schemas.espaco_cultural_schema import EspacoCulturalCreate, EspacoCulturalResponse, EspacoCulturalUpdate
+from apps.backend.app.modules.society.cultura.application.services.espaco_cultural_service import EspacoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
 router = APIRouter(prefix='/espacos-culturais', tags=['Cultura - Espacos Culturais'])
 
 @router.post('/', response_model=EspacoCulturalResponse, status_code=status.HTTP_201_CREATED)

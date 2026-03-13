@@ -1,6 +1,6 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.reserva_hotel_repository_port import ReservaHotelRepositoryPort
 
 class SQLAlchemyReservaHotelRepository(ReservaHotelRepositoryPort):
 

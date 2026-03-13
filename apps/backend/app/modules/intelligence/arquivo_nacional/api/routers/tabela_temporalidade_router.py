@@ -4,8 +4,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_db
-from app.modules.intelligence.arquivo_nacional.application.services.tabela_temporalidade_service import TabelaTemporalidadeService
-from app.modules.intelligence.arquivo_nacional.api.schemas import TabelaTemporalidadeCreateSchema, TabelaTemporalidadeResponseSchema, RegraTemporalidadeCreateSchema, RegraTemporalidadeResponseSchema, EventoTemporalidadeCreateSchema, EventoTemporalidadeResponseSchema, TabelaTemporalidadeUpdateSchema, RegraTemporalidadeUpdateSchema, AplicarTemporalidadeSchema
+from apps.backend.app.modules.intelligence.arquivo_nacional.application.services.tabela_temporalidade_service import TabelaTemporalidadeService
+from apps.backend.app.modules.intelligence.arquivo_nacional.api.schemas import TabelaTemporalidadeCreateSchema, TabelaTemporalidadeResponseSchema, RegraTemporalidadeCreateSchema, RegraTemporalidadeResponseSchema, EventoTemporalidadeCreateSchema, EventoTemporalidadeResponseSchema, TabelaTemporalidadeUpdateSchema, RegraTemporalidadeUpdateSchema, AplicarTemporalidadeSchema
 router = APIRouter()
 
 @router.post('/', response_model=TabelaTemporalidadeResponseSchema, status_code=201)

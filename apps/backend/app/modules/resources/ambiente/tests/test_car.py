@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.ambiente.api.deps import get_cadastro_service
-from app.modules.resources.ambiente.api.endpoints.car import router as car_router
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
-from app.modules.resources.ambiente.exceptions import CARNotFoundError
-from app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyImovelRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.resources.ambiente.api.deps import get_cadastro_service
+from apps.backend.app.modules.resources.ambiente.api.endpoints.car import router as car_router
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
+from apps.backend.app.modules.resources.ambiente.exceptions import CARNotFoundError
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyImovelRepository, SQLAlchemyProprietarioRepository
 
 @pytest.mark.asyncio
 async def test_cadastro_service_fluxo_car_sucesso():

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import asdict, is_dataclass
 from typing import Any
-from app.modules.society.desporto.application.events.definitions import ContratoAssinadoEvent, DomainEvent, EstadioCadastradoEvent, JogoAgendadoEvent, JogoResultadoRegistradoEvent, TransferenciaConcluidaEvent, TransferenciaSolicitadaEvent
+from apps.backend.app.modules.society.desporto.application.events.definitions import ContratoAssinadoEvent, DomainEvent, EstadioCadastradoEvent, JogoAgendadoEvent, JogoResultadoRegistradoEvent, TransferenciaConcluidaEvent, TransferenciaSolicitadaEvent
 EVENT_REGISTRY: dict[str, type[DomainEvent]] = {'JogoAgendadoEvent': JogoAgendadoEvent, 'JogoResultadoRegistradoEvent': JogoResultadoRegistradoEvent, 'EstadioCadastradoEvent': EstadioCadastradoEvent, 'TransferenciaSolicitadaEvent': TransferenciaSolicitadaEvent, 'TransferenciaConcluidaEvent': TransferenciaConcluidaEvent, 'ContratoAssinadoEvent': ContratoAssinadoEvent}
 
 def serialize_event(event: object) -> tuple[str, dict[str, Any]]:

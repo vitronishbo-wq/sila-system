@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_inscricao_programa_service
-from app.modules.society.juventude.api.schemas.inscricao_programa_schema import InscricaoProgramaCancelar, InscricaoProgramaCreate, InscricaoProgramaResponse
-from app.modules.society.juventude.application.services.inscricao_programa_service import InscricaoProgramaService
-from app.modules.society.juventude.domain.enums import StatusInscricao
+from apps.backend.app.modules.society.juventude.api.deps import get_inscricao_programa_service
+from apps.backend.app.modules.society.juventude.api.schemas.inscricao_programa_schema import InscricaoProgramaCancelar, InscricaoProgramaCreate, InscricaoProgramaResponse
+from apps.backend.app.modules.society.juventude.application.services.inscricao_programa_service import InscricaoProgramaService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusInscricao
 router = APIRouter(prefix='/inscricoes-programa', tags=['Juventude - Inscricoes Programa'])
 
 @router.post('/', response_model=InscricaoProgramaResponse, status_code=status.HTTP_201_CREATED)

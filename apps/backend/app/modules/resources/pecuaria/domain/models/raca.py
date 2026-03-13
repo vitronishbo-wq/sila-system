@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from uuid import UUID, uuid4
-from app.modules.resources.pecuaria.domain.enums import TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.enums import TipoAnimal
 
 @dataclass
 class Raca:

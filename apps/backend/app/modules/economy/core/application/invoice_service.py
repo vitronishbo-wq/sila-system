@@ -4,19 +4,19 @@ import logging
 from datetime import datetime, timedelta, timezone
 from typing import List
 from uuid import UUID
-from app.modules.economy.domain.models.invoice import Invoice
-from app.modules.economy.domain.models.enums import InvoiceStatus
-from app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort
-from app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort
-from app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort
-from app.modules.economy.application.ports.saude_service_port import SaudeServicePort
-from app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
-from app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort
-from app.modules.economy.application.ports.identidade_service_port import IdentidadeServicePort
-from app.modules.economy.api.schemas.invoice_schema import CreateInvoiceSchema
-from app.modules.economy.domain.exceptions import InvoiceNotFoundError, DomainValidationError, FUCError
-from app.modules.economy.core.integrations.fuc_client import FUCClient
+from apps.backend.app.modules.economy.domain.models.invoice import Invoice
+from apps.backend.app.modules.economy.domain.models.enums import InvoiceStatus
+from apps.backend.app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort
+from apps.backend.app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort
+from apps.backend.app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.economy.application.ports.saude_service_port import SaudeServicePort
+from apps.backend.app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
+from apps.backend.app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort
+from apps.backend.app.modules.economy.application.ports.identidade_service_port import IdentidadeServicePort
+from apps.backend.app.modules.economy.api.schemas.invoice_schema import CreateInvoiceSchema
+from apps.backend.app.modules.economy.domain.exceptions import InvoiceNotFoundError, DomainValidationError, FUCError
+from apps.backend.app.modules.economy.core.integrations.fuc_client import FUCClient
 logger = logging.getLogger(__name__)
 
 class InvoiceService:

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, Header
-from app.modules.infrastructure.api.deps import get_dashboard_query_service
-from app.modules.infrastructure.api.schemas.obra_schema import ObraDashboardReadResponse
-from app.modules.infrastructure.application.services.dashboard_query_service import DashboardQueryService
+from apps.backend.app.modules.infrastructure.api.deps import get_dashboard_query_service
+from apps.backend.app.modules.infrastructure.api.schemas.obra_schema import ObraDashboardReadResponse
+from apps.backend.app.modules.infrastructure.application.services.dashboard_query_service import DashboardQueryService
 router = APIRouter(prefix='/dashboard', tags=['Obras Publicas - Dashboard'])
 
 @router.get('/obras', response_model=list[ObraDashboardReadResponse])

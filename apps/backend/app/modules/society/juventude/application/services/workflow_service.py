@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.modules.society.juventude.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.models._workflow_record import WorkflowRecord
 
 class WorkflowService:
 

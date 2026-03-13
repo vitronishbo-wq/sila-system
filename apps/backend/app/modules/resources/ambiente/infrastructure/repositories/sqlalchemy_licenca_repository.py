@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.licenca_repository_port import LicencaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
-from app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
+from apps.backend.app.modules.resources.ambiente.application.ports.licenca_repository_port import LicencaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
 
 class SQLAlchemyLicencaRepository(LicencaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

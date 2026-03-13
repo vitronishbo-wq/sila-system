@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
-from app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
 
 class EstacaoRepositoryPort(ABC):
 

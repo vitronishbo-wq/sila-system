@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
+from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
 
 class LaudoPericialCreate(BaseModel):
     prova_id: UUID

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
-from app.modules.intelligence.defesa_consumidor.domain.enums import StatusMediacao
+from apps.backend.app.modules.intelligence.defesa_consumidor.domain.enums import StatusMediacao
 
 @dataclass
 class Mediacao:

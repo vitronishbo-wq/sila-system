@@ -1,5 +1,5 @@
-from app.modules.infrastructure_sector.meteorologia.application.ports.alerta_service_port import AlertaServicePort
-from app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
-from app.modules.infrastructure_sector.meteorologia.application.ports.observacao_repository_port import ObservacaoRepositoryPort
-from app.modules.infrastructure_sector.meteorologia.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.alerta_service_port import AlertaServicePort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.observacao_repository_port import ObservacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.request_service_port import RequestServicePort
 __all__ = ['EstacaoRepositoryPort', 'ObservacaoRepositoryPort', 'AlertaServicePort', 'RequestServicePort']

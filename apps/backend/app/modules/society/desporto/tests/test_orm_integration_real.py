@@ -7,18 +7,18 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.society.desporto.application.services.atleta_service import AtletaService
-from app.modules.society.desporto.application.services.clube_service import ClubeService
-from app.modules.society.desporto.application.services.competicao_service import CompeticaoService
-from app.modules.society.desporto.application.services.jogo_service import JogoService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, StatusJogo, TipoAtleta, TipoClube, TipoCompeticao
-from app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeTurismoService
+from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
+from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
+from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService
+from apps.backend.app.modules.society.desporto.application.services.jogo_service import JogoService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, StatusJogo, TipoAtleta, TipoClube, TipoCompeticao
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeTurismoService
 
 def _tables():
-    from app.modules.society.desporto.infrastructure.models.atleta_model import AtletaModel
-    from app.modules.society.desporto.infrastructure.models.clube_model import ClubeModel
-    from app.modules.society.desporto.infrastructure.models.competicao_model import CompeticaoModel
-    from app.modules.society.desporto.infrastructure.models.jogo_model import JogoModel
+    from apps.backend.app.modules.society.desporto.infrastructure.models.atleta_model import AtletaModel
+    from apps.backend.app.modules.society.desporto.infrastructure.models.clube_model import ClubeModel
+    from apps.backend.app.modules.society.desporto.infrastructure.models.competicao_model import CompeticaoModel
+    from apps.backend.app.modules.society.desporto.infrastructure.models.jogo_model import JogoModel
     if not hasattr(AtletaModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [AtletaModel.__table__, CompeticaoModel.__table__, ClubeModel.__table__, JogoModel.__table__]
@@ -49,10 +49,10 @@ def test_fluxo_real_orm_atleta_competicao() -> None:
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_atleta_repository import SQLAlchemyAtletaRepository
-            from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_clube_repository import SQLAlchemyClubeRepository
-            from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_competicao_repository import SQLAlchemyCompeticaoRepository
-            from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_jogo_repository import SQLAlchemyJogoRepository
+            from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_atleta_repository import SQLAlchemyAtletaRepository
+            from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_clube_repository import SQLAlchemyClubeRepository
+            from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_competicao_repository import SQLAlchemyCompeticaoRepository
+            from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_jogo_repository import SQLAlchemyJogoRepository
             atleta_service = AtletaService(atleta_repo=SQLAlchemyAtletaRepository(session))
             clube_service = ClubeService(clube_repo=SQLAlchemyClubeRepository(session))
             competicao_service = CompeticaoService(competicao_repo=SQLAlchemyCompeticaoRepository(session), turismo_service=FakeTurismoService(exists=True), educacao_service=FakeEducacaoService(exists=True), obras_publicas_service=FakeObrasPublicasService(exists=True))

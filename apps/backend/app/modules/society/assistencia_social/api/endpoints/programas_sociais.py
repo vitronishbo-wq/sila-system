@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_programa_social_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.programa_social_schema import ProgramaSocialCreate, ProgramaSocialEncerrar, ProgramaSocialResponse, ProgramaSocialSuspender
-from app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_programa_social_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.programa_social_schema import ProgramaSocialCreate, ProgramaSocialEncerrar, ProgramaSocialResponse, ProgramaSocialSuspender
+from apps.backend.app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
 router = APIRouter(prefix='/programas-sociais', tags=['Assistencia Social - Programas'])
 
 @router.post('/', response_model=ProgramaSocialResponse, status_code=status.HTTP_201_CREATED)

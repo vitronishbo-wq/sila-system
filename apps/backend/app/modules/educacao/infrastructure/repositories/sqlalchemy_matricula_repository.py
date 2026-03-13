@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.educacao.application.ports import MatriculaRepositoryPort
-from app.modules.educacao.domain.models import Matricula, StatusMatricula
-from app.modules.educacao.infrastructure.models.escola_model import EscolaModel
-from app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
+from apps.backend.app.modules.educacao.application.ports import MatriculaRepositoryPort
+from apps.backend.app.modules.educacao.domain.models import Matricula, StatusMatricula
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
 
 class SQLAlchemyMatriculaRepository(MatriculaRepositoryPort):
 

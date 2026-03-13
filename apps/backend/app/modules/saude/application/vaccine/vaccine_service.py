@@ -5,8 +5,8 @@ from typing import Optional
 from uuid import UUID
 
 from app.core.observability import trace
-from app.modules.saude.application.ports import JuventudeServicePort, WorkflowServicePort
-from app.modules.saude.domain.entities.vaccine import VaccineDose
+from apps.backend.app.modules.saude.application.ports import JuventudeServicePort, WorkflowServicePort
+from apps.backend.app.modules.saude.domain.entities.vaccine import VaccineDose
 
 
 class VaccineService:

@@ -3,7 +3,7 @@ from typing import Optional
 from uuid import UUID
 from datetime import datetime
 from pydantic import BaseModel, Field
-from app.modules.economy.taxpayer.domain.enums.taxpayer_status import TaxpayerStatus
+from apps.backend.app.modules.economy.taxpayer.domain.enums.taxpayer_status import TaxpayerStatus
 
 class TaxpayerBase(BaseModel):
     tenant_id: Optional[UUID]

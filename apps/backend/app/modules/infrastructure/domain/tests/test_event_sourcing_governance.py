@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.infrastructure.application.eventsourcing.obra_event_aggregate import rehydrate_obra
-from app.modules.infrastructure.infrastructure.governance.event_governance import EventGovernanceService
-from app.modules.infrastructure.infrastructure.multi_region.global_id import generate_global_id
+from apps.backend.app.modules.infrastructure.application.eventsourcing.obra_event_aggregate import rehydrate_obra
+from apps.backend.app.modules.infrastructure.infrastructure.governance.event_governance import EventGovernanceService
+from apps.backend.app.modules.infrastructure.infrastructure.multi_region.global_id import generate_global_id
 
 def test_generate_global_id_com_prefixo_regiao():
     gid = generate_global_id('B')

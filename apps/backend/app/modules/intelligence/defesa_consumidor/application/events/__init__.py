@@ -1,2 +1,2 @@
-from app.modules.intelligence.defesa_consumidor.application.events.reclamacao_events import DEFESA_CONSUMIDOR_EVENTS, ReclamacaoCriadaEvent, ReclamacaoFinalizadaEvent, ReclamacaoPrioridadeEscaladaEvent, ReclamacaoStatusAtualizadoEvent
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.events.reclamacao_events import DEFESA_CONSUMIDOR_EVENTS, ReclamacaoCriadaEvent, ReclamacaoFinalizadaEvent, ReclamacaoPrioridadeEscaladaEvent, ReclamacaoStatusAtualizadoEvent
 __all__ = ['ReclamacaoCriadaEvent', 'ReclamacaoStatusAtualizadoEvent', 'ReclamacaoFinalizadaEvent', 'ReclamacaoPrioridadeEscaladaEvent', 'DEFESA_CONSUMIDOR_EVENTS']

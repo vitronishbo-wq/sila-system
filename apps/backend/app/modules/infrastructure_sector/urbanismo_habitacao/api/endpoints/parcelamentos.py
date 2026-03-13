@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_parcelamento_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.parcelamento_schema import ParcelamentoConclusaoInput, ParcelamentoCreate, ParcelamentoMotivoInput, ParcelamentoResponse
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.parcelamento_service import ParcelamentoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoAlreadyExistsError, ParcelamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_parcelamento_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.parcelamento_schema import ParcelamentoConclusaoInput, ParcelamentoCreate, ParcelamentoMotivoInput, ParcelamentoResponse
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.parcelamento_service import ParcelamentoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoAlreadyExistsError, ParcelamentoNotFoundError
 router = APIRouter(prefix='/parcelamentos', tags=['Urbanismo Habitacao - Parcelamentos'])
 
 @router.post('/', response_model=ParcelamentoResponse, status_code=status.HTTP_201_CREATED)

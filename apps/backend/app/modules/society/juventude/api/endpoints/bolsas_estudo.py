@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_bolsa_estudo_service
-from app.modules.society.juventude.api.schemas.bolsa_estudo_schema import BolsaEstudoCreate, BolsaEstudoEncerrar, BolsaEstudoResponse
-from app.modules.society.juventude.application.services.bolsa_estudo_service import BolsaEstudoService
+from apps.backend.app.modules.society.juventude.api.deps import get_bolsa_estudo_service
+from apps.backend.app.modules.society.juventude.api.schemas.bolsa_estudo_schema import BolsaEstudoCreate, BolsaEstudoEncerrar, BolsaEstudoResponse
+from apps.backend.app.modules.society.juventude.application.services.bolsa_estudo_service import BolsaEstudoService
 router = APIRouter(prefix='/bolsas-estudo', tags=['Juventude - Bolsas Estudo'])
 
 @router.post('/', response_model=BolsaEstudoResponse, status_code=status.HTTP_201_CREATED)

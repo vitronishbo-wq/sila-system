@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_produtor_service
-from app.modules.resources.agricultura.api.endpoints.produtores import router as produtores_router
-from app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
-from app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
-from app.modules.resources.agricultura.domain.models.produtor import Produtor
-from app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_produtor_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.produtores import router as produtores_router
+from apps.backend.app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
+from apps.backend.app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError
 
 @pytest.mark.asyncio
 async def test_cadastrar_produtor_sucesso():

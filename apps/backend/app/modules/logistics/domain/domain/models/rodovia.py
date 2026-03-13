@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Any
 from uuid import UUID
-from app.modules.logistics.domain.enums import ClassificacaoVia, TipoPavimento
+from apps.backend.app.modules.logistics.domain.enums import ClassificacaoVia, TipoPavimento
 
 @dataclass
 class Rodovia:

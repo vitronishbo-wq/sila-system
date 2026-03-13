@@ -4,8 +4,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure.api.deps import get_dashboard_query_service
-from app.modules.infrastructure.api.router import router as obras_publicas_router
+from apps.backend.app.modules.infrastructure.api.deps import get_dashboard_query_service
+from apps.backend.app.modules.infrastructure.api.router import router as obras_publicas_router
 
 def test_dashboard_endpoint_consulta_read_model_por_tenant_header():
     row = SimpleNamespace(obra_id='obra-1', tenant_id='tenant-obras', codigo='OBR/2026/000001', status='EM_EXECUCAO', valor_total=Decimal('1000.00'), valor_executado=Decimal('250.00'), percentual_execucao=Decimal('25.00'))

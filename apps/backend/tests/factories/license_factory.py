@@ -4,7 +4,7 @@ Factory for creating License test instances.
 import uuid
 import factory
 from faker import Faker
-from modules.identity.models.identity import Identity
+from apps.backend.app.modules.identity.models.identity import Identity
 from tests.factories.base_factory import BaseFactory
 
 fake = Faker('pt_BR')

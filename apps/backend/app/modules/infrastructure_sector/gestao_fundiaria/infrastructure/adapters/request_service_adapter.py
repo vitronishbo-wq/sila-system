@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

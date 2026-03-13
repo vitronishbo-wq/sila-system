@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.resources.pescas.application.ports import CitizenServicePort, PescadorRepositoryPort, RequestServicePort
-from app.modules.resources.pescas.domain.enums import TipoPescador
-from app.modules.resources.pescas.domain.models.pescador import Pescador
+from apps.backend.app.modules.resources.pescas.application.ports import CitizenServicePort, PescadorRepositoryPort, RequestServicePort
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
+from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
 
 class PescadorService:
 

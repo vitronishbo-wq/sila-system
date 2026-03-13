@@ -5,12 +5,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_candidato_service
-from app.modules.society.emprego.api.endpoints.candidatos import router as candidatos_router
-from app.modules.society.emprego.application.services.candidato_service import CandidatoService
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
-from app.modules.society.emprego.domain.models.candidato import Candidato
-from app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CitizenNotFoundError
+from apps.backend.app.modules.society.emprego.api.deps import get_candidato_service
+from apps.backend.app.modules.society.emprego.api.endpoints.candidatos import router as candidatos_router
+from apps.backend.app.modules.society.emprego.application.services.candidato_service import CandidatoService
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
+from apps.backend.app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CitizenNotFoundError
 
 def _build_service(candidato_repo, citizen_repo, request_service) -> CandidatoService:
     return CandidatoService(candidato_repo=candidato_repo, citizen_repo=citizen_repo, request_service=request_service)

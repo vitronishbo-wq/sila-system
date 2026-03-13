@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
-from app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
-from app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
+from apps.backend.app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
 
 class OperadorFlorestalService:
 

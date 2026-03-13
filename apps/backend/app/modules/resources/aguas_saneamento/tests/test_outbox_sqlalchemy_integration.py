@@ -9,9 +9,9 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent
-from app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
-from app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import SQLAlchemyOutboxRepository
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import SQLAlchemyOutboxRepository
 
 def _get_database_url() -> str:
     url = os.environ.get('DATABASE_URL', 'postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db')

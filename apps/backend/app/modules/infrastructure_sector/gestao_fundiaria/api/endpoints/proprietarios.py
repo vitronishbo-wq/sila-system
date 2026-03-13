@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_proprietario_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.proprietario_schema import ProprietarioContatoInput, ProprietarioCreate, ProprietarioMotivoInput, ProprietarioResponse, ProprietarioTitularidadeInput
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.proprietario_service import ProprietarioService
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioAlreadyExistsError, ProprietarioNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_proprietario_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.proprietario_schema import ProprietarioContatoInput, ProprietarioCreate, ProprietarioMotivoInput, ProprietarioResponse, ProprietarioTitularidadeInput
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.proprietario_service import ProprietarioService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioAlreadyExistsError, ProprietarioNotFoundError
 router = APIRouter(prefix='/proprietarios', tags=['Gestao Fundiaria - Proprietarios'])
 
 @router.post('/', response_model=ProprietarioResponse, status_code=status.HTTP_201_CREATED)

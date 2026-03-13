@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.domain.enums import StatusSafra
-from app.modules.resources.agricultura.domain.models.comercializacao import Comercializacao
-from app.modules.resources.agricultura.exceptions import ComercializacaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusSafra
+from apps.backend.app.modules.resources.agricultura.domain.models.comercializacao import Comercializacao
+from apps.backend.app.modules.resources.agricultura.exceptions import ComercializacaoNotFoundError
 
 class ComercializacaoService:
 

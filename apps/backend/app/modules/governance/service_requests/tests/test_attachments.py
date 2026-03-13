@@ -1,7 +1,7 @@
 """Test attachments"""
 import pytest
 from uuid import uuid4
-from app.modules.governance.service_requests.domain.models.attachment import Attachment
+from apps.backend.app.modules.governance.service_requests.domain.models.attachment import Attachment
 
 @pytest.mark.asyncio
 async def test_create_attachment():

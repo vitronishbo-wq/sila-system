@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from datetime import date
 from decimal import Decimal
-from app.modules.society.cultura.application.services.projeto_cultural_service import ProjetoCulturalService
-from app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
-from app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryProjetoCulturalRepository
+from apps.backend.app.modules.society.cultura.application.services.projeto_cultural_service import ProjetoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryProjetoCulturalRepository
 
 def test_cadastrar_e_aprovar_projeto() -> None:
 

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import FaturaRepositoryPort
-from app.modules.energy.domain.enums import StatusFaturaEnergia
-from app.modules.energy.domain.models import FaturaEnergia
-from app.modules.energy.infrastructure.models import FaturaEnergiaModel
+from apps.backend.app.modules.energy.application.ports import FaturaRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import StatusFaturaEnergia
+from apps.backend.app.modules.energy.domain.models import FaturaEnergia
+from apps.backend.app.modules.energy.infrastructure.models import FaturaEnergiaModel
 
 class SQLAlchemyFaturaRepository(FaturaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

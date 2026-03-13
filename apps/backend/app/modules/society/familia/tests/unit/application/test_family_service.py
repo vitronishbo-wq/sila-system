@@ -1,7 +1,7 @@
 from uuid import uuid4
 import pytest
-from app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
-from app.modules.society.familia.tests._fakes import InMemoryFamilyRepository, InMemoryOutbox, NoopBus
+from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
+from apps.backend.app.modules.society.familia.tests._fakes import InMemoryFamilyRepository, InMemoryOutbox, NoopBus
 
 @pytest.mark.asyncio
 async def test_create_aggregate_persists_data_and_events() -> None:

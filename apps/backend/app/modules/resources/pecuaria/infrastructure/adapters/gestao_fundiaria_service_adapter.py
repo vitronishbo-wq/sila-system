@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.pecuaria.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
+from apps.backend.app.modules.resources.pecuaria.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
 
 class GestaoFundiariaServiceAdapter(GestaoFundiariaServicePort):
 

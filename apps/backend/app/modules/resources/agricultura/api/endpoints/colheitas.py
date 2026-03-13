@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_colheita_service
-from app.modules.resources.agricultura.api.schemas.colheita_schema import ColheitaCreate, ColheitaResponse
-from app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
-from app.modules.resources.agricultura.exceptions import ColheitaNotFoundError, SafraNotFoundError, TalhaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_colheita_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.colheita_schema import ColheitaCreate, ColheitaResponse
+from apps.backend.app.modules.resources.agricultura.application.services.colheita_service import ColheitaService
+from apps.backend.app.modules.resources.agricultura.exceptions import ColheitaNotFoundError, SafraNotFoundError, TalhaoNotFoundError
 router = APIRouter(prefix='/colheitas', tags=['Agricultura - colheitas'])
 
 @router.post('/', response_model=ColheitaResponse, status_code=status.HTTP_201_CREATED)

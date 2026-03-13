@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.modules.society.juventude.api.endpoints import acompanhamentos_router, auxilios_router, bolsas_estudo_router, empreendedorismo_juvenil_router, estagios_router, eventos_juvenis_router, formacoes_router, inscricoes_programa_router, intercambios_router, jovens_router, mentores_router, politicas_juventude_router, programas_router, risco_evasao_router, saude_juvenil_router, voluntariados_router
+from apps.backend.app.modules.society.juventude.api.endpoints import acompanhamentos_router, auxilios_router, bolsas_estudo_router, empreendedorismo_juvenil_router, estagios_router, eventos_juvenis_router, formacoes_router, inscricoes_programa_router, intercambios_router, jovens_router, mentores_router, politicas_juventude_router, programas_router, risco_evasao_router, saude_juvenil_router, voluntariados_router
 router = APIRouter(prefix='/juventude', tags=['Juventude'])
 router.include_router(jovens_router)
 router.include_router(auxilios_router)

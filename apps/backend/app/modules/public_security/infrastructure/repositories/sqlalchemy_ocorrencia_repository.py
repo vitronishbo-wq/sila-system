@@ -3,10 +3,10 @@ from datetime import date, datetime
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusOcorrencia, TipoOcorrencia
-from app.modules.public_security.domain.models.ocorrencia import Ocorrencia
-from app.modules.public_security.infrastructure.models.ocorrencia_model import OcorrenciaModel
+from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusOcorrencia, TipoOcorrencia
+from apps.backend.app.modules.public_security.domain.models.ocorrencia import Ocorrencia
+from apps.backend.app.modules.public_security.infrastructure.models.ocorrencia_model import OcorrenciaModel
 
 class SQLAlchemyOcorrenciaRepository(OcorrenciaRepositoryPort):
 

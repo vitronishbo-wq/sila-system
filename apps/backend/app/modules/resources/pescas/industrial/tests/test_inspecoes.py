@@ -3,12 +3,12 @@ import asyncio
 from datetime import date
 from decimal import Decimal
 import pytest
-from app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
-from app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
-from app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, StatusInspecao, TipoProcessamento, TipoProdutoProcessado, TipoSeloInspecao
-from app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
-from app.modules.resources.pescas.industrial.tests._fakes import InMemoryInspecaoRepository, InMemoryLoteRepository, InMemoryProdutoRepository, InMemoryUnidadeRepository
+from apps.backend.app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
+from apps.backend.app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
+from apps.backend.app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, StatusInspecao, TipoProcessamento, TipoProdutoProcessado, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.tests._fakes import InMemoryInspecaoRepository, InMemoryLoteRepository, InMemoryProdutoRepository, InMemoryUnidadeRepository
 
 async def _seed_unidade(unidade_repo: InMemoryUnidadeRepository, cnpj: str, nome: str):
     unidade = UnidadeProcessamento.cadastrar(cnpj=cnpj, razao_social=nome, tipo_processamento=[TipoProcessamento.CONGELADO], classificacao=ClassificacaoIndustrial.TIPO_B, capacidade_kg_dia=Decimal('2100'), area_total_m2=Decimal('420'), area_producao_m2=Decimal('180'), area_armazenagem_m2=Decimal('130'), numero_funcionarios=16, endereco='Zona Portuaria', municipio='Namibe', provincia='Namibe')

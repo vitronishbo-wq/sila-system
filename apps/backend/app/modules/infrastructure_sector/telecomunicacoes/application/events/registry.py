@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import FaturaTelecomGeradaEvent, QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import FaturaTelecomGeradaEvent, QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
 
 class TelecomEventRegistry:
     PUBLISHABLE_EVENTS = {FaturaTelecomGeradaEvent.event_name: 'telecom.fatura.gerada', ReclamacaoTelecomAbertaEvent.event_name: 'telecom.reclamacao.aberta', QualidadeServicoAferidaEvent.event_name: 'telecom.qualidade.aferida'}

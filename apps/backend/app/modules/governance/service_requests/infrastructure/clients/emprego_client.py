@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.governance.service_requests.application.ports import EmpregoClientPort
-from app.modules.governance.service_requests.domain.enums import ServiceType
+from apps.backend.app.modules.governance.service_requests.application.ports import EmpregoClientPort
+from apps.backend.app.modules.governance.service_requests.domain.enums import ServiceType
 
 class EmpregoClient(EmpregoClientPort):
     """Client para validação de solicitações de Emprego."""

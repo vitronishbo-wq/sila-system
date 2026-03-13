@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.infrastructure.application.ports.ambiente_service_port import AmbienteServicePort
 
 class AmbienteServiceAdapter(AmbienteServicePort):
 

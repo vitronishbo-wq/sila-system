@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
 
 @dataclass
 class LoteProducao:

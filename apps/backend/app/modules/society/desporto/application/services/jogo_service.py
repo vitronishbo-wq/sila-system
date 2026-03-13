@@ -1,16 +1,16 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.desporto.application.events import EventBus, JogoAgendadoEvent, JogoResultadoRegistradoEvent
-from app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
-from app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
-from app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
-from app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
-from app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
-from app.modules.society.desporto.domain.enums import StatusJogo
-from app.modules.society.desporto.domain.models.jogo import Jogo
+from apps.backend.app.modules.society.desporto.application.events import EventBus, JogoAgendadoEvent, JogoResultadoRegistradoEvent
+from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
+from apps.backend.app.modules.society.desporto.domain.enums import StatusJogo
+from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
 
 class JogoService:
 

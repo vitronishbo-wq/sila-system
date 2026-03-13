@@ -3,7 +3,7 @@ import asyncio
 import logging
 from time import perf_counter
 from typing import Any
-from app.modules.energy.application.ports import CentralGeradoraRepositoryPort, LinhaTransmissaoRepositoryPort, SubestacaoRepositoryPort
+from apps.backend.app.modules.energy.application.ports import CentralGeradoraRepositoryPort, LinhaTransmissaoRepositoryPort, SubestacaoRepositoryPort
 logger = logging.getLogger(__name__)
 
 class GeracaoService:

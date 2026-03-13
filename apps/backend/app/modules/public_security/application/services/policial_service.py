@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
-from app.modules.public_security.domain.models.policial import Policial
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
+from apps.backend.app.modules.public_security.domain.models.policial import Policial
 
 class PolicialService:
 

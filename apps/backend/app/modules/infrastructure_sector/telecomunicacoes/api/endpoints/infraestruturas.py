@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_infraestrutura_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.infraestrutura_schema import InfraestruturaCreate, InfraestruturaResponse, InfraestruturaStatusUpdate
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_infraestrutura_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.infraestrutura_schema import InfraestruturaCreate, InfraestruturaResponse, InfraestruturaStatusUpdate
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
 router = APIRouter(prefix='/infraestruturas', tags=['Telecomunicacoes - Infraestruturas'])
 
 @router.post('/', response_model=InfraestruturaResponse, status_code=status.HTTP_201_CREATED)

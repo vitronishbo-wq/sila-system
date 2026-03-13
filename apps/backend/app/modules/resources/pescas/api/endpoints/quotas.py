@@ -3,9 +3,9 @@ from decimal import Decimal
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
-from app.modules.resources.pescas.api.deps import get_quota_service
-from app.modules.resources.pescas.api.schemas.quota_schema import QuotaCreate, QuotaResponse
-from app.modules.resources.pescas.application.services.quota_service import QuotaService
+from apps.backend.app.modules.resources.pescas.api.deps import get_quota_service
+from apps.backend.app.modules.resources.pescas.api.schemas.quota_schema import QuotaCreate, QuotaResponse
+from apps.backend.app.modules.resources.pescas.application.services.quota_service import QuotaService
 router = APIRouter(prefix='/quotas', tags=['Pescas - Quotas'])
 
 class QuotaConsumoInput(BaseModel):

@@ -7,8 +7,8 @@ import json
 
 from fastapi import HTTPException
 
-from modules.payment.models.enums import PaymentStatus
-from modules.payment.services.payment_service import PaymentService
+from apps.backend.app.modules.payment.models.enums import PaymentStatus
+from apps.backend.app.modules.payment.services.payment_service import PaymentService
 
 
 class WebhookEngine:

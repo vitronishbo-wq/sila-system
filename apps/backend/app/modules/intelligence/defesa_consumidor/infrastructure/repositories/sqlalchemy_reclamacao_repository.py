@@ -3,8 +3,8 @@ from datetime import datetime
 from typing import Any
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.intelligence.defesa_consumidor.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
-from app.modules.intelligence.defesa_consumidor.infrastructure.models.reclamacao_model import ReclamacaoModel
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
+from apps.backend.app.modules.intelligence.defesa_consumidor.infrastructure.models.reclamacao_model import ReclamacaoModel
 
 class SQLAlchemyReclamacaoRepository(ReclamacaoRepositoryPort):
 

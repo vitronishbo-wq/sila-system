@@ -6,10 +6,10 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pescas.api.deps import get_embarcacao_service
-from app.modules.resources.pescas.api.endpoints.embarcacoes import router as embarcacoes_router
-from app.modules.resources.pescas.application.services.embarcacao_service import EmbarcacaoService
-from app.modules.resources.pescas.domain.enums import TipoEmbarcacao
+from apps.backend.app.modules.resources.pescas.api.deps import get_embarcacao_service
+from apps.backend.app.modules.resources.pescas.api.endpoints.embarcacoes import router as embarcacoes_router
+from apps.backend.app.modules.resources.pescas.application.services.embarcacao_service import EmbarcacaoService
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
 
 @pytest.mark.asyncio
 async def test_cadastrar_embarcacao_sucesso():

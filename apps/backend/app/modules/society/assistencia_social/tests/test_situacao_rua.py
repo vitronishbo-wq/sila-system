@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusAcompanhamento
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemorySituacaoRuaRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusAcompanhamento
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemorySituacaoRuaRepo
 
 def test_situacao_rua_registra_e_encerra() -> None:
 

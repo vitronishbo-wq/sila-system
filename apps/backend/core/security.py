@@ -30,7 +30,7 @@ async def get_current_user(
     db: AsyncSession = Depends(get_db)
 ):
     # IMPORTAÇÃO TARDIA: Resolve o ciclo de importação
-    from modules.identity.models.user import User
+    from apps.backend.app.modules.identity.models.user import User
     
     token = None
     if credentials:

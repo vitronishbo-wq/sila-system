@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_previsao_service
-from app.modules.governance.statistics.api.schemas.previsao_schema import PrevisaoCreate, PrevisaoListResponse, PrevisaoResponse, PrevisaoUpdate
-from app.modules.governance.statistics.application.services.previsao_service import PrevisaoService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_previsao_service
+from apps.backend.app.modules.governance.statistics.api.schemas.previsao_schema import PrevisaoCreate, PrevisaoListResponse, PrevisaoResponse, PrevisaoUpdate
+from apps.backend.app.modules.governance.statistics.application.services.previsao_service import PrevisaoService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/previsoes', tags=['Estatistica - Previsoes'])
 
 @router.post('/', response_model=PrevisaoResponse, status_code=status.HTTP_201_CREATED)

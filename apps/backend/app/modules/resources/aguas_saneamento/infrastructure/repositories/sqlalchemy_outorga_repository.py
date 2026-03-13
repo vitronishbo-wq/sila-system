@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.ports.outorga_repository_port import OutorgaRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
-from app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outorga_repository_port import OutorgaRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
 
 class SQLAlchemyOutorgaRepository(OutorgaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

@@ -1,9 +1,9 @@
 from __future__ import annotations
-from app.modules.resources.agricultura.domain.enums import StatusEquipamento, StatusPlantio, StatusTalhao, TipoEquipamento
-from app.modules.resources.agricultura.domain.models.colheita import Colheita
-from app.modules.resources.agricultura.domain.models.equipamento import Equipamento
-from app.modules.resources.agricultura.domain.models.plantio import Plantio
-from app.modules.resources.agricultura.domain.models.talhao import Talhao
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEquipamento, StatusPlantio, StatusTalhao, TipoEquipamento
+from apps.backend.app.modules.resources.agricultura.domain.models.colheita import Colheita
+from apps.backend.app.modules.resources.agricultura.domain.models.equipamento import Equipamento
+from apps.backend.app.modules.resources.agricultura.domain.models.plantio import Plantio
+from apps.backend.app.modules.resources.agricultura.domain.models.talhao import Talhao
 
 def test_talhao_criacao_e_transicao_status():
     talhao = Talhao.criar(codigo_propriedade='PROP/2026/000001', nome='Talhao A', area_ha=12.5, tipo_solo='argiloso', irrigado=True)

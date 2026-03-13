@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List, Tuple
 from uuid import UUID
-from app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
-from app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
-from app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
-from app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
-from app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
-from app.modules.governance.workflow.domain.enums import WorkflowStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
+from apps.backend.app.modules.governance.workflow.domain.enums import WorkflowStatus
 
 class WorkflowRepositoryPort(ABC):
     """Interface do repositório de workflows"""

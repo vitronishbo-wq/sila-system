@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.aguas_saneamento.api.deps import get_outorga_service
-from app.modules.resources.aguas_saneamento.api.schemas.outorga_schema import OutorgaCreate, OutorgaDeferimentoInput, OutorgaMotivoInput, OutorgaRenovacaoInput, OutorgaResponse
-from app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
-from app.modules.resources.aguas_saneamento.exceptions import OutorgaAlreadyExistsError, OutorgaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_outorga_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.outorga_schema import OutorgaCreate, OutorgaDeferimentoInput, OutorgaMotivoInput, OutorgaRenovacaoInput, OutorgaResponse
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import OutorgaAlreadyExistsError, OutorgaNotFoundError
 router = APIRouter(prefix='/outorgas', tags=['Aguas Saneamento - Outorgas'])
 
 @router.post('/', response_model=OutorgaResponse, status_code=status.HTTP_201_CREATED)

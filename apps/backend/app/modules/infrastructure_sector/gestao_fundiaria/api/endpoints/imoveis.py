@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_imovel_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.imovel_schema import ImovelAreaInput, ImovelCreate, ImovelMatriculaInput, ImovelMotivoInput, ImovelProprietarioInput, ImovelResponse, ImovelSituacaoInput
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelAlreadyExistsError, ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_imovel_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.imovel_schema import ImovelAreaInput, ImovelCreate, ImovelMatriculaInput, ImovelMotivoInput, ImovelProprietarioInput, ImovelResponse, ImovelSituacaoInput
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelAlreadyExistsError, ImovelNotFoundError
 router = APIRouter(prefix='/imoveis', tags=['Gestao Fundiaria - Imoveis'])
 
 @router.post('/', response_model=ImovelResponse, status_code=status.HTTP_201_CREATED)

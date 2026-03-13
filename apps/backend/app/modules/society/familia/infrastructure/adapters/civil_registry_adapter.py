@@ -4,7 +4,7 @@ from sqlalchemy import or_, select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from importlib import import_module
-from app.modules.society.familia.application.ports.civil_registry_service_port import CivilRegistryServicePort
+from apps.backend.app.modules.society.familia.application.ports.civil_registry_service_port import CivilRegistryServicePort
 
 class CivilRegistryAdapter(CivilRegistryServicePort):
     """Adapter de leitura para o modulo registo_civil."""

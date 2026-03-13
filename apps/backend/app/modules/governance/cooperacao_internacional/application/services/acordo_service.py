@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.application.events import AcordoAssinadoEvent, AcordoRatificadoEvent, AcordoVigorEvent, event_bus
-from app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import AcordoRepositoryPort
-from app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, TipoAcordo
-from app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
-from app.modules.governance.cooperacao_internacional.infrastructure.adapters.mre_adapter import MREAdapter
-from app.modules.governance.cooperacao_internacional.infrastructure.adapters.onu_adapter import ONUAdapter
-from app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.governance.cooperacao_internacional.application.events import AcordoAssinadoEvent, AcordoRatificadoEvent, AcordoVigorEvent, event_bus
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import AcordoRepositoryPort
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import NaturezaJuridica, TipoAcordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.adapters.mre_adapter import MREAdapter
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.adapters.onu_adapter import ONUAdapter
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
 
 class AcordoService:
 

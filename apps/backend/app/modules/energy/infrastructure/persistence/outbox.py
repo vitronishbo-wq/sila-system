@@ -6,9 +6,9 @@ from uuid import UUID, uuid4
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.db import AsyncSessionLocal
-from app.modules.energy.application.events.registry import EnergiaEventRegistry, serialize_event
-from app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.energy.infrastructure.models.outbox_event_model import EnergiaOutboxEventModel
+from apps.backend.app.modules.energy.application.events.registry import EnergiaEventRegistry, serialize_event
+from apps.backend.app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.energy.infrastructure.models.outbox_event_model import EnergiaOutboxEventModel
 
 @dataclass
 class OutboxMessage:

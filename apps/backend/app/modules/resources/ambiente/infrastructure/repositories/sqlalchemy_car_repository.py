@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports.car_repository_port import CARRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusCAR
-from app.modules.resources.ambiente.domain.models.car import CAR
+from apps.backend.app.modules.resources.ambiente.application.ports.car_repository_port import CARRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR
+from apps.backend.app.modules.resources.ambiente.domain.models.car import CAR
 
 class SQLAlchemyCARRepository(CARRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

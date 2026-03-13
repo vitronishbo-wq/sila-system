@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
-from app.modules.resources.aguas_saneamento.domain.models.consumo_agua import ConsumoAgua
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.consumo_agua import ConsumoAgua
 
 class ConsumoRepositoryPort(ABC):
 

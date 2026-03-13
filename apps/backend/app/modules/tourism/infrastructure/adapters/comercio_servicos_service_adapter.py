@@ -1,6 +1,6 @@
 from __future__ import annotations
 import inspect
-from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
+from apps.backend.app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
 
 class ComercioServicosServiceAdapter(ComercioServicosServicePort):
 

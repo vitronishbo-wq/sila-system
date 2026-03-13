@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_plano_diretor_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.plano_diretor_schema import PlanoDiretorAprovacaoCamaraInput, PlanoDiretorAudienciaInput, PlanoDiretorCreate, PlanoDiretorResponse, PlanoDiretorSancaoInput, PlanoDiretorValidadeInput
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.plano_diretor_service import PlanoDiretorService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import PlanoDiretorAlreadyExistsError, PlanoDiretorNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_plano_diretor_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.plano_diretor_schema import PlanoDiretorAprovacaoCamaraInput, PlanoDiretorAudienciaInput, PlanoDiretorCreate, PlanoDiretorResponse, PlanoDiretorSancaoInput, PlanoDiretorValidadeInput
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.plano_diretor_service import PlanoDiretorService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import PlanoDiretorAlreadyExistsError, PlanoDiretorNotFoundError
 router = APIRouter(prefix='/planos-diretores', tags=['Urbanismo Habitacao - Planos Diretores'])
 
 @router.post('/', response_model=PlanoDiretorResponse, status_code=status.HTTP_201_CREATED)

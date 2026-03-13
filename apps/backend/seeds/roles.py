@@ -5,7 +5,7 @@ from app.core.db import AsyncSessionLocal
 
 _permission_import_error = None
 try:
-    from app.modules.identity.infrastructure.models.permission_model import PermissionModel as Permission
+    from apps.backend.app.modules.identity.infrastructure.models.permission_model import PermissionModel as Permission
 except Exception as exc:
     try:
         from app.db.base import PermissionModel as Permission

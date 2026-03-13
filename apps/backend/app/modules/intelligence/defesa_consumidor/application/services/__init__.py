@@ -1,2 +1,2 @@
-from app.modules.intelligence.defesa_consumidor.application.services.reclamacao_service import ReclamacaoService
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.services.reclamacao_service import ReclamacaoService
 __all__ = ['ReclamacaoService']

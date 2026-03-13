@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.vestigio_repository_port import VestigioRepositoryPort
-from app.modules.public_security.domain.enums import StatusVestigio, TipoVestigio
-from app.modules.public_security.domain.models.vestigio import Vestigio
-from app.modules.public_security.infrastructure.models.vestigio_model import VestigioModel
+from apps.backend.app.modules.public_security.application.ports.vestigio_repository_port import VestigioRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusVestigio, TipoVestigio
+from apps.backend.app.modules.public_security.domain.models.vestigio import Vestigio
+from apps.backend.app.modules.public_security.infrastructure.models.vestigio_model import VestigioModel
 
 class SQLAlchemyVestigioRepository(VestigioRepositoryPort):
 

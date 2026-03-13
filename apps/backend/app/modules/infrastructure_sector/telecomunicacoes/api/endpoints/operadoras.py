@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_operadora_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.operadora_schema import OperadoraAuthorize, OperadoraCreate, OperadoraResponse
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_operadora_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.operadora_schema import OperadoraAuthorize, OperadoraCreate, OperadoraResponse
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoServico
 router = APIRouter(prefix='/operadoras', tags=['Telecomunicacoes - Operadoras'])
 
 @router.post('/', response_model=OperadoraResponse, status_code=status.HTTP_201_CREATED)

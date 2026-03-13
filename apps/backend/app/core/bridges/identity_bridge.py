@@ -6,29 +6,29 @@ import uuid
 from sqlalchemy import Column, Date, String
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 
-from app.modules.identity.bounded_contexts.iam.application.services.user_service import (
+from apps.backend.app.modules.identity.bounded_contexts.iam.application.services.user_service import (
     UserService,
 )
-from app.modules.identity.citizen_identity_graph.application.identity_graph_service import (
+from apps.backend.app.modules.identity.citizen_identity_graph.application.identity_graph_service import (
     IdentityGraphService,
 )
-from app.modules.justice.domain.citizen import Citizen as CitizenEntity
-from app.modules.justice._deprecated.bounded_contexts.infrastructure.models.bi_event_record import (
+from apps.backend.app.modules.justice.domain.citizen import Citizen as CitizenEntity
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.infrastructure.models.bi_event_record import (
     BIEventRecord,
 )
-from app.modules.justice._deprecated.bounded_contexts.infrastructure.models.bi_record import BIRecord
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.infrastructure.models.bi_record import BIRecord
 from app.core.db import Base
 
 
 class _IdentityCitizenRepositoryProxy:
     def __call__(self, *args, **kwargs):
-        from app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import (
+        from apps.backend.app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import (
             CitizenRepository,
         )
         return CitizenRepository(*args, **kwargs)
 
     def __getattr__(self, item):
-        from app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import (
+        from apps.backend.app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import (
             CitizenRepository,
         )
         return getattr(CitizenRepository, item)

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
-from app.modules.resources.agricultura.application.ports import ProdutorRepositoryPort
-from app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
-from app.modules.resources.agricultura.domain.models.produtor import Produtor
-from app.modules.resources.agricultura.infrastructure.models.produtor_model import ProdutorModel
+from apps.backend.app.modules.resources.agricultura.application.ports import ProdutorRepositoryPort
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
+from apps.backend.app.modules.resources.agricultura.infrastructure.models.produtor_model import ProdutorModel
 
 class SQLAlchemyProdutorRepository(ProdutorRepositoryPort):
 

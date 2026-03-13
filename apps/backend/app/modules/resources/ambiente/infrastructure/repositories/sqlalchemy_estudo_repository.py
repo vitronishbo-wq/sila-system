@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.estudo_repository_port import EstudoRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
-from app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
+from apps.backend.app.modules.resources.ambiente.application.ports.estudo_repository_port import EstudoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
 
 class SQLAlchemyEstudoRepository(EstudoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

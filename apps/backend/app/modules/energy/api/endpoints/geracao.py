@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends
-from app.modules.energy.api.deps import get_geracao_service
-from app.modules.energy.api.schemas.dashboard_schema import DashboardGeracaoResponse
-from app.modules.energy.application.services import GeracaoService
+from apps.backend.app.modules.energy.api.deps import get_geracao_service
+from apps.backend.app.modules.energy.api.schemas.dashboard_schema import DashboardGeracaoResponse
+from apps.backend.app.modules.energy.application.services import GeracaoService
 router = APIRouter(prefix='/geracao', tags=['Energia - Geracao'])
 
 @router.get('/dashboard', response_model=DashboardGeracaoResponse)

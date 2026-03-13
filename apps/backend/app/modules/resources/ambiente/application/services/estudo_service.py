@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports import EstudoRepositoryPort, LicencaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
-from app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
-from app.modules.resources.ambiente.exceptions import EstudoNotFoundError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.application.ports import EstudoRepositoryPort, LicencaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
+from apps.backend.app.modules.resources.ambiente.exceptions import EstudoNotFoundError, LicencaNotFoundError
 
 class EstudoService:
 

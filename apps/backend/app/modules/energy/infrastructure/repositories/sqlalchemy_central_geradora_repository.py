@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.energy.application.ports import CentralGeradoraRepositoryPort
-from app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
-from app.modules.energy.domain.models import CentralGeradora
-from app.modules.energy.infrastructure.models import CentralGeradoraModel
+from apps.backend.app.modules.energy.application.ports import CentralGeradoraRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import CentralGeradora
+from apps.backend.app.modules.energy.infrastructure.models import CentralGeradoraModel
 
 class SQLAlchemyCentralGeradoraRepository(CentralGeradoraRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

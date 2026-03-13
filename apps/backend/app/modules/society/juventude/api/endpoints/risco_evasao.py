@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_risco_evasao_service
-from app.modules.society.juventude.api.schemas.risco_evasao_schema import RiscoEvasaoAvaliar, RiscoEvasaoResponse
-from app.modules.society.juventude.application.services.risco_evasao_service import RiscoEvasaoService
-from app.modules.society.juventude.domain.enums import RiscoSocial
+from apps.backend.app.modules.society.juventude.api.deps import get_risco_evasao_service
+from apps.backend.app.modules.society.juventude.api.schemas.risco_evasao_schema import RiscoEvasaoAvaliar, RiscoEvasaoResponse
+from apps.backend.app.modules.society.juventude.application.services.risco_evasao_service import RiscoEvasaoService
+from apps.backend.app.modules.society.juventude.domain.enums import RiscoSocial
 router = APIRouter(prefix='/riscos-evasao', tags=['Juventude - Risco Evasao'])
 
 @router.post('/avaliar', response_model=RiscoEvasaoResponse, status_code=status.HTTP_201_CREATED)

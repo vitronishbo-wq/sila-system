@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusReclamacaoTelecom, TipoReclamacaoTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.reclamacao_model import ReclamacaoTelecomModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusReclamacaoTelecom, TipoReclamacaoTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.reclamacao_model import ReclamacaoTelecomModel
 
 class SQLAlchemyReclamacaoRepository(ReclamacaoRepositoryPort):
 

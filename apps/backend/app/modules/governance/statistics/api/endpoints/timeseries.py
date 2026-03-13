@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_timeseries_service
-from app.modules.governance.statistics.api.schemas.timeseries_schema import TimeSeriesCreate, TimeSeriesListaResponse, TimeSeriesResponse
-from app.modules.governance.statistics.application.services.timeseries_service import TimeSeriesService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_timeseries_service
+from apps.backend.app.modules.governance.statistics.api.schemas.timeseries_schema import TimeSeriesCreate, TimeSeriesListaResponse, TimeSeriesResponse
+from apps.backend.app.modules.governance.statistics.application.services.timeseries_service import TimeSeriesService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/timeseries', tags=['Estatistica - TimeSeries'])
 
 @router.post('/', response_model=TimeSeriesResponse, status_code=status.HTTP_201_CREATED)

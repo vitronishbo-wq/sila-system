@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.society.juventude.domain.enums import RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.society.juventude.domain.enums import RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
 
 class RiscoEvasaoAvaliar(BaseModel):
     jovem_id: UUID

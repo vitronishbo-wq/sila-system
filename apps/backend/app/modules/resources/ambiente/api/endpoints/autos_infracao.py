@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_penalidade_service
-from app.modules.resources.ambiente.api.schemas.auto_infracao_schema import AutoInfracaoCreate, AutoInfracaoJulgamentoInput, AutoInfracaoResponse
-from app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
-from app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
-from app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, FiscalizacaoNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_penalidade_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.auto_infracao_schema import AutoInfracaoCreate, AutoInfracaoJulgamentoInput, AutoInfracaoResponse
+from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
+from apps.backend.app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, FiscalizacaoNotFoundError
 router = APIRouter(prefix='/autos-infracao', tags=['Ambiente - Autos Infracao'])
 
 @router.post('/', response_model=AutoInfracaoResponse, status_code=status.HTTP_201_CREATED)

@@ -1,9 +1,9 @@
-from app.modules.society.cultura.api.schemas.artista_schema import ArtistaCreate, ArtistaResponse, ArtistaUpdate
-from app.modules.society.cultura.api.schemas.bem_cultural_schema import BemCulturalCreate, BemCulturalResponse, BemCulturalUpdate
-from app.modules.society.cultura.api.schemas.edital_schema import EditalCreate, EditalInscricaoRequest, EditalResponse, EditalSelecaoRequest
-from app.modules.society.cultura.api.schemas.espaco_cultural_schema import EspacoCulturalCreate, EspacoCulturalResponse, EspacoCulturalUpdate
-from app.modules.society.cultura.api.schemas.evento_cultural_schema import EventoCulturalCreate, EventoCulturalResponse, EventoCulturalUpdate
-from app.modules.society.cultura.api.schemas.grupo_artistico_schema import GrupoArtisticoCreate, GrupoArtisticoResponse, GrupoArtisticoUpdate
-from app.modules.society.cultura.api.schemas.patrimonio_imaterial_schema import PatrimonioImaterialCreate, PatrimonioImaterialResponse, PatrimonioImaterialUpdate
-from app.modules.society.cultura.api.schemas.projeto_cultural_schema import ProjetoAprovacaoRequest, ProjetoCulturalCreate, ProjetoCulturalResponse, ProjetoCulturalUpdate, ProjetoExecucaoRequest
+from apps.backend.app.modules.society.cultura.api.schemas.artista_schema import ArtistaCreate, ArtistaResponse, ArtistaUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.bem_cultural_schema import BemCulturalCreate, BemCulturalResponse, BemCulturalUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.edital_schema import EditalCreate, EditalInscricaoRequest, EditalResponse, EditalSelecaoRequest
+from apps.backend.app.modules.society.cultura.api.schemas.espaco_cultural_schema import EspacoCulturalCreate, EspacoCulturalResponse, EspacoCulturalUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.evento_cultural_schema import EventoCulturalCreate, EventoCulturalResponse, EventoCulturalUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.grupo_artistico_schema import GrupoArtisticoCreate, GrupoArtisticoResponse, GrupoArtisticoUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.patrimonio_imaterial_schema import PatrimonioImaterialCreate, PatrimonioImaterialResponse, PatrimonioImaterialUpdate
+from apps.backend.app.modules.society.cultura.api.schemas.projeto_cultural_schema import ProjetoAprovacaoRequest, ProjetoCulturalCreate, ProjetoCulturalResponse, ProjetoCulturalUpdate, ProjetoExecucaoRequest
 __all__ = ['ArtistaCreate', 'ArtistaUpdate', 'ArtistaResponse', 'BemCulturalCreate', 'BemCulturalUpdate', 'BemCulturalResponse', 'EspacoCulturalCreate', 'EspacoCulturalUpdate', 'EspacoCulturalResponse', 'ProjetoCulturalCreate', 'ProjetoCulturalUpdate', 'ProjetoCulturalResponse', 'ProjetoAprovacaoRequest', 'ProjetoExecucaoRequest', 'EditalCreate', 'EditalResponse', 'EditalInscricaoRequest', 'EditalSelecaoRequest', 'EventoCulturalCreate', 'EventoCulturalUpdate', 'EventoCulturalResponse', 'GrupoArtisticoCreate', 'GrupoArtisticoUpdate', 'GrupoArtisticoResponse', 'PatrimonioImaterialCreate', 'PatrimonioImaterialUpdate', 'PatrimonioImaterialResponse']

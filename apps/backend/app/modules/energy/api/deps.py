@@ -1,12 +1,12 @@
 from __future__ import annotations
-from app.modules.energy.application.events.bus import event_bus
-from app.modules.energy.application.events.definitions import FaturaGeradaEvent, LeituraRealizadaEvent, QualidadeInconformeEvent
-from app.modules.energy.application.handlers import AuditoriaHandler, FaturamentoHandler
-from app.modules.energy.application.services import CentralGeradoraService, ConsumoService, FaturamentoService, GeracaoService, LinhaTransmissaoService, SubestacaoService, UsinaService
-from app.modules.energy.infrastructure.adapters import ANEELAdapter, ONSAdapter
-from app.modules.energy.infrastructure.persistence import SQLAlchemyOutboxRepository
-from app.modules.energy.infrastructure.repositories import SQLAlchemyCentralGeradoraRepository, SQLAlchemyConsumoRepository, SQLAlchemyFaturaRepository, SQLAlchemyLinhaTransmissaoRepository, SQLAlchemySubestacaoRepository, SQLAlchemyUsinaRepository
-from app.modules.energy.core.workers import OutboxWorker
+from apps.backend.app.modules.energy.application.events.bus import event_bus
+from apps.backend.app.modules.energy.application.events.definitions import FaturaGeradaEvent, LeituraRealizadaEvent, QualidadeInconformeEvent
+from apps.backend.app.modules.energy.application.handlers import AuditoriaHandler, FaturamentoHandler
+from apps.backend.app.modules.energy.application.services import CentralGeradoraService, ConsumoService, FaturamentoService, GeracaoService, LinhaTransmissaoService, SubestacaoService, UsinaService
+from apps.backend.app.modules.energy.infrastructure.adapters import ANEELAdapter, ONSAdapter
+from apps.backend.app.modules.energy.infrastructure.persistence import SQLAlchemyOutboxRepository
+from apps.backend.app.modules.energy.infrastructure.repositories import SQLAlchemyCentralGeradoraRepository, SQLAlchemyConsumoRepository, SQLAlchemyFaturaRepository, SQLAlchemyLinhaTransmissaoRepository, SQLAlchemySubestacaoRepository, SQLAlchemyUsinaRepository
+from apps.backend.app.modules.energy.core.workers import OutboxWorker
 usina_repo_singleton = SQLAlchemyUsinaRepository()
 usina_service_singleton = UsinaService(usina_repo=usina_repo_singleton)
 central_geradora_repo_singleton = SQLAlchemyCentralGeradoraRepository()

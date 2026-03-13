@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException, status, Header
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from app.core.db import get_db
-from app.modules.justice.bounded_contexts.permissions.access_control import AccessControlEngine
-from app.modules.justice.bounded_contexts.permissions.policies import DataSegment
-from app.modules.justice.bounded_contexts.events.models import CitizenEventModel
+from apps.backend.app.modules.justice.bounded_contexts.permissions.access_control import AccessControlEngine
+from apps.backend.app.modules.justice.bounded_contexts.permissions.policies import DataSegment
+from apps.backend.app.modules.justice.bounded_contexts.events.models import CitizenEventModel
 router = APIRouter(tags=['Citizen Platform Core'])
 
 def verify_admin(service_id: str=Header(..., alias='X-Service-ID')):

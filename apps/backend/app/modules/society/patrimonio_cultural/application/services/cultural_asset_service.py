@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort, TourismServicePort
-from app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetStatus, AssetType, ClassificationLevel
-from app.modules.society.patrimonio_cultural.domain.exceptions import AssetAlreadyClassifiedError, AssetNotFoundError, InvalidClassificationAuthorityError
-from app.modules.society.patrimonio_cultural.domain.models import CulturalAsset, CulturalEvent, PreservationAction
+from apps.backend.app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort, TourismServicePort
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetStatus, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.exceptions import AssetAlreadyClassifiedError, AssetNotFoundError, InvalidClassificationAuthorityError
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models import CulturalAsset, CulturalEvent, PreservationAction
 
 class CulturalAssetService:
     VALID_AUTHORITIES = {'MinCultura', 'UNESCO', 'Governo Provincial', 'Municipio'}

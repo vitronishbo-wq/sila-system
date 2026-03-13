@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.agricultura.application.ports import FinancasServicePort
+from apps.backend.app.modules.resources.agricultura.application.ports import FinancasServicePort
 
 class FinancasServiceAdapter(FinancasServicePort):
 

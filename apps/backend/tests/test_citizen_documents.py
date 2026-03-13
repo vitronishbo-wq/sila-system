@@ -9,7 +9,7 @@ from unittest.mock import Mock, AsyncMock, patch
 from uuid import uuid4
 
 from app.main import app
-from app.modules.justice.civil_registry.adapters import (
+from apps.backend.app.modules.justice.civil_registry.adapters import (
     CertificateServiceAdapter,
     AttestationServiceAdapter,
     FinancesServiceAdapter,

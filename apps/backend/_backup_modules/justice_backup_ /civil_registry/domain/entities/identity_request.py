@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.civil_registry_core.domain.entities.identity_request import *
+from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.domain.entities.identity_request import *

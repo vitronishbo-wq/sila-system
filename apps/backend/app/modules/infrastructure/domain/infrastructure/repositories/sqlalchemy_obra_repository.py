@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
-from app.modules.infrastructure.domain.models.obra import Obra
-from app.modules.infrastructure.infrastructure.models.obra_model import ObraModel
+from apps.backend.app.modules.infrastructure.application.ports.obra_repository_port import ObraRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+from apps.backend.app.modules.infrastructure.domain.models.obra import Obra
+from apps.backend.app.modules.infrastructure.infrastructure.models.obra_model import ObraModel
 
 class SQLAlchemyObraRepository(ObraRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

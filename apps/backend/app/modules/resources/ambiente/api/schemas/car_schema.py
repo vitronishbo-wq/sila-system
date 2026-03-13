@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
 
 class ProprietarioCreate(BaseModel):
     nome: str

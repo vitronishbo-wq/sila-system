@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.energy.domain.enums import BandeiraTarifaria
+from apps.backend.app.modules.energy.domain.enums import BandeiraTarifaria
 
 class ONSServicePort(ABC):
 

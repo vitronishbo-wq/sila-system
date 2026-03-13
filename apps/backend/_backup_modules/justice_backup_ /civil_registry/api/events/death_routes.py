@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.vital_events.api.death_routes import *
+from apps.backend.app.modules.justice.bounded_contexts.vital_events.api.death_routes import *

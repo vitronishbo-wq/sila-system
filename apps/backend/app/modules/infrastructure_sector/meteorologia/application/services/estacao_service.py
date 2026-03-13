@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 from uuid import UUID
-from app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
-from app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
-from app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.estacao_repository_port import EstacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica
 
 class EstacaoService:
 

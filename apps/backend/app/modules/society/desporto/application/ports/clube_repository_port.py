@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
-from app.modules.society.desporto.domain.models.clube import Clube
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
+from apps.backend.app.modules.society.desporto.domain.models.clube import Clube
 
 class ClubeRepositoryPort(ABC):
 

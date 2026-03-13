@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.domain.enums import StatusLaudo, StatusProva, TipoLaudo
-from app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
+from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, StatusProva, TipoLaudo
+from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
 
 class LaudoPericialService:
 

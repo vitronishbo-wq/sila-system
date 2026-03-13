@@ -1,8 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
-from app.modules.economy.trade.external.domain.enums import TipoOperador, TipoPessoa
-from app.modules.economy.trade.external.domain.models.habilitacao_base import HabilitacaoBase
+from apps.backend.app.modules.economy.trade.external.domain.enums import TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.models.habilitacao_base import HabilitacaoBase
 
 @dataclass
 class HabilitacaoExportador(HabilitacaoBase):

@@ -4,9 +4,9 @@ from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from app.core.db import AsyncSessionLocal
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.bus import event_bus
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.registry import deserialize_event
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.persistence.outbox_model import OutboxEventModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.bus import event_bus
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.registry import deserialize_event
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.persistence.outbox_model import OutboxEventModel
 
 class OutboxWorker:
 

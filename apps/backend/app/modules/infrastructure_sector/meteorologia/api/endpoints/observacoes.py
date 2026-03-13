@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.infrastructure_sector.meteorologia.api.deps import get_processamento_service
-from app.modules.infrastructure_sector.meteorologia.api.schemas import ObservacaoCreateSchema, ObservacaoResponseSchema
-from app.modules.infrastructure_sector.meteorologia.application.services.processamento_service import ProcessamentoService
-from app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.deps import get_processamento_service
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.schemas import ObservacaoCreateSchema, ObservacaoResponseSchema
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.services.processamento_service import ProcessamentoService
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
 router = APIRouter(prefix='/observacoes', tags=['Meteorologia - Observacoes'])
 
 @router.post('/', response_model=ObservacaoResponseSchema, status_code=status.HTTP_201_CREATED)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 import asyncio
 from datetime import datetime, timedelta
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import StatusVoo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import StatusVoo
 
 class VooMonitorWorker:
 

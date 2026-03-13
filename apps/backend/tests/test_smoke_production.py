@@ -7,10 +7,10 @@ from app.core.db import AsyncSessionLocal
 from app.core.bridges.identity_bridge import CitizenFUC
 from app.core.workflow.models.process import Process
 from app.core.catalog.models.service import Service
-from app.modules.justice.civil_registry.domain.models.document import Document
-from app.modules.economy.financas.domain.models.invoice import Invoice
-from app.modules.economy.financas.domain.models.payment import Payment
-from app.modules.economy.financas.domain.models.enums import InvoiceStatus, PaymentStatus
+from apps.backend.app.modules.justice.civil_registry.domain.models.document import Document
+from apps.backend.app.modules.economy.financas.domain.models.invoice import Invoice
+from apps.backend.app.modules.economy.financas.domain.models.payment import Payment
+from apps.backend.app.modules.economy.financas.domain.models.enums import InvoiceStatus, PaymentStatus
 
 
 @pytest.mark.asyncio

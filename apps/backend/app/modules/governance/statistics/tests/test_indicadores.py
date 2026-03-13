@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.tests._fakes import named_payload
+from apps.backend.app.modules.governance.statistics.tests._fakes import named_payload
 
 def test_crud_indicadores(client):
     create = client.post('/api/v1/estatistica/indicadores/', json=named_payload('indicador-a'))

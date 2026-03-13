@@ -6,29 +6,29 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
-from app.modules.public_security.application.services.evidencia_service import EvidenciaService
-from app.modules.public_security.application.services.investigacao_service import InvestigacaoService
-from app.modules.public_security.application.services.laudo_pericial_service import LaudoPericialService
-from app.modules.public_security.application.services.mandado_service import MandadoService
-from app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
-from app.modules.public_security.application.services.policial_service import PolicialService
-from app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
-from app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
-from app.modules.public_security.application.services.vestigio_service import VestigioService
-from app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusCadeiaCustodia, TipoAgente, TipoEvidencia, TipoLaudo, TipoMandado, TipoOcorrencia, TipoProva, TipoUnidadePolicial, TipoVestigio, TipoVinculo
+from apps.backend.app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
+from apps.backend.app.modules.public_security.application.services.evidencia_service import EvidenciaService
+from apps.backend.app.modules.public_security.application.services.investigacao_service import InvestigacaoService
+from apps.backend.app.modules.public_security.application.services.laudo_pericial_service import LaudoPericialService
+from apps.backend.app.modules.public_security.application.services.mandado_service import MandadoService
+from apps.backend.app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
+from apps.backend.app.modules.public_security.application.services.policial_service import PolicialService
+from apps.backend.app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
+from apps.backend.app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
+from apps.backend.app.modules.public_security.application.services.vestigio_service import VestigioService
+from apps.backend.app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusCadeiaCustodia, TipoAgente, TipoEvidencia, TipoLaudo, TipoMandado, TipoOcorrencia, TipoProva, TipoUnidadePolicial, TipoVestigio, TipoVinculo
 
 def _tables():
-    from app.modules.public_security.infrastructure.models.cadeia_custodia_model import CadeiaCustodiaModel
-    from app.modules.public_security.infrastructure.models.evidencia_model import EvidenciaModel
-    from app.modules.public_security.infrastructure.models.investigacao_model import InvestigacaoModel
-    from app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel
-    from app.modules.public_security.infrastructure.models.mandado_model import MandadoModel
-    from app.modules.public_security.infrastructure.models.ocorrencia_model import OcorrenciaModel
-    from app.modules.public_security.infrastructure.models.policial_model import PolicialModel
-    from app.modules.public_security.infrastructure.models.prova_pericial_model import ProvaPericialModel
-    from app.modules.public_security.infrastructure.models.unidade_policial_model import UnidadePolicialModel
-    from app.modules.public_security.infrastructure.models.vestigio_model import VestigioModel
+    from apps.backend.app.modules.public_security.infrastructure.models.cadeia_custodia_model import CadeiaCustodiaModel
+    from apps.backend.app.modules.public_security.infrastructure.models.evidencia_model import EvidenciaModel
+    from apps.backend.app.modules.public_security.infrastructure.models.investigacao_model import InvestigacaoModel
+    from apps.backend.app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel
+    from apps.backend.app.modules.public_security.infrastructure.models.mandado_model import MandadoModel
+    from apps.backend.app.modules.public_security.infrastructure.models.ocorrencia_model import OcorrenciaModel
+    from apps.backend.app.modules.public_security.infrastructure.models.policial_model import PolicialModel
+    from apps.backend.app.modules.public_security.infrastructure.models.prova_pericial_model import ProvaPericialModel
+    from apps.backend.app.modules.public_security.infrastructure.models.unidade_policial_model import UnidadePolicialModel
+    from apps.backend.app.modules.public_security.infrastructure.models.vestigio_model import VestigioModel
     if not hasattr(UnidadePolicialModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [UnidadePolicialModel.__table__, PolicialModel.__table__, OcorrenciaModel.__table__, MandadoModel.__table__, InvestigacaoModel.__table__, ProvaPericialModel.__table__, CadeiaCustodiaModel.__table__, LaudoPericialModel.__table__, VestigioModel.__table__, EvidenciaModel.__table__]
@@ -65,16 +65,16 @@ def test_fluxo_real_orm_seguranca_publica_slices_foundation_investigativo_forens
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_cadeia_custodia_repository import SQLAlchemyCadeiaCustodiaRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_evidencia_repository import SQLAlchemyEvidenciaRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_investigacao_repository import SQLAlchemyInvestigacaoRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_laudo_pericial_repository import SQLAlchemyLaudoPericialRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_mandado_repository import SQLAlchemyMandadoRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_ocorrencia_repository import SQLAlchemyOcorrenciaRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_policial_repository import SQLAlchemyPolicialRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_prova_pericial_repository import SQLAlchemyProvaPericialRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_unidade_policial_repository import SQLAlchemyUnidadePolicialRepository
-            from app.modules.public_security.infrastructure.repositories.sqlalchemy_vestigio_repository import SQLAlchemyVestigioRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_cadeia_custodia_repository import SQLAlchemyCadeiaCustodiaRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_evidencia_repository import SQLAlchemyEvidenciaRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_investigacao_repository import SQLAlchemyInvestigacaoRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_laudo_pericial_repository import SQLAlchemyLaudoPericialRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_mandado_repository import SQLAlchemyMandadoRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_ocorrencia_repository import SQLAlchemyOcorrenciaRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_policial_repository import SQLAlchemyPolicialRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_prova_pericial_repository import SQLAlchemyProvaPericialRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_unidade_policial_repository import SQLAlchemyUnidadePolicialRepository
+            from apps.backend.app.modules.public_security.infrastructure.repositories.sqlalchemy_vestigio_repository import SQLAlchemyVestigioRepository
             unidade_repo = SQLAlchemyUnidadePolicialRepository(session)
             policial_repo = SQLAlchemyPolicialRepository(session)
             ocorrencia_repo = SQLAlchemyOcorrenciaRepository(session)

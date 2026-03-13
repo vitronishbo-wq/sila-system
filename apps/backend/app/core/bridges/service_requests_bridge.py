@@ -9,8 +9,8 @@ from typing import Any
 from uuid import UUID
 from sqlalchemy import String, cast, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.service_requests.domain.enums import RequestChannel, RequestPriority, ServiceRequestStatus, ServiceType
-from app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
+from apps.backend.app.modules.governance.service_requests.domain.enums import RequestChannel, RequestPriority, ServiceRequestStatus, ServiceType
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
 
 class ServiceRequestLifecycleBridge:
     """Facade for education and other modules to track institutional requests."""

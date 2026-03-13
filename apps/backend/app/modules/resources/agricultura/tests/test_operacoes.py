@@ -5,15 +5,15 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_operacao_service
-from app.modules.resources.agricultura.api.endpoints.operacoes import router as operacoes_router
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.domain.enums import TipoCultura, TipoInsumo, TipoOperacao, TipoPropriedade
-from app.modules.resources.agricultura.exceptions import OperacaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_operacao_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.operacoes import router as operacoes_router
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.application.services.operacao_service import OperacaoService
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoCultura, TipoInsumo, TipoOperacao, TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import OperacaoNotFoundError
 
 @pytest.mark.asyncio
 async def test_operacao_service_registrar_com_consumo_insumo():

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.domain.models.credito_rural import CreditoRural
-from app.modules.resources.agricultura.exceptions import CreditoNotFoundError
+from apps.backend.app.modules.resources.agricultura.domain.models.credito_rural import CreditoRural
+from apps.backend.app.modules.resources.agricultura.exceptions import CreditoNotFoundError
 
 class CreditoService:
 

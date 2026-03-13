@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.logistics.domain.enums import ModalTransporte, StatusLinha
-from app.modules.logistics.domain.models import Linha
+from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha
+from apps.backend.app.modules.logistics.domain.models import Linha
 
 class LinhaRepositoryPort(ABC):
 

@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
-from app.modules.society.juventude.domain.enums import RiscoSocial
-from app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import RiscoSocial
+from apps.backend.app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
 
 class RiscoEvasaoService:
 

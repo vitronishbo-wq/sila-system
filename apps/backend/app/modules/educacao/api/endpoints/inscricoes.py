@@ -3,11 +3,11 @@ from typing import Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.api.deps import get_current_user
-from app.modules.educacao.api.deps import get_inscricao_service
-from app.modules.educacao.api.schemas.inscricao_schema import InscricaoCancelar, InscricaoConfirmar, InscricaoCreate, InscricaoResponse
-from app.modules.educacao.application.inscricao_service import InscricaoService
-from app.modules.educacao.domain.enums import TipoInscricao
-from app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError
+from apps.backend.app.modules.educacao.api.deps import get_inscricao_service
+from apps.backend.app.modules.educacao.api.schemas.inscricao_schema import InscricaoCancelar, InscricaoConfirmar, InscricaoCreate, InscricaoResponse
+from apps.backend.app.modules.educacao.application.inscricao_service import InscricaoService
+from apps.backend.app.modules.educacao.domain.enums import TipoInscricao
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError
 router = APIRouter(prefix='/inscricoes', tags=['Educacao - Inscricoes'])
 
 @router.post('/basica', response_model=InscricaoResponse, status_code=status.HTTP_201_CREATED)

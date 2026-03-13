@@ -1,8 +1,8 @@
-from app.modules.society.cultura.application.events import event_bus
-from app.modules.society.cultura.application.handlers.ecad_handler import build_ecad_handler
-from app.modules.society.cultura.application.handlers.iphan_handler import build_iphan_handler
-from app.modules.society.cultura.application.handlers.minc_handler import build_minc_edital_handler, build_minc_projeto_handler
-from app.modules.society.cultura.application.handlers.turismo_handler import build_turismo_handler
+from apps.backend.app.modules.society.cultura.application.events import event_bus
+from apps.backend.app.modules.society.cultura.application.handlers.ecad_handler import build_ecad_handler
+from apps.backend.app.modules.society.cultura.application.handlers.iphan_handler import build_iphan_handler
+from apps.backend.app.modules.society.cultura.application.handlers.minc_handler import build_minc_edital_handler, build_minc_projeto_handler
+from apps.backend.app.modules.society.cultura.application.handlers.turismo_handler import build_turismo_handler
 
 def register_handlers(*, iphan_adapter=None, minc_adapter=None, ecad_adapter=None, turismo_adapter=None) -> None:
     if iphan_adapter is not None:

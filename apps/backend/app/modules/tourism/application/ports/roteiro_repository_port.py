@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.tourism.domain.models.roteiro import Roteiro
+from apps.backend.app.modules.tourism.domain.models.roteiro import Roteiro
 
 class RoteiroRepositoryPort(ABC):
 

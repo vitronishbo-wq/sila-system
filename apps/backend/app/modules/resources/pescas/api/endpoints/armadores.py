@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.api.deps import get_armador_service
-from app.modules.resources.pescas.api.schemas.armador_schema import ArmadorCreate, ArmadorFilter, ArmadorResponse
-from app.modules.resources.pescas.application.services.armador_service import ArmadorService
+from apps.backend.app.modules.resources.pescas.api.deps import get_armador_service
+from apps.backend.app.modules.resources.pescas.api.schemas.armador_schema import ArmadorCreate, ArmadorFilter, ArmadorResponse
+from apps.backend.app.modules.resources.pescas.application.services.armador_service import ArmadorService
 router = APIRouter(prefix='/armadores', tags=['Pescas - Armadores'])
 
 @router.post('/', response_model=ArmadorResponse, status_code=status.HTTP_201_CREATED)

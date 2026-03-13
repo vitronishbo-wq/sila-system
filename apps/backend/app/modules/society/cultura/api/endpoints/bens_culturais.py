@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_bem_cultural_service
-from app.modules.society.cultura.api.schemas.bem_cultural_schema import BemCulturalCreate, BemCulturalResponse, BemCulturalUpdate
-from app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
-from app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.api.deps import get_bem_cultural_service
+from apps.backend.app.modules.society.cultura.api.schemas.bem_cultural_schema import BemCulturalCreate, BemCulturalResponse, BemCulturalUpdate
+from apps.backend.app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
 router = APIRouter(prefix='/bens-culturais', tags=['Cultura - Bens Culturais'])
 
 @router.post('/', response_model=BemCulturalResponse, status_code=status.HTTP_201_CREATED)

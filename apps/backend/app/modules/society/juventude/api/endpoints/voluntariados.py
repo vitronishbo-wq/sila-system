@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_voluntariado_service
-from app.modules.society.juventude.api.schemas.voluntariado_schema import VoluntariadoCreate, VoluntariadoResponse, VoluntariadoStatusUpdate
-from app.modules.society.juventude.application.services.voluntariado_service import VoluntariadoService
-from app.modules.society.juventude.domain.enums import StatusVoluntariado
+from apps.backend.app.modules.society.juventude.api.deps import get_voluntariado_service
+from apps.backend.app.modules.society.juventude.api.schemas.voluntariado_schema import VoluntariadoCreate, VoluntariadoResponse, VoluntariadoStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.voluntariado_service import VoluntariadoService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusVoluntariado
 router = APIRouter(prefix='/voluntariados', tags=['Juventude - Voluntariados'])
 
 @router.post('/', response_model=VoluntariadoResponse, status_code=status.HTTP_201_CREATED)

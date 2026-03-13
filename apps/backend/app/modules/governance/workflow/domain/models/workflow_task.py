@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 from uuid import UUID, uuid4
-from app.modules.governance.workflow.domain.enums import TaskStatus, TaskPriority
+from apps.backend.app.modules.governance.workflow.domain.enums import TaskStatus, TaskPriority
 
 @dataclass
 class WorkflowTask:

@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.api.endpoints import get_endpoint_routers, iter_endpoint_modules
-from app.modules.economy.trade.external.api.router import router
+from apps.backend.app.modules.economy.trade.external.api.endpoints import get_endpoint_routers, iter_endpoint_modules
+from apps.backend.app.modules.economy.trade.external.api.router import router
 
 def test_auto_wiring_discovery_consistency():
     modules = list(iter_endpoint_modules())

@@ -1,6 +1,6 @@
 """Educacao module - matriculas escolares e catalogo institucional."""
-from app.modules.educacao.api.router import router
-from app.modules.educacao.infrastructure.models import AnoLetivoModel, BoletimModel, CertificadoModel, ConcursoModel, EmpregoModel, EscolaModel, FormacaoModel, InscricaoModel, MatriculaModel, PropinaModel, TransferenciaModel, TurmaModel, UniversidadeModel
+from apps.backend.app.modules.educacao.api.router import router
+from apps.backend.app.modules.educacao.infrastructure.models import AnoLetivoModel, BoletimModel, CertificadoModel, ConcursoModel, EmpregoModel, EscolaModel, FormacaoModel, InscricaoModel, MatriculaModel, PropinaModel, TransferenciaModel, TurmaModel, UniversidadeModel
 __all__ = ['router', 'MatriculaModel', 'InscricaoModel', 'BoletimModel', 'CertificadoModel', 'TransferenciaModel', 'PropinaModel', 'EmpregoModel', 'ConcursoModel', 'FormacaoModel', 'UniversidadeModel', 'EscolaModel', 'TurmaModel', 'AnoLetivoModel']
 
 HealthStatus = dict

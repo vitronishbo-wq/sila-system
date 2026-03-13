@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_mentor_service
-from app.modules.society.juventude.api.schemas.mentor_schema import MentorAtribuirJovem, MentorCreate, MentorResponse, MentorStatusUpdate
-from app.modules.society.juventude.application.services.mentor_service import MentorService
-from app.modules.society.juventude.domain.enums import StatusMentoria
+from apps.backend.app.modules.society.juventude.api.deps import get_mentor_service
+from apps.backend.app.modules.society.juventude.api.schemas.mentor_schema import MentorAtribuirJovem, MentorCreate, MentorResponse, MentorStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.mentor_service import MentorService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusMentoria
 router = APIRouter(prefix='/mentores', tags=['Juventude - Mentores'])
 
 @router.post('/', response_model=MentorResponse, status_code=status.HTTP_201_CREATED)

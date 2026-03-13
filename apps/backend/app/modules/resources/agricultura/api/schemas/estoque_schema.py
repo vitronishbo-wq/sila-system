@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import StatusEstoque
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEstoque
 
 class EstoqueCreate(BaseModel):
     codigo_insumo: str

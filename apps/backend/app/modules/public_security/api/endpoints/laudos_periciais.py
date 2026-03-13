@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_laudo_pericial_service
-from app.modules.public_security.api.schemas.laudo_pericial_schema import LaudoPericialCreate, LaudoPericialResponse, LaudoPericialStatusUpdate
-from app.modules.public_security.application.services.laudo_pericial_service import LaudoPericialService
-from app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
+from apps.backend.app.modules.public_security.api.deps import get_laudo_pericial_service
+from apps.backend.app.modules.public_security.api.schemas.laudo_pericial_schema import LaudoPericialCreate, LaudoPericialResponse, LaudoPericialStatusUpdate
+from apps.backend.app.modules.public_security.application.services.laudo_pericial_service import LaudoPericialService
+from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
 router = APIRouter(prefix='/laudos-periciais', tags=['Seguranca Publica - Laudos Periciais'])
 
 @router.post('/', response_model=LaudoPericialResponse, status_code=status.HTTP_201_CREATED)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusMulta
-from app.modules.resources.ambiente.domain.models.multa import Multa
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusMulta
+from apps.backend.app.modules.resources.ambiente.domain.models.multa import Multa
 
 class MultaRepositoryPort(ABC):
 

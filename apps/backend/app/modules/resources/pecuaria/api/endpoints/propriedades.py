@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pecuaria.api.deps import get_propriedade_service
-from app.modules.resources.pecuaria.api.schemas.propriedade_schema import PropriedadeCreate, PropriedadeResponse
-from app.modules.resources.pecuaria.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_propriedade_service
+from apps.backend.app.modules.resources.pecuaria.api.schemas.propriedade_schema import PropriedadeCreate, PropriedadeResponse
+from apps.backend.app.modules.resources.pecuaria.application.services.propriedade_service import PropriedadeService
 router = APIRouter(prefix='/propriedades', tags=['Pecuaria - Propriedades'])
 
 @router.post('/', response_model=PropriedadeResponse, status_code=status.HTTP_201_CREATED)

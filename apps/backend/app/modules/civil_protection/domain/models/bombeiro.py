@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao, TipoAgenteProtecao
+from apps.backend.app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao, TipoAgenteProtecao
 
 @dataclass
 class Bombeiro:

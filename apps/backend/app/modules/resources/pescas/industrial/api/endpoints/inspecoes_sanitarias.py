@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.industrial.api.deps import get_inspecao_industrial_service
-from app.modules.resources.pescas.industrial.api.schemas.inspecao_schema import InspecaoCreate, InspecaoResponse, InspecaoStatusUpdate
-from app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao
+from apps.backend.app.modules.resources.pescas.industrial.api.deps import get_inspecao_industrial_service
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.inspecao_schema import InspecaoCreate, InspecaoResponse, InspecaoStatusUpdate
+from apps.backend.app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao
 router = APIRouter(prefix='/inspecoes-sanitarias', tags=['Pescas Industriais - Inspecoes Sanitarias'])
 
 @router.post('/', response_model=InspecaoResponse, status_code=status.HTTP_201_CREATED)

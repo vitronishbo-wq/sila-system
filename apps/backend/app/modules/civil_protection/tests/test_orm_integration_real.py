@@ -6,19 +6,19 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
-from app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
-from app.modules.civil_protection.application.services.despacho_service import DespachoService
-from app.modules.civil_protection.application.services.ocorrencia_emergencial_service import OcorrenciaEmergencialService
-from app.modules.civil_protection.application.services.atendimento_service import AtendimentoService
-from app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusAtendimento, StatusDespacho, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
+from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
+from apps.backend.app.modules.civil_protection.application.services.despacho_service import DespachoService
+from apps.backend.app.modules.civil_protection.application.services.ocorrencia_emergencial_service import OcorrenciaEmergencialService
+from apps.backend.app.modules.civil_protection.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusAtendimento, StatusDespacho, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
 
 def _tables():
-    from app.modules.civil_protection.infrastructure.models.bombeiro_model import BombeiroModel
-    from app.modules.civil_protection.infrastructure.models.despacho_model import DespachoModel
-    from app.modules.civil_protection.infrastructure.models.atendimento_model import AtendimentoModel
-    from app.modules.civil_protection.infrastructure.models.corporacao_model import CorporacaoModel
-    from app.modules.civil_protection.infrastructure.models.ocorrencia_emergencial_model import OcorrenciaEmergencialModel
+    from apps.backend.app.modules.civil_protection.infrastructure.models.bombeiro_model import BombeiroModel
+    from apps.backend.app.modules.civil_protection.infrastructure.models.despacho_model import DespachoModel
+    from apps.backend.app.modules.civil_protection.infrastructure.models.atendimento_model import AtendimentoModel
+    from apps.backend.app.modules.civil_protection.infrastructure.models.corporacao_model import CorporacaoModel
+    from apps.backend.app.modules.civil_protection.infrastructure.models.ocorrencia_emergencial_model import OcorrenciaEmergencialModel
     if not hasattr(CorporacaoModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [CorporacaoModel.__table__, BombeiroModel.__table__, OcorrenciaEmergencialModel.__table__, DespachoModel.__table__, AtendimentoModel.__table__]
@@ -50,13 +50,13 @@ def test_fluxo_real_orm_protecao_civil_foundation() -> None:
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
-            from app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
-            from app.modules.civil_protection.infrastructure.repositories.sqlalchemy_bombeiro_repository import SQLAlchemyBombeiroRepository
-            from app.modules.civil_protection.infrastructure.repositories.sqlalchemy_despacho_repository import SQLAlchemyDespachoRepository
-            from app.modules.civil_protection.infrastructure.repositories.sqlalchemy_atendimento_repository import SQLAlchemyAtendimentoRepository
-            from app.modules.civil_protection.infrastructure.repositories.sqlalchemy_corporacao_repository import SQLAlchemyCorporacaoRepository
-            from app.modules.civil_protection.infrastructure.repositories.sqlalchemy_ocorrencia_emergencial_repository import SQLAlchemyOcorrenciaEmergencialRepository
+            from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
+            from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
+            from apps.backend.app.modules.civil_protection.infrastructure.repositories.sqlalchemy_bombeiro_repository import SQLAlchemyBombeiroRepository
+            from apps.backend.app.modules.civil_protection.infrastructure.repositories.sqlalchemy_despacho_repository import SQLAlchemyDespachoRepository
+            from apps.backend.app.modules.civil_protection.infrastructure.repositories.sqlalchemy_atendimento_repository import SQLAlchemyAtendimentoRepository
+            from apps.backend.app.modules.civil_protection.infrastructure.repositories.sqlalchemy_corporacao_repository import SQLAlchemyCorporacaoRepository
+            from apps.backend.app.modules.civil_protection.infrastructure.repositories.sqlalchemy_ocorrencia_emergencial_repository import SQLAlchemyOcorrenciaEmergencialRepository
             corporacao_repo = SQLAlchemyCorporacaoRepository(session)
             bombeiro_repo = SQLAlchemyBombeiroRepository(session)
             ocorrencia_repo = SQLAlchemyOcorrenciaEmergencialRepository(session)

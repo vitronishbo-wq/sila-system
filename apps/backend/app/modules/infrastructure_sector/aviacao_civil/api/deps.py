@@ -1,14 +1,14 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
-from app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import OcorrenciaService
-from app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.anac_adapter import AnacAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.decea_adapter import DeceaAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.meteorologia_adapter import MeteorologiaAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_aeronave_repository import InMemoryAeronaveRepository
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_ocorrencia_repository import InMemoryOcorrenciaRepository
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_voo_repository import InMemoryVooRepository
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import OcorrenciaService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.anac_adapter import AnacAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.decea_adapter import DeceaAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.meteorologia_adapter import MeteorologiaAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_aeronave_repository import InMemoryAeronaveRepository
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_ocorrencia_repository import InMemoryOcorrenciaRepository
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_voo_repository import InMemoryVooRepository
 _aeronave_repo = InMemoryAeronaveRepository()
 _voo_repo = InMemoryVooRepository()
 _ocorrencia_repo = InMemoryOcorrenciaRepository()

@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
-from app.modules.public_security.domain.enums import StatusMandado, TipoMandado
-from app.modules.public_security.domain.models.mandado import Mandado
-from app.modules.public_security.infrastructure.models.mandado_model import MandadoModel
+from apps.backend.app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusMandado, TipoMandado
+from apps.backend.app.modules.public_security.domain.models.mandado import Mandado
+from apps.backend.app.modules.public_security.infrastructure.models.mandado_model import MandadoModel
 
 class SQLAlchemyMandadoRepository(MandadoRepositoryPort):
 

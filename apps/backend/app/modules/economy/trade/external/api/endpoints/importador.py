@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.economy.trade.external.api.deps import get_importador_service
-from app.modules.economy.trade.external.api.schemas.importador_schema import CancelamentoImportadorInput, HabilitacaoImportadorInput, ImportadorCreate, ImportadorResponse, PaisOrigemInput, ProdutoImportadorInput, SuspensaoImportadorInput
-from app.modules.economy.trade.external.application.services import ImportadorService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from app.modules.economy.trade.external.exceptions import ImportadorAlreadyExistsError, ImportadorNotFoundError, InvalidImportadorStateError
+from apps.backend.app.modules.economy.trade.external.api.deps import get_importador_service
+from apps.backend.app.modules.economy.trade.external.api.schemas.importador_schema import CancelamentoImportadorInput, HabilitacaoImportadorInput, ImportadorCreate, ImportadorResponse, PaisOrigemInput, ProdutoImportadorInput, SuspensaoImportadorInput
+from apps.backend.app.modules.economy.trade.external.application.services import ImportadorService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.exceptions import ImportadorAlreadyExistsError, ImportadorNotFoundError, InvalidImportadorStateError
 router = APIRouter(prefix='/importadores', tags=['Comercio Externo - Importadores'])
 
 @router.post('/', response_model=ImportadorResponse, status_code=status.HTTP_201_CREATED)

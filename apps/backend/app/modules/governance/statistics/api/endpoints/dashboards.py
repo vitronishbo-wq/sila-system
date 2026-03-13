@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_dashboard_service
-from app.modules.governance.statistics.api.schemas.dashboard_schema import DashboardCreate, DashboardListaResponse, DashboardResponse, DashboardUpdate
-from app.modules.governance.statistics.application.services.dashboard_service import DashboardService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_dashboard_service
+from apps.backend.app.modules.governance.statistics.api.schemas.dashboard_schema import DashboardCreate, DashboardListaResponse, DashboardResponse, DashboardUpdate
+from apps.backend.app.modules.governance.statistics.application.services.dashboard_service import DashboardService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/dashboards', tags=['Estatistica - Dashboards'])
 
 @router.post('/', response_model=DashboardResponse, status_code=status.HTTP_201_CREATED)

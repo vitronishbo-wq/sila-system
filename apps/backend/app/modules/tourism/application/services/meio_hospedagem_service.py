@@ -1,12 +1,12 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort
-from app.modules.tourism.application.ports.pousada_repository_port import PousadaRepositoryPort
-from app.modules.tourism.application.ports.request_service_port import RequestServicePort
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira, TipoMeioHospedagem
-from app.modules.tourism.domain.models.hotel import Hotel
-from app.modules.tourism.domain.models.pousada import Pousada
+from apps.backend.app.modules.tourism.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.pousada_repository_port import PousadaRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira, TipoMeioHospedagem
+from apps.backend.app.modules.tourism.domain.models.hotel import Hotel
+from apps.backend.app.modules.tourism.domain.models.pousada import Pousada
 
 class MeioHospedagemService:
 

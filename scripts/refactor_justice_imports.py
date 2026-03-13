@@ -4,10 +4,10 @@ import pathlib
 ROOT = pathlib.Path('/home/dev03wsl/sila-system/apps/backend/app/modules')
 
 REPLACEMENTS = {
-    'from app.modules.justice.civil_registry.application.ports.': 'from app.modules.justice.bounded_contexts.application.ports.',
-    'from app.modules.justice.civil_registry.domain.': 'from app.modules.justice.bounded_contexts.domain.',
-    'from app.modules.justice.civil_registry.infrastructure.': 'from app.modules.justice.bounded_contexts.infrastructure.',
-    'from app.modules.justice.civil_registry.permissions.': 'from app.modules.justice.bounded_contexts.permissions.',
+    'from apps.backend.app.modules.justice.civil_registry.application.ports.': 'from apps.backend.app.modules.justice.bounded_contexts.application.ports.',
+    'from apps.backend.app.modules.justice.civil_registry.domain.': 'from apps.backend.app.modules.justice.bounded_contexts.domain.',
+    'from apps.backend.app.modules.justice.civil_registry.infrastructure.': 'from apps.backend.app.modules.justice.bounded_contexts.infrastructure.',
+    'from apps.backend.app.modules.justice.civil_registry.permissions.': 'from apps.backend.app.modules.justice.bounded_contexts.permissions.',
 }
 
 modified = 0

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
-from app.modules.governance.statistics.domain.models.metrica import Metrica
+from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
+from apps.backend.app.modules.governance.statistics.domain.models.metrica import Metrica
 
 class MetricaRepositoryPort(ABC):
 

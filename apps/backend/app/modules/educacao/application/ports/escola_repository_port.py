@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.educacao.domain.models import CicloEnsino, Escola, TipoEscola
+from apps.backend.app.modules.educacao.domain.models import CicloEnsino, Escola, TipoEscola
 
 class EscolaRepositoryPort(ABC):
 

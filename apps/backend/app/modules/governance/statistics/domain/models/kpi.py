@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
-from app.modules.governance.statistics.domain.enums import StatusKPI
+from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
 
 @dataclass(slots=True)
 class KPI:

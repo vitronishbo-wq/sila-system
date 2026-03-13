@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.application.events import ProjetoCooperacaoAprovadoEvent, event_bus
-from app.modules.governance.cooperacao_internacional.application.ports.projeto_repository_port import ProjetoCooperacaoRepositoryPort
-from app.modules.governance.cooperacao_internacional.domain.enums import ModalidadeCooperacao, TipoProjeto
-from app.modules.governance.cooperacao_internacional.domain.models.projeto_cooperacao import ProjetoCooperacao
-from app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.governance.cooperacao_internacional.application.events import ProjetoCooperacaoAprovadoEvent, event_bus
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.projeto_repository_port import ProjetoCooperacaoRepositoryPort
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import ModalidadeCooperacao, TipoProjeto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.projeto_cooperacao import ProjetoCooperacao
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
 
 class ProjetoCooperacaoService:
 

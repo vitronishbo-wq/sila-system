@@ -1,9 +1,9 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo
 
 def test_beneficiario_rejeita_duplicidade_ativa_e_permite_inativar() -> None:
 

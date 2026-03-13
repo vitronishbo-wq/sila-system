@@ -6,7 +6,7 @@ from typing import Any
 
 from fastapi import UploadFile
 
-from modules.documents.schemas.documents import DocumentCreate, DocumentStatus
+from apps.backend.app.modules.documents.schemas.documents import DocumentCreate, DocumentStatus
 
 UPLOAD_DIR = Path("media/documents")
 
@@ -67,7 +67,7 @@ class DocumentService:
         await self.db.refresh(document)
 
         try:
-            from modules.documents.tasks import process_document_ocr_task
+            from apps.backend.app.modules.documents.tasks import process_document_ocr_task
 
             process_document_ocr_task.delay(getattr(document, "id", None))
         except Exception:

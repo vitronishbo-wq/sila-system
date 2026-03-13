@@ -1,8 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.infrastructure.persistence.saga_model import SagaInstanceModel
-from app.modules.infrastructure.infrastructure.persistence.saga_repository import SQLAlchemySagaRepository
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.saga_model import SagaInstanceModel
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.saga_repository import SQLAlchemySagaRepository
 
 class ExecucaoObraStates:
     INICIADA = 'INICIADA'

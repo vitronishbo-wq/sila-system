@@ -4,8 +4,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_db
-from app.modules.intelligence.arquivo_nacional.application.services.processo_service import ProcessoService
-from app.modules.intelligence.arquivo_nacional.api.schemas import ProcessoCreateSchema, ProcessoResponseSchema, ProcessoTramitacaoSchema, ProcessoRecebimentoSchema, ProcessoEncerramentoSchema, ProcessoArquivamentoSchema, ProcessoAutuarDocumentoSchema, HistoricoTramitacaoSchema
+from apps.backend.app.modules.intelligence.arquivo_nacional.application.services.processo_service import ProcessoService
+from apps.backend.app.modules.intelligence.arquivo_nacional.api.schemas import ProcessoCreateSchema, ProcessoResponseSchema, ProcessoTramitacaoSchema, ProcessoRecebimentoSchema, ProcessoEncerramentoSchema, ProcessoArquivamentoSchema, ProcessoAutuarDocumentoSchema, HistoricoTramitacaoSchema
 router = APIRouter()
 
 @router.post('/', response_model=ProcessoResponseSchema, status_code=201)

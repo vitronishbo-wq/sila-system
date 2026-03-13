@@ -15,7 +15,7 @@ backend_root = Path(__file__).resolve().parent.parent.parent
 load_dotenv(backend_root / ".env")
 
 from app.core.db import AsyncSessionLocal
-from modules.identity.models.user import User
+from apps.backend.app.modules.identity.models.user import User
 from app.core.security import get_password_hash, create_access_token
 
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "central@sila.gov.ao")

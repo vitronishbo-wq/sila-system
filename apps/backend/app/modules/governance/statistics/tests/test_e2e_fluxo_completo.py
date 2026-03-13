@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.tests._fakes import kpi_payload, metrica_payload
+from apps.backend.app.modules.governance.statistics.tests._fakes import kpi_payload, metrica_payload
 
 def test_fluxo_basico_metrica_kpi_dashboard(client):
     metrica = client.post('/api/v1/estatistica/metricas/', json=metrica_payload()).json()

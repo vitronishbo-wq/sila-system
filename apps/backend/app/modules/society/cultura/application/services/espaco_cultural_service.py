@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import TipoEspacoCultural
-from app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
+from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
+from apps.backend.app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
 
 class EspacoCulturalService:
 

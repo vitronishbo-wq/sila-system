@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
-from app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
-from app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import PatrimonioImaterialModel
+from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
+from apps.backend.app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import PatrimonioImaterialModel
 
 class SQLAlchemyPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort):
 

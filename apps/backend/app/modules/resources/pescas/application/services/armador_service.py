@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.resources.pescas.application.ports import ArmadorRepositoryPort
-from app.modules.resources.pescas.domain.models.armador import Armador
+from apps.backend.app.modules.resources.pescas.application.ports import ArmadorRepositoryPort
+from apps.backend.app.modules.resources.pescas.domain.models.armador import Armador
 
 class ArmadorService:
 

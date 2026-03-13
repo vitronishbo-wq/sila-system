@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.infrastructure_sector.aviacao_civil.application.ports.voo_repository_port import VooRepositoryPort
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import StatusVoo
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.voo import Voo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.voo_repository_port import VooRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import StatusVoo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.voo import Voo
 
 class InMemoryVooRepository(VooRepositoryPort):
 

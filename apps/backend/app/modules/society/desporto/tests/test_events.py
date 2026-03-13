@@ -2,12 +2,12 @@ from __future__ import annotations
 import asyncio
 from datetime import date
 from uuid import uuid4
-from app.modules.society.desporto.application.events import JogoAgendadoEvent, JogoResultadoRegistradoEvent
-from app.modules.society.desporto.application.services.clube_service import ClubeService
-from app.modules.society.desporto.application.services.competicao_service import CompeticaoService
-from app.modules.society.desporto.application.services.jogo_service import JogoService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube, TipoCompeticao
-from app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeEventBus, FakeObrasPublicasService, FakeRequestService, FakeTurismoService, InMemoryClubeRepository, InMemoryCompeticaoRepository, InMemoryJogoRepository, InMemoryOutboxRepository
+from apps.backend.app.modules.society.desporto.application.events import JogoAgendadoEvent, JogoResultadoRegistradoEvent
+from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
+from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService
+from apps.backend.app.modules.society.desporto.application.services.jogo_service import JogoService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube, TipoCompeticao
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeEventBus, FakeObrasPublicasService, FakeRequestService, FakeTurismoService, InMemoryClubeRepository, InMemoryCompeticaoRepository, InMemoryJogoRepository, InMemoryOutboxRepository
 
 def test_jogo_service_publica_eventos_em_bus_e_outbox() -> None:
 

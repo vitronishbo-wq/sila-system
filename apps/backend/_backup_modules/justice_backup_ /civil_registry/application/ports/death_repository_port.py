@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional
-from app.modules.justice.bounded_contexts.infrastructure.models.death_record import DeathRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.death_record import DeathRecord
 
 class DeathRepositoryPort(ABC):
     """Porta (Interface) para o Repositório de Óbitos."""

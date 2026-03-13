@@ -4,8 +4,8 @@ from typing import Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pescas.api.deps import get_rastreabilidade_service
-from app.modules.resources.pescas.application.services.rastreabilidade_service import RastreabilidadeService
+from apps.backend.app.modules.resources.pescas.api.deps import get_rastreabilidade_service
+from apps.backend.app.modules.resources.pescas.application.services.rastreabilidade_service import RastreabilidadeService
 router = APIRouter(prefix='/rastreabilidade', tags=['Pescas - Rastreabilidade'])
 
 class RastreabilidadeCreate(BaseModel):

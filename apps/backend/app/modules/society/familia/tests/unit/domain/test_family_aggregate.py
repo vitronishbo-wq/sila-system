@@ -1,8 +1,8 @@
 from uuid import uuid4
 import pytest
-from app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
-from app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
-from app.modules.society.familia.domain.exceptions.family_exceptions import HeadMustBeAdultError
+from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
+from apps.backend.app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
+from apps.backend.app.modules.society.familia.domain.exceptions.family_exceptions import HeadMustBeAdultError
 
 def test_create_aggregate_with_valid_head() -> None:
     head_id = uuid4()

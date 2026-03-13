@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
-from app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
-from app.modules.society.desporto.domain.models.estadio import Estadio
-from app.modules.society.desporto.infrastructure.models.estadio_model import EstadioModel
+from apps.backend.app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
+from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
+from apps.backend.app.modules.society.desporto.infrastructure.models.estadio_model import EstadioModel
 
 class SQLAlchemyEstadioRepository(EstadioRepositoryPort):
 

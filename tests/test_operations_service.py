@@ -6,8 +6,8 @@ from uuid import uuid4
 
 import pytest
 
-from app.modules.operations.application.services.operations_service import OperationsService
-from app.modules.operations.domain.enums import OrderStatus, PaymentStatus
+from apps.backend.app.modules.operations.application.services.operations_service import OperationsService
+from apps.backend.app.modules.operations.domain.enums import OrderStatus, PaymentStatus
 
 
 def _session_with_scalar_first(first_value):

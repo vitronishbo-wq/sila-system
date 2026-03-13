@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.domain.models.cultura import Cultura
-from app.modules.resources.agricultura.exceptions import CulturaNotFoundError
+from apps.backend.app.modules.resources.agricultura.domain.models.cultura import Cultura
+from apps.backend.app.modules.resources.agricultura.exceptions import CulturaNotFoundError
 
 class ProducaoService:
 

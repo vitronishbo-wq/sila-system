@@ -5,11 +5,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_propriedade_service
-from app.modules.resources.agricultura.api.endpoints.propriedades import router as propriedades_router
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.enums import TipoPropriedade
-from app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_propriedade_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.propriedades import router as propriedades_router
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
 
 @pytest.mark.asyncio
 async def test_propriedade_service_cadastro_sucesso():

@@ -2,11 +2,11 @@ from __future__ import annotations
 import asyncio
 from datetime import date, datetime, timedelta
 import pytest
-from app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
-from app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
-from app.modules.civil_protection.application.services.ocorrencia_emergencial_service import OcorrenciaEmergencialService
-from app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
-from app.modules.civil_protection.tests._fakes import InMemoryBombeiroRepository, InMemoryCorporacaoRepository, InMemoryOcorrenciaEmergencialRepository
+from apps.backend.app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
+from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
+from apps.backend.app.modules.civil_protection.application.services.ocorrencia_emergencial_service import OcorrenciaEmergencialService
+from apps.backend.app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.tests._fakes import InMemoryBombeiroRepository, InMemoryCorporacaoRepository, InMemoryOcorrenciaEmergencialRepository
 
 def test_registrar_ocorrencia_emergencial_sucesso() -> None:
 

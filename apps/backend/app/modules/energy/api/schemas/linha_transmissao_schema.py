@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Literal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.energy.domain.enums import StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
 
 class LinhaTransmissaoCreate(BaseModel):
     origem_id: UUID

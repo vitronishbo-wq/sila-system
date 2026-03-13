@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
 
 class OneracaoCreate(BaseModel):
     imovel_inscricao: str

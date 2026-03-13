@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.logistics.application.ports.comercio_externo_service_port import ComercioExternoServicePort
+from apps.backend.app.modules.logistics.application.ports.comercio_externo_service_port import ComercioExternoServicePort
 
 class ComercioExternoServiceAdapter(ComercioExternoServicePort):
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.cultura.infrastructure.adapters.iphan_adapter import IphanAdapter
+from apps.backend.app.modules.society.cultura.infrastructure.adapters.iphan_adapter import IphanAdapter
 
 def test_iphan_adapter_modo_simulado() -> None:
 

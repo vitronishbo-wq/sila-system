@@ -2,12 +2,12 @@ import pytest
 from httpx import ASGITransport, AsyncClient
 from fastapi import FastAPI
 from uuid import uuid4
-from app.modules.society.familia.api.router import router as familia_router
-from app.modules.society.familia.api.deps import get_family_aggregate_service, get_family_query_service
-from app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
-from app.modules.society.familia.application.services.family_query_service import FamilyQueryService
-from app.modules.society.familia.domain.enums import MemberRole
-from app.modules.society.familia.tests._fakes import InMemoryFamilyRepository, InMemoryOutbox, NoopBus
+from apps.backend.app.modules.society.familia.api.router import router as familia_router
+from apps.backend.app.modules.society.familia.api.deps import get_family_aggregate_service, get_family_query_service
+from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
+from apps.backend.app.modules.society.familia.application.services.family_query_service import FamilyQueryService
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole
+from apps.backend.app.modules.society.familia.tests._fakes import InMemoryFamilyRepository, InMemoryOutbox, NoopBus
 
 class FakeCitizenService:
 

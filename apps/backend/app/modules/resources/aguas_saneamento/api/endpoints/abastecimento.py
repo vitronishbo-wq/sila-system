@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.aguas_saneamento.api.deps import get_abastecimento_service
-from app.modules.resources.aguas_saneamento.api.schemas.abastecimento_schema import AbastecimentoCreate, AbastecimentoMotivoInput, AbastecimentoOperacaoInput, AbastecimentoResponse
-from app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
-from app.modules.resources.aguas_saneamento.exceptions import AbastecimentoAlreadyExistsError, AbastecimentoNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_abastecimento_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.abastecimento_schema import AbastecimentoCreate, AbastecimentoMotivoInput, AbastecimentoOperacaoInput, AbastecimentoResponse
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import AbastecimentoAlreadyExistsError, AbastecimentoNotFoundError
 router = APIRouter(prefix='/abastecimento', tags=['Aguas Saneamento - Abastecimento'])
 
 @router.post('/', response_model=AbastecimentoResponse, status_code=status.HTTP_201_CREATED)

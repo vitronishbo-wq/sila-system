@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_certificacao_service
-from app.modules.resources.agricultura.api.schemas.certificacao_schema import CertificacaoAprovacaoInput, CertificacaoCreate, CertificacaoReprovacaoInput, CertificacaoResponse
-from app.modules.resources.agricultura.application.services.certificacao_service import CertificacaoService
-from app.modules.resources.agricultura.exceptions import CertificacaoNotFoundError, PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_certificacao_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.certificacao_schema import CertificacaoAprovacaoInput, CertificacaoCreate, CertificacaoReprovacaoInput, CertificacaoResponse
+from apps.backend.app.modules.resources.agricultura.application.services.certificacao_service import CertificacaoService
+from apps.backend.app.modules.resources.agricultura.exceptions import CertificacaoNotFoundError, PropriedadeNotFoundError
 router = APIRouter(prefix='/certificacoes', tags=['Agricultura - certificacoes'])
 
 @router.post('/', response_model=CertificacaoResponse, status_code=status.HTTP_201_CREATED)

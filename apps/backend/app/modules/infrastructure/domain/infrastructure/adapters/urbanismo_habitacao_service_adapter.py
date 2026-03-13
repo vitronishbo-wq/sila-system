@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort
-from app.modules.infrastructure.domain.enums import TipoObra
+from apps.backend.app.modules.infrastructure.application.ports.urbanismo_habitacao_service_port import UrbanismoHabitacaoServicePort
+from apps.backend.app.modules.infrastructure.domain.enums import TipoObra
 
 class UrbanismoHabitacaoServiceAdapter(UrbanismoHabitacaoServicePort):
 

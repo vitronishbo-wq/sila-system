@@ -3,19 +3,19 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
 from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
-from app.modules.tourism.application.services.atracao_service import AtracaoService
-from app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
-from app.modules.tourism.application.services.roteiro_service import RoteiroService
-from app.modules.tourism.infrastructure.adapters.comercio_servicos_service_adapter import ComercioServicosServiceAdapter
-from app.modules.tourism.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
-from app.modules.tourism.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
-from app.modules.tourism.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_agencia_viagens_repository import SQLAlchemyAgenciaViagensRepository
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_atracao_turistica_repository import SQLAlchemyAtracaoTuristicaRepository
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_hotel_repository import SQLAlchemyHotelRepository
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_pousada_repository import SQLAlchemyPousadaRepository
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_roteiro_repository import SQLAlchemyRoteiroRepository
+from apps.backend.app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
+from apps.backend.app.modules.tourism.application.services.atracao_service import AtracaoService
+from apps.backend.app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
+from apps.backend.app.modules.tourism.application.services.roteiro_service import RoteiroService
+from apps.backend.app.modules.tourism.infrastructure.adapters.comercio_servicos_service_adapter import ComercioServicosServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_agencia_viagens_repository import SQLAlchemyAgenciaViagensRepository
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_atracao_turistica_repository import SQLAlchemyAtracaoTuristicaRepository
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_hotel_repository import SQLAlchemyHotelRepository
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_pousada_repository import SQLAlchemyPousadaRepository
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_roteiro_repository import SQLAlchemyRoteiroRepository
 _hotel_repo_singleton = SQLAlchemyHotelRepository()
 _pousada_repo_singleton = SQLAlchemyPousadaRepository()
 _atracao_repo_singleton = SQLAlchemyAtracaoTuristicaRepository()

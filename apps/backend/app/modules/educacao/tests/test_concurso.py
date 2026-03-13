@@ -4,10 +4,10 @@ from datetime import date
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.educacao.application.concurso_service import ConcursoService
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models.concurso_inscricao import DomainRecord
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.application.concurso_service import ConcursoService
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models.concurso_inscricao import DomainRecord
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
 def test_concurso_domain_transitions():
     item = DomainRecord(id=uuid4(), numero_processo='CNC/2026/0001', service_type='concurso_inscricao', citizen_id=uuid4(), instituicao_id=uuid4(), data_registo=date.today())

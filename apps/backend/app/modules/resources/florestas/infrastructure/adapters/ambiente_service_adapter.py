@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.florestas.application.ports.ambiente_service_port import AmbienteServicePort
-from app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
+from apps.backend.app.modules.resources.florestas.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
 
 class AmbienteServiceAdapter(AmbienteServicePort):
 

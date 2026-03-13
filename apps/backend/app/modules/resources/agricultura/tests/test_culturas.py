@@ -5,11 +5,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_producao_service
-from app.modules.resources.agricultura.api.endpoints.culturas import router as culturas_router
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.domain.enums import TipoCultura
-from app.modules.resources.agricultura.exceptions import CulturaNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_producao_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.culturas import router as culturas_router
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoCultura
+from apps.backend.app.modules.resources.agricultura.exceptions import CulturaNotFoundError
 
 @pytest.mark.asyncio
 async def test_producao_service_cadastra_cultura():

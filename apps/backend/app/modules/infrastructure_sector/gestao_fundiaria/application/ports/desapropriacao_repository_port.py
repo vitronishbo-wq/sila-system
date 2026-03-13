@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
 
 class DesapropriacaoRepositoryPort(ABC):
 

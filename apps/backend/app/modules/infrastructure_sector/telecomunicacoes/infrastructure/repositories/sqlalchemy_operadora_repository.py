@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import OperadoraModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import OperadoraModel
 
 class SQLAlchemyOperadoraRepository(OperadoraRepositoryPort):
 

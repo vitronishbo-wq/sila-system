@@ -1,6 +1,6 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.cadastur_repository_port import CadasturRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.cadastur_repository_port import CadasturRepositoryPort
 
 class SQLAlchemyCadasturRepository(CadasturRepositoryPort):
 

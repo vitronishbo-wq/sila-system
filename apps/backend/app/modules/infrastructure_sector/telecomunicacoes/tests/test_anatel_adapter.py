@@ -6,9 +6,9 @@ from decimal import Decimal
 from uuid import uuid4
 import httpx
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
-from app.modules.infrastructure_sector.telecomunicacoes.application.handlers.anatel_handler import AnatelHandler
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.adapters.anatel_adapter import AnatelAdapter
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.handlers.anatel_handler import AnatelHandler
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.adapters.anatel_adapter import AnatelAdapter
 
 class FakeResponse:
 

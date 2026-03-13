@@ -3,9 +3,9 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.society.desporto.application.services.clube_service import ClubeService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
-from app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeRequestService, InMemoryClubeRepository
+from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeRequestService, InMemoryClubeRepository
 
 def test_cadastrar_clube_sucesso() -> None:
 

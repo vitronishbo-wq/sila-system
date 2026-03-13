@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.loteamento_repository_port import LoteamentoRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import Loteamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.loteamento_model import LoteamentoModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.loteamento_repository_port import LoteamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import Loteamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.loteamento_model import LoteamentoModel
 
 class SQLAlchemyLoteamentoRepository(LoteamentoRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

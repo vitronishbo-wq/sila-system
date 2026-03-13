@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from decimal import Decimal
 import pytest
-from app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, TipoProcessamento, TipoProdutoProcessado
-from app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
-from app.modules.resources.pescas.industrial.tests._fakes import InMemoryProdutoRepository, InMemoryUnidadeRepository
+from apps.backend.app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, TipoProcessamento, TipoProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.tests._fakes import InMemoryProdutoRepository, InMemoryUnidadeRepository
 
 async def _seed_unidade(unidade_repo: InMemoryUnidadeRepository):
     unidade = UnidadeProcessamento.cadastrar(cnpj='12.345.678/0001-90', razao_social='Unidade Central', tipo_processamento=[TipoProcessamento.CONGELADO], classificacao=ClassificacaoIndustrial.TIPO_A, capacidade_kg_dia=Decimal('2500'), area_total_m2=Decimal('500'), area_producao_m2=Decimal('200'), area_armazenagem_m2=Decimal('120'), numero_funcionarios=18, endereco='Zona Industrial', municipio='Luanda', provincia='Luanda')

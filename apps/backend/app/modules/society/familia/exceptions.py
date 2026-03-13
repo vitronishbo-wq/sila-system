@@ -1,5 +1,5 @@
 from fastapi import HTTPException, status
-from app.modules.society.familia.domain.exceptions.family_exceptions import FamilyDomainError
+from apps.backend.app.modules.society.familia.domain.exceptions.family_exceptions import FamilyDomainError
 
 def to_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, HTTPException):

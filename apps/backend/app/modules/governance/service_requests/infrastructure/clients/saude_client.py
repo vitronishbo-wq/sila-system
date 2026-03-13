@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.governance.service_requests.application.ports import SaudeClientPort
-from app.modules.governance.service_requests.domain.enums import ServiceType
-from app.modules.governance.service_requests.infrastructure.clients._helpers import parse_uuid
+from apps.backend.app.modules.governance.service_requests.application.ports import SaudeClientPort
+from apps.backend.app.modules.governance.service_requests.domain.enums import ServiceType
+from apps.backend.app.modules.governance.service_requests.infrastructure.clients._helpers import parse_uuid
 
 class SaudeClient(SaudeClientPort):
     """Client para validação de solicitações de Saúde."""

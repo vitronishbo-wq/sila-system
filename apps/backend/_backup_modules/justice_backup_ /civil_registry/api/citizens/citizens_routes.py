@@ -9,9 +9,9 @@ from app.core.utils.dates import safe_isoformat
 from app.core.utils.parsing import safe_get
 from app.core.bridges.citizen_repository_bridge import CitizenRepository
 from app.core.bridges.society_repository_bridges import make_assistencia_beneficiario_repository, make_educacao_matricula_repository, make_emprego_candidato_repository, make_juventude_jovem_repository, make_saude_medical_record_repository
-from app.modules.justice.bounded_contexts.application.services.citizen_service import CitizenService
-from app.modules.justice.bounded_contexts.infrastructure.adapters import AssistenciaSocialServiceAdapter, EducacaoServiceAdapter, EmpregoServiceAdapter, JuventudeServiceAdapter, SaudeServiceAdapter
-from app.modules.justice.bounded_contexts.exceptions import NotFoundException, BusinessRuleException
+from apps.backend.app.modules.justice.bounded_contexts.application.services.citizen_service import CitizenService
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters import AssistenciaSocialServiceAdapter, EducacaoServiceAdapter, EmpregoServiceAdapter, JuventudeServiceAdapter, SaudeServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.exceptions import NotFoundException, BusinessRuleException
 router = APIRouter(prefix='/citizens', tags=['Citizens'])
 
 class CitizenResponse(BaseModel):

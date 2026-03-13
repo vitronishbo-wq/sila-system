@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
 
 class OperacaoUrbanaRepositoryPort(ABC):
 

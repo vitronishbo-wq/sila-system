@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import uuid4
 import pytest
-from app.modules.resources.aguas_saneamento.infrastructure.adapters.financas_gateway import FinancasGateway
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.adapters.financas_gateway import FinancasGateway
 
 class _FakePublisher:
 

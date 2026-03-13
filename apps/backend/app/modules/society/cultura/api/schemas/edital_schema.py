@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
 
 class EditalCreate(BaseModel):
     numero: str = Field(..., min_length=3)

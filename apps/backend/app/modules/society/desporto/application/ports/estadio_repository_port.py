@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.desporto.domain.models.estadio import Estadio
+from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
 
 class EstadioRepositoryPort(ABC):
 

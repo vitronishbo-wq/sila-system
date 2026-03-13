@@ -3,10 +3,10 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.society.cultura.application.services.artista_service import ArtistaService
-from app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
-from app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoArtista, TipoEventoCultural
-from app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, FakeTurismoService, InMemoryArtistaRepository, InMemoryEventoCulturalRepository
+from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
+from apps.backend.app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoArtista, TipoEventoCultural
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, FakeTurismoService, InMemoryArtistaRepository, InMemoryEventoCulturalRepository
 
 async def _seed_artista(repo: InMemoryArtistaRepository):
     artista_service = ArtistaService(artista_repo=repo)

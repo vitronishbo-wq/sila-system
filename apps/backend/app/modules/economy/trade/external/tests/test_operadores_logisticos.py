@@ -6,15 +6,15 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_agente_carga_service, get_despachante_service, get_radar_service, get_transportador_internacional_service
-from app.modules.economy.trade.external.api.endpoints.agente_carga import router as agentes_carga_router
-from app.modules.economy.trade.external.api.endpoints.despachante import router as despachantes_router
-from app.modules.economy.trade.external.api.endpoints.radar import router as radar_router
-from app.modules.economy.trade.external.api.endpoints.transportador_internacional import router as transportadores_internacionais_router
-from app.modules.economy.trade.external.application.services import AgenteCargaService, DespachanteService, RadarService, TransportadorInternacionalService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import AgenteCargaAlreadyExistsError, AgenteCargaNotFoundError, DespachanteAlreadyExistsError, DespachanteNotFoundError, RadarAlreadyExistsError, RadarNotFoundError, TransportadorInternacionalAlreadyExistsError, TransportadorInternacionalNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryAgenteCargaRepository, InMemoryDespachanteRepository, InMemoryRadarRepository, InMemoryTransportadorInternacionalRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_agente_carga_service, get_despachante_service, get_radar_service, get_transportador_internacional_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.agente_carga import router as agentes_carga_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.despachante import router as despachantes_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.radar import router as radar_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.transportador_internacional import router as transportadores_internacionais_router
+from apps.backend.app.modules.economy.trade.external.application.services import AgenteCargaService, DespachanteService, RadarService, TransportadorInternacionalService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import AgenteCargaAlreadyExistsError, AgenteCargaNotFoundError, DespachanteAlreadyExistsError, DespachanteNotFoundError, RadarAlreadyExistsError, RadarNotFoundError, TransportadorInternacionalAlreadyExistsError, TransportadorInternacionalNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryAgenteCargaRepository, InMemoryDespachanteRepository, InMemoryRadarRepository, InMemoryTransportadorInternacionalRepository
 CASES = ({'id': 'despachante', 'service_cls': DespachanteService, 'repository_cls': InMemoryDespachanteRepository, 'dependency': get_despachante_service, 'router': despachantes_router, 'already_exists_error_cls': DespachanteAlreadyExistsError, 'not_found_error_cls': DespachanteNotFoundError, 'base_url': '/comercio_externo/despachantes', 'cnpj': '50020030000150'}, {'id': 'agente_carga', 'service_cls': AgenteCargaService, 'repository_cls': InMemoryAgenteCargaRepository, 'dependency': get_agente_carga_service, 'router': agentes_carga_router, 'already_exists_error_cls': AgenteCargaAlreadyExistsError, 'not_found_error_cls': AgenteCargaNotFoundError, 'base_url': '/comercio_externo/agentes-carga', 'cnpj': '50020030000149'}, {'id': 'transportador_internacional', 'service_cls': TransportadorInternacionalService, 'repository_cls': InMemoryTransportadorInternacionalRepository, 'dependency': get_transportador_internacional_service, 'router': transportadores_internacionais_router, 'already_exists_error_cls': TransportadorInternacionalAlreadyExistsError, 'not_found_error_cls': TransportadorInternacionalNotFoundError, 'base_url': '/comercio_externo/transportadores-internacionais', 'cnpj': '50020030000148'}, {'id': 'radar', 'service_cls': RadarService, 'repository_cls': InMemoryRadarRepository, 'dependency': get_radar_service, 'router': radar_router, 'already_exists_error_cls': RadarAlreadyExistsError, 'not_found_error_cls': RadarNotFoundError, 'base_url': '/comercio_externo/radar', 'cnpj': '50020030000147'})
 
 @pytest.mark.parametrize('case', CASES, ids=[case['id'] for case in CASES])

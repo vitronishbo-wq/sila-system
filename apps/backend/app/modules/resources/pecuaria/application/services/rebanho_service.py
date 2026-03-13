@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.pecuaria.application.ports import RebanhoRepositoryPort
-from app.modules.resources.pecuaria.domain.enums import TipoAnimal
-from app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
+from apps.backend.app.modules.resources.pecuaria.application.ports import RebanhoRepositoryPort
+from apps.backend.app.modules.resources.pecuaria.domain.enums import TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
 
 class RebanhoService:
 

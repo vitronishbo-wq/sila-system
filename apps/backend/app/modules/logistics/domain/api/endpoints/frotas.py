@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.logistics.api.deps import get_frota_service
-from app.modules.logistics.api.schemas.frota_schema import FrotaAdicionarVeiculoInput, FrotaCreate, FrotaFiscalizacaoInput, FrotaManutencaoInput, FrotaResponse, FrotaTarifaInput
-from app.modules.logistics.application.services import FrotaService
-from app.modules.logistics.domain.enums import StatusFrota
-from app.modules.logistics.core.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
+from apps.backend.app.modules.logistics.api.deps import get_frota_service
+from apps.backend.app.modules.logistics.api.schemas.frota_schema import FrotaAdicionarVeiculoInput, FrotaCreate, FrotaFiscalizacaoInput, FrotaManutencaoInput, FrotaResponse, FrotaTarifaInput
+from apps.backend.app.modules.logistics.application.services import FrotaService
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota
+from apps.backend.app.modules.logistics.core.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
 router = APIRouter(prefix='/frotas', tags=['Transportes Logistica - Frotas'])
 
 def _has_capability(service: FrotaService, method_name: str) -> bool:

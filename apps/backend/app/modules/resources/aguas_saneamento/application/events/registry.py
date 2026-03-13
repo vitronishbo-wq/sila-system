@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
 
 class AguasEventRegistry:
     PUBLISHABLE_EVENTS = {FaturaEmitidaEvent.event_name: 'aguas.fatura.emitida', FaturaPagamentoRegistradoEvent.event_name: 'aguas.fatura.pagamento_registrado'}

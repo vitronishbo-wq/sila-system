@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.agricultura.domain.enums import StatusProdutor
-from app.modules.resources.agricultura.domain.models.produtor import Produtor
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor
+from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
 
 class ProdutorRepositoryPort(ABC):
 

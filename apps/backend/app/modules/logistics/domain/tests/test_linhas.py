@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.logistics.api.deps import get_linha_service
-from app.modules.logistics.api.endpoints.linhas import router as linhas_router
-from app.modules.logistics.application.services import LinhaService
-from app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, TipoVeiculo, TipoViagem
-from app.modules.logistics.domain.models import Linha
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyLinhaRepository, SQLAlchemyVeiculoRepository
+from apps.backend.app.modules.logistics.api.deps import get_linha_service
+from apps.backend.app.modules.logistics.api.endpoints.linhas import router as linhas_router
+from apps.backend.app.modules.logistics.application.services import LinhaService
+from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, TipoVeiculo, TipoViagem
+from apps.backend.app.modules.logistics.domain.models import Linha
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyLinhaRepository, SQLAlchemyVeiculoRepository
 
 @pytest.mark.asyncio
 async def test_linha_service_fluxo_completo():

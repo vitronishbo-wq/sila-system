@@ -3,7 +3,7 @@ from datetime import date
 from typing import Literal, Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.educacao.domain.models import StatusMatricula
+from apps.backend.app.modules.educacao.domain.models import StatusMatricula
 
 class MatriculaCreate(BaseModel):
     citizen_id: UUID = Field(..., description='ID do cidadao no nucleo identity')

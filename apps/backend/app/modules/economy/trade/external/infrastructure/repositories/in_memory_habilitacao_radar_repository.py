@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import HabilitacaoRadarRepositoryPort
-from app.modules.economy.trade.external.domain.models import HabilitacaoRadar
-from app.modules.economy.trade.external.infrastructure.repositories.in_memory_habilitacao_repository_base import InMemoryHabilitacaoRepositoryBase
+from apps.backend.app.modules.economy.trade.external.application.ports import HabilitacaoRadarRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.models import HabilitacaoRadar
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.in_memory_habilitacao_repository_base import InMemoryHabilitacaoRepositoryBase
 
 class InMemoryHabilitacaoRadarRepository(InMemoryHabilitacaoRepositoryBase[HabilitacaoRadar], HabilitacaoRadarRepositoryPort):
     pass

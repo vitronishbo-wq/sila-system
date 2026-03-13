@@ -1,23 +1,23 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
-from app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
-from app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
-from app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
-from app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
-from app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
-from app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusJogo, StatusAtleta, StatusCompeticao, TipoClube, TipoAtleta, TipoCompeticao
-from app.modules.society.desporto.domain.models.atleta import Atleta
-from app.modules.society.desporto.domain.models.clube import Clube
-from app.modules.society.desporto.domain.models.competicao import Competicao
-from app.modules.society.desporto.domain.models.estadio import Estadio
-from app.modules.society.desporto.domain.models.jogo import Jogo
-from app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
+from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusJogo, StatusAtleta, StatusCompeticao, TipoClube, TipoAtleta, TipoCompeticao
+from apps.backend.app.modules.society.desporto.domain.models.atleta import Atleta
+from apps.backend.app.modules.society.desporto.domain.models.clube import Clube
+from apps.backend.app.modules.society.desporto.domain.models.competicao import Competicao
+from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
+from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
+from apps.backend.app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
 
 class InMemoryAtletaRepository(AtletaRepositoryPort):
 

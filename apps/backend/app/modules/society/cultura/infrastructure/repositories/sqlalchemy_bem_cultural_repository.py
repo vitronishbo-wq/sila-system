@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
-from app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
-from app.modules.society.cultura.domain.models.bem_cultural import BemCultural
-from app.modules.society.cultura.infrastructure.models.bem_cultural_model import BemCulturalModel
+from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
+from apps.backend.app.modules.society.cultura.infrastructure.models.bem_cultural_model import BemCulturalModel
 
 class SQLAlchemyBemCulturalRepository(BemCulturalRepositoryPort):
 

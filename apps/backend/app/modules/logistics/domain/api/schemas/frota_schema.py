@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
 
 class FrotaCreate(BaseModel):
     nome: str

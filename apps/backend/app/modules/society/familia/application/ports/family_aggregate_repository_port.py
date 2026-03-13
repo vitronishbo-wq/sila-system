@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
+from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
 
 class FamilyAggregateRepositoryPort(ABC):
 

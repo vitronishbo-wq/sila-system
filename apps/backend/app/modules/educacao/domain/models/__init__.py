@@ -2,7 +2,7 @@ from importlib import import_module
 from pathlib import Path
 import sys
 
-from app.modules.educacao.core.domain import (
+from apps.backend.app.modules.educacao.core.domain import (
     AnoLetivo,
     CicloEnsino,
     Escola,

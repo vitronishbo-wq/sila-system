@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.parcelamento_repository_port import ParcelamentoRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.parcelamento import Parcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.parcelamento_model import ParcelamentoModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.parcelamento_repository_port import ParcelamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.parcelamento import Parcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.parcelamento_model import ParcelamentoModel
 
 class SQLAlchemyParcelamentoRepository(ParcelamentoRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

@@ -3,10 +3,10 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoOutorga, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryOperadoraRepository, InMemoryOutorgaEspectroRepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoOutorga, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryOperadoraRepository, InMemoryOutorgaEspectroRepository
 
 def test_emitir_outorga_sucesso() -> None:
 

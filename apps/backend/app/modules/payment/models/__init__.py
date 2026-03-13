@@ -1,10 +1,10 @@
-from modules.payment.models.enums import (
+from apps.backend.app.modules.payment.models.enums import (
     PaymentMethod,
     PaymentStatus,
     TransactionStatus,
     TransactionType,
 )
-from modules.payment.models.payment import Payment
+from apps.backend.app.modules.payment.models.payment import Payment
 
 __all__ = [
     "Payment",

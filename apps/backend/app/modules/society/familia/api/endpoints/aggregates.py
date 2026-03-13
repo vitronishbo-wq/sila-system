@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, Query, status
-from app.modules.society.familia.api.deps import get_family_aggregate_service, get_family_query_service
-from app.modules.society.familia.api.schemas.family_aggregate_schema import FamilyAggregateCreateSchema, FamilyAggregateResponseSchema, FamilyDissolveSchema, FamilyMemberCreateSchema, FamilyTransferHeadSchema, FamilyTreeResponseSchema
-from app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
-from app.modules.society.familia.application.services.family_query_service import FamilyQueryService
-from app.modules.society.familia.exceptions import to_http_error
+from apps.backend.app.modules.society.familia.api.deps import get_family_aggregate_service, get_family_query_service
+from apps.backend.app.modules.society.familia.api.schemas.family_aggregate_schema import FamilyAggregateCreateSchema, FamilyAggregateResponseSchema, FamilyDissolveSchema, FamilyMemberCreateSchema, FamilyTransferHeadSchema, FamilyTreeResponseSchema
+from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
+from apps.backend.app.modules.society.familia.application.services.family_query_service import FamilyQueryService
+from apps.backend.app.modules.society.familia.exceptions import to_http_error
 router = APIRouter(prefix='/families', tags=['Familia - Aggregates'])
 
 @router.post('', response_model=FamilyAggregateResponseSchema, status_code=status.HTTP_201_CREATED)

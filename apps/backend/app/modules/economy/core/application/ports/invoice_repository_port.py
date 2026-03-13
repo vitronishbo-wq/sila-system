@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from app.modules.economy.domain.models.invoice import Invoice
+from apps.backend.app.modules.economy.domain.models.invoice import Invoice
 
 class InvoiceRepositoryPort(ABC):
     """ Contrato de repositório para Invoice. """

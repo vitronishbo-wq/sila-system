@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_comparativo_service
-from app.modules.governance.statistics.api.schemas.comparativo_schema import ComparativoCreate, ComparativoListResponse, ComparativoResponse, ComparativoUpdate
-from app.modules.governance.statistics.application.services.comparativo_service import ComparativoService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_comparativo_service
+from apps.backend.app.modules.governance.statistics.api.schemas.comparativo_schema import ComparativoCreate, ComparativoListResponse, ComparativoResponse, ComparativoUpdate
+from apps.backend.app.modules.governance.statistics.application.services.comparativo_service import ComparativoService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/comparativos', tags=['Estatistica - Comparativos'])
 
 @router.post('/', response_model=ComparativoResponse, status_code=status.HTTP_201_CREATED)

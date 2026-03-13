@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
-from app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
+from apps.backend.app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
 
 class ProgramaRepositoryPort(ABC):
 

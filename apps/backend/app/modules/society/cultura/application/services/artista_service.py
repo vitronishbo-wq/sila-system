@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.cultura.application.events import ArtistaRegistradoEvent, event_bus
-from app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
-from app.modules.society.cultura.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import TipoArtista
-from app.modules.society.cultura.domain.models.artista import Artista
+from apps.backend.app.modules.society.cultura.application.events import ArtistaRegistradoEvent, event_bus
+from apps.backend.app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista
+from apps.backend.app.modules.society.cultura.domain.models.artista import Artista
 
 class ArtistaService:
 

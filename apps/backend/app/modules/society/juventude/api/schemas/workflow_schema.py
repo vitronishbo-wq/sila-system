@@ -3,7 +3,7 @@ from datetime import date
 from typing import Any
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.juventude.domain.enums import StatusFluxo
+from apps.backend.app.modules.society.juventude.domain.enums import StatusFluxo
 
 class WorkflowCreate(BaseModel):
     citizen_id: UUID

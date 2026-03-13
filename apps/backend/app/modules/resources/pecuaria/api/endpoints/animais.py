@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pecuaria.api.deps import get_animal_service
-from app.modules.resources.pecuaria.api.schemas.animal_schema import AnimalCreate, AnimalFilter, AnimalResponse
-from app.modules.resources.pecuaria.application.services.animal_service import AnimalService
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_animal_service
+from apps.backend.app.modules.resources.pecuaria.api.schemas.animal_schema import AnimalCreate, AnimalFilter, AnimalResponse
+from apps.backend.app.modules.resources.pecuaria.application.services.animal_service import AnimalService
 router = APIRouter(prefix='/animais', tags=['Pecuaria - Animais'])
 
 @router.post('/', response_model=AnimalResponse, status_code=status.HTTP_201_CREATED)

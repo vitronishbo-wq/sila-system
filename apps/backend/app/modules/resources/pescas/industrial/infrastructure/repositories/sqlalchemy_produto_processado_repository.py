@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, TipoProcessamento, TipoProdutoProcessado
-from app.modules.resources.pescas.industrial.domain.models.produto_processado import ProdutoProcessado
-from app.modules.resources.pescas.industrial.infrastructure.models.produto_processado_model import ProdutoProcessadoModel
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, TipoProcessamento, TipoProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.produto_processado import ProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.produto_processado_model import ProdutoProcessadoModel
 
 class SQLAlchemyProdutoProcessadoRepository(ProdutoProcessadoRepositoryPort):
 

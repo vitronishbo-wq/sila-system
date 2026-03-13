@@ -3,11 +3,11 @@ import asyncio
 from datetime import date, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.society.juventude.application.services.formacao_service import FormacaoService
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.application.services.programa_service import ProgramaService
-from app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, StatusFormacao, TipoPrograma
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryFormacaoRepository, InMemoryJovemRepository, InMemoryProgramaRepository
+from apps.backend.app.modules.society.juventude.application.services.formacao_service import FormacaoService
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.application.services.programa_service import ProgramaService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, StatusFormacao, TipoPrograma
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryFormacaoRepository, InMemoryJovemRepository, InMemoryProgramaRepository
 
 def test_registrar_formacao_sucesso() -> None:
 

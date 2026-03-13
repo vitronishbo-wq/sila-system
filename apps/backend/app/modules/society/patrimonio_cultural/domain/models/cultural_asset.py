@@ -2,11 +2,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from uuid import UUID, uuid4
-from app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetStatus, AssetType, ClassificationLevel, ClassificationType
-from app.modules.society.patrimonio_cultural.domain.exceptions import UNESCOPreconditionError
-from app.modules.society.patrimonio_cultural.domain.models.cultural_event import CulturalEvent
-from app.modules.society.patrimonio_cultural.domain.models.heritage_classification import HeritageClassification
-from app.modules.society.patrimonio_cultural.domain.models.preservation_action import PreservationAction
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetStatus, AssetType, ClassificationLevel, ClassificationType
+from apps.backend.app.modules.society.patrimonio_cultural.domain.exceptions import UNESCOPreconditionError
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models.cultural_event import CulturalEvent
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models.heritage_classification import HeritageClassification
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models.preservation_action import PreservationAction
 
 @dataclass(kw_only=True)
 class CulturalAsset:

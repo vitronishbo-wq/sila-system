@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import datetime
 import pytest
-from app.modules.intelligence.defesa_consumidor.application.services.reclamacao_service import ReclamacaoService
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.services.reclamacao_service import ReclamacaoService
 
 class _FakeEventBus:
 

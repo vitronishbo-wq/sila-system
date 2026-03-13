@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusCondicionante
-from app.modules.resources.ambiente.domain.models.condicionante import Condicionante
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante
+from apps.backend.app.modules.resources.ambiente.domain.models.condicionante import Condicionante
 
 class CondicionanteRepositoryPort(ABC):
 

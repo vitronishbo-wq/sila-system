@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Optional
 from uuid import UUID, uuid4
 
-from app.modules.saude.domain.enums import VigilanciaStatus
+from apps.backend.app.modules.saude.domain.enums import VigilanciaStatus
 
 
 @dataclass

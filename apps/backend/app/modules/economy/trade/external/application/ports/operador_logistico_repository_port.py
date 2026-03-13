@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 from uuid import UUID
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from app.modules.economy.trade.external.domain.models.operador_logistico_base import OperadorLogisticoBase
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.domain.models.operador_logistico_base import OperadorLogisticoBase
 TOperadorLogistico = TypeVar('TOperadorLogistico', bound=OperadorLogisticoBase)
 
 class OperadorLogisticoRepositoryPort(ABC, Generic[TOperadorLogistico]):

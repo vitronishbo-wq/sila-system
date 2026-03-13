@@ -1,3 +1,3 @@
-from app.modules.educacao.domain.models import StatusMatricula
+from apps.backend.app.modules.educacao.domain.models import StatusMatricula
 
 __all__ = ["StatusMatricula"]

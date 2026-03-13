@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.florestas.application.ports.geosampa_service_port import GeosampaServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.geosampa_service_port import GeosampaServicePort
 
 class GeosampaServiceAdapter(GeosampaServicePort):
 

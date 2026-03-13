@@ -1,10 +1,10 @@
 from __future__ import annotations
 from copy import deepcopy
 from uuid import UUID
-from app.modules.energy.application.ports import UsinaRepositoryPort
-from app.modules.energy.domain.enums import FonteEnergia, StatusUsina
-from app.modules.energy.domain.models import Usina
-from app.modules.energy.infrastructure.models import UsinaModel
+from apps.backend.app.modules.energy.application.ports import UsinaRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina
+from apps.backend.app.modules.energy.domain.models import Usina
+from apps.backend.app.modules.energy.infrastructure.models import UsinaModel
 
 class SQLAlchemyUsinaRepository(UsinaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

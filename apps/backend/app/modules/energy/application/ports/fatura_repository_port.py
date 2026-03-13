@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.energy.domain.enums import StatusFaturaEnergia
-from app.modules.energy.domain.models import FaturaEnergia
+from apps.backend.app.modules.energy.domain.enums import StatusFaturaEnergia
+from apps.backend.app.modules.energy.domain.models import FaturaEnergia
 
 class FaturaRepositoryPort(ABC):
 

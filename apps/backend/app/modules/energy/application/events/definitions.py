@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.energy.domain.models import ConsumoEnergia, FaturaEnergia
+from apps.backend.app.modules.energy.domain.models import ConsumoEnergia, FaturaEnergia
 
 @dataclass(frozen=True)
 class DomainEvent:

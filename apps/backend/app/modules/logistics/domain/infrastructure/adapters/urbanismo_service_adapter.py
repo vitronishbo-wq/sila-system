@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.logistics.application.ports.urbanismo_service_port import UrbanismoServicePort
+from apps.backend.app.modules.logistics.application.ports.urbanismo_service_port import UrbanismoServicePort
 
 class UrbanismoServiceAdapter(UrbanismoServicePort):
 

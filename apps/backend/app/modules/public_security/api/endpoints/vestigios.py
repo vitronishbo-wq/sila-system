@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_vestigio_service
-from app.modules.public_security.api.schemas.vestigio_schema import VestigioCreate, VestigioResponse, VestigioStatusUpdate
-from app.modules.public_security.application.services.vestigio_service import VestigioService
-from app.modules.public_security.domain.enums import StatusVestigio
+from apps.backend.app.modules.public_security.api.deps import get_vestigio_service
+from apps.backend.app.modules.public_security.api.schemas.vestigio_schema import VestigioCreate, VestigioResponse, VestigioStatusUpdate
+from apps.backend.app.modules.public_security.application.services.vestigio_service import VestigioService
+from apps.backend.app.modules.public_security.domain.enums import StatusVestigio
 router = APIRouter(prefix='/vestigios', tags=['Seguranca Publica - Vestigios'])
 
 @router.post('/', response_model=VestigioResponse, status_code=status.HTTP_201_CREATED)

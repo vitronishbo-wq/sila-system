@@ -3,13 +3,13 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.educacao.application.ports.inscricao_repository_port import InscricaoEntity, InscricaoRepositoryPort
-from app.modules.educacao.domain.enums import StatusFluxo, TipoInscricao
-from app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
-from app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
-from app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
-from app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
-from app.modules.educacao.infrastructure.models.inscricao_model import InscricaoModel
+from apps.backend.app.modules.educacao.application.ports.inscricao_repository_port import InscricaoEntity, InscricaoRepositoryPort
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo, TipoInscricao
+from apps.backend.app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
+from apps.backend.app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
+from apps.backend.app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
+from apps.backend.app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
+from apps.backend.app.modules.educacao.infrastructure.models.inscricao_model import InscricaoModel
 
 class SQLAlchemyInscricaoRepository(InscricaoRepositoryPort):
 

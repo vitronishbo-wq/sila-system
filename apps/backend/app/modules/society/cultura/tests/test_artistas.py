@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from uuid import uuid4
 import pytest
-from app.modules.society.cultura.application.services.artista_service import ArtistaService
-from app.modules.society.cultura.domain.enums import TipoArtista
-from app.modules.society.cultura.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryArtistaRepository
+from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryArtistaRepository
 
 def test_cadastrar_artista_sucesso() -> None:
 

@@ -37,7 +37,7 @@ def health_check():
 
 # --- INCLUSÃO DE ROTAS DE MÓDULOS ---
 # Aqui é onde você incluiria os routers de outros módulos (ex: auth, analytics)
-# from modules.auth.router import auth_router
+# from apps.backend.app.modules.auth.router import auth_router
 # app.include_router(auth_router, prefix="/v1/auth", tags=["Auth"])
 
 if __name__ == "__main__":

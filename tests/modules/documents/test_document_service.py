@@ -10,8 +10,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from fastapi import UploadFile
 
-from modules.documents.schemas.documents import DocumentCreate, DocumentStatus
-from modules.documents.services.document_service import DocumentService
+from apps.backend.app.modules.documents.schemas.documents import DocumentCreate, DocumentStatus
+from apps.backend.app.modules.documents.services.document_service import DocumentService
 
 
 TEST_UPLOAD_DIR = Path("media/test_documents")

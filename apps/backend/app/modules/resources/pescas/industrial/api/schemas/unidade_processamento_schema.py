@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
 
 class UnidadeProcessamentoCreate(BaseModel):
     cnpj: str = Field(..., pattern='^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$')

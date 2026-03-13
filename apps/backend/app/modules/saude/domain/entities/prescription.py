@@ -4,7 +4,7 @@ from datetime import datetime, date, timedelta
 from typing import Optional, Dict, Any, List
 from uuid import UUID, uuid4
 
-from app.modules.saude.domain.enums import PrescriptionStatus, MedicationType
+from apps.backend.app.modules.saude.domain.enums import PrescriptionStatus, MedicationType
 
 
 @dataclass

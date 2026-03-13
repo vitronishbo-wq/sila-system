@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
-from app.modules.logistics.domain.enums import StatusViagem
-from app.modules.logistics.domain.models import Viagem
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.domain.models import Viagem
 
 class ViagemRepositoryPort(ABC):
 

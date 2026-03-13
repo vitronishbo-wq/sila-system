@@ -1,15 +1,15 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusInspecao, StatusLoteProducao, TipoProcessamento, TipoProdutoProcessado
-from app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
-from app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
-from app.modules.resources.pescas.industrial.domain.models.produto_processado import ProdutoProcessado
-from app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusInspecao, StatusLoteProducao, TipoProcessamento, TipoProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.produto_processado import ProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
 
 class InMemoryUnidadeRepository(UnidadeProcessamentoRepositoryPort):
 

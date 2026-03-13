@@ -1,12 +1,12 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import ReclamacaoTelecomAbertaEvent
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoReclamacaoTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import ReclamacaoTelecomAbertaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoReclamacaoTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
 
 class ReclamacaoService:
 

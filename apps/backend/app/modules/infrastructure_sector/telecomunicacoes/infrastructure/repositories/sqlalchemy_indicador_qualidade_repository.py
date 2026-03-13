@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import IndicadorQualidadeRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import IndicadorQualidadeModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import IndicadorQualidadeRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import IndicadorQualidadeModel
 
 class SQLAlchemyIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
 

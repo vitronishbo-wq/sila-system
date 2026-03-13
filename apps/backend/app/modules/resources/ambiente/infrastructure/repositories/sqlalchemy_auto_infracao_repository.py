@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.auto_infracao_repository_port import AutoInfracaoRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
-from app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
+from apps.backend.app.modules.resources.ambiente.application.ports.auto_infracao_repository_port import AutoInfracaoRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
+from apps.backend.app.modules.resources.ambiente.domain.models.auto_infracao import AutoInfracao
 
 class SQLAlchemyAutoInfracaoRepository(AutoInfracaoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

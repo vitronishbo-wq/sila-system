@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.modules.{{ module_name }}.infrastructure.models import {{ entity_name }}Model
-from app.modules.{{ module_name }}.infrastructure.mappers import {{ entity_name }}Mapper
-from app.modules.{{ module_name }}.domain.entities import {{ entity_name }}
+from apps.backend.app.modules.{{ module_name }}.infrastructure.models import {{ entity_name }}Model
+from apps.backend.app.modules.{{ module_name }}.infrastructure.mappers import {{ entity_name }}Mapper
+from apps.backend.app.modules.{{ module_name }}.domain.entities import {{ entity_name }}
 
 class Repository:
     def __init__(self, db: AsyncSession):

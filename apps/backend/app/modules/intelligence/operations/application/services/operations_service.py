@@ -6,10 +6,10 @@ from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.core.catalog.models.service import Service
-from app.modules.intelligence.operations.domain.enums import OrderStatus, PaymentStatus
-from app.modules.intelligence.operations.domain.state_machine import assert_order_transition
-from app.modules.intelligence.operations.infrastructure.models.order_model import OperationalOrderDocumentModel, OperationalOrderModel
-from app.modules.intelligence.operations.infrastructure.models.payment_model import OperationalPaymentModel
+from apps.backend.app.modules.intelligence.operations.domain.enums import OrderStatus, PaymentStatus
+from apps.backend.app.modules.intelligence.operations.domain.state_machine import assert_order_transition
+from apps.backend.app.modules.intelligence.operations.infrastructure.models.order_model import OperationalOrderDocumentModel, OperationalOrderModel
+from apps.backend.app.modules.intelligence.operations.infrastructure.models.payment_model import OperationalPaymentModel
 
 class OperationsService:
 

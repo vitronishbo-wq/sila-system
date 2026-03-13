@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.aguas_saneamento.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.resources.aguas_saneamento.domain.models.infraestrutura import InfraestruturaHidrica
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.infraestrutura import InfraestruturaHidrica
 
 class SQLAlchemyInfraestruturaRepository(InfraestruturaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

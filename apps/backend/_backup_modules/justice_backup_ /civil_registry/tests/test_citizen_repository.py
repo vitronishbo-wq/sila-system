@@ -4,7 +4,7 @@ Testes de Integração para CitizenRepository
 import pytest
 from uuid import uuid4
 from datetime import date
-from app.modules.justice.bounded_contexts.infrastructure.repositories.citizen_repository import CitizenRepository
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.repositories.citizen_repository import CitizenRepository
 from app.core.bridges.identity_bridge import CitizenFUC
 
 @pytest.mark.asyncio

@@ -2,7 +2,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any, AsyncIterator
 from app.core.events.workers.projection_worker import ProjectionWorker
-from app.modules.justice.bounded_contexts.projection.civil_registry_projector import CivilRegistryProjector
+from apps.backend.app.modules.justice.bounded_contexts.projection.civil_registry_projector import CivilRegistryProjector
 
 async def run_worker(session: Any, event_stream: AsyncIterator[Any]) -> None:
     projector = CivilRegistryProjector(session)

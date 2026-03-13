@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemoryCriancaRiscoRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeRequestService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemoryCriancaRiscoRepo
 
 def test_crianca_risco_dispara_solicitacao_quando_fora_da_escola() -> None:
 

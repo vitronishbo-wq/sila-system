@@ -1,10 +1,10 @@
 from __future__ import annotations
 from typing import Optional
 from uuid import UUID
-from app.modules.resources.agricultura.application.ports import CitizenServicePort, ProdutorRepositoryPort, RequestServicePort
-from app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
-from app.modules.resources.agricultura.domain.models.produtor import Produtor
-from app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError, ProdutorNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.ports import CitizenServicePort, ProdutorRepositoryPort, RequestServicePort
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
+from apps.backend.app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError, ProdutorNotFoundError
 
 class ProdutorService:
 

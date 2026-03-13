@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.ports.abastecimento_repository_port import AbastecimentoRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
-from app.modules.resources.aguas_saneamento.domain.models.abastecimento import AbastecimentoAgua
-from app.modules.resources.aguas_saneamento.exceptions import AbastecimentoAlreadyExistsError, AbastecimentoNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.abastecimento_repository_port import AbastecimentoRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.abastecimento import AbastecimentoAgua
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import AbastecimentoAlreadyExistsError, AbastecimentoNotFoundError
 
 class AbastecimentoService:
 

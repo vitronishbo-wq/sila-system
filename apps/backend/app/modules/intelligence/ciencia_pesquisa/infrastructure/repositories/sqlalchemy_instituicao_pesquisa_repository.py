@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.infrastructure.models.instituicao_pesquisa_model import InstituicaoPesquisaModel
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.instituicao_pesquisa_model import InstituicaoPesquisaModel
 
 class SQLAlchemyInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort):
 

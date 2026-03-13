@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.energy.domain.enums import ClasseTensao, StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.enums import ClasseTensao, StatusInfraEnergia
 
 class SubestacaoCreate(BaseModel):
     nome: str

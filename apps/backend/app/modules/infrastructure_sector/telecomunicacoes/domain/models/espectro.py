@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
 
 @dataclass
 class Espectro:

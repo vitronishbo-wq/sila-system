@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_auxilio_service
-from app.modules.society.juventude.api.schemas.auxilio_schema import AuxilioCreate, AuxilioResponse, AuxilioStatusUpdate
-from app.modules.society.juventude.application.services.auxilio_service import AuxilioService
-from app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
+from apps.backend.app.modules.society.juventude.api.deps import get_auxilio_service
+from apps.backend.app.modules.society.juventude.api.schemas.auxilio_schema import AuxilioCreate, AuxilioResponse, AuxilioStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.auxilio_service import AuxilioService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
 router = APIRouter(prefix='/auxilios', tags=['Juventude - Auxilios'])
 
 @router.post('/', response_model=AuxilioResponse, status_code=status.HTTP_201_CREATED)

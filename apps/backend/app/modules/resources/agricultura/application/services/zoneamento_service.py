@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
-from app.modules.resources.agricultura.domain.models.cadastro_ambiental import CadastroAmbiental
-from app.modules.resources.agricultura.domain.models.zoneamento import Zoneamento
-from app.modules.resources.agricultura.exceptions import CadastroAmbientalNotFoundError, ZoneamentoNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
+from apps.backend.app.modules.resources.agricultura.domain.models.cadastro_ambiental import CadastroAmbiental
+from apps.backend.app.modules.resources.agricultura.domain.models.zoneamento import Zoneamento
+from apps.backend.app.modules.resources.agricultura.exceptions import CadastroAmbientalNotFoundError, ZoneamentoNotFoundError
 
 class ZoneamentoService:
 

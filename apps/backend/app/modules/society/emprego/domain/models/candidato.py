@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
 
 @dataclass
 class Candidato:

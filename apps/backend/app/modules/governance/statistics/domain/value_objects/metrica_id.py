@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from app.modules.governance.statistics.exceptions import EstatisticaValidationError
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaValidationError
 
 @dataclass(frozen=True)
 class MetricaId:

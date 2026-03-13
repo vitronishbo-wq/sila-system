@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_grupo_artistico_service
-from app.modules.society.cultura.api.schemas.grupo_artistico_schema import GrupoArtisticoCreate, GrupoArtisticoResponse, GrupoArtisticoUpdate
-from app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
-from app.modules.society.cultura.domain.enums import TipoGrupoArtistico
+from apps.backend.app.modules.society.cultura.api.deps import get_grupo_artistico_service
+from apps.backend.app.modules.society.cultura.api.schemas.grupo_artistico_schema import GrupoArtisticoCreate, GrupoArtisticoResponse, GrupoArtisticoUpdate
+from apps.backend.app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
 router = APIRouter(prefix='/grupos-artisticos', tags=['Cultura - Grupos Artisticos'])
 
 @router.post('/', response_model=GrupoArtisticoResponse, status_code=status.HTTP_201_CREATED)

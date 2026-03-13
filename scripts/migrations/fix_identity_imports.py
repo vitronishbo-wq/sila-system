@@ -7,19 +7,19 @@ DEFAULT_ROOT = Path("apps/backend/app")
 
 REPLACEMENTS = {
     r"from app\.core\.iam\.infrastructure\.repositories":
-        "from app.modules.identity.infrastructure.repositories",
+        "from apps.backend.app.modules.identity.infrastructure.repositories",
     r"from app\.core\.iam\.infrastructure\.models":
-        "from app.modules.identity.infrastructure.models",
+        "from apps.backend.app.modules.identity.infrastructure.models",
     r"from app\.core\.iam\.domain\.entities":
-        "from app.modules.identity.bounded_contexts.iam.domain.entities",
+        "from apps.backend.app.modules.identity.bounded_contexts.iam.domain.entities",
     r"from app\.core\.iam\.application\.services":
-        "from app.modules.identity.bounded_contexts.iam.application.services",
+        "from apps.backend.app.modules.identity.bounded_contexts.iam.application.services",
     r"from app\.core\.iam\.domain\.value_objects":
-        "from app.modules.identity.bounded_contexts.credential_management.domain.value_objects",
+        "from apps.backend.app.modules.identity.bounded_contexts.credential_management.domain.value_objects",
     r"import app\.core\.iam":
-        "import app.modules.identity",
+        "import apps.backend.app.modules.identity",
     r"from app\.core\.iam":
-        "from app.modules.identity",
+        "from apps.backend.app.modules.identity",
 }
 
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pecuaria.domain.enums import StatusPecuarista
-from app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusPecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
 
 class PecuaristaRepositoryPort(ABC):
 

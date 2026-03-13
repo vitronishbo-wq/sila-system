@@ -3,10 +3,10 @@ from typing import Generic, TypeVar
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import HabilitacaoRepositoryPortBase
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
-from app.modules.economy.trade.external.domain.models import HabilitacaoBase
-from app.modules.economy.trade.external.infrastructure.models.habilitacao_columns_mixin import HabilitacaoColumnsMixin
+from apps.backend.app.modules.economy.trade.external.application.ports import HabilitacaoRepositoryPortBase
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.models import HabilitacaoBase
+from apps.backend.app.modules.economy.trade.external.infrastructure.models.habilitacao_columns_mixin import HabilitacaoColumnsMixin
 THabilitacao = TypeVar('THabilitacao', bound=HabilitacaoBase)
 THabilitacaoModel = TypeVar('THabilitacaoModel', bound=HabilitacaoColumnsMixin)
 

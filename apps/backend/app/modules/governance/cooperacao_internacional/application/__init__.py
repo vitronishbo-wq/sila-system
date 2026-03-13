@@ -1,2 +1,2 @@
-from app.modules.governance.cooperacao_internacional.application.services import AcordoService, ProjetoCooperacaoService, VistoService
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services import AcordoService, ProjetoCooperacaoService, VistoService
 __all__ = ['AcordoService', 'ProjetoCooperacaoService', 'VistoService']

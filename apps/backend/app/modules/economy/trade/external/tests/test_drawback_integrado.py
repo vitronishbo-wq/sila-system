@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_drawback_integrado_service
-from app.modules.economy.trade.external.api.endpoints.drawback_integrado import router as drawback_integrado_router
-from app.modules.economy.trade.external.application.services import DrawbackIntegradoService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import DrawbackIntegradoAlreadyExistsError, DrawbackIntegradoNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackIntegradoRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_drawback_integrado_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.drawback_integrado import router as drawback_integrado_router
+from apps.backend.app.modules.economy.trade.external.application.services import DrawbackIntegradoService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackIntegradoAlreadyExistsError, DrawbackIntegradoNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackIntegradoRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_drawback_integrado():

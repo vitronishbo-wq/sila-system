@@ -1,9 +1,9 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import CancelamentoRadarRepositoryPort
-from app.modules.economy.trade.external.domain.models import CancelamentoRadar
-from app.modules.economy.trade.external.infrastructure.models import CancelamentoRadarModel
-from app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_habilitacao_repository_base import SQLAlchemyHabilitacaoRepositoryBase
+from apps.backend.app.modules.economy.trade.external.application.ports import CancelamentoRadarRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.models import CancelamentoRadar
+from apps.backend.app.modules.economy.trade.external.infrastructure.models import CancelamentoRadarModel
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_habilitacao_repository_base import SQLAlchemyHabilitacaoRepositoryBase
 
 class SQLAlchemyCancelamentoRadarRepository(SQLAlchemyHabilitacaoRepositoryBase[CancelamentoRadar, CancelamentoRadarModel], CancelamentoRadarRepositoryPort):
 

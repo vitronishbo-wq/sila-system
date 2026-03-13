@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
-from app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
-from app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
-from app.modules.resources.florestas.infrastructure.models.operador_florestal_model import OperadorFlorestalModel
+from apps.backend.app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
+from apps.backend.app.modules.resources.florestas.infrastructure.models.operador_florestal_model import OperadorFlorestalModel
 
 class SQLAlchemyOperadorFlorestalRepository(ConcessionarioFlorestalRepositoryPort):
 

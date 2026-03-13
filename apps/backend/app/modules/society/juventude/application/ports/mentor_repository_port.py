@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.juventude.domain.enums import StatusMentoria
-from app.modules.society.juventude.domain.models.mentor import Mentor
+from apps.backend.app.modules.society.juventude.domain.enums import StatusMentoria
+from apps.backend.app.modules.society.juventude.domain.models.mentor import Mentor
 
 class MentorRepositoryPort(ABC):
 

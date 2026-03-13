@@ -1,6 +1,6 @@
 import os
 import json
-from app.modules.xroad.domain.audit_log import AuditEntry
+from apps.backend.app.modules.xroad.domain.audit_log import AuditEntry
 
 class ImmutableAuditRepository:
     def __init__(self, log_file: str = "storage/logs/xroad_audit.chain"):

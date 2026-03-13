@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.domain.enums import StatusPlantio, StatusSafra
-from app.modules.resources.agricultura.domain.models.plantio import Plantio
-from app.modules.resources.agricultura.exceptions import PlantioNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusPlantio, StatusSafra
+from apps.backend.app.modules.resources.agricultura.domain.models.plantio import Plantio
+from apps.backend.app.modules.resources.agricultura.exceptions import PlantioNotFoundError
 
 class PlantioService:
 

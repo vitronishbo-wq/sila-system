@@ -9,14 +9,14 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime, timezone
 from decimal import Decimal
 
-from modules.payment.services.payment_service import PaymentService
-from modules.payment.models.enums import (
+from apps.backend.app.modules.payment.services.payment_service import PaymentService
+from apps.backend.app.modules.payment.models.enums import (
     PaymentStatus,
     TransactionStatus,
     PaymentMethod,
     TransactionType,
 )
-from modules.payment.schemas.payment import (
+from apps.backend.app.modules.payment.schemas.payment import (
     PaymentCreate,
     RefundCreate,
     RefundResponse,

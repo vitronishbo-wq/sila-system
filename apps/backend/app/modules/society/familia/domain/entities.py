@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
-from app.modules.society.familia.domain.enums import MemberRole, RelationshipType
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole, RelationshipType
 
 def _utcnow() -> datetime:
     return datetime.now(timezone.utc)

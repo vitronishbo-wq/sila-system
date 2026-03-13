@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.economy.trade.external.api.deps import get_exportador_service
-from app.modules.economy.trade.external.api.schemas.exportador_schema import CancelamentoInput, ExportadorCreate, ExportadorResponse, HabilitacaoInput, PaisDestinoInput, ProdutoInput, SuspensaoInput
-from app.modules.economy.trade.external.application.services import ExportadorService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from app.modules.economy.trade.external.exceptions import ExportadorAlreadyExistsError, ExportadorNotFoundError, InvalidExportadorStateError
+from apps.backend.app.modules.economy.trade.external.api.deps import get_exportador_service
+from apps.backend.app.modules.economy.trade.external.api.schemas.exportador_schema import CancelamentoInput, ExportadorCreate, ExportadorResponse, HabilitacaoInput, PaisDestinoInput, ProdutoInput, SuspensaoInput
+from apps.backend.app.modules.economy.trade.external.application.services import ExportadorService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.exceptions import ExportadorAlreadyExistsError, ExportadorNotFoundError, InvalidExportadorStateError
 router = APIRouter(prefix='/exportadores', tags=['Comercio Externo - Exportadores'])
 
 @router.post('/', response_model=ExportadorResponse, status_code=status.HTTP_201_CREATED)

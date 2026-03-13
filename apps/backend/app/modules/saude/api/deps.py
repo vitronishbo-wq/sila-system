@@ -4,7 +4,7 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_db
-from app.modules.saude.application.clinical.exame_service import ExameService
+from apps.backend.app.modules.saude.application.clinical.exame_service import ExameService
 
 
 async def get_exame_service(

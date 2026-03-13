@@ -1,9 +1,9 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.application.ports import CitizenServicePort, EmbarcacaoRepositoryPort, RequestServicePort
-from app.modules.resources.pescas.domain.enums import TipoEmbarcacao
-from app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
+from apps.backend.app.modules.resources.pescas.application.ports import CitizenServicePort, EmbarcacaoRepositoryPort, RequestServicePort
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
+from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
 
 class EmbarcacaoService:
 

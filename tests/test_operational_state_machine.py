@@ -1,7 +1,7 @@
 import pytest
 
-from app.modules.operations.domain.enums import OrderStatus
-from app.modules.operations.domain.state_machine import assert_order_transition
+from apps.backend.app.modules.operations.domain.enums import OrderStatus
+from apps.backend.app.modules.operations.domain.state_machine import assert_order_transition
 
 
 def test_operational_flow_happy_path_transitions():

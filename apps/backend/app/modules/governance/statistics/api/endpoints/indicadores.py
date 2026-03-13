@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_indicador_service
-from app.modules.governance.statistics.api.schemas.indicador_schema import IndicadorCreate, IndicadorListResponse, IndicadorResponse, IndicadorUpdate
-from app.modules.governance.statistics.application.services.indicador_service import IndicadorService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_indicador_service
+from apps.backend.app.modules.governance.statistics.api.schemas.indicador_schema import IndicadorCreate, IndicadorListResponse, IndicadorResponse, IndicadorUpdate
+from apps.backend.app.modules.governance.statistics.application.services.indicador_service import IndicadorService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/indicadores', tags=['Estatistica - Indicadores'])
 
 @router.post('/', response_model=IndicadorResponse, status_code=status.HTTP_201_CREATED)

@@ -1,9 +1,9 @@
 from __future__ import annotations
 import asyncio
 import pytest
-from app.modules.society.desporto.application.services.estadio_service import EstadioService
-from app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
-from app.modules.society.desporto.tests._fakes import FakeEventBus, FakeObrasPublicasService, FakeRequestService, InMemoryEstadioRepository, InMemoryOutboxRepository
+from apps.backend.app.modules.society.desporto.application.services.estadio_service import EstadioService
+from apps.backend.app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEventBus, FakeObrasPublicasService, FakeRequestService, InMemoryEstadioRepository, InMemoryOutboxRepository
 
 def test_cadastrar_estadio_publica_evento() -> None:
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.civil_protection.domain.enums import StatusAgenteProtecao
-from app.modules.civil_protection.domain.models.bombeiro import Bombeiro
+from apps.backend.app.modules.civil_protection.domain.enums import StatusAgenteProtecao
+from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
 
 class BombeiroRepositoryPort(ABC):
 

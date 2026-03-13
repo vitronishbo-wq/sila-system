@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
-from app.modules.industry.domain.models import EstabelecimentoIndustrial
+from apps.backend.app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
+from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
 
 class EstabelecimentoIndustrialRepositoryPort(ABC):
 

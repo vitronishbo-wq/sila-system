@@ -5,22 +5,22 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from app.api.deps import get_db
-from app.modules.governance.statistics.api.router import router as estatistica_router
-from app.modules.governance.statistics.infrastructure.models.agregacao_model import AgregacaoModel
-from app.modules.governance.statistics.infrastructure.models.alerta_model import AlertaModel
-from app.modules.governance.statistics.infrastructure.models.analise_model import AnaliseModel
-from app.modules.governance.statistics.infrastructure.models.comparativo_model import ComparativoModel
-from app.modules.governance.statistics.infrastructure.models.dashboard_model import DashboardModel
-from app.modules.governance.statistics.infrastructure.models.exportacao_model import ExportacaoModel
-from app.modules.governance.statistics.infrastructure.models.indicador_model import IndicadorModel
-from app.modules.governance.statistics.infrastructure.models.kpi_model import KPIModel
-from app.modules.governance.statistics.infrastructure.models.metrica_model import MetricaModel
-from app.modules.governance.statistics.infrastructure.models.outbox_event_model import OutboxEventModel
-from app.modules.governance.statistics.infrastructure.models.previsao_model import PrevisaoModel
-from app.modules.governance.statistics.infrastructure.models.ranking_model import RankingModel
-from app.modules.governance.statistics.infrastructure.models.relatorio_model import RelatorioModel
-from app.modules.governance.statistics.infrastructure.models.tendencia_model import TendenciaModel
-from app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
+from apps.backend.app.modules.governance.statistics.api.router import router as estatistica_router
+from apps.backend.app.modules.governance.statistics.infrastructure.models.agregacao_model import AgregacaoModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.alerta_model import AlertaModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.analise_model import AnaliseModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.comparativo_model import ComparativoModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.dashboard_model import DashboardModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.exportacao_model import ExportacaoModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.indicador_model import IndicadorModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.kpi_model import KPIModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.metrica_model import MetricaModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.outbox_event_model import OutboxEventModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.previsao_model import PrevisaoModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.ranking_model import RankingModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.relatorio_model import RelatorioModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.tendencia_model import TendenciaModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
 TABLES = [MetricaModel.__table__, KPIModel.__table__, TimeSeriesModel.__table__, DashboardModel.__table__, RelatorioModel.__table__, IndicadorModel.__table__, AgregacaoModel.__table__, ExportacaoModel.__table__, AnaliseModel.__table__, PrevisaoModel.__table__, ComparativoModel.__table__, RankingModel.__table__, TendenciaModel.__table__, AlertaModel.__table__, OutboxEventModel.__table__]
 
 @pytest.fixture()

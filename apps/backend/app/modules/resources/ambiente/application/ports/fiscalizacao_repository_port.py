@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
-from app.modules.resources.ambiente.domain.models.fiscalizacao import Fiscalizacao
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
+from apps.backend.app.modules.resources.ambiente.domain.models.fiscalizacao import Fiscalizacao
 
 class FiscalizacaoRepositoryPort(ABC):
 

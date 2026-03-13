@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy import and_, func, select
-from app.modules.society.emprego.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.modules.society.emprego.domain.enums import WorkflowStatus
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.society.emprego.domain.enums import WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 class SQLAlchemyWorkflowRepository(WorkflowRepositoryPort):
 

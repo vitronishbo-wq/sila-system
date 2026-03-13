@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from decimal import Decimal
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import JusticaServicePort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import OneracaoRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, OneracaoAlreadyExistsError, OneracaoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import JusticaServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import OneracaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, OneracaoAlreadyExistsError, OneracaoNotFoundError
 
 class OneracaoService:
 

@@ -9,9 +9,9 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from app.modules.logistics.domain.enums import ModalTransporte, StatusFrota, StatusReconciliacaoFinanceira, StatusViagem, TipoVeiculo, TipoTarifa, TipoViagem
-from app.modules.logistics.domain.models import BilhetagemEletronica, FiscalizacaoTransporte, Frota, Linha, Manutencao, Tarifa, Veiculo, Viagem
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository, SQLAlchemyFrotaRepository, SQLAlchemyLinhaRepository, SQLAlchemyVeiculoRepository, SQLAlchemyViagemRepository
+from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusFrota, StatusReconciliacaoFinanceira, StatusViagem, TipoVeiculo, TipoTarifa, TipoViagem
+from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica, FiscalizacaoTransporte, Frota, Linha, Manutencao, Tarifa, Veiculo, Viagem
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository, SQLAlchemyFrotaRepository, SQLAlchemyLinhaRepository, SQLAlchemyVeiculoRepository, SQLAlchemyViagemRepository
 TABLES = ['transportes_logistica_viagens', 'transportes_logistica_frotas', 'transportes_logistica_linhas', 'transportes_logistica_veiculos', 'transportes_logistica_bilhetagem_eventos']
 
 def _get_database_url() -> str:

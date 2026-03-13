@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.resources.ambiente.domain.models.imovel_rural import ImovelRural
+from apps.backend.app.modules.resources.ambiente.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.models.imovel_rural import ImovelRural
 
 class SQLAlchemyImovelRepository(ImovelRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

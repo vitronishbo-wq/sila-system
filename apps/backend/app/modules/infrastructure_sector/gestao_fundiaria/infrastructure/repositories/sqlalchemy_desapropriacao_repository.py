@@ -3,11 +3,11 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import DesapropriacaoRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoDesapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.desapropriacao_model import DesapropriacaoModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import DesapropriacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoDesapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.desapropriacao_model import DesapropriacaoModel
 
 class SQLAlchemyDesapropriacaoRepository(DesapropriacaoRepositoryPort):
     """Repository real com AsyncSession e fallback in-memory."""

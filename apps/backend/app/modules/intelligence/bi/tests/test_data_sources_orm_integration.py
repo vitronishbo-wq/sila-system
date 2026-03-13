@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 import pytest
 from sqlalchemy import text
-from app.modules.intelligence.bi.integrations.data_sources import DataSources
+from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources
 REQUIRED_TABLES_BY_DOMAIN = {'financas': {'financas_invoices', 'financas_payments'}, 'financas_publicas': {'financas_publicas_orcamentos', 'financas_publicas_receitas', 'financas_publicas_despesas'}}
 
 async def _domain_has_all_tables(db_session, tables: set[str]) -> bool:

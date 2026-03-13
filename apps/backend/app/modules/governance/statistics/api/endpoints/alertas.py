@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_alerta_service
-from app.modules.governance.statistics.api.schemas.alerta_schema import AlertaCreate, AlertaListResponse, AlertaResponse, AlertaUpdate
-from app.modules.governance.statistics.application.services.alerta_service import AlertaService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_alerta_service
+from apps.backend.app.modules.governance.statistics.api.schemas.alerta_schema import AlertaCreate, AlertaListResponse, AlertaResponse, AlertaUpdate
+from apps.backend.app.modules.governance.statistics.application.services.alerta_service import AlertaService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/alertas', tags=['Estatistica - Alertas'])
 
 @router.post('/', response_model=AlertaResponse, status_code=status.HTTP_201_CREATED)

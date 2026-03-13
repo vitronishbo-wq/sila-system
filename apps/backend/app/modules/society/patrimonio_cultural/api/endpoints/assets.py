@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.society.patrimonio_cultural.api.deps import get_cultural_asset_service
-from app.modules.society.patrimonio_cultural.api.schemas import ClassificationRequestSchema, CulturalAssetCreateSchema, CulturalAssetResponseSchema, CulturalEventSchema, PreservationActionSchema
-from app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
-from app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
-from app.modules.society.patrimonio_cultural.domain.exceptions import AssetAlreadyClassifiedError, AssetNotFoundError, InvalidClassificationAuthorityError, UNESCOPreconditionError
+from apps.backend.app.modules.society.patrimonio_cultural.api.deps import get_cultural_asset_service
+from apps.backend.app.modules.society.patrimonio_cultural.api.schemas import ClassificationRequestSchema, CulturalAssetCreateSchema, CulturalAssetResponseSchema, CulturalEventSchema, PreservationActionSchema
+from apps.backend.app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.exceptions import AssetAlreadyClassifiedError, AssetNotFoundError, InvalidClassificationAuthorityError, UNESCOPreconditionError
 router = APIRouter(prefix='/assets', tags=['Patrimonio Cultural - Assets'])
 
 def _raise_400(exc: Exception) -> None:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
 
 class InfraestruturaRepositoryPort(ABC):
 

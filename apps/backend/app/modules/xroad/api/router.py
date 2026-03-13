@@ -9,13 +9,13 @@ from fastapi import APIRouter, HTTPException, Request
 from starlette.responses import JSONResponse
 
 from app.platform.observability.logger import get_sila_logger
-from app.modules.xroad.domain.envelope import (
+from apps.backend.app.modules.xroad.domain.envelope import (
     SILAEnvelope,
     SILAEnvelopeResponse,
     ServiceType,
     OriginMinistry,
 )
-from app.modules.xroad.application.xroad_service import XRoadInterconnect
+from apps.backend.app.modules.xroad.application.xroad_service import XRoadInterconnect
 
 logger = get_sila_logger('xroad-api')
 

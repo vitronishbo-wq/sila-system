@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
-from app.modules.civil_protection.domain.enums import StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
-from app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.enums import StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
 
 class OcorrenciaEmergencialRepositoryPort(ABC):
 

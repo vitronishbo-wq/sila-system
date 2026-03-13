@@ -3,11 +3,11 @@ import asyncio
 from datetime import date
 from uuid import UUID, uuid4
 import pytest
-from app.modules.society.juventude.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.modules.society.juventude.application.services.workflow_service import WorkflowService
-from app.modules.society.juventude.domain.enums import StatusFluxo
-from app.modules.society.juventude.domain.models._workflow_record import WorkflowRecord
-from app.modules.society.juventude.tests._fakes import FakeCitizenService
+from apps.backend.app.modules.society.juventude.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.society.juventude.application.services.workflow_service import WorkflowService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusFluxo
+from apps.backend.app.modules.society.juventude.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService
 
 class InMemoryWorkflowRepository(WorkflowRepositoryPort):
 

@@ -6,13 +6,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.services.api.deps import get_estabelecimento_comercial_service
-from app.modules.economy.trade.services.api.endpoints.estabelecimentos_comerciais import router as estabelecimentos_router
-from app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
-from app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
-from app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
-from app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError
-from app.modules.economy.trade.services.infrastructure.repositories import SQLAlchemyEstabelecimentoComercialRepository
+from apps.backend.app.modules.economy.trade.services.api.deps import get_estabelecimento_comercial_service
+from apps.backend.app.modules.economy.trade.services.api.endpoints.estabelecimentos_comerciais import router as estabelecimentos_router
+from apps.backend.app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
+from apps.backend.app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
+from apps.backend.app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
+from apps.backend.app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError
+from apps.backend.app.modules.economy.trade.services.infrastructure.repositories import SQLAlchemyEstabelecimentoComercialRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_estabelecimento_comercial():

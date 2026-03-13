@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.infrastructure_sector.aviacao_civil.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.ocorrencia import Ocorrencia
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.ocorrencia import Ocorrencia
 
 class InMemoryOcorrenciaRepository(OcorrenciaRepositoryPort):
 

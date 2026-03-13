@@ -1,12 +1,12 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports import CARRepositoryPort, ImovelRepositoryPort, ProprietarioRepositoryPort
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
-from app.modules.resources.ambiente.domain.models.car import CAR
-from app.modules.resources.ambiente.domain.models.imovel_rural import ImovelRural
-from app.modules.resources.ambiente.domain.models.proprietario import Proprietario
-from app.modules.resources.ambiente.exceptions import CARAlreadyExistsError, CARNotFoundError, ImovelNotFoundError, ProprietarioAlreadyExistsError, ProprietarioNotFoundError
+from apps.backend.app.modules.resources.ambiente.application.ports import CARRepositoryPort, ImovelRepositoryPort, ProprietarioRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
+from apps.backend.app.modules.resources.ambiente.domain.models.car import CAR
+from apps.backend.app.modules.resources.ambiente.domain.models.imovel_rural import ImovelRural
+from apps.backend.app.modules.resources.ambiente.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.resources.ambiente.exceptions import CARAlreadyExistsError, CARNotFoundError, ImovelNotFoundError, ProprietarioAlreadyExistsError, ProprietarioNotFoundError
 
 class CadastroService:
 

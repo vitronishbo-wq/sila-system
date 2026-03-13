@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.energy.application.ports import SubestacaoRepositoryPort
-from app.modules.energy.domain.enums import StatusInfraEnergia
-from app.modules.energy.domain.models import Subestacao
-from app.modules.energy.infrastructure.models import SubestacaoModel
+from apps.backend.app.modules.energy.application.ports import SubestacaoRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import Subestacao
+from apps.backend.app.modules.energy.infrastructure.models import SubestacaoModel
 
 class SQLAlchemySubestacaoRepository(SubestacaoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

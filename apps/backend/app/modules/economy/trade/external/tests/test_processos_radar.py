@@ -6,13 +6,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_cancelamento_radar_service, get_suspensao_radar_service
-from app.modules.economy.trade.external.api.endpoints.cancelamento_radar import router as cancelamento_radar_router
-from app.modules.economy.trade.external.api.endpoints.suspensao_radar import router as suspensao_radar_router
-from app.modules.economy.trade.external.application.services import CancelamentoRadarService, SuspensaoRadarService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import CancelamentoRadarAlreadyExistsError, CancelamentoRadarNotFoundError, SuspensaoRadarAlreadyExistsError, SuspensaoRadarNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryCancelamentoRadarRepository, InMemorySuspensaoRadarRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_cancelamento_radar_service, get_suspensao_radar_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.cancelamento_radar import router as cancelamento_radar_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.suspensao_radar import router as suspensao_radar_router
+from apps.backend.app.modules.economy.trade.external.application.services import CancelamentoRadarService, SuspensaoRadarService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import CancelamentoRadarAlreadyExistsError, CancelamentoRadarNotFoundError, SuspensaoRadarAlreadyExistsError, SuspensaoRadarNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryCancelamentoRadarRepository, InMemorySuspensaoRadarRepository
 CASES = ({'id': 'cancelamento_radar', 'service_cls': CancelamentoRadarService, 'repository_cls': InMemoryCancelamentoRadarRepository, 'dependency': get_cancelamento_radar_service, 'router': cancelamento_radar_router, 'already_exists_error_cls': CancelamentoRadarAlreadyExistsError, 'not_found_error_cls': CancelamentoRadarNotFoundError, 'base_url': '/comercio_externo/cancelamento_radar', 'processo': 'PROC-CAN-RADAR-2026-001', 'cnpj': '50020030000143', 'expected_status_after_approve': StatusHabilitacao.CANCELADO}, {'id': 'suspensao_radar', 'service_cls': SuspensaoRadarService, 'repository_cls': InMemorySuspensaoRadarRepository, 'dependency': get_suspensao_radar_service, 'router': suspensao_radar_router, 'already_exists_error_cls': SuspensaoRadarAlreadyExistsError, 'not_found_error_cls': SuspensaoRadarNotFoundError, 'base_url': '/comercio_externo/suspensao_radar', 'processo': 'PROC-SUS-RADAR-2026-001', 'cnpj': '50020030000144', 'expected_status_after_approve': StatusHabilitacao.SUSPENSO})
 
 @pytest.mark.parametrize('case', CASES, ids=[case['id'] for case in CASES])

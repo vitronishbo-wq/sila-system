@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento, TipoAtendimento
-from app.modules.society.assistencia_social.domain.models import Atendimento
-from app.modules.society.assistencia_social.infrastructure.models.atendimento_model import AtendimentoModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento, TipoAtendimento
+from apps.backend.app.modules.society.assistencia_social.domain.models import Atendimento
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.atendimento_model import AtendimentoModel
 
 class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
 

@@ -2,28 +2,28 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Any
 from uuid import UUID
-from app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
-from app.modules.public_security.application.ports.evidencia_repository_port import EvidenciaRepositoryPort
-from app.modules.public_security.application.ports.investigacao_repository_port import InvestigacaoRepositoryPort
-from app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
-from app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
-from app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from app.modules.public_security.application.ports.vestigio_repository_port import VestigioRepositoryPort
-from app.modules.public_security.domain.enums import StatusAgente, StatusCadeiaCustodia, StatusEvidencia, StatusInvestigacao, StatusLaudo, StatusMandado, StatusOcorrencia, StatusProva, StatusUnidadePolicial, StatusVestigio, TipoAgente, TipoEvidencia, TipoLaudo, TipoMandado, TipoOcorrencia, TipoProva, TipoVestigio
-from app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
-from app.modules.public_security.domain.models.evidencia import Evidencia
-from app.modules.public_security.domain.models.investigacao import Investigacao
-from app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
-from app.modules.public_security.domain.models.mandado import Mandado
-from app.modules.public_security.domain.models.ocorrencia import Ocorrencia
-from app.modules.public_security.domain.models.policial import Policial
-from app.modules.public_security.domain.models.prova_pericial import ProvaPericial
-from app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
-from app.modules.public_security.domain.models.vestigio import Vestigio
+from apps.backend.app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.evidencia_repository_port import EvidenciaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.investigacao_repository_port import InvestigacaoRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.vestigio_repository_port import VestigioRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusAgente, StatusCadeiaCustodia, StatusEvidencia, StatusInvestigacao, StatusLaudo, StatusMandado, StatusOcorrencia, StatusProva, StatusUnidadePolicial, StatusVestigio, TipoAgente, TipoEvidencia, TipoLaudo, TipoMandado, TipoOcorrencia, TipoProva, TipoVestigio
+from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
+from apps.backend.app.modules.public_security.domain.models.evidencia import Evidencia
+from apps.backend.app.modules.public_security.domain.models.investigacao import Investigacao
+from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
+from apps.backend.app.modules.public_security.domain.models.mandado import Mandado
+from apps.backend.app.modules.public_security.domain.models.ocorrencia import Ocorrencia
+from apps.backend.app.modules.public_security.domain.models.policial import Policial
+from apps.backend.app.modules.public_security.domain.models.prova_pericial import ProvaPericial
+from apps.backend.app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
+from apps.backend.app.modules.public_security.domain.models.vestigio import Vestigio
 
 class InMemoryUnidadePolicialRepository(UnidadePolicialRepositoryPort):
 

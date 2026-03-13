@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.juventude.application.ports.inscricao_programa_repository_port import InscricaoProgramaRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import StatusInscricao, StatusPrograma
-from app.modules.society.juventude.domain.models.inscricao_programa import InscricaoPrograma
+from apps.backend.app.modules.society.juventude.application.ports.inscricao_programa_repository_port import InscricaoProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusInscricao, StatusPrograma
+from apps.backend.app.modules.society.juventude.domain.models.inscricao_programa import InscricaoPrograma
 
 class InscricaoProgramaService:
 

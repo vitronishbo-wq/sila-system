@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import date
-from app.modules.resources.pescas.domain.models.comercializacao_pesca import ComercializacaoPesca
+from apps.backend.app.modules.resources.pescas.domain.models.comercializacao_pesca import ComercializacaoPesca
 
 class ComercializacaoPescaRepositoryPort(ABC):
 

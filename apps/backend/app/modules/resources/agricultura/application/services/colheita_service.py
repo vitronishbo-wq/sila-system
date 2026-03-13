@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.domain.enums import StatusSafra
-from app.modules.resources.agricultura.domain.models.colheita import Colheita
-from app.modules.resources.agricultura.exceptions import ColheitaNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusSafra
+from apps.backend.app.modules.resources.agricultura.domain.models.colheita import Colheita
+from apps.backend.app.modules.resources.agricultura.exceptions import ColheitaNotFoundError
 
 class ColheitaService:
 

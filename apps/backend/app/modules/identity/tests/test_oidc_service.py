@@ -1,6 +1,6 @@
 import pytest
-from app.modules.identity.oidc_provider.application.oidc_service import OIDCService
-from app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
+from apps.backend.app.modules.identity.oidc_provider.application.oidc_service import OIDCService
+from apps.backend.app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
 
 
 def test_issue_token_success():

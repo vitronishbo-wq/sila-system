@@ -1,2 +1,2 @@
-from app.modules.society.familia.api.schemas.family_aggregate_schema import FamilyAggregateCreateSchema, FamilyAggregateResponseSchema, FamilyMemberCreateSchema
+from apps.backend.app.modules.society.familia.api.schemas.family_aggregate_schema import FamilyAggregateCreateSchema, FamilyAggregateResponseSchema, FamilyMemberCreateSchema
 __all__ = ['FamilyAggregateCreateSchema', 'FamilyAggregateResponseSchema', 'FamilyMemberCreateSchema']

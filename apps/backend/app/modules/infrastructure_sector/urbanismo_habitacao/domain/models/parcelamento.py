@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
 
 @dataclass
 class Parcelamento:

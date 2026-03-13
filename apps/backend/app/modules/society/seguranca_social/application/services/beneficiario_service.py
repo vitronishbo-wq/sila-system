@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from typing import Optional
 from uuid import UUID
-from app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort, CitizenServicePort, EmpregoServicePort, RequestServicePort
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
-from app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
-from app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, BeneficiarioNotFoundError, CandidatoEmpregoRequiredError, CitizenNotFoundError
+from apps.backend.app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort, CitizenServicePort, EmpregoServicePort, RequestServicePort
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, BeneficiarioNotFoundError, CandidatoEmpregoRequiredError, CitizenNotFoundError
 
 class BeneficiarioService:
 

@@ -3,7 +3,7 @@ from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.pescas.domain.enums import TipoEmbarcacao
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
 
 class EmbarcacaoCreate(BaseModel):
     nome: str = Field(..., min_length=3)

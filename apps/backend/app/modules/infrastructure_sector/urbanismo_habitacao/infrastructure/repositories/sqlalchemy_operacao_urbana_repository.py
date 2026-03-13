@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.operacao_urbana_repository_port import OperacaoUrbanaRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.operacao_urbana_model import OperacaoUrbanaModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.operacao_urbana_repository_port import OperacaoUrbanaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.operacao_urbana_model import OperacaoUrbanaModel
 
 class SQLAlchemyOperacaoUrbanaRepository(OperacaoUrbanaRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

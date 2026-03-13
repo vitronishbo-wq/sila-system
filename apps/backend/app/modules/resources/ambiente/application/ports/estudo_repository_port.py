@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
-from app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
 
 class EstudoRepositoryPort(ABC):
 

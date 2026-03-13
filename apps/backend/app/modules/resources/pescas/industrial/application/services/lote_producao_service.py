@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
-from app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
-from app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
 
 class LoteProducaoService:
 

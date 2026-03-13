@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_cadeia_custodia_service
-from app.modules.public_security.api.schemas.cadeia_custodia_schema import CadeiaCustodiaCreate, CadeiaCustodiaMovimentacao, CadeiaCustodiaResponse
-from app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
-from app.modules.public_security.domain.enums import StatusCadeiaCustodia
+from apps.backend.app.modules.public_security.api.deps import get_cadeia_custodia_service
+from apps.backend.app.modules.public_security.api.schemas.cadeia_custodia_schema import CadeiaCustodiaCreate, CadeiaCustodiaMovimentacao, CadeiaCustodiaResponse
+from apps.backend.app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
+from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
 router = APIRouter(prefix='/cadeias-custodia', tags=['Seguranca Publica - Cadeia Custodia'])
 
 @router.post('/', response_model=CadeiaCustodiaResponse, status_code=status.HTTP_201_CREATED)

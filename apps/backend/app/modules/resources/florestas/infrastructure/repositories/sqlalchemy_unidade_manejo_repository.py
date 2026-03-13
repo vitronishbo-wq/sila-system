@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
-from app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
-from app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
-from app.modules.resources.florestas.infrastructure.models.unidade_manejo_model import UnidadeManejoModel
+from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
+from apps.backend.app.modules.resources.florestas.infrastructure.models.unidade_manejo_model import UnidadeManejoModel
 
 class SQLAlchemyUnidadeManejoRepository(UnidadeManejoRepositoryPort):
 

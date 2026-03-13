@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Any, Optional
 from uuid import UUID
-from app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
 
 @dataclass
 class WorkflowRecord:

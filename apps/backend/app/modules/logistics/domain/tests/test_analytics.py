@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.logistics.api.deps import get_operacao_analytics_service
-from app.modules.logistics.api.endpoints.analytics import router as analytics_router
-from app.modules.logistics.application.services import OperacaoAnalyticsService
-from app.modules.logistics.domain.enums import TipoTarifa
-from app.modules.logistics.domain.models import BilhetagemEletronica, Viagem
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository, SQLAlchemyViagemRepository
+from apps.backend.app.modules.logistics.api.deps import get_operacao_analytics_service
+from apps.backend.app.modules.logistics.api.endpoints.analytics import router as analytics_router
+from apps.backend.app.modules.logistics.application.services import OperacaoAnalyticsService
+from apps.backend.app.modules.logistics.domain.enums import TipoTarifa
+from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica, Viagem
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository, SQLAlchemyViagemRepository
 
 @pytest.mark.asyncio
 async def test_operacao_analytics_calcula_demanda_e_qualidade():

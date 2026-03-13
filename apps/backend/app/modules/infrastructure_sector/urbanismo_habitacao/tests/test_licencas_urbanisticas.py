@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_licenciamento_urbano_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.licencas_urbanisticas import router as licencas_urbanisticas_router
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.licenciamento_urbano_service import LicenciamentoUrbanoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LicencaUrbanisticaNotFoundError
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyLicencaUrbanisticaRepository
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_licenciamento_urbano_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.licencas_urbanisticas import router as licencas_urbanisticas_router
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.licenciamento_urbano_service import LicenciamentoUrbanoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LicencaUrbanisticaNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyLicencaUrbanisticaRepository
 
 @pytest.mark.asyncio
 async def test_licenciamento_urbano_service_fluxo_sucesso():

@@ -5,10 +5,10 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pecuaria.api.deps import get_propriedade_service
-from app.modules.resources.pecuaria.api.endpoints.propriedades import router as propriedades_router
-from app.modules.resources.pecuaria.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_propriedade_service
+from apps.backend.app.modules.resources.pecuaria.api.endpoints.propriedades import router as propriedades_router
+from apps.backend.app.modules.resources.pecuaria.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
 
 @pytest.mark.asyncio
 async def test_propriedade_service_cadastro_sucesso():

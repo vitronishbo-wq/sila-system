@@ -5,9 +5,9 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_concurso_service
-from app.modules.society.emprego.api.endpoints.concursos import router as concursos_router
-from app.modules.society.emprego.application.services.concurso_service import ConcursoService
+from apps.backend.app.modules.society.emprego.api.deps import get_concurso_service
+from apps.backend.app.modules.society.emprego.api.endpoints.concursos import router as concursos_router
+from apps.backend.app.modules.society.emprego.application.services.concurso_service import ConcursoService
 
 @pytest.mark.asyncio
 async def test_criar_concurso_bloqueia_duplicidade_ativa():

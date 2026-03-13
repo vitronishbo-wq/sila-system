@@ -1,6 +1,6 @@
-from app.modules.educacao.application.ports import ConcursoRepositoryPort
-from app.modules.educacao.infrastructure.models.concurso_model import ConcursoModel
-from app.modules.educacao.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
+from apps.backend.app.modules.educacao.application.ports import ConcursoRepositoryPort
+from apps.backend.app.modules.educacao.infrastructure.models.concurso_model import ConcursoModel
+from apps.backend.app.modules.educacao.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
 
 class SQLAlchemyConcursoRepository(SQLAlchemyWorkflowRepository, ConcursoRepositoryPort):
 

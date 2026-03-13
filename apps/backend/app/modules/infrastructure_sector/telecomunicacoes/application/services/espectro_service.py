@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
 
 class EspectroService:
 

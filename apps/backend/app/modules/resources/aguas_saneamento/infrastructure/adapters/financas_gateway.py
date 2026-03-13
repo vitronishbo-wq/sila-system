@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry
-from app.modules.resources.aguas_saneamento.application.ports.financas_gateway_port import FinancasGatewayPort
-from app.modules.resources.aguas_saneamento.infrastructure.adapters.message_publishers import BrokerPublisherFactory, MessagePublisherPort
-from app.modules.resources.aguas_saneamento.infrastructure.resilience.circuit import circuit_breaker
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.financas_gateway_port import FinancasGatewayPort
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.adapters.message_publishers import BrokerPublisherFactory, MessagePublisherPort
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.resilience.circuit import circuit_breaker
 
 class FinancasGateway(FinancasGatewayPort):
     """Gateway de integracao cross-context para o modulo de financas."""

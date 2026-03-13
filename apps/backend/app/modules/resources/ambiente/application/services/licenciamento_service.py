@@ -1,14 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports import CARRepositoryPort, LicencaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusCAR, StatusLicenca, TipoLicenca
-from app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
-from app.modules.resources.ambiente.domain.models.licenca_instalacao import LicencaInstalacao
-from app.modules.resources.ambiente.domain.models.licenca_operacao import LicencaOperacao
-from app.modules.resources.ambiente.domain.models.licenca_previa import LicencaPrevia
-from app.modules.resources.ambiente.domain.models.licenca_unica import LicencaUnica
-from app.modules.resources.ambiente.exceptions import CARNotFoundError, LicencaAlreadyExistsError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.application.ports import CARRepositoryPort, LicencaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR, StatusLicenca, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_instalacao import LicencaInstalacao
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_operacao import LicencaOperacao
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_previa import LicencaPrevia
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_unica import LicencaUnica
+from apps.backend.app.modules.resources.ambiente.exceptions import CARNotFoundError, LicencaAlreadyExistsError, LicencaNotFoundError
 
 class LicenciamentoService:
 

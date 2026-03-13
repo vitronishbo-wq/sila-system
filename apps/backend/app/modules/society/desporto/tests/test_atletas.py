@@ -3,9 +3,9 @@ import asyncio
 from datetime import date, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.society.desporto.application.services.atleta_service import AtletaService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusAtleta, TipoAtleta
-from app.modules.society.desporto.tests._fakes import FakeCitizenService, FakeRequestService, FakeSaudeService, InMemoryAtletaRepository
+from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusAtleta, TipoAtleta
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeCitizenService, FakeRequestService, FakeSaudeService, InMemoryAtletaRepository
 
 def test_cadastrar_atleta_sucesso() -> None:
 

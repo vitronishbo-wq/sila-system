@@ -2,8 +2,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
 
 @dataclass
 class QualidadeServico:

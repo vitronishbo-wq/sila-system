@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.politica_juventude_repository_port import PoliticaJuventudeRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusPoliticaJuventude
-from app.modules.society.juventude.domain.models.politica_juventude import PoliticaJuventude
-from app.modules.society.juventude.infrastructure.models.politica_juventude_model import PoliticaJuventudeModel
+from apps.backend.app.modules.society.juventude.application.ports.politica_juventude_repository_port import PoliticaJuventudeRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusPoliticaJuventude
+from apps.backend.app.modules.society.juventude.domain.models.politica_juventude import PoliticaJuventude
+from apps.backend.app.modules.society.juventude.infrastructure.models.politica_juventude_model import PoliticaJuventudeModel
 
 class SQLAlchemyPoliticaJuventudeRepository(PoliticaJuventudeRepositoryPort):
 

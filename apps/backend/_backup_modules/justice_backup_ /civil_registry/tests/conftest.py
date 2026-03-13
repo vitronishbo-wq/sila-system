@@ -75,7 +75,7 @@ def sample_citizen_model():
     Implementation detail: Uses a proxy to ensure compatibility between
     the centrally-defined CitizenFUC model and test expectations.
     """
-    from app.modules.justice.bounded_contexts.infrastructure.models.citizen_model import CitizenModel as _AliasCitizenModel
+    from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen_model import CitizenModel as _AliasCitizenModel
     from datetime import datetime
     inner = _AliasCitizenModel(citizen_id=uuid4(), full_name='Ana Oliveira', document_number='00000000000000000000000000000003', birth_date=date(1995, 3, 10), gender='F', phone='+244923456789', email='ana.oliveira@example.com')
 
@@ -132,10 +132,10 @@ def sample_inactive_citizen():
             assert sample_inactive_citizen.vital_status == "deceased"
             assert not sample_inactive_citizen.is_active
     """
-    from app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
+    from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
     return Citizen(citizen_id=uuid4(), full_name='Inactive User', vital_status='deceased')
 
 @pytest.fixture
 def sample_citizen_list(fuc_projection_list):
-    from app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
+    from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
     return [Citizen.from_fuc_projection(p) for p in fuc_projection_list]

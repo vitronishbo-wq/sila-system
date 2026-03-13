@@ -1,5 +1,5 @@
-from app.modules.economy.trade.external.api.deps import get_agente_carga_service
-from app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
-from app.modules.economy.trade.external.api.schemas.agente_carga_schema import AgenteCargaCreate, AgenteCargaResponse, CancelamentoAgenteCargaInput, HabilitacaoAgenteCargaInput, SuspensaoAgenteCargaInput
-from app.modules.economy.trade.external.exceptions import AgenteCargaAlreadyExistsError, AgenteCargaNotFoundError, InvalidAgenteCargaStateError
+from apps.backend.app.modules.economy.trade.external.api.deps import get_agente_carga_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
+from apps.backend.app.modules.economy.trade.external.api.schemas.agente_carga_schema import AgenteCargaCreate, AgenteCargaResponse, CancelamentoAgenteCargaInput, HabilitacaoAgenteCargaInput, SuspensaoAgenteCargaInput
+from apps.backend.app.modules.economy.trade.external.exceptions import AgenteCargaAlreadyExistsError, AgenteCargaNotFoundError, InvalidAgenteCargaStateError
 router = build_operador_logistico_router(prefix='/agentes-carga', tag='Comercio Externo - Agentes de Carga', get_service=get_agente_carga_service, create_schema=AgenteCargaCreate, habilitacao_schema=HabilitacaoAgenteCargaInput, suspensao_schema=SuspensaoAgenteCargaInput, cancelamento_schema=CancelamentoAgenteCargaInput, response_schema=AgenteCargaResponse, already_exists_error_cls=AgenteCargaAlreadyExistsError, not_found_error_cls=AgenteCargaNotFoundError, invalid_state_error_cls=InvalidAgenteCargaStateError)

@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.industry.api.deps import get_estabelecimento_industrial_service
-from app.modules.industry.api.schemas.estabelecimento_industrial_schema import DataInput, EstabelecimentoIndustrialCreate, EstabelecimentoIndustrialResponse, MotivoInput, PorteInput, RamoInput
-from app.modules.industry.application.services import EstabelecimentoIndustrialService
-from app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
-from app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
+from apps.backend.app.modules.industry.api.deps import get_estabelecimento_industrial_service
+from apps.backend.app.modules.industry.api.schemas.estabelecimento_industrial_schema import DataInput, EstabelecimentoIndustrialCreate, EstabelecimentoIndustrialResponse, MotivoInput, PorteInput, RamoInput
+from apps.backend.app.modules.industry.application.services import EstabelecimentoIndustrialService
+from apps.backend.app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
+from apps.backend.app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
 router = APIRouter(prefix='/estabelecimentos_industriais', tags=['Industria - Estabelecimentos Industriais'])
 
 @router.post('/', response_model=EstabelecimentoIndustrialResponse, status_code=status.HTTP_201_CREATED)

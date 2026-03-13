@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
 
 @dataclass
 class Animal:

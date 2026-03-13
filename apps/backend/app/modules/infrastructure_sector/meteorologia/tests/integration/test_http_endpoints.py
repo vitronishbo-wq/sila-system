@@ -4,10 +4,10 @@ from uuid import UUID, uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.meteorologia.api.deps import get_estacao_service, get_processamento_service
-from app.modules.infrastructure_sector.meteorologia.api.router import router as meteorologia_router
-from app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
-from app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica, ObservacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.deps import get_estacao_service, get_processamento_service
+from apps.backend.app.modules.infrastructure_sector.meteorologia.api.router import router as meteorologia_router
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import EstacaoMeteorologica, ObservacaoMeteorologica
 
 class FakeEstacaoService:
 

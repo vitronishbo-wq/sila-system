@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.application.services.aggregation_service import AggregationService
+from apps.backend.app.modules.governance.statistics.application.services.aggregation_service import AggregationService
 
 def test_aggregate_sum_avg():
     svc = AggregationService()

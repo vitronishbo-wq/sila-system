@@ -4,7 +4,7 @@ Testes Unitários para o Modelo SQLAlchemy CitizenModel
 import pytest
 from datetime import date, datetime
 from uuid import uuid4
-from app.modules.justice.bounded_contexts.infrastructure.models.citizen_model import CitizenModel
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen_model import CitizenModel
 
 @pytest.mark.unit
 class TestCitizenModel:

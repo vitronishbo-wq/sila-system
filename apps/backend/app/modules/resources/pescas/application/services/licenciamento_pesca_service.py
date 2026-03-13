@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date, timedelta
 from uuid import UUID
-from app.modules.resources.pescas.application.ports import EmbarcacaoRepositoryPort, LicencaPescaRepositoryPort
-from app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
+from apps.backend.app.modules.resources.pescas.application.ports import EmbarcacaoRepositoryPort, LicencaPescaRepositoryPort
+from apps.backend.app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
 
 class LicenciamentoPescaService:
 

@@ -3,7 +3,7 @@ from collections.abc import Sequence
 from typing import Protocol
 from uuid import UUID
 from app.core.enums import StatusMatricula
-from app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
 
 class _MatriculaSnapshot(Protocol):
     status: StatusMatricula | str

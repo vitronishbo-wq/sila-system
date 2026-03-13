@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
-from app.modules.society.cultura.domain.models.bem_cultural import BemCultural
+from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
 
 class BemCulturalRepositoryPort(ABC):
 

@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
-from app.modules.resources.florestas.domain.enums import StatusPlanoManejo
-from app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
-from app.modules.resources.florestas.infrastructure.models.plano_manejo_florestal_model import PlanoManejoFlorestalModel
+from apps.backend.app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.enums import StatusPlanoManejo
+from apps.backend.app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
+from apps.backend.app.modules.resources.florestas.infrastructure.models.plano_manejo_florestal_model import PlanoManejoFlorestalModel
 
 class SQLAlchemyPlanoManejoFlorestalRepository(PlanoManejoFlorestalRepositoryPort):
 

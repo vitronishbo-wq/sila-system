@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.tourism.api.deps import get_agencia_service
-from app.modules.tourism.api.schemas.agencia_viagens_schema import AgenciaViagensCreate, AgenciaViagensResponse, AgenciaViagensUpdate
-from app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
+from apps.backend.app.modules.tourism.api.deps import get_agencia_service
+from apps.backend.app.modules.tourism.api.schemas.agencia_viagens_schema import AgenciaViagensCreate, AgenciaViagensResponse, AgenciaViagensUpdate
+from apps.backend.app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
 router = APIRouter(prefix='/agencias-viagens', tags=['Turismo - Agencias Viagens'])
 
 @router.post('/', response_model=AgenciaViagensResponse, status_code=status.HTTP_201_CREATED)

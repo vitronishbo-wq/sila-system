@@ -22,18 +22,18 @@ from app.core.db import AsyncSessionLocal
 from app.core.settings import settings
 
 # Domain models
-from app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
-from app.modules.governance.service_requests.domain.value_objects.request_number import RequestNumber
-from app.modules.governance.service_requests.domain.enums import (
+from apps.backend.app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
+from apps.backend.app.modules.governance.service_requests.domain.value_objects.request_number import RequestNumber
+from apps.backend.app.modules.governance.service_requests.domain.enums import (
     ServiceType,
     RequestChannel,
 )
 
 # Infrastructure models
-from app.modules.governance.service_requests.infrastructure.models.request_model import RequestModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_model import RequestModel
 
 # Repositories
-from app.modules.governance.service_requests.infrastructure.repositories.request_repository import (
+from apps.backend.app.modules.governance.service_requests.infrastructure.repositories.request_repository import (
     RequestRepository,
 )
 

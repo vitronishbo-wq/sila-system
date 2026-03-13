@@ -1,5 +1,5 @@
-from app.modules.economy.trade.external.api.deps import get_drawback_service
-from app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
-from app.modules.economy.trade.external.api.schemas.drawback_schema import CancelamentoDrawbackInput, DrawbackCreate, DrawbackResponse, HabilitacaoDrawbackInput, SuspensaoDrawbackInput
-from app.modules.economy.trade.external.exceptions import DrawbackAlreadyExistsError, DrawbackNotFoundError, InvalidDrawbackStateError
+from apps.backend.app.modules.economy.trade.external.api.deps import get_drawback_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
+from apps.backend.app.modules.economy.trade.external.api.schemas.drawback_schema import CancelamentoDrawbackInput, DrawbackCreate, DrawbackResponse, HabilitacaoDrawbackInput, SuspensaoDrawbackInput
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackAlreadyExistsError, DrawbackNotFoundError, InvalidDrawbackStateError
 router = build_operador_logistico_router(prefix='/drawback', tag='Comercio Externo - Drawback', get_service=get_drawback_service, create_schema=DrawbackCreate, habilitacao_schema=HabilitacaoDrawbackInput, suspensao_schema=SuspensaoDrawbackInput, cancelamento_schema=CancelamentoDrawbackInput, response_schema=DrawbackResponse, already_exists_error_cls=DrawbackAlreadyExistsError, not_found_error_cls=DrawbackNotFoundError, invalid_state_error_cls=InvalidDrawbackStateError)

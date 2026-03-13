@@ -2,9 +2,9 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
-from app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
-from app.modules.resources.florestas.infrastructure.models.inventario_florestal_model import InventarioFlorestalModel
+from apps.backend.app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
+from apps.backend.app.modules.resources.florestas.infrastructure.models.inventario_florestal_model import InventarioFlorestalModel
 
 class SQLAlchemyInventarioFlorestalRepository(InventarioFlorestalRepositoryPort):
 

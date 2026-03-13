@@ -1,5 +1,5 @@
 def test_run_report_placeholder():
-    from app.modules.intelligence.bi.application.services.analytics_service import AnalyticsService
+    from apps.backend.app.modules.intelligence.bi.application.services.analytics_service import AnalyticsService
 
     class FakeRepo:
 

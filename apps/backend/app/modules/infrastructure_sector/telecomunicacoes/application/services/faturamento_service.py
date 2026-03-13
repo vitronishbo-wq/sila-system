@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import date, timedelta
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import FaturaTelecomGeradaEvent
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.fatura_repository_port import FaturaRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.franquia import Franquia
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import FaturaTelecomGeradaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.fatura_repository_port import FaturaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.franquia import Franquia
 
 class FaturamentoService:
 

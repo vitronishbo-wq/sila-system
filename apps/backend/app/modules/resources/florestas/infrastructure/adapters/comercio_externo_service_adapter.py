@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.florestas.application.ports.comercio_externo_service_port import ComercioExternoServicePort
-from app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
+from apps.backend.app.modules.resources.florestas.application.ports.comercio_externo_service_port import ComercioExternoServicePort
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters._integration_runtime import invoke_async_method
 
 class ComercioExternoServiceAdapter(ComercioExternoServicePort):
 

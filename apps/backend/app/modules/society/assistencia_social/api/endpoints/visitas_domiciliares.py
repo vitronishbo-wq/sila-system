@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_visita_domiciliar_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.visita_domiciliar_schema import VisitaDomiciliarCreate, VisitaDomiciliarResponse
-from app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_visita_domiciliar_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.visita_domiciliar_schema import VisitaDomiciliarCreate, VisitaDomiciliarResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
 router = APIRouter(prefix='/visitas-domiciliares', tags=['Assistencia Social - Visitas Domiciliares'])
 
 @router.post('/', response_model=VisitaDomiciliarResponse, status_code=status.HTTP_201_CREATED)

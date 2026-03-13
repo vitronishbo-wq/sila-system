@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
-from app.modules.resources.florestas.api.deps import get_plano_manejo_service
-from app.modules.resources.florestas.api.schemas.plano_manejo_florestal_schema import PlanoManejoCreate, PlanoManejoResponse
-from app.modules.resources.florestas.application.services.plano_manejo_service import PlanoManejoService
+from apps.backend.app.modules.resources.florestas.api.deps import get_plano_manejo_service
+from apps.backend.app.modules.resources.florestas.api.schemas.plano_manejo_florestal_schema import PlanoManejoCreate, PlanoManejoResponse
+from apps.backend.app.modules.resources.florestas.application.services.plano_manejo_service import PlanoManejoService
 router = APIRouter(prefix='/planos-manejo', tags=['Florestas - Planos Manejo'])
 
 @router.post('/', response_model=PlanoManejoResponse, status_code=201)

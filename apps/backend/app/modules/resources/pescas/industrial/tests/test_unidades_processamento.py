@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from decimal import Decimal
 from uuid import uuid4
-from app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
-from app.modules.resources.pescas.industrial.tests._fakes import InMemoryUnidadeRepository
+from apps.backend.app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.tests._fakes import InMemoryUnidadeRepository
 
 class _FakePescasService:
 

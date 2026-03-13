@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.plano_diretor_repository_port import PlanoDiretorRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.plano_diretor import PlanoDiretor
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.plano_diretor_model import PlanoDiretorModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.plano_diretor_repository_port import PlanoDiretorRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.plano_diretor import PlanoDiretor
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.plano_diretor_model import PlanoDiretorModel
 
 class SQLAlchemyPlanoDiretorRepository(PlanoDiretorRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

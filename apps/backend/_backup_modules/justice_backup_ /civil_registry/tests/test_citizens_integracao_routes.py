@@ -5,7 +5,7 @@ from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from app.api.deps import get_current_user
-from app.modules.justice.bounded_contexts.api.citizens.citizens_routes import get_citizen_service, router as citizens_router
+from apps.backend.app.modules.justice.bounded_contexts.api.citizens.citizens_routes import get_citizen_service, router as citizens_router
 
 def _build_client(service) -> TestClient:
     app = FastAPI()

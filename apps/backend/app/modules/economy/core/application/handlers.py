@@ -1,6 +1,6 @@
 from __future__ import annotations
 from app.platform.persistence.unit_of_work import UnitOfWork
-from app.modules.economy.application.services.treasury_service import TreasuryService
+from apps.backend.app.modules.economy.application.services.treasury_service import TreasuryService
 from ..domain.services import BudgetExecutionService
 
 class CommitBudgetHandler:

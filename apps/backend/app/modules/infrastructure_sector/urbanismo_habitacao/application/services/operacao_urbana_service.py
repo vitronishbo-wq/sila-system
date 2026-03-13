@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.operacao_urbana_repository_port import OperacaoUrbanaRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaAlreadyExistsError, OperacaoUrbanaNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.operacao_urbana_repository_port import OperacaoUrbanaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaAlreadyExistsError, OperacaoUrbanaNotFoundError
 
 class OperacaoUrbanaService:
 

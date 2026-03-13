@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.licenca_urbanistica_repository_port import LicencaUrbanisticaRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.licenca_urbanistica import LicencaUrbanistica
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.licenca_urbanistica_model import LicencaUrbanisticaModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.licenca_urbanistica_repository_port import LicencaUrbanisticaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.licenca_urbanistica import LicencaUrbanistica
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.licenca_urbanistica_model import LicencaUrbanisticaModel
 
 class SQLAlchemyLicencaUrbanisticaRepository(LicencaUrbanisticaRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

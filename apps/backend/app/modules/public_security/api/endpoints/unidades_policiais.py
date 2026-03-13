@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_unidade_policial_service
-from app.modules.public_security.api.schemas.unidade_policial_schema import UnidadePolicialCreate, UnidadePolicialResponse, UnidadePolicialStatusUpdate
-from app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
-from app.modules.public_security.domain.enums import StatusUnidadePolicial
+from apps.backend.app.modules.public_security.api.deps import get_unidade_policial_service
+from apps.backend.app.modules.public_security.api.schemas.unidade_policial_schema import UnidadePolicialCreate, UnidadePolicialResponse, UnidadePolicialStatusUpdate
+from apps.backend.app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
+from apps.backend.app.modules.public_security.domain.enums import StatusUnidadePolicial
 router = APIRouter(prefix='/unidades-policiais', tags=['Seguranca Publica - Unidades'])
 
 @router.post('/', response_model=UnidadePolicialResponse, status_code=status.HTTP_201_CREATED)

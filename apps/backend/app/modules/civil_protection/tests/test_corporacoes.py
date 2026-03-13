@@ -1,9 +1,9 @@
 from __future__ import annotations
 import asyncio
 import pytest
-from app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
-from app.modules.civil_protection.domain.enums import StatusCorporacao
-from app.modules.civil_protection.tests._fakes import FakeRequestService, InMemoryCorporacaoRepository
+from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
+from apps.backend.app.modules.civil_protection.domain.enums import StatusCorporacao
+from apps.backend.app.modules.civil_protection.tests._fakes import FakeRequestService, InMemoryCorporacaoRepository
 
 def test_cadastrar_corporacao_sucesso() -> None:
 

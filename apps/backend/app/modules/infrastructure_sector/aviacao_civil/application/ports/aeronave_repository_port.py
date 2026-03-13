@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import Aeronave
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import Aeronave
 
 class AeronaveRepositoryPort(ABC):
 

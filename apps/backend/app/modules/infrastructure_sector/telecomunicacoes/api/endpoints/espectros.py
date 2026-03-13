@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_espectro_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.espectro_schema import EspectroCreate, EspectroResponse, EspectroStatusUpdate, EspectroVincularOutorga
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.espectro_service import EspectroService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoEspectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_espectro_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.espectro_schema import EspectroCreate, EspectroResponse, EspectroStatusUpdate, EspectroVincularOutorga
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.espectro_service import EspectroService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoEspectro
 router = APIRouter(prefix='/espectros', tags=['Telecomunicacoes - Espectro'])
 
 @router.post('/', response_model=EspectroResponse, status_code=status.HTTP_201_CREATED)

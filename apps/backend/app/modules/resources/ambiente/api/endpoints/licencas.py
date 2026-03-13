@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_licenciamento_service
-from app.modules.resources.ambiente.api.schemas.licenca_schema import LicencaCancelamentoInput, LicencaCreate, LicencaDeferimentoInput, LicencaIndeferimentoInput, LicencaResponse, LicencaSuspensaoInput
-from app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
-from app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
-from app.modules.resources.ambiente.exceptions import CARNotFoundError, LicencaAlreadyExistsError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_licenciamento_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.licenca_schema import LicencaCancelamentoInput, LicencaCreate, LicencaDeferimentoInput, LicencaIndeferimentoInput, LicencaResponse, LicencaSuspensaoInput
+from apps.backend.app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.exceptions import CARNotFoundError, LicencaAlreadyExistsError, LicencaNotFoundError
 router = APIRouter(prefix='/licencas', tags=['Ambiente - Licencas'])
 
 @router.post('/', response_model=LicencaResponse, status_code=status.HTTP_201_CREATED)

@@ -5,11 +5,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_insumo_service
-from app.modules.resources.agricultura.api.endpoints.insumos import router as insumos_router
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.domain.enums import TipoInsumo
-from app.modules.resources.agricultura.exceptions import InsumoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_insumo_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.insumos import router as insumos_router
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoInsumo
+from apps.backend.app.modules.resources.agricultura.exceptions import InsumoNotFoundError
 
 @pytest.mark.asyncio
 async def test_insumo_service_fluxo_entrada_baixa():

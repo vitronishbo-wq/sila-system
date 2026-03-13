@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.aguas_saneamento.api.deps import get_infraestrutura_service
-from app.modules.resources.aguas_saneamento.api.endpoints.infraestrutura import router as infraestrutura_router
-from app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.resources.aguas_saneamento.exceptions import InfraestruturaNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyInfraestruturaRepository
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_infraestrutura_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.endpoints.infraestrutura import router as infraestrutura_router
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import InfraestruturaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyInfraestruturaRepository
 
 @pytest.mark.asyncio
 async def test_infraestrutura_service_fluxo_sucesso():

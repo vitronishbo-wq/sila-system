@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.cultura.application.events import EditalPublicadoEvent, event_bus
-from app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
-from app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, StatusProjetoCultural, TipoEditalCultural
-from app.modules.society.cultura.domain.models.edital import Edital
+from apps.backend.app.modules.society.cultura.application.events import EditalPublicadoEvent, event_bus
+from apps.backend.app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, StatusProjetoCultural, TipoEditalCultural
+from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
 
 class EditalService:
 

@@ -4,8 +4,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_db
-from app.modules.intelligence.arquivo_nacional.application.services.documento_service import DocumentoService
-from app.modules.intelligence.arquivo_nacional.api.schemas import DocumentoCreateSchema, DocumentoResponseSchema, DocumentoDigitalizacaoSchema, DocumentoRestricaoSchema, DocumentoConservacaoSchema, DocumentoFaseSchema, DocumentoEliminacaoSchema
+from apps.backend.app.modules.intelligence.arquivo_nacional.application.services.documento_service import DocumentoService
+from apps.backend.app.modules.intelligence.arquivo_nacional.api.schemas import DocumentoCreateSchema, DocumentoResponseSchema, DocumentoDigitalizacaoSchema, DocumentoRestricaoSchema, DocumentoConservacaoSchema, DocumentoFaseSchema, DocumentoEliminacaoSchema
 router = APIRouter()
 
 @router.post('/', response_model=DocumentoResponseSchema, status_code=201)

@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Any
 from uuid import UUID
 from pydantic import BaseModel, Field, model_validator
-from app.modules.infrastructure_sector.meteorologia.domain.enums import ObservationType
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import ObservationType
 
 class ObservacaoCreateSchema(BaseModel):
     estacao_id: UUID = Field(..., description='ID da estacao meteorologica')

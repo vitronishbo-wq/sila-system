@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_oneracao_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.oneracao_schema import OneracaoCreate, OneracaoMotivoInput, OneracaoResponse
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.oneracao_service import OneracaoService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, OneracaoAlreadyExistsError, OneracaoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_oneracao_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.oneracao_schema import OneracaoCreate, OneracaoMotivoInput, OneracaoResponse
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.oneracao_service import OneracaoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusOneracao, TipoOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, OneracaoAlreadyExistsError, OneracaoNotFoundError
 router = APIRouter(prefix='/oneracoes', tags=['Gestao Fundiaria - Oneracoes'])
 
 def _ensure_adapter_for_penhora(service: OneracaoService, tipo: TipoOneracao) -> None:

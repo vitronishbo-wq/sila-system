@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.resources.pescas.application.ports import TransportesLogisticaServicePort
+from apps.backend.app.modules.resources.pescas.application.ports import TransportesLogisticaServicePort
 
 class TransportesLogisticaServiceAdapter(TransportesLogisticaServicePort):
 

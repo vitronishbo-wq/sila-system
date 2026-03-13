@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
+from apps.backend.app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
 
 class ProgramaSocialCreate(BaseModel):
     nome: str

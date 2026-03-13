@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.core.bridges.identity_bridge import CitizenFUC
-from app.modules.justice.bounded_contexts.infrastructure.models.citizen_event_model import CitizenEventModel, EventType
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen_event_model import CitizenEventModel, EventType
 
 class CitizenProjector:
 

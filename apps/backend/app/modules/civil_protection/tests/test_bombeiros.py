@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from datetime import date, timedelta
 import pytest
-from app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
-from app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
-from app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao
-from app.modules.civil_protection.tests._fakes import InMemoryBombeiroRepository, InMemoryCorporacaoRepository
+from apps.backend.app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
+from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
+from apps.backend.app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao
+from apps.backend.app.modules.civil_protection.tests._fakes import InMemoryBombeiroRepository, InMemoryCorporacaoRepository
 
 def test_cadastrar_bombeiro_sucesso() -> None:
 

@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.logistics.application.ports import VeiculoRepositoryPort
-from app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
-from app.modules.logistics.domain.models import Veiculo
-from app.modules.logistics.infrastructure.models import VeiculoModel
+from apps.backend.app.modules.logistics.application.ports import VeiculoRepositoryPort
+from apps.backend.app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
+from apps.backend.app.modules.logistics.domain.models import Veiculo
+from apps.backend.app.modules.logistics.infrastructure.models import VeiculoModel
 
 class SQLAlchemyVeiculoRepository(VeiculoRepositoryPort):
 

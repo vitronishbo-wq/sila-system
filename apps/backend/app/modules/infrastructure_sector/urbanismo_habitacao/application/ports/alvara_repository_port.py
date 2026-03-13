@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
 
 class AlvaraRepositoryPort(ABC):
 

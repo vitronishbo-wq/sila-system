@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_exportacao_service
-from app.modules.governance.statistics.api.schemas.exportacao_schema import ExportacaoCreate, ExportacaoListResponse, ExportacaoResponse, ExportacaoUpdate
-from app.modules.governance.statistics.application.services.exportacao_service import ExportacaoService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_exportacao_service
+from apps.backend.app.modules.governance.statistics.api.schemas.exportacao_schema import ExportacaoCreate, ExportacaoListResponse, ExportacaoResponse, ExportacaoUpdate
+from apps.backend.app.modules.governance.statistics.application.services.exportacao_service import ExportacaoService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/exportacoes', tags=['Estatistica - Exportacoes'])
 
 @router.post('/', response_model=ExportacaoResponse, status_code=status.HTTP_201_CREATED)

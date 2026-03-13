@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional
-from app.modules.society.emprego.domain.models.candidato import Candidato
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional
+from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
 
 class CandidatoRepositoryPort(ABC):
 

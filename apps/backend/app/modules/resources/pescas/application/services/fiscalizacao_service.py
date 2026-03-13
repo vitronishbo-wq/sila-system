@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.fiscalizacao_pesca import FiscalizacaoPesca
+from apps.backend.app.modules.resources.pescas.domain.models.fiscalizacao_pesca import FiscalizacaoPesca
 
 class FiscalizacaoService:
 

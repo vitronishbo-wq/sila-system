@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, status
-from app.modules.resources.pescas.api.deps import get_producao_service
-from app.modules.resources.pescas.api.schemas.producao_schema import ProducaoCreate, ProducaoResponse
-from app.modules.resources.pescas.application.services.producao_pesca_service import ProducaoPescaService
+from apps.backend.app.modules.resources.pescas.api.deps import get_producao_service
+from apps.backend.app.modules.resources.pescas.api.schemas.producao_schema import ProducaoCreate, ProducaoResponse
+from apps.backend.app.modules.resources.pescas.application.services.producao_pesca_service import ProducaoPescaService
 router = APIRouter(prefix='/producao', tags=['Pescas - Producao'])
 
 @router.post('/', response_model=ProducaoResponse, status_code=status.HTTP_201_CREATED)

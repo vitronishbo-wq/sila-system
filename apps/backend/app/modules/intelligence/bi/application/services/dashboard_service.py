@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import date, datetime
 from typing import Any
-from app.modules.intelligence.bi.integrations.data_sources import DataSources
+from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources
 
 class DashboardService:
     """Servico de dashboards com agregacao multi-dominio resiliente."""

@@ -1,4 +1,4 @@
-from app.modules.governance.administracao_local.application.dto import CreateAdministradorDTO
+from apps.backend.app.modules.governance.administracao_local.application.dto import CreateAdministradorDTO
 
 class CreateAdministradorCommand:
 

@@ -1,6 +1,6 @@
 """Energy domain package."""
 
-from app.modules.energy.domain.enums import (
+from apps.backend.app.modules.energy.domain.enums import (
     FonteEnergia,
     StatusInfraEnergia,
     TipoFatura,

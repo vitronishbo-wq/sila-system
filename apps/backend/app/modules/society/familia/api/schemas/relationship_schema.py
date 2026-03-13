@@ -1,7 +1,7 @@
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel
-from app.modules.society.familia.domain.enums import RelationshipType
+from apps.backend.app.modules.society.familia.domain.enums import RelationshipType
 
 class RelationshipSchema(BaseModel):
     id: UUID

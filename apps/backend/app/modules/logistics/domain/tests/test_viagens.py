@@ -6,13 +6,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.logistics.api.deps import get_viagem_service
-from app.modules.logistics.api.endpoints.viagens import router as viagens_router
-from app.modules.logistics.application.services import ViagemService
-from app.modules.logistics.domain.enums import StatusViagem
-from app.modules.logistics.domain.models import Viagem
-from app.modules.logistics.core.exceptions import ViagemConflictError, ViagemNotFoundError
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyViagemRepository
+from apps.backend.app.modules.logistics.api.deps import get_viagem_service
+from apps.backend.app.modules.logistics.api.endpoints.viagens import router as viagens_router
+from apps.backend.app.modules.logistics.application.services import ViagemService
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.domain.models import Viagem
+from apps.backend.app.modules.logistics.core.exceptions import ViagemConflictError, ViagemNotFoundError
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyViagemRepository
 
 @pytest.mark.asyncio
 async def test_viagem_service_fluxo_sucesso():

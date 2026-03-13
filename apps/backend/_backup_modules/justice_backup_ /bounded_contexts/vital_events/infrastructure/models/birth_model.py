@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.vital_events.infrastructure.models.birth_model import *
+from apps.backend.app.modules.justice.bounded_contexts.vital_events.infrastructure.models.birth_model import *

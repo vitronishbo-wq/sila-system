@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.ambiente.application.ports.condicionante_repository_port import CondicionanteRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusCondicionante
-from app.modules.resources.ambiente.domain.models.condicionante import Condicionante
+from apps.backend.app.modules.resources.ambiente.application.ports.condicionante_repository_port import CondicionanteRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante
+from apps.backend.app.modules.resources.ambiente.domain.models.condicionante import Condicionante
 
 class SQLAlchemyCondicionanteRepository(CondicionanteRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

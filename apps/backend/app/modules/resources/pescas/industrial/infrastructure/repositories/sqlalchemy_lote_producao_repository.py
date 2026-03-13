@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
-from app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
-from app.modules.resources.pescas.industrial.infrastructure.models.lote_producao_model import LoteProducaoModel
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusLoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.lote_producao_model import LoteProducaoModel
 
 class SQLAlchemyLoteProducaoRepository(LoteProducaoRepositoryPort):
 

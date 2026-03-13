@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
+from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+from apps.backend.app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
 
 class ProjetoRepositoryPort(ABC):
 

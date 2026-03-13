@@ -6,14 +6,14 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_habilitacao_exportador_service, get_habilitacao_importador_service, get_habilitacao_radar_service
-from app.modules.economy.trade.external.api.endpoints.habilitacao_exportador import router as habilitacoes_exportador_router
-from app.modules.economy.trade.external.api.endpoints.habilitacao_importador import router as habilitacoes_importador_router
-from app.modules.economy.trade.external.api.endpoints.habilitacao_radar import router as habilitacao_radar_router
-from app.modules.economy.trade.external.application.services import HabilitacaoExportadorService, HabilitacaoImportadorService, HabilitacaoRadarService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import HabilitacaoExportadorAlreadyExistsError, HabilitacaoExportadorNotFoundError, HabilitacaoImportadorAlreadyExistsError, HabilitacaoImportadorNotFoundError, HabilitacaoRadarAlreadyExistsError, HabilitacaoRadarNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryHabilitacaoExportadorRepository, InMemoryHabilitacaoImportadorRepository, InMemoryHabilitacaoRadarRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_habilitacao_exportador_service, get_habilitacao_importador_service, get_habilitacao_radar_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.habilitacao_exportador import router as habilitacoes_exportador_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.habilitacao_importador import router as habilitacoes_importador_router
+from apps.backend.app.modules.economy.trade.external.api.endpoints.habilitacao_radar import router as habilitacao_radar_router
+from apps.backend.app.modules.economy.trade.external.application.services import HabilitacaoExportadorService, HabilitacaoImportadorService, HabilitacaoRadarService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import HabilitacaoExportadorAlreadyExistsError, HabilitacaoExportadorNotFoundError, HabilitacaoImportadorAlreadyExistsError, HabilitacaoImportadorNotFoundError, HabilitacaoRadarAlreadyExistsError, HabilitacaoRadarNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryHabilitacaoExportadorRepository, InMemoryHabilitacaoImportadorRepository, InMemoryHabilitacaoRadarRepository
 CASES = ({'id': 'habilitacao_exportador', 'service_cls': HabilitacaoExportadorService, 'repository_cls': InMemoryHabilitacaoExportadorRepository, 'dependency': get_habilitacao_exportador_service, 'router': habilitacoes_exportador_router, 'already_exists_error_cls': HabilitacaoExportadorAlreadyExistsError, 'not_found_error_cls': HabilitacaoExportadorNotFoundError, 'base_url': '/comercio_externo/habilitacoes-exportador', 'processo': 'PROC-EXP-2026-001', 'cnpj': '50020030000140'}, {'id': 'habilitacao_importador', 'service_cls': HabilitacaoImportadorService, 'repository_cls': InMemoryHabilitacaoImportadorRepository, 'dependency': get_habilitacao_importador_service, 'router': habilitacoes_importador_router, 'already_exists_error_cls': HabilitacaoImportadorAlreadyExistsError, 'not_found_error_cls': HabilitacaoImportadorNotFoundError, 'base_url': '/comercio_externo/habilitacoes-importador', 'processo': 'PROC-IMP-2026-001', 'cnpj': '50020030000141'}, {'id': 'habilitacao_radar', 'service_cls': HabilitacaoRadarService, 'repository_cls': InMemoryHabilitacaoRadarRepository, 'dependency': get_habilitacao_radar_service, 'router': habilitacao_radar_router, 'already_exists_error_cls': HabilitacaoRadarAlreadyExistsError, 'not_found_error_cls': HabilitacaoRadarNotFoundError, 'base_url': '/comercio_externo/habilitacao_radar', 'processo': 'PROC-RADAR-2026-001', 'cnpj': '50020030000142'})
 
 @pytest.mark.parametrize('case', CASES, ids=[case['id'] for case in CASES])

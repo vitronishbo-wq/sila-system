@@ -1,4 +1,4 @@
-from app.modules.society.emprego.api.schemas.workflow_schema import WorkflowAction, WorkflowCancel, WorkflowCreate, WorkflowResponse
+from apps.backend.app.modules.society.emprego.api.schemas.workflow_schema import WorkflowAction, WorkflowCancel, WorkflowCreate, WorkflowResponse
 
 class OfertaCreate(WorkflowCreate):
     pass

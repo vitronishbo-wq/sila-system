@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.identity_documents.domain.entities.bilhete_identidade import *
+from apps.backend.app.modules.justice.bounded_contexts.identity_documents.domain.entities.bilhete_identidade import *

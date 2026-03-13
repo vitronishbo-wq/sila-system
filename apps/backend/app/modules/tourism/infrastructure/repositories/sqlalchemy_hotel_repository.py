@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira
-from app.modules.tourism.domain.models.hotel import Hotel
-from app.modules.tourism.infrastructure.models.hotel_model import HotelModel
+from apps.backend.app.modules.tourism.application.ports.hotel_repository_port import HotelRepositoryPort
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
+from apps.backend.app.modules.tourism.domain.models.hotel import Hotel
+from apps.backend.app.modules.tourism.infrastructure.models.hotel_model import HotelModel
 
 class SQLAlchemyHotelRepository(HotelRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

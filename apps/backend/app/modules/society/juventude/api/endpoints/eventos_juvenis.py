@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_evento_juvenil_service
-from app.modules.society.juventude.api.schemas.evento_juvenil_schema import EventoJuvenilCreate, EventoJuvenilInscricao, EventoJuvenilResponse
-from app.modules.society.juventude.application.services.evento_juvenil_service import EventoJuvenilService
-from app.modules.society.juventude.domain.enums import StatusEvento
+from apps.backend.app.modules.society.juventude.api.deps import get_evento_juvenil_service
+from apps.backend.app.modules.society.juventude.api.schemas.evento_juvenil_schema import EventoJuvenilCreate, EventoJuvenilInscricao, EventoJuvenilResponse
+from apps.backend.app.modules.society.juventude.application.services.evento_juvenil_service import EventoJuvenilService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusEvento
 router = APIRouter(prefix='/eventos-juvenis', tags=['Juventude - Eventos Juvenis'])
 
 @router.post('/', response_model=EventoJuvenilResponse, status_code=status.HTTP_201_CREATED)

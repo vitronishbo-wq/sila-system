@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID
-from app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort, PensaoRepositoryPort, RequestServicePort
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, StatusPensao, TipoPensao
-from app.modules.society.seguranca_social.domain.models.pensao import Pensao
-from app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, BeneficiarioNotFoundError, PensaoAlreadyExistsError, PensaoNotFoundError
+from apps.backend.app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort, PensaoRepositoryPort, RequestServicePort
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.models.pensao import Pensao
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioNotEligibleError, BeneficiarioNotFoundError, PensaoAlreadyExistsError, PensaoNotFoundError
 
 class PensaoService:
 

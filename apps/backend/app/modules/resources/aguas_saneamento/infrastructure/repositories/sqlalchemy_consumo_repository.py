@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.ports.consumo_repository_port import ConsumoRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
-from app.modules.resources.aguas_saneamento.domain.models.consumo_agua import ConsumoAgua
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.consumo_repository_port import ConsumoRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.consumo_agua import ConsumoAgua
 
 class SQLAlchemyConsumoRepository(ConsumoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

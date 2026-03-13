@@ -1,8 +1,8 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.alerta_repository_port import AlertaRepositoryPort
-from app.modules.governance.statistics.infrastructure.models.alerta_model import AlertaModel
-from app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
+from apps.backend.app.modules.governance.statistics.application.ports.alerta_repository_port import AlertaRepositoryPort
+from apps.backend.app.modules.governance.statistics.infrastructure.models.alerta_model import AlertaModel
+from apps.backend.app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
 
 class SQLAlchemyAlertaRepository(SQLAlchemyNamedRepository, AlertaRepositoryPort):
 

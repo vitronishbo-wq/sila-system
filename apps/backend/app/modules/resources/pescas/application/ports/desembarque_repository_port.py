@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.desembarque import Desembarque
+from apps.backend.app.modules.resources.pescas.domain.models.desembarque import Desembarque
 
 class DesembarqueRepositoryPort(ABC):
 

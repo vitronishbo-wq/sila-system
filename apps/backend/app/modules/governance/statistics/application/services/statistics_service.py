@@ -3,9 +3,9 @@ from datetime import date, datetime, time
 from typing import Any, Dict, List, Optional
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
-from app.modules.governance.statistics.application.ports.statistics_repository_port import StatisticsRepositoryPort
-from app.modules.governance.statistics.infrastructure.models.statistic_model import StatisticModel
-from app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
+from apps.backend.app.modules.governance.statistics.application.ports.statistics_repository_port import StatisticsRepositoryPort
+from apps.backend.app.modules.governance.statistics.infrastructure.models.statistic_model import StatisticModel
+from apps.backend.app.modules.governance.statistics.infrastructure.models.timeseries_model import TimeSeriesModel
 
 class StatisticsService:
     """Service layer for Statistics business logic"""

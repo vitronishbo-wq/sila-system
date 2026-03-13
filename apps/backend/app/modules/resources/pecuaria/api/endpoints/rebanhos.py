@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pecuaria.api.deps import get_rebanho_service
-from app.modules.resources.pecuaria.api.schemas.rebanho_schema import RebanhoCreate, RebanhoResponse
-from app.modules.resources.pecuaria.application.services.rebanho_service import RebanhoService
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_rebanho_service
+from apps.backend.app.modules.resources.pecuaria.api.schemas.rebanho_schema import RebanhoCreate, RebanhoResponse
+from apps.backend.app.modules.resources.pecuaria.application.services.rebanho_service import RebanhoService
 router = APIRouter(prefix='/rebanhos', tags=['Pecuaria - Rebanhos'])
 
 @router.post('/', response_model=RebanhoResponse, status_code=status.HTTP_201_CREATED)

@@ -2,8 +2,8 @@ from __future__ import annotations
 import asyncio
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_agencia_viagens_repository import SQLAlchemyAgenciaViagensRepository
+from apps.backend.app.modules.tourism.application.services.agencia_viagens_service import AgenciaViagensService
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_agencia_viagens_repository import SQLAlchemyAgenciaViagensRepository
 
 def test_cadastrar_agencia_viagens_sucesso() -> None:
     repo = SQLAlchemyAgenciaViagensRepository()

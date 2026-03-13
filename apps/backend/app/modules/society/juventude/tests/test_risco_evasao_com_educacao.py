@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from datetime import date, timedelta
 from uuid import UUID, uuid4
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.application.services.risco_evasao_service import RiscoEvasaoService
-from app.modules.society.juventude.domain.enums import Escolaridade, RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeRequestService, InMemoryJovemRepository, InMemoryRiscoEvasaoRepository
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.application.services.risco_evasao_service import RiscoEvasaoService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeRequestService, InMemoryJovemRepository, InMemoryRiscoEvasaoRepository
 
 class _RequestRecorder(FakeRequestService):
 

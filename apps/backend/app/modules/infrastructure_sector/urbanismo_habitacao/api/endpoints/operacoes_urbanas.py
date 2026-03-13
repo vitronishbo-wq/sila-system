@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_operacao_urbana_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.operacao_urbana_schema import OperacaoUrbanaConclusaoInput, OperacaoUrbanaCreate, OperacaoUrbanaExecucaoInput, OperacaoUrbanaInicioInput, OperacaoUrbanaMotivoInput, OperacaoUrbanaResponse
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.operacao_urbana_service import OperacaoUrbanaService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaAlreadyExistsError, OperacaoUrbanaNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_operacao_urbana_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.operacao_urbana_schema import OperacaoUrbanaConclusaoInput, OperacaoUrbanaCreate, OperacaoUrbanaExecucaoInput, OperacaoUrbanaInicioInput, OperacaoUrbanaMotivoInput, OperacaoUrbanaResponse
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.operacao_urbana_service import OperacaoUrbanaService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import OperacaoUrbanaAlreadyExistsError, OperacaoUrbanaNotFoundError
 router = APIRouter(prefix='/operacoes-urbanas', tags=['Urbanismo Habitacao - Operacoes Urbanas'])
 
 @router.post('/', response_model=OperacaoUrbanaResponse, status_code=status.HTTP_201_CREATED)

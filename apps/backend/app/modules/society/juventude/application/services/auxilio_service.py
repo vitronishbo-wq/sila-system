@@ -2,11 +2,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
-from app.modules.society.juventude.domain.models.auxilio import Auxilio
+from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
+from apps.backend.app.modules.society.juventude.domain.models.auxilio import Auxilio
 
 class AuxilioService:
 

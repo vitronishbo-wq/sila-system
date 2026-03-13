@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
-from app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
-from app.modules.society.cultura.infrastructure.models.projeto_cultural_model import ProjetoCulturalModel
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
+from apps.backend.app.modules.society.cultura.infrastructure.models.projeto_cultural_model import ProjetoCulturalModel
 
 class SQLAlchemyProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
 

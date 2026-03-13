@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 import httpx
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class MeteorologiaAdapter:
 

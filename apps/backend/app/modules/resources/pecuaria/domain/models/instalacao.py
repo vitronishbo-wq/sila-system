@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from uuid import UUID, uuid4
-from app.modules.resources.pecuaria.domain.enums import TipoInstalacao
+from apps.backend.app.modules.resources.pecuaria.domain.enums import TipoInstalacao
 
 @dataclass
 class Instalacao:

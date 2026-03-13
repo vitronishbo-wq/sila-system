@@ -15,13 +15,13 @@ import asyncio
 
 sys.path.insert(0, os.path.join(os.getcwd(), 'apps/backend'))
 
-from app.modules.xroad.domain.envelope import (
+from apps.backend.app.modules.xroad.domain.envelope import (
     SILAEnvelope,
     OriginMinistry,
     ServiceType,
     MessageStatus,
 )
-from app.modules.xroad.application.xroad_service import XRoadInterconnect
+from apps.backend.app.modules.xroad.application.xroad_service import XRoadInterconnect
 
 
 async def test_envelope_creation():

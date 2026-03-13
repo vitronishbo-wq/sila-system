@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.tourism.api.deps import get_pousada_service
-from app.modules.tourism.api.schemas.pousada_schema import PousadaCreate, PousadaResponse, PousadaUpdate
-from app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira
+from apps.backend.app.modules.tourism.api.deps import get_pousada_service
+from apps.backend.app.modules.tourism.api.schemas.pousada_schema import PousadaCreate, PousadaResponse, PousadaUpdate
+from apps.backend.app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
 router = APIRouter(prefix='/pousadas', tags=['Turismo - Pousadas'])
 
 @router.post('/', response_model=PousadaResponse, status_code=status.HTTP_201_CREATED)

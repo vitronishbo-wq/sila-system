@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pecuaria.domain.models.vacina import Vacina
+from apps.backend.app.modules.resources.pecuaria.domain.models.vacina import Vacina
 
 class SanidadeRepositoryPort(ABC):
 

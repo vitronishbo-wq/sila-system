@@ -3,17 +3,17 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.intelligence.ciencia_pesquisa.application.services.projeto_pesquisa_service import ProjetoPesquisaService
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NaturezaJuridicaInstituicao, StatusProjetoPesquisa, TipoInstituicaoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository, InMemoryProjetoPesquisaRepository
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.services.projeto_pesquisa_service import ProjetoPesquisaService
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NaturezaJuridicaInstituicao, StatusProjetoPesquisa, TipoInstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository, InMemoryProjetoPesquisaRepository
 
 async def _seed_instituicao(instituicao_repo: InMemoryInstituicaoPesquisaRepository):
-    from app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
+    from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
     instituicao = InstituicaoPesquisa.cadastrar(sigla='INCP', nome='Instituto Nacional de Ciencia Publica', nif='500000020', tipo=TipoInstituicaoPesquisa.INSTITUTO, natureza_juridica=NaturezaJuridicaInstituicao.PUBLICA, pais='Angola', provincia='Luanda', municipio='Luanda', endereco='Rua das Academias, 22', email_institucional='contato@incp.ao')
     return await instituicao_repo.save(instituicao)
 
 async def _seed_pesquisador(pesquisador_repo: InMemoryPesquisadorRepository, nome: str, documento: str, email: str):
-    from app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
+    from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
     pesquisador = Pesquisador.cadastrar(nome_completo=nome, documento_identificacao=documento, email_institucional=email)
     return await pesquisador_repo.save(pesquisador)
 

@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_zoneamento_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.zoneamento import router as zoneamento_router
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.zoneamento_service import ZoneamentoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoNotFoundError
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyZoneamentoRepository
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_zoneamento_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.zoneamento import router as zoneamento_router
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.zoneamento_service import ZoneamentoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyZoneamentoRepository
 
 @pytest.mark.asyncio
 async def test_zoneamento_service_fluxo_sucesso():

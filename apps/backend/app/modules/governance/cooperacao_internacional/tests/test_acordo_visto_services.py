@@ -2,14 +2,14 @@ from __future__ import annotations
 from datetime import date, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
-from app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
-from app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
-from app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, ModalidadeCooperacao, NaturezaJuridica, StatusAcordo, StatusVisto, TipoAcordo, TipoProjeto, TipoVisto
-from app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, ModalidadeCooperacao, NaturezaJuridica, StatusAcordo, StatusVisto, TipoAcordo, TipoProjeto, TipoVisto
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
 
 @pytest.mark.asyncio
 async def test_fluxo_acordo_com_eventos() -> None:

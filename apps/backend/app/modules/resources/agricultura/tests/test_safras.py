@@ -5,13 +5,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_safra_service
-from app.modules.resources.agricultura.api.endpoints.safras import router as safras_router
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.domain.enums import StatusSafra, TipoCultura, TipoPropriedade
-from app.modules.resources.agricultura.exceptions import SafraNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_safra_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.safras import router as safras_router
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusSafra, TipoCultura, TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import SafraNotFoundError
 
 @pytest.mark.asyncio
 async def test_safra_service_fluxo_criar_iniciar_colher():

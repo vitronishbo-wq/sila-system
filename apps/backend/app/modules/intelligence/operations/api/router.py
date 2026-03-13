@@ -2,9 +2,9 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.api.deps import get_identity_context
 from app.core.identity import IdentityContext
-from app.modules.intelligence.operations.api.deps import get_operations_service
-from app.modules.intelligence.operations.api.schemas import OrderAttachDocumentsRequest, OrderCreateRequest, OrderResponse, PaymentResponse, ReceiptResponse, ServiceCatalogItemResponse
-from app.modules.intelligence.operations.application.services.operations_service import OperationsService
+from apps.backend.app.modules.intelligence.operations.api.deps import get_operations_service
+from apps.backend.app.modules.intelligence.operations.api.schemas import OrderAttachDocumentsRequest, OrderCreateRequest, OrderResponse, PaymentResponse, ReceiptResponse, ServiceCatalogItemResponse
+from apps.backend.app.modules.intelligence.operations.application.services.operations_service import OperationsService
 router = APIRouter(tags=['Operational Flow'])
 
 @router.get('/services', response_model=list[ServiceCatalogItemResponse])

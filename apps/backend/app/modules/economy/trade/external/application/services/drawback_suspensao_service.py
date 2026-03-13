@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import DrawbackSuspensaoRepositoryPort
-from app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
-from app.modules.economy.trade.external.domain.models import DrawbackSuspensao
-from app.modules.economy.trade.external.exceptions import DrawbackSuspensaoAlreadyExistsError, DrawbackSuspensaoNotFoundError, InvalidDrawbackSuspensaoStateError
+from apps.backend.app.modules.economy.trade.external.application.ports import DrawbackSuspensaoRepositoryPort
+from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
+from apps.backend.app.modules.economy.trade.external.domain.models import DrawbackSuspensao
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackSuspensaoAlreadyExistsError, DrawbackSuspensaoNotFoundError, InvalidDrawbackSuspensaoStateError
 
 class DrawbackSuspensaoService(HabilitacaoServiceBase[DrawbackSuspensao]):
 

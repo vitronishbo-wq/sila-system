@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
 from app.core.bridges import CitizenRepositoryPort
-from app.modules.resources.pescas.application.ports import CitizenServicePort
+from apps.backend.app.modules.resources.pescas.application.ports import CitizenServicePort
 
 class CitizenServiceAdapter(CitizenServicePort):
 

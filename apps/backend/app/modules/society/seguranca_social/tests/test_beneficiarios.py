@@ -5,12 +5,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.seguranca_social.api.deps import get_beneficiario_service
-from app.modules.society.seguranca_social.api.endpoints.beneficiarios import router as beneficiarios_router
-from app.modules.society.seguranca_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
-from app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
-from app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, CandidatoEmpregoRequiredError, CitizenNotFoundError
+from apps.backend.app.modules.society.seguranca_social.api.deps import get_beneficiario_service
+from apps.backend.app.modules.society.seguranca_social.api.endpoints.beneficiarios import router as beneficiarios_router
+from apps.backend.app.modules.society.seguranca_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, CandidatoEmpregoRequiredError, CitizenNotFoundError
 
 def _build_service(beneficiario_repo, citizen_repo, emprego_service, request_service) -> BeneficiarioService:
     return BeneficiarioService(beneficiario_repo=beneficiario_repo, citizen_repo=citizen_repo, emprego_service=emprego_service, request_service=request_service)

@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
-from app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
-from app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
-from app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel
+from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
+from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
+from apps.backend.app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel
 
 class SQLAlchemyLaudoPericialRepository(LaudoPericialRepositoryPort):
 

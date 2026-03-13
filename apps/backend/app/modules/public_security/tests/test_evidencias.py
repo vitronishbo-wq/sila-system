@@ -3,15 +3,15 @@ import asyncio
 from datetime import date, datetime, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
-from app.modules.public_security.application.services.evidencia_service import EvidenciaService
-from app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
-from app.modules.public_security.application.services.policial_service import PolicialService
-from app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
-from app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
-from app.modules.public_security.application.services.vestigio_service import VestigioService
-from app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusEvidencia, TipoAgente, TipoEvidencia, TipoOcorrencia, TipoProva, TipoUnidadePolicial, TipoVestigio, TipoVinculo
-from app.modules.public_security.tests._fakes import InMemoryCadeiaCustodiaRepository, InMemoryEvidenciaRepository, InMemoryOcorrenciaRepository, InMemoryPolicialRepository, InMemoryProvaPericialRepository, InMemoryUnidadePolicialRepository, InMemoryVestigioRepository
+from apps.backend.app.modules.public_security.application.services.cadeia_custodia_service import CadeiaCustodiaService
+from apps.backend.app.modules.public_security.application.services.evidencia_service import EvidenciaService
+from apps.backend.app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
+from apps.backend.app.modules.public_security.application.services.policial_service import PolicialService
+from apps.backend.app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
+from apps.backend.app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
+from apps.backend.app.modules.public_security.application.services.vestigio_service import VestigioService
+from apps.backend.app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusEvidencia, TipoAgente, TipoEvidencia, TipoOcorrencia, TipoProva, TipoUnidadePolicial, TipoVestigio, TipoVinculo
+from apps.backend.app.modules.public_security.tests._fakes import InMemoryCadeiaCustodiaRepository, InMemoryEvidenciaRepository, InMemoryOcorrenciaRepository, InMemoryPolicialRepository, InMemoryProvaPericialRepository, InMemoryUnidadePolicialRepository, InMemoryVestigioRepository
 
 def test_registrar_evidencia_sucesso() -> None:
 

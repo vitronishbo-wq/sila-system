@@ -1,10 +1,10 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.aviacao_civil.application.events import AeronaveRegistradaEvent, event_bus
-from app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import AeronaveRepositoryPort
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, TipoAeronave
-from app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import Aeronave
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.anac_adapter import AnacAdapter
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.events import AeronaveRegistradaEvent, event_bus
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import AeronaveRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, TipoAeronave
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import Aeronave
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.adapters.anac_adapter import AnacAdapter
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
 
 class AeronaveService:
 

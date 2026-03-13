@@ -8,7 +8,7 @@ from datetime import datetime
 from sqlalchemy import String, DateTime, JSON
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.modules.justice.civil_registry.shared.orm_base import Base
+from apps.backend.app.modules.justice.civil_registry.shared.orm_base import Base
 
 class BIEventRecord(Base):
     """

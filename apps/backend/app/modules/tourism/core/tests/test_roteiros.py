@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 from decimal import Decimal
-from app.modules.tourism.application.services.roteiro_service import RoteiroService
-from app.modules.tourism.infrastructure.adapters.comercio_servicos_service_adapter import ComercioServicosServiceAdapter
-from app.modules.tourism.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_roteiro_repository import SQLAlchemyRoteiroRepository
+from apps.backend.app.modules.tourism.application.services.roteiro_service import RoteiroService
+from apps.backend.app.modules.tourism.infrastructure.adapters.comercio_servicos_service_adapter import ComercioServicosServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_roteiro_repository import SQLAlchemyRoteiroRepository
 
 class _FakeTransportesService:
 

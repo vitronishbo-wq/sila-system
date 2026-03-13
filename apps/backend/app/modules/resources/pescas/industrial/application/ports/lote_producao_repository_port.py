@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pescas.industrial.domain.enums import StatusLoteProducao
-from app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusLoteProducao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
 
 class LoteProducaoRepositoryPort(ABC):
 

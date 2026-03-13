@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
-from app.modules.infrastructure.infrastructure.models.projeto_model import ProjetoModel
+from apps.backend.app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+from apps.backend.app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
+from apps.backend.app.modules.infrastructure.infrastructure.models.projeto_model import ProjetoModel
 
 class SQLAlchemyProjetoRepository(ProjetoRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

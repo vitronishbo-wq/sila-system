@@ -8,7 +8,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-from modules.identity.models.user import AdministrativeLevel
+from apps.backend.app.modules.identity.models.user import AdministrativeLevel
 
 
 class Token(BaseModel):

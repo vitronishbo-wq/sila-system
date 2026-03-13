@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any
 from uuid import UUID
 from app.core.bridges import CitizenRepositoryPort
-from app.modules.governance.workflow.application.ports.identidade_adapter_port import IdentidadeAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.identidade_adapter_port import IdentidadeAdapterPort
 
 class IdentidadeAdapter(IdentidadeAdapterPort):
 

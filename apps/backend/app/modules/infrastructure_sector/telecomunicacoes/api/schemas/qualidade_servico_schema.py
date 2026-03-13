@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
 
 class QualidadeServicoCreate(BaseModel):
     operadora_id: UUID

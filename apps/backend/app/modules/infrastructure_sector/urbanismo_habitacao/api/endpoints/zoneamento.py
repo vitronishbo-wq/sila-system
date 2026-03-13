@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_zoneamento_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.zoneamento_schema import ZoneamentoCreate, ZoneamentoMotivoInput, ZoneamentoParametrosInput, ZoneamentoResponse, ZoneamentoVigenciaInput
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.zoneamento_service import ZoneamentoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoAlreadyExistsError, ZoneamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_zoneamento_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.zoneamento_schema import ZoneamentoCreate, ZoneamentoMotivoInput, ZoneamentoParametrosInput, ZoneamentoResponse, ZoneamentoVigenciaInput
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.zoneamento_service import ZoneamentoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoAlreadyExistsError, ZoneamentoNotFoundError
 router = APIRouter(prefix='/zoneamento', tags=['Urbanismo Habitacao - Zoneamento'])
 
 @router.post('/', response_model=ZoneamentoResponse, status_code=status.HTTP_201_CREATED)

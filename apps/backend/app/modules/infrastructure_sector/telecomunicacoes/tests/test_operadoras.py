@@ -3,9 +3,9 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeRequestService, InMemoryOperadoraRepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeRequestService, InMemoryOperadoraRepository
 
 def test_cadastrar_operadora_sucesso() -> None:
 

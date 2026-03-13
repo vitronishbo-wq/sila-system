@@ -3,14 +3,14 @@ import asyncio
 from datetime import date
 from decimal import Decimal
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.beneficio_service import BeneficioService
-from app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
-from app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
-from app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, PublicoAlvo, TipoAtendimento, TipoBeneficio
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeJuventudeService, FakeRequestService, FakeSaudeService, InMemoryAtendimentoRepo, InMemoryBeneficiarioRepo, InMemoryBeneficioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo, InMemoryProgramaRepo, InMemoryVisitaRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficio_service import BeneficioService
+from apps.backend.app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
+from apps.backend.app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
+from apps.backend.app.modules.society.assistencia_social.application.services.visita_domiciliar_service import VisitaDomiciliarService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, PublicoAlvo, TipoAtendimento, TipoBeneficio
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeJuventudeService, FakeRequestService, FakeSaudeService, InMemoryAtendimentoRepo, InMemoryBeneficiarioRepo, InMemoryBeneficioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo, InMemoryProgramaRepo, InMemoryVisitaRepo
 
 def test_fluxo_basico_assistencia_social() -> None:
 

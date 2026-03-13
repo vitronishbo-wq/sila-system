@@ -2,9 +2,9 @@ from __future__ import annotations
 import asyncio
 from datetime import date, timedelta
 from decimal import Decimal
-from app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
-from app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
-from app.modules.society.assistencia_social.tests._fakes import InMemoryProgramaRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.programa_social_service import ProgramaSocialService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import InMemoryProgramaRepo
 
 def test_programa_social_ciclo_de_vida() -> None:
 

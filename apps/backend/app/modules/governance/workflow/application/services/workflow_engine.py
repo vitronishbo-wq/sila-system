@@ -3,19 +3,19 @@ from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
 from uuid import UUID
 from app.core.security import IAMClient
-from app.modules.governance.workflow.application.ports.assistencia_social_adapter_port import AssistenciaSocialAdapterPort
-from app.modules.governance.workflow.application.ports.educacao_adapter_port import EducacaoAdapterPort
-from app.modules.governance.workflow.application.ports.emprego_adapter_port import EmpregoAdapterPort
-from app.modules.governance.workflow.application.ports.identidade_adapter_port import IdentidadeAdapterPort
-from app.modules.governance.workflow.application.ports.juventude_adapter_port import JuventudeAdapterPort
-from app.modules.governance.workflow.application.ports.saude_adapter_port import SaudeAdapterPort
-from app.modules.governance.workflow.application.ports.task_repository_port import TaskRepositoryPort
-from app.modules.governance.workflow.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.modules.governance.workflow.domain.enums import TaskPriority, WorkflowStatus
-from app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
-from app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
-from app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
-from app.modules.governance.workflow.integrations.notification_client import NotificationClient
+from apps.backend.app.modules.governance.workflow.application.ports.assistencia_social_adapter_port import AssistenciaSocialAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.educacao_adapter_port import EducacaoAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.emprego_adapter_port import EmpregoAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.identidade_adapter_port import IdentidadeAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.juventude_adapter_port import JuventudeAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.saude_adapter_port import SaudeAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.task_repository_port import TaskRepositoryPort
+from apps.backend.app.modules.governance.workflow.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.governance.workflow.domain.enums import TaskPriority, WorkflowStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_task import WorkflowTask
+from apps.backend.app.modules.governance.workflow.integrations.notification_client import NotificationClient
 
 class WorkflowEngine:
     """Motor principal de workflow (async)."""

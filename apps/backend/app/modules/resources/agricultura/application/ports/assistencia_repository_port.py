@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.agricultura.domain.enums import StatusAssistencia
-from app.modules.resources.agricultura.domain.models.assistencia_tecnica import AssistenciaTecnica
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusAssistencia
+from apps.backend.app.modules.resources.agricultura.domain.models.assistencia_tecnica import AssistenciaTecnica
 
 class AssistenciaRepositoryPort(ABC):
 

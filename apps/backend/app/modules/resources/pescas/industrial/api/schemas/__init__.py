@@ -1,6 +1,6 @@
 """Schemas do modulo pescas industriais."""
-from app.modules.resources.pescas.industrial.api.schemas.inspecao_schema import InspecaoCreate, InspecaoResponse, InspecaoStatusUpdate
-from app.modules.resources.pescas.industrial.api.schemas.lote_producao_schema import LoteProducaoCreate, LoteProducaoResponse, LoteProducaoUpdate
-from app.modules.resources.pescas.industrial.api.schemas.produto_processado_schema import ProdutoProcessadoCreate, ProdutoProcessadoResponse, ProdutoProcessadoUpdate
-from app.modules.resources.pescas.industrial.api.schemas.unidade_processamento_schema import UnidadeProcessamentoCreate, UnidadeProcessamentoResponse, UnidadeProcessamentoUpdateCapacidade
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.inspecao_schema import InspecaoCreate, InspecaoResponse, InspecaoStatusUpdate
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.lote_producao_schema import LoteProducaoCreate, LoteProducaoResponse, LoteProducaoUpdate
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.produto_processado_schema import ProdutoProcessadoCreate, ProdutoProcessadoResponse, ProdutoProcessadoUpdate
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.unidade_processamento_schema import UnidadeProcessamentoCreate, UnidadeProcessamentoResponse, UnidadeProcessamentoUpdateCapacidade
 __all__ = ['UnidadeProcessamentoCreate', 'UnidadeProcessamentoUpdateCapacidade', 'UnidadeProcessamentoResponse', 'ProdutoProcessadoCreate', 'ProdutoProcessadoUpdate', 'ProdutoProcessadoResponse', 'LoteProducaoCreate', 'LoteProducaoUpdate', 'LoteProducaoResponse', 'InspecaoCreate', 'InspecaoStatusUpdate', 'InspecaoResponse']

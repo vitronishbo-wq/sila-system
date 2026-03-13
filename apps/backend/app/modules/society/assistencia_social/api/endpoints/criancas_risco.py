@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_crianca_risco_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.crianca_risco_schema import CriancaRiscoCreate, CriancaRiscoResponse
-from app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_crianca_risco_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.crianca_risco_schema import CriancaRiscoCreate, CriancaRiscoResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.crianca_risco_service import CriancaRiscoService
 router = APIRouter(prefix='/criancas-risco', tags=['Assistencia Social - Criancas Risco'])
 
 @router.post('/', response_model=CriancaRiscoResponse, status_code=status.HTTP_201_CREATED)

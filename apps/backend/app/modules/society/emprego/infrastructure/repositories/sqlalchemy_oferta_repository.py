@@ -1,6 +1,6 @@
-from app.modules.society.emprego.application.ports import OfertaRepositoryPort
-from app.modules.society.emprego.infrastructure.models.oferta_model import OfertaModel
-from app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
+from apps.backend.app.modules.society.emprego.application.ports import OfertaRepositoryPort
+from apps.backend.app.modules.society.emprego.infrastructure.models.oferta_model import OfertaModel
+from apps.backend.app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
 
 class SQLAlchemyOfertaRepository(SQLAlchemyWorkflowRepository, OfertaRepositoryPort):
 

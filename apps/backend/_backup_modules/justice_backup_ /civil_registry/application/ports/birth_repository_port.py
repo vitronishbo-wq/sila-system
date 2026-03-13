@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
-from app.modules.justice.bounded_contexts.infrastructure.models.birth_record import BirthRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.birth_record import BirthRecord
 
 class BirthRepositoryPort(ABC):
     """Porta (Interface) para o Repositório de Nascimentos."""

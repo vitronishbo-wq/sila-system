@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.enums import StatusOcorrencia
-from app.modules.resources.agricultura.domain.models.ocorrencia_fitossanitaria import OcorrenciaFitossanitaria
-from app.modules.resources.agricultura.exceptions import OcorrenciaNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusOcorrencia
+from apps.backend.app.modules.resources.agricultura.domain.models.ocorrencia_fitossanitaria import OcorrenciaFitossanitaria
+from apps.backend.app.modules.resources.agricultura.exceptions import OcorrenciaNotFoundError
 
 class FitossanidadeService:
 

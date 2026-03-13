@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.florestas.domain.enums import StatusPlanoManejo
+from apps.backend.app.modules.resources.florestas.domain.enums import StatusPlanoManejo
 
 @dataclass
 class PlanoManejoFlorestal:

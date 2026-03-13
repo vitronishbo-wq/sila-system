@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
 
 class MatriculaCreate(BaseModel):
     imovel_inscricao: str

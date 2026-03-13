@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.tourism.api.deps import get_roteiro_service
-from app.modules.tourism.api.schemas.roteiro_schema import RoteiroCreate, RoteiroResponse, RoteiroUpdate
-from app.modules.tourism.application.services.roteiro_service import RoteiroService
+from apps.backend.app.modules.tourism.api.deps import get_roteiro_service
+from apps.backend.app.modules.tourism.api.schemas.roteiro_schema import RoteiroCreate, RoteiroResponse, RoteiroUpdate
+from apps.backend.app.modules.tourism.application.services.roteiro_service import RoteiroService
 router = APIRouter(prefix='/roteiros', tags=['Turismo - Roteiros'])
 
 @router.post('/', response_model=RoteiroResponse, status_code=status.HTTP_201_CREATED)

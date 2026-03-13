@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from uuid import uuid4
 import pytest
-from app.modules.society.cultura.application.services.artista_service import ArtistaService
-from app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
-from app.modules.society.cultura.domain.enums import TipoArtista, TipoGrupoArtistico
-from app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, InMemoryArtistaRepository, InMemoryGrupoArtisticoRepository
+from apps.backend.app.modules.society.cultura.application.services.artista_service import ArtistaService
+from apps.backend.app.modules.society.cultura.application.services.grupo_artistico_service import GrupoArtisticoService
+from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista, TipoGrupoArtistico
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeEducacaoService, FakeRequestService, InMemoryArtistaRepository, InMemoryGrupoArtisticoRepository
 
 async def _seed_artista(artista_repo: InMemoryArtistaRepository):
     artista_service = ArtistaService(artista_repo=artista_repo)

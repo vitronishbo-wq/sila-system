@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import QualidadeServicoRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import QualidadeServicoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
 
 class QualidadeServicoService:
 

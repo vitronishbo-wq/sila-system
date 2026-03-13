@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.energy.domain.enums import TipoLeituraEnergia
+from apps.backend.app.modules.energy.domain.enums import TipoLeituraEnergia
 
 class ConsumoLeituraInput(BaseModel):
     unidade_consumidora_id: UUID

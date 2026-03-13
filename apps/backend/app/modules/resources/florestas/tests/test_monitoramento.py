@@ -4,16 +4,16 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.florestas.api.deps import get_estatistica_florestal_service
-from app.modules.resources.florestas.api.router import router as florestas_router
-from app.modules.resources.florestas.api import deps as florestas_deps
-from app.modules.resources.florestas.application.services.estatistica_florestal_service import EstatisticaFlorestalService
-from app.modules.resources.florestas.infrastructure.adapters.agricultura_service_adapter import AgriculturaServiceAdapter
-from app.modules.resources.florestas.infrastructure.adapters.ambiente_service_adapter import AmbienteServiceAdapter
-from app.modules.resources.florestas.infrastructure.adapters.comercio_externo_service_adapter import ComercioExternoServiceAdapter
-from app.modules.resources.florestas.infrastructure.adapters.energia_service_adapter import EnergiaServiceAdapter
-from app.modules.resources.florestas.infrastructure.adapters.geosampa_service_adapter import GeosampaServiceAdapter
-from app.modules.resources.florestas.infrastructure.adapters.gestao_fundiaria_service_adapter import GestaoFundiariaServiceAdapter
+from apps.backend.app.modules.resources.florestas.api.deps import get_estatistica_florestal_service
+from apps.backend.app.modules.resources.florestas.api.router import router as florestas_router
+from apps.backend.app.modules.resources.florestas.api import deps as florestas_deps
+from apps.backend.app.modules.resources.florestas.application.services.estatistica_florestal_service import EstatisticaFlorestalService
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.agricultura_service_adapter import AgriculturaServiceAdapter
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.ambiente_service_adapter import AmbienteServiceAdapter
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.comercio_externo_service_adapter import ComercioExternoServiceAdapter
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.energia_service_adapter import EnergiaServiceAdapter
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.geosampa_service_adapter import GeosampaServiceAdapter
+from apps.backend.app.modules.resources.florestas.infrastructure.adapters.gestao_fundiaria_service_adapter import GestaoFundiariaServiceAdapter
 
 class _OperadorRepo:
 

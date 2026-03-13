@@ -3,8 +3,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
-from app.modules.justice.bounded_contexts.infrastructure.adapters.emprego_service_adapter import EmpregoServiceAdapter
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.emprego_service_adapter import EmpregoServiceAdapter
 
 @pytest.mark.asyncio
 async def test_adapter_emprego_retorna_candidatura_ativa() -> None:

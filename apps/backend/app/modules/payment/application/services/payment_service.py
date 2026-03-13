@@ -4,13 +4,13 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import uuid4
 
-from modules.payment.models.enums import (
+from apps.backend.app.modules.payment.models.enums import (
     PaymentMethod,
     PaymentStatus,
     TransactionStatus,
     TransactionType,
 )
-from modules.payment.schemas.payment import RefundResponse
+from apps.backend.app.modules.payment.schemas.payment import RefundResponse
 
 
 class Payment:

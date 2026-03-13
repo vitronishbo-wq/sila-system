@@ -9,8 +9,8 @@ import logging
 from typing import Optional, List
 from sqlalchemy import select, and_
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.justice.bounded_contexts.application.ports.bi_repository_port import BIRepositoryPort
-from app.modules.justice.bounded_contexts.infrastructure.models.bi_record import BIRecord
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.bi_repository_port import BIRepositoryPort
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.bi_record import BIRecord
 logger = logging.getLogger('identidade_civil.repository.bi')
 
 class BIRepository(BIRepositoryPort):

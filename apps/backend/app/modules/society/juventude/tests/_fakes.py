@@ -1,21 +1,21 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
-from app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
-from app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
-from app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, RiscoSocial, SituacaoOcupacional, StatusBeneficio, StatusFormacao, StatusPrograma, TipoAuxilio, TipoPrograma
-from app.modules.society.juventude.domain.models.auxilio import Auxilio
-from app.modules.society.juventude.domain.models.formacao_juvenil import FormacaoJuvenil
-from app.modules.society.juventude.domain.models.jovem import Jovem
-from app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
-from app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
+from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, RiscoSocial, SituacaoOcupacional, StatusBeneficio, StatusFormacao, StatusPrograma, TipoAuxilio, TipoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.auxilio import Auxilio
+from apps.backend.app.modules.society.juventude.domain.models.formacao_juvenil import FormacaoJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.jovem import Jovem
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
 
 class InMemoryJovemRepository(JovemRepositoryPort):
 

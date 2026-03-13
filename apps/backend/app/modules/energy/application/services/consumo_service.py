@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import date, datetime
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.events.definitions import LeituraRealizadaEvent
-from app.modules.energy.application.ports import ConsumoRepositoryPort, OutboxRepositoryPort
-from app.modules.energy.domain.enums import TipoLeituraEnergia
-from app.modules.energy.domain.models import ConsumoEnergia
-from app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
-from app.modules.energy.core.exceptions import ConsumoNotFoundError
+from apps.backend.app.modules.energy.application.events.definitions import LeituraRealizadaEvent
+from apps.backend.app.modules.energy.application.ports import ConsumoRepositoryPort, OutboxRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import TipoLeituraEnergia
+from apps.backend.app.modules.energy.domain.models import ConsumoEnergia
+from apps.backend.app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
+from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError
 
 class ConsumoService:
 

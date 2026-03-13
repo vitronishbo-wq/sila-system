@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_proprietario_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.proprietarios import router as proprietarios_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.proprietario_service import ProprietarioService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_proprietario_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.proprietarios import router as proprietarios_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.proprietario_service import ProprietarioService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyProprietarioRepository
 
 @pytest.mark.asyncio
 async def test_proprietario_service_fluxo_sucesso():

@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure.api.deps import get_licitacao_service
-from app.modules.infrastructure.api.endpoints.licitacoes import router as licitacoes_router
-from app.modules.infrastructure.application.services.licitacao_service import LicitacaoService
-from app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from app.modules.infrastructure.core.exceptions import LicitacaoNotFoundError
-from app.modules.infrastructure.infrastructure.repositories import SQLAlchemyLicitacaoRepository
+from apps.backend.app.modules.infrastructure.api.deps import get_licitacao_service
+from apps.backend.app.modules.infrastructure.api.endpoints.licitacoes import router as licitacoes_router
+from apps.backend.app.modules.infrastructure.application.services.licitacao_service import LicitacaoService
+from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+from apps.backend.app.modules.infrastructure.core.exceptions import LicitacaoNotFoundError
+from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyLicitacaoRepository
 
 @pytest.mark.asyncio
 async def test_licitacao_service_fluxo_sucesso():

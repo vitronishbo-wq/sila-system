@@ -1,5 +1,5 @@
-from app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_captura_repository import SQLAlchemyCapturaRepository
-from app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_embarcacao_repository import SQLAlchemyEmbarcacaoRepository
-from app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_licenca_pesca_repository import SQLAlchemyLicencaPescaRepository
-from app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_pescador_repository import SQLAlchemyPescadorRepository
+from apps.backend.app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_captura_repository import SQLAlchemyCapturaRepository
+from apps.backend.app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_embarcacao_repository import SQLAlchemyEmbarcacaoRepository
+from apps.backend.app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_licenca_pesca_repository import SQLAlchemyLicencaPescaRepository
+from apps.backend.app.modules.resources.pescas.infrastructure.repositories.sqlalchemy_pescador_repository import SQLAlchemyPescadorRepository
 __all__ = ['SQLAlchemyPescadorRepository', 'SQLAlchemyEmbarcacaoRepository', 'SQLAlchemyLicencaPescaRepository', 'SQLAlchemyCapturaRepository']

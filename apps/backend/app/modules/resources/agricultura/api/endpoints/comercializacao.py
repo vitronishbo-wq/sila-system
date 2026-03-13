@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_comercializacao_service
-from app.modules.resources.agricultura.api.schemas.comercializacao_schema import ComercializacaoCreate, ComercializacaoResponse
-from app.modules.resources.agricultura.application.services.comercializacao_service import ComercializacaoService
-from app.modules.resources.agricultura.exceptions import ComercializacaoNotFoundError, SafraNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_comercializacao_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.comercializacao_schema import ComercializacaoCreate, ComercializacaoResponse
+from apps.backend.app.modules.resources.agricultura.application.services.comercializacao_service import ComercializacaoService
+from apps.backend.app.modules.resources.agricultura.exceptions import ComercializacaoNotFoundError, SafraNotFoundError
 router = APIRouter(prefix='/comercializacao', tags=['Agricultura - comercializacao'])
 
 @router.post('/', response_model=ComercializacaoResponse, status_code=status.HTTP_201_CREATED)

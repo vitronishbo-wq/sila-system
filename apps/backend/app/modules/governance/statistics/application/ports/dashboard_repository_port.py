@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.governance.statistics.domain.models.dashboard import Dashboard
+from apps.backend.app.modules.governance.statistics.domain.models.dashboard import Dashboard
 
 class DashboardRepositoryPort(ABC):
 

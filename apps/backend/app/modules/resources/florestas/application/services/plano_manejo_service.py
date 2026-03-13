@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
-from app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
-from app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
+from apps.backend.app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
 
 class PlanoManejoService:
 

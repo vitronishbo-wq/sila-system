@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from app.modules.governance.statistics.exceptions import EstatisticaValidationError
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaValidationError
 
 @dataclass(frozen=True)
 class Periodo:

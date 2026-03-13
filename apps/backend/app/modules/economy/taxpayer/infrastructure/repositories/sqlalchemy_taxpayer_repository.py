@@ -3,9 +3,9 @@ from typing import Optional, List
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update as sa_update
-from app.modules.economy.taxpayer.application.ports.taxpayer_repository import TaxpayerRepositoryPort
-from app.modules.economy.taxpayer.infrastructure.models.taxpayer_model import TaxpayerModel
-from app.modules.economy.taxpayer.domain.entities.taxpayer import Taxpayer
+from apps.backend.app.modules.economy.taxpayer.application.ports.taxpayer_repository import TaxpayerRepositoryPort
+from apps.backend.app.modules.economy.taxpayer.infrastructure.models.taxpayer_model import TaxpayerModel
+from apps.backend.app.modules.economy.taxpayer.domain.entities.taxpayer import Taxpayer
 
 class SQLAlchemyTaxpayerRepository(TaxpayerRepositoryPort):
 

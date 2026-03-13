@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_jovem_service
-from app.modules.society.juventude.api.schemas.jovem_schema import JovemCreate, JovemResponse, JovemUpdate, VulnerabilidadeAdd
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional
+from apps.backend.app.modules.society.juventude.api.deps import get_jovem_service
+from apps.backend.app.modules.society.juventude.api.schemas.jovem_schema import JovemCreate, JovemResponse, JovemUpdate, VulnerabilidadeAdd
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional
 router = APIRouter(prefix='/jovens', tags=['Juventude - Jovens'])
 
 @router.post('/', response_model=JovemResponse, status_code=status.HTTP_201_CREATED)

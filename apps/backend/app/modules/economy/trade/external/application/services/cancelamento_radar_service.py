@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import CancelamentoRadarRepositoryPort
-from app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
-from app.modules.economy.trade.external.domain.models import CancelamentoRadar
-from app.modules.economy.trade.external.exceptions import CancelamentoRadarAlreadyExistsError, CancelamentoRadarNotFoundError, InvalidCancelamentoRadarStateError
+from apps.backend.app.modules.economy.trade.external.application.ports import CancelamentoRadarRepositoryPort
+from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
+from apps.backend.app.modules.economy.trade.external.domain.models import CancelamentoRadar
+from apps.backend.app.modules.economy.trade.external.exceptions import CancelamentoRadarAlreadyExistsError, CancelamentoRadarNotFoundError, InvalidCancelamentoRadarStateError
 
 class CancelamentoRadarService(HabilitacaoServiceBase[CancelamentoRadar]):
 

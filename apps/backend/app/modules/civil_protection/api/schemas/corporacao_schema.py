@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.civil_protection.domain.enums import StatusCorporacao
+from apps.backend.app.modules.civil_protection.domain.enums import StatusCorporacao
 
 class CorporacaoCreate(BaseModel):
     nome: str = Field(..., min_length=3)

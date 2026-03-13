@@ -2,7 +2,7 @@ import asyncio
 import logging
 from sqlalchemy import select
 from config.database import AsyncSessionLocal
-from modules.location.models.region import Region
+from apps.backend.app.modules.location.models.region import Region
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [INFO] %(message)s")
 logger = logging.getLogger("seed_dpa")

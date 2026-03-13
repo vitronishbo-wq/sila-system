@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_producao_service
-from app.modules.resources.agricultura.api.schemas.cultura_schema import CulturaCreate, CulturaResponse
-from app.modules.resources.agricultura.application.services.producao_service import ProducaoService
-from app.modules.resources.agricultura.exceptions import CulturaNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_producao_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.cultura_schema import CulturaCreate, CulturaResponse
+from apps.backend.app.modules.resources.agricultura.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.agricultura.exceptions import CulturaNotFoundError
 router = APIRouter(prefix='/culturas', tags=['Agricultura - culturas'])
 
 @router.post('/', response_model=CulturaResponse, status_code=status.HTTP_201_CREATED)

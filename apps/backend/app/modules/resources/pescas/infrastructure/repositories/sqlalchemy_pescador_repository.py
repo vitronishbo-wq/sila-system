@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pescas.application.ports import PescadorRepositoryPort
-from app.modules.resources.pescas.domain.enums import TipoPescador
-from app.modules.resources.pescas.domain.models.pescador import Pescador
-from app.modules.resources.pescas.infrastructure.models.pescador_model import PescadorModel
+from apps.backend.app.modules.resources.pescas.application.ports import PescadorRepositoryPort
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
+from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
+from apps.backend.app.modules.resources.pescas.infrastructure.models.pescador_model import PescadorModel
 
 class SQLAlchemyPescadorRepository(PescadorRepositoryPort):
 

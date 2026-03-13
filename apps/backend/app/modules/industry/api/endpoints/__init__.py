@@ -1,5 +1,5 @@
-from app.modules.industry.core.api.endpoints.catalogos import router as catalogos_router
-from app.modules.industry.core.api.endpoints.estabelecimentos_industriais import (
+from apps.backend.app.modules.industry.core.api.endpoints.catalogos import router as catalogos_router
+from apps.backend.app.modules.industry.core.api.endpoints.estabelecimentos_industriais import (
     router as estabelecimentos_industriais_router,
 )
 

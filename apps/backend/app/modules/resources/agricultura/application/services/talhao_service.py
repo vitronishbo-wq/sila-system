@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.enums import StatusTalhao
-from app.modules.resources.agricultura.domain.models.talhao import Talhao
-from app.modules.resources.agricultura.exceptions import TalhaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusTalhao
+from apps.backend.app.modules.resources.agricultura.domain.models.talhao import Talhao
+from apps.backend.app.modules.resources.agricultura.exceptions import TalhaoNotFoundError
 
 class TalhaoService:
 

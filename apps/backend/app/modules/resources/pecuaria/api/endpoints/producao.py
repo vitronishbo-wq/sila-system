@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pecuaria.api.deps import get_producao_service
-from app.modules.resources.pecuaria.api.schemas.producao_schema import ProducaoCarneCreate, ProducaoCarneResponse, ProducaoLeiteCreate, ProducaoLeiteResponse
-from app.modules.resources.pecuaria.application.services.producao_service import ProducaoService
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_producao_service
+from apps.backend.app.modules.resources.pecuaria.api.schemas.producao_schema import ProducaoCarneCreate, ProducaoCarneResponse, ProducaoLeiteCreate, ProducaoLeiteResponse
+from apps.backend.app.modules.resources.pecuaria.application.services.producao_service import ProducaoService
 router = APIRouter(prefix='/producao', tags=['Pecuaria - Producao'])
 
 @router.post('/leite', response_model=ProducaoLeiteResponse, status_code=status.HTTP_201_CREATED)

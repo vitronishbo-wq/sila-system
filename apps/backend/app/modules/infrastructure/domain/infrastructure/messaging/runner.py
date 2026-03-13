@@ -1,7 +1,7 @@
 from __future__ import annotations
 import asyncio
 import os
-from app.modules.infrastructure.infrastructure.messaging.outbox_worker import OutboxWorker
+from apps.backend.app.modules.infrastructure.infrastructure.messaging.outbox_worker import OutboxWorker
 try:
     from prometheus_client import start_http_server
 except Exception:

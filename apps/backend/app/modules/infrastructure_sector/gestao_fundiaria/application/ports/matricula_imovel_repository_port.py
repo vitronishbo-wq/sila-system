@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
 
 class MatriculaImovelRepositoryPort(ABC):
 

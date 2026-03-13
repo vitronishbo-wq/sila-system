@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.governance.statistics.domain.enums import StatusKPI
-from app.modules.governance.statistics.domain.models.kpi import KPI
+from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
+from apps.backend.app.modules.governance.statistics.domain.models.kpi import KPI
 
 class KPIRepositoryPort(ABC):
 

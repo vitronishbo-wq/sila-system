@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
-from app.modules.society.familia.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.society.familia.infrastructure.models.event_outbox_model import FamilyOutboxEventModel
+from apps.backend.app.modules.society.familia.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.familia.infrastructure.models.event_outbox_model import FamilyOutboxEventModel
 
 class OutboxRepository(OutboxRepositoryPort):
 

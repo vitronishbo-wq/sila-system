@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.cultura.domain.enums import TipoArtista
-from app.modules.society.cultura.domain.models.artista import Artista
+from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista
+from apps.backend.app.modules.society.cultura.domain.models.artista import Artista
 
 class ArtistaRepositoryPort(ABC):
 

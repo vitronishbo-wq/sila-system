@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.habite_se_repository_port import HabiteSeRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.habite_se_model import HabiteSeModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.habite_se_repository_port import HabiteSeRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.habite_se_model import HabiteSeModel
 
 class SQLAlchemyHabiteSeRepository(HabiteSeRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

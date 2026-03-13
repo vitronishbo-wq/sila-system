@@ -2,11 +2,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusEstagio
-from app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEstagio
+from apps.backend.app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
 
 class EstagioJuvenilService:
 

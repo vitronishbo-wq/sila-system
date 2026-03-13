@@ -8,9 +8,9 @@ Consolidation contract:
 from __future__ import annotations
 import logging
 from typing import Any, Optional
-from app.modules.justice.application.citizen_service import CitizenService as CanonicalCitizenService
-from app.modules.justice.application.citizen_service import CitizenService as LegacyCitizenService
-from app.modules.justice._deprecated.bounded_contexts.infrastructure.models.document import Document
+from apps.backend.app.modules.justice.application.citizen_service import CitizenService as CanonicalCitizenService
+from apps.backend.app.modules.justice.application.citizen_service import CitizenService as LegacyCitizenService
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.infrastructure.models.document import Document
 logger = logging.getLogger(__name__)
 
 class CitizenService:

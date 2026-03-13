@@ -11,17 +11,17 @@ from sqlalchemy.pool import NullPool
 from app.api.deps import get_db, get_identity_context
 from app.core.bridges.identity_bridge import CitizenFUC
 from app.core.identity import IdentityContext
-from app.modules.governance.workflow.api.router import router as workflow_router
-from app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
-from app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
-from app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
-from app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
-from app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
-from app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
-from app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
-from app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
-from app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
-from app.modules.governance.workflow.infrastructure.repositories.workflow_repository import WorkflowRepository
+from apps.backend.app.modules.governance.workflow.api.router import router as workflow_router
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
+from apps.backend.app.modules.governance.workflow.infrastructure.repositories.workflow_repository import WorkflowRepository
 
 def _database_url() -> str:
     url = os.environ.get('DATABASE_URL')

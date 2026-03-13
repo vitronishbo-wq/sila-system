@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Optional
 from uuid import UUID
-from app.modules.educacao.domain.enums import StatusFluxo, TipoInscricao
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo, TipoInscricao
 
 @dataclass
 class InscricaoSecundaria:

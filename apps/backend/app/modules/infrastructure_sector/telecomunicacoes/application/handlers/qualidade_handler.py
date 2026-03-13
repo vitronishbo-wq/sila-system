@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import QualidadeServicoAferidaEvent
 
 class QualidadeHandler:
 

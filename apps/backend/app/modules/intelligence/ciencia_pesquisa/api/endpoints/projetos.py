@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.intelligence.ciencia_pesquisa.api.deps import get_projeto_pesquisa_service
-from app.modules.intelligence.ciencia_pesquisa.api.schemas.projeto_pesquisa_schema import ProjetoPesquisaCreate, ProjetoPesquisaEncerrarInput, ProjetoPesquisaResponse, ProjetoPesquisaVincularPesquisadoresInput
-from app.modules.intelligence.ciencia_pesquisa.application.services.projeto_pesquisa_service import ProjetoPesquisaService
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.deps import get_projeto_pesquisa_service
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.projeto_pesquisa_schema import ProjetoPesquisaCreate, ProjetoPesquisaEncerrarInput, ProjetoPesquisaResponse, ProjetoPesquisaVincularPesquisadoresInput
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.services.projeto_pesquisa_service import ProjetoPesquisaService
 router = APIRouter(prefix='/projetos', tags=['Ciencia Pesquisa - Projetos'])
 
 def _status_code_for_error(message: str) -> int:

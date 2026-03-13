@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_alvara_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.alvara_schema import AlvaraCreate, AlvaraDeferimentoInput, AlvaraMotivoInput, AlvaraResponse
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.alvara_service import AlvaraService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import AlvaraAlreadyExistsError, AlvaraNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_alvara_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.alvara_schema import AlvaraCreate, AlvaraDeferimentoInput, AlvaraMotivoInput, AlvaraResponse
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.alvara_service import AlvaraService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import AlvaraAlreadyExistsError, AlvaraNotFoundError
 router = APIRouter(prefix='/alvaras', tags=['Urbanismo Habitacao - Alvaras'])
 
 @router.post('/', response_model=AlvaraResponse, status_code=status.HTTP_201_CREATED)

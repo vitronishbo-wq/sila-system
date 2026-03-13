@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pecuaria.domain.models.producao_carne import ProducaoCarne
-from app.modules.resources.pecuaria.domain.models.producao_leite import ProducaoLeite
+from apps.backend.app.modules.resources.pecuaria.domain.models.producao_carne import ProducaoCarne
+from apps.backend.app.modules.resources.pecuaria.domain.models.producao_leite import ProducaoLeite
 
 class ProducaoRepositoryPort(ABC):
 

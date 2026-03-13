@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.infrastructure.infrastructure.adapters.service_requests_service_adapter import ServiceRequestsServiceAdapter
-from app.modules.infrastructure.infrastructure.adapters.workflow_service_adapter import WorkflowServiceAdapter
+from apps.backend.app.modules.infrastructure.infrastructure.adapters.service_requests_service_adapter import ServiceRequestsServiceAdapter
+from apps.backend.app.modules.infrastructure.infrastructure.adapters.workflow_service_adapter import WorkflowServiceAdapter
 
 async def handle_criacao(payload: dict, tenant_id: str, correlation_id: str) -> None:
     service_requests = ServiceRequestsServiceAdapter()

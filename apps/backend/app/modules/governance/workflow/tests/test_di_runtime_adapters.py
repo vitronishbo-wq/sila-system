@@ -3,13 +3,13 @@ from types import SimpleNamespace
 from uuid import uuid4
 from unittest.mock import AsyncMock
 import pytest
-from app.modules.governance.workflow.api import deps
-from app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
-from app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
-from app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
-from app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
-from app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
-from app.modules.governance.workflow.infrastructure.adapters import AssistenciaSocialAdapter, EducacaoAdapter, EmpregoAdapter, IdentidadeAdapter, JuventudeAdapter, SaudeAdapter
+from apps.backend.app.modules.governance.workflow.api import deps
+from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
+from apps.backend.app.modules.governance.workflow.infrastructure.adapters import AssistenciaSocialAdapter, EducacaoAdapter, EmpregoAdapter, IdentidadeAdapter, JuventudeAdapter, SaudeAdapter
 
 class _EducacaoStub:
 

@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.logistics.domain.enums import StatusFrota
-from app.modules.logistics.domain.models.fiscalizacao_transporte import FiscalizacaoTransporte
-from app.modules.logistics.domain.models.manutencao import Manutencao
-from app.modules.logistics.domain.models.tarifa import Tarifa
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota
+from apps.backend.app.modules.logistics.domain.models.fiscalizacao_transporte import FiscalizacaoTransporte
+from apps.backend.app.modules.logistics.domain.models.manutencao import Manutencao
+from apps.backend.app.modules.logistics.domain.models.tarifa import Tarifa
 
 @dataclass
 class Frota:

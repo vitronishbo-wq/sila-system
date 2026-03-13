@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
 
 class InfraestruturaService:
 

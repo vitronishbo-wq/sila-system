@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.governance.cooperacao_internacional.api.deps import get_visto_service
-from app.modules.governance.cooperacao_internacional.api.schemas.visto_schema import VistoAnaliseInput, VistoAprovarInput, VistoCreate, VistoNegarInput, VistoResponse
-from app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
+from apps.backend.app.modules.governance.cooperacao_internacional.api.deps import get_visto_service
+from apps.backend.app.modules.governance.cooperacao_internacional.api.schemas.visto_schema import VistoAnaliseInput, VistoAprovarInput, VistoCreate, VistoNegarInput, VistoResponse
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
 router = APIRouter(prefix='/vistos', tags=['Cooperacao Internacional - Vistos'])
 
 @router.post('/', response_model=VistoResponse, status_code=status.HTTP_201_CREATED)

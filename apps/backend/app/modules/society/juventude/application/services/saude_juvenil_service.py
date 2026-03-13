@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.saude_juvenil_repository_port import SaudeJuvenilRepositoryPort
-from app.modules.society.juventude.domain.enums import StatusAcompanhamento, TipoSaudeJuvenil
-from app.modules.society.juventude.domain.models.saude_juvenil import SaudeJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.saude_juvenil_repository_port import SaudeJuvenilRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusAcompanhamento, TipoSaudeJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.saude_juvenil import SaudeJuvenil
 
 class SaudeJuvenilService:
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Generic, TypeVar
 from uuid import UUID
-from app.modules.economy.trade.external.application.ports import HabilitacaoRepositoryPortBase
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from app.modules.economy.trade.external.domain.models import HabilitacaoBase
+from apps.backend.app.modules.economy.trade.external.application.ports import HabilitacaoRepositoryPortBase
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.domain.models import HabilitacaoBase
 THabilitacao = TypeVar('THabilitacao', bound=HabilitacaoBase)
 
 class InMemoryHabilitacaoRepositoryBase(HabilitacaoRepositoryPortBase[THabilitacao], Generic[THabilitacao]):

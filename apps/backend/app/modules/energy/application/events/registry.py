@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.energy.application.events.definitions import DemandaCriticaEvent, FaturaGeradaEvent, InterrupcaoEvent, LeituraRealizadaEvent, QualidadeInconformeEvent
+from apps.backend.app.modules.energy.application.events.definitions import DemandaCriticaEvent, FaturaGeradaEvent, InterrupcaoEvent, LeituraRealizadaEvent, QualidadeInconformeEvent
 
 class EnergiaEventRegistry:
     PUBLISHABLE_EVENTS = {LeituraRealizadaEvent.event_name: 'energia.leitura.realizada', FaturaGeradaEvent.event_name: 'energia.fatura.gerada', InterrupcaoEvent.event_name: 'energia.interrupcao', QualidadeInconformeEvent.event_name: 'energia.qualidade.inconforme', DemandaCriticaEvent.event_name: 'energia.demanda.critica'}

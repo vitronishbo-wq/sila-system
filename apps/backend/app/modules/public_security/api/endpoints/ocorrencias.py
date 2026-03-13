@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_ocorrencia_service
-from app.modules.public_security.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse, OcorrenciaStatusUpdate
-from app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
-from app.modules.public_security.domain.enums import StatusOcorrencia, TipoOcorrencia
+from apps.backend.app.modules.public_security.api.deps import get_ocorrencia_service
+from apps.backend.app.modules.public_security.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse, OcorrenciaStatusUpdate
+from apps.backend.app.modules.public_security.application.services.ocorrencia_service import OcorrenciaService
+from apps.backend.app.modules.public_security.domain.enums import StatusOcorrencia, TipoOcorrencia
 router = APIRouter(prefix='/ocorrencias', tags=['Seguranca Publica - Ocorrencias'])
 
 @router.post('/', response_model=OcorrenciaResponse, status_code=status.HTTP_201_CREATED)

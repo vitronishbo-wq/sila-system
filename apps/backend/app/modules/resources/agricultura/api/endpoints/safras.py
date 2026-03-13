@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_safra_service
-from app.modules.resources.agricultura.api.schemas.safra_schema import ColheitaInput, SafraCreate, SafraResponse
-from app.modules.resources.agricultura.application.services.safra_service import SafraService
-from app.modules.resources.agricultura.exceptions import CulturaNotFoundError, PropriedadeNotFoundError, SafraNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_safra_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.safra_schema import ColheitaInput, SafraCreate, SafraResponse
+from apps.backend.app.modules.resources.agricultura.application.services.safra_service import SafraService
+from apps.backend.app.modules.resources.agricultura.exceptions import CulturaNotFoundError, PropriedadeNotFoundError, SafraNotFoundError
 router = APIRouter(prefix='/safras', tags=['Agricultura - safras'])
 
 @router.post('/', response_model=SafraResponse, status_code=status.HTTP_201_CREATED)

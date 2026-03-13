@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
 
 def _to_iso_date(value: date) -> str:
     return value.isoformat()

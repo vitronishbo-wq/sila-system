@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
-from app.modules.society.emprego.application.ports import CandidatoRepositoryPort
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
-from app.modules.society.emprego.domain.models.candidato import Candidato
-from app.modules.society.emprego.infrastructure.models.candidato_model import CandidatoModel
+from apps.backend.app.modules.society.emprego.application.ports import CandidatoRepositoryPort
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
+from apps.backend.app.modules.society.emprego.infrastructure.models.candidato_model import CandidatoModel
 
 class SQLAlchemyCandidatoRepository(CandidatoRepositoryPort):
 

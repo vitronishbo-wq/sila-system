@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
 
 class PesquisadorRepositoryPort(ABC):
 

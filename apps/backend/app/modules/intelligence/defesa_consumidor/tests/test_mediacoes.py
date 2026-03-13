@@ -1,5 +1,5 @@
 import pytest
-from app.modules.intelligence.defesa_consumidor.application.services.mediacao_service import MediacaoService
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.services.mediacao_service import MediacaoService
 
 @pytest.mark.asyncio
 async def test_iniciar_mediacao():

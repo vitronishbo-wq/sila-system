@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.economy.trade.services.api.deps import get_estabelecimento_comercial_service
-from app.modules.economy.trade.services.api.schemas.estabelecimento_comercial_schema import DataInput, EncerramentoInput, EstabelecimentoComercialCreate, EstabelecimentoComercialResponse, MotivoInput, PorteInput, RamoInput
-from app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
-from app.modules.economy.trade.services.domain.enums import RamoComercial, StatusComercial
-from app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError, InvalidEstabelecimentoComercialStateError
+from apps.backend.app.modules.economy.trade.services.api.deps import get_estabelecimento_comercial_service
+from apps.backend.app.modules.economy.trade.services.api.schemas.estabelecimento_comercial_schema import DataInput, EncerramentoInput, EstabelecimentoComercialCreate, EstabelecimentoComercialResponse, MotivoInput, PorteInput, RamoInput
+from apps.backend.app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
+from apps.backend.app.modules.economy.trade.services.domain.enums import RamoComercial, StatusComercial
+from apps.backend.app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError, InvalidEstabelecimentoComercialStateError
 router = APIRouter(prefix='/estabelecimentos_comerciais', tags=['Comercio Servicos - Estabelecimentos Comerciais'])
 
 @router.post('/', response_model=EstabelecimentoComercialResponse, status_code=status.HTTP_201_CREATED)

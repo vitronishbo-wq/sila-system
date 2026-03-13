@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_cadastro_unico_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.cadastro_unico_schema import CadastroUnicoCreate, CadastroUnicoCreateResponse, CadastroUnicoResponse
-from app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_cadastro_unico_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.cadastro_unico_schema import CadastroUnicoCreate, CadastroUnicoCreateResponse, CadastroUnicoResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.cadastro_unico_service import CadastroUnicoService
 router = APIRouter(prefix='/cadastros-unicos', tags=['Assistencia Social - Cadastro Unico'])
 
 @router.post('/', response_model=CadastroUnicoCreateResponse, status_code=status.HTTP_201_CREATED)

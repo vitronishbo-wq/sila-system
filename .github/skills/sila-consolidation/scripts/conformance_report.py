@@ -245,7 +245,7 @@ class ModuleConformanceAuditor:
                 content = f.read()
 
             for pattern in problematic_patterns:
-                if f"from app.modules.{self.module_name}.{pattern}" in content:
+                if f"from apps.backend.app.modules.{self.module_name}.{pattern}" in content:
                     violations.append({
                         "file": str(py_file.relative_to(self.core_path)),
                         "pattern": pattern,

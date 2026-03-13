@@ -27,7 +27,7 @@ if str(BACKEND_ROOT) not in sys.path:
 
 from app.api.deps import get_identity_context
 from app.core.identity import IdentityContext
-from app.modules.intelligence.operations.api.router import router as operations_router
+from apps.backend.app.modules.intelligence.operations.api.router import router as operations_router
 
 
 @dataclass

@@ -1,12 +1,12 @@
-from app.modules.governance.workflow.api.deps import can_view_instance, get_workflow_engine
-from app.modules.governance.workflow.api.schemas.workflow_schema import WorkflowStartRequest, WorkflowTransitionRequest, WorkflowInstanceResponse, WorkflowHistoryResponse
-from app.modules.governance.workflow.api.schemas.task_schema import TaskResponse, TaskAssignRequest, TaskCompleteRequest, TaskListResponse
+from apps.backend.app.modules.governance.workflow.api.deps import can_view_instance, get_workflow_engine
+from apps.backend.app.modules.governance.workflow.api.schemas.workflow_schema import WorkflowStartRequest, WorkflowTransitionRequest, WorkflowInstanceResponse, WorkflowHistoryResponse
+from apps.backend.app.modules.governance.workflow.api.schemas.task_schema import TaskResponse, TaskAssignRequest, TaskCompleteRequest, TaskListResponse
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from typing import List, Optional
 from uuid import UUID
 from app.api.deps import get_identity_context
 from app.core.identity import IdentityContext
-from app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
+from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
 router = APIRouter(prefix='/workflow', tags=['Workflow'])
 
 @router.post('/start', response_model=WorkflowInstanceResponse)

@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.logistics.api.deps import get_viagem_service
-from app.modules.logistics.api.schemas.viagem_schema import ViagemCancelarInput, ViagemConcluirInput, ViagemCreate, ViagemResponse
-from app.modules.logistics.application.services import ViagemService
-from app.modules.logistics.domain.enums import StatusViagem
-from app.modules.logistics.core.exceptions import InvalidViagemStateError, ViagemConflictError, ViagemNotFoundError
+from apps.backend.app.modules.logistics.api.deps import get_viagem_service
+from apps.backend.app.modules.logistics.api.schemas.viagem_schema import ViagemCancelarInput, ViagemConcluirInput, ViagemCreate, ViagemResponse
+from apps.backend.app.modules.logistics.application.services import ViagemService
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.core.exceptions import InvalidViagemStateError, ViagemConflictError, ViagemNotFoundError
 router = APIRouter(prefix='/viagens', tags=['Transportes Logistica - Viagens'])
 
 @router.post('/', response_model=ViagemResponse, status_code=status.HTTP_201_CREATED)

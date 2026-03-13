@@ -3,8 +3,8 @@ from uuid import uuid4
 from pathlib import Path
 from sqlalchemy import select
 from app.core.db import get_async_db
-from modules.identity.models.user import User
-from modules.documents.models.documents import Document, DocumentStatus
+from apps.backend.app.modules.identity.models.user import User
+from apps.backend.app.modules.documents.models.documents import Document, DocumentStatus
 from datetime import datetime
 
 async def verify():

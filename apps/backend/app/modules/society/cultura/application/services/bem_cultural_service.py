@@ -1,11 +1,11 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.society.cultura.application.events import BemTombadoEvent, event_bus
-from app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
-from app.modules.society.cultura.domain.models.bem_cultural import BemCultural
+from apps.backend.app.modules.society.cultura.application.events import BemTombadoEvent, event_bus
+from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
 
 class BemCulturalService:
 

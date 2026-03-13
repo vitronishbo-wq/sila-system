@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.civil_protection.api.deps import get_atendimento_service
-from app.modules.civil_protection.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoFinalizacao, AtendimentoResponse, AtendimentoStatusUpdate
-from app.modules.civil_protection.application.services.atendimento_service import AtendimentoService
-from app.modules.civil_protection.domain.enums import StatusAtendimento
+from apps.backend.app.modules.civil_protection.api.deps import get_atendimento_service
+from apps.backend.app.modules.civil_protection.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoFinalizacao, AtendimentoResponse, AtendimentoStatusUpdate
+from apps.backend.app.modules.civil_protection.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.civil_protection.domain.enums import StatusAtendimento
 router = APIRouter(prefix='/atendimentos', tags=['Protecao Civil - Atendimentos'])
 
 @router.post('/', response_model=AtendimentoResponse, status_code=status.HTTP_201_CREATED)

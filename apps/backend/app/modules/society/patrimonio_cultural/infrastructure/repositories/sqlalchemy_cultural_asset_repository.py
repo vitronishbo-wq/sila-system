@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort
-from app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
-from app.modules.society.patrimonio_cultural.domain.models import CulturalAsset
-from app.modules.society.patrimonio_cultural.infrastructure.models import CulturalAssetModel
+from apps.backend.app.modules.society.patrimonio_cultural.application.ports import CulturalAssetRepositoryPort
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.models import CulturalAsset
+from apps.backend.app.modules.society.patrimonio_cultural.infrastructure.models import CulturalAssetModel
 
 class SQLAlchemyCulturalAssetRepository(CulturalAssetRepositoryPort):
 

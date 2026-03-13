@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
-from app.modules.intelligence.defesa_consumidor.domain.enums import CategoriaReclamacao, Prioridade, StatusReclamacao
+from apps.backend.app.modules.intelligence.defesa_consumidor.domain.enums import CategoriaReclamacao, Prioridade, StatusReclamacao
 
 @dataclass
 class Reclamacao:

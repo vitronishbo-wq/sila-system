@@ -4,7 +4,7 @@ Testes Unitários para a Entidade de Domínio Citizen
 import pytest
 from datetime import date, datetime
 from uuid import uuid4
-from app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.citizen import Citizen
 
 @pytest.mark.unit
 class TestCitizenEntity:

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.resources.pescas.api.deps import get_captura_service
-from app.modules.resources.pescas.api.schemas.captura_schema import CapturaCreate, CapturaResponse
-from app.modules.resources.pescas.application.services.captura_service import CapturaService
+from apps.backend.app.modules.resources.pescas.api.deps import get_captura_service
+from apps.backend.app.modules.resources.pescas.api.schemas.captura_schema import CapturaCreate, CapturaResponse
+from apps.backend.app.modules.resources.pescas.application.services.captura_service import CapturaService
 router = APIRouter(prefix='/capturas', tags=['Pescas - Capturas'])
 
 @router.post('/', response_model=CapturaResponse, status_code=status.HTTP_201_CREATED)

@@ -1,5 +1,5 @@
-from app.modules.society.emprego.application.ports import CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
-from app.modules.society.emprego.application.services.workflow_service import WorkflowService
+from apps.backend.app.modules.society.emprego.application.ports import CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
+from apps.backend.app.modules.society.emprego.application.services.workflow_service import WorkflowService
 
 class OfertaService(WorkflowService):
 

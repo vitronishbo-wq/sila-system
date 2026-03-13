@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_estudo_service
-from app.modules.resources.ambiente.api.schemas.estudo_schema import EstudoAprovacaoInput, EstudoComplementacaoInput, EstudoCreate, EstudoResponse
-from app.modules.resources.ambiente.application.services.estudo_service import EstudoService
-from app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
-from app.modules.resources.ambiente.exceptions import EstudoNotFoundError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_estudo_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.estudo_schema import EstudoAprovacaoInput, EstudoComplementacaoInput, EstudoCreate, EstudoResponse
+from apps.backend.app.modules.resources.ambiente.application.services.estudo_service import EstudoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
+from apps.backend.app.modules.resources.ambiente.exceptions import EstudoNotFoundError, LicencaNotFoundError
 router = APIRouter(prefix='/estudos', tags=['Ambiente - Estudos'])
 
 @router.post('/', response_model=EstudoResponse, status_code=status.HTTP_201_CREATED)

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_assinante_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.assinante_schema import AssinanteCreate, AssinanteResponse, AssinanteStatusUpdate
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_assinante_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.assinante_schema import AssinanteCreate, AssinanteResponse, AssinanteStatusUpdate
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
 router = APIRouter(prefix='/assinantes', tags=['Telecomunicacoes - Assinantes'])
 
 @router.post('/', response_model=AssinanteResponse, status_code=status.HTTP_201_CREATED)

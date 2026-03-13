@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_relatorio_service
-from app.modules.governance.statistics.api.schemas.relatorio_schema import RelatorioCreate, RelatorioListResponse, RelatorioResponse, RelatorioUpdate
-from app.modules.governance.statistics.application.services.relatorio_service import RelatorioService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_relatorio_service
+from apps.backend.app.modules.governance.statistics.api.schemas.relatorio_schema import RelatorioCreate, RelatorioListResponse, RelatorioResponse, RelatorioUpdate
+from apps.backend.app.modules.governance.statistics.application.services.relatorio_service import RelatorioService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/relatorios', tags=['Estatistica - Relatorios'])
 
 @router.post('/', response_model=RelatorioResponse, status_code=status.HTTP_201_CREATED)

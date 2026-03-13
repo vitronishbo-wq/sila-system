@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
 
 @dataclass
 class InspecaoSanitariaIndustrial:

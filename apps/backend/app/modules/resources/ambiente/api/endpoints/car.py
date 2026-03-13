@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_cadastro_service
-from app.modules.resources.ambiente.api.schemas.car_schema import CARAprovacaoInput, CARAreasInput, CARCreate, CARPendenciaInput, CARResponse, ImovelCreate, ImovelResponse, ProprietarioCreate, ProprietarioResponse
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.domain.enums import StatusCAR
-from app.modules.resources.ambiente.exceptions import CARAlreadyExistsError, CARNotFoundError, ImovelNotFoundError, ProprietarioAlreadyExistsError, ProprietarioNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_cadastro_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.car_schema import CARAprovacaoInput, CARAreasInput, CARCreate, CARPendenciaInput, CARResponse, ImovelCreate, ImovelResponse, ProprietarioCreate, ProprietarioResponse
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR
+from apps.backend.app.modules.resources.ambiente.exceptions import CARAlreadyExistsError, CARNotFoundError, ImovelNotFoundError, ProprietarioAlreadyExistsError, ProprietarioNotFoundError
 router = APIRouter(prefix='/car', tags=['Ambiente - CAR'])
 
 @router.post('/proprietarios', response_model=ProprietarioResponse, status_code=status.HTTP_201_CREATED)

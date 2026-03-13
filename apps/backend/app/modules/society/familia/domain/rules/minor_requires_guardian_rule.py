@@ -1,5 +1,5 @@
 from uuid import UUID
-from app.modules.society.familia.domain.exceptions.family_exceptions import MinorRequiresGuardianError
+from apps.backend.app.modules.society.familia.domain.exceptions.family_exceptions import MinorRequiresGuardianError
 
 class MinorRequiresGuardianRule:
 

@@ -1,3 +1,3 @@
 from __future__ import annotations
-from app.modules.justice.justica.application.bus import InMemoryEventBus
+from apps.backend.app.modules.justice.justica.application.bus import InMemoryEventBus
 bus = InMemoryEventBus()

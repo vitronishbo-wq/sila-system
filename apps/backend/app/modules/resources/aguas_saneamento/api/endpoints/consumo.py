@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.aguas_saneamento.api.deps import get_consumo_service
-from app.modules.resources.aguas_saneamento.api.schemas.consumo_schema import ConsumoCreate, ConsumoMotivoInput, ConsumoResponse
-from app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
-from app.modules.resources.aguas_saneamento.exceptions import ConsumoAlreadyExistsError, ConsumoNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_consumo_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.consumo_schema import ConsumoCreate, ConsumoMotivoInput, ConsumoResponse
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusConsumo
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import ConsumoAlreadyExistsError, ConsumoNotFoundError
 router = APIRouter(prefix='/consumo', tags=['Aguas Saneamento - Consumo'])
 
 @router.post('/', response_model=ConsumoResponse, status_code=status.HTTP_201_CREATED)

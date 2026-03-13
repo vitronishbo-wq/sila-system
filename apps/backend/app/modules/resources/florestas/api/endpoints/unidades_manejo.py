@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
-from app.modules.resources.florestas.api.deps import get_manejo_service
-from app.modules.resources.florestas.api.schemas.unidade_manejo_schema import UnidadeManejoCreate, UnidadeManejoResponse
-from app.modules.resources.florestas.application.services.manejo_service import ManejoService
+from apps.backend.app.modules.resources.florestas.api.deps import get_manejo_service
+from apps.backend.app.modules.resources.florestas.api.schemas.unidade_manejo_schema import UnidadeManejoCreate, UnidadeManejoResponse
+from apps.backend.app.modules.resources.florestas.application.services.manejo_service import ManejoService
 router = APIRouter(prefix='/unidades-manejo', tags=['Florestas - Unidades Manejo'])
 
 @router.post('/', response_model=UnidadeManejoResponse, status_code=201)

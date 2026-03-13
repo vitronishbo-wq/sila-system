@@ -6,11 +6,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_mediacao_service
-from app.modules.society.emprego.api.endpoints.mediacoes import router as mediacoes_router
-from app.modules.society.emprego.application.services.mediacao_service import MediacaoService
-from app.modules.society.emprego.domain.enums import WorkflowStatus
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.api.deps import get_mediacao_service
+from apps.backend.app.modules.society.emprego.api.endpoints.mediacoes import router as mediacoes_router
+from apps.backend.app.modules.society.emprego.application.services.mediacao_service import MediacaoService
+from apps.backend.app.modules.society.emprego.domain.enums import WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 @pytest.mark.asyncio
 async def test_concluir_mediacao_sucesso():

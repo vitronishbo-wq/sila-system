@@ -8,7 +8,7 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.db import AsyncSessionLocal
-from app.modules.infrastructure.infrastructure.eventsourcing.event_store_model import EventStoreModel
+from apps.backend.app.modules.infrastructure.infrastructure.eventsourcing.event_store_model import EventStoreModel
 
 class EventStoreConcurrencyError(RuntimeError):
     pass

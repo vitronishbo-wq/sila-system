@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.resources.pescas.api.deps import get_embarcacao_service
-from app.modules.resources.pescas.api.schemas.embarcacao_schema import EmbarcacaoCreate, EmbarcacaoResponse
-from app.modules.resources.pescas.application.services.embarcacao_service import EmbarcacaoService
+from apps.backend.app.modules.resources.pescas.api.deps import get_embarcacao_service
+from apps.backend.app.modules.resources.pescas.api.schemas.embarcacao_schema import EmbarcacaoCreate, EmbarcacaoResponse
+from apps.backend.app.modules.resources.pescas.application.services.embarcacao_service import EmbarcacaoService
 router = APIRouter(prefix='/embarcacoes', tags=['Pescas - Embarcacoes'])
 
 @router.post('/', response_model=EmbarcacaoResponse, status_code=status.HTTP_201_CREATED)

@@ -23,17 +23,17 @@ try:
     from core.db.base_class import Base
 
     # Identity & Access
-    from modules.identity.models.user import User
-    from modules.identity.models.identity import Identity
+    from apps.backend.app.modules.identity.models.user import User
+    from apps.backend.app.modules.identity.models.identity import Identity
 
     # Location
-    from modules.location.models.region import Region
+    from apps.backend.app.modules.location.models.region import Region
 
     # Payments
-    from modules.payment.models import Payment, PaymentTransaction, Refund
+    from apps.backend.app.modules.payment.models import Payment, PaymentTransaction, Refund
 
     # Document Management (se existir)
-    # from modules.document.models import Document
+    # from apps.backend.app.modules.document.models import Document
 
 except ImportError as e:
     # Log silencioso se os módulos ainda não estiverem todos implementados

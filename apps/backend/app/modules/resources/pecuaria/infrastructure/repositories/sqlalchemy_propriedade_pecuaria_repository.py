@@ -3,9 +3,9 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pecuaria.application.ports import PropriedadePecuariaRepositoryPort
-from app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
-from app.modules.resources.pecuaria.infrastructure.models.propriedade_pecuaria_model import PropriedadePecuariaModel
+from apps.backend.app.modules.resources.pecuaria.application.ports import PropriedadePecuariaRepositoryPort
+from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
+from apps.backend.app.modules.resources.pecuaria.infrastructure.models.propriedade_pecuaria_model import PropriedadePecuariaModel
 
 class SQLAlchemyPropriedadePecuariaRepository(PropriedadePecuariaRepositoryPort):
 

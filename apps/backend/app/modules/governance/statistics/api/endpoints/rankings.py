@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_ranking_service
-from app.modules.governance.statistics.api.schemas.ranking_schema import RankingCreate, RankingListResponse, RankingResponse, RankingUpdate
-from app.modules.governance.statistics.application.services.ranking_service import RankingService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_ranking_service
+from apps.backend.app.modules.governance.statistics.api.schemas.ranking_schema import RankingCreate, RankingListResponse, RankingResponse, RankingUpdate
+from apps.backend.app.modules.governance.statistics.application.services.ranking_service import RankingService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/rankings', tags=['Estatistica - Rankings'])
 
 @router.post('/', response_model=RankingResponse, status_code=status.HTTP_201_CREATED)

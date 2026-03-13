@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.society.cultura.application.events import EditalPublicadoEvent, ProjetoAprovadoEvent
+from apps.backend.app.modules.society.cultura.application.events import EditalPublicadoEvent, ProjetoAprovadoEvent
 
 def build_minc_edital_handler(minc_adapter):
 

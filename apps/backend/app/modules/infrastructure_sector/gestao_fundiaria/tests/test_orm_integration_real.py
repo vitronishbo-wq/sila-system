@@ -10,13 +10,13 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, TipoDesapropriacao, TipoImovel, TipoOneracao, TipoRegistro
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyDesapropriacaoRepository, SQLAlchemyGeorreferenciamentoRepository, SQLAlchemyImovelRepository, SQLAlchemyMatriculaImovelRepository, SQLAlchemyOneracaoRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, TipoDesapropriacao, TipoImovel, TipoOneracao, TipoRegistro
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.desapropriacao import Desapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.oneracao import Oneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyDesapropriacaoRepository, SQLAlchemyGeorreferenciamentoRepository, SQLAlchemyImovelRepository, SQLAlchemyMatriculaImovelRepository, SQLAlchemyOneracaoRepository
 
 def _get_database_url() -> str:
     url = os.environ.get('DATABASE_URL', 'postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db')

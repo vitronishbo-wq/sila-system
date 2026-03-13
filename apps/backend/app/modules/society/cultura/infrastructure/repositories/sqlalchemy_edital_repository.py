@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
-from app.modules.society.cultura.domain.models.edital import Edital
-from app.modules.society.cultura.infrastructure.models.edital_model import EditalModel
+from apps.backend.app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
+from apps.backend.app.modules.society.cultura.infrastructure.models.edital_model import EditalModel
 
 class SQLAlchemyEditalRepository(EditalRepositoryPort):
 

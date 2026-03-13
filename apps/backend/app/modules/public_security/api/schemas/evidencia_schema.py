@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.public_security.domain.enums import StatusEvidencia, TipoEvidencia
+from apps.backend.app.modules.public_security.domain.enums import StatusEvidencia, TipoEvidencia
 
 class EvidenciaCreate(BaseModel):
     vestigio_id: UUID

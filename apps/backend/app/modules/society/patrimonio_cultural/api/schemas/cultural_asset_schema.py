@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetType, ClassificationLevel
 
 class CulturalAssetCreateSchema(BaseModel):
     name: str = Field(..., min_length=3, max_length=200)

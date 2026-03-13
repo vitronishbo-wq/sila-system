@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_zoneamento_service
-from app.modules.resources.agricultura.api.endpoints.zoneamento import router as zoneamento_router
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
-from app.modules.resources.agricultura.domain.enums import AptidaoSolo, StatusCadastroAmbiental, StatusZoneamento, TipoPropriedade, TipoZonaAgricola
-from app.modules.resources.agricultura.exceptions import ZoneamentoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_zoneamento_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.zoneamento import router as zoneamento_router
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.zoneamento_service import ZoneamentoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import AptidaoSolo, StatusCadastroAmbiental, StatusZoneamento, TipoPropriedade, TipoZonaAgricola
+from apps.backend.app.modules.resources.agricultura.exceptions import ZoneamentoNotFoundError
 
 @pytest.mark.asyncio
 async def test_zoneamento_service_fluxo_completo_cadastro_ambiental():

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import TipoAeroporto
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import TipoAeroporto
 
 @dataclass
 class Aeroporto:

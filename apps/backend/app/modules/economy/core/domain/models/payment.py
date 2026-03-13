@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
-from app.modules.economy.domain.models.enums import PaymentStatus
-from app.modules.economy.domain.exceptions import DomainValidationError
+from apps.backend.app.modules.economy.domain.models.enums import PaymentStatus
+from apps.backend.app.modules.economy.domain.exceptions import DomainValidationError
 
 @dataclass
 class Payment:

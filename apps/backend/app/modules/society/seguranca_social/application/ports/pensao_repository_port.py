@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.society.seguranca_social.domain.enums import StatusPensao, TipoPensao
-from app.modules.society.seguranca_social.domain.models.pensao import Pensao
+from apps.backend.app.modules.society.seguranca_social.domain.enums import StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.models.pensao import Pensao
 
 class PensaoRepositoryPort(ABC):
 

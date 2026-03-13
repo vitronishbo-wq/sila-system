@@ -1,7 +1,7 @@
 from ..ports.platform_shared_ports import trace
-from app.modules.justice.bounded_contexts.infrastructure.repositories.civil_event_repository import CivilEventRepository
-from app.modules.justice.bounded_contexts.integrations.fuc_client import FUCClient
-from app.modules.justice.bounded_contexts.infrastructure.models.civil_event import CivilEventRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.repositories.civil_event_repository import CivilEventRepository
+from apps.backend.app.modules.justice.bounded_contexts.integrations.fuc_client import FUCClient
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.civil_event import CivilEventRecord
 
 class LateBirthService:
 

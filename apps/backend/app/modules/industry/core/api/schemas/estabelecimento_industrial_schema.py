@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
 
 class EstabelecimentoIndustrialCreate(BaseModel):
     cnpj: str

@@ -3,8 +3,8 @@ import asyncio
 import os
 import socket
 from datetime import datetime, timezone
-from app.modules.society.desporto.application.events import EventBus, event_bus as default_event_bus
-from app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.desporto.application.events import EventBus, event_bus as default_event_bus
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
 
 class OutboxWorker:
 

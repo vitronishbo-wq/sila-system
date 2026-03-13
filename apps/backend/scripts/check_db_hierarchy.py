@@ -1,7 +1,7 @@
 import asyncio
 from sqlalchemy import select
 from config.database import AsyncSessionLocal
-from modules.location.models.region import Region
+from apps.backend.app.modules.location.models.region import Region
 from sqlalchemy.orm import selectinload
 
 

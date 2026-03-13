@@ -5,7 +5,7 @@ from sqlalchemy import Column, String, DateTime, JSON, select, func, desc
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import Base
-from app.modules.justice.bounded_contexts.application.ports.identity_request_repository_port import IdentityRequestRepositoryPort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.identity_request_repository_port import IdentityRequestRepositoryPort
 from typing import Any
 
 def _sanitize_for_json(obj):

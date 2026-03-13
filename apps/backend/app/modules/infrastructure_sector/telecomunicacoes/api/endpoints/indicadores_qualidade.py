@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_indicador_qualidade_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.indicador_qualidade_schema import IndicadorQualidadeGerar, IndicadorQualidadeResponse
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_indicador_qualidade_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.indicador_qualidade_schema import IndicadorQualidadeGerar, IndicadorQualidadeResponse
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
 router = APIRouter(prefix='/indicadores-qualidade', tags=['Telecomunicacoes - Indicadores Qualidade'])
 
 @router.post('/gerar', response_model=IndicadorQualidadeResponse, status_code=status.HTTP_201_CREATED)

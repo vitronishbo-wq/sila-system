@@ -2,11 +2,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.cultura.application.events import ProjetoAprovadoEvent, event_bus
-from app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
-from app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
+from apps.backend.app.modules.society.cultura.application.events import ProjetoAprovadoEvent, event_bus
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
 
 class ProjetoCulturalService:
 

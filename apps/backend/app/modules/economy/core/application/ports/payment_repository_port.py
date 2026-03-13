@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from app.modules.economy.domain.models.payment import Payment
+from apps.backend.app.modules.economy.domain.models.payment import Payment
 
 class PaymentRepositoryPort(ABC):
     """ Contrato de repositório para Payment. """

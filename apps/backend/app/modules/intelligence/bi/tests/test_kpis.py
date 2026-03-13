@@ -5,10 +5,10 @@ from unittest.mock import AsyncMock
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.intelligence.bi.api.deps import get_kpi_service
-from app.modules.intelligence.bi.api.router import router as bi_router
-from app.modules.intelligence.bi.application.services.kpi_service import KPIService
-from app.modules.intelligence.bi.integrations.data_sources import DataSources
+from apps.backend.app.modules.intelligence.bi.api.deps import get_kpi_service
+from apps.backend.app.modules.intelligence.bi.api.router import router as bi_router
+from apps.backend.app.modules.intelligence.bi.application.services.kpi_service import KPIService
+from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources
 
 @pytest.mark.asyncio
 @pytest.mark.integration

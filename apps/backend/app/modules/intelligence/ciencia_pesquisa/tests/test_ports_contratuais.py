@@ -1,11 +1,11 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NaturezaJuridicaInstituicao, NivelFormacao, TipoInstituicaoPesquisa, TipoVinculoPesquisador
-from app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
-from app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
-from app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository, InMemoryProjetoPesquisaRepository
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NaturezaJuridicaInstituicao, NivelFormacao, TipoInstituicaoPesquisa, TipoVinculoPesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository, InMemoryProjetoPesquisaRepository
 
 def test_contract_pesquisador_repository_crud_e_vinculacao() -> None:
 

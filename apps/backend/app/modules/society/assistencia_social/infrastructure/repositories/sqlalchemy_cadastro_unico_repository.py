@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import CadastroUnicoRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
-from app.modules.society.assistencia_social.domain.models import CadastroUnico
-from app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import CadastroUnicoModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import CadastroUnicoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
+from apps.backend.app.modules.society.assistencia_social.domain.models import CadastroUnico
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import CadastroUnicoModel
 
 class SQLAlchemyCadastroUnicoRepository(CadastroUnicoRepositoryPort):
 

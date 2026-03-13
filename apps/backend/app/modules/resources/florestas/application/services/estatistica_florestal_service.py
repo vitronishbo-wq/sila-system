@@ -1,16 +1,16 @@
 from __future__ import annotations
 import asyncio
 from typing import Any
-from app.modules.resources.florestas.application.ports.agricultura_service_port import AgriculturaServicePort
-from app.modules.resources.florestas.application.ports.ambiente_service_port import AmbienteServicePort
-from app.modules.resources.florestas.application.ports.comercio_externo_service_port import ComercioExternoServicePort
-from app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
-from app.modules.resources.florestas.application.ports.energia_service_port import EnergiaServicePort
-from app.modules.resources.florestas.application.ports.geosampa_service_port import GeosampaServicePort
-from app.modules.resources.florestas.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
-from app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
-from app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
-from app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
+from apps.backend.app.modules.resources.florestas.application.ports.agricultura_service_port import AgriculturaServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.comercio_externo_service_port import ComercioExternoServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.application.ports.energia_service_port import EnergiaServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.geosampa_service_port import GeosampaServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
+from apps.backend.app.modules.resources.florestas.application.ports.inventario_florestal_repository_port import InventarioFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.application.ports.plano_manejo_florestal_repository_port import PlanoManejoFlorestalRepositoryPort
+from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
 
 class EstatisticaFlorestalService:
 

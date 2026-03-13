@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.dashboard_repository_port import DashboardRepositoryPort
-from app.modules.governance.statistics.domain.enums import TipoDashboard
-from app.modules.governance.statistics.domain.models.dashboard import Dashboard
-from app.modules.governance.statistics.infrastructure.models.dashboard_model import DashboardModel
+from apps.backend.app.modules.governance.statistics.application.ports.dashboard_repository_port import DashboardRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.enums import TipoDashboard
+from apps.backend.app.modules.governance.statistics.domain.models.dashboard import Dashboard
+from apps.backend.app.modules.governance.statistics.infrastructure.models.dashboard_model import DashboardModel
 
 class SQLAlchemyDashboardRepository(DashboardRepositoryPort):
 

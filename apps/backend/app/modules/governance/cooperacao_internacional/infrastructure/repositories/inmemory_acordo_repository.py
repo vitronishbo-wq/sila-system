@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import AcordoRepositoryPort
-from app.modules.governance.cooperacao_internacional.domain.enums import StatusAcordo
-from app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import AcordoRepositoryPort
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import StatusAcordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
 
 class InMemoryAcordoRepository(AcordoRepositoryPort):
 

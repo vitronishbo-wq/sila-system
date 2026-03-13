@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
-from app.modules.saude.infrastructure.models import MedicalRecordModel
+from apps.backend.app.modules.saude.infrastructure.models import MedicalRecordModel
 
 
 class MedicalRecordRepository:

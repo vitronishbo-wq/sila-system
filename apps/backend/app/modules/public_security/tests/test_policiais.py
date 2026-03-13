@@ -2,10 +2,10 @@ from __future__ import annotations
 import asyncio
 from datetime import date, timedelta
 import pytest
-from app.modules.public_security.application.services.policial_service import PolicialService
-from app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
-from app.modules.public_security.domain.enums import StatusAgente, TipoAgente, TipoUnidadePolicial, TipoVinculo
-from app.modules.public_security.tests._fakes import InMemoryPolicialRepository, InMemoryUnidadePolicialRepository
+from apps.backend.app.modules.public_security.application.services.policial_service import PolicialService
+from apps.backend.app.modules.public_security.application.services.unidade_policial_service import UnidadePolicialService
+from apps.backend.app.modules.public_security.domain.enums import StatusAgente, TipoAgente, TipoUnidadePolicial, TipoVinculo
+from apps.backend.app.modules.public_security.tests._fakes import InMemoryPolicialRepository, InMemoryUnidadePolicialRepository
 
 def test_cadastrar_policial_sucesso() -> None:
 

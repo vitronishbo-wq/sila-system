@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_idoso_vulneravel_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.idoso_vulneravel_schema import IdosoVulneravelCreate, IdosoVulneravelResponse
-from app.modules.society.assistencia_social.application.services.idoso_vulneravel_service import IdosoVulneravelService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_idoso_vulneravel_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.idoso_vulneravel_schema import IdosoVulneravelCreate, IdosoVulneravelResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.idoso_vulneravel_service import IdosoVulneravelService
 router = APIRouter(prefix='/idosos-vulneraveis', tags=['Assistencia Social - Idosos Vulneraveis'])
 
 @router.post('/', response_model=IdosoVulneravelResponse, status_code=status.HTTP_201_CREATED)

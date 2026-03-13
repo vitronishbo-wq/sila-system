@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.logistics.application.ports import FrotaRepositoryPort
-from app.modules.logistics.domain.enums import StatusFrota
-from app.modules.logistics.domain.models import Frota
-from app.modules.logistics.infrastructure.models import FrotaModel
+from apps.backend.app.modules.logistics.application.ports import FrotaRepositoryPort
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota
+from apps.backend.app.modules.logistics.domain.models import Frota
+from apps.backend.app.modules.logistics.infrastructure.models import FrotaModel
 
 class SQLAlchemyFrotaRepository(FrotaRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

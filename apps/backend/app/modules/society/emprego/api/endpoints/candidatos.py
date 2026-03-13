@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
 from uuid import UUID
-from app.modules.society.emprego.api.deps import get_candidato_service
-from app.modules.society.emprego.api.schemas.candidato_schema import CandidatoCreate, CandidatoDeactivate, CandidatoFilter, CandidatoResponse
-from app.modules.society.emprego.application.services.candidato_service import CandidatoService
-from app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CandidatoNotFoundError, CitizenNotFoundError
+from apps.backend.app.modules.society.emprego.api.deps import get_candidato_service
+from apps.backend.app.modules.society.emprego.api.schemas.candidato_schema import CandidatoCreate, CandidatoDeactivate, CandidatoFilter, CandidatoResponse
+from apps.backend.app.modules.society.emprego.application.services.candidato_service import CandidatoService
+from apps.backend.app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CandidatoNotFoundError, CitizenNotFoundError
 router = APIRouter(prefix='/candidatos', tags=['Emprego - Candidatos'])
 
 @router.post('/', response_model=CandidatoResponse, status_code=status.HTTP_201_CREATED)

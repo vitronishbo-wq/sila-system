@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from app.modules.governance.statistics.tests._fakes import metrica_payload
+from apps.backend.app.modules.governance.statistics.tests._fakes import metrica_payload
 
 def test_registrar_e_listar_timeseries(client):
     m_resp = client.post('/api/v1/estatistica/metricas/', json=metrica_payload())

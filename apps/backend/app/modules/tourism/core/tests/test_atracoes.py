@@ -1,9 +1,9 @@
 from __future__ import annotations
 import asyncio
 from decimal import Decimal
-from app.modules.tourism.application.services.atracao_service import AtracaoService
-from app.modules.tourism.domain.enums import TipoAtracao
-from app.modules.tourism.infrastructure.repositories.sqlalchemy_atracao_turistica_repository import SQLAlchemyAtracaoTuristicaRepository
+from apps.backend.app.modules.tourism.application.services.atracao_service import AtracaoService
+from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
+from apps.backend.app.modules.tourism.infrastructure.repositories.sqlalchemy_atracao_turistica_repository import SQLAlchemyAtracaoTuristicaRepository
 
 def test_cadastrar_atracao_sucesso() -> None:
     repo = SQLAlchemyAtracaoTuristicaRepository()

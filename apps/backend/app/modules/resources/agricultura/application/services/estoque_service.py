@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.domain.enums import StatusEstoque
-from app.modules.resources.agricultura.domain.models.estoque import Estoque
-from app.modules.resources.agricultura.exceptions import EstoqueNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEstoque
+from apps.backend.app.modules.resources.agricultura.domain.models.estoque import Estoque
+from apps.backend.app.modules.resources.agricultura.exceptions import EstoqueNotFoundError
 
 class EstoqueService:
 

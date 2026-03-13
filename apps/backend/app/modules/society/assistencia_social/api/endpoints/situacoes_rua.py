@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_situacao_rua_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.situacao_rua_schema import SituacaoRuaCreate, SituacaoRuaResponse
-from app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_situacao_rua_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.situacao_rua_schema import SituacaoRuaCreate, SituacaoRuaResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.situacao_rua_service import SituacaoRuaService
 router = APIRouter(prefix='/situacoes-rua', tags=['Assistencia Social - Situacao Rua'])
 
 @router.post('/', response_model=SituacaoRuaResponse, status_code=status.HTTP_201_CREATED)

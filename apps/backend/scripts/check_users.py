@@ -6,7 +6,7 @@ sys.path.insert(0, "/app")
 
 from sqlalchemy import select
 from app.core.db import async_session_factory
-from modules.identity.models.user import User
+from apps.backend.app.modules.identity.models.user import User
 
 async def check_users():
     async with async_session_factory() as session:

@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import DrawbackSubstituicaoRepositoryPort
-from app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
-from app.modules.economy.trade.external.domain.models import DrawbackSubstituicao
-from app.modules.economy.trade.external.exceptions import DrawbackSubstituicaoAlreadyExistsError, DrawbackSubstituicaoNotFoundError, InvalidDrawbackSubstituicaoStateError
+from apps.backend.app.modules.economy.trade.external.application.ports import DrawbackSubstituicaoRepositoryPort
+from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
+from apps.backend.app.modules.economy.trade.external.domain.models import DrawbackSubstituicao
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackSubstituicaoAlreadyExistsError, DrawbackSubstituicaoNotFoundError, InvalidDrawbackSubstituicaoStateError
 
 class DrawbackSubstituicaoService(HabilitacaoServiceBase[DrawbackSubstituicao]):
 

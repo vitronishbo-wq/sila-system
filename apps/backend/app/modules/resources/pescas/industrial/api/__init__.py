@@ -1,2 +1,2 @@
-from app.modules.resources.pescas.industrial.api.router import router
+from apps.backend.app.modules.resources.pescas.industrial.api.router import router
 __all__ = ['router']

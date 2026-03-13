@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_patrimonio_imaterial_service
-from app.modules.society.cultura.api.schemas.patrimonio_imaterial_schema import PatrimonioImaterialCreate, PatrimonioImaterialResponse, PatrimonioImaterialUpdate
-from app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
+from apps.backend.app.modules.society.cultura.api.deps import get_patrimonio_imaterial_service
+from apps.backend.app.modules.society.cultura.api.schemas.patrimonio_imaterial_schema import PatrimonioImaterialCreate, PatrimonioImaterialResponse, PatrimonioImaterialUpdate
+from apps.backend.app.modules.society.cultura.application.services.patrimonio_imaterial_service import PatrimonioImaterialService
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
 router = APIRouter(prefix='/patrimonios-imateriais', tags=['Cultura - Patrimonios Imateriais'])
 
 @router.post('/', response_model=PatrimonioImaterialResponse, status_code=status.HTTP_201_CREATED)

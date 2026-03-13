@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 class WorkflowRepositoryPort(ABC):
 

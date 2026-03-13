@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.resources.pecuaria.application.ports import PecuaristaRepositoryPort
-from app.modules.resources.pecuaria.domain.enums import StatusPecuarista
-from app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
-from app.modules.resources.pecuaria.infrastructure.models.pecuarista_model import PecuaristaModel
+from apps.backend.app.modules.resources.pecuaria.application.ports import PecuaristaRepositoryPort
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusPecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
+from apps.backend.app.modules.resources.pecuaria.infrastructure.models.pecuarista_model import PecuaristaModel
 
 class SQLAlchemyPecuaristaRepository(PecuaristaRepositoryPort):
 

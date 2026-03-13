@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.mentor_repository_port import MentorRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusMentoria, TipoMentoria
-from app.modules.society.juventude.domain.models.mentor import Mentor
-from app.modules.society.juventude.infrastructure.models.mentor_model import MentorModel
+from apps.backend.app.modules.society.juventude.application.ports.mentor_repository_port import MentorRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusMentoria, TipoMentoria
+from apps.backend.app.modules.society.juventude.domain.models.mentor import Mentor
+from apps.backend.app.modules.society.juventude.infrastructure.models.mentor_model import MentorModel
 
 class SQLAlchemyMentorRepository(MentorRepositoryPort):
 

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.economy.trade.external.domain.enums import RegimeImportacao, StatusHabilitacao, TipoOperador, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeImportacao, StatusHabilitacao, TipoOperador, TipoPessoa
 
 @dataclass
 class Importador:

@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from app.core.settings import settings
 from app.core.security import get_password_hash
 from app.core.constants import UserRole, AdminLevel
-from modules.identity.models.user import User
+from apps.backend.app.modules.identity.models.user import User
 from datetime import datetime
 
 ADMIN_USERS = [

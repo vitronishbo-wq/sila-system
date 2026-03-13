@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.energy.application.events.definitions import DemandaCriticaEvent, InterrupcaoEvent
+from apps.backend.app.modules.energy.application.events.definitions import DemandaCriticaEvent, InterrupcaoEvent
 
 class NotificacaoHandler:
 

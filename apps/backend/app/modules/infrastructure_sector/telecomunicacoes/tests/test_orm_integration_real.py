@@ -8,26 +8,26 @@ from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.espectro_service import EspectroService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoEspectro, TipoInfraestrutura, TipoOperadora, TipoOutorga, TipoPlano, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.espectro_service import EspectroService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoEspectro, TipoInfraestrutura, TipoOperadora, TipoOutorga, TipoPlano, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService
 
 def _tables():
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import AssinanteModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import EspectroModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import IndicadorQualidadeModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.infraestrutura_telco_model import InfraestruturaTelcoModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import OperadoraModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.outorga_espectro_model import OutorgaEspectroModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.qualidade_servico_model import QualidadeServicoModel
-    from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import SLAModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import AssinanteModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import EspectroModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import IndicadorQualidadeModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.infraestrutura_telco_model import InfraestruturaTelcoModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import OperadoraModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.outorga_espectro_model import OutorgaEspectroModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.qualidade_servico_model import QualidadeServicoModel
+    from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import SLAModel
     if not hasattr(OperadoraModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [OperadoraModel.__table__, AssinanteModel.__table__, InfraestruturaTelcoModel.__table__, OutorgaEspectroModel.__table__, EspectroModel.__table__, SLAModel.__table__, QualidadeServicoModel.__table__, IndicadorQualidadeModel.__table__]
@@ -80,14 +80,14 @@ def test_fluxo_real_orm_telecom_completo_com_qualidade_sla_indicadores() -> None
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_assinante_repository import SQLAlchemyAssinanteRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_espectro_repository import SQLAlchemyEspectroRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_indicador_qualidade_repository import SQLAlchemyIndicadorQualidadeRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_infraestrutura_repository import SQLAlchemyInfraestruturaRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_operadora_repository import SQLAlchemyOperadoraRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_outorga_espectro_repository import SQLAlchemyOutorgaEspectroRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_qualidade_servico_repository import SQLAlchemyQualidadeServicoRepository
-            from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_sla_repository import SQLAlchemySLARepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_assinante_repository import SQLAlchemyAssinanteRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_espectro_repository import SQLAlchemyEspectroRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_indicador_qualidade_repository import SQLAlchemyIndicadorQualidadeRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_infraestrutura_repository import SQLAlchemyInfraestruturaRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_operadora_repository import SQLAlchemyOperadoraRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_outorga_espectro_repository import SQLAlchemyOutorgaEspectroRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_qualidade_servico_repository import SQLAlchemyQualidadeServicoRepository
+            from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_sla_repository import SQLAlchemySLARepository
             operadora_repo = SQLAlchemyOperadoraRepository(session)
             assinante_repo = SQLAlchemyAssinanteRepository(session)
             infraestrutura_repo = SQLAlchemyInfraestruturaRepository(session)

@@ -9,8 +9,8 @@ Este serviço é responsável por:
 import logging
 from typing import Dict, Any, Optional
 from datetime import datetime
-from app.modules.justice.bounded_contexts.enums import CitizenStatus
-from app.modules.justice.bounded_contexts.exceptions import CitizenNotFoundError
+from apps.backend.app.modules.justice.bounded_contexts.enums import CitizenStatus
+from apps.backend.app.modules.justice.bounded_contexts.exceptions import CitizenNotFoundError
 from app.core.events import EventPublisher, CitizenValidated, CitizenValidationFailed
 from app.core.utils.dates import safe_isoformat
 from app.core.utils.parsing import safe_get

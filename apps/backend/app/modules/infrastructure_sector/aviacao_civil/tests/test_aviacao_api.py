@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.aviacao_civil.api.deps import reset_state_for_tests
-from app.modules.infrastructure_sector.aviacao_civil.api.router import router
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.deps import reset_state_for_tests
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.router import router
 app = FastAPI()
 app.include_router(router, prefix='/v1')
 client = TestClient(app)

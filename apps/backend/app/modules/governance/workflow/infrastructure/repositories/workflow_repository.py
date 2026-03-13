@@ -3,18 +3,18 @@ from uuid import UUID
 from datetime import datetime
 from sqlalchemy import select, func, desc
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.workflow.application.ports.workflow_repository_port import WorkflowRepositoryPort
-from app.modules.governance.workflow.domain.enums import AssignmentType, TransitionType, WorkflowStatus
-from app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
-from app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
-from app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
-from app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
-from app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
-from app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
-from app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
-from app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
-from app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
-from app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
+from apps.backend.app.modules.governance.workflow.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.governance.workflow.domain.enums import AssignmentType, TransitionType, WorkflowStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_history import WorkflowHistory
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_state import WorkflowState
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_transition import WorkflowTransition
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
 
 class WorkflowRepository(WorkflowRepositoryPort):
     """Implementação async do repositório de workflows."""

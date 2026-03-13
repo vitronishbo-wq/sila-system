@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
-from app.modules.infrastructure.core.exceptions import ProjetoAlreadyExistsError, ProjetoNotFoundError
+from apps.backend.app.modules.infrastructure.application.ports.projeto_repository_port import ProjetoRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+from apps.backend.app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
+from apps.backend.app.modules.infrastructure.core.exceptions import ProjetoAlreadyExistsError, ProjetoNotFoundError
 
 class ProjetoService:
 

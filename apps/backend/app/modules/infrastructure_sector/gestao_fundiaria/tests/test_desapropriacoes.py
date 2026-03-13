@@ -6,13 +6,13 @@ from unittest.mock import AsyncMock
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_desapropriacao_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.desapropriacoes import router as desapropriacoes_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.desapropriacao_service import DesapropriacaoService
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusDesapropriacao, TipoDesapropriacao, TipoImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyDesapropriacaoRepository, SQLAlchemyImovelRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_desapropriacao_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.desapropriacoes import router as desapropriacoes_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.desapropriacao_service import DesapropriacaoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusDesapropriacao, TipoDesapropriacao, TipoImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyDesapropriacaoRepository, SQLAlchemyImovelRepository
 
 class _AmbienteValido:
 

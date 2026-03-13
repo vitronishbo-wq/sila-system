@@ -1,9 +1,9 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.economy.trade.external.application.ports import DrawbackRepositoryPort
-from app.modules.economy.trade.external.domain.models import Drawback
-from app.modules.economy.trade.external.infrastructure.models import DrawbackModel
-from app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_operador_logistico_repository_base import SQLAlchemyOperadorLogisticoRepositoryBase
+from apps.backend.app.modules.economy.trade.external.application.ports import DrawbackRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.models import Drawback
+from apps.backend.app.modules.economy.trade.external.infrastructure.models import DrawbackModel
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.sqlalchemy_operador_logistico_repository_base import SQLAlchemyOperadorLogisticoRepositoryBase
 
 class SQLAlchemyDrawbackRepository(SQLAlchemyOperadorLogisticoRepositoryBase[Drawback, DrawbackModel], DrawbackRepositoryPort):
 

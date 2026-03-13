@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 import httpx
-from app.modules.society.cultura.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.society.cultura.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class EcadAdapter:
 

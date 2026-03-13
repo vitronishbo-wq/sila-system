@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_faturamento_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.fatura_schema import FaturaGerarInput, FaturaTelecomResponse
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.faturamento_service import FaturamentoService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_faturamento_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.fatura_schema import FaturaGerarInput, FaturaTelecomResponse
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.faturamento_service import FaturamentoService
 router = APIRouter(prefix='/faturas', tags=['Telecomunicacoes - Faturas'])
 
 @router.post('/{assinante_id}', response_model=FaturaTelecomResponse, status_code=status.HTTP_201_CREATED)

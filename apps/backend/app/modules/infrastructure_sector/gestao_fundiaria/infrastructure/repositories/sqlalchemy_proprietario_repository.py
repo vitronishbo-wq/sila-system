@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.proprietario_model import ProprietarioModel
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.proprietario_model import ProprietarioModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
 
 class SQLAlchemyProprietarioRepository(ProprietarioRepositoryPort):
     """Repository com suporte ORM real e fallback in-memory."""

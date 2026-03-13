@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_prova_pericial_service
-from app.modules.public_security.api.schemas.prova_pericial_schema import ProvaPericialCreate, ProvaPericialResponse, ProvaPericialStatusUpdate, ProvaPericialVinculoCadeia
-from app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
-from app.modules.public_security.domain.enums import StatusProva, TipoProva
+from apps.backend.app.modules.public_security.api.deps import get_prova_pericial_service
+from apps.backend.app.modules.public_security.api.schemas.prova_pericial_schema import ProvaPericialCreate, ProvaPericialResponse, ProvaPericialStatusUpdate, ProvaPericialVinculoCadeia
+from apps.backend.app.modules.public_security.application.services.prova_pericial_service import ProvaPericialService
+from apps.backend.app.modules.public_security.domain.enums import StatusProva, TipoProva
 router = APIRouter(prefix='/provas-periciais', tags=['Seguranca Publica - Provas Periciais'])
 
 @router.post('/', response_model=ProvaPericialResponse, status_code=status.HTTP_201_CREATED)

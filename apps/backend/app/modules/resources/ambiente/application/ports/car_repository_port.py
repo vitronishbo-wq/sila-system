@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.ambiente.domain.enums import StatusCAR
-from app.modules.resources.ambiente.domain.models.car import CAR
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR
+from apps.backend.app.modules.resources.ambiente.domain.models.car import CAR
 
 class CARRepositoryPort(ABC):
 

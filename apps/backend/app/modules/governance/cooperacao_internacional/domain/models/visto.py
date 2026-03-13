@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from uuid import UUID, uuid4
-from app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, StatusVisto, TipoVisto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import CategoriaVisto, StatusVisto, TipoVisto
 
 @dataclass
 class Visto:

@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort
-from app.modules.tourism.domain.models.agencia_viagens import AgenciaViagens
-from app.modules.tourism.infrastructure.models.agencia_viagens_model import AgenciaViagensModel
+from apps.backend.app.modules.tourism.application.ports.agencia_viagens_repository_port import AgenciaViagensRepositoryPort
+from apps.backend.app.modules.tourism.domain.models.agencia_viagens import AgenciaViagens
+from apps.backend.app.modules.tourism.infrastructure.models.agencia_viagens_model import AgenciaViagensModel
 
 class SQLAlchemyAgenciaViagensRepository(AgenciaViagensRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

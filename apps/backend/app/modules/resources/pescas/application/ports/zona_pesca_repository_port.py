@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.zona_pesca import ZonaPesca
+from apps.backend.app.modules.resources.pescas.domain.models.zona_pesca import ZonaPesca
 
 class ZonaPescaRepositoryPort(ABC):
 

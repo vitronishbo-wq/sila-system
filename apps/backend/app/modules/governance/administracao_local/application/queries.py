@@ -1,4 +1,4 @@
-from app.modules.governance.administracao_local.application.dto import AdministradorDTO
+from apps.backend.app.modules.governance.administracao_local.application.dto import AdministradorDTO
 
 class ListAdministradoresQuery:
     pass

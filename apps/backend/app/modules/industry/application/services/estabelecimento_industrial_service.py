@@ -2,11 +2,11 @@ from __future__ import annotations
 import logging
 from datetime import date
 from uuid import UUID
-from app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort
-from app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
-from app.modules.industry.domain.models import EstabelecimentoIndustrial
-from app.modules.industry.domain.shared import get_porte, get_ramo
-from app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
+from apps.backend.app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort
+from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
+from apps.backend.app.modules.industry.domain.shared import get_porte, get_ramo
+from apps.backend.app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError, InvalidEstabelecimentoIndustrialStateError
 logger = logging.getLogger(__name__)
 
 class EstabelecimentoIndustrialService:

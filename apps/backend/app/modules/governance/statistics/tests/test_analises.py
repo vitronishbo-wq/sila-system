@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.tests._fakes import named_payload
+from apps.backend.app.modules.governance.statistics.tests._fakes import named_payload
 
 def test_crud_analises(client):
     create = client.post('/api/v1/estatistica/analises/', json=named_payload('analise-a'))

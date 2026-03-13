@@ -3,10 +3,10 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.alvara_repository_port import AlvaraRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.alvara_model import AlvaraModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.alvara_repository_port import AlvaraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.alvara import Alvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.alvara_model import AlvaraModel
 
 class SQLAlchemyAlvaraRepository(AlvaraRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

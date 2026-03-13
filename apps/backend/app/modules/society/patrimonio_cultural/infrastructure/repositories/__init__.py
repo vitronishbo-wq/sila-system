@@ -1,2 +1,2 @@
-from app.modules.society.patrimonio_cultural.infrastructure.repositories.sqlalchemy_cultural_asset_repository import SQLAlchemyCulturalAssetRepository
+from apps.backend.app.modules.society.patrimonio_cultural.infrastructure.repositories.sqlalchemy_cultural_asset_repository import SQLAlchemyCulturalAssetRepository
 __all__ = ['SQLAlchemyCulturalAssetRepository']

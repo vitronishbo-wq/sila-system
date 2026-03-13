@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Any
 from uuid import UUID
 import httpx
-from app.modules.society.cultura.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.society.cultura.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class IphanAdapter:
 

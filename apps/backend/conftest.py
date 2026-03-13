@@ -324,7 +324,7 @@ async def async_db_session(db_session) -> AsyncSession:
 @pytest.fixture
 def citizen_service():
     """Fornece instância de CitizenService para testes."""
-    from app.modules.justice.civil_registry.service import CitizenService
+    from apps.backend.app.modules.justice.civil_registry.service import CitizenService
     from app.core.audit import ImmutableAuditLog
     from app.core.events import EventPublisher
     
@@ -441,7 +441,7 @@ def fuc_projection_list():
 @pytest.fixture
 def sample_citizen(fuc_projection_data):
     """Fixture que retorna um Citizen criado a partir de FUC projection data."""
-    from app.modules.justice.civil_registry.domain.models.citizen import Citizen
+    from apps.backend.app.modules.justice.civil_registry.domain.models.citizen import Citizen
     
     citizen = Citizen.from_fuc_projection(fuc_projection_data)
     return citizen

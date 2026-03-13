@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
 
 @dataclass
 class Produtor:

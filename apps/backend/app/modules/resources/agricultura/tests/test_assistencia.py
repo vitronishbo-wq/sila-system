@@ -5,12 +5,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_assistencia_service
-from app.modules.resources.agricultura.api.endpoints.assistencia import router as assistencia_router
-from app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.enums import StatusAssistencia, TipoPropriedade
-from app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_assistencia_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.assistencia import router as assistencia_router
+from apps.backend.app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusAssistencia, TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError
 
 @pytest.mark.asyncio
 async def test_assistencia_service_fluxo_agendar_concluir():

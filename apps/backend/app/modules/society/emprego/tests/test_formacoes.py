@@ -6,11 +6,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_formacao_service
-from app.modules.society.emprego.api.endpoints.formacoes import router as formacoes_router
-from app.modules.society.emprego.application.services.formacao_service import FormacaoService
-from app.modules.society.emprego.domain.enums import WorkflowStatus
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.api.deps import get_formacao_service
+from apps.backend.app.modules.society.emprego.api.endpoints.formacoes import router as formacoes_router
+from apps.backend.app.modules.society.emprego.application.services.formacao_service import FormacaoService
+from apps.backend.app.modules.society.emprego.domain.enums import WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 @pytest.mark.asyncio
 async def test_cancelar_formacao_define_status_e_motivo():

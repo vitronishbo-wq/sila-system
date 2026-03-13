@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.evento_cultural_repository_port import EventoCulturalRepositoryPort
-from app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
-from app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
-from app.modules.society.cultura.infrastructure.models.evento_cultural_model import EventoCulturalModel
+from apps.backend.app.modules.society.cultura.application.ports.evento_cultural_repository_port import EventoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
+from apps.backend.app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
+from apps.backend.app.modules.society.cultura.infrastructure.models.evento_cultural_model import EventoCulturalModel
 
 class SQLAlchemyEventoCulturalRepository(EventoCulturalRepositoryPort):
 

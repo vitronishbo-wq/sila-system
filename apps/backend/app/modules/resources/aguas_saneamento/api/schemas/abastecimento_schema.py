@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
 
 class AbastecimentoCreate(BaseModel):
     infraestrutura_id: UUID

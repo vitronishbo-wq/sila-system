@@ -1,8 +1,8 @@
 import pytest
 from uuid import UUID
-from app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
-from app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
-from app.modules.governance.workflow.domain.enums import WorkflowStatus
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_definition import WorkflowDefinition
+from apps.backend.app.modules.governance.workflow.domain.models.workflow_instance import WorkflowInstance
+from apps.backend.app.modules.governance.workflow.domain.enums import WorkflowStatus
 
 class TestWorkflowEngine:
     """Testes para o Workflow Engine"""

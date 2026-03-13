@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure.api.deps import get_projeto_service
-from app.modules.infrastructure.api.schemas.projeto_schema import ProjetoConclusaoInput, ProjetoCreate, ProjetoInicioInput, ProjetoMotivoInput, ProjetoResponse
-from app.modules.infrastructure.application.services.projeto_service import ProjetoService
-from app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from app.modules.infrastructure.core.exceptions import ProjetoAlreadyExistsError, ProjetoNotFoundError
+from apps.backend.app.modules.infrastructure.api.deps import get_projeto_service
+from apps.backend.app.modules.infrastructure.api.schemas.projeto_schema import ProjetoConclusaoInput, ProjetoCreate, ProjetoInicioInput, ProjetoMotivoInput, ProjetoResponse
+from apps.backend.app.modules.infrastructure.application.services.projeto_service import ProjetoService
+from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+from apps.backend.app.modules.infrastructure.core.exceptions import ProjetoAlreadyExistsError, ProjetoNotFoundError
 router = APIRouter(prefix='/projetos', tags=['Obras Publicas - Projetos'])
 
 @router.post('/', response_model=ProjetoResponse, status_code=status.HTTP_201_CREATED)

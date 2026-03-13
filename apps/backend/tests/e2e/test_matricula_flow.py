@@ -10,20 +10,20 @@ from sqlalchemy import delete, select
 
 from app.api.deps import get_current_user
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.educacao.api.router import router as educacao_router
-from app.modules.governance.service_requests.api.router import router as service_requests_router
-from app.modules.educacao.infrastructure.models import (
+from apps.backend.app.modules.educacao.api.router import router as educacao_router
+from apps.backend.app.modules.governance.service_requests.api.router import router as service_requests_router
+from apps.backend.app.modules.educacao.infrastructure.models import (
     AnoLetivoModel,
     EscolaModel,
     MatriculaModel,
     TurmaModel,
 )
 from app.core.bridges.identity_bridge import CitizenFUC
-from app.modules.governance.service_requests.infrastructure.models.service_request_model import (
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import (
     ServiceRequestModel,
 )
-from app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
-from app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
 
 
 @pytest.mark.asyncio

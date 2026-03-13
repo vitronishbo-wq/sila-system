@@ -2,18 +2,18 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Any
 from uuid import UUID
-from app.modules.civil_protection.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
-from app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
-from app.modules.civil_protection.application.ports.corporacao_repository_port import CorporacaoRepositoryPort
-from app.modules.civil_protection.application.ports.despacho_repository_port import DespachoRepositoryPort
-from app.modules.civil_protection.application.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
-from app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
-from app.modules.civil_protection.domain.enums import StatusAtendimento, StatusAgenteProtecao, StatusCorporacao, StatusDespacho, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
-from app.modules.civil_protection.domain.models.atendimento import Atendimento
-from app.modules.civil_protection.domain.models.bombeiro import Bombeiro
-from app.modules.civil_protection.domain.models.corporacao import Corporacao
-from app.modules.civil_protection.domain.models.despacho import Despacho
-from app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.corporacao_repository_port import CorporacaoRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.despacho_repository_port import DespachoRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
+from apps.backend.app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.civil_protection.domain.enums import StatusAtendimento, StatusAgenteProtecao, StatusCorporacao, StatusDespacho, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.models.atendimento import Atendimento
+from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
+from apps.backend.app.modules.civil_protection.domain.models.corporacao import Corporacao
+from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
+from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
 
 class InMemoryCorporacaoRepository(CorporacaoRepositoryPort):
 

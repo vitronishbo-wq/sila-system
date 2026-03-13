@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.application.services.pcd_service import PCDService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusAcompanhamento
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, FakeSaudeService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.application.services.pcd_service import PCDService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, StatusAcompanhamento
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, FakeSaudeService, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo, InMemoryPCDRepo
 
 def test_pcd_exige_laudo_valido_e_permite_fluxo_bpc() -> None:
 

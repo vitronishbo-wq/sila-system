@@ -1,10 +1,10 @@
 from __future__ import annotations
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import JusticaServicePort
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import MatriculaImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, MatriculaImovelAlreadyExistsError, MatriculaImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import JusticaServicePort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import MatriculaImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, MatriculaImovelAlreadyExistsError, MatriculaImovelNotFoundError
 
 class MatriculaImovelService:
 

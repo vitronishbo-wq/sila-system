@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.domain.enums import StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
 
 @dataclass
 class LinhaTransmissaoModel:

@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
-from app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
-from app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
+from apps.backend.app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
 
 class SQLAlchemyProgramaRepository(ProgramaRepositoryPort):
 

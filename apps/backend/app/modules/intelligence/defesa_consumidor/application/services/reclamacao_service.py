@@ -3,8 +3,8 @@ import uuid
 from datetime import datetime
 from typing import Any
 from app.core.events import get_event_bus
-from app.modules.intelligence.defesa_consumidor.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
-from app.modules.intelligence.defesa_consumidor.domain.exceptions import ReclamacaoJaEncerradaException, ReclamacaoNaoEncontradaException
+from apps.backend.app.modules.intelligence.defesa_consumidor.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
+from apps.backend.app.modules.intelligence.defesa_consumidor.domain.exceptions import ReclamacaoJaEncerradaException, ReclamacaoNaoEncontradaException
 
 class ReclamacaoService:
 

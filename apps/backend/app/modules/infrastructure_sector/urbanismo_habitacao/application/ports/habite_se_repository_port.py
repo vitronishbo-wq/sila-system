@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
 
 class HabiteSeRepositoryPort(ABC):
 

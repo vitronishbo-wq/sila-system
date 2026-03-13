@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, Field
-from app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import StationStatus
 
 class EstacaoCreateSchema(BaseModel):
     codigo: str = Field(..., min_length=2, max_length=30, description='Codigo unico da estacao')

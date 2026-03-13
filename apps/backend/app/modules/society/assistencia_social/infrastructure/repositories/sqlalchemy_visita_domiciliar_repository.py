@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import VisitaDomiciliarRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import ResultadoVisita
-from app.modules.society.assistencia_social.domain.models import VisitaDomiciliar
-from app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import VisitaDomiciliarModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import VisitaDomiciliarRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import ResultadoVisita
+from apps.backend.app.modules.society.assistencia_social.domain.models import VisitaDomiciliar
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import VisitaDomiciliarModel
 
 class SQLAlchemyVisitaDomiciliarRepository(VisitaDomiciliarRepositoryPort):
 

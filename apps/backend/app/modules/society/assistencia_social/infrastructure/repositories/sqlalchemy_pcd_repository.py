@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.pcd_repository_port import PCDRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
-from app.modules.society.assistencia_social.domain.models import PessoaComDeficiencia
-from app.modules.society.assistencia_social.infrastructure.models.pcd_model import PCDModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.pcd_repository_port import PCDRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
+from apps.backend.app.modules.society.assistencia_social.domain.models import PessoaComDeficiencia
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.pcd_model import PCDModel
 
 class SQLAlchemyPCDRepository(PCDRepositoryPort):
 

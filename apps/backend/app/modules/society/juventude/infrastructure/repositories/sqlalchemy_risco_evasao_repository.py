@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
-from app.modules.society.juventude.domain.enums import RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
-from app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
-from app.modules.society.juventude.infrastructure.models.risco_evasao_model import RiscoEvasaoModel
+from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import RiscoSocial, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
+from apps.backend.app.modules.society.juventude.infrastructure.models.risco_evasao_model import RiscoEvasaoModel
 
 class SQLAlchemyRiscoEvasaoRepository(RiscoEvasaoRepositoryPort):
 

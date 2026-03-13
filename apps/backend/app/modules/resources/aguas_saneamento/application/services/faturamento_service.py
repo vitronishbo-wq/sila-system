@@ -2,13 +2,13 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
-from app.modules.resources.aguas_saneamento.application.ports.fatura_repository_port import FaturaRepositoryPort
-from app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
-from app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
-from app.modules.resources.aguas_saneamento.exceptions import FaturaAlreadyExistsError, FaturaNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.persistence.repository import BaseOutboxRepository
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.fatura_repository_port import FaturaRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import FaturaAlreadyExistsError, FaturaNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.persistence.repository import BaseOutboxRepository
 
 class FaturamentoService:
 

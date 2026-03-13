@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock
-from app.modules.governance.administracao_local.domain.entities import AdministradorLocal
-from app.modules.governance.administracao_local.application.service import AdministracaoLocalService
+from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.application.service import AdministracaoLocalService
 
 def test_get_administrador_service():
     async def run_test():

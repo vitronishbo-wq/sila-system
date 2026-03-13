@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
-from app.modules.energy.domain.models import CentralGeradora
+from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import CentralGeradora
 
 class CentralGeradoraRepositoryPort(ABC):
 

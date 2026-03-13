@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOutorga
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOutorga
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
 
 class OutorgaEspectroService:
 

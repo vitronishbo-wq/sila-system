@@ -5,10 +5,10 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pescas.api.deps import get_pescador_service
-from app.modules.resources.pescas.api.endpoints.pescadores import router as pescadores_router
-from app.modules.resources.pescas.application.services.pescador_service import PescadorService
-from app.modules.resources.pescas.domain.enums import TipoPescador
+from apps.backend.app.modules.resources.pescas.api.deps import get_pescador_service
+from apps.backend.app.modules.resources.pescas.api.endpoints.pescadores import router as pescadores_router
+from apps.backend.app.modules.resources.pescas.application.services.pescador_service import PescadorService
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
 
 @pytest.mark.asyncio
 async def test_cadastrar_pescador_sucesso():

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_evento_cultural_service
-from app.modules.society.cultura.api.schemas.evento_cultural_schema import EventoCulturalCreate, EventoCulturalResponse, EventoCulturalUpdate
-from app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
-from app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
+from apps.backend.app.modules.society.cultura.api.deps import get_evento_cultural_service
+from apps.backend.app.modules.society.cultura.api.schemas.evento_cultural_schema import EventoCulturalCreate, EventoCulturalResponse, EventoCulturalUpdate
+from apps.backend.app.modules.society.cultura.application.services.evento_cultural_service import EventoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
 router = APIRouter(prefix='/eventos-culturais', tags=['Cultura - Eventos Culturais'])
 
 @router.post('/', response_model=EventoCulturalResponse, status_code=status.HTTP_201_CREATED)

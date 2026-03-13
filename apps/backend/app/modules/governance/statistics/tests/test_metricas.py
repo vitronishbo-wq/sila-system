@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.tests._fakes import metrica_payload
+from apps.backend.app.modules.governance.statistics.tests._fakes import metrica_payload
 
 def test_criar_obter_listar_metrica(client):
     response = client.post('/api/v1/estatistica/metricas/', json=metrica_payload())

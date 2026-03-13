@@ -9,7 +9,7 @@ from datetime import date, datetime
 from sqlalchemy import String, Date, DateTime, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from app.modules.justice.civil_registry.shared.orm_base import Base
+from apps.backend.app.modules.justice.civil_registry.shared.orm_base import Base
 
 class BIRecord(Base):
     """

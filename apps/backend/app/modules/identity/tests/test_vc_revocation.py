@@ -1,6 +1,6 @@
 import pytest
-from app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
-from app.modules.identity.verifiable_credentials.application.services.revocation_service import RevocationService
+from apps.backend.app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
+from apps.backend.app.modules.identity.verifiable_credentials.application.services.revocation_service import RevocationService
 
 def test_credential_revocation_logic():
     repo = RevocationRepository()

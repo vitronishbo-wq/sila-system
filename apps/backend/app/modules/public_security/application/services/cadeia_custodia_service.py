@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.domain.enums import StatusCadeiaCustodia
-from app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
+from apps.backend.app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
+from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
 
 class CadeiaCustodiaService:
 

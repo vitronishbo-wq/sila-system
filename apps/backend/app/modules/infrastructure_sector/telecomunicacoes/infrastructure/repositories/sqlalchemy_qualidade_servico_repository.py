@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import QualidadeServicoRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.qualidade_servico_model import QualidadeServicoModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import QualidadeServicoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.qualidade_servico_model import QualidadeServicoModel
 
 class SQLAlchemyQualidadeServicoRepository(QualidadeServicoRepositoryPort):
 

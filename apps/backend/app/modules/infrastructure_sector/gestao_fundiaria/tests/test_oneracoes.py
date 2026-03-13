@@ -6,13 +6,13 @@ from unittest.mock import AsyncMock
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_oneracao_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.oneracoes import router as oneracoes_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.oneracao_service import OneracaoService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusOneracao, TipoImovel, TipoOneracao
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import OneracaoNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyOneracaoRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_oneracao_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.oneracoes import router as oneracoes_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.oneracao_service import OneracaoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, StatusOneracao, TipoImovel, TipoOneracao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import OneracaoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyOneracaoRepository
 
 class _JusticaComLitigio:
 

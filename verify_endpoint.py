@@ -7,7 +7,7 @@ import os
 # Set PYTHONPATH
 sys.path.append(os.path.join(os.getcwd(), "apps", "backend"))
 
-from app.modules.administracao_local.api.router import router
+from apps.backend.app.modules.administracao_local.api.router import router
 
 async def test_get_administrador_endpoint():
     print("Running integration test...")

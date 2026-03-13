@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
-from app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
 
 class ProgramaService:
 

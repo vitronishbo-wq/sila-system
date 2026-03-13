@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure.api.deps import get_projeto_service
-from app.modules.infrastructure.api.endpoints.projetos import router as projetos_router
-from app.modules.infrastructure.application.services.projeto_service import ProjetoService
-from app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
-from app.modules.infrastructure.core.exceptions import ProjetoNotFoundError
-from app.modules.infrastructure.infrastructure.repositories import SQLAlchemyProjetoRepository
+from apps.backend.app.modules.infrastructure.api.deps import get_projeto_service
+from apps.backend.app.modules.infrastructure.api.endpoints.projetos import router as projetos_router
+from apps.backend.app.modules.infrastructure.application.services.projeto_service import ProjetoService
+from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+from apps.backend.app.modules.infrastructure.core.exceptions import ProjetoNotFoundError
+from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyProjetoRepository
 
 @pytest.mark.asyncio
 async def test_projeto_service_fluxo_sucesso():

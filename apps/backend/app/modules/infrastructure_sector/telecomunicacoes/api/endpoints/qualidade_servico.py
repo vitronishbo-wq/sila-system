@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_qualidade_servico_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.qualidade_servico_schema import QualidadeServicoCreate, QualidadeServicoResponse, QualidadeServicoStatusUpdate
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_qualidade_servico_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.qualidade_servico_schema import QualidadeServicoCreate, QualidadeServicoResponse, QualidadeServicoStatusUpdate
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico
 router = APIRouter(prefix='/qualidade-servico', tags=['Telecomunicacoes - Qualidade Servico'])
 
 @router.post('/', response_model=QualidadeServicoResponse, status_code=status.HTTP_201_CREATED)

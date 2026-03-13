@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
-from app.modules.public_security.domain.models.policial import Policial
-from app.modules.public_security.infrastructure.models.policial_model import PolicialModel
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
+from apps.backend.app.modules.public_security.domain.models.policial import Policial
+from apps.backend.app.modules.public_security.infrastructure.models.policial_model import PolicialModel
 
 class SQLAlchemyPolicialRepository(PolicialRepositoryPort):
 

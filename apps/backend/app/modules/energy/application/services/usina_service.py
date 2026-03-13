@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import UsinaRepositoryPort
-from app.modules.energy.domain.enums import FonteEnergia, StatusUsina, TipoUsina
-from app.modules.energy.domain.models import Usina
-from app.modules.energy.core.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
+from apps.backend.app.modules.energy.application.ports import UsinaRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina, TipoUsina
+from apps.backend.app.modules.energy.domain.models import Usina
+from apps.backend.app.modules.energy.core.exceptions import InvalidUsinaStateError, UsinaAlreadyExistsError, UsinaNotFoundError
 
 class UsinaService:
 

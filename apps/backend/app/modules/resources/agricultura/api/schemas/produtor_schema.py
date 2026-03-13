@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
 
 class ProdutorCreate(BaseModel):
     nome: str

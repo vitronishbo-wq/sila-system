@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.agricultura.domain.enums import StatusCredito
-from app.modules.resources.agricultura.domain.models.credito_rural import CreditoRural
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCredito
+from apps.backend.app.modules.resources.agricultura.domain.models.credito_rural import CreditoRural
 
 class CreditoRepositoryPort(ABC):
 

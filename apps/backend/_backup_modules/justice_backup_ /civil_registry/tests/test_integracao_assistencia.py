@@ -3,8 +3,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
-from app.modules.justice.bounded_contexts.infrastructure.adapters.assistencia_social_service_adapter import AssistenciaSocialServiceAdapter
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.assistencia_social_service_adapter import AssistenciaSocialServiceAdapter
 
 @pytest.mark.asyncio
 async def test_adapter_assistencia_retorna_beneficiario_ativo() -> None:

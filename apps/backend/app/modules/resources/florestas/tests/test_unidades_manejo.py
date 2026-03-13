@@ -2,8 +2,8 @@ from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID, uuid4
 import pytest
-from app.modules.resources.florestas.application.services.manejo_service import ManejoService
-from app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+from apps.backend.app.modules.resources.florestas.application.services.manejo_service import ManejoService
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
 
 class _Repo:
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_kpi_service
-from app.modules.governance.statistics.api.schemas.kpi_schema import KPICreate, KPIListaResponse, KPIResponse, KPIUpdate, KPIValorUpdate
-from app.modules.governance.statistics.application.services.kpi_service import KPIService
-from app.modules.governance.statistics.domain.enums import StatusKPI
-from app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_kpi_service
+from apps.backend.app.modules.governance.statistics.api.schemas.kpi_schema import KPICreate, KPIListaResponse, KPIResponse, KPIUpdate, KPIValorUpdate
+from apps.backend.app.modules.governance.statistics.application.services.kpi_service import KPIService
+from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
 router = APIRouter(prefix='/kpis', tags=['Estatistica - KPIs'])
 
 @router.post('/', response_model=KPIResponse, status_code=status.HTTP_201_CREATED)

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.pecuaria.domain.enums import StatusPecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusPecuarista
 
 @dataclass
 class Pecuarista:

@@ -1,6 +1,6 @@
-from app.modules.society.emprego.application.ports import AvaliacaoRepositoryPort
-from app.modules.society.emprego.infrastructure.models.avaliacao_model import AvaliacaoModel
-from app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
+from apps.backend.app.modules.society.emprego.application.ports import AvaliacaoRepositoryPort
+from apps.backend.app.modules.society.emprego.infrastructure.models.avaliacao_model import AvaliacaoModel
+from apps.backend.app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
 
 class SQLAlchemyAvaliacaoRepository(SQLAlchemyWorkflowRepository, AvaliacaoRepositoryPort):
 

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.cultura.api.deps import get_edital_service
-from app.modules.society.cultura.api.schemas.edital_schema import EditalCreate, EditalInscricaoRequest, EditalResponse, EditalSelecaoRequest
-from app.modules.society.cultura.application.services.edital_service import EditalService
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+from apps.backend.app.modules.society.cultura.api.deps import get_edital_service
+from apps.backend.app.modules.society.cultura.api.schemas.edital_schema import EditalCreate, EditalInscricaoRequest, EditalResponse, EditalSelecaoRequest
+from apps.backend.app.modules.society.cultura.application.services.edital_service import EditalService
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
 router = APIRouter(prefix='/editais', tags=['Cultura - Editais'])
 
 @router.post('/', response_model=EditalResponse, status_code=status.HTTP_201_CREATED)

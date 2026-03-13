@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
-from app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.domain.enums import StatusMandado, TipoMandado
-from app.modules.public_security.domain.models.mandado import Mandado
+from apps.backend.app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.domain.enums import StatusMandado, TipoMandado
+from apps.backend.app.modules.public_security.domain.models.mandado import Mandado
 
 class MandadoService:
 

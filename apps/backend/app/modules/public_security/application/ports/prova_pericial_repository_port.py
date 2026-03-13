@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.public_security.domain.enums import StatusProva, TipoProva
-from app.modules.public_security.domain.models.prova_pericial import ProvaPericial
+from apps.backend.app.modules.public_security.domain.enums import StatusProva, TipoProva
+from apps.backend.app.modules.public_security.domain.models.prova_pericial import ProvaPericial
 
 class ProvaPericialRepositoryPort(ABC):
 

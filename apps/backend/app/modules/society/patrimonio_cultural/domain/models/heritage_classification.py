@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime
 from uuid import UUID, uuid4
-from app.modules.society.patrimonio_cultural.domain.enums import ClassificationType
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ClassificationType
 
 @dataclass(kw_only=True)
 class HeritageClassification:

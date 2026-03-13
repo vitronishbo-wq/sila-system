@@ -5,9 +5,9 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_trabalho_service
-from app.modules.society.emprego.api.endpoints.trabalhistas import router as trabalhistas_router
-from app.modules.society.emprego.application.services.trabalho_service import TrabalhoService
+from apps.backend.app.modules.society.emprego.api.deps import get_trabalho_service
+from apps.backend.app.modules.society.emprego.api.endpoints.trabalhistas import router as trabalhistas_router
+from apps.backend.app.modules.society.emprego.application.services.trabalho_service import TrabalhoService
 
 @pytest.mark.asyncio
 async def test_criar_registro_trabalhista_rejeita_cidadao_inativo():

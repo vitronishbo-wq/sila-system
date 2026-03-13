@@ -3,9 +3,9 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.intelligence.ciencia_pesquisa.application.services.pesquisador_service import PesquisadorService
-from app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
-from app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.services.pesquisador_service import PesquisadorService
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.tests._fakes import InMemoryInstituicaoPesquisaRepository, InMemoryPesquisadorRepository
 
 def test_cadastrar_pesquisador_sucesso() -> None:
 
@@ -33,8 +33,8 @@ def test_vincular_e_encerrar_vinculo() -> None:
         instituicao_repo = InMemoryInstituicaoPesquisaRepository()
         pesquisador_repo = InMemoryPesquisadorRepository()
         service = PesquisadorService(pesquisador_repo=pesquisador_repo, instituicao_repo=instituicao_repo)
-        from app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, TipoInstituicaoPesquisa
-        from app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
+        from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, TipoInstituicaoPesquisa
+        from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
         instituicao = InstituicaoPesquisa.cadastrar(sigla='INCT', nome='Instituto Nacional de Ciencia e Tecnologia', nif='500000002', tipo=TipoInstituicaoPesquisa.CENTRO_PESQUISA, natureza_juridica=NaturezaJuridicaInstituicao.PUBLICA, pais='Angola', provincia='Luanda', municipio='Belas', endereco='Av. da Tecnologia, 200', email_institucional='contato@inct.ao')
         instituicao = await instituicao_repo.save(instituicao)
         pesquisador = await service.cadastrar_pesquisador(nome_completo='Marta Soares', documento_identificacao='BI889900', email_institucional='marta.soares@inct.ao')

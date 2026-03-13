@@ -3,9 +3,9 @@ from uuid import UUID
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
-from app.modules.society.patrimonio_cultural.application.ports import TourismServicePort
-from app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
-from app.modules.society.patrimonio_cultural.infrastructure.repositories import SQLAlchemyCulturalAssetRepository
+from apps.backend.app.modules.society.patrimonio_cultural.application.ports import TourismServicePort
+from apps.backend.app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
+from apps.backend.app.modules.society.patrimonio_cultural.infrastructure.repositories import SQLAlchemyCulturalAssetRepository
 
 class NullTourismService(TourismServicePort):
 

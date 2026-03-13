@@ -4,18 +4,18 @@ import logging
 from datetime import datetime, timezone
 from typing import List, Optional
 from uuid import UUID
-from app.modules.economy.domain.models.payment import Payment
-from app.modules.economy.domain.models.enums import PaymentStatus, InvoiceStatus
-from app.modules.economy.application.ports.payment_repository_port import PaymentRepositoryPort
-from app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort
-from app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort
-from app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort
-from app.modules.economy.application.ports.saude_service_port import SaudeServicePort
-from app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
-from app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort
-from app.modules.economy.api.schemas.payment_schema import CreatePaymentSchema
-from app.modules.economy.domain.exceptions import DuplicatePaymentError, InvoiceNotFoundError, InvalidInvoiceStateError, DomainValidationError
+from apps.backend.app.modules.economy.domain.models.payment import Payment
+from apps.backend.app.modules.economy.domain.models.enums import PaymentStatus, InvoiceStatus
+from apps.backend.app.modules.economy.application.ports.payment_repository_port import PaymentRepositoryPort
+from apps.backend.app.modules.economy.application.ports.invoice_repository_port import InvoiceRepositoryPort
+from apps.backend.app.modules.economy.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.economy.application.ports.juventude_service_port import JuventudeServicePort
+from apps.backend.app.modules.economy.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.economy.application.ports.saude_service_port import SaudeServicePort
+from apps.backend.app.modules.economy.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
+from apps.backend.app.modules.economy.application.ports.service_requests_service_port import ServiceRequestsServicePort
+from apps.backend.app.modules.economy.api.schemas.payment_schema import CreatePaymentSchema
+from apps.backend.app.modules.economy.domain.exceptions import DuplicatePaymentError, InvoiceNotFoundError, InvalidInvoiceStateError, DomainValidationError
 logger = logging.getLogger(__name__)
 
 class PaymentService:

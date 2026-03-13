@@ -6,13 +6,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.industry.api.deps import get_estabelecimento_industrial_service
-from app.modules.industry.api.endpoints.estabelecimentos_industriais import router as estabelecimentos_router
-from app.modules.industry.application.services import EstabelecimentoIndustrialService
-from app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
-from app.modules.industry.domain.models import EstabelecimentoIndustrial
-from app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError
-from app.modules.industry.infrastructure.repositories import SQLAlchemyEstabelecimentoIndustrialRepository
+from apps.backend.app.modules.industry.api.deps import get_estabelecimento_industrial_service
+from apps.backend.app.modules.industry.api.endpoints.estabelecimentos_industriais import router as estabelecimentos_router
+from apps.backend.app.modules.industry.application.services import EstabelecimentoIndustrialService
+from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
+from apps.backend.app.modules.industry.core.exceptions import EstabelecimentoIndustrialAlreadyExistsError, EstabelecimentoIndustrialNotFoundError
+from apps.backend.app.modules.industry.infrastructure.repositories import SQLAlchemyEstabelecimentoIndustrialRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_estabelecimento():

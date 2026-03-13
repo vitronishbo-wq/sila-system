@@ -6,11 +6,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pecuaria.api.deps import get_pecuarista_service
-from app.modules.resources.pecuaria.api.endpoints.pecuaristas import router as pecuaristas_router
-from app.modules.resources.pecuaria.application.services.pecuarista_service import PecuaristaService
-from app.modules.resources.pecuaria.domain.enums import StatusPecuarista
-from app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
+from apps.backend.app.modules.resources.pecuaria.api.deps import get_pecuarista_service
+from apps.backend.app.modules.resources.pecuaria.api.endpoints.pecuaristas import router as pecuaristas_router
+from apps.backend.app.modules.resources.pecuaria.application.services.pecuarista_service import PecuaristaService
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusPecuarista
+from apps.backend.app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
 
 @pytest.mark.asyncio
 async def test_cadastrar_pecuarista_sucesso():

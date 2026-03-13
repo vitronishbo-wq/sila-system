@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
-from app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
-from app.modules.society.juventude.domain.models.auxilio import Auxilio
-from app.modules.society.juventude.infrastructure.models.auxilio_model import AuxilioModel
+from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
+from apps.backend.app.modules.society.juventude.domain.models.auxilio import Auxilio
+from apps.backend.app.modules.society.juventude.infrastructure.models.auxilio_model import AuxilioModel
 
 class SQLAlchemyAuxilioRepository(AuxilioRepositoryPort):
 

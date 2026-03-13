@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.modules.resources.pescas.api.endpoints import armadores_router, capturas_router, comercializacao_router, defesos_router, desembarques_router, embarcacoes_router, especies_router, fiscalizacao_router, licencas_pesca_router, pescadores_router, producao_router, quotas_router, rastreabilidade_router
+from apps.backend.app.modules.resources.pescas.api.endpoints import armadores_router, capturas_router, comercializacao_router, defesos_router, desembarques_router, embarcacoes_router, especies_router, fiscalizacao_router, licencas_pesca_router, pescadores_router, producao_router, quotas_router, rastreabilidade_router
 router = APIRouter(prefix='/pescas', tags=['Pescas'])
 router.include_router(pescadores_router)
 router.include_router(armadores_router)

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, SituacaoDominial, TipoImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelAlreadyExistsError, ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, SituacaoDominial, TipoImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelAlreadyExistsError, ImovelNotFoundError
 
 class ImovelService:
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.ambiente.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.resources.ambiente.domain.models.proprietario import Proprietario
 
 class ProprietarioRepositoryPort(ABC):
 

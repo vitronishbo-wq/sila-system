@@ -1,4 +1,4 @@
-from app.modules.governance.statistics.application.services.forecasting_service import ForecastingService
+from apps.backend.app.modules.governance.statistics.application.services.forecasting_service import ForecastingService
 
 def test_moving_average_and_trend():
     svc = ForecastingService()

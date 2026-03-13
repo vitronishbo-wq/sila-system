@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusOcorrencia, TipoOcorrencia
-from app.modules.public_security.domain.models.ocorrencia import Ocorrencia
+from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
+from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusOcorrencia, TipoOcorrencia
+from apps.backend.app.modules.public_security.domain.models.ocorrencia import Ocorrencia
 
 class OcorrenciaService:
 

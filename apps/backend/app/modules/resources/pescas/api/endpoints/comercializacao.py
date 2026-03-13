@@ -5,8 +5,8 @@ from typing import Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pescas.api.deps import get_comercializacao_service
-from app.modules.resources.pescas.application.services.comercializacao_service import ComercializacaoService
+from apps.backend.app.modules.resources.pescas.api.deps import get_comercializacao_service
+from apps.backend.app.modules.resources.pescas.application.services.comercializacao_service import ComercializacaoService
 router = APIRouter(prefix='/comercializacao', tags=['Pescas - Comercializacao'])
 
 class ComercializacaoCreate(BaseModel):

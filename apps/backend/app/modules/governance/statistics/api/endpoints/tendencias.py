@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_tendencia_service
-from app.modules.governance.statistics.api.schemas.tendencia_schema import TendenciaCreate, TendenciaListResponse, TendenciaResponse, TendenciaUpdate
-from app.modules.governance.statistics.application.services.tendencia_service import TendenciaService
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_tendencia_service
+from apps.backend.app.modules.governance.statistics.api.schemas.tendencia_schema import TendenciaCreate, TendenciaListResponse, TendenciaResponse, TendenciaUpdate
+from apps.backend.app.modules.governance.statistics.application.services.tendencia_service import TendenciaService
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 router = APIRouter(prefix='/tendencias', tags=['Estatistica - Tendencias'])
 
 @router.post('/', response_model=TendenciaResponse, status_code=status.HTTP_201_CREATED)

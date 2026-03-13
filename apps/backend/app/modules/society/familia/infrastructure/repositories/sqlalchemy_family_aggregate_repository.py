@@ -2,12 +2,12 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
-from app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
-from app.modules.society.familia.domain.entities import FamilyMember
-from app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
-from app.modules.society.familia.infrastructure.models.family_aggregate_model import FamilyAggregateModel
-from app.modules.society.familia.infrastructure.models.family_member_model import FamilyMemberModel
+from apps.backend.app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
+from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
+from apps.backend.app.modules.society.familia.domain.entities import FamilyMember
+from apps.backend.app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
+from apps.backend.app.modules.society.familia.infrastructure.models.family_aggregate_model import FamilyAggregateModel
+from apps.backend.app.modules.society.familia.infrastructure.models.family_member_model import FamilyMemberModel
 
 class SQLAlchemyFamilyAggregateRepository(FamilyAggregateRepositoryPort):
 

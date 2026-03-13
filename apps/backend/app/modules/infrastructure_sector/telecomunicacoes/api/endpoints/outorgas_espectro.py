@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_outorga_espectro_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.outorga_espectro_schema import OutorgaEspectroCreate, OutorgaEspectroResponse, OutorgaEspectroStatusUpdate
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_outorga_espectro_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.outorga_espectro_schema import OutorgaEspectroCreate, OutorgaEspectroResponse, OutorgaEspectroStatusUpdate
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.outorga_espectro_service import OutorgaEspectroService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga
 router = APIRouter(prefix='/outorgas-espectro', tags=['Telecomunicacoes - Outorgas'])
 
 @router.post('/', response_model=OutorgaEspectroResponse, status_code=status.HTTP_201_CREATED)

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any
 from uuid import UUID
-from app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
 
 class CitizenServiceAdapter(CitizenServicePort):
     """Anti-corruption layer para identidade_civil (via repositorio canonico)."""

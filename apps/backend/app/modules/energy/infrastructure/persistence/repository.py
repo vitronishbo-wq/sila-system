@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.energy.application.ports.outbox_repository_port import OutboxRepositoryPort
 
 class BaseOutboxRepository:
 

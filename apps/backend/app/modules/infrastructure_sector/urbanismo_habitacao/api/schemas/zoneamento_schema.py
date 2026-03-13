@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
 
 class ZoneamentoCreate(BaseModel):
     nome: str

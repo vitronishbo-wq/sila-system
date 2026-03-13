@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.governance.cooperacao_internacional.api.deps import get_projeto_service
-from app.modules.governance.cooperacao_internacional.api.schemas.projeto_cooperacao_schema import ProjetoCooperacaoCreate, ProjetoCooperacaoResponse
-from app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
+from apps.backend.app.modules.governance.cooperacao_internacional.api.deps import get_projeto_service
+from apps.backend.app.modules.governance.cooperacao_internacional.api.schemas.projeto_cooperacao_schema import ProjetoCooperacaoCreate, ProjetoCooperacaoResponse
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
 router = APIRouter(prefix='/projetos', tags=['Cooperacao Internacional - Projetos'])
 
 @router.post('/', response_model=ProjetoCooperacaoResponse, status_code=status.HTTP_201_CREATED)

@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort
-from app.modules.tourism.domain.models.roteiro import Roteiro
-from app.modules.tourism.infrastructure.models.roteiro_model import RoteiroModel
+from apps.backend.app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort
+from apps.backend.app.modules.tourism.domain.models.roteiro import Roteiro
+from apps.backend.app.modules.tourism.infrastructure.models.roteiro_model import RoteiroModel
 
 class SQLAlchemyRoteiroRepository(RoteiroRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

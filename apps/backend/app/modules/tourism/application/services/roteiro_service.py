@@ -1,10 +1,10 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
-from app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort
-from app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort
-from app.modules.tourism.domain.models.roteiro import Roteiro
+from apps.backend.app.modules.tourism.application.ports.comercio_servicos_service_port import ComercioServicosServicePort
+from apps.backend.app.modules.tourism.application.ports.roteiro_repository_port import RoteiroRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort
+from apps.backend.app.modules.tourism.domain.models.roteiro import Roteiro
 
 class RoteiroService:
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports.habilitacao_repository_port_base import HabilitacaoRepositoryPortBase
-from app.modules.economy.trade.external.domain.models import CancelamentoRadar
+from apps.backend.app.modules.economy.trade.external.application.ports.habilitacao_repository_port_base import HabilitacaoRepositoryPortBase
+from apps.backend.app.modules.economy.trade.external.domain.models import CancelamentoRadar
 
 class CancelamentoRadarRepositoryPort(HabilitacaoRepositoryPortBase[CancelamentoRadar]):
     pass

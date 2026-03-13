@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.georreferenciamento import Georreferenciamento
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.georreferenciamento import Georreferenciamento
 
 class GeorreferenciamentoRepositoryPort(ABC):
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pecuaria.application.ports import AnimalRepositoryPort, PropriedadePecuariaRepositoryPort, RebanhoRepositoryPort
-from app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
-from app.modules.resources.pecuaria.domain.models.animal import Animal
+from apps.backend.app.modules.resources.pecuaria.application.ports import AnimalRepositoryPort, PropriedadePecuariaRepositoryPort, RebanhoRepositoryPort
+from apps.backend.app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.models.animal import Animal
 
 class AnimalService:
 

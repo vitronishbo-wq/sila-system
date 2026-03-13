@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_habite_se_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.habite_se_schema import HabiteSeCreate, HabiteSeEmissaoInput, HabiteSeMotivoInput, HabiteSeResponse, HabiteSeVistoriaInput
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.habite_se_service import HabiteSeService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import HabiteSeAlreadyExistsError, HabiteSeNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_habite_se_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.habite_se_schema import HabiteSeCreate, HabiteSeEmissaoInput, HabiteSeMotivoInput, HabiteSeResponse, HabiteSeVistoriaInput
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.habite_se_service import HabiteSeService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import HabiteSeAlreadyExistsError, HabiteSeNotFoundError
 router = APIRouter(prefix='/habitese', tags=['Urbanismo Habitacao - Habite-se'])
 
 @router.post('/', response_model=HabiteSeResponse, status_code=status.HTTP_201_CREATED)

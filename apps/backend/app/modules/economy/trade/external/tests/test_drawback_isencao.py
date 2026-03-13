@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_drawback_isencao_service
-from app.modules.economy.trade.external.api.endpoints.drawback_isencao import router as drawback_isencao_router
-from app.modules.economy.trade.external.application.services import DrawbackIsencaoService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import DrawbackIsencaoAlreadyExistsError, DrawbackIsencaoNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackIsencaoRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_drawback_isencao_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.drawback_isencao import router as drawback_isencao_router
+from apps.backend.app.modules.economy.trade.external.application.services import DrawbackIsencaoService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackIsencaoAlreadyExistsError, DrawbackIsencaoNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackIsencaoRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_drawback_isencao():

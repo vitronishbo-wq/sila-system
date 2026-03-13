@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
-from app.modules.economy.trade.services.infrastructure.repositories import SQLAlchemyEstabelecimentoComercialRepository
+from apps.backend.app.modules.economy.trade.services.application.services import EstabelecimentoComercialService
+from apps.backend.app.modules.economy.trade.services.infrastructure.repositories import SQLAlchemyEstabelecimentoComercialRepository
 estabelecimento_comercial_repo_singleton = SQLAlchemyEstabelecimentoComercialRepository()
 estabelecimento_comercial_service_singleton = EstabelecimentoComercialService(repository=estabelecimento_comercial_repo_singleton)
 

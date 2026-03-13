@@ -1,6 +1,6 @@
-from app.modules.justice.bounded_contexts.infrastructure.adapters.assistencia_social_service_adapter import AssistenciaSocialServiceAdapter
-from app.modules.justice.bounded_contexts.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
-from app.modules.justice.bounded_contexts.infrastructure.adapters.emprego_service_adapter import EmpregoServiceAdapter
-from app.modules.justice.bounded_contexts.infrastructure.adapters.juventude_service_adapter import JuventudeServiceAdapter
-from app.modules.justice.bounded_contexts.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.assistencia_social_service_adapter import AssistenciaSocialServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.emprego_service_adapter import EmpregoServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.juventude_service_adapter import JuventudeServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
 __all__ = ['AssistenciaSocialServiceAdapter', 'EducacaoServiceAdapter', 'EmpregoServiceAdapter', 'JuventudeServiceAdapter', 'SaudeServiceAdapter']

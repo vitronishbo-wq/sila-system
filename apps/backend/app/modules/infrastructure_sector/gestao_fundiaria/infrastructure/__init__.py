@@ -1,2 +1,2 @@
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyImovelRepository, SQLAlchemyProprietarioRepository
 __all__ = ['SQLAlchemyImovelRepository', 'SQLAlchemyProprietarioRepository']

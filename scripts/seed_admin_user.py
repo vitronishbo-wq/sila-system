@@ -22,7 +22,7 @@ load_dotenv('/home/dev03wsl/sila-system/.env')
 
 # Try to import User model
 try:
-    from app.modules.identity.infrastructure.models.user_model import UserModel
+    from apps.backend.app.modules.identity.infrastructure.models.user_model import UserModel
     print("✅ Importado UserModel (identity)")
     USE_NEW_MODEL = True
 except ImportError:

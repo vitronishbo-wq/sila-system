@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends
-from app.modules.resources.florestas.api.deps import get_inventario_service
-from app.modules.resources.florestas.api.schemas.inventario_florestal_schema import InventarioFlorestalCreate, InventarioFlorestalResponse
-from app.modules.resources.florestas.application.services.inventario_service import InventarioService
+from apps.backend.app.modules.resources.florestas.api.deps import get_inventario_service
+from apps.backend.app.modules.resources.florestas.api.schemas.inventario_florestal_schema import InventarioFlorestalCreate, InventarioFlorestalResponse
+from apps.backend.app.modules.resources.florestas.application.services.inventario_service import InventarioService
 router = APIRouter(prefix='/inventarios', tags=['Florestas - Inventarios'])
 
 @router.post('/', response_model=InventarioFlorestalResponse, status_code=201)

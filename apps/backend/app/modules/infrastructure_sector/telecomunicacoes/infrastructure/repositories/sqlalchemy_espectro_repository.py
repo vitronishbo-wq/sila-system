@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import EspectroModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import EspectroModel
 
 class SQLAlchemyEspectroRepository(EspectroRepositoryPort):
 

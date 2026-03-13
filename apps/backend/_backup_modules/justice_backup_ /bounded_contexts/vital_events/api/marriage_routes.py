@@ -1,13 +1,13 @@
 import logging
 from fastapi import APIRouter, Depends, HTTPException
 from app.api.deps import get_current_user, get_db
-from app.modules.justice.bounded_contexts.application.services.marriage_service import MarriageService
+from apps.backend.app.modules.justice.bounded_contexts.application.services.marriage_service import MarriageService
 logger = logging.getLogger('sila.registo_civil.api')
 router = APIRouter(prefix='/marriage', tags=['Registo Civil - Eventos'])
 
 def get_marriage_service(db=Depends(get_db)):
-    from app.modules.justice.bounded_contexts.infrastructure.repositories.marriage_repository import MarriageRepository
-    from app.modules.justice.bounded_contexts.integrations.fuc_client import FUCClient
+    from apps.backend.app.modules.justice.bounded_contexts.infrastructure.repositories.marriage_repository import MarriageRepository
+    from apps.backend.app.modules.justice.bounded_contexts.integrations.fuc_client import FUCClient
     return MarriageService(MarriageRepository(db), FUCClient())
 
 @router.post('/')

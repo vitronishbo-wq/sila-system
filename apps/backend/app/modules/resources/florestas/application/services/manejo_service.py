@@ -1,9 +1,9 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
-from app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
-from app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
+from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
 
 class ManejoService:
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_sla_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.sla_schema import SLACreate, SLAResponse, SLAStatusUpdate
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_sla_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.sla_schema import SLACreate, SLAResponse, SLAStatusUpdate
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.sla_service import SLAService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA
 router = APIRouter(prefix='/slas', tags=['Telecomunicacoes - SLA'])
 
 @router.post('/', response_model=SLAResponse, status_code=status.HTTP_201_CREATED)

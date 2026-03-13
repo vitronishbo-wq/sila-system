@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.society.familia.domain.enums import MemberRole
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole
 
 class FamilyCompositionProjector:
 

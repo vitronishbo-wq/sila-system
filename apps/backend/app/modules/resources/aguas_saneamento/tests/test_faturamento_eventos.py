@@ -6,14 +6,14 @@ from unittest.mock import AsyncMock
 from uuid import uuid4
 from datetime import datetime, timezone
 import pytest
-from app.modules.resources.aguas_saneamento.application.bus import EventBus
-from app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry, serialize_event
-from app.modules.resources.aguas_saneamento.application.handlers.financas_integration_handler import FinancasIntegrationHandler
-from app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
-from app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento
-from app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import OutboxMessage
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyFaturaRepository
-from app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
+from apps.backend.app.modules.resources.aguas_saneamento.application.bus import EventBus
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.registry import AguasEventRegistry, serialize_event
+from apps.backend.app.modules.resources.aguas_saneamento.application.handlers.financas_integration_handler import FinancasIntegrationHandler
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import OutboxMessage
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyFaturaRepository
+from apps.backend.app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
 
 class _TestOutboxRepository:
 

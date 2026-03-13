@@ -2,8 +2,8 @@ from __future__ import annotations
 import asyncio
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira
+from apps.backend.app.modules.tourism.application.services.meio_hospedagem_service import MeioHospedagemService
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
 
 def test_cadastrar_pousada_sucesso() -> None:
     hotel_repo = AsyncMock()

@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusFaturaTelecom
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusFaturaTelecom
 
 class FaturaGerarInput(BaseModel):
     referencia: str = Field(min_length=4, max_length=20)

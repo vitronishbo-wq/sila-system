@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import TipoAlvara
 
 class FinancasServicePort(ABC):
 

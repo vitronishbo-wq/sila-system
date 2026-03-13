@@ -5,12 +5,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_estoque_service
-from app.modules.resources.agricultura.api.endpoints.estoques import router as estoques_router
-from app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
-from app.modules.resources.agricultura.application.services.insumo_service import InsumoService
-from app.modules.resources.agricultura.domain.enums import StatusEstoque, TipoInsumo
-from app.modules.resources.agricultura.exceptions import EstoqueNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_estoque_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.estoques import router as estoques_router
+from apps.backend.app.modules.resources.agricultura.application.services.estoque_service import EstoqueService
+from apps.backend.app.modules.resources.agricultura.application.services.insumo_service import InsumoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEstoque, TipoInsumo
+from apps.backend.app.modules.resources.agricultura.exceptions import EstoqueNotFoundError
 
 @pytest.mark.asyncio
 async def test_estoque_service_criar_e_listar_baixo():

@@ -3,7 +3,7 @@ from datetime import date
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pescas.domain.enums import StatusLicenca
+from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
 
 class LicencaPescaCreate(BaseModel):
     embarcacao_id: UUID

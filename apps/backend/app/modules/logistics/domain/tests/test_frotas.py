@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.logistics.api.deps import get_frota_service
-from app.modules.logistics.api.endpoints.frotas import router as frotas_router
-from app.modules.logistics.application.services import FrotaService
-from app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
-from app.modules.logistics.core.exceptions import FrotaNotFoundError
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyFrotaRepository
+from apps.backend.app.modules.logistics.api.deps import get_frota_service
+from apps.backend.app.modules.logistics.api.endpoints.frotas import router as frotas_router
+from apps.backend.app.modules.logistics.application.services import FrotaService
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
+from apps.backend.app.modules.logistics.core.exceptions import FrotaNotFoundError
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyFrotaRepository
 
 @pytest.mark.asyncio
 async def test_frota_service_fluxo_completo():

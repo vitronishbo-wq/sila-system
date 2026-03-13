@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.governance.statistics.application.ports.dashboard_repository_port import DashboardRepositoryPort
-from app.modules.governance.statistics.domain.models.dashboard import Dashboard
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.application.ports.dashboard_repository_port import DashboardRepositoryPort
+from apps.backend.app.modules.governance.statistics.domain.models.dashboard import Dashboard
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 
 class DashboardService:
 

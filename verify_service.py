@@ -6,8 +6,8 @@ import os
 # Set PYTHONPATH
 sys.path.append(os.path.join(os.getcwd(), "apps", "backend"))
 
-from app.modules.administracao_local.domain.entities import AdministradorLocal
-from app.modules.administracao_local.application.service import AdministracaoLocalService
+from apps.backend.app.modules.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.administracao_local.application.service import AdministracaoLocalService
 
 async def test_get_administrador_service():
     print("Running functional test...")

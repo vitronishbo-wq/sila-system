@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any
 import httpx
-from app.modules.governance.cooperacao_internacional.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class MREAdapter:
 

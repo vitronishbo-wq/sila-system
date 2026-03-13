@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.ports import LinhaTransmissaoRepositoryPort
-from app.modules.energy.domain.enums import StatusInfraEnergia
-from app.modules.energy.domain.models import LinhaTransmissao
-from app.modules.energy.core.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
+from apps.backend.app.modules.energy.application.ports import LinhaTransmissaoRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
+from apps.backend.app.modules.energy.domain.models import LinhaTransmissao
+from apps.backend.app.modules.energy.core.exceptions import InvalidLinhaTransmissaoStateError, LinhaTransmissaoNotFoundError
 
 class LinhaTransmissaoService:
 

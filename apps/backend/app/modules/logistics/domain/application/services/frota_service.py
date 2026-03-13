@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.logistics.application.ports import FinancasServicePort, FrotaRepositoryPort, SegurancaPublicaServicePort, ServiceRequestsServicePort, WorkflowServicePort
-from app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
-from app.modules.logistics.domain.models import FiscalizacaoTransporte, Frota, Manutencao, Tarifa
-from app.modules.logistics.core.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
+from apps.backend.app.modules.logistics.application.ports import FinancasServicePort, FrotaRepositoryPort, SegurancaPublicaServicePort, ServiceRequestsServicePort, WorkflowServicePort
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
+from apps.backend.app.modules.logistics.domain.models import FiscalizacaoTransporte, Frota, Manutencao, Tarifa
+from apps.backend.app.modules.logistics.core.exceptions import FrotaAlreadyExistsError, FrotaNotFoundError
 
 class FrotaService:
 

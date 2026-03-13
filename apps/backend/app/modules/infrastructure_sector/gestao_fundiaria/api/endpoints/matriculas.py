@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_matricula_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.matricula_schema import MatriculaCreate, MatriculaMotivoInput, MatriculaResponse, MatriculaTransferenciaInput
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, MatriculaImovelAlreadyExistsError, MatriculaImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_matricula_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.matricula_schema import MatriculaCreate, MatriculaMotivoInput, MatriculaResponse, MatriculaTransferenciaInput
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.matricula_imovel_service import MatriculaImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ImovelNotFoundError, MatriculaImovelAlreadyExistsError, MatriculaImovelNotFoundError
 router = APIRouter(prefix='/matriculas', tags=['Gestao Fundiaria - Matriculas'])
 
 def _ensure_justica_adapter(service: MatriculaImovelService) -> None:

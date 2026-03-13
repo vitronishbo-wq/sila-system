@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, status
-from app.modules.society.assistencia_social.api.deps import get_atendimento_service
-from app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
-from app.modules.society.assistencia_social.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoResponse
-from app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.society.assistencia_social.api.deps import get_atendimento_service
+from apps.backend.app.modules.society.assistencia_social.api.endpoints._errors import raise_http_for_value_error
+from apps.backend.app.modules.society.assistencia_social.api.schemas.atendimento_schema import AtendimentoCreate, AtendimentoResponse
+from apps.backend.app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
 router = APIRouter(prefix='/atendimentos', tags=['Assistencia Social - Atendimentos'])
 
 @router.post('/', response_model=AtendimentoResponse, status_code=status.HTTP_201_CREATED)

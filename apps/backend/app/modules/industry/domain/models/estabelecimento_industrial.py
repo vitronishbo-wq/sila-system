@@ -3,9 +3,9 @@ from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
-from app.modules.industry.domain.models.porte_industrial import Porte
-from app.modules.industry.domain.models.ramo_industrial import Ramo
+from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+from apps.backend.app.modules.industry.domain.models.porte_industrial import Porte
+from apps.backend.app.modules.industry.domain.models.ramo_industrial import Ramo
 
 @dataclass
 class EstabelecimentoIndustrial:

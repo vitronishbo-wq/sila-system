@@ -1,9 +1,9 @@
 from __future__ import annotations
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.educacao.application.ports import EscolaRepositoryPort
-from app.modules.educacao.domain.models import CicloEnsino, Escola, TipoEscola
-from app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort
+from apps.backend.app.modules.educacao.domain.models import CicloEnsino, Escola, TipoEscola
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
 
 class SQLAlchemyEscolaRepository(EscolaRepositoryPort):
 

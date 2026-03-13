@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from app.modules.justice.bounded_contexts.infrastructure.models.cemetery_inspection_record import CemeteryInspectionRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.cemetery_inspection_record import CemeteryInspectionRecord
 
 class CemeteryInspectionRepositoryPort(ABC):
     """Porta (Interface) para o Repositório de Inspeções de Cemitérios."""

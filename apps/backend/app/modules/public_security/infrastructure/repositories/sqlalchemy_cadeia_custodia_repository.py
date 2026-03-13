@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
-from app.modules.public_security.domain.enums import StatusCadeiaCustodia
-from app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
-from app.modules.public_security.infrastructure.models.cadeia_custodia_model import CadeiaCustodiaModel
+from apps.backend.app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
+from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
+from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
+from apps.backend.app.modules.public_security.infrastructure.models.cadeia_custodia_model import CadeiaCustodiaModel
 
 class SQLAlchemyCadeiaCustodiaRepository(CadeiaCustodiaRepositoryPort):
 

@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Literal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
 
 class ObraCreate(BaseModel):
     nome: str

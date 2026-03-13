@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
 
 class ProprietarioRepositoryPort(ABC):
 

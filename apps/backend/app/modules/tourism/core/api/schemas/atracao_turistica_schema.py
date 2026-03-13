@@ -2,7 +2,7 @@ from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.tourism.domain.enums import TipoAtracao
+from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
 
 class AtracaoTuristicaCreate(BaseModel):
     nome: str = Field(..., min_length=3)

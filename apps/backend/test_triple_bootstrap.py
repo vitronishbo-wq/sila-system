@@ -43,9 +43,9 @@ from app.core.intelligence.national_analytics.application.analytics_engine impor
 print('✅ Intelligence Layer: OPERATIONAL')
 
 print('🔍 Testing Identity + Database...')
-from app.modules.identity.bounded_contexts.iam.domain.entities.user import User
-from app.modules.identity.infrastructure.models.user_model import UserModel
-from app.modules.identity.infrastructure.repositories.user_repository import UserRepository
+from apps.backend.app.modules.identity.bounded_contexts.iam.domain.entities.user import User
+from apps.backend.app.modules.identity.infrastructure.models.user_model import UserModel
+from apps.backend.app.modules.identity.infrastructure.repositories.user_repository import UserRepository
 from app.core.database.session import AsyncSessionLocal, engine
 print('✅ Identity Persistence: OPERATIONAL')
 

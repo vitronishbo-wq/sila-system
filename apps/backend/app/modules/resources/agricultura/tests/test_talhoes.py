@@ -5,12 +5,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_talhao_service
-from app.modules.resources.agricultura.api.endpoints.talhoes import router as talhoes_router
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
-from app.modules.resources.agricultura.domain.enums import StatusTalhao, TipoPropriedade
-from app.modules.resources.agricultura.exceptions import TalhaoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_talhao_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.talhoes import router as talhoes_router
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.application.services.talhao_service import TalhaoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusTalhao, TipoPropriedade
+from apps.backend.app.modules.resources.agricultura.exceptions import TalhaoNotFoundError
 
 @pytest.mark.asyncio
 async def test_talhao_service_cadastrar_desativar_ativar():

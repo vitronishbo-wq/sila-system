@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.pecuaria.domain.enums import StatusRebanho, TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusRebanho, TipoAnimal
 
 class RebanhoCreate(BaseModel):
     propriedade_id: UUID

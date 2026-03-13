@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.governance.cooperacao_internacional.domain.enums import ModalidadeCooperacao, StatusProjeto, TipoProjeto
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import ModalidadeCooperacao, StatusProjeto, TipoProjeto
 
 class ProjetoCooperacaoCreate(BaseModel):
     titulo: str = Field(min_length=5, max_length=300)

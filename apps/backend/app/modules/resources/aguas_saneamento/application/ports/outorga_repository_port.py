@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
-from app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
 
 class OutorgaRepositoryPort(ABC):
 

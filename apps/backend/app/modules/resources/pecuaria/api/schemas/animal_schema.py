@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
+from apps.backend.app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
 
 class AnimalCreate(BaseModel):
     brinco: Optional[str] = Field(default=None, min_length=3, max_length=20)

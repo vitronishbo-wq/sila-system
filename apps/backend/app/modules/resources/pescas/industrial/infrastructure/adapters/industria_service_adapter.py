@@ -1,6 +1,6 @@
 from __future__ import annotations
 import inspect
-from app.modules.resources.pescas.industrial.application.ports.industria_service_port import IndustriaServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.industria_service_port import IndustriaServicePort
 
 class IndustriaServiceAdapter(IndustriaServicePort):
 

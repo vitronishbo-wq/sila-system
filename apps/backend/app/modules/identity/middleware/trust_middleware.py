@@ -11,7 +11,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
 from app.platform.observability.logger import get_sila_logger
-from ..domain.trust_score import TrustScore, RiskLevel
+from apps.backend.app.modules.identity.domain.trust_score import TrustScore, RiskLevel
 
 logger = get_sila_logger('trust-evaluation')
 

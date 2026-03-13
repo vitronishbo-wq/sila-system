@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusVoluntariado
-from app.modules.society.juventude.domain.models.voluntariado import Voluntariado
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusVoluntariado
+from apps.backend.app.modules.society.juventude.domain.models.voluntariado import Voluntariado
 
 class VoluntariadoService:
 

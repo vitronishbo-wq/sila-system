@@ -8,19 +8,19 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
-from app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
-from app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
-from app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, StatusInspecao, StatusLoteProducao, TipoProcessamento, TipoProdutoProcessado, TipoSeloInspecao
-from app.modules.resources.pescas.industrial.infrastructure.models.inspecao_model import InspecaoModel
-from app.modules.resources.pescas.industrial.infrastructure.models.lote_producao_model import LoteProducaoModel
-from app.modules.resources.pescas.industrial.infrastructure.models.produto_processado_model import ProdutoProcessadoModel
-from app.modules.resources.pescas.industrial.infrastructure.models.unidade_processamento_model import UnidadeProcessamentoModel
-from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_inspecao_repository import SQLAlchemyInspecaoRepository
-from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_lote_producao_repository import SQLAlchemyLoteProducaoRepository
-from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_produto_processado_repository import SQLAlchemyProdutoProcessadoRepository
-from app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_unidade_processamento_repository import SQLAlchemyUnidadeProcessamentoRepository
+from apps.backend.app.modules.resources.pescas.industrial.application.services.inspecao_industrial_service import InspecaoIndustrialService
+from apps.backend.app.modules.resources.pescas.industrial.application.services.lote_producao_service import LoteProducaoService
+from apps.backend.app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
+from apps.backend.app.modules.resources.pescas.industrial.application.services.unidade_processamento_service import UnidadeProcessamentoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, MercadoDestino, StatusInspecao, StatusLoteProducao, TipoProcessamento, TipoProdutoProcessado, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.inspecao_model import InspecaoModel
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.lote_producao_model import LoteProducaoModel
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.produto_processado_model import ProdutoProcessadoModel
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.models.unidade_processamento_model import UnidadeProcessamentoModel
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_inspecao_repository import SQLAlchemyInspecaoRepository
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_lote_producao_repository import SQLAlchemyLoteProducaoRepository
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_produto_processado_repository import SQLAlchemyProdutoProcessadoRepository
+from apps.backend.app.modules.resources.pescas.industrial.infrastructure.repositories.sqlalchemy_unidade_processamento_repository import SQLAlchemyUnidadeProcessamentoRepository
 _TABLES = [UnidadeProcessamentoModel.__table__, ProdutoProcessadoModel.__table__, LoteProducaoModel.__table__, InspecaoModel.__table__]
 
 class _FakePescasService:

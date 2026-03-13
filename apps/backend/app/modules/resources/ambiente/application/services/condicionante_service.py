@@ -1,8 +1,8 @@
 from __future__ import annotations
-from app.modules.resources.ambiente.application.ports import CondicionanteRepositoryPort, LicencaRepositoryPort
-from app.modules.resources.ambiente.domain.enums import StatusCondicionante, StatusLicenca
-from app.modules.resources.ambiente.domain.models.condicionante import Condicionante
-from app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.application.ports import CondicionanteRepositoryPort, LicencaRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante, StatusLicenca
+from apps.backend.app.modules.resources.ambiente.domain.models.condicionante import Condicionante
+from apps.backend.app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, LicencaNotFoundError
 
 class CondicionanteService:
 

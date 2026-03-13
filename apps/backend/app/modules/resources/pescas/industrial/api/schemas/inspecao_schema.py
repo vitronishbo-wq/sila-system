@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
 
 class InspecaoCreate(BaseModel):
     unidade_processamento_id: UUID

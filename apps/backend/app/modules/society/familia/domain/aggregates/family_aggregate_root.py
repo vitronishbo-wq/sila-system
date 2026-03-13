@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import datetime, timezone
 from uuid import UUID, uuid4
-from app.modules.society.familia.domain.entities import FamilyMember
-from app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
-from app.modules.society.familia.domain.events import FamilyCreatedEvent, FamilyDissolvedEvent, FamilyHeadTransferredEvent, FamilyMemberAddedEvent, FamilyMemberRemovedEvent
-from app.modules.society.familia.domain.rules.head_must_be_adult_rule import HeadMustBeAdultRule
+from apps.backend.app.modules.society.familia.domain.entities import FamilyMember
+from apps.backend.app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
+from apps.backend.app.modules.society.familia.domain.events import FamilyCreatedEvent, FamilyDissolvedEvent, FamilyHeadTransferredEvent, FamilyMemberAddedEvent, FamilyMemberRemovedEvent
+from apps.backend.app.modules.society.familia.domain.rules.head_must_be_adult_rule import HeadMustBeAdultRule
 
 def _utcnow() -> datetime:
     return datetime.now(timezone.utc)

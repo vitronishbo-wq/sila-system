@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.society.assistencia_social.domain.enums import ResultadoVisita
+from apps.backend.app.modules.society.assistencia_social.domain.enums import ResultadoVisita
 
 class VisitaDomiciliarCreate(BaseModel):
     beneficiario_id: UUID

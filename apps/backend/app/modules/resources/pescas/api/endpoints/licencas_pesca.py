@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.api.deps import get_licenciamento_pesca_service
-from app.modules.resources.pescas.api.schemas.licenca_pesca_schema import LicencaPescaCreate, LicencaPescaResponse
-from app.modules.resources.pescas.application.services.licenciamento_pesca_service import LicenciamentoPescaService
+from apps.backend.app.modules.resources.pescas.api.deps import get_licenciamento_pesca_service
+from apps.backend.app.modules.resources.pescas.api.schemas.licenca_pesca_schema import LicencaPescaCreate, LicencaPescaResponse
+from apps.backend.app.modules.resources.pescas.application.services.licenciamento_pesca_service import LicenciamentoPescaService
 router = APIRouter(prefix='/licencas-pesca', tags=['Pescas - Licencas'])
 
 @router.post('/', response_model=LicencaPescaResponse, status_code=status.HTTP_201_CREATED)

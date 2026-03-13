@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import CriancaRiscoRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
-from app.modules.society.assistencia_social.domain.models import CriancaRisco
-from app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import CriancaRiscoModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import CriancaRiscoRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
+from apps.backend.app.modules.society.assistencia_social.domain.models import CriancaRisco
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import CriancaRiscoModel
 
 class SQLAlchemyCriancaRiscoRepository(CriancaRiscoRepositoryPort):
 

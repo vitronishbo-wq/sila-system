@@ -3,12 +3,12 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade, TipoOperadora, TipoPlano, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService, InMemoryAssinanteRepository, InMemoryIndicadorQualidadeRepository, InMemoryOperadoraRepository, InMemoryQualidadeServicoRepository, InMemorySLARepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.assinante_service import AssinanteService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.indicador_qualidade_service import IndicadorQualidadeService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.qualidade_servico_service import QualidadeServicoService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade, TipoOperadora, TipoPlano, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import FakeCitizenService, InMemoryAssinanteRepository, InMemoryIndicadorQualidadeRepository, InMemoryOperadoraRepository, InMemoryQualidadeServicoRepository, InMemorySLARepository
 
 def test_gerar_indicador_qualidade_sucesso() -> None:
 

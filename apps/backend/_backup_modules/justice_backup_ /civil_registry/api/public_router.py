@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.api.deps import get_current_user, get_current_citizen_user, get_db
 from app.core.bridges.civil_identity_bridge import CitizenService
-from app.modules.justice.bounded_contexts.events.models import CitizenEventModel
+from apps.backend.app.modules.justice.bounded_contexts.events.models import CitizenEventModel
 from app.core.bridges.identity_bridge import CitizenFUC
 from pydantic import BaseModel
 router = APIRouter(prefix='/citizen', tags=['Citizen Public API'])

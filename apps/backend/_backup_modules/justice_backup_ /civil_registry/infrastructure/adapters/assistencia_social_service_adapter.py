@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.justice.bounded_contexts.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
+from apps.backend.app.modules.justice.bounded_contexts.application.ports.assistencia_social_service_port import AssistenciaSocialServicePort
 
 class AssistenciaSocialServiceAdapter(AssistenciaSocialServicePort):
 

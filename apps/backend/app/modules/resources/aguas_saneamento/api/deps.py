@@ -1,16 +1,16 @@
 from __future__ import annotations
-from app.modules.resources.aguas_saneamento.application.bus import event_bus
-from app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
-from app.modules.resources.aguas_saneamento.application.handlers.financas_integration_handler import FinancasIntegrationHandler
-from app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
-from app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
-from app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
-from app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
-from app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyAbastecimentoRepository, SQLAlchemyConsumoRepository, SQLAlchemyFaturaRepository, SQLAlchemyInfraestruturaRepository, SQLAlchemyOutorgaRepository
-from app.modules.resources.aguas_saneamento.infrastructure.adapters.financas_gateway import FinancasGateway
-from app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import SQLAlchemyOutboxRepository
-from app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
+from apps.backend.app.modules.resources.aguas_saneamento.application.bus import event_bus
+from apps.backend.app.modules.resources.aguas_saneamento.application.events.fatura_events import FaturaEmitidaEvent, FaturaPagamentoRegistradoEvent
+from apps.backend.app.modules.resources.aguas_saneamento.application.handlers.financas_integration_handler import FinancasIntegrationHandler
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.faturamento_service import FaturamentoService
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.outorga_service import OutorgaService
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyAbastecimentoRepository, SQLAlchemyConsumoRepository, SQLAlchemyFaturaRepository, SQLAlchemyInfraestruturaRepository, SQLAlchemyOutorgaRepository
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.adapters.financas_gateway import FinancasGateway
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.persistence.outbox import SQLAlchemyOutboxRepository
+from apps.backend.app.modules.resources.aguas_saneamento.workers.outbox_worker import OutboxWorker
 outorga_repo_singleton = SQLAlchemyOutorgaRepository()
 outorga_service_singleton = OutorgaService(outorga_repo=outorga_repo_singleton)
 infraestrutura_repo_singleton = SQLAlchemyInfraestruturaRepository()

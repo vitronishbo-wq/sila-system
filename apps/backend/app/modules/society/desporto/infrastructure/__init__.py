@@ -1,3 +1,3 @@
-from app.modules.society.desporto.infrastructure.models import AtletaModel, ClubeModel, CompeticaoModel, EstadioModel, JogoModel
-from app.modules.society.desporto.infrastructure.repositories import SQLAlchemyAtletaRepository, SQLAlchemyClubeRepository, SQLAlchemyCompeticaoRepository, SQLAlchemyEstadioRepository, SQLAlchemyJogoRepository
+from apps.backend.app.modules.society.desporto.infrastructure.models import AtletaModel, ClubeModel, CompeticaoModel, EstadioModel, JogoModel
+from apps.backend.app.modules.society.desporto.infrastructure.repositories import SQLAlchemyAtletaRepository, SQLAlchemyClubeRepository, SQLAlchemyCompeticaoRepository, SQLAlchemyEstadioRepository, SQLAlchemyJogoRepository
 __all__ = ['AtletaModel', 'ClubeModel', 'CompeticaoModel', 'JogoModel', 'EstadioModel', 'SQLAlchemyAtletaRepository', 'SQLAlchemyClubeRepository', 'SQLAlchemyCompeticaoRepository', 'SQLAlchemyJogoRepository', 'SQLAlchemyEstadioRepository']

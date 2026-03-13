@@ -1,2 +1,2 @@
-from app.modules.resources.ambiente.domain import enums
+from apps.backend.app.modules.resources.ambiente.domain import enums
 __all__ = ['enums']

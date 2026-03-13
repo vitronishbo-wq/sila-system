@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.ambiente.domain.enums import StatusCondicionante
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante
 
 class CondicionanteCreate(BaseModel):
     numero_licenca: str

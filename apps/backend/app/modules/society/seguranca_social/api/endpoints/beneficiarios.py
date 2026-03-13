@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.seguranca_social.api.deps import get_beneficiario_service
-from app.modules.society.seguranca_social.api.schemas.beneficiario_schema import BeneficiarioCreate, BeneficiarioFilter, BeneficiarioResponse
-from app.modules.society.seguranca_social.application.services import BeneficiarioService
-from app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, BeneficiarioNotFoundError, CandidatoEmpregoRequiredError, CitizenNotFoundError
+from apps.backend.app.modules.society.seguranca_social.api.deps import get_beneficiario_service
+from apps.backend.app.modules.society.seguranca_social.api.schemas.beneficiario_schema import BeneficiarioCreate, BeneficiarioFilter, BeneficiarioResponse
+from apps.backend.app.modules.society.seguranca_social.application.services import BeneficiarioService
+from apps.backend.app.modules.society.seguranca_social.exceptions import BeneficiarioAlreadyExistsError, BeneficiarioNotFoundError, CandidatoEmpregoRequiredError, CitizenNotFoundError
 router = APIRouter(prefix='/beneficiarios', tags=['Seguranca Social - Beneficiarios'])
 
 @router.post('/', response_model=BeneficiarioResponse, status_code=status.HTTP_201_CREATED)

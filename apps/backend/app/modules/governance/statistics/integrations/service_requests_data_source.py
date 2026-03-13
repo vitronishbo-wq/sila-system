@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date, datetime
 from sqlalchemy import func, select
-from app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
-from app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
+from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class ServiceRequestsDataSource(BaseDataSource):
     """Metricas do modulo Service Requests via ORM."""

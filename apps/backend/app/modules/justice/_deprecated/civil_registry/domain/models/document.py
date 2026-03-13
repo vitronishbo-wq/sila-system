@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 try:
-    from app.modules.justice.bounded_contexts.infrastructure.models.document import Document as _Document
+    from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.document import Document as _Document
     Document = _Document
 except Exception:
     @dataclass

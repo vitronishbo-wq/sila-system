@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outbox_repository_port import OutboxRepositoryPort
 
 class BaseOutboxRepository:
     """Commit atomico simplificado para repositorios in-memory/async."""

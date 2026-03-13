@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_estagio_juvenil_service
-from app.modules.society.juventude.api.schemas.estagio_juvenil_schema import EstagioJuvenilCreate, EstagioJuvenilResponse, EstagioJuvenilStatusUpdate
-from app.modules.society.juventude.application.services.estagio_juvenil_service import EstagioJuvenilService
-from app.modules.society.juventude.domain.enums import StatusEstagio
+from apps.backend.app.modules.society.juventude.api.deps import get_estagio_juvenil_service
+from apps.backend.app.modules.society.juventude.api.schemas.estagio_juvenil_schema import EstagioJuvenilCreate, EstagioJuvenilResponse, EstagioJuvenilStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.estagio_juvenil_service import EstagioJuvenilService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusEstagio
 router = APIRouter(prefix='/estagios', tags=['Juventude - Estagios'])
 
 @router.post('/', response_model=EstagioJuvenilResponse, status_code=status.HTTP_201_CREATED)

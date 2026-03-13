@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
 
 class AcordoRepositoryPort(ABC):
 

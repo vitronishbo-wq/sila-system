@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.logistics.application.ports import ViagemRepositoryPort
-from app.modules.logistics.domain.enums import StatusViagem
-from app.modules.logistics.domain.models import Viagem
-from app.modules.logistics.core.exceptions import InvalidViagemStateError, ViagemConflictError, ViagemNotFoundError
+from apps.backend.app.modules.logistics.application.ports import ViagemRepositoryPort
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.domain.models import Viagem
+from apps.backend.app.modules.logistics.core.exceptions import InvalidViagemStateError, ViagemConflictError, ViagemNotFoundError
 
 class ViagemService:
 

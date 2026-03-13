@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from app.core.db import AsyncSessionLocal
-from app.modules.society.familia.application.events.bus import event_bus as familia_event_bus
-from app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
-from app.modules.society.familia.infrastructure.repositories.outbox_repository import OutboxRepository
-from app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import SQLAlchemyFamilyAggregateRepository
+from apps.backend.app.modules.society.familia.application.events.bus import event_bus as familia_event_bus
+from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
+from apps.backend.app.modules.society.familia.infrastructure.repositories.outbox_repository import OutboxRepository
+from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import SQLAlchemyFamilyAggregateRepository
 
 def _extract_payload(event: object) -> dict:
     if isinstance(event, dict):

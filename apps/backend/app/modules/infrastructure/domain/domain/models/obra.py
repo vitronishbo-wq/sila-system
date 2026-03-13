@@ -3,11 +3,11 @@ from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
-from app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
-from app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
-from app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
-from app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+from apps.backend.app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
+from apps.backend.app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
+from apps.backend.app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
+from apps.backend.app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
 
 @dataclass
 class Obra:

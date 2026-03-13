@@ -1,12 +1,12 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.desporto.application.events import JogoAgendadoEvent
-from app.modules.society.desporto.tests._fakes import FakeEventBus, InMemoryOutboxRepository
-from app.modules.society.desporto.workers.estatistica_worker import EstatisticaWorker
-from app.modules.society.desporto.workers.notificacao_worker import NotificacaoWorker
-from app.modules.society.desporto.workers.outbox_worker import OutboxWorker
-from app.modules.society.desporto.workers.ranking_worker import RankingWorker
+from apps.backend.app.modules.society.desporto.application.events import JogoAgendadoEvent
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEventBus, InMemoryOutboxRepository
+from apps.backend.app.modules.society.desporto.workers.estatistica_worker import EstatisticaWorker
+from apps.backend.app.modules.society.desporto.workers.notificacao_worker import NotificacaoWorker
+from apps.backend.app.modules.society.desporto.workers.outbox_worker import OutboxWorker
+from apps.backend.app.modules.society.desporto.workers.ranking_worker import RankingWorker
 
 def test_outbox_worker_processa_lote() -> None:
 

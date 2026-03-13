@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
-from app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
-from app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
-from app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
 
 class InspecaoIndustrialService:
 

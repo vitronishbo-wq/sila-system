@@ -6,10 +6,10 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_certificacao_service
-from app.modules.society.emprego.api.endpoints.certificacoes import router as certificacoes_router
-from app.modules.society.emprego.application.services.certificacao_service import CertificacaoService
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.api.deps import get_certificacao_service
+from apps.backend.app.modules.society.emprego.api.endpoints.certificacoes import router as certificacoes_router
+from apps.backend.app.modules.society.emprego.application.services.certificacao_service import CertificacaoService
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 @pytest.mark.asyncio
 async def test_listar_certificacoes_por_cidadao():

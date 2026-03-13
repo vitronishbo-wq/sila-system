@@ -4,8 +4,8 @@ from datetime import date, timedelta
 from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.governance.cooperacao_internacional.api.deps import reset_state_for_tests
-from app.modules.governance.cooperacao_internacional.api.router import router
+from apps.backend.app.modules.governance.cooperacao_internacional.api.deps import reset_state_for_tests
+from apps.backend.app.modules.governance.cooperacao_internacional.api.router import router
 app = FastAPI()
 app.include_router(router, prefix='/v1')
 client = TestClient(app)

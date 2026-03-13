@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.juventude.api.deps import get_intercambio_juvenil_service
-from app.modules.society.juventude.api.schemas.intercambio_juvenil_schema import IntercambioJuvenilCreate, IntercambioJuvenilResponse, IntercambioJuvenilStatusUpdate
-from app.modules.society.juventude.application.services.intercambio_juvenil_service import IntercambioJuvenilService
-from app.modules.society.juventude.domain.enums import StatusIntercambio
+from apps.backend.app.modules.society.juventude.api.deps import get_intercambio_juvenil_service
+from apps.backend.app.modules.society.juventude.api.schemas.intercambio_juvenil_schema import IntercambioJuvenilCreate, IntercambioJuvenilResponse, IntercambioJuvenilStatusUpdate
+from apps.backend.app.modules.society.juventude.application.services.intercambio_juvenil_service import IntercambioJuvenilService
+from apps.backend.app.modules.society.juventude.domain.enums import StatusIntercambio
 router = APIRouter(prefix='/intercambios', tags=['Juventude - Intercambios'])
 
 @router.post('/', response_model=IntercambioJuvenilResponse, status_code=status.HTTP_201_CREATED)

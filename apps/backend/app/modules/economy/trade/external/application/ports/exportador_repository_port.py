@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from app.modules.economy.trade.external.domain.models import Exportador
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.domain.models import Exportador
 
 class ExportadorRepositoryPort(ABC):
 

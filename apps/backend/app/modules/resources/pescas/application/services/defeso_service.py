@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
-from app.modules.resources.pescas.domain.models.defeso import Defeso
+from apps.backend.app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
+from apps.backend.app.modules.resources.pescas.domain.models.defeso import Defeso
 
 class DefesoService:
 

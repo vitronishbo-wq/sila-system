@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from types import SimpleNamespace
 from uuid import uuid4
-from app.modules.operations.domain.enums import OrderStatus, PaymentStatus
-from app.modules.operations.domain.state_machine import assert_order_transition
+from apps.backend.app.modules.operations.domain.enums import OrderStatus, PaymentStatus
+from apps.backend.app.modules.operations.domain.state_machine import assert_order_transition
 
 class OperationsService:
     """Compatibility service focused on legacy test coverage."""

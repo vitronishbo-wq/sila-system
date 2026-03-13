@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Optional
 from uuid import UUID
 from app.core.bridges import CitizenRepository
-from app.modules.society.emprego.application.ports import CitizenServicePort
+from apps.backend.app.modules.society.emprego.application.ports import CitizenServicePort
 
 class CitizenServiceAdapter(CitizenServicePort):
 

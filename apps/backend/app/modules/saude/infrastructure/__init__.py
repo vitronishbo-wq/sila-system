@@ -1,6 +1,6 @@
 """Saude infrastructure package."""
 
-from app.modules.saude.infrastructure.models import (
+from apps.backend.app.modules.saude.infrastructure.models import (
     AppointmentModel,
     HealthUnitModel,
     InternamentoModel,

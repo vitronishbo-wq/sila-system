@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.pescas.industrial.api.deps import get_produto_processado_service
-from app.modules.resources.pescas.industrial.api.schemas.produto_processado_schema import ProdutoProcessadoCreate, ProdutoProcessadoResponse, ProdutoProcessadoUpdate
-from app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
-from app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, TipoProdutoProcessado
+from apps.backend.app.modules.resources.pescas.industrial.api.deps import get_produto_processado_service
+from apps.backend.app.modules.resources.pescas.industrial.api.schemas.produto_processado_schema import ProdutoProcessadoCreate, ProdutoProcessadoResponse, ProdutoProcessadoUpdate
+from apps.backend.app.modules.resources.pescas.industrial.application.services.produto_processado_service import ProdutoProcessadoService
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, TipoProdutoProcessado
 router = APIRouter(prefix='/produtos-processados', tags=['Pescas Industriais - Produtos Processados'])
 
 @router.post('/', response_model=ProdutoProcessadoResponse, status_code=status.HTTP_201_CREATED)

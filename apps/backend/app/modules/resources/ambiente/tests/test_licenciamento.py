@@ -7,13 +7,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.ambiente.api.deps import get_licenciamento_service
-from app.modules.resources.ambiente.api.endpoints.licencas import router as licencas_router
-from app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
-from app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
-from app.modules.resources.ambiente.domain.enums import Bioma, StatusLicenca, TipoImovel, TipoLicenca
-from app.modules.resources.ambiente.exceptions import LicencaNotFoundError
-from app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
+from apps.backend.app.modules.resources.ambiente.api.deps import get_licenciamento_service
+from apps.backend.app.modules.resources.ambiente.api.endpoints.licencas import router as licencas_router
+from apps.backend.app.modules.resources.ambiente.application.services.cadastro_service import CadastroService
+from apps.backend.app.modules.resources.ambiente.application.services.licenciamento_service import LicenciamentoService
+from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusLicenca, TipoImovel, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.exceptions import LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories import SQLAlchemyCARRepository, SQLAlchemyImovelRepository, SQLAlchemyLicencaRepository, SQLAlchemyProprietarioRepository
 
 @pytest.mark.asyncio
 async def test_licenciamento_service_fluxo_requerer_deferir():

@@ -2,7 +2,7 @@ from __future__ import annotations
 import os
 from typing import Any, Mapping
 import httpx
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.resilience.circuit_breaker import CircuitBreaker
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.resilience.circuit_breaker import CircuitBreaker
 
 class AnatelAdapter:
     """Gateway para integracao regulatoria com a Anatel."""

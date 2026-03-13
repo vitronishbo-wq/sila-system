@@ -1,4 +1,4 @@
-from app.modules.society.emprego.api.deps import get_trabalho_service
-from app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
-from app.modules.society.emprego.api.schemas.trabalhista_schema import TrabalhistaAction, TrabalhistaCancel, TrabalhistaCreate, TrabalhistaResponse
+from apps.backend.app.modules.society.emprego.api.deps import get_trabalho_service
+from apps.backend.app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
+from apps.backend.app.modules.society.emprego.api.schemas.trabalhista_schema import TrabalhistaAction, TrabalhistaCancel, TrabalhistaCreate, TrabalhistaResponse
 router = build_workflow_router(tag='Emprego - Trabalhistas', get_service=get_trabalho_service, create_schema=TrabalhistaCreate, action_schema=TrabalhistaAction, cancel_schema=TrabalhistaCancel, response_schema=TrabalhistaResponse, routes=[('/trabalho/declaracoes-desemprego', 'declaracao_desemprego'), ('/trabalho/reclamacoes', 'reclamacao_trabalhista'), ('/trabalho/mediacoes', 'mediacao_conflito'), ('/trabalho/fiscalizacoes', 'fiscalizacao_trabalho'), ('/trabalho/contratos', 'registro_contrato')])

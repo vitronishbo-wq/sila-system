@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.application.ports.turismo_service_port import TurismoServicePort
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
-from app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
+from apps.backend.app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.application.ports.turismo_service_port import TurismoServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
 
 class PatrimonioImaterialService:
 

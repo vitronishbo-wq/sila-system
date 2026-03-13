@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
 
 class OperadoraRepositoryPort(ABC):
 

@@ -3,14 +3,14 @@ from datetime import datetime, timezone
 from uuid import UUID, uuid4
 from fastapi import HTTPException, status
 from app.core.events import EventBusPort
-from app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.familia.application.ports.civil_registry_service_port import CivilRegistryServicePort
-from app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
-from app.modules.society.familia.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
-from app.modules.society.familia.domain.enums import MemberRole
-from app.modules.society.familia.domain.rules.one_active_family_rule import OneActiveFamilyRule
-from app.modules.society.familia.domain.value_objects.family_code import FamilyCode
+from apps.backend.app.modules.society.familia.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.familia.application.ports.civil_registry_service_port import CivilRegistryServicePort
+from apps.backend.app.modules.society.familia.application.ports.family_aggregate_repository_port import FamilyAggregateRepositoryPort
+from apps.backend.app.modules.society.familia.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
+from apps.backend.app.modules.society.familia.domain.enums import MemberRole
+from apps.backend.app.modules.society.familia.domain.rules.one_active_family_rule import OneActiveFamilyRule
+from apps.backend.app.modules.society.familia.domain.value_objects.family_code import FamilyCode
 
 class FamilyAggregateService:
 

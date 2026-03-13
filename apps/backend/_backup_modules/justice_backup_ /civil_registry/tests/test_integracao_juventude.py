@@ -3,8 +3,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.justice.bounded_contexts.infrastructure.adapters.juventude_service_adapter import JuventudeServiceAdapter
-from app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.juventude_service_adapter import JuventudeServiceAdapter
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
 
 @pytest.mark.asyncio
 async def test_adapter_juventude_retorna_perfil_e_risco() -> None:

@@ -2,11 +2,11 @@ from __future__ import annotations
 import logging
 from datetime import date
 from uuid import UUID
-from app.modules.economy.trade.services.application.ports import EstabelecimentoComercialRepositoryPort
-from app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
-from app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
-from app.modules.economy.trade.services.domain.shared import get_porte, get_ramo
-from app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError, InvalidEstabelecimentoComercialStateError
+from apps.backend.app.modules.economy.trade.services.application.ports import EstabelecimentoComercialRepositoryPort
+from apps.backend.app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
+from apps.backend.app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
+from apps.backend.app.modules.economy.trade.services.domain.shared import get_porte, get_ramo
+from apps.backend.app.modules.economy.trade.services.exceptions import EstabelecimentoComercialAlreadyExistsError, EstabelecimentoComercialNotFoundError, InvalidEstabelecimentoComercialStateError
 logger = logging.getLogger(__name__)
 
 class EstabelecimentoComercialService:

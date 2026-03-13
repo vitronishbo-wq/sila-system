@@ -1,10 +1,10 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import EmpreendedorismoJuvenilRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
-from app.modules.society.juventude.domain.models.empreendedorismo_juvenil import EmpreendedorismoJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import EmpreendedorismoJuvenilRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
+from apps.backend.app.modules.society.juventude.domain.models.empreendedorismo_juvenil import EmpreendedorismoJuvenil
 
 class EmpreendedorismoJuvenilService:
 

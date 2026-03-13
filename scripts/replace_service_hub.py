@@ -118,9 +118,9 @@ ROUTER_CONTENT = """\
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from modules.database import get_db
-from modules.service_hub.crud import get_service_crud
-from modules.service_hub.schemas.service_hub_crud import ServiceCreate, ServiceUpdate
+from apps.backend.app.modules.database import get_db
+from apps.backend.app.modules.service_hub.crud import get_service_crud
+from apps.backend.app.modules.service_hub.schemas.service_hub_crud import ServiceCreate, ServiceUpdate
 
 router = APIRouter(prefix="/service_hub", tags=["Service Hub"])
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
-from app.modules.society.cultura.domain.models.edital import Edital
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
 
 class EditalRepositoryPort:
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.agricultura.domain.models.propriedade_rural import PropriedadeRural
-from app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.domain.models.propriedade_rural import PropriedadeRural
+from apps.backend.app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
 
 class PropriedadeService:
 

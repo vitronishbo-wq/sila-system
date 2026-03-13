@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
-from app.modules.society.juventude.domain.models.jovem import Jovem
+from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.society.juventude.domain.models.jovem import Jovem
 
 class JovemService:
 

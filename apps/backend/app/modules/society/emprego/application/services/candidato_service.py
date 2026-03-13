@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from typing import Optional
 from uuid import UUID
-from app.modules.society.emprego.application.ports import CandidatoRepositoryPort, CitizenServicePort, RequestServicePort
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
-from app.modules.society.emprego.domain.models.candidato import Candidato
-from app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CandidatoNotFoundError, CitizenNotFoundError
+from apps.backend.app.modules.society.emprego.application.ports import CandidatoRepositoryPort, CitizenServicePort, RequestServicePort
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
+from apps.backend.app.modules.society.emprego.exceptions import CandidatoAlreadyExistsError, CandidatoNotFoundError, CitizenNotFoundError
 
 class CandidatoService:
 

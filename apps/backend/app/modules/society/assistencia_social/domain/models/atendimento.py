@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID, uuid4
-from app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento, TipoAtendimento
+from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento, TipoAtendimento
 
 @dataclass
 class Atendimento:

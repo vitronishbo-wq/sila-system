@@ -1,11 +1,11 @@
 from __future__ import annotations
 from datetime import date
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.intelligence.bi.api.deps import get_dashboard_service, get_kpi_service, require_permission
-from app.modules.intelligence.bi.api.schemas.dashboard_schema import DashboardDomainDataResponse, DashboardExecutiveResponse
-from app.modules.intelligence.bi.api.schemas.kpi_schema import KPIConsolidatedResponse, KPIDomainResponse
-from app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
-from app.modules.intelligence.bi.application.services.kpi_service import KPIService
+from apps.backend.app.modules.intelligence.bi.api.deps import get_dashboard_service, get_kpi_service, require_permission
+from apps.backend.app.modules.intelligence.bi.api.schemas.dashboard_schema import DashboardDomainDataResponse, DashboardExecutiveResponse
+from apps.backend.app.modules.intelligence.bi.api.schemas.kpi_schema import KPIConsolidatedResponse, KPIDomainResponse
+from apps.backend.app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
+from apps.backend.app.modules.intelligence.bi.application.services.kpi_service import KPIService
 router = APIRouter(prefix='/bi', tags=['bi'])
 
 def _parse_domains(domains: str | None) -> list[str] | None:

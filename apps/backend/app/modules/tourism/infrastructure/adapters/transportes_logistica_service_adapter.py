@@ -1,6 +1,6 @@
 from __future__ import annotations
 import inspect
-from app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort
+from apps.backend.app.modules.tourism.application.ports.transportes_logistica_service_port import TransportesLogisticaServicePort
 
 class TransportesLogisticaServiceAdapter(TransportesLogisticaServicePort):
 

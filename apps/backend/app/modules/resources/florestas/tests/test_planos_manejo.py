@@ -3,9 +3,9 @@ from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
 import pytest
-from app.modules.resources.florestas.application.services.plano_manejo_service import PlanoManejoService
-from app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
-from app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
+from apps.backend.app.modules.resources.florestas.application.services.plano_manejo_service import PlanoManejoService
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
 
 class _PlanoRepo:
 

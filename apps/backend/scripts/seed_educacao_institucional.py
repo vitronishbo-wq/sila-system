@@ -25,15 +25,15 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 from app.core.db import AsyncSessionLocal
-from app.modules.educacao.infrastructure.models import (
+from apps.backend.app.modules.educacao.infrastructure.models import (
     AnoLetivoModel,
     EscolaModel,
     TurmaModel,
 )
-from app.modules.governance.service_requests.infrastructure.models.attachment_model import (  # noqa: F401
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import (  # noqa: F401
     AttachmentModel,
 )
-from app.modules.governance.service_requests.infrastructure.models.request_event_model import (  # noqa: F401
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import (  # noqa: F401
     RequestEventModel,
 )
 

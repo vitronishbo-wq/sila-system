@@ -1,2 +1,2 @@
-from app.modules.operations.application.services.operations_service import OperationsService
+from apps.backend.app.modules.operations.application.services.operations_service import OperationsService
 __all__ = ['OperationsService']

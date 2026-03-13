@@ -4,10 +4,10 @@ from datetime import date, timedelta
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.educacao.application.matricula_service import MatriculaService
-from app.modules.educacao.domain.models import CicloEnsino, Turma, Turno
-from app.modules.educacao.domain.models.matricula import StatusMatricula
-from app.modules.educacao.exceptions import IdadeMinimaNaoAtendidaError, TurmaSemVagasError
+from apps.backend.app.modules.educacao.application.matricula_service import MatriculaService
+from apps.backend.app.modules.educacao.domain.models import CicloEnsino, Turma, Turno
+from apps.backend.app.modules.educacao.domain.models.matricula import StatusMatricula
+from apps.backend.app.modules.educacao.exceptions import IdadeMinimaNaoAtendidaError, TurmaSemVagasError
 
 def _build_service(*, turma: Turma, citizen_birth_date: date, ocupacao: int) -> MatriculaService:
     matricula_repo = SimpleNamespace(exists_active_for_citizen=AsyncMock(return_value=False), next_numero_processo=AsyncMock(return_value='2026/0012/0001'), save=AsyncMock(side_effect=lambda matricula: matricula))

@@ -4,10 +4,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, RegimePropriedade, SituacaoDominial, TipoImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.imovel_model import ImovelModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.imovel import Imovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, RegimePropriedade, SituacaoDominial, TipoImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.imovel_model import ImovelModel
 
 class SQLAlchemyImovelRepository(ImovelRepositoryPort):
     """Repository com suporte a ORM real (AsyncSession) e fallback in-memory."""

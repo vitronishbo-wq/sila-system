@@ -1,13 +1,13 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.industrial.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.resources.pescas.industrial.application.ports.industria_service_port import IndustriaServicePort
-from app.modules.resources.pescas.industrial.application.ports.pescas_service_port import PescasServicePort
-from app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
-from app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
-from app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
-from app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.industria_service_port import IndustriaServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.pescas_service_port import PescasServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
 
 class UnidadeProcessamentoService:
 

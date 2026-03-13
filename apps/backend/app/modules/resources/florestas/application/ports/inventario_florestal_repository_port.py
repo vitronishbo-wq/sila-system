@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
 
 class InventarioFlorestalRepositoryPort(ABC):
 

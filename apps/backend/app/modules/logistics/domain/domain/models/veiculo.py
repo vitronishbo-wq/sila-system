@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Any
 from uuid import UUID, uuid4
-from app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
+from apps.backend.app.modules.logistics.domain.enums import StatusVeiculoOperacional, TipoVeiculo
 
 @dataclass
 class Veiculo:

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort
-from app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
-from app.modules.industry.domain.models import EstabelecimentoIndustrial
-from app.modules.industry.infrastructure.models import EstabelecimentoIndustrialModel
+from apps.backend.app.modules.industry.application.ports import EstabelecimentoIndustrialRepositoryPort
+from apps.backend.app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
+from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
+from apps.backend.app.modules.industry.infrastructure.models import EstabelecimentoIndustrialModel
 
 class SQLAlchemyEstabelecimentoIndustrialRepository(EstabelecimentoIndustrialRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

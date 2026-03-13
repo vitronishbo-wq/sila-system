@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import MatriculaImovelRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.matricula_imovel_model import MatriculaImovelModel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import MatriculaImovelRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.matricula_imovel import MatriculaImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.models.matricula_imovel_model import MatriculaImovelModel
 
 class SQLAlchemyMatriculaImovelRepository(MatriculaImovelRepositoryPort):
 

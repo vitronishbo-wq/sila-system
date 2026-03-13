@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.public_security.api.deps import get_evidencia_service
-from app.modules.public_security.api.schemas.evidencia_schema import EvidenciaCreate, EvidenciaResponse, EvidenciaStatusUpdate
-from app.modules.public_security.application.services.evidencia_service import EvidenciaService
-from app.modules.public_security.domain.enums import StatusEvidencia
+from apps.backend.app.modules.public_security.api.deps import get_evidencia_service
+from apps.backend.app.modules.public_security.api.schemas.evidencia_schema import EvidenciaCreate, EvidenciaResponse, EvidenciaStatusUpdate
+from apps.backend.app.modules.public_security.application.services.evidencia_service import EvidenciaService
+from apps.backend.app.modules.public_security.domain.enums import StatusEvidencia
 router = APIRouter(prefix='/evidencias', tags=['Seguranca Publica - Evidencias'])
 
 @router.post('/', response_model=EvidenciaResponse, status_code=status.HTTP_201_CREATED)

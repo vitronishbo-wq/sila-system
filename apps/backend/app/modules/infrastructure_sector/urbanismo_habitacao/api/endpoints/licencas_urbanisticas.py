@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_licenciamento_urbano_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.licenca_urbanistica_schema import LicencaUrbanisticaCreate, LicencaUrbanisticaDeferimentoInput, LicencaUrbanisticaMotivoInput, LicencaUrbanisticaResponse
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.licenciamento_urbano_service import LicenciamentoUrbanoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LicencaUrbanisticaAlreadyExistsError, LicencaUrbanisticaNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_licenciamento_urbano_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.schemas.licenca_urbanistica_schema import LicencaUrbanisticaCreate, LicencaUrbanisticaDeferimentoInput, LicencaUrbanisticaMotivoInput, LicencaUrbanisticaResponse
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.licenciamento_urbano_service import LicenciamentoUrbanoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import LicencaUrbanisticaAlreadyExistsError, LicencaUrbanisticaNotFoundError
 router = APIRouter(prefix='/licencas-urbanisticas', tags=['Urbanismo Habitacao - Licenciamento Urbanistico'])
 
 def _ensure_deferimento_adapters(service: LicenciamentoUrbanoService) -> None:

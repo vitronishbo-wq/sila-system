@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 from uuid import UUID, uuid4
-from app.modules.infrastructure_sector.meteorologia.domain.enums import AlertSeverity, AlertType, ObservationType
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import AlertSeverity, AlertType, ObservationType
 
 def _utcnow() -> datetime:
     return datetime.now(timezone.utc)

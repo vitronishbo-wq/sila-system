@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
 
 class OperadoraCreate(BaseModel):
     cnpj: str = Field(..., pattern='^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$')

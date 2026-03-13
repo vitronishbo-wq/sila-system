@@ -2,26 +2,26 @@ from __future__ import annotations
 from datetime import date, datetime
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
-from app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
-from app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.cultura.application.ports.evento_cultural_repository_port import EventoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
-from app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
-from app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from app.modules.society.cultura.application.ports.turismo_service_port import TurismoServicePort
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, FaseEditalCultural, NaturezaProjetoCultural, StatusEventoCultural, StatusPatrimonioImaterial, StatusProjetoCultural, StatusTombamento, TipoArtista, TipoEditalCultural, TipoEspacoCultural, TipoEventoCultural, TipoGrupoArtistico, TipoPatrimonio, TipoProjetoCultural
-from app.modules.society.cultura.domain.models.artista import Artista
-from app.modules.society.cultura.domain.models.bem_cultural import BemCultural
-from app.modules.society.cultura.domain.models.edital import Edital
-from app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
-from app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
-from app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
-from app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
-from app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
+from apps.backend.app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.cultura.application.ports.evento_cultural_repository_port import EventoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.cultura.application.ports.turismo_service_port import TurismoServicePort
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, FaseEditalCultural, NaturezaProjetoCultural, StatusEventoCultural, StatusPatrimonioImaterial, StatusProjetoCultural, StatusTombamento, TipoArtista, TipoEditalCultural, TipoEspacoCultural, TipoEventoCultural, TipoGrupoArtistico, TipoPatrimonio, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.domain.models.artista import Artista
+from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
+from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
+from apps.backend.app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
+from apps.backend.app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
+from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
 
 class InMemoryArtistaRepository(ArtistaRepositoryPort):
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from decimal import Decimal
-from app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioAlreadyExistsError, ProprietarioNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import ProprietarioAlreadyExistsError, ProprietarioNotFoundError
 
 class ProprietarioService:
 

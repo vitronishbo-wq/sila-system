@@ -8,9 +8,9 @@ import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from fastapi import HTTPException
 
-from modules.payment.services.webhook_service import WebhookEngine
-from modules.payment.models.enums import PaymentStatus
-from modules.payment.models.payment import Payment
+from apps.backend.app.modules.payment.services.webhook_service import WebhookEngine
+from apps.backend.app.modules.payment.models.enums import PaymentStatus
+from apps.backend.app.modules.payment.models.payment import Payment
 
 
 @pytest.fixture

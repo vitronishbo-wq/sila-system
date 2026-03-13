@@ -3,10 +3,10 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura, TipoOperadora, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryInfraestruturaRepository, InMemoryOperadoraRepository
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.infraestrutura_service import InfraestruturaService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.operadora_service import OperadoraService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura, TipoOperadora, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.tests._fakes import InMemoryInfraestruturaRepository, InMemoryOperadoraRepository
 
 def test_cadastrar_infraestrutura_sucesso() -> None:
 

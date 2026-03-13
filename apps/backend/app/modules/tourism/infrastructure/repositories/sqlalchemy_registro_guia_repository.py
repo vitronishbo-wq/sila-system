@@ -1,6 +1,6 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.registro_guia_repository_port import RegistroGuiaRepositoryPort
 
 class SQLAlchemyRegistroGuiaRepository(RegistroGuiaRepositoryPort):
 

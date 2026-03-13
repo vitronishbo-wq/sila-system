@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.api.deps import get_current_user
-from app.modules.educacao.api.deps import get_transferencia_service
-from app.modules.educacao.api.schemas.transferencia_schema import TransferenciaAprovar, TransferenciaCreate, TransferenciaRejeitar, TransferenciaResponse
-from app.modules.educacao.application.transferencia_service import TransferenciaService
-from app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaNotFoundError, TransferenciaDuplicadaError, TransferenciaEstadoInvalidoError, TransferenciaNotFoundError, TurmaNotFoundError, TurmaSemVagasError
+from apps.backend.app.modules.educacao.api.deps import get_transferencia_service
+from apps.backend.app.modules.educacao.api.schemas.transferencia_schema import TransferenciaAprovar, TransferenciaCreate, TransferenciaRejeitar, TransferenciaResponse
+from apps.backend.app.modules.educacao.application.transferencia_service import TransferenciaService
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaNotFoundError, TransferenciaDuplicadaError, TransferenciaEstadoInvalidoError, TransferenciaNotFoundError, TurmaNotFoundError, TurmaSemVagasError
 router = APIRouter(prefix='/transferencias', tags=['Educacao - Transferencias'])
 
 def _actor_id(user: dict) -> UUID:

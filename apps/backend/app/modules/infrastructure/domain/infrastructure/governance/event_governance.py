@@ -4,9 +4,9 @@ from typing import Any
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure.application.events.contracts import EVENT_CONTRACTS
-from app.modules.infrastructure.infrastructure.governance.event_catalog_model import EventCatalogModel
-from app.modules.infrastructure.infrastructure.governance.schema_validator import validate_payload
+from apps.backend.app.modules.infrastructure.application.events.contracts import EVENT_CONTRACTS
+from apps.backend.app.modules.infrastructure.infrastructure.governance.event_catalog_model import EventCatalogModel
+from apps.backend.app.modules.infrastructure.infrastructure.governance.schema_validator import validate_payload
 
 class EventGovernanceError(RuntimeError):
     pass

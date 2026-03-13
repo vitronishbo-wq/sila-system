@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.infrastructure.domain.enums import TipoAditivo
+from apps.backend.app.modules.infrastructure.domain.enums import TipoAditivo
 
 @dataclass
 class AditivoContratual:

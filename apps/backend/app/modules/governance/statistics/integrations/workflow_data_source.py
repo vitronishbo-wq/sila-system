@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date, datetime
 from sqlalchemy import func, select
-from app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
-from app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
-from app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
+from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
+from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
 
 class WorkflowDataSource(BaseDataSource):
     """Metricas do modulo Workflow via ORM."""

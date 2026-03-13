@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import TipoCultura
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoCultura
 
 class CulturaCreate(BaseModel):
     nome: str

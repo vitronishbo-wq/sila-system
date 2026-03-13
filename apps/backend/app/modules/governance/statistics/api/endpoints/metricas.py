@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.governance.statistics.api.deps import get_metrica_service
-from app.modules.governance.statistics.api.schemas.metrica_schema import MetricaCreate, MetricaListaResponse, MetricaResponse, MetricaUpdate, MetricaValorUpdate
-from app.modules.governance.statistics.application.services.metrica_service import MetricaService
-from app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
-from app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.api.deps import get_metrica_service
+from apps.backend.app.modules.governance.statistics.api.schemas.metrica_schema import MetricaCreate, MetricaListaResponse, MetricaResponse, MetricaUpdate, MetricaValorUpdate
+from apps.backend.app.modules.governance.statistics.application.services.metrica_service import MetricaService
+from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaConflictError, EstatisticaNotFoundError
 router = APIRouter(prefix='/metricas', tags=['Estatistica - Metricas'])
 
 @router.post('/', response_model=MetricaResponse, status_code=status.HTTP_201_CREATED)

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_credito_service
-from app.modules.resources.agricultura.api.schemas.credito_schema import CreditoAprovacaoInput, CreditoCreate, CreditoResponse
-from app.modules.resources.agricultura.application.services.credito_service import CreditoService
-from app.modules.resources.agricultura.exceptions import CreditoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_credito_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.credito_schema import CreditoAprovacaoInput, CreditoCreate, CreditoResponse
+from apps.backend.app.modules.resources.agricultura.application.services.credito_service import CreditoService
+from apps.backend.app.modules.resources.agricultura.exceptions import CreditoNotFoundError
 router = APIRouter(prefix='/creditos', tags=['Agricultura - creditos'])
 
 @router.post('/', response_model=CreditoResponse, status_code=status.HTTP_201_CREATED)

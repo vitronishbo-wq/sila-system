@@ -5,11 +5,11 @@ from typing import Optional
 from uuid import UUID, uuid4
 
 from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
-from app.modules.educacao.application.ports.workflow_repository_port import (
+from apps.backend.app.modules.educacao.application.ports.workflow_repository_port import (
     WorkflowRepositoryPort,
 )
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
-from app.modules.educacao.exceptions import CitizenNotFoundError
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError
 
 
 class WorkflowService:

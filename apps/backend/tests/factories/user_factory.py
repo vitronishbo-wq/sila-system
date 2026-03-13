@@ -7,7 +7,7 @@ import uuid
 import factory
 from datetime import datetime, timezone
 from faker import Faker
-from modules.identity.models.user import User, AdministrativeLevel
+from apps.backend.app.modules.identity.models.user import User, AdministrativeLevel
 from tests.factories.base_factory import BaseFactory
 
 fake = Faker()

@@ -7,10 +7,10 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pescas.api.deps import get_captura_service
-from app.modules.resources.pescas.api.endpoints.capturas import router as capturas_router
-from app.modules.resources.pescas.application.services.captura_service import CapturaService
-from app.modules.resources.pescas.domain.enums import StatusLicenca
+from apps.backend.app.modules.resources.pescas.api.deps import get_captura_service
+from apps.backend.app.modules.resources.pescas.api.endpoints.capturas import router as capturas_router
+from apps.backend.app.modules.resources.pescas.application.services.captura_service import CapturaService
+from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
 
 @pytest.mark.asyncio
 async def test_registrar_captura_sucesso():

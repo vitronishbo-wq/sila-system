@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoPlano, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import Assinante
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import AssinanteModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoPlano, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import Assinante
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import AssinanteModel
 
 class SQLAlchemyAssinanteRepository(AssinanteRepositoryPort):
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
 
 class PousadaCreate(BaseModel):
     nome: str = Field(..., min_length=3)

@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
-from app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
+from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
+from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
 
 class LaudoPericialRepositoryPort(ABC):
 

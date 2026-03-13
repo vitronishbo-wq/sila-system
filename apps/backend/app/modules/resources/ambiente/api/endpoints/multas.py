@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_penalidade_service
-from app.modules.resources.ambiente.api.schemas.multa_schema import MultaCancelamentoInput, MultaCreate, MultaParcelamentoInput, MultaResponse
-from app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
-from app.modules.resources.ambiente.domain.enums import StatusMulta
-from app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, MultaNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_penalidade_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.multa_schema import MultaCancelamentoInput, MultaCreate, MultaParcelamentoInput, MultaResponse
+from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusMulta
+from apps.backend.app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, MultaNotFoundError
 router = APIRouter(prefix='/multas', tags=['Ambiente - Multas'])
 
 @router.post('/', response_model=MultaResponse, status_code=status.HTTP_201_CREATED)

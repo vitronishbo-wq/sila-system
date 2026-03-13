@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_parcelamento_service
-from app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.parcelamentos import router as parcelamentos_router
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.services.parcelamento_service import ParcelamentoService
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoNotFoundError
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyParcelamentoRepository
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.deps import get_parcelamento_service
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.endpoints.parcelamentos import router as parcelamentos_router
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.services.parcelamento_service import ParcelamentoService
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ParcelamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyParcelamentoRepository
 
 @pytest.mark.asyncio
 async def test_parcelamento_service_fluxo_sucesso():

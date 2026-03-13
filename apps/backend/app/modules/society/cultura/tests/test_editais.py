@@ -3,10 +3,10 @@ import asyncio
 from datetime import datetime, timedelta
 from decimal import Decimal
 from uuid import uuid4
-from app.modules.society.cultura.application.services.edital_service import EditalService
-from app.modules.society.cultura.application.services.projeto_cultural_service import ProjetoCulturalService
-from app.modules.society.cultura.domain.enums import FaseEditalCultural, NaturezaProjetoCultural, StatusProjetoCultural, TipoEditalCultural, TipoProjetoCultural
-from app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryEditalRepository, InMemoryProjetoCulturalRepository
+from apps.backend.app.modules.society.cultura.application.services.edital_service import EditalService
+from apps.backend.app.modules.society.cultura.application.services.projeto_cultural_service import ProjetoCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, NaturezaProjetoCultural, StatusProjetoCultural, TipoEditalCultural, TipoProjetoCultural
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryEditalRepository, InMemoryProjetoCulturalRepository
 
 def test_publicar_edital_e_abrir_inscricoes() -> None:
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_assistencia_service
-from app.modules.resources.agricultura.api.schemas.assistencia_schema import AssistenciaCancelamentoInput, AssistenciaConclusaoInput, AssistenciaCreate, AssistenciaResponse
-from app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
-from app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError, PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_assistencia_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.assistencia_schema import AssistenciaCancelamentoInput, AssistenciaConclusaoInput, AssistenciaCreate, AssistenciaResponse
+from apps.backend.app.modules.resources.agricultura.application.services.assistencia_service import AssistenciaService
+from apps.backend.app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError, PropriedadeNotFoundError
 router = APIRouter(prefix='/assistencia', tags=['Agricultura - assistencia'])
 
 @router.post('/', response_model=AssistenciaResponse, status_code=status.HTTP_201_CREATED)

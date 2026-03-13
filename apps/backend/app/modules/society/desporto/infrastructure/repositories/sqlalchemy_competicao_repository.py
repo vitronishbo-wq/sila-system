@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
-from app.modules.society.desporto.domain.models.competicao import Competicao
-from app.modules.society.desporto.infrastructure.models.competicao_model import CompeticaoModel
+from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+from apps.backend.app.modules.society.desporto.domain.models.competicao import Competicao
+from apps.backend.app.modules.society.desporto.infrastructure.models.competicao_model import CompeticaoModel
 
 class SQLAlchemyCompeticaoRepository(CompeticaoRepositoryPort):
 

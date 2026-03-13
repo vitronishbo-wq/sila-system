@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_siscomex_drawback_service
-from app.modules.economy.trade.external.api.endpoints.siscomex_drawback import router as siscomex_drawback_router
-from app.modules.economy.trade.external.application.services import SiscomexDrawbackService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import SiscomexDrawbackAlreadyExistsError, SiscomexDrawbackNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemorySiscomexDrawbackRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_siscomex_drawback_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.siscomex_drawback import router as siscomex_drawback_router
+from apps.backend.app.modules.economy.trade.external.application.services import SiscomexDrawbackService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import SiscomexDrawbackAlreadyExistsError, SiscomexDrawbackNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemorySiscomexDrawbackRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_siscomex_drawback():

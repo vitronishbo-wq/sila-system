@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_desapropriacao_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.desapropriacao_schema import DesapropriacaoCreate, DesapropriacaoDecretoInput, DesapropriacaoMotivoInput, DesapropriacaoPagamentoInput, DesapropriacaoResponse
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.desapropriacao_service import DesapropriacaoService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao, TipoDesapropriacao
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoAlreadyExistsError, DesapropriacaoNotFoundError, ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_desapropriacao_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.desapropriacao_schema import DesapropriacaoCreate, DesapropriacaoDecretoInput, DesapropriacaoMotivoInput, DesapropriacaoPagamentoInput, DesapropriacaoResponse
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.desapropriacao_service import DesapropriacaoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusDesapropriacao, TipoDesapropriacao
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import DesapropriacaoAlreadyExistsError, DesapropriacaoNotFoundError, ImovelNotFoundError
 router = APIRouter(prefix='/desapropriacoes', tags=['Gestao Fundiaria - Desapropriacoes'])
 
 def _ensure_adapter_for_reforma_agraria(service: DesapropriacaoService, tipo: TipoDesapropriacao) -> None:

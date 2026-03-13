@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.infraestrutura_telco_model import InfraestruturaTelcoModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusInfraestrutura, TipoInfraestrutura
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.infraestrutura_telco_model import InfraestruturaTelcoModel
 
 class SQLAlchemyInfraestruturaRepository(InfraestruturaRepositoryPort):
 

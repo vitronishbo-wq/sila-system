@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure.api.deps import get_obra_service
-from app.modules.infrastructure.api.endpoints.obras import router as obras_router
-from app.modules.infrastructure.application.services.obra_service import ObraService
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
-from app.modules.infrastructure.core.exceptions import ObraNotFoundError
-from app.modules.infrastructure.infrastructure.repositories import SQLAlchemyObraRepository
+from apps.backend.app.modules.infrastructure.api.deps import get_obra_service
+from apps.backend.app.modules.infrastructure.api.endpoints.obras import router as obras_router
+from apps.backend.app.modules.infrastructure.application.services.obra_service import ObraService
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+from apps.backend.app.modules.infrastructure.core.exceptions import ObraNotFoundError
+from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyObraRepository
 
 @pytest.mark.asyncio
 async def test_obra_service_fluxo_sucesso():

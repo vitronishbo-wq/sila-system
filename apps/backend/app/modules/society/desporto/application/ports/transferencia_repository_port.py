@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.desporto.domain.enums import StatusTransferencia
-from app.modules.society.desporto.domain.models.transferencia import Transferencia
+from apps.backend.app.modules.society.desporto.domain.enums import StatusTransferencia
+from apps.backend.app.modules.society.desporto.domain.models.transferencia import Transferencia
 
 class TransferenciaRepositoryPort(ABC):
 

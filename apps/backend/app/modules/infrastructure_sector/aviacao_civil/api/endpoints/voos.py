@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from app.modules.infrastructure_sector.aviacao_civil.api.deps import get_voo_service
-from app.modules.infrastructure_sector.aviacao_civil.api.schemas.voo_schema import VooCreate, VooResponse, VooStatusInput
-from app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.deps import get_voo_service
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.schemas.voo_schema import VooCreate, VooResponse, VooStatusInput
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
 router = APIRouter(prefix='/voos', tags=['Aviacao Civil - Voos'])
 
 @router.post('/', response_model=VooResponse, status_code=status.HTTP_201_CREATED)

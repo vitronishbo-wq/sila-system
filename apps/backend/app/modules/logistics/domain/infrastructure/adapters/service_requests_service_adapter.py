@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.logistics.application.ports.service_requests_service_port import ServiceRequestsServicePort
+from apps.backend.app.modules.logistics.application.ports.service_requests_service_port import ServiceRequestsServicePort
 
 class ServiceRequestsServiceAdapter(ServiceRequestsServicePort):
 

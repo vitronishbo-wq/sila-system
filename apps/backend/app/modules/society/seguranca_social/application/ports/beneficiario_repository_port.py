@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
-from app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
 
 class BeneficiarioRepositoryPort(ABC):
 

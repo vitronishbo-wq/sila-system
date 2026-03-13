@@ -1,8 +1,8 @@
 from __future__ import annotations
 import asyncio
-from app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
-from app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
-from app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryBemCulturalRepository
+from apps.backend.app.modules.society.cultura.application.services.bem_cultural_service import BemCulturalService
+from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+from apps.backend.app.modules.society.cultura.tests._fakes import FakeRequestService, InMemoryBemCulturalRepository
 
 def test_bem_cultural_fluxo_cadastro_tombamento() -> None:
 

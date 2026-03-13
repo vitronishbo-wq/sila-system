@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.familia.application.ports.projection_repository_port import ProjectionRepositoryPort
-from app.modules.society.familia.infrastructure.models.projection_models import FamilyCompositionViewModel
+from apps.backend.app.modules.society.familia.application.ports.projection_repository_port import ProjectionRepositoryPort
+from apps.backend.app.modules.society.familia.infrastructure.models.projection_models import FamilyCompositionViewModel
 
 class RedisProjectionRepository(ProjectionRepositoryPort):
 

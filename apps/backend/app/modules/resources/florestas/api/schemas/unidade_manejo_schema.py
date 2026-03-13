@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
 
 class UnidadeManejoCreate(BaseModel):
     nome: str = Field(..., min_length=3)

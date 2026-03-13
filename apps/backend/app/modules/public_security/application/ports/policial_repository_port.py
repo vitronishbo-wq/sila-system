@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.public_security.domain.enums import StatusAgente, TipoAgente
-from app.modules.public_security.domain.models.policial import Policial
+from apps.backend.app.modules.public_security.domain.enums import StatusAgente, TipoAgente
+from apps.backend.app.modules.public_security.domain.models.policial import Policial
 
 class PolicialRepositoryPort(ABC):
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 import pytest
-from app.modules.infrastructure.application.sagas.execucao_obra_saga import ExecucaoObraSaga, ExecucaoObraStates
+from apps.backend.app.modules.infrastructure.application.sagas.execucao_obra_saga import ExecucaoObraSaga, ExecucaoObraStates
 
 @dataclass
 class _SagaRow:

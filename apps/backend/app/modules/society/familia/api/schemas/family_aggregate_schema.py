@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import ConfigDict, Field, BaseModel, field_validator
-from app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
+from apps.backend.app.modules.society.familia.domain.enums import FamilyStatus, MemberRole
 
 class FamilyMemberCreateSchema(BaseModel):
     citizen_id: UUID

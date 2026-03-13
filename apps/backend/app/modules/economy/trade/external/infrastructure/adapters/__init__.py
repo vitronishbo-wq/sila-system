@@ -1,11 +1,11 @@
-from app.modules.economy.trade.external.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.comercio_service_adapter import ComercioServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.financas_impostos_service_adapter import FinancasImpostosServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.financas_service_adapter import FinancasServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.geosampa_service_adapter import GeosampaServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.industria_service_adapter import IndustriaServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
-from app.modules.economy.trade.external.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.comercio_service_adapter import ComercioServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.financas_impostos_service_adapter import FinancasImpostosServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.financas_service_adapter import FinancasServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.geosampa_service_adapter import GeosampaServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.industria_service_adapter import IndustriaServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
+from apps.backend.app.modules.economy.trade.external.infrastructure.adapters.transportes_logistica_service_adapter import TransportesLogisticaServiceAdapter
 ComercioInternacionalServiceAdapter = ComercioServiceAdapter
 TributacaoFiscalServiceAdapter = FinancasImpostosServiceAdapter
 __all__ = ['CitizenServiceAdapter', 'RequestServiceAdapter', 'IndustriaServiceAdapter', 'ComercioServiceAdapter', 'ComercioInternacionalServiceAdapter', 'TransportesLogisticaServiceAdapter', 'FinancasServiceAdapter', 'FinancasImpostosServiceAdapter', 'TributacaoFiscalServiceAdapter', 'GeosampaServiceAdapter']

@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.justice.bounded_contexts.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
 
 @pytest.mark.asyncio
 async def test_adapter_saude_retorna_resumo_do_ultimo_registro() -> None:

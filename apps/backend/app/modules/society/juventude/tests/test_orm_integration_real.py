@@ -8,18 +8,18 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import AsyncSessionLocal, Base, engine
-from app.modules.society.juventude.application.services.auxilio_service import AuxilioService
-from app.modules.society.juventude.application.services.formacao_service import FormacaoService
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.application.services.programa_service import ProgramaService
-from app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, TipoAuxilio, TipoPrograma
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService
+from apps.backend.app.modules.society.juventude.application.services.auxilio_service import AuxilioService
+from apps.backend.app.modules.society.juventude.application.services.formacao_service import FormacaoService
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.application.services.programa_service import ProgramaService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, TipoAuxilio, TipoPrograma
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService
 
 def _tables():
-    from app.modules.society.juventude.infrastructure.models.auxilio_model import AuxilioModel
-    from app.modules.society.juventude.infrastructure.models.formacao_juvenil_model import FormacaoJuvenilModel
-    from app.modules.society.juventude.infrastructure.models.jovem_model import JovemModel
-    from app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
+    from apps.backend.app.modules.society.juventude.infrastructure.models.auxilio_model import AuxilioModel
+    from apps.backend.app.modules.society.juventude.infrastructure.models.formacao_juvenil_model import FormacaoJuvenilModel
+    from apps.backend.app.modules.society.juventude.infrastructure.models.jovem_model import JovemModel
+    from apps.backend.app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
     if not hasattr(JovemModel, '__table__'):
         pytest.skip('ORM mappers limpos por conftest global apos import de modelos; executar este teste sem tests/conftest ou revisar clear_mappers global.')
     return [JovemModel.__table__, AuxilioModel.__table__, ProgramaJuvenilModel.__table__, FormacaoJuvenilModel.__table__]
@@ -50,10 +50,10 @@ def test_fluxo_real_orm_jovem_auxilio_programa_formacao() -> None:
 
     async def scenario() -> None:
         async with _session_scope() as session:
-            from app.modules.society.juventude.infrastructure.repositories.sqlalchemy_auxilio_repository import SQLAlchemyAuxilioRepository
-            from app.modules.society.juventude.infrastructure.repositories.sqlalchemy_formacao_repository import SQLAlchemyFormacaoRepository
-            from app.modules.society.juventude.infrastructure.repositories.sqlalchemy_jovem_repository import SQLAlchemyJovemRepository
-            from app.modules.society.juventude.infrastructure.repositories.sqlalchemy_programa_repository import SQLAlchemyProgramaRepository
+            from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_auxilio_repository import SQLAlchemyAuxilioRepository
+            from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_formacao_repository import SQLAlchemyFormacaoRepository
+            from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_jovem_repository import SQLAlchemyJovemRepository
+            from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_programa_repository import SQLAlchemyProgramaRepository
             jovem_repo = SQLAlchemyJovemRepository(session)
             auxilio_repo = SQLAlchemyAuxilioRepository(session)
             programa_repo = SQLAlchemyProgramaRepository(session)

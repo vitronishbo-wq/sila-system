@@ -2,8 +2,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
-from app.modules.society.desporto.domain.models.competicao import Competicao
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+from apps.backend.app.modules.society.desporto.domain.models.competicao import Competicao
 
 class CompeticaoRepositoryPort(ABC):
 

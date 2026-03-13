@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
-from app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
-from app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
-from app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
-from app.modules.society.desporto.domain.models.clube import Clube
+from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
+from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
+from apps.backend.app.modules.society.desporto.domain.models.clube import Clube
 
 class ClubeService:
 

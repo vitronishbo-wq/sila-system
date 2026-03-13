@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
-from app.modules.society.cultura.domain.enums import TipoGrupoArtistico
-from app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
-from app.modules.society.cultura.infrastructure.models.grupo_artistico_model import GrupoArtisticoModel
+from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
+from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
+from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
+from apps.backend.app.modules.society.cultura.infrastructure.models.grupo_artistico_model import GrupoArtisticoModel
 
 class SQLAlchemyGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
 

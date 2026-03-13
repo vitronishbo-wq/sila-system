@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.governance.workflow.application.ports.saude_adapter_port import SaudeAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.saude_adapter_port import SaudeAdapterPort
 
 class SaudeAdapter(SaudeAdapterPort):
 

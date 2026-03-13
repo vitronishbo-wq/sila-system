@@ -2,10 +2,10 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import BeneficiarioRepositoryPort
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
-from app.modules.society.assistencia_social.domain.models import Beneficiario
-from app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import BeneficiarioModel
+from apps.backend.app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import BeneficiarioRepositoryPort
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
+from apps.backend.app.modules.society.assistencia_social.domain.models import Beneficiario
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import BeneficiarioModel
 
 class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
 

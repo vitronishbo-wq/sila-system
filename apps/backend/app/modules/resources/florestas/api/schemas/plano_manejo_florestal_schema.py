@@ -4,7 +4,7 @@ from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.resources.florestas.domain.enums import StatusPlanoManejo
+from apps.backend.app.modules.resources.florestas.domain.enums import StatusPlanoManejo
 
 class PlanoManejoCreate(BaseModel):
     unidade_manejo_id: UUID

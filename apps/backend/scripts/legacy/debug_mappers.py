@@ -2,7 +2,7 @@
 import sys
 sys.path.append("/app")
 
-from modules.identity.models.user import User
+from apps.backend.app.modules.identity.models.user import User
 from sqlalchemy import inspect
 
 def debug_user():

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
-from app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort
-from app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
-from app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
-from app.modules.society.seguranca_social.infrastructure.models.beneficiario_model import BeneficiarioModel
+from apps.backend.app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort
+from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
+from apps.backend.app.modules.society.seguranca_social.infrastructure.models.beneficiario_model import BeneficiarioModel
 
 class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
 

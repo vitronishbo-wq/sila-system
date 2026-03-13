@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.civil_registry_core.domain.entities.citizen import *
+from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.domain.entities.citizen import *

@@ -3,11 +3,11 @@ from datetime import date
 from decimal import Decimal
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.zoneamento_repository_port import ZoneamentoRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import UsoPermitido
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.zoneamento import Zoneamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.zoneamento_model import ZoneamentoModel
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.zoneamento_repository_port import ZoneamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import UsoPermitido
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.zoneamento import Zoneamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.zoneamento_model import ZoneamentoModel
 
 class SQLAlchemyZoneamentoRepository(ZoneamentoRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

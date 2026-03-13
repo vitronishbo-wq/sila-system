@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
-from app.modules.society.desporto.application.ports.citizen_service_port import CitizenServicePort
-from app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
-from app.modules.society.desporto.domain.models.atleta import Atleta
+from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
+from apps.backend.app.modules.society.desporto.application.ports.citizen_service_port import CitizenServicePort
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
+from apps.backend.app.modules.society.desporto.domain.models.atleta import Atleta
 
 class AtletaService:
 

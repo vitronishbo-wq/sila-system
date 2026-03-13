@@ -5,10 +5,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.logistics.application.ports import BilhetagemRepositoryPort
-from app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
-from app.modules.logistics.domain.models import BilhetagemEletronica
-from app.modules.logistics.infrastructure.models import BilhetagemEventoModel
+from apps.backend.app.modules.logistics.application.ports import BilhetagemRepositoryPort
+from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
+from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica
+from apps.backend.app.modules.logistics.infrastructure.models import BilhetagemEventoModel
 
 class SQLAlchemyBilhetagemRepository(BilhetagemRepositoryPort):
 

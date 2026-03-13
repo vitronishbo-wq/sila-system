@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.zoneamento_repository_port import ZoneamentoRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.zoneamento import Zoneamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoAlreadyExistsError, ZoneamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.zoneamento_repository_port import ZoneamentoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.zoneamento import Zoneamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import ZoneamentoAlreadyExistsError, ZoneamentoNotFoundError
 
 class ZoneamentoService:
 

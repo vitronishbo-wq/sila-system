@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_reclamacao_service
-from app.modules.infrastructure_sector.telecomunicacoes.api.schemas.reclamacao_schema import ReclamacaoCreate, ReclamacaoResponse
-from app.modules.infrastructure_sector.telecomunicacoes.application.services.reclamacao_service import ReclamacaoService
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.deps import get_reclamacao_service
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.schemas.reclamacao_schema import ReclamacaoCreate, ReclamacaoResponse
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.services.reclamacao_service import ReclamacaoService
 router = APIRouter(prefix='/reclamacoes', tags=['Telecomunicacoes - Reclamacoes'])
 
 @router.post('/', response_model=ReclamacaoResponse, status_code=status.HTTP_201_CREATED)

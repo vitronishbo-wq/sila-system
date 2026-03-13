@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import APIRouter
-from app.modules.industry.api.schemas.catalogo_schema import CatalogoItemSchema
-from app.modules.industry.domain.shared import list_portes, list_ramos
+from apps.backend.app.modules.industry.api.schemas.catalogo_schema import CatalogoItemSchema
+from apps.backend.app.modules.industry.domain.shared import list_portes, list_ramos
 router = APIRouter(tags=['Industria - Catalogos'])
 
 @router.get('/ramos', response_model=list[CatalogoItemSchema])

@@ -4,10 +4,10 @@ from datetime import date
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.educacao.application.transferencia_service import TransferenciaService
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models import Matricula, StatusMatricula, Turma, Turno
-from app.modules.educacao.exceptions import TransferenciaDuplicadaError
+from apps.backend.app.modules.educacao.application.transferencia_service import TransferenciaService
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models import Matricula, StatusMatricula, Turma, Turno
+from apps.backend.app.modules.educacao.exceptions import TransferenciaDuplicadaError
 
 def _base_fixture():
     citizen_id = uuid4()

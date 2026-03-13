@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Optional
 from uuid import UUID
-from app.modules.educacao.domain.models import Turma
+from apps.backend.app.modules.educacao.domain.models import Turma
 
 class TurmaRepositoryPort(ABC):
 

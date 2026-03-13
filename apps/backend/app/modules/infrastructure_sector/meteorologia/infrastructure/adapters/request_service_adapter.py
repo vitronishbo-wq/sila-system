@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID, uuid4
 from app.core.bridges import ServiceRequestLifecycleBridge
-from app.modules.infrastructure_sector.meteorologia.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

@@ -3,10 +3,10 @@ from typing import Optional
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.api.deps import get_current_user
-from app.modules.educacao.api.deps import get_matricula_service
-from app.modules.educacao.api.schemas import MatriculaAtivar, MatriculaCreate, MatriculaResponse
-from app.modules.educacao.application.matricula_service import MatriculaService
-from app.modules.educacao.exceptions import CitizenNotFoundError, IdadeMinimaNaoAtendidaError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaAlreadyExistsError, TurmaNotFoundError, TurmaSemVagasError
+from apps.backend.app.modules.educacao.api.deps import get_matricula_service
+from apps.backend.app.modules.educacao.api.schemas import MatriculaAtivar, MatriculaCreate, MatriculaResponse
+from apps.backend.app.modules.educacao.application.matricula_service import MatriculaService
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, IdadeMinimaNaoAtendidaError, EscolaNotFoundError, InvalidMatriculaStateError, MatriculaAlreadyExistsError, TurmaNotFoundError, TurmaSemVagasError
 router = APIRouter(prefix='/matriculas', tags=['Educacao - Matriculas'])
 
 @router.post('/', response_model=MatriculaResponse, status_code=status.HTTP_201_CREATED)

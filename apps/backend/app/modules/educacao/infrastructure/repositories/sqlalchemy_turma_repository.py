@@ -2,11 +2,11 @@ from __future__ import annotations
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.educacao.application.ports import TurmaRepositoryPort
-from app.modules.educacao.domain.models import Turma, Turno
-from app.modules.educacao.domain.models.matricula import StatusMatricula
-from app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
-from app.modules.educacao.infrastructure.models.turma_model import TurmaModel
+from apps.backend.app.modules.educacao.application.ports import TurmaRepositoryPort
+from apps.backend.app.modules.educacao.domain.models import Turma, Turno
+from apps.backend.app.modules.educacao.domain.models.matricula import StatusMatricula
+from apps.backend.app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
+from apps.backend.app.modules.educacao.infrastructure.models.turma_model import TurmaModel
 
 class SQLAlchemyTurmaRepository(TurmaRepositoryPort):
 

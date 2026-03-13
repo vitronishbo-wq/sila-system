@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_georreferenciamento_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.georreferenciamento_schema import GeorreferenciamentoCreate, GeorreferenciamentoMotivoInput, GeorreferenciamentoPontoInput, GeorreferenciamentoResponse
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import GeorreferenciamentoAlreadyExistsError, GeorreferenciamentoNotFoundError, ImovelNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_georreferenciamento_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.schemas.georreferenciamento_schema import GeorreferenciamentoCreate, GeorreferenciamentoMotivoInput, GeorreferenciamentoPontoInput, GeorreferenciamentoResponse
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import GeorreferenciamentoAlreadyExistsError, GeorreferenciamentoNotFoundError, ImovelNotFoundError
 router = APIRouter(prefix='/georreferenciamentos', tags=['Gestao Fundiaria - Georreferenciamentos'])
 
 def _ensure_geosampa_adapter(service: GeorreferenciamentoService) -> None:

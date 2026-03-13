@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.desporto.api.deps import get_jogo_service
-from app.modules.society.desporto.api.schemas.jogo_schema import JogoCreate, JogoResponse, JogoResultadoUpdate, JogoUpdate
-from app.modules.society.desporto.application.services.jogo_service import JogoService
-from app.modules.society.desporto.domain.enums import StatusJogo
+from apps.backend.app.modules.society.desporto.api.deps import get_jogo_service
+from apps.backend.app.modules.society.desporto.api.schemas.jogo_schema import JogoCreate, JogoResponse, JogoResultadoUpdate, JogoUpdate
+from apps.backend.app.modules.society.desporto.application.services.jogo_service import JogoService
+from apps.backend.app.modules.society.desporto.domain.enums import StatusJogo
 router = APIRouter(prefix='/jogos', tags=['Desporto - Jogos'])
 
 @router.post('/', response_model=JogoResponse, status_code=status.HTTP_201_CREATED)

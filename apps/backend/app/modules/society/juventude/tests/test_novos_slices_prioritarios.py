@@ -3,19 +3,19 @@ import asyncio
 from datetime import date, timedelta
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
-from app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
-from app.modules.society.juventude.application.ports.inscricao_programa_repository_port import InscricaoProgramaRepositoryPort
-from app.modules.society.juventude.application.services.bolsa_estudo_service import BolsaEstudoService
-from app.modules.society.juventude.application.services.estagio_juvenil_service import EstagioJuvenilService
-from app.modules.society.juventude.application.services.inscricao_programa_service import InscricaoProgramaService
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.application.services.programa_service import ProgramaService
-from app.modules.society.juventude.domain.enums import AreaInteresse, Escolaridade, SituacaoOcupacional, StatusEstagio, StatusInscricao, StatusPrograma, TipoBolsa, TipoPrograma
-from app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
-from app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
-from app.modules.society.juventude.domain.models.inscricao_programa import InscricaoPrograma
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryJovemRepository, InMemoryProgramaRepository
+from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.inscricao_programa_repository_port import InscricaoProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.services.bolsa_estudo_service import BolsaEstudoService
+from apps.backend.app.modules.society.juventude.application.services.estagio_juvenil_service import EstagioJuvenilService
+from apps.backend.app.modules.society.juventude.application.services.inscricao_programa_service import InscricaoProgramaService
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.application.services.programa_service import ProgramaService
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, Escolaridade, SituacaoOcupacional, StatusEstagio, StatusInscricao, StatusPrograma, TipoBolsa, TipoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
+from apps.backend.app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.inscricao_programa import InscricaoPrograma
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryJovemRepository, InMemoryProgramaRepository
 
 class InMemoryBolsaRepository(BolsaEstudoRepositoryPort):
 

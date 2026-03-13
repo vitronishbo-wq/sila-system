@@ -3,13 +3,13 @@ from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
 from app.core.bridges import CitizenRepositoryPort, ServiceRequestLifecycleBridge
-from app.modules.educacao.application.ports import EscolaRepositoryPort, InscricaoRepositoryPort
-from app.modules.educacao.domain.enums import TipoInscricao
-from app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
-from app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
-from app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
-from app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
-from app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError
+from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort, InscricaoRepositoryPort
+from apps.backend.app.modules.educacao.domain.enums import TipoInscricao
+from apps.backend.app.modules.educacao.domain.models.inscricao_basica import InscricaoBasica
+from apps.backend.app.modules.educacao.domain.models.inscricao_secundaria import InscricaoSecundaria
+from apps.backend.app.modules.educacao.domain.models.inscricao_superior import InscricaoSuperior
+from apps.backend.app.modules.educacao.domain.models.inscricao_tecnico import InscricaoTecnico
+from apps.backend.app.modules.educacao.exceptions import CitizenNotFoundError, EscolaNotFoundError
 
 class InscricaoService:
 

@@ -9,16 +9,16 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
-from app.modules.infrastructure.domain.enums import NaturezaObra, StatusEdital, StatusLicitacao, StatusObra, StatusProjeto, TipoAditivo, TipoLicitacao, TipoObra, TipoProjeto
-from app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
-from app.modules.infrastructure.domain.models.edital import Edital
-from app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
-from app.modules.infrastructure.domain.models.licitacao import Licitacao
-from app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
-from app.modules.infrastructure.domain.models.obra import Obra
-from app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
-from app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
-from app.modules.infrastructure.infrastructure.repositories import SQLAlchemyEditalRepository, SQLAlchemyLicitacaoRepository, SQLAlchemyObraRepository, SQLAlchemyProjetoRepository
+from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusEdital, StatusLicitacao, StatusObra, StatusProjeto, TipoAditivo, TipoLicitacao, TipoObra, TipoProjeto
+from apps.backend.app.modules.infrastructure.domain.models.aditivo_contratual import AditivoContratual
+from apps.backend.app.modules.infrastructure.domain.models.edital import Edital
+from apps.backend.app.modules.infrastructure.domain.models.fiscalizacao_obra import FiscalizacaoObra
+from apps.backend.app.modules.infrastructure.domain.models.licitacao import Licitacao
+from apps.backend.app.modules.infrastructure.domain.models.medicao_obra import MedicaoObra
+from apps.backend.app.modules.infrastructure.domain.models.obra import Obra
+from apps.backend.app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
+from apps.backend.app.modules.infrastructure.domain.models.termo_recebimento import TermoRecebimento
+from apps.backend.app.modules.infrastructure.infrastructure.repositories import SQLAlchemyEditalRepository, SQLAlchemyLicitacaoRepository, SQLAlchemyObraRepository, SQLAlchemyProjetoRepository
 TABLES = ['obras_publicas_projetos', 'obras_publicas_obras', 'obras_publicas_licitacoes', 'obras_publicas_editais']
 
 def _get_database_url() -> str:

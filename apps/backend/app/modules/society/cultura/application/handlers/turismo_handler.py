@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.society.cultura.application.events import EventoProgramadoEvent
+from apps.backend.app.modules.society.cultura.application.events import EventoProgramadoEvent
 
 def build_turismo_handler(turismo_adapter):
 

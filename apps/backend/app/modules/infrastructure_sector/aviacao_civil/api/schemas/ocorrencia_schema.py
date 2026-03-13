@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import FaseVoo, GravidadeOcorrencia, TipoOcorrencia
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import FaseVoo, GravidadeOcorrencia, TipoOcorrencia
 
 class OcorrenciaCreate(BaseModel):
     tipo: TipoOcorrencia

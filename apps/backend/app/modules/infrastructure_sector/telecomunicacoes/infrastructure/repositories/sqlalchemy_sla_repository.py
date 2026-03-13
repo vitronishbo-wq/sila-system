@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoServico
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import SLAModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoServico
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import SLAModel
 
 class SQLAlchemySLARepository(SLARepositoryPort):
 

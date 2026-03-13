@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.resources.pescas.domain.models.comercializacao_pesca import ComercializacaoPesca
+from apps.backend.app.modules.resources.pescas.domain.models.comercializacao_pesca import ComercializacaoPesca
 
 class ComercializacaoService:
 

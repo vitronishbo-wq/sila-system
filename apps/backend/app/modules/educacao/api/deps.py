@@ -3,17 +3,17 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.api.deps import get_db
 from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
-from app.modules.educacao.application.boletim_service import BoletimService
-from app.modules.educacao.application.certificado_service import CertificadoService
-from app.modules.educacao.application.concurso_service import ConcursoService
-from app.modules.educacao.application.emprego_service import EmpregoService
-from app.modules.educacao.application.formacao_service import FormacaoService
-from app.modules.educacao.application.inscricao_service import InscricaoService
-from app.modules.educacao.application.matricula_service import MatriculaService
-from app.modules.educacao.application.propina_service import PropinaService
-from app.modules.educacao.application.transferencia_service import TransferenciaService
-from app.modules.educacao.application.universidade_service import UniversidadeService
-from app.modules.educacao.infrastructure.repositories import SQLAlchemyBoletimRepository, SQLAlchemyCertificadoRepository, SQLAlchemyConcursoRepository, SQLAlchemyEmpregoRepository, SQLAlchemyEscolaRepository, SQLAlchemyFormacaoRepository, SQLAlchemyInscricaoRepository, SQLAlchemyMatriculaRepository, SQLAlchemyPropinaRepository, SQLAlchemyTurmaRepository, SQLAlchemyTransferenciaRepository, SQLAlchemyUniversidadeRepository
+from apps.backend.app.modules.educacao.application.boletim_service import BoletimService
+from apps.backend.app.modules.educacao.application.certificado_service import CertificadoService
+from apps.backend.app.modules.educacao.application.concurso_service import ConcursoService
+from apps.backend.app.modules.educacao.application.emprego_service import EmpregoService
+from apps.backend.app.modules.educacao.application.formacao_service import FormacaoService
+from apps.backend.app.modules.educacao.application.inscricao_service import InscricaoService
+from apps.backend.app.modules.educacao.application.matricula_service import MatriculaService
+from apps.backend.app.modules.educacao.application.propina_service import PropinaService
+from apps.backend.app.modules.educacao.application.transferencia_service import TransferenciaService
+from apps.backend.app.modules.educacao.application.universidade_service import UniversidadeService
+from apps.backend.app.modules.educacao.infrastructure.repositories import SQLAlchemyBoletimRepository, SQLAlchemyCertificadoRepository, SQLAlchemyConcursoRepository, SQLAlchemyEmpregoRepository, SQLAlchemyEscolaRepository, SQLAlchemyFormacaoRepository, SQLAlchemyInscricaoRepository, SQLAlchemyMatriculaRepository, SQLAlchemyPropinaRepository, SQLAlchemyTurmaRepository, SQLAlchemyTransferenciaRepository, SQLAlchemyUniversidadeRepository
 
 async def get_matricula_service(session: AsyncSession=Depends(get_db)) -> MatriculaService:
     matricula_repo = SQLAlchemyMatriculaRepository(session)

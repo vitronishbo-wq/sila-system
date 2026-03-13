@@ -1,3 +1,3 @@
-from app.modules.infrastructure_sector.aviacao_civil.application.events.bus import event_bus
-from app.modules.infrastructure_sector.aviacao_civil.application.events.definitions import AeronaveRegistradaEvent, DomainEvent, OcorrenciaRegistradaEvent, VooDecoladoEvent, VooPousadoEvent, VooProgramadoEvent
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.events.bus import event_bus
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.events.definitions import AeronaveRegistradaEvent, DomainEvent, OcorrenciaRegistradaEvent, VooDecoladoEvent, VooPousadoEvent, VooProgramadoEvent
 __all__ = ['event_bus', 'DomainEvent', 'AeronaveRegistradaEvent', 'VooProgramadoEvent', 'VooDecoladoEvent', 'VooPousadoEvent', 'OcorrenciaRegistradaEvent']

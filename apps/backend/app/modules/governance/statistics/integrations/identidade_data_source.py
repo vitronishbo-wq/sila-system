@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from sqlalchemy import func, select
 from app.core.bridges.identity_bridge import BIEventRecord, BIRecord, CitizenFUC
-from app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
+from apps.backend.app.modules.governance.statistics.integrations.base_data_source import BaseDataSource
 
 class IdentidadeDataSource(BaseDataSource):
     """Metricas do modulo Identidade Civil via ORM."""

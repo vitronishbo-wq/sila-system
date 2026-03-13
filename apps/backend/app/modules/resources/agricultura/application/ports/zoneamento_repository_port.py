@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
-from app.modules.resources.agricultura.domain.models.cadastro_ambiental import CadastroAmbiental
-from app.modules.resources.agricultura.domain.models.zoneamento import Zoneamento
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental, StatusZoneamento
+from apps.backend.app.modules.resources.agricultura.domain.models.cadastro_ambiental import CadastroAmbiental
+from apps.backend.app.modules.resources.agricultura.domain.models.zoneamento import Zoneamento
 
 class ZoneamentoRepositoryPort(ABC):
 

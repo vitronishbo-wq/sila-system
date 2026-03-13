@@ -1,4 +1,4 @@
-from app.modules.educacao.application.ports import (
+from apps.backend.app.modules.educacao.application.ports import (
     BoletimRepositoryPort,
     CertificadoRepositoryPort,
     ConcursoRepositoryPort,

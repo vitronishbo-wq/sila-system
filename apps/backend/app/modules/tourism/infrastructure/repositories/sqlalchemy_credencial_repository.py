@@ -1,6 +1,6 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.tourism.application.ports.credencial_repository_port import CredencialRepositoryPort
+from apps.backend.app.modules.tourism.application.ports.credencial_repository_port import CredencialRepositoryPort
 
 class SQLAlchemyCredencialRepository(CredencialRepositoryPort):
 

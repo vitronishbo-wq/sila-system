@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.aguas_saneamento.api.deps import get_consumo_service
-from app.modules.resources.aguas_saneamento.api.endpoints.consumo import router as consumo_router
-from app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
-from app.modules.resources.aguas_saneamento.domain.enums import CategoriaConsumo, StatusConsumo
-from app.modules.resources.aguas_saneamento.exceptions import ConsumoNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyConsumoRepository
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_consumo_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.endpoints.consumo import router as consumo_router
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.consumo_service import ConsumoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import CategoriaConsumo, StatusConsumo
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import ConsumoNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyConsumoRepository
 
 @pytest.mark.asyncio
 async def test_consumo_service_fluxo_sucesso():

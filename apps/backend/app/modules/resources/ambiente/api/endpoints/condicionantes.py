@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_condicionante_service
-from app.modules.resources.ambiente.api.schemas.condicionante_schema import CondicionanteCreate, CondicionanteCumprimentoInput, CondicionanteDescumprimentoInput, CondicionanteResponse
-from app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
-from app.modules.resources.ambiente.domain.enums import StatusCondicionante
-from app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, LicencaNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_condicionante_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.condicionante_schema import CondicionanteCreate, CondicionanteCumprimentoInput, CondicionanteDescumprimentoInput, CondicionanteResponse
+from apps.backend.app.modules.resources.ambiente.application.services.condicionante_service import CondicionanteService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante
+from apps.backend.app.modules.resources.ambiente.exceptions import CondicionanteNotFoundError, LicencaNotFoundError
 router = APIRouter(prefix='/condicionantes', tags=['Ambiente - Condicionantes'])
 
 @router.post('/', response_model=CondicionanteResponse, status_code=status.HTTP_201_CREATED)

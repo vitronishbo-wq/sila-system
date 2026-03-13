@@ -3,9 +3,9 @@ from uuid import uuid4
 import pytest
 from sqlalchemy import select
 from app.core.events.outbox.outbox_model import OutboxEvent
-from app.modules.justice._deprecated.bounded_contexts.vital_events.application.services.birth_service import BirthService
-from app.modules.justice._deprecated.bounded_contexts.vital_events.infrastructure.repositories.birth_repository import BirthRepository
-from app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import CitizenRepository
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.vital_events.application.services.birth_service import BirthService
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.vital_events.infrastructure.repositories.birth_repository import BirthRepository
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.civil_registry_core.infrastructure.repositories.citizen_repository import CitizenRepository
 
 class _StubFUC:
 

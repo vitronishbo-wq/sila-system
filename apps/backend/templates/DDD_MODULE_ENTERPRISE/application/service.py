@@ -1,4 +1,4 @@
-from app.modules.{{ module_name }}.domain.entities import {{ entity_name }}
+from apps.backend.app.modules.{{ module_name }}.domain.entities import {{ entity_name }}
 
 class {{ module_name_camel }}Service:
     def __init__(self, repository):

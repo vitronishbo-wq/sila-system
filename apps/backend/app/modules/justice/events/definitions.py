@@ -1,1 +1,1 @@
-from app.modules.justice.justica.application.events.definitions import *
+from apps.backend.app.modules.justice.justica.application.events.definitions import *

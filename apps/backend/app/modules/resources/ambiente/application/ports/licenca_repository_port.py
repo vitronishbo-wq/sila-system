@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
-from app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusLicenca, TipoLicenca
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
 
 class LicencaRepositoryPort(ABC):
 

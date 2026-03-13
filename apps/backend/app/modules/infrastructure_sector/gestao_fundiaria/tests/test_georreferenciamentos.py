@@ -7,13 +7,13 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_georreferenciamento_service
-from app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.georreferenciamentos import router as georreferenciamentos_router
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
-from app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
-from app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, TipoImovel
-from app.modules.infrastructure_sector.gestao_fundiaria.exceptions import GeorreferenciamentoNotFoundError
-from app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyGeorreferenciamentoRepository, SQLAlchemyImovelRepository
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.deps import get_georreferenciamento_service
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.endpoints.georreferenciamentos import router as georreferenciamentos_router
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.georreferenciamento_service import GeorreferenciamentoService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.services.imovel_service import ImovelService
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, TipoImovel
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.exceptions import GeorreferenciamentoNotFoundError
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.infrastructure.repositories import SQLAlchemyGeorreferenciamentoRepository, SQLAlchemyImovelRepository
 
 class _GeosampaValido:
 

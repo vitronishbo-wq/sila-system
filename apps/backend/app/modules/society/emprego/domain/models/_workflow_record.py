@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Any, Optional
 from uuid import UUID
-from app.modules.society.emprego.domain.enums import WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.enums import WorkflowStatus
 
 @dataclass
 class WorkflowEmpregoRecord:

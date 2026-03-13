@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
-from app.modules.society.desporto.domain.enums import StatusJogo
-from app.modules.society.desporto.domain.models.jogo import Jogo
-from app.modules.society.desporto.infrastructure.models.jogo_model import JogoModel
+from apps.backend.app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
+from apps.backend.app.modules.society.desporto.domain.enums import StatusJogo
+from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
+from apps.backend.app.modules.society.desporto.infrastructure.models.jogo_model import JogoModel
 
 class SQLAlchemyJogoRepository(JogoRepositoryPort):
 

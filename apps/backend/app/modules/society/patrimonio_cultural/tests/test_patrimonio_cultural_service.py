@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 import pytest
-from app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
-from app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetType, ClassificationLevel
-from app.modules.society.patrimonio_cultural.domain.exceptions import UNESCOPreconditionError
-from app.modules.society.patrimonio_cultural.tests._fakes import FakeTourismService, InMemoryCulturalAssetRepository
+from apps.backend.app.modules.society.patrimonio_cultural.application.services import CulturalAssetService
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetType, ClassificationLevel
+from apps.backend.app.modules.society.patrimonio_cultural.domain.exceptions import UNESCOPreconditionError
+from apps.backend.app.modules.society.patrimonio_cultural.tests._fakes import FakeTourismService, InMemoryCulturalAssetRepository
 
 def test_patrimonio_cultural_lifecycle_service() -> None:
 

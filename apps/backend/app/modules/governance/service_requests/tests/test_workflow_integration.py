@@ -1,7 +1,7 @@
 """Test workflow integration"""
 import pytest
 from uuid import uuid4
-from app.modules.governance.service_requests.integrations.workflow_client import WorkflowClient
+from apps.backend.app.modules.governance.service_requests.integrations.workflow_client import WorkflowClient
 
 @pytest.mark.asyncio
 async def test_start_workflow():

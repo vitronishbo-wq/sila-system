@@ -6,9 +6,9 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.db import AsyncSessionLocal
-from app.modules.society.desporto.application.events import deserialize_event, serialize_event
-from app.modules.society.desporto.application.ports.outbox_repository_port import OutboxMessage, OutboxRepositoryPort
-from app.modules.society.desporto.infrastructure.models.outbox_event_model import OutboxEventModel
+from apps.backend.app.modules.society.desporto.application.events import deserialize_event, serialize_event
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxMessage, OutboxRepositoryPort
+from apps.backend.app.modules.society.desporto.infrastructure.models.outbox_event_model import OutboxEventModel
 
 def _default_worker_id() -> str:
     return f'{socket.gethostname()}-{os.getpid()}'

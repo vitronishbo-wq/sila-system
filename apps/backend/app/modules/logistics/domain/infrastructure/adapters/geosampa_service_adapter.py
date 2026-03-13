@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.logistics.application.ports.geosampa_service_port import GeosampaServicePort
+from apps.backend.app.modules.logistics.application.ports.geosampa_service_port import GeosampaServicePort
 
 class GeosampaServiceAdapter(GeosampaServicePort):
 

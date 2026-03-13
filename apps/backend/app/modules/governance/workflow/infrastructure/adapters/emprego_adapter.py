@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from uuid import UUID
-from app.modules.governance.workflow.application.ports.emprego_adapter_port import EmpregoAdapterPort
+from apps.backend.app.modules.governance.workflow.application.ports.emprego_adapter_port import EmpregoAdapterPort
 
 class EmpregoAdapter(EmpregoAdapterPort):
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
 from uuid import UUID
-from app.modules.resources.agricultura.api.deps import get_propriedade_service
-from app.modules.resources.agricultura.api.schemas.propriedade_schema import PropriedadeCreate, PropriedadeResponse
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_propriedade_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.propriedade_schema import PropriedadeCreate, PropriedadeResponse
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.exceptions import PropriedadeNotFoundError
 router = APIRouter(prefix='/propriedades', tags=['Agricultura - propriedades'])
 
 @router.post('/', response_model=PropriedadeResponse, status_code=status.HTTP_201_CREATED)

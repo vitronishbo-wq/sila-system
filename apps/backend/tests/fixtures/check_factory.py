@@ -1,6 +1,6 @@
 import pytest
 from tests.factories.user_factory import UserFactory
-from modules.identity.models.user import User
+from apps.backend.app.modules.identity.models.user import User
 
 def test_factory_build():
     """Test building a user without DB"""

@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 from uuid import UUID, uuid4
-from app.modules.tourism.domain.enums import TipoAtracao
+from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
 
 @dataclass
 class AtracaoTuristica:

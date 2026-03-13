@@ -6,11 +6,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.pescas.api.deps import get_licenciamento_pesca_service
-from app.modules.resources.pescas.api.endpoints.licencas_pesca import router as licencas_router
-from app.modules.resources.pescas.application.services.licenciamento_pesca_service import LicenciamentoPescaService
-from app.modules.resources.pescas.domain.enums import StatusLicenca
-from app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
+from apps.backend.app.modules.resources.pescas.api.deps import get_licenciamento_pesca_service
+from apps.backend.app.modules.resources.pescas.api.endpoints.licencas_pesca import router as licencas_router
+from apps.backend.app.modules.resources.pescas.application.services.licenciamento_pesca_service import LicenciamentoPescaService
+from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
+from apps.backend.app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
 
 @pytest.mark.asyncio
 async def test_emitir_licenca_sucesso():

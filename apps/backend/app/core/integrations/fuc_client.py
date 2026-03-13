@@ -3,7 +3,7 @@ import logging
 import os
 import random
 from typing import Dict, Optional
-from app.modules.economy.financas.exceptions import FUCError
+from apps.backend.app.modules.economy.financas.exceptions import FUCError
 logger = logging.getLogger(__name__)
 
 class FUCClient:

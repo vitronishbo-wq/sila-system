@@ -1,5 +1,5 @@
-from app.modules.infrastructure_sector.meteorologia.domain.enums import AlertType
-from app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.enums import AlertType
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
 
 def test_criar_observacao_basica() -> None:
     obs = ObservacaoMeteorologica(temperatura=25.5, humidade=60.0, pressao=1013.25)

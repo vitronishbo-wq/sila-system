@@ -8,14 +8,14 @@ from typing import Awaitable, Callable
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.db import AsyncSessionLocal
 from app.core.db import engine as write_engine
-from app.modules.infrastructure.application.events.registry import EVENT_HANDLERS
-from app.modules.infrastructure.application.sagas.execucao_obra_saga import ExecucaoObraSaga
-from app.modules.infrastructure.infrastructure.observability.tracing import instrument_sqlalchemy, setup_tracing, start_span
-from app.modules.infrastructure.infrastructure.persistence.saga_repository import SQLAlchemySagaRepository
-from app.modules.infrastructure.infrastructure.persistence.outbox_repository import SQLAlchemyOutboxRepository
-from app.modules.infrastructure.infrastructure.read_model.dashboard_projection_repository import DashboardProjectionRepository
-from app.modules.infrastructure.infrastructure.streaming.bi_producer import BIProducer
-from app.modules.infrastructure.infrastructure.multi_region.global_id import current_region_code
+from apps.backend.app.modules.infrastructure.application.events.registry import EVENT_HANDLERS
+from apps.backend.app.modules.infrastructure.application.sagas.execucao_obra_saga import ExecucaoObraSaga
+from apps.backend.app.modules.infrastructure.infrastructure.observability.tracing import instrument_sqlalchemy, setup_tracing, start_span
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.saga_repository import SQLAlchemySagaRepository
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.outbox_repository import SQLAlchemyOutboxRepository
+from apps.backend.app.modules.infrastructure.infrastructure.read_model.dashboard_projection_repository import DashboardProjectionRepository
+from apps.backend.app.modules.infrastructure.infrastructure.streaming.bi_producer import BIProducer
+from apps.backend.app.modules.infrastructure.infrastructure.multi_region.global_id import current_region_code
 try:
     from prometheus_client import Counter, Gauge, Histogram
 except Exception:

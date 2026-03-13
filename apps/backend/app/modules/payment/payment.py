@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from modules.payment.models.enums import PaymentStatus
+from apps.backend.app.modules.payment.models.enums import PaymentStatus
 
 
 @dataclass

@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import TipoInsumo
+from apps.backend.app.modules.resources.agricultura.domain.enums import TipoInsumo
 
 class InsumoCreate(BaseModel):
     nome: str

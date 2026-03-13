@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.society.desporto.api.deps import get_atleta_service
-from app.modules.society.desporto.api.schemas.atleta_schema import AtletaCreate, AtletaResponse, AtletaUpdate
-from app.modules.society.desporto.application.services.atleta_service import AtletaService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusAtleta, TipoAtleta
+from apps.backend.app.modules.society.desporto.api.deps import get_atleta_service
+from apps.backend.app.modules.society.desporto.api.schemas.atleta_schema import AtletaCreate, AtletaResponse, AtletaUpdate
+from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusAtleta, TipoAtleta
 router = APIRouter(prefix='/atletas', tags=['Desporto - Atletas'])
 
 @router.post('/', response_model=AtletaResponse, status_code=status.HTTP_201_CREATED)

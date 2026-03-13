@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pescas.domain.enums import TipoEmbarcacao
-from app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
+from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
 
 class EmbarcacaoRepositoryPort(ABC):
 

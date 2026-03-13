@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.modules.society.emprego.api.endpoints import candidatos_router, certificacoes_router, concursos_router, formacoes_router, mediacoes_router, ofertas_router, trabalhistas_router
+from apps.backend.app.modules.society.emprego.api.endpoints import candidatos_router, certificacoes_router, concursos_router, formacoes_router, mediacoes_router, ofertas_router, trabalhistas_router
 router = APIRouter(prefix='/emprego', tags=['Emprego'])
 router.include_router(candidatos_router)
 router.include_router(ofertas_router)

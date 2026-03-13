@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
-from app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
 
 class PatrimonioImaterialRepositoryPort(ABC):
 

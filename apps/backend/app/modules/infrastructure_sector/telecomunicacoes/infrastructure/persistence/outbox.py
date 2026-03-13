@@ -5,9 +5,9 @@ from typing import Any
 from uuid import UUID, uuid4
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.infrastructure_sector.telecomunicacoes.application.events.registry import TelecomEventRegistry, serialize_event
-from app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
-from app.modules.infrastructure_sector.telecomunicacoes.infrastructure.persistence.outbox_model import OutboxEventModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.registry import TelecomEventRegistry, serialize_event
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outbox_repository_port import OutboxRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.persistence.outbox_model import OutboxEventModel
 
 @dataclass
 class OutboxMessage:

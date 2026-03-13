@@ -3,7 +3,7 @@ from datetime import date
 from typing import Any, Optional
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
-from app.modules.society.emprego.domain.enums import WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.enums import WorkflowStatus
 
 class WorkflowCreate(BaseModel):
     citizen_id: UUID

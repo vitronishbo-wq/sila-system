@@ -1,7 +1,7 @@
 from __future__ import annotations
 import inspect
 from uuid import UUID
-from app.modules.resources.pescas.industrial.application.ports.pescas_service_port import PescasServicePort
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.pescas_service_port import PescasServicePort
 
 class PescasServiceAdapter(PescasServicePort):
 

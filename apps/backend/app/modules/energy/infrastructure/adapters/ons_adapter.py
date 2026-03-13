@@ -1,8 +1,8 @@
 from __future__ import annotations
 import os
-from app.modules.energy.application.ports.ons_service_port import ONSServicePort
-from app.modules.energy.domain.enums import BandeiraTarifaria
-from app.modules.energy.infrastructure.resilience.circuit_breaker import circuit_breaker
+from apps.backend.app.modules.energy.application.ports.ons_service_port import ONSServicePort
+from apps.backend.app.modules.energy.domain.enums import BandeiraTarifaria
+from apps.backend.app.modules.energy.infrastructure.resilience.circuit_breaker import circuit_breaker
 
 class ONSAdapter(ONSServicePort):
 

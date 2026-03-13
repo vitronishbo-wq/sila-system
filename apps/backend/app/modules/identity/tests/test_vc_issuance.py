@@ -1,8 +1,8 @@
 import pytest
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
-from app.modules.identity.verifiable_credentials.domain.entities.credential import VerifiableCredential
-from app.modules.identity.verifiable_credentials.application.services.credential_signer import CredentialSigner
+from apps.backend.app.modules.identity.verifiable_credentials.domain.entities.credential import VerifiableCredential
+from apps.backend.app.modules.identity.verifiable_credentials.application.services.credential_signer import CredentialSigner
 
 def test_vc_issuance_and_signature_flow():
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)

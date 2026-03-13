@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_drawback_restituicao_service
-from app.modules.economy.trade.external.api.endpoints.drawback_restituicao import router as drawback_restituicao_router
-from app.modules.economy.trade.external.application.services import DrawbackRestituicaoService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import DrawbackRestituicaoAlreadyExistsError, DrawbackRestituicaoNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackRestituicaoRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_drawback_restituicao_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.drawback_restituicao import router as drawback_restituicao_router
+from apps.backend.app.modules.economy.trade.external.application.services import DrawbackRestituicaoService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackRestituicaoAlreadyExistsError, DrawbackRestituicaoNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackRestituicaoRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_drawback_restituicao():

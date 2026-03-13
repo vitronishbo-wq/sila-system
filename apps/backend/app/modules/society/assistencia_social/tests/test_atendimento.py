@@ -1,10 +1,10 @@
 from __future__ import annotations
 import asyncio
 from uuid import uuid4
-from app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
-from app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
-from app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, TipoAtendimento
-from app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryAtendimentoRepo, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo
+from apps.backend.app.modules.society.assistencia_social.application.services.atendimento_service import AtendimentoService
+from apps.backend.app.modules.society.assistencia_social.application.services.beneficiario_service import BeneficiarioService
+from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, TipoAtendimento
+from apps.backend.app.modules.society.assistencia_social.tests._fakes import FakeCitizenService, FakeRequestService, InMemoryAtendimentoRepo, InMemoryBeneficiarioRepo, InMemoryCadastroUnicoRepo
 
 def test_atendimento_exige_beneficiario_e_persiste_fluxo() -> None:
 

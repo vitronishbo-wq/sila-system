@@ -1,7 +1,7 @@
 from __future__ import annotations
 from decimal import Decimal
 import pytest
-from app.modules.infrastructure.infrastructure.read_model.dashboard_projection_repository import DashboardProjectionRepository
+from apps.backend.app.modules.infrastructure.infrastructure.read_model.dashboard_projection_repository import DashboardProjectionRepository
 
 class _FakeSession:
 

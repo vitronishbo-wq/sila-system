@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.public_security.domain.enums import StatusMandado, TipoMandado
-from app.modules.public_security.domain.models.mandado import Mandado
+from apps.backend.app.modules.public_security.domain.enums import StatusMandado, TipoMandado
+from apps.backend.app.modules.public_security.domain.models.mandado import Mandado
 
 class MandadoRepositoryPort(ABC):
 

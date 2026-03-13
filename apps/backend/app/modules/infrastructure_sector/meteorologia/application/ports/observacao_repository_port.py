@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
-from app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
 
 class ObservacaoRepositoryPort(ABC):
 

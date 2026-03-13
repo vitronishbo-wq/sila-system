@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.emprego.application.ports.candidato_repository_port import CandidatoRepositoryPort
-from app.modules.society.emprego.domain.enums import StatusCandidato
-from app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
+from apps.backend.app.modules.society.emprego.application.ports.candidato_repository_port import CandidatoRepositoryPort
+from apps.backend.app.modules.society.emprego.domain.enums import StatusCandidato
+from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
 
 class EmpregoServiceAdapter(EmpregoServicePort):
 

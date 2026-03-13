@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID, uuid4
-from app.modules.public_security.domain.enums import StatusVestigio, TipoVestigio
+from apps.backend.app.modules.public_security.domain.enums import StatusVestigio, TipoVestigio
 
 @dataclass
 class Vestigio:

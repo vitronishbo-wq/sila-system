@@ -7,12 +7,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.logistics.api.deps import get_bilhetagem_service
-from app.modules.logistics.api.endpoints.bilhetagem import router as bilhetagem_router
-from app.modules.logistics.application.services import BilhetagemService
-from app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
-from app.modules.logistics.domain.models import BilhetagemEletronica
-from app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository
+from apps.backend.app.modules.logistics.api.deps import get_bilhetagem_service
+from apps.backend.app.modules.logistics.api.endpoints.bilhetagem import router as bilhetagem_router
+from apps.backend.app.modules.logistics.application.services import BilhetagemService
+from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
+from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica
+from apps.backend.app.modules.logistics.infrastructure.repositories import SQLAlchemyBilhetagemRepository
 
 @pytest.mark.asyncio
 async def test_bilhetagem_service_registro_e_reconciliacao():

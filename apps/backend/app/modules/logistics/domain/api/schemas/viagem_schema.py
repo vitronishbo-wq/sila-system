@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
 
 class ViagemCreate(BaseModel):
     linha_id: UUID

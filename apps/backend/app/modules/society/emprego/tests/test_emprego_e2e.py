@@ -6,13 +6,13 @@ from uuid import UUID, uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.society.emprego.api.deps import get_candidato_service, get_certificacao_service, get_concurso_service, get_formacao_service, get_mediacao_service, get_oferta_service, get_trabalho_service
-from app.modules.society.emprego.api.router import router as emprego_router
-from app.modules.society.emprego.application.ports import CandidatoRepositoryPort, CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
-from app.modules.society.emprego.application.services import CandidatoService, CertificacaoService, ConcursoService, FormacaoService, MediacaoService, OfertaService, TrabalhoService
-from app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato, WorkflowStatus
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
-from app.modules.society.emprego.domain.models.candidato import Candidato
+from apps.backend.app.modules.society.emprego.api.deps import get_candidato_service, get_certificacao_service, get_concurso_service, get_formacao_service, get_mediacao_service, get_oferta_service, get_trabalho_service
+from apps.backend.app.modules.society.emprego.api.router import router as emprego_router
+from apps.backend.app.modules.society.emprego.application.ports import CandidatoRepositoryPort, CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
+from apps.backend.app.modules.society.emprego.application.services import CandidatoService, CertificacaoService, ConcursoService, FormacaoService, MediacaoService, OfertaService, TrabalhoService
+from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato, WorkflowStatus
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
 
 class InMemoryCitizenService(CitizenServicePort):
 

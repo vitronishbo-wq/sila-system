@@ -4,9 +4,9 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
 import pytest
-from app.modules.educacao.infrastructure.models import StatusMatricula
-from app.modules.justice.bounded_contexts.application.services.citizen_service import CitizenService
-from app.modules.justice.bounded_contexts.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
+from apps.backend.app.modules.educacao.infrastructure.models import StatusMatricula
+from apps.backend.app.modules.justice.bounded_contexts.application.services.citizen_service import CitizenService
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
 
 @pytest.mark.asyncio
 async def test_adapter_educacao_filtra_matriculas_ativas() -> None:

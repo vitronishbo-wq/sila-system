@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import VistoRepositoryPort
-from app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import VistoRepositoryPort
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
 
 class InMemoryVistoRepository(VistoRepositoryPort):
 

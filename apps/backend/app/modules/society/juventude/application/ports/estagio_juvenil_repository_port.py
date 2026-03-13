@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.juventude.domain.enums import StatusEstagio
-from app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
+from apps.backend.app.modules.society.juventude.domain.enums import StatusEstagio
+from apps.backend.app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
 
 class EstagioJuvenilRepositoryPort(ABC):
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.ambiente.api.deps import get_penalidade_service
-from app.modules.resources.ambiente.api.schemas.embargo_schema import EmbargoCreate, EmbargoLevantamentoInput, EmbargoResponse, EmbargoSuspensaoInput
-from app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
-from app.modules.resources.ambiente.domain.enums import StatusEmbargo
-from app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, EmbargoNotFoundError
+from apps.backend.app.modules.resources.ambiente.api.deps import get_penalidade_service
+from apps.backend.app.modules.resources.ambiente.api.schemas.embargo_schema import EmbargoCreate, EmbargoLevantamentoInput, EmbargoResponse, EmbargoSuspensaoInput
+from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
+from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEmbargo
+from apps.backend.app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, EmbargoNotFoundError
 router = APIRouter(prefix='/embargos', tags=['Ambiente - Embargos'])
 
 @router.post('/', response_model=EmbargoResponse, status_code=status.HTTP_201_CREATED)

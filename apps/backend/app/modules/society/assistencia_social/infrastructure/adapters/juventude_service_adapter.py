@@ -1,8 +1,8 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.society.assistencia_social.application.ports import JuventudeServicePort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.domain.enums import TipoVulnerabilidade
+from apps.backend.app.modules.society.assistencia_social.application.ports import JuventudeServicePort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import TipoVulnerabilidade
 
 class JuventudeServiceAdapter(JuventudeServicePort):
 

@@ -1,6 +1,6 @@
-from app.modules.society.emprego.application.ports import FiscalizacaoRepositoryPort
-from app.modules.society.emprego.infrastructure.models.fiscalizacao_model import FiscalizacaoModel
-from app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
+from apps.backend.app.modules.society.emprego.application.ports import FiscalizacaoRepositoryPort
+from apps.backend.app.modules.society.emprego.infrastructure.models.fiscalizacao_model import FiscalizacaoModel
+from apps.backend.app.modules.society.emprego.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
 
 class SQLAlchemyFiscalizacaoRepository(SQLAlchemyWorkflowRepository, FiscalizacaoRepositoryPort):
 

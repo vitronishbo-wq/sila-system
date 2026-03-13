@@ -1,6 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.agricultura.domain.models.comercializacao import Comercializacao
+from apps.backend.app.modules.resources.agricultura.domain.models.comercializacao import Comercializacao
 
 class ComercializacaoRepositoryPort(ABC):
 

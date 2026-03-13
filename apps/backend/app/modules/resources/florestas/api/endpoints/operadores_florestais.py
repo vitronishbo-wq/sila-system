@@ -1,8 +1,8 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException
-from app.modules.resources.florestas.api.deps import get_operador_florestal_service
-from app.modules.resources.florestas.api.schemas.operador_florestal_schema import OperadorFlorestalCreate, OperadorFlorestalResponse
-from app.modules.resources.florestas.application.services.operador_florestal_service import OperadorFlorestalService
+from apps.backend.app.modules.resources.florestas.api.deps import get_operador_florestal_service
+from apps.backend.app.modules.resources.florestas.api.schemas.operador_florestal_schema import OperadorFlorestalCreate, OperadorFlorestalResponse
+from apps.backend.app.modules.resources.florestas.application.services.operador_florestal_service import OperadorFlorestalService
 router = APIRouter(prefix='/operadores-florestais', tags=['Florestas - Operadores Florestais'])
 
 @router.post('/', response_model=OperadorFlorestalResponse, status_code=201)

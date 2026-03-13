@@ -3,9 +3,9 @@ import asyncio
 from datetime import date
 from uuid import uuid4
 import pytest
-from app.modules.society.desporto.application.services.competicao_service import CompeticaoService
-from app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
-from app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeRequestService, FakeTurismoService, InMemoryCompeticaoRepository
+from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService
+from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+from apps.backend.app.modules.society.desporto.tests._fakes import FakeEducacaoService, FakeObrasPublicasService, FakeRequestService, FakeTurismoService, InMemoryCompeticaoRepository
 
 def test_cadastrar_competicao_sucesso() -> None:
 

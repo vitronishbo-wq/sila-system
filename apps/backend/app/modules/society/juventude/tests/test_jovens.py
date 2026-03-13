@@ -3,9 +3,9 @@ import asyncio
 from datetime import date, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, TipoVulnerabilidade
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeRequestService, InMemoryJovemRepository
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, TipoVulnerabilidade
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, FakeRequestService, InMemoryJovemRepository
 
 def test_cadastrar_jovem_sucesso() -> None:
 

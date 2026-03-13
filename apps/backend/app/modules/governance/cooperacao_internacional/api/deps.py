@@ -1,13 +1,13 @@
 from __future__ import annotations
-from app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
-from app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
-from app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
-from app.modules.governance.cooperacao_internacional.infrastructure.adapters.mre_adapter import MREAdapter
-from app.modules.governance.cooperacao_internacional.infrastructure.adapters.onu_adapter import ONUAdapter
-from app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
-from app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.acordo_service import AcordoService
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.projeto_cooperacao_service import ProjetoCooperacaoService
+from apps.backend.app.modules.governance.cooperacao_internacional.application.services.visto_service import VistoService
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.adapters.mre_adapter import MREAdapter
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.adapters.onu_adapter import ONUAdapter
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
 _acordo_repo = InMemoryAcordoRepository()
 _projeto_repo = InMemoryProjetoCooperacaoRepository()
 _visto_repo = InMemoryVistoRepository()

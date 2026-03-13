@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.modules.logistics.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
+from apps.backend.app.modules.logistics.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
 
 class ObrasPublicasServiceAdapter(ObrasPublicasServicePort):
 

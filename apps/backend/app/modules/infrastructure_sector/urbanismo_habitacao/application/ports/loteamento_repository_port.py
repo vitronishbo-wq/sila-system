@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import Loteamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import Loteamento
 
 class LoteamentoRepositoryPort(ABC):
 

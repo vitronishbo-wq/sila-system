@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
-from app.modules.society.desporto.domain.models.contrato import Contrato
+from apps.backend.app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
+from apps.backend.app.modules.society.desporto.domain.models.contrato import Contrato
 
 class ContratoRepositoryPort(ABC):
 

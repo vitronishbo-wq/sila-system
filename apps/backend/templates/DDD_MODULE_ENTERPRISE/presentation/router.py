@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
-from app.modules.{{ module_name }}.presentation.schemas import EntityRead
-from app.modules.{{ module_name }}.presentation.dependencies import get_{{ module_name }}_service
-from app.modules.{{ module_name }}.application.service import {{ module_name_camel }}Service
+from apps.backend.app.modules.{{ module_name }}.presentation.schemas import EntityRead
+from apps.backend.app.modules.{{ module_name }}.presentation.dependencies import get_{{ module_name }}_service
+from apps.backend.app.modules.{{ module_name }}.application.service import {{ module_name_camel }}Service
 
 router = APIRouter(prefix="/{{ module_url }}", tags=["{{ module_name_pretty }}"])
 

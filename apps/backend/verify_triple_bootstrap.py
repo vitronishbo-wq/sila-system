@@ -142,7 +142,7 @@ except Exception as e:
 
 try:
     print("  🔍 User Model... ", end="")
-    from app.modules.identity.infrastructure.models.user_model import UserModel
+    from apps.backend.app.modules.identity.infrastructure.models.user_model import UserModel
     print("✅")
 except Exception as e:
     print(f"❌ {str(e)[:50]}")

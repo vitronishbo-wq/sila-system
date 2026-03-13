@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from app.core.db import AsyncSessionLocal
-from app.modules.infrastructure.infrastructure.persistence.saga_model import SagaInstanceModel
+from apps.backend.app.modules.infrastructure.infrastructure.persistence.saga_model import SagaInstanceModel
 
 class SQLAlchemySagaRepository:
 

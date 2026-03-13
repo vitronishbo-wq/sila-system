@@ -1,7 +1,7 @@
 from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.services.api.router import router as comercio_servicos_router
+from apps.backend.app.modules.economy.trade.services.api.router import router as comercio_servicos_router
 
 def test_http_catalogo_ramos_retorna_lista():
     app = FastAPI()

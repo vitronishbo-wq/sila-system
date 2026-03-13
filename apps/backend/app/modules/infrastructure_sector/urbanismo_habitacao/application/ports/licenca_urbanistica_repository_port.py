@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.licenca_urbanistica import LicencaUrbanistica
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.licenca_urbanistica import LicencaUrbanistica
 
 class LicencaUrbanisticaRepositoryPort(ABC):
 

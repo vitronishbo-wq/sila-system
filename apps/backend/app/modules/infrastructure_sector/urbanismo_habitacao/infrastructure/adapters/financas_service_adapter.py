@@ -1,8 +1,8 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.financas_service_port import FinancasServicePort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import TipoAlvara
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.financas_service_port import FinancasServicePort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import TipoAlvara
 
 class FinancasServiceAdapter(FinancasServicePort):
 

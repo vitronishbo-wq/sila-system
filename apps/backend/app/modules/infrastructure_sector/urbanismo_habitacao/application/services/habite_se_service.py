@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.habite_se_repository_port import HabiteSeRepositoryPort
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
-from app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import HabiteSeAlreadyExistsError, HabiteSeNotFoundError
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.application.ports.habite_se_repository_port import HabiteSeRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.habite_se import HabiteSe
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.exceptions import HabiteSeAlreadyExistsError, HabiteSeNotFoundError
 
 class HabiteSeService:
 

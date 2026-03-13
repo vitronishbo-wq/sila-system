@@ -4,10 +4,10 @@ from datetime import date, timedelta
 from decimal import Decimal
 from uuid import uuid4
 import pytest
-from app.modules.society.juventude.application.services.auxilio_service import AuxilioService
-from app.modules.society.juventude.application.services.jovem_service import JovemService
-from app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, StatusBeneficio, TipoAuxilio
-from app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryAuxilioRepository, InMemoryJovemRepository
+from apps.backend.app.modules.society.juventude.application.services.auxilio_service import AuxilioService
+from apps.backend.app.modules.society.juventude.application.services.jovem_service import JovemService
+from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, SituacaoOcupacional, StatusBeneficio, TipoAuxilio
+from apps.backend.app.modules.society.juventude.tests._fakes import FakeCitizenService, FakeEducacaoService, FakeEmpregoService, InMemoryAuxilioRepository, InMemoryJovemRepository
 
 def test_conceder_auxilio_sucesso() -> None:
 

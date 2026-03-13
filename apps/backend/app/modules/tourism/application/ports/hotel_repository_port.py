@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.tourism.domain.enums import ClassificacaoHoteleira
-from app.modules.tourism.domain.models.hotel import Hotel
+from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
+from apps.backend.app.modules.tourism.domain.models.hotel import Hotel
 
 class HotelRepositoryPort(ABC):
 

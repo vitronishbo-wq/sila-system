@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.ambiente.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
-from app.modules.resources.ambiente.domain.models.proprietario import Proprietario
+from apps.backend.app.modules.resources.ambiente.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
+from apps.backend.app.modules.resources.ambiente.domain.models.proprietario import Proprietario
 
 class SQLAlchemyProprietarioRepository(ProprietarioRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

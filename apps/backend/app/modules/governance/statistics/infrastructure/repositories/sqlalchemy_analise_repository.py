@@ -1,8 +1,8 @@
 from __future__ import annotations
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.governance.statistics.application.ports.analise_repository_port import AnaliseRepositoryPort
-from app.modules.governance.statistics.infrastructure.models.analise_model import AnaliseModel
-from app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
+from apps.backend.app.modules.governance.statistics.application.ports.analise_repository_port import AnaliseRepositoryPort
+from apps.backend.app.modules.governance.statistics.infrastructure.models.analise_model import AnaliseModel
+from apps.backend.app.modules.governance.statistics.infrastructure.repositories.base_named_repository import SQLAlchemyNamedRepository
 
 class SQLAlchemyAnaliseRepository(SQLAlchemyNamedRepository, AnaliseRepositoryPort):
 

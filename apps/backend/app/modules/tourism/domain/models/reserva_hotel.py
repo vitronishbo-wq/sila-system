@@ -4,7 +4,7 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.tourism.domain.enums import StatusReserva, TipoTarifa
+from apps.backend.app.modules.tourism.domain.enums import StatusReserva, TipoTarifa
 
 @dataclass
 class ReservaHotel:

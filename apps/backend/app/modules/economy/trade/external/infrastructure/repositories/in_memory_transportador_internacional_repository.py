@@ -1,7 +1,7 @@
 from __future__ import annotations
-from app.modules.economy.trade.external.application.ports import TransportadorInternacionalRepositoryPort
-from app.modules.economy.trade.external.domain.models import TransportadorInternacional
-from app.modules.economy.trade.external.infrastructure.repositories.in_memory_operador_logistico_repository import InMemoryOperadorLogisticoRepository
+from apps.backend.app.modules.economy.trade.external.application.ports import TransportadorInternacionalRepositoryPort
+from apps.backend.app.modules.economy.trade.external.domain.models import TransportadorInternacional
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.in_memory_operador_logistico_repository import InMemoryOperadorLogisticoRepository
 
 class InMemoryTransportadorInternacionalRepository(InMemoryOperadorLogisticoRepository[TransportadorInternacional], TransportadorInternacionalRepositoryPort):
     pass

@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
-from app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from app.modules.society.juventude.domain.enums import StatusFormacao
-from app.modules.society.juventude.domain.models.formacao_juvenil import FormacaoJuvenil
+from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.society.juventude.domain.enums import StatusFormacao
+from apps.backend.app.modules.society.juventude.domain.models.formacao_juvenil import FormacaoJuvenil
 
 class FormacaoService:
 

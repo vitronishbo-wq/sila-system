@@ -3,10 +3,10 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
-from app.modules.society.juventude.domain.enums import AreaInteresse, StatusVoluntariado
-from app.modules.society.juventude.domain.models.voluntariado import Voluntariado
-from app.modules.society.juventude.infrastructure.models.voluntariado_model import VoluntariadoModel
+from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
+from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusVoluntariado
+from apps.backend.app.modules.society.juventude.domain.models.voluntariado import Voluntariado
+from apps.backend.app.modules.society.juventude.infrastructure.models.voluntariado_model import VoluntariadoModel
 
 class SQLAlchemyVoluntariadoRepository(VoluntariadoRepositoryPort):
 

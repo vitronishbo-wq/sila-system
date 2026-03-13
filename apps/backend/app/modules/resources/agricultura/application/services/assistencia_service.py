@@ -1,8 +1,8 @@
 from __future__ import annotations
 from datetime import date
-from app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
-from app.modules.resources.agricultura.domain.models.assistencia_tecnica import AssistenciaTecnica
-from app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError
+from apps.backend.app.modules.resources.agricultura.application.services.propriedade_service import PropriedadeService
+from apps.backend.app.modules.resources.agricultura.domain.models.assistencia_tecnica import AssistenciaTecnica
+from apps.backend.app.modules.resources.agricultura.exceptions import AssistenciaNotFoundError
 
 class AssistenciaService:
 

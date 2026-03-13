@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
-from app.modules.infrastructure.domain.enums import TipoObra
+from apps.backend.app.modules.infrastructure.application.ports.aguas_saneamento_service_port import AguasSaneamentoServicePort
+from apps.backend.app.modules.infrastructure.domain.enums import TipoObra
 
 class AguasSaneamentoServiceAdapter(AguasSaneamentoServicePort):
 

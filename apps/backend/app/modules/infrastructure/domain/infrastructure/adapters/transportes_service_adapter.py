@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort
-from app.modules.infrastructure.domain.enums import TipoObra
+from apps.backend.app.modules.infrastructure.application.ports.transportes_service_port import TransportesServicePort
+from apps.backend.app.modules.infrastructure.domain.enums import TipoObra
 
 class TransportesServiceAdapter(TransportesServicePort):
 

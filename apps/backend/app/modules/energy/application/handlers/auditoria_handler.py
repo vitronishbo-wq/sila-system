@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.modules.energy.application.events.definitions import FaturaGeradaEvent, QualidadeInconformeEvent
-from app.modules.energy.infrastructure.adapters.aneel_adapter import ANEELAdapter
+from apps.backend.app.modules.energy.application.events.definitions import FaturaGeradaEvent, QualidadeInconformeEvent
+from apps.backend.app.modules.energy.infrastructure.adapters.aneel_adapter import ANEELAdapter
 
 class AuditoriaHandler:
 

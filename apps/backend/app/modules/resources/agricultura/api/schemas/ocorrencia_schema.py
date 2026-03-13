@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict
-from app.modules.resources.agricultura.domain.enums import SeveridadeOcorrencia, StatusOcorrencia
+from apps.backend.app.modules.resources.agricultura.domain.enums import SeveridadeOcorrencia, StatusOcorrencia
 
 class OcorrenciaCreate(BaseModel):
     codigo_propriedade: str

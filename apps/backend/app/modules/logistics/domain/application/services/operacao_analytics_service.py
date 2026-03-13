@@ -2,9 +2,9 @@ from __future__ import annotations
 from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 from uuid import UUID
-from app.modules.logistics.application.ports import BilhetagemRepositoryPort, ViagemRepositoryPort
-from app.modules.logistics.domain.enums import StatusViagem
-from app.modules.logistics.domain.models import DemandaOperacional, QualidadeServico
+from apps.backend.app.modules.logistics.application.ports import BilhetagemRepositoryPort, ViagemRepositoryPort
+from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+from apps.backend.app.modules.logistics.domain.models import DemandaOperacional, QualidadeServico
 
 class OperacaoAnalyticsService:
 

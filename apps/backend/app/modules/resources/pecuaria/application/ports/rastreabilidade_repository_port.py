@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.resources.pecuaria.domain.models.rastreabilidade import Rastreabilidade
+from apps.backend.app.modules.resources.pecuaria.domain.models.rastreabilidade import Rastreabilidade
 
 class RastreabilidadeRepositoryPort(ABC):
 

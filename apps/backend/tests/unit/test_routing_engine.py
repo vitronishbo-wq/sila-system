@@ -1,5 +1,5 @@
 
-from app.modules.justice.civil_registry.application.services.routing_engine import (
+from apps.backend.app.modules.justice.civil_registry.application.services.routing_engine import (
     RequestState,
     RoutingRule
 )

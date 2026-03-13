@@ -5,25 +5,25 @@ from importlib import import_module
 from app.api.deps import get_db
 from app.core.bridges import CitizenRepository, ServiceRequestLifecycleBridge
 from app.core.bridges.society_repository_bridges import make_educacao_escola_repository
-from app.modules.society.desporto.application.events import event_bus
-from app.modules.society.desporto.application.services.atleta_service import AtletaService
-from app.modules.society.desporto.application.services.clube_service import ClubeService
-from app.modules.society.desporto.application.services.competicao_service import CompeticaoService
-from app.modules.society.desporto.application.services.estadio_service import EstadioService
-from app.modules.society.desporto.application.services.jogo_service import JogoService
-from app.modules.society.desporto.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
-from app.modules.society.desporto.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
-from app.modules.society.desporto.infrastructure.adapters.obras_publicas_service_adapter import ObrasPublicasServiceAdapter
-from app.modules.society.desporto.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
-from app.modules.society.desporto.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
-from app.modules.society.desporto.infrastructure.adapters.turismo_service_adapter import TurismoServiceAdapter
-from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_atleta_repository import SQLAlchemyAtletaRepository
-from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_clube_repository import SQLAlchemyClubeRepository
-from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_competicao_repository import SQLAlchemyCompeticaoRepository
-from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_estadio_repository import SQLAlchemyEstadioRepository
-from app.modules.society.desporto.infrastructure.repositories.sqlalchemy_jogo_repository import SQLAlchemyJogoRepository
-from app.modules.society.desporto.infrastructure.persistence.outbox import InMemoryOutboxRepository
-from app.modules.saude.api.deps import get_exame_service
+from apps.backend.app.modules.society.desporto.application.events import event_bus
+from apps.backend.app.modules.society.desporto.application.services.atleta_service import AtletaService
+from apps.backend.app.modules.society.desporto.application.services.clube_service import ClubeService
+from apps.backend.app.modules.society.desporto.application.services.competicao_service import CompeticaoService
+from apps.backend.app.modules.society.desporto.application.services.estadio_service import EstadioService
+from apps.backend.app.modules.society.desporto.application.services.jogo_service import JogoService
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.educacao_service_adapter import EducacaoServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.obras_publicas_service_adapter import ObrasPublicasServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.request_service_adapter import RequestServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.saude_service_adapter import SaudeServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.adapters.turismo_service_adapter import TurismoServiceAdapter
+from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_atleta_repository import SQLAlchemyAtletaRepository
+from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_clube_repository import SQLAlchemyClubeRepository
+from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_competicao_repository import SQLAlchemyCompeticaoRepository
+from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_estadio_repository import SQLAlchemyEstadioRepository
+from apps.backend.app.modules.society.desporto.infrastructure.repositories.sqlalchemy_jogo_repository import SQLAlchemyJogoRepository
+from apps.backend.app.modules.society.desporto.infrastructure.persistence.outbox import InMemoryOutboxRepository
+from apps.backend.app.modules.saude.api.deps import get_exame_service
 _outbox_repo = InMemoryOutboxRepository()
 
 async def get_atleta_service(session: AsyncSession=Depends(get_db)) -> AtletaService:

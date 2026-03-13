@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.intelligence.ciencia_pesquisa.api.deps import get_pesquisador_service
-from app.modules.intelligence.ciencia_pesquisa.api.schemas.pesquisador_schema import PesquisadorCreate, PesquisadorEncerrarVinculoInput, PesquisadorResponse, PesquisadorVincularInstituicaoInput
-from app.modules.intelligence.ciencia_pesquisa.application.services.pesquisador_service import PesquisadorService
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.deps import get_pesquisador_service
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.pesquisador_schema import PesquisadorCreate, PesquisadorEncerrarVinculoInput, PesquisadorResponse, PesquisadorVincularInstituicaoInput
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.services.pesquisador_service import PesquisadorService
 router = APIRouter(prefix='/pesquisadores', tags=['Ciencia Pesquisa - Pesquisadores'])
 
 def _status_code_for_error(message: str) -> int:

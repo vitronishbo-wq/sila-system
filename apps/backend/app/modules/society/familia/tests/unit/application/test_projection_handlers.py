@@ -1,5 +1,5 @@
 import pytest
-from app.modules.society.familia.application.services.family_projection_handler import FamilyProjectionHandler
+from apps.backend.app.modules.society.familia.application.services.family_projection_handler import FamilyProjectionHandler
 
 class _ProjectionRepo:
 

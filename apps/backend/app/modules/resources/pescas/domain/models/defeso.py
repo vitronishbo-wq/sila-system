@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
+from apps.backend.app.modules.resources.pescas.domain.enums import PeriodoDefesoTipo
 
 @dataclass
 class Defeso:

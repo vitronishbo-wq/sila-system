@@ -3,7 +3,7 @@ from typing import Any, Callable
 from uuid import UUID
 from fastapi import APIRouter, Body, Depends, HTTPException, status
 from pydantic import ValidationError
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
 
 def build_habilitacao_router(*, prefix: str, tag: str, get_service: Callable[..., Any], create_schema: type[Any], aprovacao_schema: type[Any], rejeicao_schema: type[Any], response_schema: type[Any], already_exists_error_cls: type[Exception], not_found_error_cls: type[Exception], invalid_state_error_cls: type[Exception]) -> APIRouter:
     router = APIRouter(prefix=prefix, tags=[tag])

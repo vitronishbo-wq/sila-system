@@ -1,10 +1,10 @@
 from __future__ import annotations
 from datetime import date
 from sqlalchemy import func, select
-from app.modules.society.seguranca_social.application.ports import PensaoRepositoryPort
-from app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
-from app.modules.society.seguranca_social.domain.models.pensao import Pensao
-from app.modules.society.seguranca_social.infrastructure.models.pensao_model import PensaoModel
+from apps.backend.app.modules.society.seguranca_social.application.ports import PensaoRepositoryPort
+from apps.backend.app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.models.pensao import Pensao
+from apps.backend.app.modules.society.seguranca_social.infrastructure.models.pensao_model import PensaoModel
 
 class SQLAlchemyPensaoRepository(PensaoRepositoryPort):
 

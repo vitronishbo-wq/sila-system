@@ -1,7 +1,7 @@
 from uuid import uuid4
 import pytest
-from app.modules.society.familia.domain.exceptions.family_exceptions import BiologicalCoherenceError
-from app.modules.society.familia.domain.rules.biological_coherence_rule import BiologicalCoherenceRule
+from apps.backend.app.modules.society.familia.domain.exceptions.family_exceptions import BiologicalCoherenceError
+from apps.backend.app.modules.society.familia.domain.rules.biological_coherence_rule import BiologicalCoherenceRule
 
 def test_biological_coherence_rejects_small_age_gap() -> None:
     rule = BiologicalCoherenceRule()

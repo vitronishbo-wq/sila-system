@@ -1,8 +1,8 @@
 """Test requests"""
 import pytest
 from uuid import uuid4
-from app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
-from app.modules.governance.service_requests.domain.enums import RequestStatus, ServiceType, RequestPriority
+from apps.backend.app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
+from apps.backend.app.modules.governance.service_requests.domain.enums import RequestStatus, ServiceType, RequestPriority
 
 def test_create_request():
     """Test creating a service request"""

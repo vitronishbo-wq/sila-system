@@ -5,10 +5,10 @@ from unittest.mock import AsyncMock
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.intelligence.bi.api.deps import get_dashboard_service
-from app.modules.intelligence.bi.api.router import router as bi_router
-from app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
-from app.modules.intelligence.bi.integrations.data_sources import DataSources
+from apps.backend.app.modules.intelligence.bi.api.deps import get_dashboard_service
+from apps.backend.app.modules.intelligence.bi.api.router import router as bi_router
+from apps.backend.app.modules.intelligence.bi.application.services.dashboard_service import DashboardService
+from apps.backend.app.modules.intelligence.bi.integrations.data_sources import DataSources
 
 @pytest.mark.asyncio
 @pytest.mark.integration

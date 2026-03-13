@@ -1,4 +1,4 @@
-from app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
 
 class AdministracaoLocalService:
 

@@ -1,9 +1,9 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.resources.agricultura.api.deps import get_produtor_service
-from app.modules.resources.agricultura.api.schemas.produtor_schema import ProdutorAtivarInput, ProdutorCreate, ProdutorFilter, ProdutorResponse
-from app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
-from app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_produtor_service
+from apps.backend.app.modules.resources.agricultura.api.schemas.produtor_schema import ProdutorAtivarInput, ProdutorCreate, ProdutorFilter, ProdutorResponse
+from apps.backend.app.modules.resources.agricultura.application.services.produtor_service import ProdutorService
+from apps.backend.app.modules.resources.agricultura.exceptions import CitizenInactiveError, ProdutorAlreadyExistsError
 router = APIRouter(prefix='/produtores', tags=['Agricultura - Produtores'])
 
 @router.post('/', response_model=ProdutorResponse, status_code=status.HTTP_201_CREATED)

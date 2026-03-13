@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import date, timedelta
 from decimal import Decimal
 from uuid import UUID
-from app.modules.energy.application.events.definitions import FaturaGeradaEvent
-from app.modules.energy.application.ports import ConsumoRepositoryPort, FaturaRepositoryPort, ONSServicePort, OutboxRepositoryPort
-from app.modules.energy.domain.enums import BandeiraTarifaria, StatusFaturaEnergia
-from app.modules.energy.domain.models import FaturaEnergia
-from app.modules.energy.core.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
-from app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
+from apps.backend.app.modules.energy.application.events.definitions import FaturaGeradaEvent
+from apps.backend.app.modules.energy.application.ports import ConsumoRepositoryPort, FaturaRepositoryPort, ONSServicePort, OutboxRepositoryPort
+from apps.backend.app.modules.energy.domain.enums import BandeiraTarifaria, StatusFaturaEnergia
+from apps.backend.app.modules.energy.domain.models import FaturaEnergia
+from apps.backend.app.modules.energy.core.exceptions import ConsumoNotFoundError, FaturaEnergiaAlreadyExistsError, FaturaEnergiaNotFoundError
+from apps.backend.app.modules.energy.infrastructure.persistence.repository import BaseOutboxRepository
 
 class FaturamentoService:
 

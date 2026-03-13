@@ -2,12 +2,12 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from uuid import uuid4
 import pytest
-from app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
-from app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
-from app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, NaturezaVoo, RegrasVoo, StatusVoo, TipoAeronave, TipoVoo
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_aeronave_repository import InMemoryAeronaveRepository
-from app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_voo_repository import InMemoryVooRepository
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, NaturezaVoo, RegrasVoo, StatusVoo, TipoAeronave, TipoVoo
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.persistence.outbox import InMemoryOutbox
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_aeronave_repository import InMemoryAeronaveRepository
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.infrastructure.repositories.inmemory_voo_repository import InMemoryVooRepository
 
 @pytest.mark.asyncio
 async def test_programar_decolar_pousar_voo() -> None:

@@ -1,1 +1,1 @@
-from app.modules.justice.bounded_contexts.identity_documents.infrastructure.repositories.bi_repository import *
+from apps.backend.app.modules.justice.bounded_contexts.identity_documents.infrastructure.repositories.bi_repository import *

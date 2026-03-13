@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.economy.trade.external.api.deps import get_drawback_verde_amarelo_service
-from app.modules.economy.trade.external.api.endpoints.drawback_verde_amarelo import router as drawback_verde_amarelo_router
-from app.modules.economy.trade.external.application.services import DrawbackVerdeAmareloService
-from app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
-from app.modules.economy.trade.external.exceptions import DrawbackVerdeAmareloAlreadyExistsError, DrawbackVerdeAmareloNotFoundError
-from app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackVerdeAmareloRepository
+from apps.backend.app.modules.economy.trade.external.api.deps import get_drawback_verde_amarelo_service
+from apps.backend.app.modules.economy.trade.external.api.endpoints.drawback_verde_amarelo import router as drawback_verde_amarelo_router
+from apps.backend.app.modules.economy.trade.external.application.services import DrawbackVerdeAmareloService
+from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoPessoa
+from apps.backend.app.modules.economy.trade.external.exceptions import DrawbackVerdeAmareloAlreadyExistsError, DrawbackVerdeAmareloNotFoundError
+from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import InMemoryDrawbackVerdeAmareloRepository
 
 @pytest.mark.asyncio
 async def test_service_fluxo_principal_drawback_verde_amarelo():

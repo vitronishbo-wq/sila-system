@@ -6,12 +6,12 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.aguas_saneamento.api.deps import get_abastecimento_service
-from app.modules.resources.aguas_saneamento.api.endpoints.abastecimento import router as abastecimento_router
-from app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
-from app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
-from app.modules.resources.aguas_saneamento.exceptions import AbastecimentoNotFoundError
-from app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyAbastecimentoRepository
+from apps.backend.app.modules.resources.aguas_saneamento.api.deps import get_abastecimento_service
+from apps.backend.app.modules.resources.aguas_saneamento.api.endpoints.abastecimento import router as abastecimento_router
+from apps.backend.app.modules.resources.aguas_saneamento.application.services.abastecimento_service import AbastecimentoService
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+from apps.backend.app.modules.resources.aguas_saneamento.exceptions import AbastecimentoNotFoundError
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories import SQLAlchemyAbastecimentoRepository
 
 @pytest.mark.asyncio
 async def test_abastecimento_service_fluxo_sucesso():

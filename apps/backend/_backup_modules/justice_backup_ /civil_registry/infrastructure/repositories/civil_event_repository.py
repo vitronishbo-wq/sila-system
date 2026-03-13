@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.modules.justice.bounded_contexts.infrastructure.models.civil_event import CivilEventRecord
+from apps.backend.app.modules.justice.bounded_contexts.infrastructure.models.civil_event import CivilEventRecord
 
 class CivilEventRepository:
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
-from app.modules.governance.statistics.application.ports.named_entity_repository_port import NamedEntityRepositoryPort
-from app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+from apps.backend.app.modules.governance.statistics.application.ports.named_entity_repository_port import NamedEntityRepositoryPort
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
 
 class NamedEntityService:
 

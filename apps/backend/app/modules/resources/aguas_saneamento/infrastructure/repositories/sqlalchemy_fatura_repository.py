@@ -1,9 +1,9 @@
 from __future__ import annotations
 from datetime import date
 from uuid import UUID
-from app.modules.resources.aguas_saneamento.application.ports.fatura_repository_port import FaturaRepositoryPort
-from app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
-from app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.fatura_repository_port import FaturaRepositoryPort
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusFatura
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.fatura_agua import FaturaAgua
 
 class SQLAlchemyFaturaRepository(FaturaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

@@ -2,10 +2,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort
-from app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
-from app.modules.infrastructure.domain.models.licitacao import Licitacao
-from app.modules.infrastructure.core.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
+from apps.backend.app.modules.infrastructure.application.ports.licitacao_repository_port import LicitacaoRepositoryPort
+from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+from apps.backend.app.modules.infrastructure.domain.models.licitacao import Licitacao
+from apps.backend.app.modules.infrastructure.core.exceptions import LicitacaoAlreadyExistsError, LicitacaoNotFoundError
 
 class LicitacaoService:
 

@@ -4,10 +4,10 @@ from datetime import date
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 from uuid import uuid4
-from app.modules.educacao.application.propina_service import PropinaService
-from app.modules.educacao.domain.enums import StatusFluxo
-from app.modules.educacao.domain.models.propina import DomainRecord
-from app.modules.educacao.domain.models._workflow_record import WorkflowRecord
+from apps.backend.app.modules.educacao.application.propina_service import PropinaService
+from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+from apps.backend.app.modules.educacao.domain.models.propina import DomainRecord
+from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
 def test_propina_domain_transitions():
     item = DomainRecord(id=uuid4(), numero_processo='PRP/2026/0001', service_type='propina', citizen_id=uuid4(), instituicao_id=uuid4(), data_registo=date.today())

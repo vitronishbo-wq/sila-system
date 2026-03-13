@@ -1,9 +1,9 @@
 from __future__ import annotations
 from uuid import UUID
-from app.modules.economy.trade.services.application.ports import EstabelecimentoComercialRepositoryPort
-from app.modules.economy.trade.services.domain.enums import RamoComercial, StatusComercial
-from app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
-from app.modules.economy.trade.services.infrastructure.models import EstabelecimentoComercialModel
+from apps.backend.app.modules.economy.trade.services.application.ports import EstabelecimentoComercialRepositoryPort
+from apps.backend.app.modules.economy.trade.services.domain.enums import RamoComercial, StatusComercial
+from apps.backend.app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
+from apps.backend.app.modules.economy.trade.services.infrastructure.models import EstabelecimentoComercialModel
 
 class SQLAlchemyEstabelecimentoComercialRepository(EstabelecimentoComercialRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""

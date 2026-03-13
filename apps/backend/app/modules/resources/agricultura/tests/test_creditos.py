@@ -5,11 +5,11 @@ from uuid import uuid4
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.modules.resources.agricultura.api.deps import get_credito_service
-from app.modules.resources.agricultura.api.endpoints.creditos import router as creditos_router
-from app.modules.resources.agricultura.application.services.credito_service import CreditoService
-from app.modules.resources.agricultura.domain.enums import StatusCredito
-from app.modules.resources.agricultura.exceptions import CreditoNotFoundError
+from apps.backend.app.modules.resources.agricultura.api.deps import get_credito_service
+from apps.backend.app.modules.resources.agricultura.api.endpoints.creditos import router as creditos_router
+from apps.backend.app.modules.resources.agricultura.application.services.credito_service import CreditoService
+from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCredito
+from apps.backend.app.modules.resources.agricultura.exceptions import CreditoNotFoundError
 
 @pytest.mark.asyncio
 async def test_credito_service_fluxo_aprovar_desembolsar():

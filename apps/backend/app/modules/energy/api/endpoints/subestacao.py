@@ -1,11 +1,11 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.energy.api.deps import get_subestacao_service
-from app.modules.energy.api.schemas.subestacao_schema import SubestacaoCreate, SubestacaoDataInput, SubestacaoResponse
-from app.modules.energy.application.services import SubestacaoService
-from app.modules.energy.domain.enums import StatusInfraEnergia
-from app.modules.energy.core.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
+from apps.backend.app.modules.energy.api.deps import get_subestacao_service
+from apps.backend.app.modules.energy.api.schemas.subestacao_schema import SubestacaoCreate, SubestacaoDataInput, SubestacaoResponse
+from apps.backend.app.modules.energy.application.services import SubestacaoService
+from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
+from apps.backend.app.modules.energy.core.exceptions import InvalidSubestacaoStateError, SubestacaoNotFoundError
 router = APIRouter(prefix='/subestacao', tags=['Energia - Subestacao'])
 
 @router.post('/', response_model=SubestacaoResponse, status_code=status.HTTP_201_CREATED)

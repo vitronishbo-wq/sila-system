@@ -1,7 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from app.modules.resources.pescas.domain.enums import TipoPescador
-from app.modules.resources.pescas.domain.models.pescador import Pescador
+from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
+from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
 
 class PescadorRepositoryPort(ABC):
 

@@ -2,8 +2,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 from uuid import UUID
-from app.modules.infrastructure_sector.meteorologia.application.ports import AlertaServicePort, EstacaoRepositoryPort, ObservacaoRepositoryPort
-from app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.ports import AlertaServicePort, EstacaoRepositoryPort, ObservacaoRepositoryPort
+from apps.backend.app.modules.infrastructure_sector.meteorologia.domain.models import ObservacaoMeteorologica
 
 class ProcessamentoService:
 

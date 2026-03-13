@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.logistics.domain.enums import StatusFrota
-from app.modules.logistics.domain.models import Frota
+from apps.backend.app.modules.logistics.domain.enums import StatusFrota
+from apps.backend.app.modules.logistics.domain.models import Frota
 
 class FrotaRepositoryPort(ABC):
 

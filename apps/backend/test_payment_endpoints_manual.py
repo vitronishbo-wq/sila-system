@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 
 # Import payment module components
-from modules.payment.endpoints.payment_endpoints import router as payment_router
+from apps.backend.app.modules.payment.endpoints.payment_endpoints import router as payment_router
 from app.core.db import get_db
 
 # Setup FastAPI app

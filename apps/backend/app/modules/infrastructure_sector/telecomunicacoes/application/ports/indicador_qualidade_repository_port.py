@@ -1,8 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from uuid import UUID
-from app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
-from app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
 
 class IndicadorQualidadeRepositoryPort(ABC):
 

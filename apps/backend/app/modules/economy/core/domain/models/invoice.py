@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
-from app.modules.economy.domain.models.enums import InvoiceStatus
-from app.modules.economy.domain.exceptions import DomainValidationError
+from apps.backend.app.modules.economy.domain.models.enums import InvoiceStatus
+from apps.backend.app.modules.economy.domain.exceptions import DomainValidationError
 
 @dataclass
 class Invoice:
@@ -47,7 +47,7 @@ class Invoice:
         """
         valid_transitions = {InvoiceStatus.PENDING: [InvoiceStatus.PAID, InvoiceStatus.CANCELLED, InvoiceStatus.OVERDUE], InvoiceStatus.OVERDUE: [InvoiceStatus.PAID, InvoiceStatus.CANCELLED], InvoiceStatus.PAID: [], InvoiceStatus.CANCELLED: []}
         if new_status not in valid_transitions.get(self.status, []):
-            from app.modules.economy.domain.exceptions import InvalidInvoiceStateError
+            from apps.backend.app.modules.economy.domain.exceptions import InvalidInvoiceStateError
             raise InvalidInvoiceStateError(current_status=self.status.value, action=f'mudar para {new_status.value}')
         old_status = self.status
         self.status = new_status

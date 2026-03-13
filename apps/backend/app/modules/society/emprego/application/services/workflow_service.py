@@ -2,8 +2,8 @@ from __future__ import annotations
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-from app.modules.society.emprego.application.ports import CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
-from app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
+from apps.backend.app.modules.society.emprego.application.ports import CitizenServicePort, RequestServicePort, WorkflowRepositoryPort
+from apps.backend.app.modules.society.emprego.domain.models._workflow_record import WorkflowEmpregoRecord
 
 class WorkflowService:
 

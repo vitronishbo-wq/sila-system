@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
 import pytest
-from app.modules.resources.florestas.application.services.operador_florestal_service import OperadorFlorestalService
+from apps.backend.app.modules.resources.florestas.application.services.operador_florestal_service import OperadorFlorestalService
 
 class _Repo:
 

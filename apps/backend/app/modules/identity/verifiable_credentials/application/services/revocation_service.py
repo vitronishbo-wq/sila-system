@@ -1,4 +1,4 @@
-from app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
+from apps.backend.app.modules.identity.verifiable_credentials.infrastructure.repositories.revocation_repository import RevocationRepository
 
 class RevocationService:
     def __init__(self, repository: RevocationRepository):

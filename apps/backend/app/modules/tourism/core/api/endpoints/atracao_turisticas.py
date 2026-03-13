@@ -1,10 +1,10 @@
 from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
-from app.modules.tourism.api.deps import get_atracao_service
-from app.modules.tourism.api.schemas.atracao_turistica_schema import AtracaoTuristicaCreate, AtracaoTuristicaResponse, AtracaoTuristicaUpdate
-from app.modules.tourism.application.services.atracao_service import AtracaoService
-from app.modules.tourism.domain.enums import TipoAtracao
+from apps.backend.app.modules.tourism.api.deps import get_atracao_service
+from apps.backend.app.modules.tourism.api.schemas.atracao_turistica_schema import AtracaoTuristicaCreate, AtracaoTuristicaResponse, AtracaoTuristicaUpdate
+from apps.backend.app.modules.tourism.application.services.atracao_service import AtracaoService
+from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
 router = APIRouter(prefix='/atracoes-turisticas', tags=['Turismo - Atracoes Turisticas'])
 
 @router.post('/', response_model=AtracaoTuristicaResponse, status_code=status.HTTP_201_CREATED)
