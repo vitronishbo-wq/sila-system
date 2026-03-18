@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNotifications } from '../hooks/useNotifications';
-import { Notification } from '../types';
+import type { Notification } from '../types';
 
 export const NotificationList: React.FC = () => {
   const { notifications, refetch } = useNotifications();

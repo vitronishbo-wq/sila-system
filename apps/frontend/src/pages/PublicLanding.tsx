@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ASSETS, ESSENTIAL_SERVICES, APP_VERSION } from '../constants';
+import { ESSENTIAL_SERVICES, APP_VERSION } from '../constants';
 import { Building2, Search, ArrowRight, Shield, Zap, Users } from 'lucide-react';
 
 const PublicLanding: React.FC = () => {

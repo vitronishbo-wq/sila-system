@@ -19,6 +19,8 @@ export interface CitizenProfile {
   place_of_birth: string;
   province: string;
   municipality: string;
+  street?: string;
+  neighborhood?: string;
   phone: string;
   email: string;
   is_verified: boolean;

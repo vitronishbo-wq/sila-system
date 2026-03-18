@@ -25,7 +25,7 @@ export const MeteorologyWidget: React.FC<MeteorologyWidgetProps> = ({
   const [displayMode, setDisplayMode] = useState<'grid' | 'list' | 'map'>('grid');
   const [selectedEstacaoId, setSelectedEstacaoId] = useState<string | null>(null);
 
-  const { stats, estacoes, alertas, loading, error, refetch } = useMeteorologia();
+  const { stats, estacoes, loading, error, refetch } = useMeteorologia();
   const { alertas: filteredAlertas, resolveAlerta } = useAlertas(filter.provincia);
   const { data: estacaoData } = useEstacoes(filter);
 

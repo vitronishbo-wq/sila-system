@@ -11,14 +11,14 @@
  * POST   /api/v1/financas/payments/confirm (webhook)
  */
 
-import http from '../../api/http';
+import http from '@/api/http';
+import { InvoiceStatus } from '../types';
 import type {
   Invoice,
   Payment,
   FinanceStats,
   CreateInvoiceRequest,
-  CreatePaymentRequest,
-  InvoiceStatus
+  CreatePaymentRequest
 } from '../types';
 
 class FinanceService {
@@ -154,4 +154,5 @@ class FinanceService {
   }
 }
 
-export default new FinanceService();
+export const financeService = new FinanceService();
+export default financeService;

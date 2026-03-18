@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { adminDocumentService, AdminDocumentSummary } from '../services/adminDocumentService';
+import { adminDocumentService } from '../services/adminDocumentService';
+import type { AdminDocumentSummary } from '../services/adminDocumentService';
 
 const formatDate = (value?: string | null) => {
   if (!value) return '—';

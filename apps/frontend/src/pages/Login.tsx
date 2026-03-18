@@ -3,7 +3,7 @@ import { authService } from '../services/authService';
 import { ASSETS, APP_VERSION } from '../constants';
 
 interface LoginProps {
-  onLoginSuccess: (token: string) => void;
+  onLoginSuccess?: (token: string) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
@@ -23,7 +23,13 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
       formData.append('password', password);
 
       const { access_token } = await authService.login(formData);
-      onLoginSuccess(access_token);
+      if (onLoginSuccess) {
+        onLoginSuccess(access_token);
+      } else {
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('token', access_token);
+        window.location.hash = '/admin';
+      }
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Erro ao realizar login. Verifique as suas credenciais.');
     } finally {

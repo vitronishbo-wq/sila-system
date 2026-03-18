@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { User, UserRole } from '../types';
+import { UserRole } from '../types';
+import type { User } from '../types';
 import { ASSETS, API_URL } from '../constants';
 import dashboardService from '../services/dashboardService';
 import { ToastProvider } from '../hooks/useToast';

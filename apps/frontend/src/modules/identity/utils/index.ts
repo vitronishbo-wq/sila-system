@@ -25,7 +25,7 @@ export function convertBiometricToBase64(file: File): Promise<string> {
  * Extract quality score from biometric device response
  */
 export function calculateBiometricQuality(
-  templateData: string,
+  _templateData: string,
   deviceMetrics?: {
     brightness?: number;
     contrast?: number;
@@ -192,9 +192,11 @@ export function getDaysUntilExpiry(expiryDate: string): number {
 /**
  * Check if Digital BI is expiring soon
  */
-export function isBIExpiringsoon(expiryDate: string, warningDays = 90): boolean {
+export function isBIExpiringSoon(expiryDate: string, warningDays = 90): boolean {
   return getDaysUntilExpiry(expiryDate) <= warningDays;
 }
+
+export const isBIExpiringsoon = isBIExpiringSoon;
 
 // ============= BIOMETRIC MATCHING =============
 /**

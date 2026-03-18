@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { API_URL } from '../constants';
-import { citizenService, CitizenSummary, ExportJobStatus } from '../services/citizenService';
+import { citizenService } from '../services/citizenService';
+import type { CitizenSummary, ExportJobStatus } from '../services/citizenService';
 import { useToast } from '../hooks/useToast';
 
 const formatDate = (value?: string | null) => {

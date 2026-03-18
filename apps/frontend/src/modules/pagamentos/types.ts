@@ -3,6 +3,13 @@
  * Source: apps/backend/app/modules/financas/schemas/
  */
 
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER',
+  OFFICER = 'OFFICER',
+  CITIZEN = 'CITIZEN',
+}
+
 export enum InvoiceStatus {
   PENDING = 'pending',
   PAID = 'paid',

@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import {
   useVerificationResults,
 } from '../hooks';
-import { VerificationResult, VerificationRequest } from '../types';
+import type { VerificationResult, VerificationRequest } from '../types';
 import { identityService } from '../services';
 
 interface VerificationStatusProps {
@@ -47,7 +47,7 @@ export const VerificationStatus: React.FC<VerificationStatusProps> = ({
     return (
       <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
         <h3 className="font-bold text-red-800 mb-2">Erro ao carregar verificações</h3>
-        <p className="text-red-700 mb-4">{error}</p>
+        <p className="text-red-700 mb-4">{error.message}</p>
         <button
           onClick={() => refetch()}
           className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm font-medium"
@@ -226,9 +226,10 @@ function RequestStatusPanel({
     IN_PROGRESS: { step: 2, label: 'Em Progresso', color: 'bg-blue-100 text-blue-800' },
     COMPLETED: { step: 3, label: 'Concluído', color: 'bg-green-100 text-green-800' },
     FAILED: { step: 3, label: 'Falhou', color: 'bg-red-100 text-red-800' },
+    REJECTED: { step: 3, label: 'Rejeitado', color: 'bg-red-100 text-red-800' },
   };
 
-  const progress = statusProgressMap[requestStatus.status];
+  const progress = statusProgressMap[requestStatus.status] ?? statusProgressMap.PENDING;
 
   return (
     <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">

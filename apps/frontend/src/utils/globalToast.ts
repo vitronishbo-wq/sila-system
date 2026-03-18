@@ -1,4 +1,4 @@
-import { ToastData } from '../components/Toast';
+import type { ToastData } from '../components/Toast';
 
 type ToastFn = (data: ToastData) => void;
 

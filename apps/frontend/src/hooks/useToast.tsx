@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import Toast, { ToastData } from '../components/Toast';
+import Toast from '../components/Toast';
+import type { ToastData } from '../components/Toast';
 import { setGlobalToast } from '../utils/globalToast';
 
 interface ToastContextValue {

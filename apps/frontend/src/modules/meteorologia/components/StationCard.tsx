@@ -10,13 +10,12 @@ import {
   CloudSnow,
   Wind,
   Droplets,
-  Eye,
   Gauge,
   MapPin,
   AlertTriangle,
   TrendingUp,
 } from 'lucide-react';
-import type { MeteorologiaEstacao, ObservacaoMeteorologica, Alert } from '../types';
+import type { MeteorologiaEstacao, Alert } from '../types';
 import { useEstacao, useAlertas } from '../hooks';
 
 interface StationCardProps {
@@ -26,7 +25,7 @@ interface StationCardProps {
 }
 
 export const StationCard: React.FC<StationCardProps> = ({ estacaoId, estacao, className = '' }) => {
-  const { observation, loading, error } = useEstacao(estacaoId);
+  const { observation, loading } = useEstacao(estacaoId);
   const { alertas: allAlertas } = useAlertas();
 
   const [stationAlertas, setStationAlertas] = useState<Alert[]>([]);

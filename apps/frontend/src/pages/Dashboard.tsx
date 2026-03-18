@@ -1,13 +1,16 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { User, AdminLevel, UserRole } from '../types';
+import { AdminLevel, UserRole } from '../types';
+import type { User } from '../types';
 import { ASSETS } from '../constants';
-import dashboardService, {
+import dashboardService from '../services/dashboardService';
+import type {
   DashboardData,
   NotificationItem,
   RecentRequest,
 } from '../services/dashboardService';
-import { exportJobsService, ExportTimelineItem } from '../services/exportJobsService';
+import { exportJobsService } from '../services/exportJobsService';
+import type { ExportTimelineItem } from '../services/exportJobsService';
 import { API_URL } from '../constants';
 
 /* ─── helpers ─── */
@@ -127,7 +130,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const [weeklyExports, setWeeklyExports] = useState<{ week: string; total: number }[]>([]);
   const [weeklyMode, setWeeklyMode] = useState<'all' | 'citizens' | 'documents'>('all');
   const [lastExportLog, setLastExportLog] = useState<{ message: string; module?: string; created_at?: string | null } | null>(null);
-  const [exportPulseAt, setExportPulseAt] = useState<number | null>(null);
   const [toastMaxStack, setToastMaxStack] = useState<number>(() => {
     const stored = Number(localStorage.getItem('toast_max_stack'));
     if (Number.isFinite(stored) && stored > 0) return stored;
@@ -354,7 +356,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
             module: payload.module,
             created_at: payload.created_at,
           });
-          setExportPulseAt(Date.now());
         }
       } catch (err) {
         console.error('[Dashboard] log stream error', err);

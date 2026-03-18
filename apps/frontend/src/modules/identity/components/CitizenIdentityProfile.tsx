@@ -17,7 +17,7 @@ import {
   isBIExpiringSoon,
   formatAuditEvent,
 } from '../utils';
-import {
+import type {
   CitizenProfile,
   DigitalBIDocument,
   BiometricTemplate,
@@ -73,7 +73,7 @@ export const CitizenIdentityProfile: React.FC<CitizenIdentityProfileProps> = ({
         <h3 className="font-bold text-red-800 mb-2">Erro ao carregar perfil</h3>
         <ul className="list-disc list-inside text-red-700 text-sm space-y-1">
           {errors.map((err, i) => (
-            <li key={i}>{err}</li>
+            <li key={i}>{err instanceof Error ? err.message : String(err)}</li>
           ))}
         </ul>
       </div>
@@ -306,7 +306,6 @@ function BIDocumentCard({
   isSelected: boolean;
   onClick: () => void;
 }) {
-  const { isValid } = isDigitalBIValid(document);
   const daysUntilExpiry = getDaysUntilExpiry(document.expiry_date);
   const expiringSoon = isBIExpiringSoon(document.expiry_date);
 

@@ -5,14 +5,13 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { identityService } from '../services/identityService';
-import {
+import type {
   CitizenProfile,
   CitizenListResponse,
   DigitalBIDocument,
   DigitalBIIssueRequest,
   BiometricTemplate,
   BiometricVerification,
-  VerificationRequest,
   VerificationResult,
   BITemplate,
   IdentityStatistics,

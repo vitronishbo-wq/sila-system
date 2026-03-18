@@ -117,7 +117,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
     const content = `COMPROVANTE DE PAGAMENTO\n\nServiço: ${service.name}\nValor: ${formatAmount(amount)}\nEntidade: ${entity}\nReferência: ${paymentReference ?? 'N/D'}\nData: ${new Date().toLocaleDateString('pt-PT')}\nMétodo: ${method === 'reference' ? 'Referência' : 'QR Code'}\n\nProcessado via SILA-System v2026.1`;
     const element = document.createElement('a');
     element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(content)}`);
-    element.setAttribute('download', `comprovante-${reference.replace(/\s/g, '')}.txt`);
+    const safeReference = (paymentReference ?? 'sem-referencia').replace(/\s/g, '');
+    element.setAttribute('download', `comprovante-${safeReference}.txt`);
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();

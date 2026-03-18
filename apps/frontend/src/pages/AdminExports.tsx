@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { API_URL } from '../constants';
-import { exportJobsService, ExportJobDetail, ExportJobItem, ExportJobStatus, ExportTimelineItem } from '../services/exportJobsService';
+import { exportJobsService } from '../services/exportJobsService';
+import type { ExportJobDetail, ExportJobItem, ExportJobStatus, ExportTimelineItem } from '../services/exportJobsService';
 import { useToast } from '../hooks/useToast';
 
 const formatDateTime = (value?: string | null) => {
@@ -356,6 +357,10 @@ const AdminExports: React.FC = () => {
         params,
         format: reprocessForm.format || 'csv',
       };
+      const columns = reprocessForm.columns
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
       if (columns.length) {
         payload.columns = columns;
       }
@@ -380,10 +385,6 @@ const AdminExports: React.FC = () => {
         return;
       }
       setPreviewLoading(true);
-      const columns = reprocessForm.columns
-        .split(',')
-        .map((item) => item.trim())
-        .filter(Boolean);
       const params: Record<string, string> = {};
       if (reprocessForm.q) params.q = reprocessForm.q;
       if (reprocessForm.name) params.name = reprocessForm.name;

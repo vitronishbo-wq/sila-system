@@ -4,9 +4,8 @@
  */
 
 import React, { useState } from 'react';
-import { TrendingUp, TrendingDown, Calendar, Download } from 'lucide-react';
+import { TrendingUp, Download } from 'lucide-react';
 import { useTrendData } from '../hooks';
-import type { TrendData } from '../types';
 
 interface TrendsChartProps {
   estacaoId: string;

@@ -4,8 +4,10 @@ import FinancialAssistant from './components/FinancialAssistant';
 import { financeService } from './services/financeService';
 import { 
   UserRole, 
+  InvoiceStatus 
+} from './types';
+import type { 
   Invoice, 
-  InvoiceStatus, 
   FinanceStats 
 } from './types';
 

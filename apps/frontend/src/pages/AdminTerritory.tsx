@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { TerritoryNode } from '../types';
+import type { TerritoryNode } from '../types';
 import { territoryService } from '../services/territoryService';
 import { useToast } from '../hooks/useToast';
 
@@ -192,7 +192,6 @@ const AdminTerritory: React.FC = () => {
     };
     const provinceIds = new Set(provinces.map((p) => p.id));
     const municipalityIds = new Set(municipalities.map((m) => m.id));
-    const communeIds = new Set(communes.map((c) => c.id));
     provinces.forEach((province) => addRow(province, 'province'));
     municipalities.forEach((municipality) => {
       if (!provinceIds.has(municipality.parent_id || '')) return;

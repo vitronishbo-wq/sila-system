@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { User, UserRole } from './types';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { UserRole } from './types';
+import type { User } from './types';
 import { authService } from './services/authService';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import axios from 'axios';

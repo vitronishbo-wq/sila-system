@@ -1,8 +1,15 @@
-# Task: Update docs/tree.md with powerful tree command
+# Backend QR Signature Validation Task
 
-## Steps:
-1. ✅ Create TODO.md
-2. 🔄 Capture fresh tree output (using native `tree -L 5`)
-3. 🔄 Update docs/tree.md with new content
-4. 🔄 Update TODO.md with progress
-5. 🔄 Verify (`cat docs/tree.md`) & complete
+## Status
+- [x] UI Biometric complete
+- [ ] Backend sig logic
+
+## Steps
+1. [ ] Create domain/services/qr_signature_validator.py
+2. [ ] Create api/endpoints/qr_validator.py (POST /validate)
+3. [ ] Add to api/routers.py
+4. [ ] Pydantic model
+5. [x] Test frontend QR integration
+
+Real ed25519 verify using cryptography (stdlib compatible).
+

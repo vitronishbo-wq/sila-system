@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { adminService } from "../services/adminService";
-import { AdminStats, RequestItem } from "../types";
+import type { AdminStats, RequestItem } from "../types";
 
 export const useAdminDashboard = () => {
   const [stats, setStats] = useState<AdminStats | null>(null);

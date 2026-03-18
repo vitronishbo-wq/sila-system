@@ -6,7 +6,7 @@ export {
   parseBIQRCodeData,
   isDigitalBIValid,
   getDaysUntilExpiry,
-  isBIExpiringsoon,
+  isBIExpiringSoon,
   getVerificationResult,
   determineVerificationLevel,
   createAuditEvent,

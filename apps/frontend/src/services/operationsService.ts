@@ -7,7 +7,7 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao listar serviços.');
     }
-    return data as Service[];
+    return data as unknown as Service[];
   },
 
   async createOrder(payload: CreateOrderPayload): Promise<Order> {
@@ -15,7 +15,7 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao criar pedido.');
     }
-    return data as Order;
+    return data as unknown as Order;
   },
 
   async submitOrder(orderId: string): Promise<Order> {
@@ -25,7 +25,7 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao submeter pedido.');
     }
-    return data as Order;
+    return data as unknown as Order;
   },
 
   async completeOrder(orderId: string): Promise<Order> {
@@ -35,7 +35,7 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao concluir pedido.');
     }
-    return data as Order;
+    return data as unknown as Order;
   },
 
   async attachDocuments(orderId: string, payload: FormData | Record<string, unknown>): Promise<Order> {
@@ -52,11 +52,11 @@ export const operationsService = {
       options.bodySerializer = (body) => body as BodyInit;
     }
 
-    const { data, error } = await apiClient.POST('/api/v1/orders/{order_id}/documents', options);
+    const { data, error } = await apiClient.POST('/api/v1/orders/{order_id}/documents', options as any);
     if (error || !data) {
       throw error ?? new Error('Falha ao anexar documentos.');
     }
-    return data as Order;
+    return data as unknown as Order;
   },
 
   async getReceipt(orderId: string): Promise<Blob> {
@@ -77,7 +77,7 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao gerar pagamento.');
     }
-    return data as Payment;
+    return data as unknown as Payment;
   },
 
   async confirmPayment(reference: string): Promise<Payment> {
@@ -87,6 +87,6 @@ export const operationsService = {
     if (error || !data) {
       throw error ?? new Error('Falha ao confirmar pagamento.');
     }
-    return data as Payment;
+    return data as unknown as Payment;
   }
 };

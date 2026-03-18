@@ -4,7 +4,7 @@
  */
 
 import http from '../../../api/http';
-import {
+import type {
   CitizenProfile,
   CitizenListResponse,
   DigitalBIIssueRequest,

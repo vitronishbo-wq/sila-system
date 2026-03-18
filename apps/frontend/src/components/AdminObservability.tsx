@@ -10,7 +10,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
-import { getSLAViolations, listSLAServiceBase, predictSLABreach, SLABreachPrediction, SLAViolation } from '../services/sla';
+import { getSLAViolations, listSLAServiceBase, predictSLABreach } from '../services/sla';
+import type { SLABreachPrediction, SLAViolation } from '../services/sla';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Tooltip, Legend);
 

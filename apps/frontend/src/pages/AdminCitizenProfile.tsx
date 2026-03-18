@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { citizenService, CitizenSummary } from '../services/citizenService';
+import { citizenService } from '../services/citizenService';
+import type { CitizenSummary } from '../services/citizenService';
 
 const formatDate = (value?: string | null) => {
   if (!value) return '—';

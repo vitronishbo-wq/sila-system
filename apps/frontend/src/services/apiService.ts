@@ -8,7 +8,8 @@
  * - Gerenciamento de estado de loading/erro
  */
 
-import axios, { AxiosInstance, AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
+import type { AxiosInstance } from 'axios';
 
 // Configuração base
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';

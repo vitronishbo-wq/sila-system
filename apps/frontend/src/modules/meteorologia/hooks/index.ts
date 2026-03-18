@@ -13,7 +13,6 @@ import type {
   PaginationParams,
   MeteorologiaStats,
   TrendData,
-  SSEWeatherUpdate,
   EstacaoListResponse,
 } from '../types';
 

@@ -10,12 +10,7 @@ import {
   FileSignature, 
   Bus, 
   Gavel,
-  CreditCard,
-  QrCode,
-  CheckCircle2,
-  X,
   Search,
-  ArrowRight,
   CreditCard as CreditCardIcon
 } from 'lucide-react';
 import PaymentModal from './components/PaymentModal';

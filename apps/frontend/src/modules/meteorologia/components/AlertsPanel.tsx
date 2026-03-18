@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { AlertTriangle, AlertCircle, ChevronDown, X, MapPin } from 'lucide-react';
+import { AlertTriangle, AlertCircle, ChevronDown, X } from 'lucide-react';
 import type { Alert } from '../types';
 
 interface AlertsPanelProps {

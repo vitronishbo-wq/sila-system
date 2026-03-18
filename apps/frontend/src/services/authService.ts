@@ -1,5 +1,6 @@
 import http from '../api/http';
-import { AuthResponse, User, UserRole } from '../types';
+import { UserRole } from '../types';
+import type { AuthResponse, User } from '../types';
 import { apiClient } from '@/api/generated/client';
 
 export const authService = {
