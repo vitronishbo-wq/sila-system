@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 _DB_IMPORT_ERROR = None
 
 try:
-    from app.core.db import AsyncSessionLocal, Base, db
+    from apps.backend.app.core.db import AsyncSessionLocal, Base, db
 except Exception as exc:  # pragma: no cover - only hit in broken env setups
     AsyncSessionLocal = None
     Base = None
@@ -63,7 +63,7 @@ async def db_session(setup_db) -> AsyncGenerator[AsyncSession, None]:
 async def client() -> AsyncGenerator[AsyncClient, None]:
     """Yield an async API client bound to the FastAPI ASGI app."""
     try:
-        from app.main import app as fastapi_app
+        from apps.backend.app.main import app as fastapi_app
     except Exception as exc:
         pytest.skip(f"FastAPI app unavailable for endpoint tests: {exc}")
 
