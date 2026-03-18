@@ -3,7 +3,6 @@
  * Standalone route component for weather monitoring dashboard
  */
 
-import React from "react";
 import { MeteorologyWidget } from "../components";
 
 export function MeteorologyPage() {

@@ -4,8 +4,10 @@ import FinancialAssistant from './components/FinancialAssistant';
 import { financeService } from './services/financeService';
 import { 
   UserRole, 
+  InvoiceStatus 
+} from './types';
+import type { 
   Invoice, 
-  InvoiceStatus, 
   FinanceStats 
 } from './types';
 
@@ -60,12 +62,18 @@ const App: React.FC = () => {
     <Layout role={role} onRoleChange={setRole}>
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Stats */}
+        {(() => {
+          const paidCount = invoices.filter((inv) => inv.status === InvoiceStatus.PAID).length;
+          const pendingCount = invoices.filter((inv) => inv.status === InvoiceStatus.PENDING).length;
+          return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard title="Receita Total" value={`${stats?.total_revenue.toLocaleString()} AOA`} icon="money" color="emerald" />
-          <StatCard title="Montante Pendente" value={`${stats?.pending_amount.toLocaleString()} AOA`} icon="clock" color="amber" />
-          <StatCard title="Faturas Pagas" value={stats?.paid_count || 0} icon="check" color="blue" />
-          <StatCard title="Aguardando Pgto" value={stats?.pending_count || 0} icon="list" color="purple" />
+          <StatCard title="Receita Total" value={`${(stats?.total_amount ?? 0).toLocaleString()} AOA`} icon="money" color="emerald" />
+          <StatCard title="Montante Pendente" value={`${(stats?.pending_amount ?? 0).toLocaleString()} AOA`} icon="clock" color="amber" />
+          <StatCard title="Faturas Pagas" value={paidCount} icon="check" color="blue" />
+          <StatCard title="Aguardando Pgto" value={pendingCount} icon="list" color="purple" />
         </div>
+          );
+        })()}
 
         {/* Content Tabs */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">

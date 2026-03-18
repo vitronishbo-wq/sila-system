@@ -14,19 +14,6 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 ├── Makefile
 ├── Makefile.db
 ├── TODO.md
-├── alembic
-│   ├── env.py
-│   ├── script.py.mako
-│   └── versions
-│       ├── 001_create_taxpayer_tables.py
-│       ├── 002_create_debt_payment_tables.py
-│       ├── 003_create_certificate_audit_tables.py
-│       ├── 004_create_sequence_table.py
-│       ├── 005_add_constraints.py
-│       ├── 006_add_triggers.py
-│       ├── 007_add_views_performance.py
-│       ├── 008_add_citizen_hierarchy_columns.py
-│       └── 009_create_wallet_notifications_tables.py
 ├── app
 ├── apps
 │   ├── __init__.py
@@ -692,6 +679,7 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │   │   ├── index.html
 │   │   ├── package-lock.json
 │   │   ├── package.json
+│   │   ├── package.json.tmp
 │   │   ├── postcss.config.js
 │   │   ├── public
 │   │   │   └── vite.svg
@@ -713,6 +701,7 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │   │   │   │   ├── Admin
 │   │   │   │   ├── AdminObservability.tsx
 │   │   │   │   ├── Auth
+│   │   │   │   ├── Biometrics
 │   │   │   │   ├── Dashboard
 │   │   │   │   ├── Documents
 │   │   │   │   ├── Layout
@@ -793,9 +782,10 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │   │   │   │   ├── api.ts
 │   │   │   │   └── auth.ts
 │   │   │   ├── types.ts
-│   │   │   └── utils
-│   │   │       ├── cn.ts
-│   │   │       └── globalToast.ts
+│   │   │   ├── utils
+│   │   │   │   ├── cn.ts
+│   │   │   │   └── globalToast.ts
+│   │   │   └── vite-env.d.ts
 │   │   ├── tailwind.config.js
 │   │   ├── tsconfig.app.json
 │   │   ├── tsconfig.json
@@ -806,6 +796,9 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 ├── conftest.py
 ├── docs
 │   ├── AI_ARCHITECTURE_GRAPH.yaml
+│   ├── BIOMETRIC_ENROLLMENT_GUIDE.md
+│   ├── CONSOLIDATION_AUDIT.md
+│   ├── CONSOLIDATION_EXECUTION_PLAN.md
 │   ├── architecture
 │   │   ├── REPOSITORY_MAP.yaml
 │   │   ├── domain_dependency_policy.yaml
@@ -825,6 +818,54 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │   │   │   ├── social
 │   │   │   └── society
 │   │   └── entrypoints
+│   ├── archive
+│   │   ├── alembic_root_legacy
+│   │   │   ├── env.py
+│   │   │   ├── script.py.mako
+│   │   │   └── versions
+│   │   │       ├── 001_create_taxpayer_tables.py
+│   │   │       ├── 002_create_debt_payment_tables.py
+│   │   │       ├── 003_create_certificate_audit_tables.py
+│   │   │       ├── 004_create_sequence_table.py
+│   │   │       ├── 005_add_constraints.py
+│   │   │       ├── 006_add_triggers.py
+│   │   │       ├── 007_add_views_performance.py
+│   │   │       ├── 008_add_citizen_hierarchy_columns.py
+│   │   │       └── 009_create_wallet_notifications_tables.py
+│   │   └── frontend_legacy
+│   │       ├── Dockerfile
+│   │       ├── Dockerfile.prod
+│   │       ├── eslint.config.js
+│   │       ├── index.html
+│   │       ├── package-lock.json
+│   │       ├── package.json
+│   │       ├── postcss.config.js
+│   │       ├── public
+│   │       │   └── vite.svg
+│   │       ├── src
+│   │       │   ├── App.css
+│   │       │   ├── App.tsx
+│   │       │   ├── api
+│   │       │   ├── assets
+│   │       │   ├── components
+│   │       │   ├── constants
+│   │       │   ├── constants.tsx
+│   │       │   ├── hooks
+│   │       │   ├── index.css
+│   │       │   ├── main.tsx
+│   │       │   ├── modules
+│   │       │   ├── pages
+│   │       │   ├── router
+│   │       │   ├── services
+│   │       │   ├── store
+│   │       │   ├── types
+│   │       │   ├── types.ts
+│   │       │   └── utils
+│   │       ├── tailwind.config.js
+│   │       ├── tsconfig.app.json
+│   │       ├── tsconfig.json
+│   │       ├── tsconfig.node.json
+│   │       └── vite.config.ts
 │   ├── modules
 │   │   └── tree.modules.txt
 │   ├── seed_angola_dpa_2024.cpython-312.pyc
@@ -854,100 +895,8 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │       ├── grafana-datasources.yml
 │       └── prometheus.yml
 ├── interfaces
-│   ├── dashboard
-│   │   └── institutional_dashboard.py
-│   └── frontend
-│       ├── Dockerfile
-│       ├── Dockerfile.prod
-│       ├── eslint.config.js
-│       ├── index.html
-│       ├── package-lock.json
-│       ├── package.json
-│       ├── postcss.config.js
-│       ├── public
-│       │   └── vite.svg
-│       ├── src
-│       │   ├── App.css
-│       │   ├── App.tsx
-│       │   ├── api
-│       │   │   ├── adminHttp.ts
-│       │   │   ├── axios.ts
-│       │   │   ├── citizenHttp.ts
-│       │   │   └── http.ts
-│       │   ├── assets
-│       │   │   ├── images
-│       │   │   └── react.svg
-│       │   ├── components
-│       │   │   ├── Admin
-│       │   │   ├── Auth
-│       │   │   ├── Dashboard
-│       │   │   ├── Documents
-│       │   │   ├── Layout
-│       │   │   ├── Layout.tsx
-│       │   │   ├── Payment
-│       │   │   ├── ProtectedRoute.tsx
-│       │   │   ├── Search
-│       │   │   ├── Statistics
-│       │   │   └── Upload
-│       │   ├── constants
-│       │   │   └── images.ts
-│       │   ├── constants.tsx
-│       │   ├── hooks
-│       │   │   ├── useAuth.ts
-│       │   │   ├── useDocumentStatus.ts
-│       │   │   ├── useDocumentUpload.ts
-│       │   │   └── useMyDocuments.ts
-│       │   ├── index.css
-│       │   ├── main.tsx
-│       │   ├── modules
-│       │   │   ├── identity
-│       │   │   ├── meteorologia
-│       │   │   └── pagamentos
-│       │   ├── pages
-│       │   │   ├── AdminAuditViewer.tsx
-│       │   │   ├── AdminStatistics.tsx
-│       │   │   ├── CitizenDashboard.tsx
-│       │   │   ├── CitizenLogin.tsx
-│       │   │   ├── CitizenPortal.tsx
-│       │   │   ├── Dashboard.tsx
-│       │   │   ├── DocumentsView.tsx
-│       │   │   ├── Login.tsx
-│       │   │   ├── MyDocuments.tsx
-│       │   │   ├── Notifications.tsx
-│       │   │   ├── PortalSelection.tsx
-│       │   │   ├── PublicLanding.tsx
-│       │   │   ├── Register.tsx
-│       │   │   ├── SearchDeepResults.tsx
-│       │   │   ├── SearchDocuments.tsx
-│       │   │   ├── Unauthorized.tsx
-│       │   │   ├── UploadDocuments.tsx
-│       │   │   └── admin
-│       │   ├── router
-│       │   │   └── routes.tsx
-│       │   ├── services
-│       │   │   ├── api.ts
-│       │   │   ├── apiService.ts
-│       │   │   ├── auth.ts
-│       │   │   ├── authGuard.ts
-│       │   │   ├── authService.ts
-│       │   │   ├── citizenAuthService.ts
-│       │   │   ├── citizenService.ts
-│       │   │   ├── dashboardService.ts
-│       │   │   ├── documentService.ts
-│       │   │   └── territoryService.ts
-│       │   ├── store
-│       │   │   └── authStore.ts
-│       │   ├── types
-│       │   │   └── auth.ts
-│       │   ├── types.ts
-│       │   └── utils
-│       │       ├── cn.ts
-│       │       └── globalToast.ts
-│       ├── tailwind.config.js
-│       ├── tsconfig.app.json
-│       ├── tsconfig.json
-│       ├── tsconfig.node.json
-│       └── vite.config.ts
+│   └── dashboard
+│       └── institutional_dashboard.py
 ├── l bash -c PGPASSWORD=Trumanmarcelo_1983 psql -h localhost -U sila_user -d sila_db --pset=pager=off -c 'SELECT action, user_id, status, severity, timestamp FROM audit_logs ORDER BY timestamp DESC LIMIT 5' 2>&1 | grep -v '^$'
 ├── logs
 │   ├── event_worker.log
@@ -1144,6 +1093,11 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │   ├── config.yml
 │   ├── config_manager.py
 │   ├── consolidate_audit.py
+│   ├── consolidation
+│   │   ├── 01_frontend_merge.sh
+│   │   ├── 02_alembic_cleanup.sh
+│   │   └── 03_base_repository_scan.sh
+│   ├── consolidation.sh
 │   ├── core
 │   │   ├── sila.sh
 │   │   ├── sila_config.sh
@@ -1439,5 +1393,5 @@ dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg
 │       └── dependency_checker.py
 └── ult = await db.execute(text(
 
-433 directories, 1006 files
+422 directories, 971 files
 dev03wsl@Rochete-consultoria:~/sila-system$

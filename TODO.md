@@ -2,7 +2,7 @@
 
 ## Status
 - [x] UI Biometric complete
-- [ ] Backend sig logic
+- [x] Backend sig logic
 
 ## Steps
 1. [ ] Create domain/services/qr_signature_validator.py

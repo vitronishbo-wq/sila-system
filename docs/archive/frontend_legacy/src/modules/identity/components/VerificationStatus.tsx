@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import {
   useVerificationResults,
 } from '../hooks';
-import { VerificationResult, VerificationRequest } from '../types';
+import type { VerificationResult, VerificationRequest } from '../types';
 import { identityService } from '../services';
 
 interface VerificationStatusProps {
@@ -226,6 +226,7 @@ function RequestStatusPanel({
     IN_PROGRESS: { step: 2, label: 'Em Progresso', color: 'bg-blue-100 text-blue-800' },
     COMPLETED: { step: 3, label: 'Concluído', color: 'bg-green-100 text-green-800' },
     FAILED: { step: 3, label: 'Falhou', color: 'bg-red-100 text-red-800' },
+    REJECTED: { step: 3, label: 'Rejeitado', color: 'bg-red-100 text-red-800' },
   };
 
   const progress = statusProgressMap[requestStatus.status];

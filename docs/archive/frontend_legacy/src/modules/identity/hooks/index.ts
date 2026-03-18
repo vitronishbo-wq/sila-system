@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import {
+import type {
   CitizenProfile,
   CitizenListResponse,
   DigitalBIDocument,
@@ -15,7 +15,7 @@ import {
   BITemplate,
   IdentityStatistics,
 } from '../types';
-import { identityService } from './identityService';
+import { identityService } from '../services/identityService';
 
 /**
  * Hook: Fetch single citizen profile

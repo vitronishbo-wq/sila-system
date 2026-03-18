@@ -11,7 +11,7 @@
  * POST   /api/v1/financas/payments/confirm (webhook)
  */
 
-import http from '../../api/http';
+import http from '@/api/http';
 import type {
   Invoice,
   Payment,
@@ -37,7 +37,7 @@ class FinanceService {
       currency: data.currency || 'AOA',
       due_date: data.due_date || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     });
-    return response;
+    return response.data;
   }
 
   /**
@@ -45,7 +45,7 @@ class FinanceService {
    */
   async getInvoice(invoiceId: string): Promise<Invoice> {
     const response = await http.get<Invoice>(`${this.apiBase}/invoices/${invoiceId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -53,7 +53,7 @@ class FinanceService {
    */
   async getCitizenInvoices(citizenId: string): Promise<Invoice[]> {
     const response = await http.get<Invoice[]>(`${this.apiBase}/invoices/citizen/${citizenId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -67,7 +67,7 @@ class FinanceService {
       gateway_reference: data.gateway_reference,
       payment_method: data.payment_method,
     });
-    return response;
+    return response.data;
   }
 
   /**
@@ -75,7 +75,7 @@ class FinanceService {
    */
   async getCitizenPayments(citizenId: string): Promise<Payment[]> {
     const response = await http.get<Payment[]>(`${this.apiBase}/payments/citizen/${citizenId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -83,7 +83,7 @@ class FinanceService {
    */
   async confirmPaymentWebhook(payload: Record<string, any>): Promise<{ status: string; message: string }> {
     const response = await http.post<{ status: string; message: string }>(`${this.apiBase}/payments/confirm`, payload);
-    return response;
+    return response.data;
   }
 
   /**
@@ -91,7 +91,6 @@ class FinanceService {
    */
   async getFinancialStats(citizenId: string): Promise<FinanceStats> {
     const invoices = await this.getCitizenInvoices(citizenId);
-    const payments = await this.getCitizenPayments(citizenId);
 
     const totalAmount = invoices.reduce((sum, inv) => sum + inv.amount, 0);
     const paidAmount = invoices
@@ -156,4 +155,5 @@ class FinanceService {
   }
 }
 
-export default new FinanceService();
+export const financeService = new FinanceService();
+export default financeService;

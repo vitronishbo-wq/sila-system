@@ -1,4 +1,8 @@
-import { ToastData } from '../components/Toast';
+type ToastData = {
+  message: string;
+  type?: 'success' | 'error' | 'info' | 'warning';
+  link?: string;
+};
 
 type ToastFn = (data: ToastData) => void;
 

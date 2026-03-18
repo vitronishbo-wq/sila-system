@@ -5,11 +5,11 @@ import { citizenAuthService } from '../services/citizenAuthService';
 interface CitizenProfile {
   id: string;
   full_name: string;
-  birth_date: string;
-  gender: string;
-  vital_status: string;
-  id_number?: string;
-  nif?: string;
+  birth_date?: string | null;
+  gender?: string | null;
+  vital_status?: string | null;
+  id_number?: string | null;
+  nif?: string | null;
 }
 
 interface ServiceCatalogItem {
@@ -485,4 +485,3 @@ const CitizenPortal: React.FC<CitizenPortalProps> = ({ onLogout }) => {
 };
 
 export default CitizenPortal;
-

@@ -1,8 +1,10 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { User, AdminLevel, UserRole } from '../types';
+import { AdminLevel, UserRole } from '../types';
+import type { User } from '../types';
 import { IMAGES } from '../constants';
-import dashboardService, {
+import dashboardService from '../services/dashboardService';
+import type {
   DashboardData,
   NotificationItem,
   RecentRequest,

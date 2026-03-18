@@ -1,5 +1,6 @@
 import http from '../api/http';
-import { AdminLevel, AuthResponse, User, UserRole } from '../types';
+import { AdminLevel, UserRole } from '../types';
+import type { AuthResponse, User } from '../types';
 
 type RawUserLike = Partial<User> & {
   role?: unknown;

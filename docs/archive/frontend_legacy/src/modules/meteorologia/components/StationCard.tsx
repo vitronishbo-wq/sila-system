@@ -3,7 +3,6 @@
  * Displays real-time weather data for a single station
  */
 
-import React from "react";
 import {
   Cloud,
   CloudRain,
@@ -14,9 +13,8 @@ import {
   MapPin,
   AlertTriangle,
   TrendingUp,
-  AlertCircle,
 } from "lucide-react";
-import { MeteorologiaEstacao } from "../types";
+import type { MeteorologiaEstacao } from "../types";
 import { useEstacao, useAlertas } from "../hooks";
 
 interface StationCardProps {

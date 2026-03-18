@@ -3,9 +3,7 @@
  * interfaces/frontend - Business logic helpers for identity operations
  */
 
-import {
-  BiometricTemplate,
-  BiometricVerification,
+import type {
   DigitalBIDocument,
   VerificationResult,
   AuditEvent,
@@ -34,7 +32,7 @@ export function convertBiometricToBase64(file: File | Blob): Promise<string> {
  * Considers: brightness (20%), contrast (25%), sharpness (30%), completeness (25%)
  */
 export function calculateBiometricQuality(
-  templateData: string,
+  _templateData: string,
   deviceMetrics?: {
     brightness?: number;
     contrast?: number;

@@ -3,13 +3,12 @@
  * Visualizes historical weather trends with ASCII bar chart
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Download,
-  TrendingUp,
   BarChart3,
 } from "lucide-react";
-import { useTrendData, getUnidade } from "../hooks";
+import { useTrendData } from "../hooks";
 
 interface TrendsChartProps {
   estacaoId: string;
@@ -117,7 +116,6 @@ export function TrendsChart({
                               : "#16a34a"
                       }
                       opacity="0.8"
-                      title={`${value.toFixed(2)}`}
                     />
                   </g>
                 );

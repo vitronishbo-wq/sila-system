@@ -3,7 +3,7 @@ import { authService } from '../services/authService';
 import { IMAGES, APP_VERSION } from '../constants';
 
 interface LoginProps {
-  onLoginSuccess: (token: string, redirectTo?: string) => void;
+  onLoginSuccess?: (token: string, redirectTo?: string) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
@@ -23,7 +23,13 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
       formData.append('password', password);
 
       const { access_token, navigation } = await authService.login(formData);
-      onLoginSuccess(access_token, navigation?.redirect_to);
+      if (onLoginSuccess) {
+        onLoginSuccess(access_token, navigation?.redirect_to);
+        return;
+      }
+      localStorage.setItem('token', access_token);
+      const redirectTarget = navigation?.redirect_to || '/admin';
+      window.location.hash = redirectTarget;
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Erro ao realizar login. Verifique as suas credenciais.');
     } finally {

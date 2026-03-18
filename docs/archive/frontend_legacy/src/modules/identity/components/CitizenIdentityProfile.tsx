@@ -17,7 +17,7 @@ import {
   isBIExpiringSoon,
   formatAuditEvent,
 } from '../utils';
-import {
+import type {
   CitizenProfile,
   DigitalBIDocument,
   BiometricTemplate,
@@ -306,7 +306,6 @@ function BIDocumentCard({
   isSelected: boolean;
   onClick: () => void;
 }) {
-  const { isValid } = isDigitalBIValid(document);
   const daysUntilExpiry = getDaysUntilExpiry(document.expiry_date);
   const expiringSoon = isBIExpiringSoon(document.expiry_date);
 

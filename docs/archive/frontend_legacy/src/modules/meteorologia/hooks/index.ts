@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useState } from "react";
-import {
+import type {
   MeteorologiaEstacao,
   ObservacaoMeteorologica,
   Alert,
@@ -12,7 +12,6 @@ import {
   MeteorologyFilter,
   PaginationParams,
   EstacaoListResponse,
-  AlertListResponse,
   TrendData,
 } from "../types";
 import { meteorologiaService } from "../services";
@@ -200,7 +199,7 @@ export function useAlertas(provincia?: string) {
   const fetchAlertas = async () => {
     try {
       setLoading(true);
-      const filter: MeteorologyFilter = provincia ? { provincia } : undefined;
+      const filter = provincia ? { provincia } : undefined;
       const data = await meteorologiaService.getAlertas(filter);
       setAlertas(data.items || []);
     } catch (error) {

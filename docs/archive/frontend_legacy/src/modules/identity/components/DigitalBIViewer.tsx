@@ -11,9 +11,8 @@ import {
   getDaysUntilExpiry,
   isBIExpiringSoon,
   generateBIQRCodeData,
-  parseBIQRCodeData,
 } from '../utils';
-import { DigitalBIDocument, DigitalBIIssueRequest } from '../types';
+import type { DigitalBIDocument, DigitalBIIssueRequest } from '../types';
 import { identityService } from '../services';
 
 interface DigitalBIViewerProps {
@@ -59,7 +58,7 @@ export const DigitalBIViewer: React.FC<DigitalBIViewerProps> = ({
         template_version: biTemplates.length > 0 ? biTemplates[0].version : 'v1',
       };
 
-      const response = await requestDigitalBI(request);
+      await requestDigitalBI(request);
 
       if (onIssueRequest) {
         onIssueRequest(request);
@@ -144,14 +143,12 @@ export const DigitalBIViewer: React.FC<DigitalBIViewerProps> = ({
           }}
           onDownload={() => handleDownload(selectedDocument.id)}
           onRevoke={() => setShowRevocationDialog(true)}
-          onShowQR={() => setViewMode('detail')}
         />
       )}
 
       {/* Issue request form */}
       {viewMode === 'issue' && (
         <DocumentIssueForm
-          citizenId={citizenId}
           isLoading={issuanceLoading}
           error={issuanceError}
           onSubmit={handleIssueRequest}
@@ -259,7 +256,6 @@ function DocumentCard({
   document: DigitalBIDocument;
   onClick: () => void;
 }) {
-  const { isValid } = isDigitalBIValid(document);
   const daysUntilExpiry = getDaysUntilExpiry(document.expiry_date);
   const expiringSoon = isBIExpiringSoon(document.expiry_date);
 
@@ -472,13 +468,11 @@ function DocumentDetailView({
  * Document issue request form
  */
 function DocumentIssueForm({
-  citizenId,
   isLoading,
   error,
   onSubmit,
   onCancel,
 }: {
-  citizenId: string;
   isLoading: boolean;
   error: string | null;
   onSubmit: (type: 'BI' | 'PASSPORT' | 'RESIDENCE_PERMIT', validityYears: number) => void;

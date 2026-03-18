@@ -3,7 +3,7 @@
  * Displays and manages active weather alerts
  */
 
-import React, { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   AlertCircle,
@@ -11,7 +11,7 @@ import {
   Clock,
   Zap,
 } from "lucide-react";
-import { Alert } from "../types";
+import type { Alert } from "../types";
 
 interface AlertsPanelProps {
   alertas: Alert[];
@@ -35,7 +35,7 @@ export function AlertsPanel({
       bgColor: string;
       borderColor: string;
       textColor: string;
-      icon: React.ReactNode;
+      icon: ReactNode;
       severity: number;
     }> = {
       ALERTA_VERMELHO: {

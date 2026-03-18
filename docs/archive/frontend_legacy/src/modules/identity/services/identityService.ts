@@ -5,7 +5,7 @@
  */
 
 import http from '../../../api/http';
-import {
+import type {
   CitizenProfile,
   CitizenListResponse,
   DigitalBIDocument,
@@ -19,7 +19,6 @@ import {
   BiometricVerification,
   VerificationRequest,
   VerificationResult,
-  AuditEvent,
   BITemplate,
   IdentityStatistics,
   IdentityAuditLog,

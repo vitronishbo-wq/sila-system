@@ -17,6 +17,13 @@ export enum PaymentStatus {
   REVERSED = 'reversed'
 }
 
+export enum UserRole {
+  CITIZEN = 'CITIZEN',
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER',
+  OFFICER = 'OFFICER',
+}
+
 /**
  * Invoice (Fatura)
  * Alinhada com InvoiceResponse do backend

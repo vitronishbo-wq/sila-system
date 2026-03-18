@@ -12,7 +12,7 @@ import {
   calculateBiometricQuality,
   isBiometricQualityAcceptable,
 } from '../utils';
-import { BiometricEnrollmentRequest, BiometricTemplate } from '../types';
+import type { BiometricEnrollmentRequest, BiometricTemplate } from '../types';
 import { identityService } from '../services';
 
 interface BiometricEnrollmentProps {
@@ -154,7 +154,6 @@ export const BiometricEnrollment: React.FC<BiometricEnrollmentProps> = ({
 
       {step === 'review' && (
         <ReviewStep
-          biometricType={selectedType}
           qualityScore={qualityScore}
           onConfirm={handleUpload}
           onRetry={() => {
@@ -304,12 +303,10 @@ function CaptureStep({
  * Step 3: Review capture quality
  */
 function ReviewStep({
-  biometricType,
   qualityScore,
   onConfirm,
   onRetry,
 }: {
-  biometricType: BiometricType | null;
   qualityScore: number | null;
   onConfirm: () => void;
   onRetry: () => void;

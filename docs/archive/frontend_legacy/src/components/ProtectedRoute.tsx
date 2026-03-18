@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
-import { User } from '../types';
+import type { User } from '../types';
 import { authService } from '../services/authService';
 
 interface ProtectedRouteProps {

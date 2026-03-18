@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { User, UserRole } from '../types';
+import { UserRole } from '../types';
+import type { User } from '../types';
 import { IMAGES } from '../constants';
 import dashboardService from '../services/dashboardService';
 

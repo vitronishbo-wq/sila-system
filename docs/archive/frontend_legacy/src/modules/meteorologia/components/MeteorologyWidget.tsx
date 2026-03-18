@@ -12,7 +12,7 @@ import {
   Download,
   AlertCircle,
 } from "lucide-react";
-import { MeteorologyFilter } from "../types";
+import type { MeteorologyFilter } from "../types";
 import { useMeteorologia, useEstacoes, useAlertas } from "../hooks";
 import { meteorologiaService } from "../services";
 import {
@@ -31,7 +31,6 @@ interface StatCardProps {
   icon: React.ReactNode;
   label: string;
   value: string | number;
-  trend?: "up" | "down";
   className?: string;
 }
 
@@ -39,7 +38,6 @@ function StatCard({
   icon,
   label,
   value,
-  trend,
   className = "",
 }: StatCardProps) {
   return (
@@ -59,7 +57,7 @@ export function MeteorologyWidget({
   standalone = false,
   className = "",
 }: MeteorologyWidgetProps) {
-  const { stats, estacoes, alertas, loading, error, refetch } =
+  const { stats, estacoes, loading, error, refetch } =
     useMeteorologia();
   const [filter, setFilter] = useState<MeteorologyFilter>({});
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");

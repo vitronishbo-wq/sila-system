@@ -1,6 +1,6 @@
 
 import http from '../api/http';
-import { Citizen } from '../types';
+import type { Citizen } from '../types';
 
 export const citizenService = {
   async list(skip = 0, limit = 20): Promise<Citizen[]> {

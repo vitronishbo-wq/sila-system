@@ -122,7 +122,7 @@ const PublicLanding: React.FC = () => {
 
           <main className="px-5 md:px-8 py-7">
             <div id="services" className="grid grid-cols-2 xl:grid-cols-4 gap-5">
-              {visibleServices.map((service, index) => (
+              {visibleServices.map((service) => (
                 <button
                   key={service.id}
                   onClick={() => handleServiceClick(service.id)}

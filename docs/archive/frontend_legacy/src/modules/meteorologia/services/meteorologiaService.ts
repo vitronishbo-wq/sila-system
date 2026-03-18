@@ -4,7 +4,7 @@
  */
 
 import axios from "axios";
-import {
+import type {
   MeteorologiaEstacao,
   ObservacaoMeteorologica,
   Alert,

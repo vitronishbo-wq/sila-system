@@ -3,10 +3,10 @@
  * Geographic filtering with province and municipality selection
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDown, X } from "lucide-react";
 import { useProvincias } from "../hooks";
-import { MeteorologyFilter } from "../types";
+import type { MeteorologyFilter } from "../types";
 
 interface RegionFilterProps {
   onFilterChange?: (filter: MeteorologyFilter) => void;

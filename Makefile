@@ -28,7 +28,7 @@ ARCH_FIX_SCRIPT := $(SCRIPTS_DIR)/architecture/fix/replace_core_imports.sh
 PYTHON          := python3
 BACKEND_PYTHON  := $(BACKEND_DIR)/.venv/bin/python
 
-.PHONY: help setup audit-domains audit-macro generate-graph compile-manifests check-cycles validate-policy audit-full sovereign-ritual architecture-report context-map scaffold-module architecture-sync arch-audit arch-fix daily-audit clean-audit consolidate-audit seed-test-db fix-npm-workspaces clean
+.PHONY: help setup audit-domains audit-macro generate-graph compile-manifests check-cycles validate-policy audit-full sovereign-ritual architecture-report context-map scaffold-module architecture-sync arch-audit arch-fix daily-audit clean-audit consolidate-audit seed-test-db fix-npm-workspaces cleanup-root cleanup-root-preview cleanup-root-auto clean
 
 help:
 	@echo "🚀 SILA System - Gestão de Arquitetura"
@@ -197,3 +197,19 @@ clean:
 	@echo "🧹 Limpando artefatos..."
 	@rm -rf $(REPORTS_DIR)/*
 	@find . -type d -name "__pycache__" -exec rm -rf {} +
+
+# --- 3. Limpeza de Artefatos (Extensões vs. Scope) ---
+
+cleanup-root-preview:
+	@echo "🔍 Preview de ficheiros phantom a remover..."
+	@$(PYTHON) $(SCRIPTS_DIR)/cleanup_artifacts.py --dry-run
+
+cleanup-root:
+	@echo "🧹 Removendo artefatos phantom do diretório raiz..."
+	@$(PYTHON) $(SCRIPTS_DIR)/cleanup_artifacts.py
+
+cleanup-root-auto:
+	@echo "🧹 Removendo automaticamente todos os artefatos phantom..."
+	@$(PYTHON) $(SCRIPTS_DIR)/cleanup_artifacts.py --auto
+
+.PHONY: cleanup-root cleanup-root-preview cleanup-root-auto
