@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, "/app")
 
 from sqlalchemy import select
-from app.core.db import async_session_factory
+from apps.backend.app.core.db import async_session_factory
 from apps.backend.app.modules.identity.models.user import User
 
 async def check_users():

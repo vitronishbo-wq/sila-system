@@ -152,7 +152,7 @@ async def security_alert(alert: AlertPayload, background_tasks: BackgroundTasks)
 
 @app.post('/webhooks/security-critical')
 async def security_critical(alert: AlertPayload, background_tasks: BackgroundTasks):
-    """Recebe alertas críticos com escalação imediata"""
+    """Recebe alertas críticos com escalacao imediata"""
     alert.severity = AlertSeverity.CRITICAL
     background_tasks.add_task(notifier.send_alert, alert)
     logger.critical(f'CRITICAL ALERT: {alert.alert_id} - {alert.description}')

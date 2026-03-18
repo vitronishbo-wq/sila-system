@@ -29,7 +29,7 @@ except ImportError:
     print("⚠️  Modelo User novo não encontrado, usando legacy")
     USE_NEW_MODEL = False
 
-from app.core.security import get_password_hash
+from apps.backend.core.security import get_password_hash
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'admin@sila.gov.ao')

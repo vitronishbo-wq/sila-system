@@ -59,19 +59,13 @@ def make_juventude_programa_repository(db: AsyncSession):
     return SQLAlchemyProgramaRepository(db)
 
 def make_saude_appointment_repository(db: AsyncSession):
-    from apps.backend.app.modules.saude.infrastructure.repositories.appointment_repository import (
-        AppointmentRepository,
-    )
+    from apps.backend.app.modules.saude.infrastructure.repositories.appointment_repository import AppointmentRepository
     return AppointmentRepository(db)
 
 def make_saude_health_unit_repository(db: AsyncSession):
-    from apps.backend.app.modules.saude.infrastructure.repositories.health_unit_repository import (
-        HealthUnitRepository,
-    )
+    from apps.backend.app.modules.saude.infrastructure.repositories.health_unit_repository import HealthUnitRepository
     return HealthUnitRepository(db)
 
 def make_saude_medical_record_repository(db: AsyncSession):
-    from apps.backend.app.modules.saude.infrastructure.repositories.medical_record_repository import (
-        MedicalRecordRepository,
-    )
+    from apps.backend.app.modules.saude.infrastructure.repositories.medical_record_repository import MedicalRecordRepository
     return MedicalRecordRepository(db)

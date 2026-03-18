@@ -1,1 +1,0 @@
-from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.api.router import *

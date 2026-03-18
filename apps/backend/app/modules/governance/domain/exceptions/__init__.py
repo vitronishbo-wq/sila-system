@@ -1,0 +1,2 @@
+class GovernanceError(Exception):
+    pass

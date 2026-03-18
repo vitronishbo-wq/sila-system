@@ -7,7 +7,8 @@ from alembic import context
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# Add backend directory to sys.path so imports work when running from backend directory
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from app.core.db import Base
 

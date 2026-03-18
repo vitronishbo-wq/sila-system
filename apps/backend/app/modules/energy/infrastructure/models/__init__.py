@@ -7,14 +7,4 @@ from apps.backend.app.modules.energy.infrastructure.models.linha_transmissao_mod
 from apps.backend.app.modules.energy.infrastructure.models.outbox_event_model import EnergiaOutboxEventModel
 from apps.backend.app.modules.energy.infrastructure.models.subestacao_model import SubestacaoModel
 from apps.backend.app.modules.energy.infrastructure.models.usina_model import UsinaModel
-__all__ = [
-    "UsinaModel",
-    "CentralGeradoraModel",
-    "SubestacaoModel",
-    "LinhaTransmissaoModel",
-    "ConsumoEnergiaModel",
-    "FaturaEnergiaModel",
-    "EnergiaOutboxEventModel",
-    "EnergyTelemetryModel",
-    "EnergyInvoiceModel",
-]
+__all__ = ['UsinaModel', 'CentralGeradoraModel', 'SubestacaoModel', 'LinhaTransmissaoModel', 'ConsumoEnergiaModel', 'FaturaEnergiaModel', 'EnergiaOutboxEventModel', 'EnergyTelemetryModel', 'EnergyInvoiceModel']

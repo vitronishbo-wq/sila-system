@@ -1,5 +1,5 @@
 from __future__ import annotations
-from apps.backend.app.modules.logistics.application.ports.ambiente_service_port import AmbienteServicePort
+from apps.backend.app.modules.logistics.domain.ports.ambiente_service_port import AmbienteServicePort
 
 class AmbienteServiceAdapter(AmbienteServicePort):
 

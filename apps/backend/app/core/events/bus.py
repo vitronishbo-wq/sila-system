@@ -23,11 +23,7 @@ class EventBus:
         return _NoopAwaitable()
 
     async def publish(self, event_type: str, data: Any=None) -> dict[str, Any]:
-        event = {
-            'type': event_type,
-            'data': data,
-            'timestamp': datetime.now(timezone.utc).isoformat(),
-        }
+        event = {'type': event_type, 'data': data, 'timestamp': datetime.now(timezone.utc).isoformat()}
         for handler in self._handlers.get(event_type, []):
             try:
                 if asyncio.iscoroutinefunction(handler):

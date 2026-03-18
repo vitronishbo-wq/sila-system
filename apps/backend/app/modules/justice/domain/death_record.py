@@ -1,5 +1,3 @@
 class DeathRecord:
     pass
-
-
-__all__ = ["DeathRecord"]
+__all__ = ['DeathRecord']

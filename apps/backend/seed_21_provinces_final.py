@@ -7,10 +7,10 @@ async def seed():
     engine = create_async_engine(url)
 
     provinces = [
-        'Bengo', 'Benguela', 'Bié', 'Cabinda', 'Cuando Cubango', 
-        'Cuanza Norte', 'Cuanza Sul', 'Cunene', 'Huambo', 'Huíla', 
-        'Luanda', 'Lunda Norte', 'Lunda Sul', 'Malanje', 'Moxico', 
-        'Namibe', 'Uíge', 'Zaire', 'Icolo e Bengo', 'Moxico Leste', 'Cuando'
+        'Cabinda', 'Zaire', 'Uíge', 'Bengo', 'Cuanza-Norte',
+        'Cuanza-Sul', 'Huambo', 'Benguela', 'Huíla', 'Namibe',
+        'Cunene', 'Cubango', 'Cuando', 'Moxico', 'Moxico Leste',
+        'Malanje', 'Lunda-Norte', 'Lunda-Sul', 'Bié', 'Icolo e Bengo', 'Luanda'
     ]
 
     async with engine.begin() as conn:

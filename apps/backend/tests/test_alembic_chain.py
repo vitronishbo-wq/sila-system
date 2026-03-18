@@ -47,4 +47,4 @@ def test_alembic_has_single_head():
     revisions, down_revisions = _collect_revisions()
     heads = sorted(revisions - down_revisions)
     assert len(heads) == 1, f"Expected one alembic head, found {len(heads)}: {heads}"
-    assert heads[0] == "20260306_050_defesa_consumidor_reclamacoes"
+    assert heads[0] == "20260314_052_transportes_logistica_audit_columns"

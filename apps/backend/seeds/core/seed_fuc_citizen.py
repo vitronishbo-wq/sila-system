@@ -41,7 +41,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.core.settings import settings
-from app.core.security import get_password_hash
+from core.security import get_password_hash
 from app.core.constants import UserRole, AdminLevel
 from apps.backend.app.modules.identity.models.user import User
 from apps.backend.app.modules.justice.civil_registry.events.models import CitizenEventModel, EventType

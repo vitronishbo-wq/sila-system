@@ -65,6 +65,8 @@ export interface FinanceStats {
   pending_amount: number;
   overdue_amount: number;
   payment_rate: number;
+  paid_count: number;
+  pending_count: number;
 }
 
 /**

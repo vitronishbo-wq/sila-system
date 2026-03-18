@@ -1,16 +1,2 @@
-from fastapi import APIRouter
-
-router = APIRouter()
-
-
-def module_name() -> str:
-    parts = __name__.split(".")
-    try:
-        return f"{parts[3]}.{parts[4]}"
-    except Exception:
-        return __name__
-
-
-@router.get("/health")
-def health() -> dict:
-    return {"status": "ok", "module": module_name()}
+from apps.backend.core.routers.health_factory import HealthRouterFactory
+router = HealthRouterFactory.create_inferred_health_router(module_path=__name__, infer_indices=(3, 4))

@@ -158,12 +158,19 @@ const CitizenPortal: React.FC<CitizenPortalProps> = ({ onLogout }) => {
               <p className="text-gray-500">Nenhum evento registado</p>
             ) : (
               <div className="space-y-4">
-                {events.map((event: any) => (
+                {events.map((event: any) => {
+                  const dateValue = event?.created_at ? new Date(event.created_at) : null;
+                  const dateLabel = dateValue && !Number.isNaN(dateValue.getTime())
+                    ? dateValue.toLocaleString('pt-PT')
+                    : 'Data não informada';
+                  const message = event?.payload?.message;
+                  return (
                   <div key={event.id} className="border-l-4 border-slate-900 pl-4 py-2">
                     <p className="font-semibold">{event.event_type}</p>
-                    <p className="text-sm text-gray-600">{new Date(event.created_at).toLocaleDateString('pt-PT')}</p>
+                    {message && <p className="text-sm text-gray-700">{message}</p>}
+                    <p className="text-sm text-gray-600">{dateLabel}</p>
                   </div>
-                ))}
+                )})}
               </div>
             )}
           </div>

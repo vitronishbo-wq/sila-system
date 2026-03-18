@@ -60,7 +60,16 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_operational_orders_service_id'), table_name='operational_orders')
     op.drop_index(op.f('ix_operational_orders_status'), table_name='operational_orders')
     op.drop_index(op.f('ix_operational_orders_workflow_instance_id'), table_name='operational_orders')
-    op.drop_table('operational_orders')
+    op.drop_constraint(
+        "operational_order_documents_order_id_fkey",
+        "operational_order_documents",
+        type_="foreignkey",
+    )
+    op.drop_constraint(
+        "operational_payments_order_id_fkey",
+        "operational_payments",
+        type_="foreignkey",
+    )
     op.drop_index(op.f('ix_tl_bilhetagem_codigo'), table_name='transportes_logistica_bilhetagem_eventos')
     op.drop_index(op.f('ix_tl_bilhetagem_data_evento'), table_name='transportes_logistica_bilhetagem_eventos')
     op.drop_index(op.f('ix_tl_bilhetagem_lancamento'), table_name='transportes_logistica_bilhetagem_eventos')
@@ -100,7 +109,6 @@ def upgrade() -> None:
     op.drop_table('telecom_qualidade_servico')
     op.drop_index(op.f('ix_wf_transitions_from_state'), table_name='wf_transitions')
     op.drop_index(op.f('ix_wf_transitions_workflow_code'), table_name='wf_transitions')
-    op.drop_table('wf_transitions')
     op.drop_index(op.f('ix_gf_geo_codigo'), table_name='gestao_fundiaria_georreferenciamentos')
     op.drop_index(op.f('ix_gf_geo_imovel_inscricao'), table_name='gestao_fundiaria_georreferenciamentos')
     op.drop_index(op.f('ix_gf_geo_sistema_referencia'), table_name='gestao_fundiaria_georreferenciamentos')
@@ -110,7 +118,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_services_module_id'), table_name='services')
     op.drop_index(op.f('ix_services_territory_id'), table_name='services')
     op.drop_index(op.f('ix_services_visibility'), table_name='services')
-    op.drop_table('services')
     op.drop_index(op.f('ix_cultura_projetos_ativo'), table_name='cultura_projetos_culturais')
     op.drop_index(op.f('ix_cultura_projetos_codigo'), table_name='cultura_projetos_culturais')
     op.drop_index(op.f('ix_cultura_projetos_data_submissao'), table_name='cultura_projetos_culturais')
@@ -197,7 +204,6 @@ def upgrade() -> None:
     op.drop_table('cultura_grupos_artisticos')
     op.drop_index(op.f('ix_payment_webhooks_active'), table_name='payment_webhooks')
     op.drop_index(op.f('ix_payment_webhooks_id'), table_name='payment_webhooks')
-    op.drop_table('payment_webhooks')
     op.drop_index(op.f('ix_agricultura_produtores_cadastro_produtor'), table_name='agricultura_produtores')
     op.drop_index(op.f('ix_agricultura_produtores_citizen_id'), table_name='agricultura_produtores')
     op.drop_index(op.f('ix_agricultura_produtores_documento'), table_name='agricultura_produtores')
@@ -224,13 +230,10 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_gf_imovel_tipo'), table_name='gestao_fundiaria_imoveis')
     op.drop_table('gestao_fundiaria_imoveis')
     op.drop_index(op.f('ix_citizenship_services_code'), table_name='citizenship_services')
-    op.drop_table('citizenship_services')
     op.drop_index(op.f('ix_modules_slug'), table_name='modules')
-    op.drop_table('modules')
     op.drop_index(op.f('ix_wf_definitions_code'), table_name='wf_definitions')
     op.drop_index(op.f('ix_wf_definitions_code_version'), table_name='wf_definitions')
     op.drop_index(op.f('ix_wf_definitions_entity_type'), table_name='wf_definitions')
-    op.drop_table('wf_definitions')
     op.drop_index(op.f('ix_juv_bolsa_codigo'), table_name='juventude_bolsas_estudo')
     op.drop_index(op.f('ix_juv_bolsa_jovem'), table_name='juventude_bolsas_estudo')
     op.drop_table('juventude_bolsas_estudo')
@@ -255,7 +258,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_wf_instances_entity'), table_name='wf_instances')
     op.drop_index(op.f('ix_wf_instances_entity_id'), table_name='wf_instances')
     op.drop_index(op.f('ix_wf_instances_status'), table_name='wf_instances')
-    op.drop_table('wf_instances')
     op.drop_index(op.f('ix_seguranca_policiais_ativo'), table_name='seguranca_policiais')
     op.drop_index(op.f('ix_seguranca_policiais_cpf'), table_name='seguranca_policiais')
     op.drop_index(op.f('ix_seguranca_policiais_matricula'), table_name='seguranca_policiais')
@@ -348,7 +350,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_citizenship_atualizacao_b_i_nome_completo'), table_name='citizenship_atualizacao_b_i')
     op.drop_index(op.f('ix_citizenship_atualizacao_b_i_numero_documento'), table_name='citizenship_atualizacao_b_i')
     op.drop_index(op.f('ix_citizenship_atualizacao_b_i_status'), table_name='citizenship_atualizacao_b_i')
-    op.drop_table('citizenship_atualizacao_b_i')
     op.drop_index(op.f('ix_telecom_infraestruturas_ativo'), table_name='telecom_infraestruturas')
     op.drop_index(op.f('ix_telecom_infraestruturas_codigo_infra'), table_name='telecom_infraestruturas')
     op.drop_index(op.f('ix_telecom_infraestruturas_identificador'), table_name='telecom_infraestruturas')
@@ -372,7 +373,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_citizenship_citizens_id'), table_name='citizenship_citizens')
     op.drop_index(op.f('ix_citizenship_citizens_name'), table_name='citizenship_citizens')
     op.drop_index(op.f('ix_citizenship_citizens_residence_location'), table_name='citizenship_citizens')
-    op.drop_table('citizenship_citizens')
     op.drop_index(op.f('ix_hvig_notif_health_unit'), table_name='health_notificacoes_surto')
     op.drop_index(op.f('ix_hvig_notif_vigilancia'), table_name='health_notificacoes_surto')
     op.drop_table('health_notificacoes_surto')
@@ -463,12 +463,10 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_iam_users_status'), table_name='iam_users')
     op.drop_index(op.f('ix_iam_users_status_created'), table_name='iam_users')
     op.drop_index(op.f('ix_iam_users_username_lower'), table_name='iam_users')
-    op.drop_table('iam_users')
     op.drop_index(op.f('ix_pecuaria_producao_leite_propriedade_id'), table_name='pecuaria_producao_leite')
     op.drop_table('pecuaria_producao_leite')
     op.drop_index(op.f('ix_citizenship_service_requests_citizen_id'), table_name='citizenship_service_requests')
     op.drop_index(op.f('ix_citizenship_service_requests_protocol_number'), table_name='citizenship_service_requests')
-    op.drop_table('citizenship_service_requests')
     op.drop_index(op.f('ix_op_dashboard_read_codigo'), table_name='op_dashboard_read')
     op.drop_index(op.f('ix_op_dashboard_read_status'), table_name='op_dashboard_read')
     op.drop_index(op.f('ix_op_dashboard_read_tenant_id'), table_name='op_dashboard_read')
@@ -506,8 +504,6 @@ def upgrade() -> None:
     op.drop_table('dependency_records')
     op.drop_index(op.f('ix_juv_mentor_codigo'), table_name='juventude_mentores')
     op.drop_table('juventude_mentores')
-    op.drop_index(op.f('ix_document_versions_document_id'), table_name='document_versions')
-    op.drop_table('document_versions')
     op.drop_index(op.f('ix_assistencia_social_visitas_domiciliares_assistente_social_id'), table_name='assistencia_social_visitas_domiciliares')
     op.drop_index(op.f('ix_assistencia_social_visitas_domiciliares_beneficiario_id'), table_name='assistencia_social_visitas_domiciliares')
     op.drop_index(op.f('ix_assistencia_social_visitas_domiciliares_codigo'), table_name='assistencia_social_visitas_domiciliares')
@@ -587,6 +583,7 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_wf_tasks_due'), table_name='wf_tasks')
     op.drop_index(op.f('ix_wf_tasks_status'), table_name='wf_tasks')
     op.drop_table('wf_tasks')
+    op.drop_table('wf_transitions')
     op.drop_index(op.f('ix_juventude_auxilios_ativo'), table_name='juventude_auxilios')
     op.drop_index(op.f('ix_juventude_auxilios_codigo_auxilio'), table_name='juventude_auxilios')
     op.drop_index(op.f('ix_juventude_auxilios_jovem_id'), table_name='juventude_auxilios')
@@ -606,6 +603,7 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_payment_webhook_events_payment_id'), table_name='payment_webhook_events')
     op.drop_index(op.f('ix_payment_webhook_events_webhook_id'), table_name='payment_webhook_events')
     op.drop_table('payment_webhook_events')
+    op.drop_table('payment_webhooks')
     op.drop_index(op.f('ix_tl_linha_codigo'), table_name='transportes_logistica_linhas')
     op.drop_index(op.f('ix_tl_linha_destino'), table_name='transportes_logistica_linhas')
     op.drop_index(op.f('ix_tl_linha_modal'), table_name='transportes_logistica_linhas')
@@ -699,6 +697,8 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_juv_intercambio_jovem'), table_name='juventude_intercambios')
     op.drop_table('juventude_intercambios')
     op.drop_table('health_professionals')
+    op.drop_index(op.f('ix_payment_transactions_id'), table_name='payment_transactions')
+    op.drop_table('payment_transactions')
     op.drop_index(op.f('ix_payments_id'), table_name='payments')
     op.drop_index(op.f('ix_payments_owner_id'), table_name='payments')
     op.drop_table('payments')
@@ -768,6 +768,9 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_operational_payments_reference'), table_name='operational_payments')
     op.drop_index(op.f('ix_operational_payments_status'), table_name='operational_payments')
     op.drop_table('operational_payments')
+    op.drop_table('operational_orders')
+    op.drop_table('services')
+    op.drop_table('modules')
     op.drop_index(op.f('ix_op_event_store_aggregate_id'), table_name='op_event_store')
     op.drop_index(op.f('ix_op_event_store_created_at'), table_name='op_event_store')
     op.drop_index(op.f('ix_op_event_store_event_type'), table_name='op_event_store')
@@ -783,7 +786,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_desporto_atletas_tipo'), table_name='desporto_atletas')
     op.drop_index(op.f('ix_desporto_atletas_ultimo_exame_id'), table_name='desporto_atletas')
     op.drop_table('desporto_atletas')
-    op.drop_table('document_folders')
     op.drop_index(op.f('ix_pecuaria_animais_brinco'), table_name='pecuaria_animais')
     op.drop_index(op.f('ix_pecuaria_animais_propriedade_id'), table_name='pecuaria_animais')
     op.drop_index(op.f('ix_pecuaria_animais_proprietario_id'), table_name='pecuaria_animais')
@@ -832,6 +834,7 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_wf_history_instance'), table_name='wf_history')
     op.drop_index(op.f('ix_wf_history_performed_by'), table_name='wf_history')
     op.drop_table('wf_history')
+    op.drop_table('wf_instances')
     op.drop_index(op.f('ix_pescas_industriais_lotes_producao_codigo_lote'), table_name='pescas_industriais_lotes_producao')
     op.drop_index(op.f('ix_pescas_industriais_lotes_producao_data_producao'), table_name='pescas_industriais_lotes_producao')
     op.drop_index(op.f('ix_pescas_industriais_lotes_producao_destino_mercado'), table_name='pescas_industriais_lotes_producao')
@@ -913,8 +916,6 @@ def upgrade() -> None:
     op.drop_table('educacao_empregos')
     op.drop_index(op.f('ix_hvig_vetor_health_unit'), table_name='health_controle_vetores')
     op.drop_table('health_controle_vetores')
-    op.drop_index(op.f('ix_payment_transactions_id'), table_name='payment_transactions')
-    op.drop_table('payment_transactions')
     op.drop_index(op.f('ix_est_kpis_metrica_id'), table_name='est_kpis')
     op.drop_index(op.f('ix_est_kpis_nome'), table_name='est_kpis')
     op.drop_index(op.f('ix_est_kpis_status'), table_name='est_kpis')
@@ -929,6 +930,7 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_iam_user_permissions_permission_id'), table_name='iam_user_permissions')
     op.drop_index(op.f('ix_iam_user_permissions_user_id'), table_name='iam_user_permissions')
     op.drop_table('iam_user_permissions')
+    op.drop_table('iam_users')
     op.drop_index(op.f('ix_habate_health_unit'), table_name='health_controles_abate_publico')
     op.drop_table('health_controles_abate_publico')
     op.drop_index(op.f('ix_juventude_formacoes_ativo'), table_name='juventude_formacoes')
@@ -1014,6 +1016,7 @@ def upgrade() -> None:
     op.drop_table('juventude_empreendimentos')
     op.drop_index(op.f('ix_wf_states_workflow_code'), table_name='wf_states')
     op.drop_table('wf_states')
+    op.drop_table('wf_definitions')
     op.drop_index(op.f('ix_desporto_clubes_ativo'), table_name='desporto_clubes')
     op.drop_index(op.f('ix_desporto_clubes_codigo'), table_name='desporto_clubes')
     op.drop_index(op.f('ix_desporto_clubes_codigo_obra_instalacao'), table_name='desporto_clubes')
@@ -1081,6 +1084,7 @@ def upgrade() -> None:
     op.drop_table('desporto_competicoes')
     op.drop_index(op.f('ix_citizenship_atualizacao_b_i_documents_id'), table_name='citizenship_atualizacao_b_i_documents')
     op.drop_table('citizenship_atualizacao_b_i_documents')
+    op.drop_table('citizenship_atualizacao_b_i')
     op.drop_index(op.f('ix_telecom_indicadores_qualidade_ativo'), table_name='telecom_indicadores_qualidade')
     op.drop_index(op.f('ix_telecom_indicadores_qualidade_codigo_indicador'), table_name='telecom_indicadores_qualidade')
     op.drop_index(op.f('ix_telecom_indicadores_qualidade_operadora_id'), table_name='telecom_indicadores_qualidade')
@@ -1126,7 +1130,6 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_users_email'), table_name='users')
     op.drop_index(op.f('ix_users_id'), table_name='users')
     op.drop_index(op.f('ix_users_uuid'), table_name='users')
-    op.drop_table('users')
     op.drop_index(op.f('ix_gf_oneracao_imovel_inscricao'), table_name='gestao_fundiaria_oneracoes')
     op.drop_index(op.f('ix_gf_oneracao_numero'), table_name='gestao_fundiaria_oneracoes')
     op.drop_index(op.f('ix_gf_oneracao_status'), table_name='gestao_fundiaria_oneracoes')
@@ -1234,10 +1237,19 @@ def upgrade() -> None:
     op.drop_index(op.f('idx_family_head_active'), table_name='family_aggregates', postgresql_where="((status)::text = 'ACTIVE'::text)")
     op.drop_table('family_aggregates')
     op.drop_table('citizenship_service_request_history')
+    op.drop_table('citizenship_service_requests')
+    op.drop_table('citizenship_services')
+    op.drop_table('citizenship_citizens')
+    op.drop_constraint(op.f('fk_documents_current_version'), 'documents', type_='foreignkey')
+    op.drop_constraint(op.f('document_versions_document_id_fkey'), 'document_versions', type_='foreignkey')
+    op.drop_index(op.f('ix_document_versions_document_id'), table_name='document_versions')
+    op.drop_table('document_versions')
     op.drop_index(op.f('ix_documents_owner_id'), table_name='documents')
     op.drop_index(op.f('ix_documents_status'), table_name='documents')
     op.drop_index(op.f('ix_documents_title'), table_name='documents')
     op.drop_table('documents')
+    op.drop_table('document_folders')
+    op.drop_table('users')
     op.drop_index(op.f('ix_citizen_fuc_document_number'), table_name='citizen_fuc')
     op.drop_table('citizen_fuc')
     op.drop_index(op.f('ix_cultura_editais_ativo'), table_name='cultura_editais')
@@ -1263,14 +1275,20 @@ def upgrade() -> None:
     op.drop_index(op.f('ix_pecuaria_rebanhos_tipo_animal'), table_name='pecuaria_rebanhos')
     op.drop_table('pecuaria_rebanhos')
     op.add_column('locations', sa.Column('code', sa.String(), nullable=True))
+    op.drop_constraint('locations_parent_id_fkey', 'locations', type_='foreignkey')
+    op.execute("ALTER TABLE locations ALTER COLUMN id DROP DEFAULT")
     op.alter_column('locations', 'id',
                existing_type=sa.INTEGER(),
                type_=sa.UUID(),
-               existing_nullable=False)
+               existing_nullable=False,
+               postgresql_using="lpad(to_hex(id), 32, '0')::uuid")
     op.alter_column('locations', 'parent_id',
                existing_type=sa.INTEGER(),
                type_=sa.UUID(),
-               existing_nullable=True)
+               existing_nullable=True,
+               postgresql_using="lpad(to_hex(parent_id), 32, '0')::uuid")
+    op.execute("ALTER TABLE locations ALTER COLUMN id SET DEFAULT gen_random_uuid()")
+    op.create_foreign_key('locations_parent_id_fkey', 'locations', 'locations', ['parent_id'], ['id'])
     op.drop_index(op.f('ix_locations_id'), table_name='locations')
     op.drop_index(op.f('uq_location_name_parent'), table_name='locations', postgresql_where='(parent_id IS NOT NULL)')
     op.drop_constraint(op.f('uq_name_type_parent'), 'locations', type_='unique')
@@ -1283,6 +1301,7 @@ def downgrade() -> None:
     """Downgrade schema."""
     # ### commands auto generated by Alembic - please adjust! ###
     op.drop_index(op.f('ix_locations_code'), table_name='locations')
+    op.drop_constraint('locations_parent_id_fkey', 'locations', type_='foreignkey')
     op.create_index(op.f('uq_province_name'), 'locations', ['name', 'type'], unique=True, postgresql_where='(parent_id IS NULL)')
     op.create_unique_constraint(op.f('uq_name_type_parent'), 'locations', ['name', 'type', 'parent_id'], postgresql_nulls_not_distinct=False)
     op.create_index(op.f('uq_location_name_parent'), 'locations', ['name', 'type', 'parent_id'], unique=True, postgresql_where='(parent_id IS NOT NULL)')
@@ -1290,11 +1309,14 @@ def downgrade() -> None:
     op.alter_column('locations', 'parent_id',
                existing_type=sa.UUID(),
                type_=sa.INTEGER(),
-               existing_nullable=True)
+               existing_nullable=True,
+               postgresql_using="('x' || lpad(replace(parent_id::text, '-', ''), 32, '0'))::bit(128)::bigint")
     op.alter_column('locations', 'id',
                existing_type=sa.UUID(),
                type_=sa.INTEGER(),
-               existing_nullable=False)
+               existing_nullable=False,
+               postgresql_using="('x' || lpad(replace(id::text, '-', ''), 32, '0'))::bit(128)::bigint")
+    op.create_foreign_key('locations_parent_id_fkey', 'locations', 'locations', ['parent_id'], ['id'])
     op.drop_column('locations', 'code')
     op.create_table('pecuaria_rebanhos',
     sa.Column('id', sa.UUID(), autoincrement=False, nullable=False),

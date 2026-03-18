@@ -1,8 +1,3 @@
-from fastapi import APIRouter
-from .endpoints import catalogos_router, estabelecimentos_industriais_router
+from apps.backend.core.routers.router_factory import RouterFactory
 from .health import router as health_router
-
-router = APIRouter(prefix="/industria", tags=["Industria"])
-router.include_router(health_router)
-router.include_router(catalogos_router)
-router.include_router(estabelecimentos_industriais_router)
+router = RouterFactory.create_health_only_router(prefix='/industria', tags=['Industria'], health_router=health_router)

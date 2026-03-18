@@ -3,7 +3,7 @@ from datetime import date
 from typing import Any
 from uuid import UUID
 from apps.backend.app.core.bridges import ServiceRequestLifecycleBridge
-from apps.backend.app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.civil_protection.domain.ports.request_service_port import RequestServicePort
 
 class RequestServiceAdapter(RequestServicePort):
 

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-
 class GridSensorPort(ABC):
+
     @abstractmethod
     async def ingest_telemetry(self, sensor_id: str, load_kw: float, status: str):
         """Ponto de entrada para dados de IoT em tempo real."""

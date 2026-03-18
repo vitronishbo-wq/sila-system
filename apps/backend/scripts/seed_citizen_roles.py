@@ -10,7 +10,7 @@ from sqlalchemy import create_engine, text
 import uuid
 from datetime import datetime
 
-from app.core.settings import settings
+from apps.backend.app.core.settings import settings
 
 
 def seed_citizen_roles():

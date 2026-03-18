@@ -1,6 +1,6 @@
 from __future__ import annotations
 from uuid import UUID
-from apps.backend.app.modules.logistics.application.ports.workflow_service_port import WorkflowServicePort
+from apps.backend.app.modules.logistics.domain.ports.workflow_service_port import WorkflowServicePort
 
 class WorkflowServiceAdapter(WorkflowServicePort):
 

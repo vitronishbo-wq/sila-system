@@ -11,6 +11,7 @@ Padrão RBAC territorial:
 Senha universal: Sila_1983
 """
 
+import json
 import psycopg2
 import os
 from dotenv import load_dotenv
@@ -22,7 +23,7 @@ load_dotenv(backend_root / ".env")
 
 DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_PORT = int(os.getenv("DB_PORT", "5432"))
-DB_NAME = os.getenv("DB_NAME", "sila_system")
+DB_NAME = os.getenv("DB_NAME", "sila_db")
 DB_USER = os.getenv("DB_USER", "sila_user")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
@@ -38,16 +39,16 @@ FOUNDING_USERS = [
         "email": "prov.huambo@sila.gov.ao",
         "role": "ADMIN_PROVINCIAL",
         "level": "provincial",
-        "territory_query": "SELECT id FROM territories WHERE name='Huambo' AND type='PROVINCIAL' LIMIT 1",
+        "territory_query": "SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA' LIMIT 1",
     },
     {
         "email": "mun.huambo@sila.gov.ao",
         "role": "ADMIN_MUNICIPAL",
         "level": "municipal",
         "territory_query": """
-            SELECT id FROM territories 
-            WHERE name='Huambo' AND type='MUNICIPAL' 
-            AND parent_id = (SELECT id FROM territories WHERE name='Huambo' AND type='PROVINCIAL')
+            SELECT id FROM locations
+            WHERE name='Huambo (Município)' AND type='MUNICIPIO'
+            AND parent_id = (SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA')
             LIMIT 1
         """,
     },
@@ -56,12 +57,12 @@ FOUNDING_USERS = [
         "role": "ADMIN_COMMUNAL",
         "level": "communal",
         "territory_query": """
-            SELECT id FROM territories 
-            WHERE type='COMMUNAL' 
+            SELECT id FROM locations
+            WHERE type='COMUNA'
             AND parent_id IN (
-                SELECT id FROM territories 
-                WHERE name='Huambo' AND type='MUNICIPAL'
-                AND parent_id = (SELECT id FROM territories WHERE name='Huambo' AND type='PROVINCIAL')
+                SELECT id FROM locations
+                WHERE name='Huambo (Município)' AND type='MUNICIPIO'
+                AND parent_id = (SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA')
             )
             ORDER BY name LIMIT 1
         """,
@@ -101,8 +102,8 @@ def main():
                 if result:
                     territory_id = result[0]
                     cursor.execute(
-                        """SELECT name FROM territories WHERE id=%s""",
-                        (territory_id,)
+                        """SELECT name FROM locations WHERE id=%s""",
+                        (territory_id,),
                     )
                     terr_name = cursor.fetchone()[0]
                     print(f"\n  📍 {email}")
@@ -114,14 +115,26 @@ def main():
                 print(f"\n  🌍 {email}")
                 print(f"     Role: {role:20} | Level: {level:12} | Territory: NATIONAL (NULL)")
             
-            # Update user with territory_id, role, level
+            # Update iam_users with territory metadata
             cursor.execute(
                 """
-                UPDATE users 
-                SET region_id = %s, level = %s, status = %s
+                UPDATE iam_users
+                SET custom_metadata = COALESCE(custom_metadata, '{}'::jsonb) || %s::jsonb,
+                    status = %s,
+                    is_active = true
                 WHERE email = %s
                 """,
-                (territory_id, level, "ACTIVE", email)
+                (
+                    json.dumps(
+                        {
+                            "administrative_level": level.upper(),
+                            "territory_id": str(territory_id) if territory_id else None,
+                            "territory_name": terr_name if territory_id else "NACIONAL",
+                        }
+                    ),
+                    "ACTIVE",
+                    email,
+                ),
             )
             
             if cursor.rowcount > 0:
@@ -141,22 +154,33 @@ def main():
         print("\n" + "=" * 80)
         print("✅ VALIDAÇÃO: Usuários com territórios")
         print("=" * 80)
-        cursor.execute("""
-            SELECT 
+        cursor.execute(
+            """
+            SELECT
                 iu.email,
-                iu.role,
-                iu.level,
-                COALESCE(t.name, 'NACIONAL') as territory_name,
-                t.type as territory_type
+                COALESCE(array_agg(r.name ORDER BY r.name) FILTER (WHERE r.name IS NOT NULL), ARRAY[]::text[]) as roles,
+                iu.custom_metadata->>'administrative_level' as administrative_level,
+                COALESCE(l.name, 'NACIONAL') as territory_name,
+                l.type as territory_type
             FROM iam_users iu
-            LEFT JOIN territories t ON iu.territory_id = t.id
+            LEFT JOIN iam_user_roles ur
+                ON ur.user_id = iu.id AND (ur.is_active IS NULL OR ur.is_active = true)
+            LEFT JOIN iam_roles r ON r.id = ur.role_id
+            LEFT JOIN locations l
+                ON l.id = NULLIF(iu.custom_metadata->>'territory_id', '')::uuid
             WHERE iu.email LIKE '%@sila.gov.ao' OR iu.email LIKE '%@gmail.com'
+            GROUP BY iu.email, iu.custom_metadata, l.name, l.type
             ORDER BY iu.email
-        """)
+            """
+        )
         
         rows = cursor.fetchall()
         for row in rows:
-            print(f"  {row[0]:35} | {row[1]:20} | {row[2]:12} | {row[3]:25} | {row[4]}")
+            roles = ", ".join(row[1]) if isinstance(row[1], list) else str(row[1] or "")
+            admin_level = str(row[2] or "")
+            territory_name = str(row[3] or "")
+            territory_type = str(row[4] or "")
+            print(f"  {row[0]:35} | {roles:20} | {admin_level:12} | {territory_name:25} | {territory_type}")
         
         cursor.close()
         conn.close()

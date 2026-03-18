@@ -5,10 +5,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.logistics.application.ports import LinhaRepositoryPort
+from apps.backend.app.modules.logistics.domain.ports import LinhaRepositoryPort
 from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, TipoViagem
 from apps.backend.app.modules.logistics.domain.models import Linha
-from apps.backend.app.modules.logistics.infrastructure.models import LinhaModel
+from apps.backend.app.modules.logistics.infrastructure.orm import LinhaModel
 
 class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
 

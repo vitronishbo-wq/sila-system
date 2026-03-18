@@ -1,0 +1,272 @@
+# Module Discovery Template - DDD/Hexagonal Architecture
+# Este arquivo define como encontrar funcionalidades em cada camada de um subdomain
+
+module: finance
+type: Core Business Domain
+description: |
+  Gerenciamento de impostos, pagamentos e contribuintes
+  Implementa padrão DDD + Hexagonal com portas explícitas para integrações externas
+
+# ========== CAMADA API: Entrada HTTP ==========
+api:
+  description: "Endpoints HTTP (FastAPI/APIRouter)"
+  location: "api/"
+  structure:
+    endpoints:
+      description: "Rotas organizadas por subdomain temático"
+      location: "api/endpoints/"
+      subdomains:
+        - name: "Impostos"
+          file: "impostos.py"
+          operations:
+            - GET /impostos/{id}
+            - POST /impostos
+            - PUT /impostos/{id}
+          responsible: "Cálculo e gestão de obrigações tributárias"
+        
+        - name: "Pagamentos"
+          file: "pagamentos.py"
+          operations:
+            - POST /pagamentos/processar
+            - GET /pagamentos/{id}/status
+            - GET /pagamentos/historico
+          responsible: "Processamento de transações financeiras"
+        
+        - name: "Contribuintes"
+          file: "contribuinte.py"
+          operations:
+            - GET /contribuintes/{id}
+            - POST /contribuintes
+            - PUT /contribuintes/{id}
+          responsible: "Cadastro e gestão de contribuintes"
+    
+    schemas:
+      description: "Validação de requisições (Pydantic)"
+      deprecated: "Mover para application/dto/"
+      note: "Legacy - preferir application/dto/ para novas implementações"
+
+# ========== CAMADA APPLICATION: Orquestração ==========
+application:
+  description: "Lógica de orquestração entre camadas (CQRS pattern)"
+  location: "application/"
+  
+  dto:
+    description: "Data Transfer Objects (Pydantic schemas)"
+    location: "application/dto/"
+    contains:
+      - "imposto_schema.py"
+      - "pagamento_schema.py"
+      - "contribuinte_schema.py"
+    maps_to_domain: "Valida dados antes de passar para domain"
+  
+  services:
+    description: "Serviços de orquestração (Application Services)"
+    location: "application/services/"
+    examples:
+      - name: "imposto_service.py"
+        responsibility: "Coordena fluxo de cálculo de impostos"
+        uses_domain: "domain/services/calculo_imposto.py"
+      - name: "pagamento_service.py"
+        responsibility: "Orquestra validação e processamento"
+        uses_domain: "domain/services/processamento_pagamento.py"
+      - name: "contribuinte_service.py"
+        responsibility: "Gerencia operações CRUD com regras"
+        uses_domain: "domain/services/gestao_contribuinte.py"
+  
+  commands:
+    description: "Handlers de escrita (CQRS Write Side)"
+    location: "application/commands/"
+    examples:
+      - "criar_imposto.py"
+      - "processar_pagamento.py"
+      - "registrar_contribuinte.py"
+  
+  queries:
+    description: "Handlers de leitura (CQRS Read Side)"
+    location: "application/queries/"
+    examples:
+      - "listar_impostos.py"
+      - "consultar_pagams.py"
+      - "buscar_contribuinte.py"
+
+# ========== CAMADA DOMAIN: Lógica Pura de Negócio ==========
+domain:
+  description: "Regras de negócio puras (sem dependências externas)"
+  location: "domain/"
+  
+  entities:
+    description: "Agregados e raízes (Domain-Driven Design)"
+    location: "domain/entities/"
+    examples:
+      - name: "imposto.py"
+        root: "ImpostoAggregate"
+        responsible: "Agregado para obrigações tributárias"
+      - name: "pagamento.py"
+        root: "PagamentoAggregate"
+        responsible: "Agregado para transações"
+      - name: "contribuinte.py"
+        root: "ContribuinteAggregate"
+        responsible: "Agregado para entidades tributárias"
+  
+  models:
+    description: "Objetos de valor e tipos de domínio"
+    location: "domain/models/"
+    examples:
+      - "taxa_imposto.py: Objeto de valor para alíquota"
+      - "moeda.py: Tipo de valor monetário"
+      - "status_pagamento.py: Enumeração de estados"
+  
+  services:
+    description: "Serviços de domínio (lógica sem estado de entidade)"
+    location: "domain/services/"
+    examples:
+      - name: "calculo_imposto_service.py"
+        responsibility: "Calcula impostos com regras complexas"
+      - name: "processamento_pagamento_service.py"
+        responsibility: "Aplica regras de validação de pagamento"
+      - name: "validacao_contribuinte_service.py"
+        responsibility: "Valida dados de contribuinte"
+  
+  ports:
+    description: "Interfaces de contrato (portas abstratas)"
+    location: "domain/ports/"
+    defines_contracts_with:
+      - type: "IRepositorioImposto"
+        responsibility: "Persistência de impostos"
+        implemented_by: "infrastructure/repositories/imposto_repository.py"
+      - type: "IProcessadorPagamento"
+        responsibility: "Integração com gateway de pagamento"
+        implemented_by: "infrastructure/adapters/pagamento_adapter.py"
+      - type: "IRepositorioContribuinte"
+        responsibility: "Persistência de contribuintes"
+        implemented_by: "infrastructure/repositories/contribuinte_repository.py"
+  
+  repositories:
+    description: "Interfaces de repositório (abstrações)"
+    location: "domain/repositories/"
+    note: "Definições abstratas - implementação em infrastructure/"
+  
+  events:
+    description: "Eventos de domínio (para pub/sub, auditing)"
+    location: "domain/events/"
+    examples:
+      - "imposto_criado.py: Evento quando imposto é criado"
+      - "pagamento_processado.py: Evento após processamento"
+  
+  exceptions:
+    description: "Exceções específicas do domínio"
+    location: "domain/exceptions/"
+    examples:
+      - "ImpostoNaoEncontradoError"
+      - "PagamentoRecusadoError"
+      - "ContribuinteInvalidoError"
+
+# ========== CAMADA INFRASTRUCTURE: Adaptadores ==========
+infrastructure:
+  description: "Implementações concretas (BD, APIs externas, etc)"
+  location: "infrastructure/"
+  
+  repositories:
+    description: "Implementação concreta de repositórios"
+    location: "infrastructure/repositories/"
+    examples:
+      - name: "imposto_repository.py"
+        implements: "domain/ports/IRepositorioImposto"
+        technology: "SQLAlchemy ORM"
+      - name: "pagamento_repository.py"
+        implements: "domain/ports/IRepositorioContribuinte"
+        technology: "SQLAlchemy ORM"
+      - name: "contribuinte_repository.py"
+        implements: "domain/ports/IRepositorioPagamento"
+        technology: "SQLAlchemy ORM"
+  
+  adapters:
+    description: "Adaptadores para sistemas externos"
+    location: "infrastructure/adapters/"
+    examples:
+      - name: "pagamento_adapter.py"
+        integrates_with: "Gateway de Pagamento (Stripe/PagSeguro)"
+        implements: "domain/ports/IProcessadorPagamento"
+      - name: "nfe_adapter.py"
+        integrates_with: "Sistema de NF-e"
+        responsibility: "Emissão de notas fiscais"
+      - name: "receita_adapter.py"
+        integrates_with: "Receita Federal (APIs públicas)"
+        responsibility: "Validação de CNPJ/CPF"
+  
+  orm:
+    description: "Modelos SQLAlchemy para persistência"
+    location: "infrastructure/orm/"
+    examples:
+      - "imposto_model.py: Tabela tb_impostos"
+      - "pagamento_model.py: Tabela tb_pagamentos"
+      - "contribuinte_model.py: Tabela tb_contribuintes"
+
+# ========== CAMADA TESTS: Testes Automatizados ==========
+tests:
+  description: "Testes em múltiplos níveis"
+  location: "tests/"
+  structure:
+    unit:
+      location: "tests/domain/"
+      tests: "Lógica pura sem dependências"
+    integration:
+      location: "tests/application/"
+      tests: "Orquestração e serviços"
+    api:
+      location: "tests/api/"
+      tests: "Endpoints HTTP"
+    infrastructure:
+      location: "tests/infrastructure/"
+      tests: "Adapters e repositórios"
+
+# ========== MAPEAMENTO DE SUBDOMÍNIOS ==========
+subdomains:
+  - name: "Tributário"
+    owned_by:
+      - "api/endpoints/impostos.py"
+      - "domain/services/calculo_imposto_service.py"
+      - "domain/entities/imposto.py"
+      - "application/services/imposto_service.py"
+    core_ports:
+      - "domain/ports/IRepositorioImposto"
+
+  - name: "Pagamentos"
+    owned_by:
+      - "api/endpoints/pagamentos.py"
+      - "domain/services/processamento_pagamento_service.py"
+      - "domain/entities/pagamento.py"
+      - "application/services/pagamento_service.py"
+    external_integrations:
+      - "infrastructure/adapters/pagamento_adapter.py"
+      - "Stripe/PagSeguro"
+
+  - name: "Cadastro/Gestão"
+    owned_by:
+      - "api/endpoints/contribuinte.py"
+      - "domain/entities/contribuinte.py"
+      - "domain/services/gestao_contribuinte_service.py"
+      - "application/services/contribuinte_service.py"
+    validation_deps:
+      - "infrastructure/adapters/receita_adapter.py"
+
+# ========== COMO USAR ESTE ARQUIVO ==========
+usage_guide: |
+  Para encontrar uma funcionalidade:
+  
+  1. Identifique o subdomain (Ex: "Tributário")
+  2. Acesse a seção "Subdomains" e veja arquivos owned_by
+  3. Siga o percurso:
+     - API: api/endpoints/{subdomain}.py
+     - Orquestração: application/services/{subdomain}_service.py
+     - Lógica: domain/services/{subdomain}_service.py
+     - Persistência: infrastructure/repositories/{subdomain}_repository.py
+  
+  Para adicionar nova funcionalidade:
+  
+  1. Crie DTOs em application/dto/
+  2. Implemente Command/Query em application/commands/ ou queries/
+  3. Implemente lógica em domain/services/
+  4. Defina portas em domain/ports/
+  5. Implemente adapters em infrastructure/adapters/
+  6. Atualize este arquivo na seção Subdomains

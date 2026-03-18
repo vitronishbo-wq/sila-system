@@ -1,1 +1,7 @@
-from apps.backend.app.modules.justice.bounded_contexts.permissions.access_control import *  # noqa: F401,F403
+"""Deprecated: Access control is now managed in core/auth"""
+try:
+    from apps.backend.core.auth import PermissionGuard, PolicyEngine
+except ImportError:
+    PermissionGuard = None
+    PolicyEngine = None
+__all__ = ['PermissionGuard', 'PolicyEngine']

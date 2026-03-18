@@ -1,2 +1,0 @@
-class BIRecord:
-    pass

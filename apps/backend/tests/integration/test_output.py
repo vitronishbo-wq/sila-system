@@ -4,7 +4,7 @@
 def test_output():
     """Test that output is working."""
     print("This is a test output")
-    return "Test successful"
+    assert True
 
 
 if __name__ == "__main__":

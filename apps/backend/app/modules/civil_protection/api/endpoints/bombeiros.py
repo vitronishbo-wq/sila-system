@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from apps.backend.app.modules.civil_protection.api.deps import get_bombeiro_service
-from apps.backend.app.modules.civil_protection.api.schemas.bombeiro_schema import BombeiroCreate, BombeiroResponse, BombeiroStatusUpdate
+from apps.backend.app.modules.civil_protection.application.dto.bombeiro_schema import BombeiroCreate, BombeiroResponse, BombeiroStatusUpdate
 from apps.backend.app.modules.civil_protection.application.services.bombeiro_service import BombeiroService
 from apps.backend.app.modules.civil_protection.domain.enums import StatusAgenteProtecao
 router = APIRouter(prefix='/bombeiros', tags=['Protecao Civil - Bombeiros'])

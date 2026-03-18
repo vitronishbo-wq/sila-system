@@ -1,0 +1,5 @@
+# Base dependencies (shared across dev and prod)
+python-dotenv==1.0.1
+pydantic==2.10.4
+python-jose==3.5.0
+cryptography==46.0.3

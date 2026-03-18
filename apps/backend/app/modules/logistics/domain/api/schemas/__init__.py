@@ -1,6 +1,0 @@
-from apps.backend.app.modules.logistics.api.schemas.analytics_schema import DemandaOperacionalResponse, QualidadeServicoResponse
-from apps.backend.app.modules.logistics.api.schemas.bilhetagem_schema import BilhetagemEventoCreate, BilhetagemEventoResponse, BilhetagemReconciliacaoInput
-from apps.backend.app.modules.logistics.api.schemas.frota_schema import FrotaAdicionarVeiculoInput, FrotaCreate, FrotaFiscalizacaoInput, FrotaManutencaoInput, FrotaResponse, FrotaTarifaInput
-from apps.backend.app.modules.logistics.api.schemas.linha_schema import LinhaCreate, LinhaIndicadoresInput, LinhaResponse, LinhaTarifaInput, LinhaVincularVeiculoInput, VeiculoCreate, VeiculoResponse
-from apps.backend.app.modules.logistics.api.schemas.viagem_schema import ViagemCancelarInput, ViagemConcluirInput, ViagemCreate, ViagemResponse
-__all__ = ['ViagemCreate', 'ViagemConcluirInput', 'ViagemCancelarInput', 'ViagemResponse', 'FrotaCreate', 'FrotaAdicionarVeiculoInput', 'FrotaManutencaoInput', 'FrotaTarifaInput', 'FrotaFiscalizacaoInput', 'FrotaResponse', 'LinhaCreate', 'LinhaVincularVeiculoInput', 'LinhaTarifaInput', 'LinhaIndicadoresInput', 'LinhaResponse', 'VeiculoCreate', 'VeiculoResponse', 'BilhetagemEventoCreate', 'BilhetagemReconciliacaoInput', 'BilhetagemEventoResponse', 'DemandaOperacionalResponse', 'QualidadeServicoResponse']

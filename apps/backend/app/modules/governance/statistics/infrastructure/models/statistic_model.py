@@ -5,6 +5,7 @@ from apps.backend.app.db.base import Base
 
 class StatisticModel(Base):
     __tablename__ = 'statistics'
+    __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
     code = Column(String(100), nullable=False, index=True)

@@ -1,5 +1,3 @@
 class MarriageRecord:
     pass
-
-
-__all__ = ["MarriageRecord"]
+__all__ = ['MarriageRecord']

@@ -7,6 +7,8 @@ import dashboardService, {
   NotificationItem,
   RecentRequest,
 } from '../services/dashboardService';
+import { exportJobsService, ExportTimelineItem } from '../services/exportJobsService';
+import { API_URL } from '../constants';
 
 /* ─── helpers ─── */
 function timeAgo(dateStr: string): string {
@@ -121,6 +123,20 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [requests, setRequests] = useState<RecentRequest[]>([]);
+  const [exportStats, setExportStats] = useState({ pending: 0, running: 0, done: 0, failed: 0 });
+  const [weeklyExports, setWeeklyExports] = useState<{ week: string; total: number }[]>([]);
+  const [weeklyMode, setWeeklyMode] = useState<'all' | 'citizens' | 'documents'>('all');
+  const [lastExportLog, setLastExportLog] = useState<{ message: string; module?: string; created_at?: string | null } | null>(null);
+  const [exportPulseAt, setExportPulseAt] = useState<number | null>(null);
+  const [toastMaxStack, setToastMaxStack] = useState<number>(() => {
+    const stored = Number(localStorage.getItem('toast_max_stack'));
+    if (Number.isFinite(stored) && stored > 0) return stored;
+    const envValue = Number(import.meta.env.VITE_TOAST_MAX_STACK ?? 3);
+    if (Number.isFinite(envValue) && envValue > 0) return envValue;
+    return 3;
+  });
+  const [toastConfigSaved, setToastConfigSaved] = useState(false);
+  const [hoveredWeek, setHoveredWeek] = useState<{ label: string; total: number } | null>(null);
   const [loading, setLoading] = useState(true);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
   const [activeTab, setActiveTab] = useState<'requests' | 'notifications'>('requests');
@@ -129,16 +145,57 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
-      const [dash, notifs, count, reqs] = await Promise.all([
+      const [dash, notifs, count, reqs, exports, timeline] = await Promise.all([
         dashboardService.getDashboard(),
         dashboardService.getNotifications(),
         dashboardService.getUnreadCount(),
         dashboardService.getRecentRequests(),
+        exportJobsService.list({ limit: 1, offset: 0 }),
+        exportJobsService.timelineCompare(28),
       ]);
       setDashboard(dash);
       setNotifications(notifs);
       setUnreadCount(count);
       setRequests(reqs);
+      const statusCounts = exports.status_counts || {};
+      setExportStats({
+        pending: statusCounts.pending || 0,
+        running: statusCounts.running || 0,
+        done: statusCounts.done || 0,
+        failed: statusCounts.failed || 0,
+      });
+      const allItems: ExportTimelineItem[] = [
+        ...(timeline.series?.citizens || []),
+        ...(timeline.series?.documents || []),
+      ];
+      const weekKey = (day?: string | null) => {
+        if (!day) return null;
+        const date = new Date(day);
+        if (Number.isNaN(date.getTime())) return null;
+        const weekday = (date.getDay() + 6) % 7;
+        date.setDate(date.getDate() - weekday);
+        return date.toISOString().slice(0, 10);
+      };
+      const weeklyByModule = (items: ExportTimelineItem[]) => {
+        const map = new Map<string, number>();
+        items.forEach((item) => {
+          const key = weekKey(item.day);
+          if (!key) return;
+          map.set(key, (map.get(key) || 0) + (item.total || 0));
+        });
+        return Array.from(map.entries())
+          .map(([week, total]) => ({ week, total }))
+          .sort((a, b) => (a.week > b.week ? 1 : -1));
+      };
+      const weekly = weeklyByModule(allItems);
+      const weeklyCitizens = weeklyByModule(timeline.series?.citizens || []);
+      const weeklyDocuments = weeklyByModule(timeline.series?.documents || []);
+      const series = {
+        all: weekly,
+        citizens: weeklyCitizens,
+        documents: weeklyDocuments,
+      };
+      setWeeklyExports(series[weeklyMode]);
     } catch (err) {
       console.error('[Dashboard] load error', err);
     } finally {
@@ -200,6 +257,123 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
       trend: m?.trends?.response_time ?? '+0%',
     },
   ];
+
+  const exportCards = [
+    {
+      label: 'Exportações Pendentes',
+      value: String(exportStats.pending),
+      icon: 'fa-hourglass-half',
+      gradient: 'bg-gradient-to-br from-amber-500 to-orange-500',
+      trend: '+0%',
+    },
+    {
+      label: 'Exportações em Curso',
+      value: String(exportStats.running),
+      icon: 'fa-spinner',
+      gradient: 'bg-gradient-to-br from-blue-500 to-sky-500',
+      trend: '+0%',
+    },
+    {
+      label: 'Exportações Concluídas',
+      value: String(exportStats.done),
+      icon: 'fa-circle-check',
+      gradient: 'bg-gradient-to-br from-emerald-500 to-green-600',
+      trend: '+0%',
+    },
+    {
+      label: 'Exportações com Erro',
+      value: String(exportStats.failed),
+      icon: 'fa-triangle-exclamation',
+      gradient: 'bg-gradient-to-br from-rose-500 to-red-600',
+      trend: '+0%',
+    },
+  ];
+  const chartData = weeklyExports.slice(-8);
+  const chartMax = chartData.length ? Math.max(...chartData.map((item) => item.total), 1) : 1;
+  const chartWidth = 420;
+  const chartHeight = 140;
+  const chartPadding = 16;
+  const chartPoints = chartData.map((item, index) => {
+    const x = chartPadding + (index / Math.max(1, chartData.length - 1)) * (chartWidth - chartPadding * 2);
+    const y = chartPadding + (1 - item.total / chartMax) * (chartHeight - chartPadding * 2);
+    return { x, y, item };
+  });
+  const linePoints = chartPoints.map((p) => `${p.x},${p.y}`).join(' ');
+  const areaPath = chartPoints.length
+    ? `M ${chartPoints[0].x} ${chartHeight - chartPadding} L ${chartPoints.map((p) => `${p.x} ${p.y}`).join(' L ')} L ${chartPoints[chartPoints.length - 1].x} ${chartHeight - chartPadding} Z`
+    : '';
+
+  useEffect(() => {
+    if (weeklyMode === 'all') return;
+    const refreshWeekly = async () => {
+      try {
+        const timeline = await exportJobsService.timelineCompare(28);
+        const weekKey = (day?: string | null) => {
+          if (!day) return null;
+          const date = new Date(day);
+          if (Number.isNaN(date.getTime())) return null;
+          const weekday = (date.getDay() + 6) % 7;
+          date.setDate(date.getDate() - weekday);
+          return date.toISOString().slice(0, 10);
+        };
+        const weeklyByModule = (items: ExportTimelineItem[]) => {
+          const map = new Map<string, number>();
+          items.forEach((item) => {
+            const key = weekKey(item.day);
+            if (!key) return;
+            map.set(key, (map.get(key) || 0) + (item.total || 0));
+          });
+          return Array.from(map.entries())
+            .map(([week, total]) => ({ week, total }))
+            .sort((a, b) => (a.week > b.week ? 1 : -1));
+        };
+        if (weeklyMode === 'citizens') {
+          setWeeklyExports(weeklyByModule(timeline.series?.citizens || []));
+        } else if (weeklyMode === 'documents') {
+          setWeeklyExports(weeklyByModule(timeline.series?.documents || []));
+        }
+      } catch (err) {
+        console.error('[Dashboard] weekly mode error', err);
+      }
+    };
+    refreshWeekly();
+  }, [weeklyMode]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token') || localStorage.getItem('access_token') || localStorage.getItem('admin_token');
+    if (!token || !('EventSource' in window)) return;
+    const apiRoot = API_URL.replace(/\/api\/?$/, '');
+    const stream = new EventSource(`${apiRoot}/api/admin/exports/logs/stream?token=${encodeURIComponent(token)}`);
+    stream.onmessage = (event) => {
+      if (!event.data) return;
+      try {
+        const payload = JSON.parse(event.data) as { message?: string; module?: string; created_at?: string };
+        if (payload.message) {
+          setLastExportLog({
+            message: payload.message || '',
+            module: payload.module,
+            created_at: payload.created_at,
+          });
+          setExportPulseAt(Date.now());
+        }
+      } catch (err) {
+        console.error('[Dashboard] log stream error', err);
+      }
+    };
+    stream.onerror = () => {
+      stream.close();
+    };
+    return () => stream.close();
+  }, []);
+
+  const saveToastConfig = () => {
+    const normalized = Math.max(1, Math.min(6, Number(toastMaxStack) || 3));
+    localStorage.setItem('toast_max_stack', String(normalized));
+    setToastMaxStack(normalized);
+    window.dispatchEvent(new Event('toast-config-changed'));
+    setToastConfigSaved(true);
+    setTimeout(() => setToastConfigSaved(false), 2000);
+  };
 
   const levelImages: Record<string, string> = {
     [AdminLevel.CENTRAL]: ASSETS.LEVEL_CENTRAL,
@@ -270,6 +444,125 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         {kpis.map((kpi, i) => (
           <KPICard key={kpi.label} {...kpi} delay={100 + i * 80} />
         ))}
+      </div>
+
+      {/* ═══════════════ Exportações ═══════════════ */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-bold text-slate-900">Exportações</h3>
+          <a
+            href="#/admin/exports"
+            className="text-sm font-semibold text-slate-700 underline"
+          >
+            Ver histórico
+          </a>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {exportCards.map((card, i) => (
+            <KPICard key={card.label} {...card} delay={120 + i * 80} />
+          ))}
+        </div>
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="text-base font-semibold text-slate-900">Execuções por semana</h4>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setWeeklyMode('all')}
+                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                  weeklyMode === 'all' ? 'bg-slate-900 text-white' : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                Todos
+              </button>
+              <button
+                type="button"
+                onClick={() => setWeeklyMode('citizens')}
+                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                  weeklyMode === 'citizens' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                Cidadãos
+              </button>
+              <button
+                type="button"
+                onClick={() => setWeeklyMode('documents')}
+                className={`rounded-full px-3 py-1 text-[11px] font-semibold ${
+                  weeklyMode === 'documents' ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-600'
+                }`}
+              >
+                Documentos
+              </button>
+            </div>
+          </div>
+          {weeklyExports.length === 0 ? (
+            <p className="text-sm text-gray-500">Sem dados suficientes.</p>
+          ) : (
+            <div className="relative">
+              <svg
+                viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+                className="w-full h-[160px]"
+                role="img"
+                aria-label="Sparkline de execuções por semana"
+              >
+                <defs>
+                  <linearGradient id="weeklyLine" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0f172a" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#0f172a" stopOpacity="0.02" />
+                  </linearGradient>
+                </defs>
+                {areaPath && (
+                  <path d={areaPath} fill="url(#weeklyLine)" stroke="none" />
+                )}
+                <polyline
+                  fill="none"
+                  stroke="#0f172a"
+                  strokeWidth="3"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  points={linePoints}
+                />
+                {chartPoints.map((point) => {
+                  const label = new Date(point.item.week).toLocaleDateString('pt-PT', { day: '2-digit', month: 'short' });
+                  return (
+                    <circle
+                      key={point.item.week}
+                      cx={point.x}
+                      cy={point.y}
+                      r="5"
+                      className="cursor-pointer fill-white stroke-slate-900"
+                      strokeWidth="2"
+                      onMouseEnter={() => setHoveredWeek({ label, total: point.item.total })}
+                      onMouseLeave={() => setHoveredWeek(null)}
+                    >
+                      <title>{`${label}: ${point.item.total} execuções`}</title>
+                    </circle>
+                  );
+                })}
+              </svg>
+              {hoveredWeek && (
+                <div className="absolute right-4 top-4 rounded-xl bg-slate-900 text-white px-3 py-2 text-xs shadow-lg">
+                  <div className="font-semibold">Semana {hoveredWeek.label}</div>
+                  <div className="text-[11px] text-slate-200">{hoveredWeek.total} execuções</div>
+                </div>
+              )}
+              <div className="flex items-center justify-between text-[11px] text-gray-400 mt-3">
+                <span>{chartData[0]?.week ? new Date(chartData[0].week).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit' }) : ''}</span>
+                <span>{chartData[Math.max(0, chartData.length - 1)]?.week ? new Date(chartData[Math.max(0, chartData.length - 1)].week).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit' }) : ''}</span>
+              </div>
+            </div>
+          )}
+          {lastExportLog && (
+            <p className="mt-4 text-xs text-gray-500">
+              Último log: <span className="font-semibold text-slate-900">{lastExportLog.message}</span>
+              {lastExportLog.module && (
+                <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] uppercase text-gray-500">
+                  {lastExportLog.module}
+                </span>
+              )}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* ═══════════════ Main Content Grid ═══════════════ */}
@@ -491,6 +784,38 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* UI Settings */}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+              <i className="fa-solid fa-sliders text-slate-500" />
+              Configuração UI
+            </h2>
+            <div className="flex items-center gap-3">
+              <label className="text-xs text-gray-500 uppercase tracking-wide">Toasts em fila</label>
+              <input
+                type="number"
+                min={1}
+                max={6}
+                value={toastMaxStack}
+                onChange={(e) => setToastMaxStack(Number(e.target.value))}
+                className="w-20 rounded-lg border border-gray-200 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/20"
+              />
+              <button
+                type="button"
+                onClick={saveToastConfig}
+                className="rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white hover:bg-slate-800"
+              >
+                Guardar
+              </button>
+            </div>
+            {toastConfigSaved && (
+              <p className="mt-2 text-xs text-emerald-600 font-semibold">Configuração guardada.</p>
+            )}
+            <p className="mt-2 text-[11px] text-gray-400">
+              Define quantos toasts ficam empilhados no canto inferior direito.
+            </p>
           </div>
 
           {/* Attention Card */}

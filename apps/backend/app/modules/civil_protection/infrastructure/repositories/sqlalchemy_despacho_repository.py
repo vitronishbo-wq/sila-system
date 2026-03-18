@@ -3,7 +3,7 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.application.ports.despacho_repository_port import DespachoRepositoryPort
+from apps.backend.app.modules.civil_protection.domain.ports.despacho_repository_port import DespachoRepositoryPort
 from apps.backend.app.modules.civil_protection.domain.enums import StatusDespacho
 from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
 from apps.backend.app.modules.civil_protection.infrastructure.models.despacho_model import DespachoModel

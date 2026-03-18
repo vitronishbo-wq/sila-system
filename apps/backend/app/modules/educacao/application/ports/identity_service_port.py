@@ -11,16 +11,10 @@ Pattern: Hexagonal Architecture
 - Application layer: Services use port
 - Infrastructure layer: Concrete adapters (injected by factory)
 """
-
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
-
-
-# ============================================================================
-# DATA TRANSFER OBJECTS (DTOs) - Rule 5: No Schema Exposure
-# ============================================================================
 
 @dataclass
 class CitizenIdentity:
@@ -38,34 +32,27 @@ class CitizenIdentity:
     - employment_history
     - criminal_record
     """
-    did: str  # Decentralized Identifier (portable identity)
-    citizen_id: str  # Government ID reference
-    verified_at: datetime  # When identity was last verified
-    trust_score: float  # Trust level (0.0 - 1.0)
-    is_active: bool  # Whether account is active
-    verification_method: str  # "DID_SIGNATURE" | "BIOMETRIC" | "PASSWORD"
-
+    did: str
+    citizen_id: str
+    verified_at: datetime
+    trust_score: float
+    is_active: bool
+    verification_method: str
 
 @dataclass
 class VerificationResult:
     """DTO: Result of identity verification"""
-    is_valid: bool  # Whether verification succeeded
-    citizen: Optional[CitizenIdentity] = None  # Citizen data if valid
-    error_message: Optional[str] = None  # Error if invalid
-
+    is_valid: bool
+    citizen: Optional[CitizenIdentity] = None
+    error_message: Optional[str] = None
 
 @dataclass
 class SignatureVerificationResult:
     """DTO: Result of cryptographic signature verification"""
-    is_valid: bool  # Whether signature is valid
-    signer_did: str  # DID of entity that signed
-    signed_at: datetime  # When signature was created
-    algorithm: str  # Cryptographic algorithm used
-
-
-# ============================================================================
-# ABSTRACT PORT (Hexagonal Boundary)
-# ============================================================================
+    is_valid: bool
+    signer_did: str
+    signed_at: datetime
+    algorithm: str
 
 class IdentityServicePort(ABC):
     """
@@ -221,30 +208,21 @@ class IdentityServicePort(ABC):
         """
         pass
 
-
-# ============================================================================
-# EXCEPTION TYPES (for error handling)
-# ============================================================================
-
 class IdentityServiceError(Exception):
     """Base exception for identity service errors"""
     pass
-
 
 class DIDVerificationError(IdentityServiceError):
     """Raised when DID verification fails"""
     pass
 
-
 class SignatureVerificationError(IdentityServiceError):
     """Raised when signature verification fails"""
     pass
 
-
 class TrustScoreError(IdentityServiceError):
     """Raised when trust score cannot be calculated"""
     pass
-
 
 class CredentialValidationError(IdentityServiceError):
     """Raised when credential validation fails"""

@@ -10,6 +10,8 @@ class FinancasDataSource:
     """Metricas financeiras do modulo de pagamentos do cidadao."""
 
     def __init__(self, db: AsyncSession):
+        if InvoiceModel is None or PaymentModel is None:
+            raise RuntimeError('Modelos financeiros indisponiveis para BI (InvoiceModel/PaymentModel).')
         self.db = db
 
     async def collect_metrics(self, data_ref: date) -> dict[str, float | int]:
@@ -28,6 +30,8 @@ class FinancasPublicasDataSource:
     """Metricas orcamentais consolidadas do modulo de financas publicas."""
 
     def __init__(self, db: AsyncSession):
+        if DespesaModel is None or OrcamentoModel is None or ReceitaModel is None:
+            raise RuntimeError('Modelos de financas publicas indisponiveis para BI.')
         self.db = db
 
     async def collect_metrics(self, data_ref: date) -> dict[str, float | int]:
@@ -53,8 +57,14 @@ class DataSources:
     def from_session(cls, db: AsyncSession) -> 'DataSources':
         stats_sources = StatisticsDataSources.from_session(db).as_dict()
         clients: dict[str, Any] = dict(stats_sources)
-        clients['financas'] = FinancasDataSource(db)
-        clients['financas_publicas'] = FinancasPublicasDataSource(db)
+        if InvoiceModel is not None and PaymentModel is not None:
+            clients['financas'] = FinancasDataSource(db)
+        else:
+            clients['financas'] = None
+        if DespesaModel is not None and OrcamentoModel is not None and (ReceitaModel is not None):
+            clients['financas_publicas'] = FinancasPublicasDataSource(db)
+        else:
+            clients['financas_publicas'] = None
         return cls(clients=clients)
 
     @classmethod

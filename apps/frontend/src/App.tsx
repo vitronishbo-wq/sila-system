@@ -14,6 +14,14 @@ import PaymentsPage from './modules/pagamentos/PaymentsPage';
 import CitizenLogin from './pages/CitizenLogin';
 import CitizenPortal from './pages/CitizenPortal';
 import Register from './pages/Register';
+import AdminCitizens from './pages/AdminCitizens';
+import AdminCitizenProfile from './pages/AdminCitizenProfile';
+import AdminCitizenFuc from './pages/AdminCitizenFuc';
+import AdminDocuments from './pages/AdminDocuments';
+import AdminDocumentProfile from './pages/AdminDocumentProfile';
+import AdminExports from './pages/AdminExports';
+import AdminTerritory from './pages/AdminTerritory';
+import AdminObservability from './pages/AdminObservability';
 
 // Componente de diagnóstico (temporário)
 const AuthDebugger: React.FC = () => {
@@ -115,6 +123,7 @@ const App: React.FC = () => {
 
   const handleLoginSuccess = async (token: string) => {
     localStorage.setItem('token', token);
+    localStorage.setItem('access_token', token);
     const userData = await authService.getMe();
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
@@ -174,11 +183,15 @@ const App: React.FC = () => {
               <Layout user={user!} onLogout={handleLogout}>
                 <Routes>
                   <Route path="/" element={<Dashboard user={user!} />} />
-                  <Route path="/citizens" element={<div className="p-8"><h2 className="text-2xl font-bold">Módulo de Cidadãos em construção</h2></div>} />
-                  <Route path="/documents" element={<div className="p-8"><h2 className="text-2xl font-bold">Módulo de Documentos em construção</h2></div>} />
+                  <Route path="/citizens" element={<AdminCitizens />} />
+                  <Route path="/citizens/:id" element={<AdminCitizenProfile />} />
+                  <Route path="/citizens/:id/fuc" element={<AdminCitizenFuc />} />
+                  <Route path="/documents" element={<AdminDocuments />} />
+                  <Route path="/documents/:id" element={<AdminDocumentProfile />} />
+                  <Route path="/exports" element={<AdminExports />} />
                   <Route path="/payments" element={<PaymentsPage />} />
-                  <Route path="/territory" element={<div className="p-8"><h2 className="text-2xl font-bold">Hierarquia de Territórios em construção</h2></div>} />
-                  <Route path="/observability" element={<div className="p-8"><h2 className="text-2xl font-bold">Observabilidade em construção</h2></div>} />
+                  <Route path="/territory" element={<AdminTerritory />} />
+                  <Route path="/observability" element={<AdminObservability />} />
                 </Routes>
               </Layout>
             </ProtectedRoute>

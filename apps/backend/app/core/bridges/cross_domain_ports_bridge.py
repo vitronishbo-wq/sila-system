@@ -15,10 +15,6 @@ from apps.backend.app.modules.society.emprego.application.ports.contrato_reposit
 from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
 from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
 from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from apps.backend.app.modules.saude.application.ports.appointment_repository_port import (
-    AppointmentRepositoryPort,
-)
-from apps.backend.app.modules.saude.application.ports.health_unit_repository_port import (
-    HealthUnitRepositoryPort,
-)
+from apps.backend.app.modules.saude.application.ports.appointment_repository_port import AppointmentRepositoryPort
+from apps.backend.app.modules.saude.application.ports.health_unit_repository_port import HealthUnitRepositoryPort
 __all__ = ['AppointmentRepositoryPort', 'AuxilioRepositoryPort', 'BeneficiarioRepositoryPort', 'BeneficioRepositoryPort', 'BolsaEstudoRepositoryPort', 'CandidatoRepositoryPort', 'ContratoRepositoryPort', 'HealthUnitRepositoryPort', 'JovemRepositoryPort', 'MatriculaRepositoryPort', 'OcorrenciaRepositoryPort', 'ProdutorRepositoryPort', 'PropinaRepositoryPort', 'RequestRepositoryPort']

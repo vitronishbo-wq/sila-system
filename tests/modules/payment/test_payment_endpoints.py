@@ -12,7 +12,7 @@ from decimal import Decimal
 from fastapi import FastAPI, status
 from httpx import AsyncClient, ASGITransport
 
-from apps.backend.app.modules.payment.models.enums import (
+from apps.backend.app.modules.payment.domain.enums import (
     PaymentStatus,
     PaymentMethod,
     TransactionType,

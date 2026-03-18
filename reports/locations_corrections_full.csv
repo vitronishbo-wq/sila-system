@@ -1,0 +1,726 @@
+id,name,type,parent_id,canonical,name_norm
+5e4cd8b5-88f5-4671-af29-b8e2b2a74699,Aldeia Viçosa,COMUNA,2f438007-f144-422a-b527-9f25f965012b,Aldeia Viçosa,aldeiavicosa
+27291dd0-c9a2-4485-a196-38515504d3c8,Alfândega,COMUNA,57cde214-fcb1-4d43-8af7-af5db5344f51,Alfândega,alfandega
+e09a70f9-c111-48f1-a2dc-511ea39d0275,Alto Zaza,COMUNA,a972be77-a39b-4458-86ec-e26b06554387,Alto Zaza,altozaza
+b8d9a9df-4108-44a5-9812-c6cf88d5442d,Ambriz,COMUNA,2ae61c10-e558-4921-b8f8-de1edb86d5d9,Ambriz,ambriz
+4d14377e-8381-466e-adcc-908c30ef0634,Andulo,COMUNA,12850655-0158-4ad7-9d19-137bc607c954,Andulo,andulo
+4012a241-ebeb-45ee-9a16-334fb54cd987,Assango,COMUNA,8a2d03aa-b1b8-4225-b902-e82102f0aaf7,Assango,assango
+f9e837c6-f45d-4e39-b561-64bdf0419ec1,Atóme,COMUNA,1f3a5b90-9058-49f5-a539-cfe077d19447,Atóme,atome
+d209f072-8a2c-4c3c-9903-b176f14c0b0f,Bailundo,COMUNA,040cde04-72ed-4506-beb0-a607043d5195,Bailundo,bailundo
+51173544-be30-4283-9266-5afecb0982b8,Baixo Longa,COMUNA,4a11158d-5769-40ae-8bac-9bda6ae65825,Baixo Longa,baixolonga
+ed2ff339-deab-400a-a5d4-5611ee5d2e6d,Balombo,COMUNA,ff9729ab-8e40-44c4-8bf4-c9065f885e9c,Balombo,balombo
+67482bd4-25b3-4f2b-9add-0ad181ffc03a,Bambi,COMUNA,2e4fbd16-8d1e-455a-b1bd-f1fb073f6afe,Bambi,bambi
+bb4f7f3c-bf39-4564-8ac2-d5d6cacaeee8,Banga,COMUNA,a49d1158-9e5e-4c30-aa15-01e0b805a690,Banga,banga
+6f9b5ed1-26be-44e3-aaaf-5de3152ecc36,Barra do Cuanza,COMUNA,76b593c3-54e7-40f2-93c7-b0f8cdf97db7,Barra do Cuanza,barradocuanza
+d4a74f57-3502-4507-8f8a-a08945e5d2d8,Bela Vista,COMUNA,2ae61c10-e558-4921-b8f8-de1edb86d5d9,Bela Vista,belavista
+60c2f500-0d5b-416c-b5ba-6e7b1c32b1fc,Belize,COMUNA,7d6aea5c-bcf3-463e-abe9-043cd4df163a,Belize,belize
+193a1ee8-7371-4758-b90b-c1505208b13f,Bembe,COMUNA,6686b996-dbfa-42e5-8f6c-1fd4831b8d53,Bembe,bembe
+8055e11d-8752-432e-9ff9-f2d291a88263,Benfica,COMUNA,76b593c3-54e7-40f2-93c7-b0f8cdf97db7,Benfica,benfica
+a17dfc1a-b1f1-4056-a6bf-446493e8d4b0,Bengo,COMUNA,924406e8-fe01-4cb7-a10e-708cac872164,Bengo,bengo
+fb0758a3-c314-4b52-a21d-2d6d4e492fa9,Bentiaba,COMUNA,2e931241-1e84-40ea-ba74-8e50cfaaad0d,Bentiaba,bentiaba
+2c0728ad-7345-4e41-baa4-014bf74abba0,Bibala,COMUNA,449c0eea-76c7-468b-8dd6-bb6cd058bdc9,Bibala,bibala
+26326e9c-448f-4054-9a78-a1bdd7ce01cc,Bimbe,COMUNA,6e091ba4-75b4-4715-8c45-ac044edb3b0d,Bimbe,bimbe
+558c1617-4e32-4fca-89dc-1661898137e2,Bindo,COMUNA,cbcd5aa8-db69-4688-add2-d0b5449a8e5b,Bindo,bindo
+d7fdbf83-cbed-41c9-8ee9-85d5a6102b06,Bocoio,COMUNA,d6979483-3765-4110-86cc-6f8bb2065352,Bocoio,bocoio
+64938fb7-62b7-429e-943c-2c7216e84b64,Bondo Caíla,COMUNA,37cb70fa-2bca-45b2-be9d-ef498fde4a9a,Bondo Caíla,bondocaila
+f18c95ff-9ac0-4c44-8766-086b65dfb3f0,Botera,COMUNA,12d6f83a-b5f7-40af-a10a-4f9095d798ad,Botera,botera
+33998989-db9e-4833-adf3-73ed3d75bc3b,Buela,COMUNA,a6d2fa52-6e59-4e27-9215-fa3b5982f228,Buela,buela
+f864ff27-9fc6-4a95-ba73-fa81c4179802,Buenga - Sul,COMUNA,c8e68c61-c7b5-45ab-be4e-023f0926ffa5,Buenga - Sul,buengasul
+398f40f7-3470-4e22-8927-4038b6a96162,Bula Atumba,COMUNA,ebe3e9a7-54ef-41cb-9280-f9b50cb13af7,Bula Atumba,bulaatumba
+313f571e-dfd5-49aa-8f3e-d3c19b69c65c,Bângalas,COMUNA,84c611fd-1c4c-4fd2-9751-95b8a0bd0bdc,Bângalas,bangalas
+061beac2-fe35-4c60-b6a0-ca595c11230e,Béu,COMUNA,7c267419-0607-48a0-ba32-66c4c7d0d82e,Béu,beu
+f7e9c1ec-c86e-454a-8d70-b149621aa520,Cabolombo,COMUNA,76b593c3-54e7-40f2-93c7-b0f8cdf97db7,Cabolombo,cabolombo
+1f1f7911-a86e-4494-8d24-bfc3e4ed1460,Cabombo,COMUNA,5afa5dca-07ac-4e1a-a8d9-142d04d0d8f0,Cabombo,cabombo
+f0bfcce6-35cf-4aad-b571-b5ab45e270da,Cabuta,COMUNA,58dc5d51-3152-4925-a851-1f77388b3394,Cabuta,cabuta
+1bc8073c-a345-47fe-9e39-62c4a3e8cc1a,Cachimo,COMUNA,8d993bd0-1a32-48c0-88c7-f4ad4fc67f77,Cachimo,cachimo
+f82d7175-444a-4558-aedf-6953c122505a,Cachingues,COMUNA,d055f625-1515-4ec9-b09c-ba367227feac,Cachingues,cachingues
+c358e8d1-3c0c-44aa-8c90-f41a73f9e901,Cachiungo,COMUNA,5da6ab3e-0b3e-4297-bef9-5cb6bd30b334,Cachiungo,cachiungo
+5f6cc7be-efdd-46d7-9072-159e2a68898a,Cacoma,COMUNA,e32dbfb9-fd4b-4b37-b506-787d7648f095,Cacoma,cacoma
+4821a821-42b2-4f0f-904c-861ac064ab5b,Caconda,COMUNA,82124ef8-4268-4c7e-b982-e61b845dfd8e,Caconda,caconda
+8525fcc2-4c2a-43c6-bebd-559dd158564d,Cacuaco,COMUNA,5c5d5c34-a8fe-49ec-ba09-a88adbd7fedd,Cacuaco,cacuaco
+fd9e3fb2-8b0d-405d-a274-e708e2d6b826,Cacula,COMUNA,be90918c-d916-48da-be3f-59b6a01568b8,Cacula,cacula
+e65d1322-a15d-46c5-9be5-a4ca2095a17a,Caculama,COMUNA,b7e254cd-e1ba-4e31-b075-02ed8bddf313,Caculama,caculama
+2b904ed8-c3c7-4862-b7fd-59879a26275e,Caculo Cahango,COMUNA,67f2b0e4-d304-46ef-bb63-889afcf88414,Caculo Cahango,caculocahango
+64178057-b7bf-4a1b-a7f8-af36f0c72fdb,Caculo Camuiza,COMUNA,58b39f99-44bb-4797-90b5-b17c080f5a4e,Caculo Camuiza,caculocamuiza
+c09b381e-9ad2-453f-a8ca-e7a043da160a,Cacuso,COMUNA,c271f989-afc0-4543-8128-72910a180a67,Cacuso,cacuso
+ef503e73-a6be-477a-980d-5120d6dd95ec,Cage Mazumbo,COMUNA,632045da-005e-404a-87c4-944d5770e0b7,Cage Mazumbo,cagemazumbo
+30c44921-421f-433f-b71c-ef9ccf7e73ce,Cahama,COMUNA,121facc8-9bc3-4937-af05-24bad2f990a3,Cahama,cahama
+5fa797ce-a4cc-4d1f-95ba-e5ef0bca661d,Cahombo,COMUNA,8a707fbb-4e3d-454c-9080-bde435879a89,Cahombo,cahombo
+ee8bb905-76b4-4e83-b033-da0569d8a033,Caiave,COMUNA,ba226868-9030-4688-b2fe-cf68f4d824a5,Caiave,caiave
+479eb67e-a918-422d-871c-9844ab51f8a8,Caieie,COMUNA,d8590fbf-3f8c-4adf-9c73-8edb9eb21166,Caieie,caieie
+fc318868-93e7-47d9-a543-370eb7f7b281,Caimbambo,COMUNA,ba226868-9030-4688-b2fe-cf68f4d824a5,Caimbambo,caimbambo
+d9b9096a-e19e-4d6b-9472-2ad6edc2b7c1,Cainde,COMUNA,c743d3e0-138a-4b25-9031-ef2bcbce2832,Cainde,cainde
+5ea41c82-848a-43dc-b8a4-c185f9528085,Caiongo,COMUNA,924406e8-fe01-4cb7-a10e-708cac872164,Caiongo,caiongo
+e9e6fa78-62bd-4e1f-868f-adc92d899326,Caitou,COMUNA,449c0eea-76c7-468b-8dd6-bb6cd058bdc9,Caitou,caitou
+34cd4a66-a30d-496f-a7b0-fe3dfb3a927f,Caiuera,COMUNA,278a2327-c81c-4ade-8f8b-1c4561b9d35f,Caiuera,caiuera
+69c4363c-0114-4cfd-9c3c-ad39e8d4b2bb,Caiundo,COMUNA,23073864-552d-499b-96ba-d247233d73b0,Caiundo,caiundo
+4d70de6f-a1ea-4ace-8101-e61b6ccecf59,Calandula,COMUNA,7755e6e9-e896-44fb-bfd2-fb1c3fbae704,Calandula,calandula
+0b0adc12-b93d-4b22-9c14-afe8dbda9fa0,Calepi,COMUNA,98022069-c4ac-4702-a001-05076c1481af,Calepi,calepi
+21ce14d5-d78e-492e-ba72-89f6df0c4193,Calima,COMUNA,366b8687-f578-403b-9b04-45950fda19bf,Calima,calima
+d7c9a0cf-c863-4786-beb5-cc99592f4a47,Caluango,COMUNA,033398e0-c595-41ba-8717-645162ab20fd,Caluango,caluango
+72a19222-b384-4ec9-abc0-08844b0504ba,Caluca,COMUNA,bf66b7f2-2fdc-48ec-9812-ad53b4b78969,Caluca,caluca
+b9f4740e-0584-4dfc-90ca-1095d0608f73,Calulo,COMUNA,58dc5d51-3152-4925-a851-1f77388b3394,Calulo,calulo
+db0f5c62-362b-462b-a682-3b8481a88342,Calunda,COMUNA,ed38ef7d-f5d5-4058-a4de-ff1efdaa2e19,Calunda,calunda
+f6a1e5c3-8005-44cd-a2c1-993793fe9593,Caluquembe,COMUNA,98022069-c4ac-4702-a001-05076c1481af,Caluquembe,caluquembe
+d3b8ad1b-bed6-402f-b470-d6652b63bb45,Camabatela,COMUNA,cbcd5aa8-db69-4688-add2-d0b5449a8e5b,Camabatela,camabatela
+3ef2b018-12fb-4ef3-8adb-a7df757df8c0,Camacupa,COMUNA,50bdebd3-101c-488c-83c4-ca58d1f06a88,Camacupa,camacupa
+b7366ff9-f2e0-4f88-988a-ed3aae4674eb,Camame,COMUNA,92d12e20-a6a4-4411-a3fe-cd0c6ac5a968,Camame,camame
+921532cb-ce39-4854-be21-f34061810783,Camatambo,COMUNA,47201005-3f04-43c7-81c4-508afde44775,Camatambo,camatambo
+7a50c613-6350-4c7d-90db-036b5cf5e42a,Cambamba,COMUNA,68e00980-5325-4756-9d24-408bae429565,Cambamba,cambamba
+ca87c4b8-0013-45e1-bb4a-e0b3d7af3527,Cambaxe,COMUNA,0a707eb1-6b07-4d73-aa22-4095d0e79170,Cambaxe,cambaxe
+3b27d71e-b431-471e-8b3a-cec6da5dcd3b,Cambondo,COMUNA,19ca811a-c5fb-4292-acfd-24d848ceec9b,Cambondo,cambondo
+3c01e017-2b35-45c9-991a-020307c24f48,Cambuengo,COMUNA,2ce85ec0-c404-4882-9b51-8dd2a1acb0fe,Cambuengo,cambuengo
+d0d2fd09-b89d-43af-ac20-f0fa0e124cf0,Cambundi Catembo,COMUNA,811d5f5e-028a-4f67-a724-b35465b1ff85,Cambundi Catembo,cambundicatembo
+a5181008-eb18-4389-aedf-7e2f4c832d0c,Camissombo,COMUNA,0c94ae6e-04ce-4982-86e4-1224581f716c,Camissombo,camissombo
+2c5e5e43-8173-444e-b3c4-7b9af39b5b2f,Camucuio,COMUNA,40fe85b0-3c92-476f-ab63-a619d3c632a8,Camucuio,camucuio
+d0edad9c-62a3-4908-baa3-ac74e1c204bf,Camuine,COMUNA,e1a383fa-9986-423d-be69-4c73a631350c,Camuine,camuine
+8bacbe2d-b7ad-47cc-bf4d-c4cd9c3546a7,Canacassala,COMUNA,01fd822b-d989-43bd-9b54-b3beda8ed27c,Canacassala,canacassala
+88763b99-77ec-4b27-97b8-d62aeabea294,Cancungo,COMUNA,5424c694-d7f8-422a-a358-503f5f051bcd,Cancungo,cancungo
+f0c100e8-5778-4c1d-9eb5-d0baa073372f,Cangamba,COMUNA,032b940f-1545-400d-81f6-0a20654bbc25,Cangamba,cangamba
+54d7daf4-5d7e-4815-a5ac-cbd0e982fdde,Cangandala,COMUNA,b7dcd36c-ab98-4dc6-a3a7-40ccae574dde,Cangandala,cangandala
+cbe5f907-e379-463f-a9f2-4b352263f104,Cangola,COMUNA,924406e8-fe01-4cb7-a10e-708cac872164,Cangola,cangola
+889eda78-0359-4384-a8dc-8d79990038b4,Cangombe,COMUNA,032b940f-1545-400d-81f6-0a20654bbc25,Cangombe,cangombe
+0f55b1ca-6e61-488d-be26-daca4d9b6e21,Cangote,COMUNA,cda30a83-d3cf-4c78-8bf7-470d0bf1fca6,Cangote,cangote
+354828d2-764b-46d7-a98e-8d4f3e492f59,Canjala,COMUNA,fbc07dcd-750b-45e3-a061-eba06c98131f,Canjala,canjala
+4604649f-6c57-43a0-9be5-fd0feea2f749,Canzar,COMUNA,5af88720-3b6a-4131-b0b3-46cf752a51dc,Canzar,canzar
+7bae3a3f-5686-4dc9-a1ad-7eaf5de2c104,Capaia,COMUNA,6c95a40c-04d6-4cc0-8485-7b1569b02164,Capaia,capaia
+e03cc5cf-0754-4330-b0ea-7ec61a67b450,Capangombe,COMUNA,449c0eea-76c7-468b-8dd6-bb6cd058bdc9,Capangombe,capangombe
+936a8c2b-964e-4490-b6d6-3d041a45a0ed,Capelongo,COMUNA,ab476cdc-b754-4446-8468-273d5ba51923,Capelongo,capelongo
+c930376f-2f2b-4ec9-8200-63f996bb0738,Capenda Camulemba,COMUNA,2a92565c-4a7d-411b-bdcf-f8dcd485736d,Capenda Camulemba,capendacamulemba
+126a2263-b574-45e6-9988-237c12b9a295,Capolo,COMUNA,62f269f3-3d6d-41b2-886c-7ce2fc96b5e2,Capolo,capolo
+e34fbea0-2759-4c66-a3a1-ad4b6e345e02,Capunda,COMUNA,761854d8-18bb-46cf-baaa-da4d8c9c5ec0,Capunda,capunda
+9fc08909-0820-4763-b05f-cdbff0b7447e,Capunda Cavilongo,COMUNA,6fab4a66-84d3-4d77-bbeb-08e4234c5999,Capunda Cavilongo,capundacavilongo
+064703ef-dde9-4f49-b9af-c9ba2f3839f0,Cariamba,COMUNA,a49d1158-9e5e-4c30-aa15-01e0b805a690,Cariamba,cariamba
+1b3939b7-721f-40ca-bdcf-f4edc51c46c8,Cariango,COMUNA,21c312e5-71d8-4e47-aade-ec8a119d55ba,Cariango,cariango
+9428f774-1b9c-4982-a537-92d5afb93eae,Caribo,COMUNA,b7dcd36c-ab98-4dc6-a3a7-40ccae574dde,Caribo,caribo
+1ce195f4-be9f-4beb-b963-abd73ba75d39,Cassamba,COMUNA,032b940f-1545-400d-81f6-0a20654bbc25,Cassamba,cassamba
+b263399c-d504-4fca-894f-09860e3d1e67,Cassanje,COMUNA,e98d7861-86f2-43fc-93cc-308bbc4e905b,Cassanje,cassanje
+669958df-0361-42ed-a999-b971611bf5d9,Cassanjo Calucala,COMUNA,e7969c25-4f59-4c8f-9886-714ee12b10a0,Cassanjo Calucala,cassanjocalucala
+38c06ed1-71b7-4eba-8dfe-49fb0bb93ed5,Casseche,COMUNA,5424c694-d7f8-422a-a358-503f5f051bcd,Casseche,casseche
+dd257c70-57c8-48a7-ad35-55e8da6be916,Cassinga,COMUNA,37e72058-5e94-4a3b-abe8-67902e6cbe7a,Cassinga,cassinga
+d8f731d7-e886-492a-bce8-cb22cb2a9364,Cassoneca,COMUNA,67f2b0e4-d304-46ef-bb63-889afcf88414,Cassoneca,cassoneca
+bf09fed7-3233-4145-b12b-246611257d47,Cassongo,COMUNA,ad7df181-0315-48bb-a05b-9228bcb949a7,Cassongo,cassongo
+0378e822-16e5-4edb-828c-dcd5f9bab750,Cassongue,COMUNA,1f3a5b90-9058-49f5-a539-cfe077d19447,Cassongue,cassongue
+5afb02df-ea44-4233-aa7e-f88ede87d28a,Cassumbe,COMUNA,12850655-0158-4ad7-9d19-137bc607c954,Cassumbe,cassumbe
+f6c1ad59-0522-4abc-89f0-b665af983f44,Catabola,COMUNA,278a2327-c81c-4ade-8f8b-1c4561b9d35f,Catabola,catabola
+122d382a-8d7b-4d8e-89b0-baed956f4687,Catata,COMUNA,6955fd2d-385c-48aa-bdac-2f95c211f42c,Catata,catata
+96abd70c-433c-4df9-bcee-e8f5ae24b8cb,Catete,COMUNA,67f2b0e4-d304-46ef-bb63-889afcf88414,Catete,catete
+8494da0d-cf2c-47b5-88be-5b914738af2f,Cavunga,COMUNA,92d12e20-a6a4-4411-a3fe-cd0c6ac5a968,Cavunga,cavunga
+33e4e247-59d9-481a-aab9-a434a0217bd7,Caxicane,COMUNA,67f2b0e4-d304-46ef-bb63-889afcf88414,Caxicane,caxicane
+ca92896d-81f4-4124-aa1d-547fc4ddae3b,Caxinga,COMUNA,b7e254cd-e1ba-4e31-b075-02ed8bddf313,Caxinga,caxinga
+8dfc46e8-ab8d-413e-be1e-30c6c5e7655a,Caxito,COMUNA,2e801b10-c7bd-4feb-aee5-89c3d99b79b7,Caxito,caxito
+3d280d73-2c36-4913-a2a9-16ccf5542749,Cazenga,COMUNA,4e743a97-706f-43ca-b45c-3c021ade4894,Cazenga,cazenga
+1c8f304d-332f-4032-baf4-8edb5e6cafbd,Cazombo,COMUNA,b591175d-a078-4f6c-85b6-725fcd621e7e,Cazombo,cazombo
+75db64d6-47fa-4c3c-af5b-453d7122cf1d,Cazuangongo,COMUNA,23274f0c-5046-4fd2-950f-4ed98a7d71c5,Cazuangongo,cazuangongo
+ce2fdbd0-77bc-41a5-bf92-36ff120fd371,Caíta,COMUNA,fe3cf43c-78f9-42fe-a0b1-855d2cd3840c,Caíta,caita
+b3985ed8-e6b3-4854-8a46-acb7519a2f19,Chiaca,COMUNA,44b13939-8bde-4f4f-a0ff-dcc4e8497be0,Chiaca,chiaca
+76eb776e-8c9a-4607-b0eb-a4d1b8d72a60,Chiange,COMUNA,b568335a-4620-468a-aaed-974eb716f652,Chiange,chiange
+bf8704c0-8e68-42df-b643-e73a5e36d87b,Chibia,COMUNA,1fe8cf5f-e966-4602-bdc3-fd509c54a5ef,Chibia,chibia
+265804af-7de4-45dc-ac37-8487b75a010f,Chicala,COMUNA,b10d75c5-ecf5-4d3c-9be9-36aa7fbe97dc,Chicala,chicala
+ca9f51e1-76e8-4563-b88b-61f626e187fc,Chicomba,COMUNA,23c91797-dafa-43d1-acc0-8ea0e8f27923,Chicomba,chicomba
+c4857a00-bb4e-4e4a-83c0-e9c4abd719f8,Chimbemba,COMUNA,b568335a-4620-468a-aaed-974eb716f652,Chimbemba,chimbemba
+5117ac68-8399-4709-8ce0-271639623ff2,Chingo,COMUNA,40fe85b0-3c92-476f-ab63-a619d3c632a8,Chingo,chingo
+1bc34e24-6bdf-4d9b-9020-f9e85c2b0c46,Chinguar,COMUNA,cda30a83-d3cf-4c78-8bf7-470d0bf1fca6,Chinguar,chinguar
+8fee110a-fca5-441a-8e33-7c74f4e4cacb,Chinhama,COMUNA,5da6ab3e-0b3e-4297-bef9-5cb6bd30b334,Chinhama,chinhama
+cad48088-dea9-4622-a30d-31fd471b60d0,Chinjenje,COMUNA,44b13939-8bde-4f4f-a0ff-dcc4e8497be0,Chinjenje,chinjenje
+63eb598c-d68c-43bf-94b6-db7b4017a81b,Chipeta,COMUNA,bd69b181-613b-4490-b3cb-de2fff734cd4,Chipeta,chipeta
+1d9e9344-b38c-431c-bfc4-a3c0dba30312,Chipindo,COMUNA,2e4fbd16-8d1e-455a-b1bd-f1fb073f6afe,Chipindo,chipindo
+9bf6233a-99f0-48d1-b776-84769f80f2e4,Chitembo,COMUNA,d055f625-1515-4ec9-b09c-ba367227feac,Chitembo,chitembo
+6ac1501f-cb9c-415c-9354-b405cd35dcee,Chiuca,COMUNA,bd69b181-613b-4490-b3cb-de2fff734cd4,Chiuca,chiuca
+e6d02f9c-e10f-4998-9321-507ca73b0b49,Chivaúlo,COMUNA,12850655-0158-4ad7-9d19-137bc607c954,Chivaúlo,chivaulo
+94a75d73-dcb6-49e4-8bf8-97c34b7cabd9,Chongorói,COMUNA,e1a383fa-9986-423d-be69-4c73a631350c,Chongorói,chongoroi
+7d2e9d60-bc2d-4557-bdbe-5ca06e1910f9,Conda,COMUNA,8df97a7e-ef5d-4966-baff-5aaef6af5bb4,Conda,conda
+a4059d56-d5f0-4bad-a710-14ae6f36f3d1,Cota,COMUNA,7755e6e9-e896-44fb-bfd2-fb1c3fbae704,Cota,cota
+f8983f6e-c438-429f-a6db-53dcaf932c03,Coxe,COMUNA,5fad6578-e7e8-43b7-92c3-595b8a47a6ba,Coxe,coxe
+717b5f73-8347-4bc9-847e-51ce9666b7ed,Cuango Calumbo,COMUNA,a972be77-a39b-4458-86ec-e26b06554387,Cuango Calumbo,cuangocalumbo
+6004ec27-58a2-428d-b71f-5c04a61e77ef,Cuanza,COMUNA,50bdebd3-101c-488c-83c4-ca58d1f06a88,Cuanza,cuanza
+4bce8bde-81e8-4691-838c-9b15795853c7,Cubal do Lumbo,COMUNA,d6979483-3765-4110-86cc-6f8bb2065352,Cubal do Lumbo,cubaldolumbo
+67228100-aed5-4023-929e-e8207f6ce754,Cucumbi,COMUNA,0984430a-b7eb-456d-8039-3cfd5d315428,Cucumbi,cucumbi
+21433b67-7e89-475a-b9e9-6cda97f8c89d,Cuemba,COMUNA,018d8b7e-e426-4df4-94a0-71796c1b3a9a,Cuemba,cuemba
+64e0b4e3-73fb-41b6-8cb8-e9a787f33c24,Cuilo Camboso,COMUNA,c8e68c61-c7b5-45ab-be4e-023f0926ffa5,Cuilo Camboso,cuilocamboso
+f92b4ba2-dabf-414f-b40b-28cdf7bb7849,Cuilo Futa,COMUNA,7c267419-0607-48a0-ba32-66c4c7d0d82e,Cuilo Futa,cuilofuta
+9af1443b-0337-432d-8bf5-07c944bc7060,Cuilo Pombo,COMUNA,57cde214-fcb1-4d43-8af7-af5db5344f51,Cuilo Pombo,cuilopombo
+82073155-2534-46d8-9355-b7d44bfabda8,Cuima,COMUNA,6955fd2d-385c-48aa-bdac-2f95c211f42c,Cuima,cuima
+7cc14146-81de-41aa-8fd1-d3c2af3bd876,Cuimba,COMUNA,a6d2fa52-6e59-4e27-9215-fa3b5982f228,Cuimba,cuimba
+88fef302-0c70-414c-89e5-bc9281d5a4e9,Cuito,COMUNA,aee52a9b-a4fd-438e-81e7-441f398eccbf,Cuito,cuito
+88d029df-425c-4585-8334-5239371b2bd1,Cuito Cuanavale,COMUNA,f2326eb5-cca4-43e8-970f-c1b9f3ddc914,Cuito Cuanavale,cuitocuanavale
+360208ba-a800-464f-bc15-22de96fc951b,Culamagia,COMUNA,b7dcd36c-ab98-4dc6-a3a7-40ccae574dde,Culamagia,culamagia
+cdb96e32-5420-4ef6-bbc4-7aa4794991e7,Cumbira,COMUNA,1ec888ee-2a42-4fa3-adf1-17e5b4af5a91,Cumbira,cumbira
+bd3a22fe-9706-4fad-9ee2-291a5c9dfe43,Cunga Palanga,COMUNA,761854d8-18bb-46cf-baaa-da4d8c9c5ec0,Cunga Palanga,cungapalanga
+ab8ccfd7-126d-4a4e-bc4c-378637db36cc,Cunjamba,COMUNA,60a42eb3-0fa8-49fc-90ca-3c6febde5457,Cunjamba,cunjamba
+f4e2ecab-7cf9-4479-856d-28aba996b017,Cunje,COMUNA,aee52a9b-a4fd-438e-81e7-441f398eccbf,Cunje,cunje
+97472bf9-37c5-4f35-be2d-c46987d531b8,Cunjo,COMUNA,8df97a7e-ef5d-4966-baff-5aaef6af5bb4,Cunjo,cunjo
+0ff8c575-03d6-4c3a-abfb-c7e3511bcc43,Cusse,COMUNA,82124ef8-4268-4c7e-b982-e61b845dfd8e,Cusse,cusse
+841e039f-c92d-4828-8594-e8b905d28c43,Cutato,COMUNA,c46f5994-3b08-49ed-89f1-ea83521e0496,Cutato,cutato
+692d1d09-2ec2-4e69-b3e6-533ec75b3701,Cutato,COMUNA,cda30a83-d3cf-4c78-8bf7-470d0bf1fca6,Cutato,cutato
+f57b9d9c-4e01-4112-a38b-06fb3d38e060,Cutenda,COMUNA,23c91797-dafa-43d1-acc0-8ea0e8f27923,Cutenda,cutenda
+99887b44-a113-43b2-8c96-98cb24d6d530,Cutuile,COMUNA,60a42eb3-0fa8-49fc-90ca-3c6febde5457,Cutuile,cutuile
+0a1b929f-82b4-46d1-8a67-39e77869da5d,Cuílo,COMUNA,033398e0-c595-41ba-8717-645162ab20fd,Cuílo,cuilo
+dccde20b-6b01-48f3-b4b6-05ca0024c64d,Dala Cachibo,COMUNA,baa7dddc-6602-4ffd-b26d-259bd54451de,Dala Cachibo,dalacachibo
+39d4b020-cf59-409f-b2fd-a3d5333b6b0c,Damba,COMUNA,47201005-3f04-43c7-81c4-508afde44775,Damba,damba
+c0e4280f-e591-44b6-b56e-62ed4c196d8b,Dando,COMUNA,7d593369-123d-49ba-90b6-3d6137f12d20,Dando,dando
+db57bfdb-bf3b-4acb-8b4f-78c763417e59,Dange Ya Menha,COMUNA,d6d0ec80-a5e8-4953-87a2-eefa5c705b1a,Dange Ya Menha,dangeyamenha
+6c4d6188-d4f0-494b-b482-bf2aad5b9c75,Demba Chio,COMUNA,7f0429f3-dd13-49fd-b220-550ee9fb06c0,Demba Chio,dembachio
+cc0bf3e0-c882-4493-bd1b-69e6f8eca8ad,Dimuca,COMUNA,994953b0-d5db-4013-871b-31593f7dc326,Dimuca,dimuca
+d8340e38-2ebe-4ef0-a53e-dc6e787ece42,Dinde,COMUNA,8d2344fa-5565-4978-b351-6345ff2e20b9,Dinde,dinde
+defbf32c-d3a7-4f59-9bb1-ac8693cbf3dc,Dinge,COMUNA,bf7f1ad6-c5d5-41e6-84da-bc51eeb9249c,Dinge,dinge
+b3c85d0b-e4fb-432e-b6f1-f10a999f203c,Dirico,COMUNA,8ecce48e-39a3-4e77-b535-9f79c0914639,Dirico,dirico
+614aa166-4eb9-4dbc-ba02-5d53300e12f2,Dombo Wa Zanga,COMUNA,bcbd0ee4-958b-4653-b125-88f41f973635,Dombo Wa Zanga,dombowazanga
+233175eb-0efa-4e54-907c-5a6a2a921151,Dondo,COMUNA,d6d0ec80-a5e8-4953-87a2-eefa5c705b1a,Dondo,dondo
+17b4bb0b-115a-4995-95d8-c81fa3864d60,Dumba Cambango,COMUNA,811d5f5e-028a-4f67-a724-b35465b1ff85,Dumba Cambango,dumbacambango
+46224538-89b7-47e1-ad65-3b76b4893d7a,Dumbi,COMUNA,1f3a5b90-9058-49f5-a539-cfe077d19447,Dumbi,dumbi
+5b9f4af1-d250-41aa-8863-89121af0e606,Dundo,COMUNA,9968c5b6-8fa2-41f0-b1f4-cbb847cf3383,Dundo,dundo
+390009e4-2e7e-4718-80cf-82e09225110c,Ebo,COMUNA,e98d7861-86f2-43fc-93cc-308bbc4e905b,Ebo,ebo
+a281eaa2-b47c-48d4-b579-e7a4b9535b34,Ecunha,COMUNA,6fb63bd4-df42-467d-a779-a11f667fd978,Ecunha,ecunha
+01b1e117-553a-43a2-b99d-5c8dabbcf669,Egito Praia,COMUNA,fbc07dcd-750b-45e3-a061-eba06c98131f,Egito Praia,egitopraia
+a25092f8-d13b-4a89-9747-0de70e2690fb,Evale,COMUNA,4c048628-892c-4e6b-b087-31622522666c,Evale,evale
+730c07b3-f601-48f8-b611-b00e4d5d6644,Funda,COMUNA,2d6d7e8d-61c0-4ba0-b754-1d60f5a144a1,Funda,funda
+bbd8b515-fee2-4c91-acb0-3141bef8761a,Gabela,COMUNA,8a2d03aa-b1b8-4225-b902-e82102f0aaf7,Gabela,gabela
+4ca5e9fd-613e-4527-85af-addcb9a020e0,Galanga,COMUNA,1ec888ee-2a42-4fa3-adf1-17e5b4af5a91,Galanga,galanga
+32899f73-d3a4-4feb-981b-8ee0ade38475,Gamba,COMUNA,d8590fbf-3f8c-4adf-9c73-8edb9eb21166,Gamba,gamba
+f3de4f12-6fe7-4f91-b9bb-49906dacb49f,Golfe,COMUNA,4d204423-e249-411a-a150-7436a61a4569,Golfe,golfe
+2ad1f09b-b5e9-448a-b1df-28b4c865e810,Golungo Alto,COMUNA,19ca811a-c5fb-4292-acfd-24d848ceec9b,Golungo Alto,golungoalto
+2286d092-1199-44ca-8381-7f46ab0bcc8d,Gombe,COMUNA,01fd822b-d989-43bd-9b54-b3beda8ed27c,Gombe,gombe
+c735d780-3944-417d-bea7-cf1f3a31c4e8,Gungue,COMUNA,82124ef8-4268-4c7e-b982-e61b845dfd8e,Gungue,gungue
+5cff1060-21ba-45dc-8392-676c5b5593c6,Hengue,COMUNA,6e091ba4-75b4-4715-8c45-ac044edb3b0d,Hengue,hengue
+133f841e-8657-47d2-b89f-2fe069417909,Huambo,COMUNA,366b8687-f578-403b-9b04-45950fda19bf,Huambo,huambo
+af164b64-ed4c-43b5-9827-bbe6a5ebb640,Humbe,COMUNA,14af0d40-dd47-4b13-a75f-548e879c6f74,Humbe,humbe
+ee5fec1e-c466-45c8-a56b-1297ddbf0743,Huíla,COMUNA,73589fba-52f0-4ec5-9eed-42168fa665aa,Huíla,huila
+07de083e-2920-42f1-a650-8d46456d5477,Icoca,COMUNA,2f64cdd3-17fe-488b-a777-559bbc739931,Icoca,icoca
+4e6cec7f-0da0-4e49-b951-001b29bc15ce,Impulo,COMUNA,8d2344fa-5565-4978-b351-6345ff2e20b9,Impulo,impulo
+dc139177-ab40-4882-898b-0b32bc965a6c,Inhuca,COMUNA,e7b0b6d9-223b-4271-a4d2-b4a59d14fa7e,Inhuca,inhuca
+da59b0b8-b85a-490e-b279-14962c69d76e,Iongo,COMUNA,e7969c25-4f59-4c8f-9886-714ee12b10a0,Iongo,iongo
+7ed03e2f-b2d0-48d4-b6f5-0d81ecab04b2,Jamba Cueio,COMUNA,23073864-552d-499b-96ba-d247233d73b0,Jamba Cueio,jambacueio
+434f675d-70a6-4aef-a78d-cef5ad7cb180,Jamba Mineira,COMUNA,37e72058-5e94-4a3b-abe8-67902e6cbe7a,Jamba Mineira,jambamineira
+eccc0382-c857-42ac-b88c-0d38ac556859,Jau,COMUNA,1fe8cf5f-e966-4602-bdc3-fd509c54a5ef,Jau,jau
+84600788-bd31-49ab-afc5-e726b99a6b38,Kikolo,COMUNA,5c5d5c34-a8fe-49ec-ba09-a88adbd7fedd,Kikolo,kikolo
+6ffe4089-ff57-4a78-b88e-949d355eff36,Kilamba,COMUNA,bf56d257-ead4-4cce-b7fa-8918542777d7,Kilamba,kilamba
+e880284a-27a4-456e-aca5-b8648022df36,Kima Kieza,COMUNA,4e743a97-706f-43ca-b45c-3c021ade4894,Kima Kieza,kimakieza
+817f0dff-910c-4ce7-bb76-51bf877fe066,Kiwaba Nzoji,COMUNA,abe9f3f7-f00a-41fe-9783-5dfa4f87e622,Kiwaba Nzoji,kiwabanzoji
+33f6e232-2f8f-495b-ae97-ecad6dacdd1d,Kunda Dya Baze,COMUNA,4b1cdefa-cde6-4938-b407-e41e242b5c6f,Kunda Dya Baze,kundadyabaze
+99aaef07-73db-4c74-8e99-4c0ec273432b,Lemba,COMUNA,4b1cdefa-cde6-4938-b407-e41e242b5c6f,Lemba,lemba
+f36d03f0-587f-436d-8e9d-1cb9a3f03886,Liangongo,COMUNA,fbe27617-b213-454b-a195-799907baf18f,Liangongo,liangongo
+238dea71-9dff-4b91-ba11-22cebe4fd9b5,Lola,COMUNA,449c0eea-76c7-468b-8dd6-bb6cd058bdc9,Lola,lola
+259cdacb-57a1-46aa-b467-233d325e9c36,Lombe,COMUNA,16574b4a-4510-4413-9d38-0315d0c695ba,Lombe,lombe
+41d04e45-b21a-4dc8-b243-3e070b32dec3,Londuimbali,COMUNA,df39d14b-2fa7-4b38-b233-6e7a03eb6d95,Londuimbali,londuimbali
+2536caaf-c36a-4e5c-8eef-c6261b79b394,Longa,COMUNA,4a11158d-5769-40ae-8bac-9bda6ae65825,Longa,longa
+9c354f87-fd9c-4379-8c2d-3617bcf102fd,Longonjo,COMUNA,c2769d37-27c3-43d0-a3d2-92b71b7f3fe8,Longonjo,longonjo
+52178895-71aa-48bb-8fe4-0b488eb52c4e,Lonhe,COMUNA,21c312e5-71d8-4e47-aade-ec8a119d55ba,Lonhe,lonhe
+436980a7-3031-40b6-b73e-142dcdb2ca99,Luachimo,COMUNA,9968c5b6-8fa2-41f0-b1f4-cbb847cf3383,Luachimo,luachimo
+65b050fc-4fce-46af-98de-b872e6dc0860,Luali,COMUNA,7d6aea5c-bcf3-463e-abe9-043cd4df163a,Luali,luali
+db6cebc8-cb38-424c-a906-0fab11625b24,Luanga,COMUNA,5424c694-d7f8-422a-a358-503f5f051bcd,Luanga,luanga
+613ac514-5f6d-4005-a2b4-5bd2beedac7d,Lubalo,COMUNA,117501fc-246a-4093-9c40-405d2e023193,Lubalo,lubalo
+df32516b-97bf-42bf-b141-ba91b862f5a6,Lubango,COMUNA,73589fba-52f0-4ec5-9eed-42168fa665aa,Lubango,lubango
+d614f452-1ce2-400e-8e57-9e2b408f6680,Lucala,COMUNA,dc83a030-ac42-4b20-ae93-ed9ad016d7e5,Lucala,lucala
+ed0899d6-802c-41a3-ad4e-f439281c17ee,Lucapa,COMUNA,0c94ae6e-04ce-4982-86e4-1224581f716c,Lucapa,lucapa
+470e6c2e-f3eb-4f2f-aa39-42e4aa8be2ab,Lucira,COMUNA,2e931241-1e84-40ea-ba74-8e50cfaaad0d,Lucira,lucira
+f42c5f4b-e8c4-49de-8711-6ece2eb23ab7,Luena,COMUNA,ad7df181-0315-48bb-a05b-9228bcb949a7,Luena,luena
+be7ee8fc-419f-4c62-beb1-68669e1b5789,Lufico,COMUNA,153767b6-5513-48c9-9468-5b38c28d26eb,Lufico,lufico
+e1787fd7-16e4-4252-ae36-ad8f0b9867a1,Luia,COMUNA,5af88720-3b6a-4131-b0b3-46cf752a51dc,Luia,luia
+1d76a185-632d-41fe-97c2-b425aaaba8d8,Lumbala Caquengue,COMUNA,b591175d-a078-4f6c-85b6-725fcd621e7e,Lumbala Caquengue,lumbalacaquengue
+d5b55973-b5cd-4d50-b89e-bc8a995cd83c,Lumbala Nguimbo,COMUNA,6828f686-2d81-42d0-9bb3-96fc42a89ba4,Lumbala Nguimbo,lumbalanguimbo
+66b8ec43-c875-438d-b5cf-d1797509f91c,Lunge,COMUNA,040cde04-72ed-4506-beb0-a607043d5195,Lunge,lunge
+6e6047af-73ac-495a-82ab-9f83c68b2d46,Lupire,COMUNA,f2326eb5-cca4-43e8-970f-c1b9f3ddc914,Lupire,lupire
+8fabf3c6-8626-4cc1-a4d4-971ce507e12a,Luquembo,COMUNA,bcbd0ee4-958b-4653-b125-88f41f973635,Luquembo,luquembo
+fe6d37b6-01c6-42c8-b89a-61c7a05f684a,Lutembo,COMUNA,eac88883-93b0-4807-962b-d2cd7dfa8647,Lutembo,lutembo
+4a0bd9a2-6c7c-443e-854b-cef6da90a036,Luvaca,COMUNA,a6d2fa52-6e59-4e27-9215-fa3b5982f228,Luvaca,luvaca
+3f5a93cf-3ab8-4b07-8d49-21510fe32ab9,Luvemba,COMUNA,040cde04-72ed-4506-beb0-a607043d5195,Luvemba,luvemba
+685ce053-6063-4742-9271-5a4fb1f9cbe6,Luvuei,COMUNA,eac88883-93b0-4807-962b-d2cd7dfa8647,Luvuei,luvuei
+c3047ce6-725b-4c2b-97c6-d70dc58c812b,Lândana,COMUNA,bf7f1ad6-c5d5-41e6-84da-bc51eeb9249c,Lândana,landana
+c3d776ab-50bc-4a05-92dd-81eabe7e6fe3,Lépi,COMUNA,c2769d37-27c3-43d0-a3d2-92b71b7f3fe8,Lépi,lepi
+409cf936-e489-4e63-8312-8948e8db0464,Léua,COMUNA,fbe27617-b213-454b-a195-799907baf18f,Léua,leua
+d3270515-8028-4883-8b38-3ad4551567d2,Lêmboa,COMUNA,47201005-3f04-43c7-81c4-508afde44775,Lêmboa,lemboa
+63790b8e-91ea-4c4a-a030-c1e6a8192c2a,Lúbia,COMUNA,7d593369-123d-49ba-90b6-3d6137f12d20,Lúbia,lubia
+e93bc3a4-f877-47b3-a982-bc526bd1dd52,Mabaia,COMUNA,6686b996-dbfa-42e5-8f6c-1fd4831b8d53,Mabaia,mabaia
+12c62880-7f6f-4255-bad8-59c71237927f,Mabubas,COMUNA,2e801b10-c7bd-4feb-aee5-89c3d99b79b7,Mabubas,mabubas
+658b2504-5c6f-416c-8672-61687bc4f910,Maca Mombolo,COMUNA,ff9729ab-8e40-44c4-8bf4-c9065f885e9c,Maca Mombolo,macamombolo
+37bce2a5-0dba-415f-beda-1e6087203da8,Macocola,COMUNA,2960da5f-a381-4637-ba9d-fb7216cc365a,Macocola,macocola
+1d671c44-bb0e-477c-bdbb-267d0b8ac094,Macolo,COMUNA,7b8c86d8-ea3d-43b0-94da-7f11822812da,Macolo,macolo
+8b3cc777-a30c-4e48-ac70-240391c01297,Macondo,COMUNA,ed38ef7d-f5d5-4058-a4de-ff1efdaa2e19,Macondo,macondo
+7fc16fae-0d31-47d9-9a38-6db387e978ea,Madimba,COMUNA,bf66b7f2-2fdc-48ec-9812-ad53b4b78969,Madimba,madimba
+9e0d2e01-ca75-4b16-b5dc-4a4354f512dc,Malanje,COMUNA,16574b4a-4510-4413-9d38-0315d0c695ba,Malanje,malanje
+0c93547b-c76b-4445-aaff-ed37c57af291,Malembo,COMUNA,058a30f4-eaaa-4f8e-82d4-4aa4cae71077,Malembo,malembo
+3cdc1c37-f39f-4424-8268-cee9592fcb87,Malengue,COMUNA,d055f625-1515-4ec9-b09c-ba367227feac,Malengue,malengue
+5c9f2f8e-7b41-4e8a-93ad-7888db4f22ae,Mamué,COMUNA,40fe85b0-3c92-476f-ab63-a619d3c632a8,Mamué,mamue
+110652dd-aa07-4667-9d2a-6333e0ffe5e8,Mangando,COMUNA,4c29d51f-9124-4ba6-9373-892ea06823e2,Mangando,mangando
+f9a17907-ae9d-4e51-80c4-8f03af8a9033,Maquela do Zombo,COMUNA,89ad7a1b-480a-4405-b04a-5c5f30cf284a,Maquela do Zombo,maqueladozombo
+d8094238-2a4b-4523-b0fa-59ea1fe54192,Marimba,COMUNA,4c29d51f-9124-4ba6-9373-892ea06823e2,Marimba,marimba
+5ef4c6ab-7506-4263-9a2f-acf43814c82c,Massangano,COMUNA,2afcffaa-6296-481e-8b4c-dae6591483a1,Massangano,massangano
+1e4abefb-e392-4482-909e-ef619f672556,Massau,COMUNA,7b8c86d8-ea3d-43b0-94da-7f11822812da,Massau,massau
+491ea9b9-a6fb-48d4-b684-45cee873f346,Maué,COMUNA,f6e02fa9-6c4e-4d43-bc59-860979473054,Maué,maue
+df417353-4e8d-405f-aec2-c62e327c30cb,Mavengue,COMUNA,f6e02fa9-6c4e-4d43-bc59-860979473054,Mavengue,mavengue
+451cd110-4350-47d7-8040-179ea1990db0,Mbanji Ya Ngola,COMUNA,5afa5dca-07ac-4e1a-a8d9-142d04d0d8f0,Mbanji Ya Ngola,mbanjiyangola
+f69e46ad-73a3-407d-9e77-59a80f819599,Mbanza Kongo,COMUNA,bf66b7f2-2fdc-48ec-9812-ad53b4b78969,Mbanza Kongo,mbanzakongo
+5ff5aa1c-42d4-4498-b03e-0b262ebffaee,Mbave,COMUNA,b10d75c5-ecf5-4d3c-9be9-36aa7fbe97dc,Mbave,mbave
+3706f99a-b45d-41cd-9065-9af8d7f64a63,Micanda,COMUNA,8a707fbb-4e3d-454c-9080-bde435879a89,Micanda,micanda
+d54ba4a5-2a81-40a0-aa37-aec995ca71c9,Milunga,COMUNA,2960da5f-a381-4637-ba9d-fb7216cc365a,Milunga,milunga
+49f34ef9-53f9-471a-b968-ccd4b7ba6e05,Moma,COMUNA,eace203b-b85f-4387-ad62-7f01f1f0c309,Moma,moma
+c1af2af1-1e10-45f8-abd0-8bb7df3ae4c4,Mona Quimbundo,COMUNA,3f58a102-f4e5-416a-b7fe-e8f4cc5b914f,Mona Quimbundo,monaquimbundo
+c23ced6e-f557-4890-a0f3-d80db39614ca,Monte Belo,COMUNA,d6979483-3765-4110-86cc-6f8bb2065352,Monte Belo,montebelo
+02931257-f0a3-4c7a-85da-ae5c199259eb,Mpala,COMUNA,6893c0ec-d4ad-46de-89b8-98ad2cb7404c,Mpala,mpala
+cf448831-ba1a-419d-9dc3-e9697eb0efa7,Mucaba,COMUNA,ee14dad7-5ec8-4e94-8ca9-8b4a0cc17366,Mucaba,mucaba
+52f5cd21-c683-4d74-9e0b-4f5bfc06a440,Mucope,COMUNA,14af0d40-dd47-4b13-a75f-548e879c6f74,Mucope,mucope
+74fee7b6-3be8-4ccc-a6ad-44459841fca4,Mufuma,COMUNA,abe9f3f7-f00a-41fe-9783-5dfa4f87e622,Mufuma,mufuma
+bcfac4a7-395d-4db6-9ea2-915ba45c9cbc,Muinha,COMUNA,50bdebd3-101c-488c-83c4-ca58d1f06a88,Muinha,muinha
+1f7d8c67-5c25-4ece-8440-00c69f3f16ec,Muié,COMUNA,032b940f-1545-400d-81f6-0a20654bbc25,Muié,muie
+8eda294a-350b-4c4f-9569-35cc6e13eef1,Mulondo,COMUNA,ab476cdc-b754-4446-8468-273d5ba51923,Mulondo,mulondo
+b7ab6080-13c3-4b61-aca4-c911abcbc75a,Mumbondo,COMUNA,7f0429f3-dd13-49fd-b220-550ee9fb06c0,Mumbondo,mumbondo
+e5c65dc7-d7b0-4ff7-b923-d315e6329042,Mumbué,COMUNA,4da810a2-7fcc-4846-ad00-06c5baee8c2a,Mumbué,mumbue
+bad4b2c2-5264-498e-a1d6-cdb0b9249146,Mundundo,COMUNA,e32dbfb9-fd4b-4b37-b506-787d7648f095,Mundundo,mundundo
+0be91974-2bbe-47e7-93a8-04b4d4eb93e0,Mungo,COMUNA,2ce85ec0-c404-4882-9b51-8dd2a1acb0fe,Mungo,mungo
+928cb99d-95a9-40d3-a22b-8f946cdb4667,Munhango,COMUNA,018d8b7e-e426-4df4-94a0-71796c1b3a9a,Munhango,munhango
+ed35c62e-597a-4cfd-bad7-29b671a9efe7,Mussende,COMUNA,30799438-bfc3-466d-bcf9-023005677bde,Mussende,mussende
+3d648d5d-2a74-4f5d-9b96-6645235512e6,Musserra,COMUNA,fc1270c5-6ce4-4eab-bc56-899949198e41,Musserra,musserra
+c25ab4f4-4a54-4cf9-9e0a-2c1c9fb5fb84,Mussuma Mitete,COMUNA,6828f686-2d81-42d0-9bb3-96fc42a89ba4,Mussuma Mitete,mussumamitete
+e2e746f0-3415-4a53-8f7b-2cdfa26eb769,Mussungue,COMUNA,fe3cf43c-78f9-42fe-a0b1-855d2cd3840c,Mussungue,mussungue
+21078738-149d-4562-bf78-eada5aa9dc6d,Mutumbo,COMUNA,4da810a2-7fcc-4846-ad00-06c5baee8c2a,Mutumbo,mutumbo
+4627f9cf-43b8-456a-b1e7-1eaf4896f030,Muvuluege,COMUNA,117501fc-246a-4093-9c40-405d2e023193,Muvuluege,muvuluege
+9edb5069-271d-4335-a0b9-2d63ea9a9f54,Muxaluando,COMUNA,632045da-005e-404a-87c4-944d5770e0b7,Muxaluando,muxaluando
+b9eb0da8-fbd4-4497-a087-1caccafd4bf5,Muxima,COMUNA,7f0429f3-dd13-49fd-b220-550ee9fb06c0,Muxima,muxima
+fdf20fa7-8999-48f4-a191-065ce77647b8,Máua,COMUNA,cbcd5aa8-db69-4688-add2-d0b5449a8e5b,Máua,maua
+741006ce-a758-4575-a70a-ede2a0674f74,Môngua,COMUNA,4c48f4d4-535e-4496-85fb-0a219a2adc75,Môngua,mongua
+66bce425-6ee0-47f3-8748-128b91014765,Nancova,COMUNA,91c75161-12e2-4ccf-9e7e-8f65774e3897,Nancova,nancova
+376e3556-bd76-4c48-8342-ea16cd7f981f,Ndalatando,COMUNA,58b39f99-44bb-4797-90b5-b17c080f5a4e,Ndalatando,ndalatando
+02e37774-2f9a-4800-80f0-78a13d3bd4a1,Necuto,COMUNA,e7b0b6d9-223b-4271-a4d2-b4a59d14fa7e,Necuto,necuto
+f0f87bce-59e0-49a2-81e7-4f7f4df9a265,Negage,COMUNA,994953b0-d5db-4013-871b-31593f7dc326,Negage,negage
+08246a3b-aca9-4db0-ac40-f156f3ddd780,Negola,COMUNA,98022069-c4ac-4702-a001-05076c1481af,Negola,negola
+4480d6b7-849f-4afd-bae9-6b36c7c54d03,Nehone,COMUNA,4c048628-892c-4e6b-b087-31622522666c,Nehone,nehone
+5f19781b-3625-4992-b5a8-b5441ab3dbde,Ngola Luiji,COMUNA,0a707eb1-6b07-4d73-aa22-4095d0e79170,Ngola Luiji,ngolaluiji
+df7d16a5-3fdf-4917-b86c-39f33fa6c98c,Nharêa,COMUNA,d8590fbf-3f8c-4adf-9c73-8edb9eb21166,Nharêa,nharea
+ffa889de-ed29-4e9c-b679-ceac4550e54a,Nova Esperança,COMUNA,c8e68c61-c7b5-45ab-be4e-023f0926ffa5,Nova Esperança,novaesperanca
+42a971ea-ced0-4c35-89e0-2c4fc8d583fd,Nova Vida,COMUNA,4d204423-e249-411a-a150-7436a61a4569,Nova Vida,novavida
+c8689775-3eb3-42b5-a127-e014ad042fa7,Nzage,COMUNA,8d993bd0-1a32-48c0-88c7-f4ad4fc67f77,Nzage,nzage
+25ed26b6-0fa0-4f7d-acaf-33af0a12cb02,Nzeto,COMUNA,fc1270c5-6ce4-4eab-bc56-899949198e41,Nzeto,nzeto
+01535c4e-2766-4c3f-a0f8-1943517aa24f,Nóqui,COMUNA,6893c0ec-d4ad-46de-89b8-98ad2cb7404c,Nóqui,noqui
+91635117-4906-4ab5-a19c-682f35bd14d5,Ombala Yo Mungu,COMUNA,d80bea09-32da-4fa1-a95e-03f7e43984cf,Ombala Yo Mungu,ombalayomungu
+0e72b0f7-e7af-4d92-b320-ad6bb73c567c,Ondjiva,COMUNA,4c48f4d4-535e-4496-85fb-0a219a2adc75,Ondjiva,ondjiva
+3a619826-dd21-46f5-a3af-80aa4f9ab222,Otchinjau,COMUNA,121facc8-9bc3-4937-af05-24bad2f990a3,Otchinjau,otchinjau
+49f88e57-fca2-492c-b27b-aa5e30cf3f60,Pango Aluquém,COMUNA,23274f0c-5046-4fd2-950f-4ed98a7d71c5,Pango Aluquém,pangoaluquem
+954f4134-83e8-4eca-8183-92e970489faa,Paredes,COMUNA,5fad6578-e7e8-43b7-92c3-595b8a47a6ba,Paredes,paredes
+a9b2495e-3a32-4dca-9bce-cf4912a052ed,Pedra de Feitiço,COMUNA,42cbe396-bd60-44f0-af03-0dfae6d95e7a,Pedra de Feitiço,pedradefeitico
+a17e636c-cf7c-4a9f-ba43-c1c14d3a0d1f,Petecusso,COMUNA,47201005-3f04-43c7-81c4-508afde44775,Petecusso,petecusso
+0abfa401-acb7-4d5b-bc4c-da29ab0748b3,Porto Amboim,COMUNA,62f269f3-3d6d-41b2-886c-7ce2fc96b5e2,Porto Amboim,portoamboim
+d6cea2a3-96c3-42fb-857f-7bb49c82eaff,Quela,COMUNA,84c611fd-1c4c-4fd2-9751-95b8a0bd0bdc,Quela,quela
+43252f67-c4b9-4b9e-988b-fa738fed364d,Quiage,COMUNA,ebe3e9a7-54ef-41cb-9280-f9b50cb13af7,Quiage,quiage
+724047f5-0c29-476b-9e73-4dfdbcf69959,Quiangombe,COMUNA,dc83a030-ac42-4b20-ae93-ed9ad016d7e5,Quiangombe,quiangombe
+b768dc72-aa07-4f07-b4a2-2e6659c43e9f,Quibala,COMUNA,baa7dddc-6602-4ffd-b26d-259bd54451de,Quibala,quibala
+ee480d11-0e7a-455b-bef9-d6d1faca6350,Quibala Norte,COMUNA,fc1270c5-6ce4-4eab-bc56-899949198e41,Quibala Norte,quibalanorte
+99d1bb81-9bbb-4be1-a75c-ffb4b479f70c,Quibaxe,COMUNA,5fad6578-e7e8-43b7-92c3-595b8a47a6ba,Quibaxe,quibaxe
+d22bee2f-b0c8-4075-aeec-7625abdedbfd,Quibocolo,COMUNA,89ad7a1b-480a-4405-b04a-5c5f30cf284a,Quibocolo,quibocolo
+eb94b01a-8769-4869-a383-922ca13c720a,Quicabo,COMUNA,2e801b10-c7bd-4feb-aee5-89c3d99b79b7,Quicabo,quicabo
+f69aaed9-6ce6-45c0-8564-067d2a81c3cb,Quicombo,COMUNA,55d22a3e-ffd0-4811-9ec7-640994f5a758,Quicombo,quicombo
+07a8ee4a-8feb-471f-8532-71ee19ccc551,Quiende,COMUNA,bf66b7f2-2fdc-48ec-9812-ad53b4b78969,Quiende,quiende
+69353c29-f79b-4dc9-a2f7-02a458e0a699,Quifangondo,COMUNA,2d6d7e8d-61c0-4ba0-b754-1d60f5a144a1,Quifangondo,quifangondo
+c398d903-b371-4759-8e51-15fc14ead49c,Quihita,COMUNA,6fab4a66-84d3-4d77-bbeb-08e4234c5999,Quihita,quihita
+196c2984-ddc7-471b-8878-a09477a852e3,Quihuhu,COMUNA,1726ba93-44da-4e94-af55-ad2cf9e1cc36,Quihuhu,quihuhu
+06d03240-130b-49ce-b826-4bbe8227704c,Quilengues,COMUNA,8d2344fa-5565-4978-b351-6345ff2e20b9,Quilengues,quilengues
+3f7d180e-b2e7-4d73-80fb-1d2d55c307b8,Quilombo Quía Puto,COMUNA,19ca811a-c5fb-4292-acfd-24d848ceec9b,Quilombo Quía Puto,quilomboquiaputo
+8b7692e6-96ea-448a-8ccd-658df75d1b24,Quilombo dos Dembos,COMUNA,92d12e20-a6a4-4411-a3fe-cd0c6ac5a968,Quilombo dos Dembos,quilombodosdembos
+899e18d9-4484-4bb5-87a9-a5f9b490bc15,Quimbango,COMUNA,761854d8-18bb-46cf-baaa-da4d8c9c5ec0,Quimbango,quimbango
+35cef045-441a-45e8-99ec-fa3ddff9b403,Quimbele,COMUNA,2f64cdd3-17fe-488b-a777-559bbc739931,Quimbele,quimbele
+69d13844-7b22-4e6d-9122-32d8f60eb072,Quindeje,COMUNA,fed3ce72-3538-4833-878d-91bad44ae049,Quindeje,quindeje
+99353a2f-41a8-49d0-8e02-25e9263bd41d,Quinguengue,COMUNA,1726ba93-44da-4e94-af55-ad2cf9e1cc36,Quinguengue,quinguengue
+79825710-38d2-4992-b381-7dadcd600aa1,Quinsimba,COMUNA,1afbaddb-b974-4c29-8407-678582836b8b,Quinsimba,quinsimba
+a04c131d-56b1-487e-abbd-47878b2c3ce1,Quinzau,COMUNA,1afbaddb-b974-4c29-8407-678582836b8b,Quinzau,quinzau
+be3c3d3c-adfe-4db7-904b-a3d4d94877b4,Quipaxi,COMUNA,30799438-bfc3-466d-bcf9-023005677bde,Quipaxi,quipaxi
+35d0d8ee-d73a-4aca-a5b2-45e624eb0f2d,Quipeio,COMUNA,6fb63bd4-df42-467d-a779-a11f667fd978,Quipeio,quipeio
+26b3936c-29d5-4aa7-b7ff-5b21bf522da3,Quiquiemba,COMUNA,9bb8b64c-56cf-48eb-807f-c599216c5fa3,Quiquiemba,quiquiemba
+1f6fa1fc-f342-4cc5-a081-e014df0b752e,Quirima,COMUNA,9bf0798a-550d-4b94-96ca-b496de8ce552,Quirima,quirima
+e101b5ea-7c3c-4e96-aa23-37465035e04d,Quisseque,COMUNA,994953b0-d5db-4013-871b-31593f7dc326,Quisseque,quisseque
+c6816da0-e258-4c3f-bcf6-431c270f1f57,Quitexe,COMUNA,2f438007-f144-422a-b527-9f25f965012b,Quitexe,quitexe
+211ea6f0-16b9-4b58-9eab-fd89bc2597b1,Quivuenga,COMUNA,1681af5d-4837-4843-98ac-8d80eb5d4050,Quivuenga,quivuenga
+746ef381-0041-45f1-bc1a-cdf099cc3526,Quixico,COMUNA,632045da-005e-404a-87c4-944d5770e0b7,Quixico,quixico
+1bb690b4-85c5-4e79-8932-912e71d22352,Quixinge,COMUNA,7f0429f3-dd13-49fd-b220-550ee9fb06c0,Quixinge,quixinge
+ec20d7bf-7496-4f80-95d4-f62941669f89,Ramiros,COMUNA,76b593c3-54e7-40f2-93c7-b0f8cdf97db7,Ramiros,ramiros
+012af33a-f96b-4634-b2bd-d550f7c06b98,Rito,COMUNA,91c75161-12e2-4ccf-9e7e-8f65774e3897,Rito,rito
+7a4e6ed2-c4d8-490f-8186-976df3faac49,Sacandica,COMUNA,7c267419-0607-48a0-ba32-66c4c7d0d82e,Sacandica,sacandica
+3aa9e17a-0c4e-46bb-9fb8-ecc085bfd861,Sachinemuna,COMUNA,018d8b7e-e426-4df4-94a0-71796c1b3a9a,Sachinemuna,sachinemuna
+ebfd61f5-a4fa-4eaa-aad8-80f09a6f5da1,Samba Caju,COMUNA,6f555a79-6b9b-4c7d-bb83-815f516da8a5,Samba Caju,sambacaju
+e19d79e7-1a31-4f66-942f-a33ca090396c,Samba Lucala,COMUNA,6f555a79-6b9b-4c7d-bb83-815f516da8a5,Samba Lucala,sambalucala
+15485c87-c90e-42bf-a274-bf69052c5c53,Sambo,COMUNA,5f53192b-dc1e-43fe-814b-37afc79f2bc6,Sambo,sambo
+5284e520-f8ff-4e03-984b-ef5d3895b7a8,Samboto,COMUNA,5f53192b-dc1e-43fe-814b-37afc79f2bc6,Samboto,samboto
+c206f38c-5ade-4e8a-a8a8-4e38bc277c68,Sande,COMUNA,278a2327-c81c-4ade-8f8b-1c4561b9d35f,Sande,sande
+74022af1-15dd-4871-8d69-9e864fb599b7,Sanza Pombo,COMUNA,57cde214-fcb1-4d43-8af7-af5db5344f51,Sanza Pombo,sanzapombo
+023bce26-be5d-4dda-8396-2277ab6e4ff4,Saurimo,COMUNA,3f58a102-f4e5-416a-b7fe-e8f4cc5b914f,Saurimo,saurimo
+ec9e1823-7e3f-4458-b20d-67220c952dcf,Sautar,COMUNA,9bf0798a-550d-4b94-96ca-b496de8ce552,Sautar,sautar
+4e57febe-5fe1-4a0b-90f8-59cadb88a148,Savate,COMUNA,37cb70fa-2bca-45b2-be9d-ef498fde4a9a,Savate,savate
+f39f0270-f4d0-4cc8-a86b-9c66d2e6e394,Seles,COMUNA,12d6f83a-b5f7-40af-a10a-4f9095d798ad,Seles,seles
+ded32728-a01b-4d5a-a43d-03ff53be7717,Sequele,COMUNA,2d6d7e8d-61c0-4ba0-b754-1d60f5a144a1,Sequele,sequele
+c4b8ddde-cdca-404f-8866-0996a818208f,Sessa,COMUNA,6828f686-2d81-42d0-9bb3-96fc42a89ba4,Sessa,sessa
+5f701bc1-1364-4028-9565-986d73374d58,Soma Cuanza,COMUNA,4da810a2-7fcc-4846-ad00-06c5baee8c2a,Soma Cuanza,somacuanza
+65372659-7903-4b22-8057-8631ec5af803,Songo,COMUNA,1681af5d-4837-4843-98ac-8d80eb5d4050,Songo,songo
+adc16f66-b064-4181-a1c2-088d715a006f,Soqueco,COMUNA,c271f989-afc0-4543-8128-72910a180a67,Soqueco,soqueco
+902a3d82-1483-4d36-8605-7f98168eb216,Soyo,COMUNA,42cbe396-bd60-44f0-af03-0dfae6d95e7a,Soyo,soyo
+201dc34f-7ccb-47c0-b51b-67685707921a,Sumbe,COMUNA,55d22a3e-ffd0-4811-9ec7-640994f5a758,Sumbe,sumbe
+ce007aee-f40f-452f-adb3-4d50bbf58a73,São Pedro da Quilemba,COMUNA,d6d0ec80-a5e8-4953-87a2-eefa5c705b1a,São Pedro da Quilemba,saopedrodaquilemba
+5ac78444-4a09-4390-bb83-2781161ed1a4,Tabi,COMUNA,2ae61c10-e558-4921-b8f8-de1edb86d5d9,Tabi,tabi
+32e9779a-e244-4e5c-8492-f7a4fda7563b,Tando Zinze,COMUNA,058a30f4-eaaa-4f8e-82d4-4aa4cae71077,Tando Zinze,tandozinze
+c5fb210d-867d-4224-8ee6-ae95ddabd84b,Tchicuaqueia,COMUNA,be90918c-d916-48da-be3f-59b6a01568b8,Tchicuaqueia,tchicuaqueia
+0f0122d8-31d9-427f-bef1-5862b1c6e2b6,Terreiro,COMUNA,9bb8b64c-56cf-48eb-807f-c599216c5fa3,Terreiro,terreiro
+90f0c08a-758a-48f5-b018-84923f50dfe5,Tomboco,COMUNA,1afbaddb-b974-4c29-8407-678582836b8b,Tomboco,tomboco
+44c2de70-95f9-40fc-a16b-224df0007f46,Uaba,COMUNA,82124ef8-4268-4c7e-b982-e61b845dfd8e,Uaba,uaba
+dcf784dd-8517-4985-ae0c-555132c3845e,Uamba,COMUNA,57cde214-fcb1-4d43-8af7-af5db5344f51,Uamba,uamba
+053bc55c-0d7c-44ec-ba1e-647dbb306500,Uando Mucaba,COMUNA,ee14dad7-5ec8-4e94-8ca9-8b4a0cc17366,Uando Mucaba,uandomucaba
+6feb0273-9d58-4cb7-b476-7650cacf3378,Ucuma,COMUNA,e32dbfb9-fd4b-4b37-b506-787d7648f095,Ucuma,ucuma
+a6c7d489-cd76-403d-98f3-2a578a856eb9,Ussoque,COMUNA,df39d14b-2fa7-4b38-b233-6e7a03eb6d95,Ussoque,ussoque
+0e97d518-8561-4ec5-86dc-ff6fa6e445e0,Uíge,COMUNA,5424c694-d7f8-422a-a358-503f5f051bcd,Uíge,uige
+8b4c961c-536b-46b8-b765-ba0bcffca25a,Viangombe,COMUNA,ba226868-9030-4688-b2fe-cf68f4d824a5,Viangombe,viangombe
+dce23795-010f-4711-b2bb-ac88e3cebe20,Vila Flôr,COMUNA,bf56d257-ead4-4cce-b7fa-8918542777d7,Vila Flôr,vilaflor
+3825f84f-a896-4349-9ebf-734eb2b06a0c,Virei,COMUNA,c743d3e0-138a-4b25-9031-ef2bcbce2832,Virei,virei
+eecc8f56-3513-4181-876e-8e3df2382f2e,Vissati,COMUNA,c46f5994-3b08-49ed-89f1-ea83521e0496,Vissati,vissati
+e22766c4-8e55-4f97-80e2-1794396105a6,Vista Alegre,COMUNA,68e00980-5325-4756-9d24-408bae429565,Vista Alegre,vistaalegre
+4119c1bc-386e-44a5-8a92-9ca58e420f74,Xamavera,COMUNA,8ecce48e-39a3-4e77-b535-9f79c0914639,Xamavera,xamavera
+0d0908a3-6925-4aec-ab56-065f25a213c9,Xandel,COMUNA,eace203b-b85f-4387-ad62-7f01f1f0c309,Xandel,xandel
+9c071be7-5341-47f5-8d73-3295a9f6b7c4,Xangongo,COMUNA,d80bea09-32da-4fa1-a95e-03f7e43984cf,Xangongo,xangongo
+df7023e1-8aaa-4e8c-b6de-d3af32fdf0d1,Xassengue,COMUNA,0984430a-b7eb-456d-8039-3cfd5d315428,Xassengue,xassengue
+b6e15623-9750-4a53-9988-b1e2fc658e67,Xinge,COMUNA,2a92565c-4a7d-411b-bdcf-f8dcd485736d,Xinge,xinge
+125f7f03-ea32-4d81-a271-7ef5065cb09a,Xá Cassau,COMUNA,6c95a40c-04d6-4cc0-8485-7b1569b02164,Xá Cassau,xacassau
+48831903-cbe9-412a-8da1-3b3db7d38556,Zala,COMUNA,01fd822b-d989-43bd-9b54-b3beda8ed27c,Zala,zala
+723f62f3-c2f9-4be0-888f-1dfd1d7c684a,Zenza do Itombe,COMUNA,2afcffaa-6296-481e-8b4c-dae6591483a1,Zenza do Itombe,zenzadoitombe
+904b25c2-a4b4-4c37-9b7a-1e816c26e700,Aldeia Nova,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Aldeia Nova,aldeianova
+eec9d690-a9d4-43e2-8ed5-98850d7d902c,Alto Chicapa,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Alto Chicapa,altochicapa
+a93b617f-c723-4a5a-91aa-1535189a3c17,Alto Cuito,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Alto Cuito,altocuito
+943c52e6-bcb1-4f2a-92a0-5dedde8e767e,Alto Hama,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Alto Hama,altohama
+a972be77-a39b-4458-86ec-e26b06554387,Alto Zaza,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Alto Zaza,altozaza
+cbcd5aa8-db69-4688-add2-d0b5449a8e5b,Ambaca,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Ambaca,ambaca
+49c3c6b2-32b8-4297-9eba-83774783f8fd,Amboiva,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Amboiva,amboiva
+2ae61c10-e558-4921-b8f8-de1edb86d5d9,Ambriz,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Ambriz,ambriz
+e4d875ea-dd38-4771-a778-606350a76ad5,Ambuíla,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Ambuíla,ambuila
+12850655-0158-4ad7-9d19-137bc607c954,Andulo,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Andulo,andulo
+057006b6-769a-4667-8788-d945fa65fee4,Babaera,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Babaera,babaera
+040cde04-72ed-4506-beb0-a607043d5195,Bailundo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Bailundo,bailundo
+ff9729ab-8e40-44c4-8bf4-c9065f885e9c,Balombo,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Balombo,balombo
+a49d1158-9e5e-4c30-aa15-01e0b805a690,Banga,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Banga,banga
+9e60f6e1-9593-4cca-b61d-4c1399cc3f3a,Barra do Dande,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Barra do Dande,barradodande
+f58743a6-fb0e-4c80-b332-c203b1b3891e,Baía Farta,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Baía Farta,baiafarta
+76b593c3-54e7-40f2-93c7-b0f8cdf97db7,Belas,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Belas,belas
+7d6aea5c-bcf3-463e-abe9-043cd4df163a,Belize,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Belize,belize
+f99864f0-576a-4b9c-ae5b-7b8e450cd5e1,Belo Horizonte,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Belo Horizonte,belohorizonte
+6686b996-dbfa-42e5-8f6c-1fd4831b8d53,Bembe,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Bembe,bembe
+6af04265-8161-44d2-992f-f80852961465,Benguela,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Benguela,benguela
+449c0eea-76c7-468b-8dd6-bb6cd058bdc9,Bibala,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Bibala,bibala
+6e091ba4-75b4-4715-8c45-ac044edb3b0d,Bimbe,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Bimbe,bimbe
+99933fc2-413e-4d7d-b524-b74fb93811a6,Biópio,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Biópio,biopio
+6c57049a-8254-4390-9889-dad18d39e959,Boa Entrada,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Boa Entrada,boaentrada
+d6979483-3765-4110-86cc-6f8bb2065352,Bocoio,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Bocoio,bocoio
+cf43e368-a5ae-462e-9ac3-b6b99cfc9958,Bolongongo,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Bolongongo,bolongongo
+8c29767c-e89e-4cb7-a45f-16b17391f61b,Bolonguera,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Bolonguera,bolonguera
+c710e489-ba2a-44b5-a64e-7c2001e5313d,Bom Jesus,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Bom Jesus,bomjesus
+4967fa50-3365-416b-89c9-43331bedcfbe,Buco-Zau,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Buco-Zau,bucozau
+ebe3e9a7-54ef-41cb-9280-f9b50cb13af7,Bula Atumba,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Bula Atumba,bulaatumba
+896ee8cf-cdab-4281-948e-c950d934c755,Bungo,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Bungo,bungo
+300fc7cc-18fc-4130-a00d-c1692a0e9ed0,Cabinda,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Cabinda,cabinda
+31dedfab-8c8e-49b7-8e2a-661ba65d4494,Cabiri,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Cabiri,cabiri
+ce66f252-d625-4331-b7e9-e05ecb5bce9f,Cabo Ledo,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Cabo Ledo,caboledo
+5da6ab3e-0b3e-4297-bef9-5cb6bd30b334,Cachiungo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Cachiungo,cachiungo
+4b1b7744-e97a-44ef-a854-90e5b99f604e,Cacimbas,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Cacimbas,cacimbas
+524eead4-4674-4b21-bdb2-8355e6ef6ebe,Cacolo,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Cacolo,cacolo
+82124ef8-4268-4c7e-b982-e61b845dfd8e,Caconda,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Caconda,caconda
+bf7f1ad6-c5d5-41e6-84da-bc51eeb9249c,Cacongo,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Cacongo,cacongo
+5c5d5c34-a8fe-49ec-ba09-a88adbd7fedd,Cacuaco,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Cacuaco,cacuaco
+be90918c-d916-48da-be3f-59b6a01568b8,Cacula,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Cacula,cacula
+b7e254cd-e1ba-4e31-b075-02ed8bddf313,Caculama,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Caculama,caculama
+f11d7a0b-0d8d-4708-ad86-29471f4abdb9,Caculo Cabaça,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Caculo Cabaça,caculocabaca
+c271f989-afc0-4543-8128-72910a180a67,Cacusso,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cacusso,cacusso
+da3304c9-185c-4374-b066-03dbdcfc3b6f,Cafima,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Cafima,cafima
+628544af-23d3-4d85-a914-07c0be379b27,Cafunfu,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Cafunfu,cafunfu
+121facc8-9bc3-4937-af05-24bad2f990a3,Cahama,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Cahama,cahama
+8a707fbb-4e3d-454c-9080-bde435879a89,Cahombo,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cahombo,cahombo
+0be4518d-0589-4539-8a6c-eaac69db1bdd,Caianda,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Caianda,caianda
+ba226868-9030-4688-b2fe-cf68f4d824a5,Caimbambo,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Caimbambo,caimbambo
+23073864-552d-499b-96ba-d247233d73b0,Caiundo,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Caiundo,caiundo
+2f89c1f0-fbf8-4b89-bef8-07b071e861a9,Calai,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Calai,calai
+7755e6e9-e896-44fb-bfd2-fb1c3fbae704,Calandula,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Calandula,calandula
+7cd35b69-fb17-42f8-a37f-9271fb4c1d0e,Calucinga,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Calucinga,calucinga
+58dc5d51-3152-4925-a851-1f77388b3394,Calulo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Calulo,calulo
+2be41a01-328a-4675-bcb4-8a3e492242c4,Calumbo,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Calumbo,calumbo
+98022069-c4ac-4702-a001-05076c1481af,Caluquembe,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Caluquembe,caluquembe
+50bdebd3-101c-488c-83c4-ca58d1f06a88,Camacupa,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Camacupa,camacupa
+f7c1a15d-097b-44ff-8585-9f2e53aeed52,Camama,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Camama,camama
+7399b531-a509-45cd-b205-ec81af9a7a84,Camanongue,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Camanongue,camanongue
+e09976c2-18ef-4720-831a-d850b5f4c9e3,Camaxilo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Camaxilo,camaxilo
+d6d0ec80-a5e8-4953-87a2-eefa5c705b1a,Cambambe,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Cambambe,cambambe
+73adce45-b2a9-46e8-9a94-097d0c79d85e,Cambo Suinginge,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cambo Suinginge,cambosuinginge
+8d993bd0-1a32-48c0-88c7-f4ad4fc67f77,Cambulo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Cambulo,cambulo
+811d5f5e-028a-4f67-a724-b35465b1ff85,Cambundi Catembo,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cambundi Catembo,cambundicatembo
+90440676-b275-4ee4-b4a8-3d2a90578bb9,Cambândua,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Cambândua,cambandua
+35b53f48-94d7-49b1-b0f8-f073942db628,Cameia,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Cameia,cameia
+40fe85b0-3c92-476f-ab63-a619d3c632a8,Camucuio,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Camucuio,camucuio
+032b940f-1545-400d-81f6-0a20654bbc25,Cangamba,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Cangamba,cangamba
+b7dcd36c-ab98-4dc6-a3a7-40ccae574dde,Cangandala,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cangandala,cangandala
+924406e8-fe01-4cb7-a10e-708cac872164,Cangola,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Cangola,cangola
+e8806dee-ac8c-46fb-b8df-bda1662b8f45,Cangumbe,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Cangumbe,cangumbe
+547e2df3-6116-4061-aca0-a2dddd95d843,Canhamela,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Canhamela,canhamela
+5af88720-3b6a-4131-b0b3-46cf752a51dc,Canzar,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Canzar,canzar
+ab476cdc-b754-4446-8468-273d5ba51923,Capelongo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Capelongo,capelongo
+2a92565c-4a7d-411b-bdcf-f8dcd485736d,Capenda Camulemba,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Capenda Camulemba,capendacamulemba
+761854d8-18bb-46cf-baaa-da4d8c9c5ec0,Capunda,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Capunda,capunda
+6fab4a66-84d3-4d77-bbeb-08e4234c5999,Capunda Cavilongo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Capunda Cavilongo,capundacavilongo
+321c4091-70ba-4327-a045-dea6a11f8ec6,Capupa,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Capupa,capupa
+2aa644f3-1160-4c3e-bdb3-ed5546e699ac,Cassai-Sul,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Cassai-Sul,cassaisul
+e7969c25-4f59-4c8f-9886-714ee12b10a0,Cassanje Calucala,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Cassanje Calucala,cassanjecalucala
+c02882b3-450b-4706-b897-3705f458d1de,Cassengo,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Cassengo,cassengo
+1f3a5b90-9058-49f5-a539-cfe077d19447,Cassongue,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Cassongue,cassongue
+278a2327-c81c-4ade-8f8b-1c4561b9d35f,Catabola,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Catabola,catabola
+8928e6fc-14f1-489b-aaec-debb4a7d6ddd,Cateco Cangola,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cateco Cangola,catecocangola
+6c0c6e23-1ab5-42d5-8163-64b4dd0f5f58,Catengue,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Catengue,catengue
+67f2b0e4-d304-46ef-bb63-889afcf88414,Catete,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Catete,catete
+63933c78-d3ec-4a98-9c70-788b6070f590,Catumbela,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Catumbela,catumbela
+364336db-3be8-4712-9b74-520c922fbc01,Caungula,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Caungula,caungula
+fd00102f-b901-47c7-a450-72b4dafdf039,Cazage,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Cazage,cazage
+4e743a97-706f-43ca-b45c-3c021ade4894,Cazenga,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Cazenga,cazenga
+58b39f99-44bb-4797-90b5-b17c080f5a4e,Cazengo,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Cazengo,cazengo
+b591175d-a078-4f6c-85b6-725fcd621e7e,Cazombo,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Cazombo,cazombo
+51796e26-607d-40e3-8bbb-afeb20a1442a,Caála,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Caála,caala
+1fe8cf5f-e966-4602-bdc3-fd509c54a5ef,Chibia,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Chibia,chibia
+e5b857ef-9000-445e-8cb0-3113bfe5cf89,Chicala,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Chicala,chicala
+b10d75c5-ecf5-4d3c-9be9-36aa7fbe97dc,Chicala Choloanga,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Chicala Choloanga,chicalacholoanga
+23c91797-dafa-43d1-acc0-8ea0e8f27923,Chicomba,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Chicomba,chicomba
+99d5c6fe-6d08-4a97-92c7-fc8c840fad59,Chicuma,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Chicuma,chicuma
+7251e2cb-020b-4a0f-ac3a-640fa2099c47,Chicungo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Chicungo,chicungo
+20b97efd-a44f-4941-80d3-5d19540aa5b5,Chila,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Chila,chila
+593a3910-5ce4-4aa0-8f7f-12fd7bc09443,Chilata,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Chilata,chilata
+5a9dc137-33b5-4dc0-99ec-29ccd3c65f3b,Chiluage,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Chiluage,chiluage
+8eaf1d03-7f9e-4322-b2c1-c60962d5fc94,Chindumbo,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Chindumbo,chindumbo
+d49bb243-b34f-4964-b212-b33fa5f66835,Chinguanja,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Chinguanja,chinguanja
+cda30a83-d3cf-4c78-8bf7-470d0bf1fca6,Chinguar,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Chinguar,chinguar
+44b13939-8bde-4f4f-a0ff-dcc4e8497be0,Chinjenje,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Chinjenje,chinjenje
+bd69b181-613b-4490-b3cb-de2fff734cd4,Chipeta,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Chipeta,chipeta
+2e4fbd16-8d1e-455a-b1bd-f1fb073f6afe,Chipindo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Chipindo,chipindo
+13d2cace-eab7-4cef-a8e5-01cf58e79333,Chissuata,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Chissuata,chissuata
+affdd140-7579-4224-bca9-2c0bbebc018a,Chitado,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Chitado,chitado
+0a33c7b6-d356-4cf1-acbb-122475478cad,Chitato,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Chitato,chitato
+d055f625-1515-4ec9-b09c-ba367227feac,Chitembo,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Chitembo,chitembo
+2cd84f01-f4e8-4c2e-965b-5d0110b8663e,Chituto,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Chituto,chituto
+c1e19bf8-b4ee-4c93-9514-0fc7581cd4ab,Chiéde,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Chiéde,chiede
+9bd5d327-a705-42d7-8414-03929bd34039,Chiúme,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Chiúme,chiume
+e1a383fa-9986-423d-be69-4c73a631350c,Chongorói,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Chongorói,chongoroi
+8df97a7e-ef5d-4966-baff-5aaef6af5bb4,Conda,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Conda,conda
+8463ab0e-cf1f-466b-b5a5-9a0f7c4f7f9f,Condé,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Condé,conde
+0293c0c0-c7ea-4da7-be7f-598177e42721,Cuale,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Cuale,cuale
+732c9cc3-fc20-4a58-a489-74be41eeb298,Cuangar,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Cuangar,cuangar
+5b86c607-8ac5-4ee3-a19a-9e0b20ff16b8,Cuango,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Cuango,cuango
+4c48f4d4-535e-4496-85fb-0a219a2adc75,Cuanhama,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Cuanhama,cuanhama
+098dc35a-17c7-4db6-ae46-79bcb0e63575,Cubal,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Cubal,cubal
+94f434bf-1116-47b5-a8f8-10d63f2031db,Cuchi,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Cuchi,cuchi
+018d8b7e-e426-4df4-94a0-71796c1b3a9a,Cuemba,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Cuemba,cuemba
+6955fd2d-385c-48aa-bdac-2f95c211f42c,Cuima,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Cuima,cuima
+a6d2fa52-6e59-4e27-9215-fa3b5982f228,Cuimba,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Cuimba,cuimba
+aee52a9b-a4fd-438e-81e7-441f398eccbf,Cuito,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Cuito,cuito
+f2326eb5-cca4-43e8-970f-c1b9f3ddc914,Cuito Cuanavale,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Cuito Cuanavale,cuitocuanavale
+a0f641d7-d41d-4b7f-99e7-064d879c70ef,Cunhinga,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Cunhinga,cunhinga
+54bf21fa-0235-49a7-b589-e7f69aa2772f,Curoca,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Curoca,curoca
+c46f5994-3b08-49ed-89f1-ea83521e0496,Cutato,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Cutato,cutato
+25a4e908-edd0-4720-a009-aa4078c517f6,Cuvango,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Cuvango,cuvango
+24c040e3-8a0c-41d1-9b74-7522ea9d5256,Cuvelai,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Cuvelai,cuvelai
+033398e0-c595-41ba-8717-645162ab20fd,Cuílo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Cuílo,cuilo
+acdb1406-6ed4-4357-9b1c-ed8f76592190,Cêrca,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Cêrca,cerca
+bd47179f-6098-44d5-9d77-bb96caef4016,Dala,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Dala,dala
+47201005-3f04-43c7-81c4-508afde44775,Damba,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Damba,damba
+2e801b10-c7bd-4feb-aee5-89c3d99b79b7,Dande,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Dande,dande
+2f438007-f144-422a-b527-9f25f965012b,Dange Quitexe,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Dange Quitexe,dangequitexe
+60a42eb3-0fa8-49fc-90ca-3c6febde5457,Dima,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Dima,dima
+8ecce48e-39a3-4e77-b535-9f79c0914639,Dirico,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Dirico,dirico
+73f2cee4-28b5-4fdd-a85c-52df2a26d941,Dombe Grande,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Dombe Grande,dombegrande
+c7c2ade0-d55d-4bf2-ba84-fb19a7f16347,Dongo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Dongo,dongo
+9968c5b6-8fa2-41f0-b1f4-cbb847cf3383,Dundo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Dundo,dundo
+e98d7861-86f2-43fc-93cc-308bbc4e905b,Ebo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Ebo,ebo
+6fb63bd4-df42-467d-a779-a11f667fd978,Ecunha,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Ecunha,ecunha
+fbc07dcd-750b-45e3-a061-eba06c98131f,Egito Praia,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Egito Praia,egitopraia
+8a2d03aa-b1b8-4225-b902-e82102f0aaf7,Gabela,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Gabela,gabela
+1ec888ee-2a42-4fa3-adf1-17e5b4af5a91,Galanga,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Galanga,galanga
+30d4b803-fbd9-48e1-a0da-ac4e69c72d01,Galangue,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Galangue,galangue
+b568335a-4620-468a-aaed-974eb716f652,Gambos,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Gambos,gambos
+e1058b75-018d-42c0-8468-e88987c0c9fb,Ganda,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Ganda,ganda
+6a0878c0-2d7b-42e4-8ee7-71aec80fddc8,Gangula,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Gangula,gangula
+19ca811a-c5fb-4292-acfd-24d848ceec9b,Golungo Alto,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Golungo Alto,golungoalto
+b001b5a6-cd3c-4e72-ad38-a32c827e17a6,Gungo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Gungo,gungo
+010ff28b-32e9-450e-b597-5d4d23a77ffe,Hoji Ya Henda,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Hoji Ya Henda,hojiyahenda
+0c54e350-7c50-4617-b0e8-0b5f9680eafb,Hoque,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Hoque,hoque
+366b8687-f578-403b-9b04-45950fda19bf,Huambo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Huambo,huambo
+14af0d40-dd47-4b13-a75f-548e879c6f74,Humbe,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Humbe,humbe
+5c28f898-bd9f-4dd2-b732-5d4c66d5b794,Humpata,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Humpata,humpata
+fcb0fc0e-c625-446c-8755-b7d8c0dde2a4,Iambala,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Iambala,iambala
+d9b3808f-fe8e-4ac7-8b62-b10c6a5eb4aa,Ingombota,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Ingombota,ingombota
+f6f389f4-246f-4250-ac80-dd65b8a3d15a,Iona,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Iona,iona
+37e72058-5e94-4a3b-abe8-67902e6cbe7a,Jamba Mineira,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Jamba Mineira,jambamineira
+bf56d257-ead4-4cce-b7fa-8918542777d7,Kilamba,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Kilamba,kilamba
+4d204423-e249-411a-a150-7436a61a4569,Kilamba Kiaxi,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Kilamba Kiaxi,kilambakiaxi
+abe9f3f7-f00a-41fe-9783-5dfa4f87e622,Kiwaba Nzoji,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Kiwaba Nzoji,kiwabanzoji
+4b1cdefa-cde6-4938-b407-e41e242b5c6f,Kunda Dya Baze,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Kunda Dya Baze,kundadyabaze
+02f6bd18-3e75-427f-88aa-fefe11ff5b5d,Lago Dilolo,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Lago Dilolo,lagodilolo
+5ab971c6-42ee-419b-ab05-d6a5338c4e69,Liambo,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Liambo,liambo
+e3def44c-0ce7-48ae-bc4b-eae20a4640a7,Lobito,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Lobito,lobito
+df39d14b-2fa7-4b38-b233-6e7a03eb6d95,Londuimbali,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Londuimbali,londuimbali
+4a11158d-5769-40ae-8bac-9bda6ae65825,Longa,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Longa,longa
+c2769d37-27c3-43d0-a3d2-92b71b7f3fe8,Longonjo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Longonjo,longonjo
+21c312e5-71d8-4e47-aade-ec8a119d55ba,Lonhe,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Lonhe,lonhe
+369097f5-b9b4-4d49-9a29-d35fed2969b0,Luacano,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Luacano,luacano
+dc917db7-902a-4c3f-8385-08afce66b841,Luando,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Luando,luando
+8944d5f0-1d55-4ad7-8347-76b614da666e,Luangue,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Luangue,luangue
+7508ffe5-2c7f-4077-a7cd-8ded8bcefa2f,Luau,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Luau,luau
+117501fc-246a-4093-9c40-405d2e023193,Lubalo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Lubalo,lubalo
+73589fba-52f0-4ec5-9eed-42168fa665aa,Lubango,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Lubango,lubango
+dc83a030-ac42-4b20-ae93-ed9ad016d7e5,Lucala,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Lucala,lucala
+0c94ae6e-04ce-4982-86e4-1224581f716c,Lucapa,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Lucapa,lucapa
+2e931241-1e84-40ea-ba74-8e50cfaaad0d,Lucira,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Lucira,lucira
+21bdbe56-6ec9-4668-8af5-77f9762d46a9,Lucunga,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Lucunga,lucunga
+3f5727db-74df-469a-9f0b-5c3e1e1de616,Lucusse,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Lucusse,lucusse
+ad7df181-0315-48bb-a05b-9228bcb949a7,Luena,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Luena,luena
+b29bbb1f-c486-4186-bfe6-2c2ed640ecbe,Luengue,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Luengue,luengue
+153767b6-5513-48c9-9468-5b38c28d26eb,Lufico,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Lufico,lufico
+b8baae85-c85b-4243-a243-bd2a4c312f9d,Luiana,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Luiana,luiana
+f84a17ba-c862-4d47-a51c-68d258f1f676,Luinga,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Luinga,luinga
+225a7784-530e-47f4-89fe-d1982184165f,Luma Cassai,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Luma Cassai,lumacassai
+6828f686-2d81-42d0-9bb3-96fc42a89ba4,Lumbala Nguimbo,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Lumbala Nguimbo,lumbalanguimbo
+bcbd0ee4-958b-4653-b125-88f41f973635,Luquembo,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Luquembo,luquembo
+d2158405-eff8-48cc-bc4e-7624299dced0,Luremo,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Luremo,luremo
+eac88883-93b0-4807-962b-d2cd7dfa8647,Lutembo,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Lutembo,lutembo
+acfb4a0d-1403-4a0c-b2ca-0cd9d0ce9b52,Lutuai,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Lutuai,lutuai
+2f5f8571-374a-445d-a6cc-42fdb2328951,Luvo,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Luvo,luvo
+fbe27617-b213-454b-a195-799907baf18f,Léua,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Léua,leua
+1cb5e5fa-e6a7-457f-9736-3a305ab0cc23,Lóvua,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Lóvua,lovua
+70337ac6-9715-49ce-91e4-e7f079e0beb3,Lóvua do Zambeze,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Lóvua do Zambeze,lovuadozambeze
+7d593369-123d-49ba-90b6-3d6137f12d20,Lúbia,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Lúbia,lubia
+ed38ef7d-f5d5-4058-a4de-ff1efdaa2e19,Macondo,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Macondo,macondo
+4aa20c2e-ddd4-4cba-b3a6-f4c7fe06f4d3,Maianga,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Maianga,maianga
+16574b4a-4510-4413-9d38-0315d0c695ba,Malanje,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Malanje,malanje
+89ad7a1b-480a-4405-b04a-5c5f30cf284a,Maquela do Zombo,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Maquela do Zombo,maqueladozombo
+4c29d51f-9124-4ba6-9373-892ea06823e2,Marimba,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Marimba,marimba
+2eaa8b9f-2726-4a42-9e2a-7f6b13cc9037,Massabi,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Massabi,massabi
+2afcffaa-6296-481e-8b4c-dae6591483a1,Massangano,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Massangano,massangano
+e877d7c6-6870-4199-a503-908ea1410be5,Massango,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Massango,massango
+7b8c86d8-ea3d-43b0-94da-7f11822812da,Massau,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Massau,massau
+ef8bb763-504c-4196-94f9-b6de46440be7,Matala,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Matala,matala
+f6e02fa9-6c4e-4d43-bc59-860979473054,Mavengue,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Mavengue,mavengue
+71b3737f-28eb-4c44-bd3f-00d2feacab91,Mavinga,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Mavinga,mavinga
+5afa5dca-07ac-4e1a-a8d9-142d04d0d8f0,Mbanji Ya Ngola,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Mbanji Ya Ngola,mbanjiyangola
+bf66b7f2-2fdc-48ec-9812-ad53b4b78969,Mbanza Kongo,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Mbanza Kongo,mbanzakongo
+4fb535a6-984f-4fde-acaf-53f53243d480,Menongue,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Menongue,menongue
+14bb5e87-b603-4c51-870b-d22602d29368,Miconje,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Miconje,miconje
+0adca492-d3e1-4997-8c8a-6f72fc6407ed,Milando,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Milando,milando
+2960da5f-a381-4637-ba9d-fb7216cc365a,Milungam,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Milungam,milungam
+12a9f95f-08a8-4f89-9101-2eb440b65db0,Moçâmedes,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Moçâmedes,mocamedes
+47e80207-16a5-40bc-b54e-fe908976c4b5,Muangueji,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Muangueji,muangueji
+ee14dad7-5ec8-4e94-8ca9-8b4a0cc17366,Mucaba,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Mucaba,mucaba
+682c001f-4463-44d8-99e1-60e7cde82d85,Muconda,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Muconda,muconda
+41e3e998-d493-4df1-a557-5a90ce236cd6,Mucusso,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Mucusso,mucusso
+feab2d9e-1fd7-4a61-8fa8-366ae85aa173,Mulenvos,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Mulenvos,mulenvos
+4da810a2-7fcc-4846-ad00-06c5baee8c2a,Mumbué,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Mumbué,mumbue
+bcd7aab7-d2c4-4a7c-b324-1d3f5ab4ab49,Munenga,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Munenga,munenga
+2ce85ec0-c404-4882-9b51-8dd2a1acb0fe,Mungo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Mungo,mungo
+8e4e5261-ebfd-4c45-8b80-0c9bd2da5f48,Mupa,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Mupa,mupa
+d8ca445f-c40e-45f1-b001-cc54281a44bd,Muquixe,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Muquixe,muquixe
+6d233586-f839-4a96-98e9-565eae0f345a,Muriege,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Muriege,muriege
+30799438-bfc3-466d-bcf9-023005677bde,Mussende,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Mussende,mussende
+50382346-fa52-497c-bf43-0f16b53b5717,Mussulo,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Mussulo,mussulo
+fe3cf43c-78f9-42fe-a0b1-855d2cd3840c,Mussungue,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Mussungue,mussungue
+632045da-005e-404a-87c4-944d5770e0b7,Muxaluando,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Muxaluando,muxaluando
+3cfc53ca-1a1d-42bf-ba85-695d19a2e8e0,Namacunde,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Namacunde,namacunde
+01fd822b-d989-43bd-9b54-b3beda8ed27c,Nambuangongo,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Nambuangongo,nambuangongo
+bc31ae9c-fe7f-4db4-a2e0-1a44a1029eaa,Nana Candundo,MUNICIPIO,c13957df-0a20-46e8-8d69-d74674d3b459,Nana Candundo,nanacandundo
+91c75161-12e2-4ccf-9e7e-8f65774e3897,Nancova,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Nancova,nancova
+a558e9b4-ecf5-40e5-affc-cb3418551e26,Naulila,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Naulila,naulila
+d3cd20ac-2e90-4722-8f56-4a1b643bf9b2,Navegantes,MUNICIPIO,5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Navegantes,navegantes
+e7b0b6d9-223b-4271-a4d2-b4a59d14fa7e,Necuto,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Necuto,necuto
+994953b0-d5db-4013-871b-31593f7dc326,Negage,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Negage,negage
+4c048628-892c-4e6b-b087-31622522666c,Nehone,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Nehone,nehone
+50de5417-b810-47e1-999d-de844381fbdb,Ngoio,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Ngoio,ngoio
+0a707eb1-6b07-4d73-aa22-4095d0e79170,Ngola Luiji,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Ngola Luiji,ngolaluiji
+92d12e20-a6a4-4411-a3fe-cd0c6ac5a968,Ngonguembo,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Ngonguembo,ngonguembo
+d8590fbf-3f8c-4adf-9c73-8edb9eb21166,Nharêa,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Nharêa,nharea
+12f3458a-6b60-43e7-93fe-4e853e36bed3,Ninda,MUNICIPIO,c1105b38-28d3-42d6-a8da-92918c2cd6eb,Ninda,ninda
+c8e68c61-c7b5-45ab-be4e-023f0926ffa5,Nova Esperança,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Nova Esperança,novaesperanca
+2b18053b-fa2a-4daa-9cab-446d132d09e3,Nsosso,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Nsosso,nsosso
+fc1270c5-6ce4-4eab-bc56-899949198e41,Nzeto,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Nzeto,nzeto
+6893c0ec-d4ad-46de-89b8-98ad2cb7404c,Nóqui,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Nóqui,noqui
+d80bea09-32da-4fa1-a95e-03f7e43984cf,Ombandja,MUNICIPIO,2195da76-4b88-40c2-a334-288f70a99351,Ombandja,ombandja
+facaa4b6-3853-48c7-a893-83573712e3c7,Palanca,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Palanca,palanca
+a4afb56a-11e1-410d-b0d1-f4c8e25b3832,Pambangala,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Pambangala,pambangala
+23274f0c-5046-4fd2-950f-4ed98a7d71c5,Pango Aluquém,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Pango Aluquém,pangoaluquem
+e5b5e40d-d0e8-4ab3-9431-340213859489,Panguila,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Panguila,panguila
+4b4313a7-4889-4201-bf70-511634fcb2e6,Piri,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Piri,piri
+62f269f3-3d6d-41b2-886c-7ce2fc96b5e2,Porto Amboim,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Porto Amboim,portoamboim
+174d377f-239d-49a6-b007-fece51286f18,Pungo A Ndongo,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Pungo A Ndongo,pungoandongo
+d171cffc-86b0-4b25-9a6f-3f81f92232ae,Puri,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Puri,puri
+84c611fd-1c4c-4fd2-9751-95b8a0bd0bdc,Quela,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Quela,quela
+d26b6eff-533e-49d1-a05c-89ace90f985a,Quenha,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Quenha,quenha
+baa7dddc-6602-4ffd-b26d-259bd54451de,Quibala,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Quibala,quibala
+5fad6578-e7e8-43b7-92c3-595b8a47a6ba,Quibaxe,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Quibaxe,quibaxe
+4eb99d71-376b-4faf-b405-f0fde9d3eb35,Quiculungo,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Quiculungo,quiculungo
+df26b433-e7e4-4899-959d-737ccbaf2434,Quicunzo,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Quicunzo,quicunzo
+1726ba93-44da-4e94-af55-ad2cf9e1cc36,Quihuhu,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Quihuhu,quihuhu
+105bc505-4e6b-4790-baea-3a01ab7febeb,Quilenda,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Quilenda,quilenda
+8d2344fa-5565-4978-b351-6345ff2e20b9,Quilengues,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Quilengues,quilengues
+2f64cdd3-17fe-488b-a777-559bbc739931,Quimbele,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Quimbele,quimbele
+fed3ce72-3538-4833-878d-91bad44ae049,Quindeje,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Quindeje,quindeje
+5370e6e6-2462-43f1-b087-a9f8f573edf2,Quipedro,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Quipedro,quipedro
+d888b001-8317-4b51-a6ec-4a8052b0ffe4,Quipungo,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Quipungo,quipungo
+9bf0798a-550d-4b94-96ca-b496de8ce552,Quirima,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Quirima,quirima
+b3e51268-e176-46de-9995-2368c9937215,Quirimbo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Quirimbo,quirimbo
+1714f516-46cb-4384-ad5e-8f19805f09ef,Quissongo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Quissongo,quissongo
+e7b24520-5dfb-4f0f-93d6-2488739fc17a,Quitapa,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Quitapa,quitapa
+7f0429f3-dd13-49fd-b220-550ee9fb06c0,Quiçama,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Quiçama,quicama
+06ed289e-4f2b-4891-aa1d-49b55fda5263,Quêlo,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Quêlo,quelo
+754266cd-d9be-4777-aef8-70c0b1a340cf,Quêssua,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Quêssua,quessua
+efee4029-09ce-40f3-a431-5220ab3a9107,Rangel,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Rangel,rangel
+d826381a-953c-463e-82b4-32e028147c52,Ringoma,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Ringoma,ringoma
+33a4a322-75f8-4ef1-bf42-6d524f372f71,Rivungo,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Rivungo,rivungo
+7c267419-0607-48a0-ba32-66c4c7d0d82e,Sacandica,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Sacandica,sacandica
+00688792-da8c-41d5-9939-c69377511576,Sacomar,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Sacomar,sacomar
+fe204c01-4954-409f-aef9-36cb5e2b03d0,Samba,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Samba,samba
+6f555a79-6b9b-4c7d-bb83-815f516da8a5,Samba Cajú,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Samba Cajú,sambacaju
+06816103-c6e6-41bc-8707-af364176291d,Sambizanga,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Sambizanga,sambizanga
+5f53192b-dc1e-43fe-814b-37afc79f2bc6,Sambo,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Sambo,sambo
+7a9baf1e-7b95-48fc-a658-dfc872dd37a9,Sanga,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Sanga,sanga
+57cde214-fcb1-4d43-8af7-af5db5344f51,Sanza Pombo,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Sanza Pombo,sanzapombo
+3f58a102-f4e5-416a-b7fe-e8f4cc5b914f,Saurimo,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Saurimo,saurimo
+37cb70fa-2bca-45b2-be9d-ef498fde4a9a,Savate,MUNICIPIO,3347de75-fdaf-4073-885a-d49af5548e92,Savate,savate
+12d6f83a-b5f7-40af-a10a-4f9095d798ad,Seles,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Seles,seles
+2d6d7e8d-61c0-4ba0-b754-1d60f5a144a1,Sequele,MUNICIPIO,4c653b93-36cb-4377-9d40-7289ccfed854,Sequele,sequele
+9fa2b36a-428b-456e-b913-654724d0fae6,Serra de Canda,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Serra de Canda,serradecanda
+7d1a83e6-1bae-481d-aa48-fb18002d1e56,Sombo,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Sombo,sombo
+1681af5d-4837-4843-98ac-8d80eb5d4050,Songo,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Songo,songo
+42cbe396-bd60-44f0-af03-0dfae6d95e7a,Soyo,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Soyo,soyo
+55d22a3e-ffd0-4811-9ec7-640994f5a758,Sumbe,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Sumbe,sumbe
+c734e855-2de3-454c-b3cc-c7e182e85b28,Talatona,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Talatona,talatona
+058a30f4-eaaa-4f8e-82d4-4aa4cae71077,Tando Zinze,MUNICIPIO,08918f0a-10ae-4517-925d-ea18ea79fdf5,Tando Zinze,tandozinze
+ed265221-7fe5-496b-9970-7522800ee453,Tango,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Tango,tango
+9bb8b64c-56cf-48eb-807f-c599216c5fa3,Terreiro,MUNICIPIO,051c2320-36cd-48ac-8f96-bc06041bb75b,Terreiro,terreiro
+1afbaddb-b974-4c29-8407-678582836b8b,Tomboco,MUNICIPIO,9dbbd5d9-a31a-4261-b323-136cab7d82e7,Tomboco,tomboco
+befebebb-e4cc-4350-8819-eeaa2fedab83,Tômbua,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Tômbua,tombua
+e32dbfb9-fd4b-4b37-b506-787d7648f095,Ucuma,MUNICIPIO,fc6cbec6-82f1-457a-98bf-c696aec41c3c,Ucuma,ucuma
+045675e9-088e-4558-94e7-78c725eb8669,Umpulo,MUNICIPIO,418d81b3-fcb6-4457-b5fe-66411e27ec30,Umpulo,umpulo
+5424c694-d7f8-422a-a358-503f5f051bcd,Uíge,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Uíge,uige
+ccf797b5-04e3-4e45-bb44-2b6ec6272c6c,Viana,MUNICIPIO,f040f346-a2ae-447d-b9f8-432dbbfa0500,Viana,viana
+c743d3e0-138a-4b25-9031-ef2bcbce2832,Virei,MUNICIPIO,92955efd-35c2-4dfc-bd3e-1e249b654eec,Virei,virei
+68e00980-5325-4756-9d24-408bae429565,Vista Alegre,MUNICIPIO,11ad80ea-732a-48f7-a01c-cfb96e259dbb,Vista Alegre,vistaalegre
+28fdf800-4325-424e-a398-cd247a68a888,Viti Vivali,MUNICIPIO,407822c9-bb4f-4b25-87a2-e8d396d42c6e,Viti Vivali,vitivivali
+4b1b398b-adf2-482d-8d82-59193b99b8cf,Waku Kungo,MUNICIPIO,416520c8-7262-4a5e-a168-c76876767370,Waku Kungo,wakukungo
+eace203b-b85f-4387-ad62-7f01f1f0c309,Xandel,MUNICIPIO,e058830b-1f03-461a-846d-21bf0388631b,Xandel,xandel
+0984430a-b7eb-456d-8039-3cfd5d315428,Xassengue,MUNICIPIO,e4835763-77ae-4eeb-a678-f2da900b4f7b,Xassengue,xassengue
+49c65ea3-00bb-4f03-bd7f-fc60585d3c97,Xipundo,MUNICIPIO,ba564b55-b6b9-4890-9624-6b82ab60a0e6,Xipundo,xipundo
+6c95a40c-04d6-4cc0-8485-7b1569b02164,Xá Cassau,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Xá Cassau,xacassau
+13e4e5c1-fb16-4e02-9cc3-10313794cb00,Xá-Muteba,MUNICIPIO,90a34b7e-d2c6-4326-a001-6cba1c0d3627,Xá-Muteba,xamuteba
+5c4324ba-f432-48dc-a0f0-14a55227856f,Úcua,MUNICIPIO,fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Úcua,ucua
+fd99c5e4-3013-4835-b0e8-8375e5a6b21b,Bengo,PROVINCIA,,Bengo,bengo
+5932eb58-8131-4cba-a4d8-5005b3b8bd2e,Benguela,PROVINCIA,,Benguela,benguela
+418d81b3-fcb6-4457-b5fe-66411e27ec30,Bié,PROVINCIA,,Bié,bie
+08918f0a-10ae-4517-925d-ea18ea79fdf5,Cabinda,PROVINCIA,,Cabinda,cabinda
+ba564b55-b6b9-4890-9624-6b82ab60a0e6,Cuando,PROVINCIA,,Cuando,cuando
+051c2320-36cd-48ac-8f96-bc06041bb75b,Cuanza-Norte,PROVINCIA,,Cuanza-Norte,cuanzanorte
+416520c8-7262-4a5e-a168-c76876767370,Cuanza-Sul,PROVINCIA,,Cuanza-Sul,cuanzasul
+3347de75-fdaf-4073-885a-d49af5548e92,Cubango,PROVINCIA,,Cubango,cubango
+2195da76-4b88-40c2-a334-288f70a99351,Cunene,PROVINCIA,,Cunene,cunene
+fc6cbec6-82f1-457a-98bf-c696aec41c3c,Huambo,PROVINCIA,,Huambo,huambo
+407822c9-bb4f-4b25-87a2-e8d396d42c6e,Huíla,PROVINCIA,,Huíla,huila
+4c653b93-36cb-4377-9d40-7289ccfed854,Icolo e Bengo,PROVINCIA,,Icolo e Bengo,icoloebengo
+f040f346-a2ae-447d-b9f8-432dbbfa0500,Luanda,PROVINCIA,,Luanda,luanda
+90a34b7e-d2c6-4326-a001-6cba1c0d3627,Lunda-Norte,PROVINCIA,,Lunda-Norte,lundanorte
+e4835763-77ae-4eeb-a678-f2da900b4f7b,Lunda-Sul,PROVINCIA,,Lunda-Sul,lundasul
+e058830b-1f03-461a-846d-21bf0388631b,Malanje,PROVINCIA,,Malanje,malanje
+c1105b38-28d3-42d6-a8da-92918c2cd6eb,Moxico,PROVINCIA,,Moxico,moxico
+c13957df-0a20-46e8-8d69-d74674d3b459,Moxico Leste,PROVINCIA,,Moxico Leste,moxicoleste
+92955efd-35c2-4dfc-bd3e-1e249b654eec,Namibe,PROVINCIA,,Namibe,namibe
+11ad80ea-732a-48f7-a01c-cfb96e259dbb,Uíge,PROVINCIA,,Uíge,uige
+9dbbd5d9-a31a-4261-b323-136cab7d82e7,Zaire,PROVINCIA,,Zaire,zaire

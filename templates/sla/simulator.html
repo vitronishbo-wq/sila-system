@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SLA Simulator</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; }
+      header { padding: 24px; background: #1e293b; color: #fff; }
+      main { padding: 24px; }
+      label { display: block; margin-top: 12px; font-size: 14px; color: #475569; }
+      select, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5f5; }
+      .card { background: #fff; padding: 16px; border-radius: 12px; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.1); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Simulador de SLA</h1>
+      <p>Usuário: {{ user.get("email") or user.get("id") }}</p>
+    </header>
+    <main>
+      <div class="card">
+        <label>Serviço</label>
+        <select>
+          {% for service in services %}
+          <option value="{{ service.service_id }}">{{ service.service_name }}</option>
+          {% endfor %}
+        </select>
+
+        <label>Província</label>
+        <select>
+          {% for province in provinces %}
+          <option value="{{ province.value }}">{{ province.value }}</option>
+          {% endfor %}
+        </select>
+
+        <label>Tipo de cidadão</label>
+        <select>
+          {% for ct in citizen_types %}
+          <option value="{{ ct.value }}">{{ ct.value }}</option>
+          {% endfor %}
+        </select>
+
+        <button style="margin-top: 16px;">Simular (API)</button>
+      </div>
+    </main>
+  </body>
+</html>

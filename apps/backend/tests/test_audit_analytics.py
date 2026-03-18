@@ -1,9 +1,9 @@
 import asyncio
 from datetime import datetime
 import pytest
-from app.core.db import AsyncSessionLocal
-from app.core.audit.analytics import AuditAnalytics
-from app.core.audit import audit_log
+from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.core.audit.analytics import AuditAnalytics
+from apps.backend.app.core.audit import audit_log
 
 @pytest.mark.asyncio
 async def test_audit_analytics():

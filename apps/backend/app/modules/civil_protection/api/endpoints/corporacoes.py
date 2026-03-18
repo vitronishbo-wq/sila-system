@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from apps.backend.app.modules.civil_protection.api.deps import get_corporacao_service
-from apps.backend.app.modules.civil_protection.api.schemas.corporacao_schema import CorporacaoCreate, CorporacaoResponse, CorporacaoStatusUpdate
+from apps.backend.app.modules.civil_protection.application.dto.corporacao_schema import CorporacaoCreate, CorporacaoResponse, CorporacaoStatusUpdate
 from apps.backend.app.modules.civil_protection.application.services.corporacao_service import CorporacaoService
 from apps.backend.app.modules.civil_protection.domain.enums import StatusCorporacao
 router = APIRouter(prefix='/corporacoes', tags=['Protecao Civil - Corporacoes'])

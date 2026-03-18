@@ -4,7 +4,7 @@ from uuid import UUID
 from ..schemas.citizen_schema import CitizenCreateSchema, CitizenUpdateSchema, CitizenReadSchema
 from ...application.citizen_service import CitizenService
 from ...infrastructure.db.session import get_session
-from app.core.bridges.citizen_repository_bridge import CitizenRepository
+from apps.backend.app.core.bridges.citizen_repository_bridge import CitizenRepository
 from sqlalchemy.ext.asyncio import AsyncSession
 router = APIRouter(prefix='/citizens', tags=['citizens'])
 

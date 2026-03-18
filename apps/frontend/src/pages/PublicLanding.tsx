@@ -351,8 +351,8 @@ const PublicLanding: React.FC = () => {
               <h5 className="font-bold text-white mb-4">Suporte</h5>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="mailto:support@sila.gov.pt" className="text-slate-300 hover:text-white transition-colors hover:underline" title="Enviar email de suporte">
-                    support@sila.gov.pt
+                  <a href="mailto:support@sila.gov.ao" className="text-slate-300 hover:text-white transition-colors hover:underline" title="Enviar email de suporte">
+                    support@sila.gov.ao
                   </a>
                 </li>
                 <li>

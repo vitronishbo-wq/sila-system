@@ -1,0 +1,2 @@
+class MigracaoError(Exception):
+    pass

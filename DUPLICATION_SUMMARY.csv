@@ -1,0 +1,10 @@
+Category,Files_Found,Unique_Implementations,Duplicate_Instances,Severity,Redundant_Lines,Priority,Actionable_Pattern
+base_repository.py,28,1,27,CRITICAL,1400,P0,Move to core/
+domain_exception.py,26,1,25,CRITICAL,1200,P0,Move to core/
+exceptions.py,181,5,176,HIGH,8000,P1,Factory pattern
+repositories.py,28,1,27,HIGH,2800,P1,Factory pattern
+adapters.py,30,1,29,HIGH,2400,P1,Factory pattern
+routers.py,28,1,27,MEDIUM-HIGH,2100,P2,Router generator
+router.py,128,10,118,MEDIUM,3500,P2,Standardize pattern
+health.py,119,7,112,MEDIUM,2000,P3,Core template
+TOTALS,568,25,543,,,22400,

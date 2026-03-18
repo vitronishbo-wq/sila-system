@@ -1,5 +1,6 @@
 import http from '../api/http';
 import { AuthResponse, User, UserRole } from '../types';
+import { apiClient } from '@/api/generated/client';
 
 export const authService = {
   async login(formData: FormData): Promise<AuthResponse & { navigation?: any }> {
@@ -16,8 +17,23 @@ export const authService = {
   },
 
   async getMe(): Promise<User> {
-    const response = await http.get<User>('auth/me');
-    return response.data;
+    const token = localStorage.getItem('token') ?? localStorage.getItem('access_token');
+    const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+
+    let data: unknown;
+    let error: unknown;
+
+    try {
+      ({ data, error } = await apiClient.GET('/api/auth/me', headers ? { headers } : undefined));
+    } catch (err) {
+      throw err;
+    }
+
+    if (error || !data) {
+      throw error ?? new Error('Falha ao obter utilizador.');
+    }
+
+    return data as User;
   },
 
   async logout() {

@@ -9,7 +9,7 @@ from fastapi import FastAPI, Depends
 from fastapi.testclient import TestClient
 
 from app.api.guards import RoleLevelGuard
-import app.core.territory.service as territory_service_module
+import apps.backend.app.core.territory.service as territory_service_module
 
 
 app = FastAPI()

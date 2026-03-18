@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 
 # Import payment module components
 from apps.backend.app.modules.payment.endpoints.payment_endpoints import router as payment_router
-from app.core.db import get_db
+from apps.backend.app.core.db import get_db
 
 # Setup FastAPI app
 app = FastAPI(title="SILA Payment API Test")

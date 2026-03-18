@@ -19,10 +19,10 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.catalog.blueprint import MODULE_BLUEPRINTS, build_service_blueprints
-from app.core.catalog.models.module import Module
-from app.core.catalog.models.service import Service
-from app.core.db import AsyncSessionLocal
+from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS, build_service_blueprints
+from apps.backend.app.core.catalog.models.module import Module
+from apps.backend.app.core.catalog.models.service import Service
+from apps.backend.app.core.db import AsyncSessionLocal
 
 
 SERVICE_COLUMNS = set(Service.__table__.columns.keys())

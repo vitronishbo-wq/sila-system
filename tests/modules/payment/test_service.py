@@ -12,13 +12,13 @@ from decimal import Decimal
 from apps.backend.app.modules.payment.application.services.payment_service import (
     PaymentService,
 )
-from apps.backend.app.modules.payment.models.enums import (
+from apps.backend.app.modules.payment.domain.enums import (
     PaymentStatus,
     TransactionStatus,
     PaymentMethod,
     TransactionType,
 )
-from apps.backend.app.modules.payment.application.schemas.payment import (
+from apps.backend.app.modules.payment.application.dto.payment_schema import (
     PaymentCreate,
     RefundCreate,
     RefundResponse,

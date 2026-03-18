@@ -238,10 +238,10 @@ class TestBasicEndpoints:
             pytest.fail(f"Validação Pydantic falhou: {e}")
 
 
-@pytest.mark.asyncio
 class TestErrorHandling:
     """Testes para tratamento de erros"""
 
+    @pytest.mark.asyncio
     async def test_invalid_method_health(self, async_client: httpx.AsyncClient):
         """
         Testa método inválido no endpoint /health

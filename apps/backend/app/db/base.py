@@ -1,58 +1,53 @@
+import sys
+import types
+import app as _app
+
+_apps_module = sys.modules.setdefault("apps", types.ModuleType("apps"))
+_backend_module = sys.modules.setdefault("apps.backend", types.ModuleType("apps.backend"))
+setattr(_apps_module, "backend", _backend_module)
+setattr(_backend_module, "app", _app)
+sys.modules.setdefault("apps.backend.app", _app)
+
 from app.core.db import Base
 from app.core.bridges.identity_bridge import CitizenFUC
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.healthcare_model import HealthcareRequestModel, MaternalRecordModel, PostNatalRecordModel, ChronicMonitoringModel, NutritionRecordModel, PsychologySessionModel, HealthAlertModel
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.appointment_model import AppointmentModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.prescription_model import PrescriptionModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.medical_record_model import MedicalRecordModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.vaccine_model import VaccineModel, VaccineDoseModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.health_unit_model import HealthUnitModel, HealthProfessionalModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.exam_request_model import ExamRequestModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.exame_model import ExameImagemModel, ExameLaboratorialModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.internamento_model import InternamentoModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.urgencia_model import AmbulanciaModel, FilaHospitalarModel, UrgenciaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.vigilancia_model import AlertaSaudeModel, ControleVetorModel, ControleZoonoseModel, MonitorizacaoHidricaModel, NotificacaoSurtoModel, VigilanciaEpidemiologicaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.inspecao_model import ApreensaoProdutoModel, ControleAbatePublicoModel, ControleQualidadeAlimentoModel, FiscalizacaoAlimentoModel, FiscalizacaoCadeiaFrioModel, InspecaoSanitariaModel, InspecaoTransporteAlimentarModel, LicencaSanitariaModel, LicencaTemporariaModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.programa_model import ProgramaHIVModel, ProgramaMalariaModel, ProgramaPreventivoModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.rastreio_model import RastreioTuberculoseModel, TriagemDiabetesModel
-# REMOVED (infrastructure not found): from apps.backend.app.modules.saude.domain.infrastructure.models.relatorio_model import AvaliacaoRiscoSanitarioModel, EducacaoSanitariaModel, EmergenciaSanitariaModel, RelatorioSegurancaAlimentarModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
-from apps.backend.app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
-from apps.backend.app.modules.intelligence.operations.infrastructure.models.order_model import OperationalOrderModel, OperationalOrderDocumentModel
-from apps.backend.app.modules.intelligence.operations.infrastructure.models.payment_model import OperationalPaymentModel
-from apps.backend.app.modules.intelligence.defesa_consumidor.infrastructure.models.reclamacao_model import ReclamacaoModel as DefesaConsumidorReclamacaoModel
-from apps.backend.app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
-from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
-from apps.backend.app.modules.educacao.infrastructure.models.turma_model import TurmaModel
-from apps.backend.app.modules.educacao.infrastructure.models.ano_letivo_model import AnoLetivoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.agente_carga_model import AgenteCargaModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.cancelamento_radar_model import CancelamentoRadarModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.despachante_model import DespachanteModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_externo_model import DrawbackExternoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_interno_model import DrawbackInternoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_model import DrawbackModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_isencao_model import DrawbackIsencaoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_integrado_model import DrawbackIntegradoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_restituicao_model import DrawbackRestituicaoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_substituicao_model import DrawbackSubstituicaoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_suspensao_model import DrawbackSuspensaoModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.drawback_verde_amarelo_model import DrawbackVerdeAmareloModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.exportador_model import ExportadorModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.habilitacao_exportador_model import HabilitacaoExportadorModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.habilitacao_importador_model import HabilitacaoImportadorModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.habilitacao_radar_model import HabilitacaoRadarModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.importador_model import ImportadorModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.radar_model import RadarModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.suspensao_radar_model import SuspensaoRadarModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.transportador_internacional_model import TransportadorInternacionalModel
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.siscomex_drawback_model import SiscomexDrawbackModel
-from apps.backend.app.modules.resources.pecuaria.infrastructure.models.animal_model import AnimalModel
+from app.modules.governance.service_requests.infrastructure.models.service_request_model import ServiceRequestModel
+from app.modules.governance.service_requests.infrastructure.models.attachment_model import AttachmentModel
+from app.modules.governance.service_requests.infrastructure.models.request_event_model import RequestEventModel
+from app.modules.governance.workflow.infrastructure.models.workflow_definition_model import WorkflowDefinitionModel
+from app.modules.governance.workflow.infrastructure.models.workflow_state_model import WorkflowStateModel
+from app.modules.governance.workflow.infrastructure.models.workflow_transition_model import WorkflowTransitionModel
+from app.modules.governance.workflow.infrastructure.models.workflow_instance_model import WorkflowInstanceModel
+from app.modules.governance.workflow.infrastructure.models.workflow_task_model import WorkflowTaskModel
+from app.modules.governance.workflow.infrastructure.models.workflow_history_model import WorkflowHistoryModel
+from app.modules.intelligence.operations.infrastructure.models.order_model import OperationalOrderModel, OperationalOrderDocumentModel
+from app.modules.intelligence.operations.infrastructure.models.payment_model import OperationalPaymentModel
+from app.modules.intelligence.defesa_consumidor.infrastructure.models.reclamacao_model import ReclamacaoModel as DefesaConsumidorReclamacaoModel
+from app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
+from app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from app.modules.educacao.infrastructure.models.turma_model import TurmaModel
+from app.modules.educacao.infrastructure.models.ano_letivo_model import AnoLetivoModel
+from app.modules.economy.trade.external.infrastructure.models.agente_carga_model import AgenteCargaModel
+from app.modules.economy.trade.external.infrastructure.models.cancelamento_radar_model import CancelamentoRadarModel
+from app.modules.economy.trade.external.infrastructure.models.despachante_model import DespachanteModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_externo_model import DrawbackExternoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_interno_model import DrawbackInternoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_model import DrawbackModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_isencao_model import DrawbackIsencaoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_integrado_model import DrawbackIntegradoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_restituicao_model import DrawbackRestituicaoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_substituicao_model import DrawbackSubstituicaoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_suspensao_model import DrawbackSuspensaoModel
+from app.modules.economy.trade.external.infrastructure.models.drawback_verde_amarelo_model import DrawbackVerdeAmareloModel
+from app.modules.economy.trade.external.infrastructure.models.exportador_model import ExportadorModel
+from app.modules.economy.trade.external.infrastructure.models.habilitacao_exportador_model import HabilitacaoExportadorModel
+from app.modules.economy.trade.external.infrastructure.models.habilitacao_importador_model import HabilitacaoImportadorModel
+from app.modules.economy.trade.external.infrastructure.models.habilitacao_radar_model import HabilitacaoRadarModel
+from app.modules.economy.trade.external.infrastructure.models.importador_model import ImportadorModel
+from app.modules.economy.trade.external.infrastructure.models.radar_model import RadarModel
+from app.modules.economy.trade.external.infrastructure.models.suspensao_radar_model import SuspensaoRadarModel
+from app.modules.economy.trade.external.infrastructure.models.transportador_internacional_model import TransportadorInternacionalModel
+from app.modules.economy.trade.external.infrastructure.models.siscomex_drawback_model import SiscomexDrawbackModel
+from app.modules.resources.pecuaria.infrastructure.models.animal_model import AnimalModel
 from apps.backend.app.modules.resources.pecuaria.infrastructure.models.pecuarista_model import PecuaristaModel
 from apps.backend.app.modules.resources.pecuaria.infrastructure.models.producao_leite_model import ProducaoLeiteModel
 from apps.backend.app.modules.resources.pecuaria.infrastructure.models.propriedade_pecuaria_model import PropriedadePecuariaModel
@@ -127,11 +122,11 @@ from apps.backend.app.modules.public_security.infrastructure.models.cadeia_custo
 from apps.backend.app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel as SegurancaLaudoPericialModel
 from apps.backend.app.modules.public_security.infrastructure.models.vestigio_model import VestigioModel as SegurancaVestigioModel
 from apps.backend.app.modules.public_security.infrastructure.models.evidencia_model import EvidenciaModel as SegurancaEvidenciaModel
-from apps.backend.app.modules.civil_protection.infrastructure.models.corporacao_model import CorporacaoModel as ProtecaoCivilCorporacaoModel
-from apps.backend.app.modules.civil_protection.infrastructure.models.bombeiro_model import BombeiroModel as ProtecaoCivilBombeiroModel
-from apps.backend.app.modules.civil_protection.infrastructure.models.ocorrencia_emergencial_model import OcorrenciaEmergencialModel as ProtecaoCivilOcorrenciaEmergencialModel
-from apps.backend.app.modules.civil_protection.infrastructure.models.despacho_model import DespachoModel as ProtecaoCivilDespachoModel
-from apps.backend.app.modules.civil_protection.infrastructure.models.atendimento_model import AtendimentoModel as ProtecaoCivilAtendimentoModel
+from apps.backend.app.modules.civil_protection.infrastructure.orm.corporacao_model import CorporacaoModel as ProtecaoCivilCorporacaoModel
+from apps.backend.app.modules.civil_protection.infrastructure.orm.bombeiro_model import BombeiroModel as ProtecaoCivilBombeiroModel
+from apps.backend.app.modules.civil_protection.infrastructure.orm.ocorrencia_emergencial_model import OcorrenciaEmergencialModel as ProtecaoCivilOcorrenciaEmergencialModel
+from apps.backend.app.modules.civil_protection.infrastructure.orm.despacho_model import DespachoModel as ProtecaoCivilDespachoModel
+from apps.backend.app.modules.civil_protection.infrastructure.orm.atendimento_model import AtendimentoModel as ProtecaoCivilAtendimentoModel
 from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.alvara_model import AlvaraModel as UrbanismoAlvaraModel
 from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.habite_se_model import HabiteSeModel as UrbanismoHabiteSeModel
 from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.models.licenca_urbanistica_model import LicencaUrbanisticaModel as UrbanismoLicencaUrbanisticaModel
@@ -153,9 +148,7 @@ from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.models.o
 from apps.backend.app.modules.energy.infrastructure.models.energy_invoice_model import EnergyInvoiceModel
 from apps.backend.app.modules.energy.infrastructure.models.energy_telemetry_model import EnergyTelemetryModel
 from apps.backend.app.modules.energy.infrastructure.models.outbox_event_model import EnergiaOutboxEventModel
-from apps.backend.app.modules.logistics.domain.infrastructure.models.toll_passage_model import (
-    TollPassageModel,
-)
+from apps.backend.app.modules.logistics.infrastructure.orm.toll_passage_model import TollPassageModel
 from apps.backend.app.modules.justice.infrastructure.models.traffic_violation_model import TrafficViolationModel
 from apps.backend.app.modules.society.familia.infrastructure.models.dependency_model import DependencyModel as FamiliaDependencyModel
 from apps.backend.app.modules.society.familia.infrastructure.models.event_outbox_model import FamilyOutboxEventModel as FamiliaOutboxEventModel

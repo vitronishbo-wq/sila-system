@@ -1,5 +1,5 @@
 name: turismo
-type: sub_domain
+type: "sub_domain"
 version: 1.0.0
 status: alpha
 owner: sila-core

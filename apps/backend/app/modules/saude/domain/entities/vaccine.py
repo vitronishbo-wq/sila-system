@@ -1,10 +1,8 @@
 from __future__ import annotations
-
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Optional
 from uuid import UUID, uuid4
-
 
 @dataclass
 class VaccineDose:
@@ -14,7 +12,7 @@ class VaccineDose:
     health_unit_id: UUID = field(default_factory=uuid4)
     applied_by: UUID = field(default_factory=uuid4)
     dose_number: int = 1
-    batch_number: str = ""
+    batch_number: str = ''
     application_date: date = field(default_factory=date.today)
     next_dose_date: Optional[date] = None
     adverse_reactions: Optional[str] = None

@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from typing import Any, Dict, Optional
 
 from fastapi.testclient import TestClient
-from app.core.auth import create_access_token
+from apps.backend.core.auth import JWTHandler
 from config.settings import settings
 
 def get_auth_headers(client: TestClient, email: str, password: str) -> Dict[str, str]:
@@ -29,7 +29,8 @@ def create_test_token(
     expires_delta: Optional[timedelta] = None,
 ) -> str:
     """Create a test JWT token using core logic."""
-    return create_access_token(subject=str(user_id), expires_delta=expires_delta)
+    jwt_handler = JWTHandler(secret_key=settings.SECRET_KEY)
+    return jwt_handler.create_access_token(subject=str(user_id), expires_delta=expires_delta)
 
 
 def get_expired_token(user_id: int) -> str:

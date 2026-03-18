@@ -8,7 +8,7 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from apps.backend.app.modules.payment.models.enums import PaymentStatus
+from apps.backend.app.modules.payment.domain.enums import PaymentStatus
 from apps.backend.app.modules.payment.application.services.webhook_service import (
     PaymentWebhookService,
 )

@@ -16,6 +16,7 @@ the test completes, ensuring data isolation without corrupting the DB.
 import asyncio
 import pytest
 import os
+import sys
 from types import SimpleNamespace
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -44,6 +45,9 @@ if settings:
 # `SILA_SKIP_APP_IMPORT=1` when running pytest. This avoids requiring optional
 # third-party packages for tests that only exercise isolated components.
 SKIP_FULL_APP_IMPORT = os.environ.get("SILA_SKIP_APP_IMPORT") == "1"
+if not SKIP_FULL_APP_IMPORT:
+    if any("app/modules/economy/tests" in arg for arg in sys.argv):
+        SKIP_FULL_APP_IMPORT = True
 
 if not SKIP_FULL_APP_IMPORT:
     from sqlalchemy.orm import clear_mappers

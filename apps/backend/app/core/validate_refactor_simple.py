@@ -3,7 +3,6 @@ Teste simplificado: valida consolidação de exceções e remoção de core/iam
 """
 from pathlib import Path
 
-
 def test_exception_exports():
     """Valida estaticamente que exceções estão exportadas no core."""
     print('🧪 TESTE ESTÁTICO: Export de exceções do core')
@@ -11,20 +10,11 @@ def test_exception_exports():
     if not exc_path.exists():
         raise AssertionError('❌ core/exceptions/__init__.py não encontrado')
     content = exc_path.read_text()
-
-    expected = [
-        'SilaException',
-        'ValidationException',
-        'NotFoundException',
-        'UnauthorizedException',
-        'ForbiddenException',
-        'ConflictException',
-    ]
+    expected = ['SilaException', 'ValidationException', 'NotFoundException', 'UnauthorizedException', 'ForbiddenException', 'ConflictException']
     missing = [name for name in expected if name not in content]
     if missing:
         raise AssertionError(f'❌ Exceções não exportadas: {missing}')
     print(f'✅ {len(expected)} exceções exportadas corretamente')
-
 
 def test_core_iam_removed():
     """Valida remoção definitiva de core/iam."""
@@ -32,7 +22,6 @@ def test_core_iam_removed():
     core_iam_path = Path(__file__).resolve().parent / 'iam'
     assert not core_iam_path.exists(), '❌ core/iam ainda existe'
     print('✅ core/iam removido')
-
 
 def main():
     """Executa validações"""
@@ -45,8 +34,6 @@ def main():
     print('RESULTADO')
     print('=' * 80)
     print('✅ REFACTOR VALIDADO! Nenhum problema detectado.')
-
-
 if __name__ == '__main__':
     try:
         main()

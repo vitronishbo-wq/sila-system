@@ -135,6 +135,7 @@ reports/mass_fix_v2/diffs/*.diff
 .vscode
 node_modules
 .venv
+apps/backend/.secrets/oidc/
 .codex
 out
 dist

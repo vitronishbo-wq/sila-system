@@ -28,7 +28,7 @@ Teste as seguintes queries com precisão:
 """
 
 import pytest
-import asyncio
+import pytest_asyncio
 from typing import List
 import time
 import asyncpg
@@ -56,15 +56,14 @@ DB_CONFIG = {
     'database': 'sila_db'
 }
 
-@pytest.fixture(scope="session")
-def event_loop():
-    """Event loop para testes async"""
-    loop = asyncio.get_event_loop_policy().new_event_loop()
-    yield loop
-    loop.close()
+async def fetch_location_id(db_session, name: str, territory_type: str):
+    return await db_session.fetchval(
+        "SELECT id FROM locations WHERE name=$1 AND type=$2",
+        name,
+        territory_type,
+    )
 
-
-@pytest.fixture(scope="session")
+@pytest_asyncio.fixture
 async def db_connection():
     """Conexão com banco de dados (reutilizada para todos os testes)"""
     conn = await asyncpg.connect(**DB_CONFIG)
@@ -72,7 +71,7 @@ async def db_connection():
     await conn.close()
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def db_session(db_connection):
     """Sessão de BD para cada teste"""
     return db_connection
@@ -225,16 +224,18 @@ async def test_04_communes_count(db_session):
 async def test_05_cuando_cubango_separated(db_session, lei_14_24_data):
     """Test 5: Validar que Cuando e Cubango estão separados (Lei 14/24)"""
     cuando = await db_session.fetchrow(
-        "SELECT id, name, type FROM locations WHERE name='Cuando'"
+        "SELECT id, name, type, parent_id FROM locations WHERE name='Cuando' AND type='PROVINCIA'"
     )
     cubango = await db_session.fetchrow(
-        "SELECT id, name, type FROM locations WHERE name='Cubango'"
+        "SELECT id, name, type, parent_id FROM locations WHERE name='Cubango' AND type='PROVINCIA'"
     )
     
     assert cuando is not None, "Cuando não encontrado"
     assert cubango is not None, "Cubango não encontrado"
-    assert cuando['id'] == 20, f"Cuando deve ter ID=20, mas tem {cuando['id']}"
-    assert cubango['id'] == 21, f"Cubango deve ter ID=21, mas tem {cubango['id']}"
+    assert cuando['type'] == 'PROVINCIA', f"Cuando deve ser PROVINCIA, mas tem {cuando['type']}"
+    assert cubango['type'] == 'PROVINCIA', f"Cubango deve ser PROVINCIA, mas tem {cubango['type']}"
+    assert cuando['parent_id'] is None, f"Cuando deve ter parent_id NULL, mas tem {cuando['parent_id']}"
+    assert cubango['parent_id'] is None, f"Cubango deve ter parent_id NULL, mas tem {cubango['parent_id']}"
 
 
 # ============================================================================
@@ -244,85 +245,97 @@ async def test_05_cuando_cubango_separated(db_session, lei_14_24_data):
 @pytest.mark.asyncio
 async def test_06_huambo_municipalities_parent_id(db_session, expected_municipalities_huambo):
     """Test 6: Verificar que todos os municípios de Huambo têm parent_id=7"""
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
     municipalities = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
-        "WHERE parent_id=7 AND type='MUNICIPIO' "
+        "WHERE parent_id=$1 AND type='MUNICIPIO' "
         "ORDER BY id"
+        ,
+        huambo_id,
     )
     
     assert len(municipalities) == 3, f"Esperava 3 municípios para Huambo, encontrou {len(municipalities)}"
     
     # Verificar cada município
     for mun in municipalities:
-        assert mun['parent_id'] == 7, f"Município {mun['name']} deve ter parent_id=7, mas tem {mun['parent_id']}"
+        assert mun['parent_id'] == huambo_id, f"Município {mun['name']} deve ter parent_id=Huambo, mas tem {mun['parent_id']}"
         assert mun['type'] == 'MUNICIPIO', f"Município {mun['name']} deve ter type='MUNICIPIO', mas tem '{mun['type']}'"
     
-    # Verificar IDs específicos
-    ids = [m['id'] for m in municipalities]
-    assert set(ids) == {22, 23, 24}, f"IDs de municípios incorretos: {ids}"
+    # Verificar nomes específicos
+    names = {m['name'] for m in municipalities}
+    assert names == {'Huambo (Município)', 'Bailundo', 'Longonjo'}, f"Nomes de municípios incorretos: {names}"
 
 
 @pytest.mark.asyncio
 async def test_07_luanda_municipalities_parent_id(db_session, expected_municipalities_luanda):
     """Test 7: Verificar que todos os municípios de Luanda têm parent_id=8"""
+    luanda_id = await fetch_location_id(db_session, "Luanda", "PROVINCIA")
     municipalities = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
-        "WHERE parent_id=8 AND type='MUNICIPIO' "
+        "WHERE parent_id=$1 AND type='MUNICIPIO' "
         "ORDER BY id"
+        ,
+        luanda_id,
     )
     
     assert len(municipalities) == 3, f"Esperava 3 municípios para Luanda, encontrou {len(municipalities)}"
     
     # Verificar cada município
     for mun in municipalities:
-        assert mun['parent_id'] == 8, f"Município {mun['name']} deve ter parent_id=8, mas tem {mun['parent_id']}"
+        assert mun['parent_id'] == luanda_id, f"Município {mun['name']} deve ter parent_id=Luanda, mas tem {mun['parent_id']}"
         assert mun['type'] == 'MUNICIPIO', f"Município {mun['name']} deve ter type='MUNICIPIO', mas tem '{mun['type']}'"
     
-    # Verificar IDs específicos
-    ids = [m['id'] for m in municipalities]
-    assert set(ids) == {25, 26, 27}, f"IDs de municípios incorretos: {ids}"
+    # Verificar nomes específicos
+    names = {m['name'] for m in municipalities}
+    assert names == {'Luanda (Município)', 'Cacuaco', 'Viana'}, f"Nomes de municípios incorretos: {names}"
 
 
 @pytest.mark.asyncio
 async def test_08_huambo_municipality_communes_parent_id(db_session, expected_communes_huambo_municipality):
     """Test 8: Verificar que todas as comunas de Huambo (Mun) têm parent_id=22"""
+    huambo_mun_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
     communes = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
-        "WHERE parent_id=22 AND type='COMUNA' "
+        "WHERE parent_id=$1 AND type='COMUNA' "
         "ORDER BY id"
+        ,
+        huambo_mun_id,
     )
     
     assert len(communes) == 3, f"Esperava 3 comunas para Huambo Município, encontrou {len(communes)}"
     
     # Verificar cada comuna
     for com in communes:
-        assert com['parent_id'] == 22, f"Comuna {com['name']} deve ter parent_id=22, mas tem {com['parent_id']}"
+        assert com['parent_id'] == huambo_mun_id, f"Comuna {com['name']} deve ter parent_id=Huambo (Município), mas tem {com['parent_id']}"
         assert com['type'] == 'COMUNA', f"Comuna {com['name']} deve ter type='COMUNA', mas tem '{com['type']}'"
     
-    # Verificar IDs específicos
-    ids = [c['id'] for c in communes]
-    assert set(ids) == {28, 29, 30}, f"IDs de comunas incorretos: {ids}"
+    # Verificar nomes específicos
+    names = {c['name'] for c in communes}
+    assert names == {'Comuna Centro', 'Comuna Norte', 'Comuna Sul'}, f"Nomes de comunas incorretos: {names}"
 
 
 @pytest.mark.asyncio
 async def test_09_bailundo_municipality_communes_parent_id(db_session):
     """Test 9: Verificar que todas as comunas de Bailundo têm parent_id=23"""
+    bailundo_id = await fetch_location_id(db_session, "Bailundo", "MUNICIPIO")
     communes = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
-        "WHERE parent_id=23 AND type='COMUNA' "
+        "WHERE parent_id=$1 AND type='COMUNA' "
         "ORDER BY id"
+        ,
+        bailundo_id,
     )
     
     assert len(communes) == 2, f"Esperava 2 comunas para Bailundo, encontrou {len(communes)}"
     
     # Verificar cada comuna
     for com in communes:
-        assert com['parent_id'] == 23, f"Comuna {com['name']} deve ter parent_id=23, mas tem {com['parent_id']}"
+        assert com['parent_id'] == bailundo_id, f"Comuna {com['name']} deve ter parent_id=Bailundo, mas tem {com['parent_id']}"
         assert com['type'] == 'COMUNA', f"Comuna {com['name']} deve ter type='COMUNA', mas tem '{com['type']}'"
     
-    # Verificar IDs específicos
-    ids = [c['id'] for c in communes]
-    assert set(ids) == {31, 32}, f"IDs de comunas incorretos: {ids}"
+    # Verificar nomes específicos
+    names = {c['name'] for c in communes}
+    assert names == {'Bailundo Centro', 'Bailundo Rural'}, f"Nomes de comunas incorretos: {names}"
 
 
 # ============================================================================
@@ -333,58 +346,61 @@ async def test_09_bailundo_municipality_communes_parent_id(db_session):
 async def test_10_get_sub_units_huambo_province(db_session):
     """Test 10: HierarchyService.get_sub_units(7) retorna municípios corretos"""
     # Simular get_sub_units(7)
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
     result = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
         "WHERE parent_id=$1 ORDER BY id",
-        7
+        huambo_id
     )
     
     assert len(result) == 3, f"Esperava 3 sub-units para Huambo, mas tem {len(result)}"
     
     # Todas devem ter parent_id=7
     for item in result:
-        assert item['parent_id'] == 7
+        assert item['parent_id'] == huambo_id
     
     # Verificar tipos e IDs
     types = set(item['type'] for item in result)
     assert types == {'MUNICIPIO'}, f"Esperava apenas MUNICIPIO, mas tem {types}"
     
-    ids = [item['id'] for item in result]
-    assert set(ids) == {22, 23, 24}, f"IDs incorretos: {ids}"
+    names = {item['name'] for item in result}
+    assert names == {'Huambo (Município)', 'Bailundo', 'Longonjo'}, f"Nomes incorretos: {names}"
 
 
 @pytest.mark.asyncio
 async def test_11_get_sub_units_huambo_municipality(db_session):
     """Test 11: HierarchyService.get_sub_units(22) retorna comunas corretas"""
     # Simular get_sub_units(22)
+    huambo_mun_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
     result = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
         "WHERE parent_id=$1 ORDER BY id",
-        22
+        huambo_mun_id
     )
     
     assert len(result) == 3, f"Esperava 3 sub-units para Huambo Município, mas tem {len(result)}"
     
     # Todas devem ter parent_id=22
     for item in result:
-        assert item['parent_id'] == 22
+        assert item['parent_id'] == huambo_mun_id
     
     # Verificar tipos
     types = set(item['type'] for item in result)
     assert types == {'COMUNA'}, f"Esperava apenas COMUNA, mas tem {types}"
     
-    ids = [item['id'] for item in result]
-    assert set(ids) == {28, 29, 30}, f"IDs incorretos: {ids}"
+    names = {item['name'] for item in result}
+    assert names == {'Comuna Centro', 'Comuna Norte', 'Comuna Sul'}, f"Nomes incorretos: {names}"
 
 
 @pytest.mark.asyncio
 async def test_12_get_sub_units_no_children(db_session):
     """Test 12: HierarchyService.get_sub_units(28) retorna lista vazia (Comuna sem filhos)"""
     # Simular get_sub_units(28) - Comuna Centro tem parent_id=22, não tem filhos
+    comuna_centro_id = await fetch_location_id(db_session, "Comuna Centro", "COMUNA")
     result = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
         "WHERE parent_id=$1 ORDER BY id",
-        28
+        comuna_centro_id
     )
     
     assert len(result) == 0, f"Comuna Centro não deve ter filhos, mas tem {len(result)}"
@@ -398,7 +414,8 @@ async def test_12_get_sub_units_no_children(db_session):
 async def test_13_ancestry_chain_province(db_session):
     """Test 13: get_ancestry_chain(7) para Huambo retorna [Huambo]"""
     # Query ancestrais de 7 (Huambo)
-    current_id = 7
+    current_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
+    huambo_id = current_id
     chain = []
     
     while current_id is not None:
@@ -407,14 +424,14 @@ async def test_13_ancestry_chain_province(db_session):
             current_id
         )
         if loc:
-            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type']})
+            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type'], 'parent_id': loc['parent_id']})
             current_id = loc['parent_id']
         else:
             break
     
     # Huambo é root (parent_id=NULL), deve ter só ele na cadeia
     assert len(chain) == 1, f"Huambo deve ter só ele na chain, mas tem {len(chain)}: {chain}"
-    assert chain[0]['id'] == 7
+    assert chain[0]['id'] == huambo_id
     assert chain[0]['name'] == 'Huambo'
     assert chain[0]['type'] == 'PROVINCIA'
 
@@ -423,7 +440,8 @@ async def test_13_ancestry_chain_province(db_session):
 async def test_14_ancestry_chain_municipality(db_session):
     """Test 14: get_ancestry_chain(22) para Huambo Município retorna [Huambo (Mun), Huambo]"""
     # Query ancestrais de 22 (Huambo Município)
-    current_id = 22
+    current_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
     chain = []
     
     while current_id is not None:
@@ -432,15 +450,15 @@ async def test_14_ancestry_chain_municipality(db_session):
             current_id
         )
         if loc:
-            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type']})
+            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type'], 'parent_id': loc['parent_id']})
             current_id = loc['parent_id']
         else:
             break
     
     # Deve ter Huambo Município → Huambo
     assert len(chain) == 2, f"Huambo Município deve ter 2 na chain, mas tem {len(chain)}: {chain}"
-    assert chain[0]['id'] == 22
-    assert chain[1]['id'] == 7
+    assert chain[0]['id'] == current_id
+    assert chain[1]['id'] == huambo_id
     assert chain[1]['parent_id'] is None  # Huambo é root
 
 
@@ -448,7 +466,10 @@ async def test_14_ancestry_chain_municipality(db_session):
 async def test_15_ancestry_chain_commune(db_session):
     """Test 15: get_ancestry_chain(28) para Comuna Centro retorna [Comuna, Município, Província]"""
     # Query ancestrais de 28 (Comuna Centro)
-    current_id = 28
+    comuna_centro_id = await fetch_location_id(db_session, "Comuna Centro", "COMUNA")
+    huambo_mun_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
+    current_id = comuna_centro_id
     chain = []
     
     while current_id is not None and len(chain) < 10:  # proteção contra loop infinito
@@ -457,7 +478,7 @@ async def test_15_ancestry_chain_commune(db_session):
             current_id
         )
         if loc:
-            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type']})
+            chain.append({'id': loc['id'], 'name': loc['name'], 'type': loc['type'], 'parent_id': loc['parent_id']})
             current_id = loc['parent_id']
         else:
             break
@@ -466,13 +487,13 @@ async def test_15_ancestry_chain_commune(db_session):
     assert len(chain) == 3, f"Comuna Centro deve ter 3 na chain, mas tem {len(chain)}: {chain}"
     
     # Verificar ordem (de baixo para cima)
-    assert chain[0]['id'] == 28
+    assert chain[0]['id'] == comuna_centro_id
     assert chain[0]['type'] == 'COMUNA'
     
-    assert chain[1]['id'] == 22
+    assert chain[1]['id'] == huambo_mun_id
     assert chain[1]['type'] == 'MUNICIPIO'
     
-    assert chain[2]['id'] == 7
+    assert chain[2]['id'] == huambo_id
     assert chain[2]['type'] == 'PROVINCIA'
     assert chain[2]['parent_id'] is None
 
@@ -495,40 +516,42 @@ async def test_16_admin_sees_all_provinces(db_session):
 async def test_17_provincial_manager_sees_only_municipalities_in_region(db_session):
     """Test 17: Manager de Huambo (region_id=7) vê apenas municípios de Huambo"""
     # Manager de Huambo com region_id=7 pode ver sub-units de 7
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
     municipalities = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
         "WHERE parent_id=$1 AND type='MUNICIPIO'",
-        7  # region_id do manager
+        huambo_id  # region_id do manager
     )
     
     assert len(municipalities) == 3, f"Manager de Huambo deve ver 3 municípios, mas vê {len(municipalities)}"
     
     # Verificar que são apenas municípios de Huambo
     for mun in municipalities:
-        assert mun['parent_id'] == 7
+        assert mun['parent_id'] == huambo_id
     
-    ids = [m['id'] for m in municipalities]
-    assert set(ids) == {22, 23, 24}
+    names = {m['name'] for m in municipalities}
+    assert names == {'Huambo (Município)', 'Bailundo', 'Longonjo'}
 
 
 @pytest.mark.asyncio
 async def test_18_municipal_manager_sees_only_communes_in_municipality(db_session):
     """Test 18: Manager de Huambo Município (region_id=22) vê apenas comunas de Huambo"""
     # Manager de Huambo Município com region_id=22 pode ver sub-units de 22
+    huambo_mun_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
     communes = await db_session.fetch(
         "SELECT id, name, type, parent_id FROM locations "
         "WHERE parent_id=$1 AND type='COMUNA'",
-        22  # region_id do manager
+        huambo_mun_id  # region_id do manager
     )
     
     assert len(communes) == 3, f"Manager de Huambo Município deve ver 3 comunas, mas vê {len(communes)}"
     
     # Verificar que são apenas comunas de Huambo Município
     for com in communes:
-        assert com['parent_id'] == 22
+        assert com['parent_id'] == huambo_mun_id
     
-    ids = [c['id'] for c in communes]
-    assert set(ids) == {28, 29, 30}
+    names = {c['name'] for c in communes}
+    assert names == {'Comuna Centro', 'Comuna Norte', 'Comuna Sul'}
 
 
 # ============================================================================
@@ -601,6 +624,7 @@ async def test_22_admin_user_exists(db_session, lei_14_24_data):
 @pytest.mark.asyncio
 async def test_23_provincial_manager_exists_with_correct_region(db_session, lei_14_24_data):
     """Test 23: Manager provincial vinculado a Huambo (region_id=7)"""
+    huambo_id = await fetch_location_id(db_session, "Huambo", "PROVINCIA")
     user = await db_session.fetchrow(
         "SELECT id, email, roles, administrative_level, region_id FROM users "
         "WHERE email=$1",
@@ -608,12 +632,13 @@ async def test_23_provincial_manager_exists_with_correct_region(db_session, lei_
     )
     
     assert user is not None, f"Manager provincial não encontrado"
-    assert user['region_id'] == 7, f"Manager provincial deve ter region_id=7, mas tem {user['region_id']}"
+    assert user['region_id'] == huambo_id, f"Manager provincial deve ter region_id=Huambo, mas tem {user['region_id']}"
 
 
 @pytest.mark.asyncio
 async def test_24_municipal_manager_exists_with_correct_region(db_session, lei_14_24_data):
     """Test 24: Manager municipal vinculado a Huambo Município (region_id=22)"""
+    huambo_mun_id = await fetch_location_id(db_session, "Huambo (Município)", "MUNICIPIO")
     user = await db_session.fetchrow(
         "SELECT id, email, roles, administrative_level, region_id FROM users "
         "WHERE email=$1",
@@ -621,12 +646,13 @@ async def test_24_municipal_manager_exists_with_correct_region(db_session, lei_1
     )
     
     assert user is not None, f"Manager municipal não encontrado"
-    assert user['region_id'] == 22, f"Manager municipal deve ter region_id=22, mas tem {user['region_id']}"
+    assert user['region_id'] == huambo_mun_id, f"Manager municipal deve ter region_id=Huambo (Município), mas tem {user['region_id']}"
 
 
 @pytest.mark.asyncio
 async def test_25_officer_exists_with_correct_region(db_session, lei_14_24_data):
     """Test 25: Officer vinculado a Comuna Centro (region_id=28)"""
+    comuna_centro_id = await fetch_location_id(db_session, "Comuna Centro", "COMUNA")
     user = await db_session.fetchrow(
         "SELECT id, email, roles, administrative_level, region_id FROM users "
         "WHERE email=$1",
@@ -634,12 +660,13 @@ async def test_25_officer_exists_with_correct_region(db_session, lei_14_24_data)
     )
     
     assert user is not None, f"Officer não encontrado"
-    assert user['region_id'] == 28, f"Officer deve ter region_id=28, mas tem {user['region_id']}"
+    assert user['region_id'] == comuna_centro_id, f"Officer deve ter region_id=Comuna Centro, mas tem {user['region_id']}"
 
 
 @pytest.mark.asyncio
 async def test_26_citizen_exists_with_correct_region(db_session, lei_14_24_data):
     """Test 26: Cidadão vinculado a Comuna Centro (region_id=28)"""
+    comuna_centro_id = await fetch_location_id(db_session, "Comuna Centro", "COMUNA")
     user = await db_session.fetchrow(
         "SELECT id, email, roles, administrative_level, region_id FROM users "
         "WHERE email=$1",
@@ -647,7 +674,7 @@ async def test_26_citizen_exists_with_correct_region(db_session, lei_14_24_data)
     )
     
     assert user is not None, f"Cidadão não encontrado"
-    assert user['region_id'] == 28, f"Cidadão deve ter region_id=28, mas tem {user['region_id']}"
+    assert user['region_id'] == comuna_centro_id, f"Cidadão deve ter region_id=Comuna Centro, mas tem {user['region_id']}"
 
 
 # ============================================================================

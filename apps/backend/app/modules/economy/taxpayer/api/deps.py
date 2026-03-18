@@ -1,25 +1,13 @@
 from fastapi import HTTPException, status, Request
 from uuid import UUID
 from .rate_limiter import RateLimiter
+from core.auth import PermissionGuard, PolicyEngine
 
 def get_rate_limiter() -> RateLimiter:
     """Dependency para rate limiter"""
     return RateLimiter()
-
-def require_taxpayer_permission(permission: str):
-    """Dependency para verificar permissão"""
-
-    async def dependency(request: Request):
-        user = getattr(request.state, 'user', None)
-        if not user:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Não autenticado')
-        if user.get('is_superuser'):
-            return True
-        permissions = user.get('permissions', [])
-        if permission not in permissions:
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f'Permissão necessária: {permission}')
-        return True
-    return dependency
+_permission_guard = PermissionGuard(PolicyEngine())
+require_taxpayer_permission = _permission_guard.required_permission
 
 def can_access_taxpayer(taxpayer_id: UUID):
     """Dependency para verificar acesso a contribuinte"""

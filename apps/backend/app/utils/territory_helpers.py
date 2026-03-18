@@ -6,7 +6,7 @@ Funções compartilhadas para criar/recuperar territórios.
 import uuid
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.territory.models.territory import Territory
+from apps.backend.app.core.territory.models.territory import Territory
 
 async def get_or_create_territory(session: AsyncSession, name: str, type: str, parent_id: uuid.UUID=None) -> Territory:
     """

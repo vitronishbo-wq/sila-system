@@ -1,0 +1,20 @@
+file_path,category,pattern,lines,exports,duplication,consolidate_to_core,priority,notes
+apps/backend/core/auth.py,Authentication,JWT generation/validation,80,create_access_token(),NO,NO,CORE,Central implementation - different from gateway jwt_engine
+apps/backend/core/security.py,Security,HTTPBearer + user dependency,80,get_current_user(),NO,NO,CORE,Central implementation - password hashing + active/superuser checks
+apps/backend/core/security/__init__.py,Security,Compatibility wrapper,70,create_access_token(),YES - duplicates core/auth,YES,MEDIUM,Remove duplicates - keep exports only
+apps/backend/core/security/iam_client.py,Authorization,Unified IAM client,50,get_current_user() check_permission(),ALREADY CONSOLIDATED,NO,CORE,Consolidated 4 module-specific stubs
+apps/backend/core/rbac/territorial_access.py,RBAC,Territorial access control,30-50,[unknown],NO,NO,CORE,Administrative level mapping
+apps/backend/app/api/deps.py,API Dependencies,OIDC + role extraction,150,get_current_user() get_identity_context(),PARTIAL - role logic,PARTIAL,HIGH,Move role extraction to core/rbac
+apps/backend/app/modules/identity/middleware/trust_middleware.py,Middleware,Trust evaluation (40/40/20),200+,dispatch(),NO,NO,IDENTITY,Network boundary enforcement - module-specific
+apps/backend/app/modules/identity/domain/trust_score.py,Domain,Trust value object,~50,calculate_total(),NO,NO,IDENTITY,Domain entity - belongs in identity
+apps/backend/app/modules/identity/infrastructure/security/jwt_engine.py,Authentication,JWT generation (12h expiry),25,generate() verify(),YES - duplicates core/auth,YES,CRITICAL,REMOVE - Use core/auth instead
+apps/backend/app/modules/identity/infrastructure/security/jwt_engine.py,Authentication,SovereignJWT wrapper,~10,issue_token(),YES - wrapper pattern,YES,CRITICAL,REMOVE - Unnecessary abstraction
+apps/backend/app/core/auth_gateway/gateway.py,Gateway,Sovereign auth gateway,40,protect(),PARTIAL - duplicate with ZeroTrust,REVIEW,MEDIUM,Clarify purpose vs ZeroTrustGateway
+apps/backend/app/core/auth_gateway/infrastructure/security/jwt_engine.py,Authentication,JWT generation (12h expiry),25,generate() verify(),YES - duplicates core/auth,YES,CRITICAL,Consolidate to core/auth
+apps/backend/app/core/auth_gateway/infrastructure/security/oidc_verifier.py,Authentication,OIDC verification,~100,load_oidc_config() verify_oidc_token(),NO,NO,CORE,External provider integration - keep in gateway
+apps/backend/app/core/auth_gateway/infrastructure/security/auth_resilience.py,Infrastructure,CircuitBreaker pattern,~30,CircuitBreaker,NO,NO,CORE,Fault tolerance for auth - infrastructure responsibility
+apps/backend/app/core/security/zero_trust_gateway/application/zero_trust_gateway.py,Gateway,Zero-trust authorization,40,authorize(),PARTIAL - duplicate with SovereignAuth,REVIEW,MEDIUM,Clarify purpose vs SovereignAuthGateway
+apps/backend/app/modules/identity/role_engine/,Module,Role engine infrastructure,UNKNOWN,[unknown],UNKNOWN,REVIEW,LOW,Audit needed - check for duplication
+apps/backend/app/modules/identity/permission_graph/,Module,Permission graph infrastructure,UNKNOWN,[unknown],UNKNOWN,REVIEW,LOW,Audit needed - check for duplication
+apps/backend/app/modules/identity/sovereign_access_control/,Module,Access control infrastructure,UNKNOWN,[unknown],UNKNOWN,REVIEW,LOW,Audit needed - check for duplication
+apps/backend/app/modules/identity/sovereign_trust_engine/,Module,Trust engine infrastructure,UNKNOWN,[unknown],UNKNOWN,REVIEW,LOW,Audit needed - check for duplication

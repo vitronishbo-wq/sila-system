@@ -5,10 +5,10 @@ from decimal import Decimal
 from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.logistics.application.ports import ViagemRepositoryPort
+from apps.backend.app.modules.logistics.domain.ports import ViagemRepositoryPort
 from apps.backend.app.modules.logistics.domain.enums import StatusViagem
 from apps.backend.app.modules.logistics.domain.models import Viagem
-from apps.backend.app.modules.logistics.infrastructure.models import ViagemModel
+from apps.backend.app.modules.logistics.infrastructure.orm import ViagemModel
 
 class SQLAlchemyViagemRepository(ViagemRepositoryPort):
     """Repository com ORM real (AsyncSession) e fallback em memoria."""

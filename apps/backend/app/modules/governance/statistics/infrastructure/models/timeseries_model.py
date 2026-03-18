@@ -6,6 +6,7 @@ from apps.backend.app.db.base import Base
 
 class TimeSeriesModel(Base):
     __tablename__ = 'statistics_timeseries'
+    __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     statistic_id = Column(Integer, nullable=False, index=True)
     value = Column(Float, nullable=False)

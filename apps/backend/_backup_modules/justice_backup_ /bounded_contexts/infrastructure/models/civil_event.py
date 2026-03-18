@@ -1,2 +1,0 @@
-class CivilEventRecord:
-    pass

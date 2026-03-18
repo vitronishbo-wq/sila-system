@@ -13,7 +13,7 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.catalog.blueprint import MODULE_BLUEPRINTS
+from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS
 from create_module import register_module_catalog, scaffold_module
 
 

@@ -5,7 +5,7 @@ import importlib
 import sys
 from pathlib import Path
 
-from app.core.db import Base
+from apps.backend.app.core.db import Base
 
 IDENTITY_DIR = Path(__file__).resolve().parent / "app/modules/identity"
 

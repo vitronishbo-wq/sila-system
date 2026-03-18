@@ -8,7 +8,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.auth import decode_access_token
+from core.auth import JWTHandler
 from config.database import get_db
 from .iam_client import IAMClient
 
@@ -39,6 +39,7 @@ async def get_current_user(
 ):
     """Get current authenticated user."""
     from apps.backend.app.modules.identity.models.user import User
+    from config.settings import settings
     
     token = None
     if credentials:
@@ -53,7 +54,8 @@ async def get_current_user(
         )
 
     try:
-        payload = decode_access_token(token)
+        jwt_handler = JWTHandler(secret_key=settings.SECRET_KEY)
+        payload = jwt_handler.decode_token(token)
         username = payload.get("sub") 
         if not username:
             raise ValueError("Token inválido")

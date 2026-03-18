@@ -18,8 +18,8 @@ from datetime import datetime
 
 # FastAPI / SQLAlchemy
 from sqlalchemy import select
-from app.core.db import AsyncSessionLocal
-from app.core.settings import settings
+from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.core.settings import settings
 
 # Domain models
 from apps.backend.app.modules.governance.service_requests.domain.models.service_request import ServiceRequest

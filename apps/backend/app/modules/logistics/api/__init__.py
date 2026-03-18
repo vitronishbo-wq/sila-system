@@ -1,0 +1,2 @@
+from apps.backend.app.modules.logistics.api.router import router
+__all__ = ['router']

@@ -12,10 +12,5 @@ from apps.backend.app.modules.society.juventude.infrastructure.models.auxilio_mo
 from apps.backend.app.modules.society.juventude.infrastructure.models.bolsa_estudo_model import BolsaEstudoModel
 from apps.backend.app.modules.society.juventude.infrastructure.models.jovem_model import JovemModel
 from apps.backend.app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
-from apps.backend.app.modules.saude.infrastructure.models import (
-    AppointmentModel,
-    HealthUnitModel,
-    InternamentoModel,
-    VaccineDoseModel,
-)
+from apps.backend.app.modules.saude.infrastructure.models import AppointmentModel, HealthUnitModel, InternamentoModel, VaccineDoseModel
 __all__ = ['AppointmentModel', 'AuxilioModel', 'BeneficiarioModel', 'BeneficioModel', 'BolsaEstudoModel', 'CadastroUnicoModel', 'CandidatoModel', 'ContratoModel', 'HealthUnitModel', 'InternamentoModel', 'JovemModel', 'MatriculaModel', 'OfertaModel', 'PropinaModel', 'ProgramaJuvenilModel', 'TurmaModel', 'VaccineDoseModel']

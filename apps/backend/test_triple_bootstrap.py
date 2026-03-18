@@ -13,10 +13,10 @@ def safe_import(module_path):
     return module
 
 print('🔍 Testing Auth Gateway...')
-from app.core.auth_gateway.infrastructure.security.jwt_engine import JWTEngine
-from app.core.auth_gateway.infrastructure.security.auth_resilience import CircuitBreaker
-from app.core.auth_gateway.application.services.service_token_service import ServiceTokenService
-from app.core.auth_gateway.api.rate_limiter import RateLimiter
+from apps.backend.app.core.auth_gateway.infrastructure.security.jwt_engine import JWTEngine
+from apps.backend.app.core.auth_gateway.infrastructure.security.auth_resilience import CircuitBreaker
+from apps.backend.app.core.auth_gateway.application.services.service_token_service import ServiceTokenService
+from apps.backend.app.core.auth_gateway.api.rate_limiter import RateLimiter
 print('✅ Auth Gateway: OPERATIONAL')
 
 print('🔍 Testing Security Layer (direct imports)...')
@@ -35,18 +35,18 @@ from soc_monitor import SOCMonitor
 print('✅ Security Layer: OPERATIONAL')
 
 print('🔍 Testing Intelligence Layer...')
-from app.core.intelligence.behavioral_ai.application.behavior_model import BehavioralModel
-from app.core.intelligence.predictive_governance.application.policy_predictor import PolicyPredictor
-from app.core.intelligence.economic_simulation.application.economy_model import EconomyModel
-from app.core.intelligence.crisis_prediction.application.crisis_engine import CrisisEngine
-from app.core.intelligence.national_analytics.application.analytics_engine import NationalAnalytics
+from apps.backend.app.core.intelligence.behavioral_ai.application.behavior_model import BehavioralModel
+from apps.backend.app.core.intelligence.predictive_governance.application.policy_predictor import PolicyPredictor
+from apps.backend.app.core.intelligence.economic_simulation.application.economy_model import EconomyModel
+from apps.backend.app.core.intelligence.crisis_prediction.application.crisis_engine import CrisisEngine
+from apps.backend.app.core.intelligence.national_analytics.application.analytics_engine import NationalAnalytics
 print('✅ Intelligence Layer: OPERATIONAL')
 
 print('🔍 Testing Identity + Database...')
 from apps.backend.app.modules.identity.bounded_contexts.iam.domain.entities.user import User
 from apps.backend.app.modules.identity.infrastructure.models.user_model import UserModel
 from apps.backend.app.modules.identity.infrastructure.repositories.user_repository import UserRepository
-from app.core.database.session import AsyncSessionLocal, engine
+from apps.backend.app.core.database.session import AsyncSessionLocal, engine
 print('✅ Identity Persistence: OPERATIONAL')
 
 # Functional tests

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from decimal import Decimal
 from uuid import UUID
-from apps.backend.app.modules.logistics.application.ports.financas_service_port import FinancasServicePort
+from apps.backend.app.modules.logistics.domain.ports.financas_service_port import FinancasServicePort
 
 class FinancasServiceAdapter(FinancasServicePort):
 

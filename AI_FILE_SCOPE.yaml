@@ -24,6 +24,8 @@ include:
   - scripts/ai/generate_architecture_graph.py
   - scripts/ai/generate_ai_domain_kernel.py
   - scripts/ai/ai_scope_filter.py
+  - interfaces/frontend/**
+  - apps/frontend/**
 
 exclude_dirs:
   - venv

@@ -1,46 +1,12 @@
-from apps.backend.app.modules.justice.justica.domain.exceptions import AdvogadoNaoEncontradoException, JusticaException, MagistradoNaoEncontradoException, ParteInvalidaException, ProcessoNaoEncontradoException, RecursoForaPrazoException, SentencaJaProferidaException
-
-class JusticaError(Exception):
-    pass
-
-class CitizenNotFoundError(JusticaError):
-    pass
-
-class TribunalNotFoundError(JusticaError):
-    pass
-
-class VaraNotFoundError(JusticaError):
-    pass
-
-class ProcessoNotFoundError(JusticaError):
-    pass
-
-class ParteProcessualAlreadyExistsError(JusticaError):
-    pass
-
-class ParteProcessualNotFoundError(JusticaError):
-    pass
-
-class AdvogadoAlreadyExistsError(JusticaError):
-    pass
-
-class AdvogadoNotFoundError(JusticaError):
-    pass
-
-class MagistradoAlreadyExistsError(JusticaError):
-    pass
-
-class MagistradoNotFoundError(JusticaError):
-    pass
-
-class DespachoNotFoundError(JusticaError):
-    pass
-
-class SentencaNotFoundError(JusticaError):
-    pass
-
-class SentencaAlreadyExistsError(JusticaError):
-    pass
-
-class RecursoNotFoundError(JusticaError):
-    pass
+"""
+Auto-generated exceptions for Justice module
+"""
+from apps.backend.core.exceptions.factory import ExceptionFactory
+_exc = ExceptionFactory.create_module_exceptions('Justice')
+JusticeException = _exc.Base
+JusticeNotFound = _exc.NotFound
+JusticeValidationError = _exc.ValidationError
+JusticeUnauthorized = _exc.Unauthorized
+JusticeConflict = _exc.Conflict
+JusticeInvalidState = _exc.InvalidState
+JusticeInvalidStateError = _exc.InvalidStateError

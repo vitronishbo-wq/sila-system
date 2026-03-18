@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Copy, CheckCircle, Loader2, CreditCard } from "lucide-react";
 import { toast } from "react-hot-toast";
-import api from "@/services/api";
+import { operationsService } from "@/services/operationsService";
 
 interface CheckoutProps {
     amount: number;
@@ -28,24 +28,23 @@ export const CheckoutCard = ({ amount, reference, description, onPaymentSuccess 
     const verifyPayment = async () => {
         setLoading(true);
         try {
-            // Chamada real para o backend verificar o status da transação
-            const response = await api.get(`/payments/verify/${reference}`);
+            const payment = await operationsService.confirmPayment(reference);
+            const status = payment.status?.toUpperCase();
 
-            if (response.data.status === "PAID") {
+            if (status === "CONFIRMED" || status === "PAID") {
                 toast.success("Pagamento confirmado via Multicaixa!");
                 onPaymentSuccess?.();
             } else {
                 toast.error("Pagamento ainda não detetado. Tente daqui a instantes.");
             }
         } catch (err: any) {
-            // Se ainda em modo dev, mantemos o fallback de simulação
             if (import.meta.env.DEV) {
-                console.warn("API de pagamento real não encontrada, simulando...");
+                console.warn("API de confirmação não encontrada, simulando...");
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 toast.success("Simulação: Pagamento aceite!");
                 onPaymentSuccess?.();
             } else {
-                toast.error(err.response?.data?.detail || "Erro ao verificar pagamento");
+                toast.error(err?.response?.data?.detail || "Erro ao verificar pagamento");
             }
         } finally {
             setLoading(false);

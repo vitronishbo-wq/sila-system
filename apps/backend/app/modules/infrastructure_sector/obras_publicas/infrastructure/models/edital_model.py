@@ -5,11 +5,9 @@ from sqlalchemy.sql import func
 import uuid
 from apps.backend.app.core.db import Base
 
-
 class EditalModel(Base):
     """Modelo SQLAlchemy para Edital (Tender)."""
     __tablename__ = 'obras_publicas_editais'
-    
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_edital = Column(String(100), unique=True, nullable=False, index=True)
     titulo = Column(String(500), nullable=False)

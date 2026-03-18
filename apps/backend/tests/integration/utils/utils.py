@@ -9,7 +9,7 @@ from typing import Dict, Optional
 from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.schemas.user import UserCreate
+from apps.backend.app.core.schemas.user import UserCreate
 from config import settings
 from core.db.models.postgres.user import User
 from core.security import create_access_token, get_password_hash

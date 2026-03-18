@@ -11,8 +11,8 @@ from fastapi import HTTPException
 from apps.backend.app.modules.payment.application.services.webhook_service import (
     WebhookEngine,
 )
-from apps.backend.app.modules.payment.models.enums import PaymentStatus
-from apps.backend.app.modules.payment.models.payment import Payment
+from apps.backend.app.modules.payment.domain.enums import PaymentStatus
+from apps.backend.app.modules.payment.domain.models.payment import Payment
 
 
 @pytest.fixture

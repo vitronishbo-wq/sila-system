@@ -20,7 +20,6 @@ Uso:
     # OTel automáticamente instrumenta FastAPI, SQLAlchemy, requests, etc
 """
 from __future__ import annotations
-
 import os
 from typing import Optional
 try:

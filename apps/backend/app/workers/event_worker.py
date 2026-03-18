@@ -10,11 +10,11 @@ import asyncio
 import json
 import signal
 import sys
-from app.core.events.broker import RedisBroker
-from app.core.events.registry import HandlerRegistry
-from app.core.events.models import DomainEvent
-from app.core.observability.enterprise_logging import get_logger, setup_enterprise_logging
-from app.core.observability.context import set_request_context
+from apps.backend.app.core.events.broker import RedisBroker
+from apps.backend.app.core.events.registry import HandlerRegistry
+from apps.backend.app.core.events.models import DomainEvent
+from apps.backend.app.core.observability.enterprise_logging import get_logger, setup_enterprise_logging
+from apps.backend.app.core.observability.context import set_request_context
 logger = get_logger('workers.event_worker')
 try:
     from apps.backend.app.modules.educacao.application.events import handlers as educacao_handlers

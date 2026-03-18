@@ -41,7 +41,6 @@ class ModulePingResponse(BaseModel):
     timestamp: str
 
 
-@pytest.mark.asyncio
 class TestModulePingEndpoints:
     """Testes para endpoints /ping de todos os módulos"""
 
@@ -49,6 +48,7 @@ class TestModulePingEndpoints:
         "module_name",
         WORKING_MODULES,
     )
+    @pytest.mark.asyncio
     async def test_working_module_ping_async(
         self, async_client: httpx.AsyncClient, module_name: str
     ):
@@ -285,6 +285,7 @@ class TestModulePingEndpoints:
         if slow_modules:
             pytest.fail(f"Módulos lentos detectados: {', '.join(slow_modules)}")
 
+    @pytest.mark.asyncio
     async def test_concurrent_module_pings(
         self, async_client: httpx.AsyncClient, working_modules
     ):
@@ -336,10 +337,10 @@ class TestModulePingEndpoints:
         ), f"Taxa de sucesso muito baixa: {successful}/{total}"
 
 
-@pytest.mark.asyncio
 class TestModulePingErrorHandling:
     """Testes para tratamento de erros nos endpoints /ping dos módulos"""
 
+    @pytest.mark.asyncio
     async def test_invalid_module_ping(self, async_client: httpx.AsyncClient):
         """
         Testa ping para módulo inexistente

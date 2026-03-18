@@ -1,5 +1,5 @@
 from sqlalchemy import inspect as sa_inspect
-from app.core.db import engine
+from apps.backend.app.core.db import engine
 import asyncio
 
 async def check():

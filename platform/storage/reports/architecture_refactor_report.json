@@ -1,9 +1,0 @@
-{
-  "roots": [
-    "apps/backend/app/modules"
-  ],
-  "modules_processed": 62,
-  "dry_run": true,
-  "actions_count": 0,
-  "actions": []
-}

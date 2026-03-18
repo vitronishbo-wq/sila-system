@@ -17,7 +17,8 @@ import type {
   Payment,
   FinanceStats,
   CreateInvoiceRequest,
-  CreatePaymentRequest
+  CreatePaymentRequest,
+  InvoiceStatus
 } from '../types';
 
 class FinanceService {
@@ -37,7 +38,7 @@ class FinanceService {
       currency: data.currency || 'AOA',
       due_date: data.due_date || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     });
-    return response;
+    return response.data;
   }
 
   /**
@@ -45,7 +46,7 @@ class FinanceService {
    */
   async getInvoice(invoiceId: string): Promise<Invoice> {
     const response = await http.get<Invoice>(`${this.apiBase}/invoices/${invoiceId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -53,7 +54,7 @@ class FinanceService {
    */
   async getCitizenInvoices(citizenId: string): Promise<Invoice[]> {
     const response = await http.get<Invoice[]>(`${this.apiBase}/invoices/citizen/${citizenId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -67,7 +68,7 @@ class FinanceService {
       gateway_reference: data.gateway_reference,
       payment_method: data.payment_method,
     });
-    return response;
+    return response.data;
   }
 
   /**
@@ -75,7 +76,7 @@ class FinanceService {
    */
   async getCitizenPayments(citizenId: string): Promise<Payment[]> {
     const response = await http.get<Payment[]>(`${this.apiBase}/payments/citizen/${citizenId}`);
-    return response;
+    return response.data;
   }
 
   /**
@@ -83,7 +84,7 @@ class FinanceService {
    */
   async confirmPaymentWebhook(payload: Record<string, any>): Promise<{ status: string; message: string }> {
     const response = await http.post<{ status: string; message: string }>(`${this.apiBase}/payments/confirm`, payload);
-    return response;
+    return response.data;
   }
 
   /**
@@ -91,27 +92,7 @@ class FinanceService {
    */
   async getFinancialStats(citizenId: string): Promise<FinanceStats> {
     const invoices = await this.getCitizenInvoices(citizenId);
-    const payments = await this.getCitizenPayments(citizenId);
-
-    const totalAmount = invoices.reduce((sum, inv) => sum + inv.amount, 0);
-    const paidAmount = invoices
-      .filter(inv => inv.status === 'paid')
-      .reduce((sum, inv) => sum + inv.amount, 0);
-    const pendingAmount = invoices
-      .filter(inv => inv.status === 'pending')
-      .reduce((sum, inv) => sum + inv.amount, 0);
-    const overdueAmount = invoices
-      .filter(inv => inv.status === 'overdue')
-      .reduce((sum, inv) => sum + inv.amount, 0);
-
-    return {
-      total_invoices: invoices.length,
-      total_amount: totalAmount,
-      paid_amount: paidAmount,
-      pending_amount: pendingAmount,
-      overdue_amount: overdueAmount,
-      payment_rate: totalAmount > 0 ? (paidAmount / totalAmount) * 100 : 0,
-    };
+    return this.computeStats(invoices);
   }
 
   /**
@@ -122,7 +103,8 @@ class FinanceService {
     if (citizenId) {
       return this.getCitizenInvoices(citizenId);
     }
-    return [];
+    const response = await http.get<Invoice[]>(`${this.apiBase}/invoices`);
+    return response.data;
   }
 
   /**
@@ -130,14 +112,8 @@ class FinanceService {
    * Mantido para compatibilidade com componentes legados
    */
   async getStats(): Promise<FinanceStats> {
-    return {
-      total_invoices: 0,
-      total_amount: 0,
-      paid_amount: 0,
-      pending_amount: 0,
-      overdue_amount: 0,
-      payment_rate: 0,
-    };
+    const invoices = await this.getInvoices();
+    return this.computeStats(invoices);
   }
 
   /**
@@ -153,6 +129,28 @@ class FinanceService {
       gateway_reference: gatewayRef,
       payment_method: 'INTERNET_BANKING',
     });
+  }
+
+  private computeStats(invoices: Invoice[]): FinanceStats {
+    const totalAmount = invoices.reduce((sum, inv) => sum + inv.amount, 0);
+    const paidInvoices = invoices.filter(inv => inv.status === InvoiceStatus.PAID);
+    const pendingInvoices = invoices.filter(inv => inv.status === InvoiceStatus.PENDING);
+    const overdueInvoices = invoices.filter(inv => inv.status === InvoiceStatus.OVERDUE);
+
+    const paidAmount = paidInvoices.reduce((sum, inv) => sum + inv.amount, 0);
+    const pendingAmount = pendingInvoices.reduce((sum, inv) => sum + inv.amount, 0);
+    const overdueAmount = overdueInvoices.reduce((sum, inv) => sum + inv.amount, 0);
+
+    return {
+      total_invoices: invoices.length,
+      total_amount: totalAmount,
+      paid_amount: paidAmount,
+      pending_amount: pendingAmount,
+      overdue_amount: overdueAmount,
+      payment_rate: totalAmount > 0 ? (paidAmount / totalAmount) * 100 : 0,
+      paid_count: paidInvoices.length,
+      pending_count: pendingInvoices.length,
+    };
   }
 }
 

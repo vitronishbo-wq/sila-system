@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from apps.backend.app.modules.civil_protection.api.deps import get_ocorrencia_emergencial_service
-from apps.backend.app.modules.civil_protection.api.schemas.ocorrencia_emergencial_schema import OcorrenciaEmergencialCreate, OcorrenciaEmergencialResponse, OcorrenciaEmergencialStatusUpdate
+from apps.backend.app.modules.civil_protection.application.dto.ocorrencia_emergencial_schema import OcorrenciaEmergencialCreate, OcorrenciaEmergencialResponse, OcorrenciaEmergencialStatusUpdate
 from apps.backend.app.modules.civil_protection.application.services.ocorrencia_emergencial_service import OcorrenciaEmergencialService
 from apps.backend.app.modules.civil_protection.domain.enums import StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
 router = APIRouter(prefix='/ocorrencias-emergenciais', tags=['Protecao Civil - Ocorrencias Emergenciais'])

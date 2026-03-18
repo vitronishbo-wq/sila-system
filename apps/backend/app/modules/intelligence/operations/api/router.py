@@ -5,7 +5,7 @@ from apps.backend.app.core.identity import IdentityContext
 from apps.backend.app.modules.intelligence.operations.api.deps import get_operations_service
 from apps.backend.app.modules.intelligence.operations.api.schemas import OrderAttachDocumentsRequest, OrderCreateRequest, OrderResponse, PaymentResponse, ReceiptResponse, ServiceCatalogItemResponse
 from apps.backend.app.modules.intelligence.operations.application.services.operations_service import OperationsService
-router = APIRouter(tags=['Operational Flow'])
+router = APIRouter(prefix='/operations', tags=['Operational Flow'])
 
 @router.get('/services', response_model=list[ServiceCatalogItemResponse])
 async def list_services(service: OperationsService=Depends(get_operations_service)):

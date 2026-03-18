@@ -1,22 +1,19 @@
-(.venv) dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 8 -I "venv|__pycache__|*.egg-info|node_modules|dist|build"
+dev03wsl@Rochete-consultoria:~/sila-system$ tree -L 5 -I "venv|__pycache__|*.egg-info|node_modules|dist|build"
 .
 ├── AI_ENTRYPOINTS.yaml
 ├── AI_FILE_SCOPE.yaml
 ├── API_MAP.yaml
 ├── ARCHITECTURE_DEPENDENCIES.yaml
 ├── ARCHITECTURE_INDEX.yaml
-├── BATCH_ACTIONS_APPLIED.md
-├── CONSOLIDATION_COMPLIANCE_2026-03-13.md
-├── CONSOLIDATION_HANDOFF_2026-03-13.txt
-├── DIAGNOSTIC_REPORT.sh
+├── CONSOLIDATION_STATUS_REPORT.json
+├── DUPLICATION_ANALYSIS.csv
+├── DUPLICATION_ANALYSIS.json
+├── DUPLICATION_SUMMARY.csv
 ├── Dockerfile.alerts
-├── FINAL_SILA3_AUDIT.txt
+├── IAM_AUDIT_SUMMARY.csv
 ├── Makefile
 ├── Makefile.db
-├── NEXT_SPRINT_COMMANDS.md
-├── SILA3.0_FINAL_ARTIFACTS.md
-├── VISUAL_COMPLIANCE_DASHBOARD.txt
-├── access_db.sh
+├── TODO.md
 ├── alembic
 │   ├── env.py
 │   ├── script.py.mako
@@ -28,9 +25,8 @@
 │       ├── 005_add_constraints.py
 │       ├── 006_add_triggers.py
 │       ├── 007_add_views_performance.py
-│       └── 008_add_citizen_hierarchy_columns.py
-├── alert-rules.yml
-├── alertmanager.yml
+│       ├── 008_add_citizen_hierarchy_columns.py
+│       └── 009_create_wallet_notifications_tables.py
 ├── app
 ├── apps
 │   ├── __init__.py
@@ -47,402 +43,6 @@
 │   │   ├── STRATEGIC_DECISION_POINT.py
 │   │   ├── TEMPLATE_DDD_MODULE.py
 │   │   ├── __init__.py
-│   │   ├── _backup_modules
-│   │   │   └── justice_backup_
-│   │   │       ├── ARCHITECTURE.md
-│   │   │       ├── api
-│   │   │       │   └── router.py
-│   │   │       ├── application
-│   │   │       ├── bounded_contexts
-│   │   │       │   ├── __init__.py
-│   │   │       │   ├── application
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── ports
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── assistencia_social_service_port.py
-│   │   │       │   │   │   ├── bi_repository_port.py
-│   │   │       │   │   │   ├── birth_repository_port.py
-│   │   │       │   │   │   ├── cemetery_inspection_repository_port.py
-│   │   │       │   │   │   ├── citizen_fuc_client_port.py
-│   │   │       │   │   │   ├── citizen_port.py
-│   │   │       │   │   │   ├── citizen_repository_port.py
-│   │   │       │   │   │   ├── death_repository_port.py
-│   │   │       │   │   │   ├── document_repository_port.py
-│   │   │       │   │   │   ├── educacao_service_port.py
-│   │   │       │   │   │   ├── emprego_service_port.py
-│   │   │       │   │   │   ├── identity_request_repository_port.py
-│   │   │       │   │   │   ├── juventude_service_port.py
-│   │   │       │   │   │   ├── marriage_repository_port.py
-│   │   │       │   │   │   ├── platform_shared_ports.py
-│   │   │       │   │   │   └── saude_service_port.py
-│   │   │       │   │   └── services
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── bi_emission_service.py
-│   │   │       │   │       ├── birth_service.py
-│   │   │       │   │       ├── certificate_service.py
-│   │   │       │   │       ├── citizen_service.py
-│   │   │       │   │       ├── death_service.py
-│   │   │       │   │       ├── document_service.py
-│   │   │       │   │       ├── marriage_service.py
-│   │   │       │   │       ├── profile_queries.py
-│   │   │       │   │       ├── service.py
-│   │   │       │   │       └── services
-│   │   │       │   ├── cemetery_management
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── api
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── router.py
-│   │   │       │   │   ├── application
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── cemetery_inspection_service.py
-│   │   │       │   │   ├── domain
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── cemetery_inspection_record.py
-│   │   │       │   │   └── infrastructure
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── cemetery_inspection_model.py
-│   │   │       │   │       └── cemetery_inspection_repository.py
-│   │   │       │   ├── civil_registry_core
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── api
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── router.py
-│   │   │       │   │   ├── application
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── ports
-│   │   │       │   │   │   └── services
-│   │   │       │   │   ├── domain
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── aggregates
-│   │   │       │   │   │   ├── entities
-│   │   │       │   │   │   └── value_objects
-│   │   │       │   │   ├── infrastructure
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── models
-│   │   │       │   │   │   └── repositories
-│   │   │       │   │   └── projections
-│   │   │       │   │       └── __init__.py
-│   │   │       │   ├── identity_documents
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── api
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── bi_routes.py
-│   │   │       │   │   │   ├── documents_routes.py
-│   │   │       │   │   │   └── router.py
-│   │   │       │   │   ├── application
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── ports
-│   │   │       │   │   │   └── services
-│   │   │       │   │   ├── domain
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── entities
-│   │   │       │   │   ├── infrastructure
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── models
-│   │   │       │   │   │   └── repositories
-│   │   │       │   │   ├── integrations
-│   │   │       │   │   │   └── __init__.py
-│   │   │       │   │   └── projections
-│   │   │       │   │       └── __init__.py
-│   │   │       │   ├── infrastructure
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── adapters
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── assistencia_social_service_adapter.py
-│   │   │       │   │   │   ├── educacao_service_adapter.py
-│   │   │       │   │   │   ├── emprego_service_adapter.py
-│   │   │       │   │   │   ├── juventude_service_adapter.py
-│   │   │       │   │   │   └── saude_service_adapter.py
-│   │   │       │   │   ├── models
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── bi.py
-│   │   │       │   │   │   ├── bi_event.py
-│   │   │       │   │   │   ├── bi_event_record.py
-│   │   │       │   │   │   ├── bi_record.py
-│   │   │       │   │   │   ├── birth_record.py
-│   │   │       │   │   │   ├── cemetery_inspection_model.py
-│   │   │       │   │   │   ├── cemetery_inspection_record.py
-│   │   │       │   │   │   ├── certificate_record.py
-│   │   │       │   │   │   ├── citizen.py
-│   │   │       │   │   │   ├── citizen_event_model.py
-│   │   │       │   │   │   ├── citizen_model.py
-│   │   │       │   │   │   ├── civil_event.py
-│   │   │       │   │   │   ├── death_record.py
-│   │   │       │   │   │   ├── document.py
-│   │   │       │   │   │   ├── fuc_projection.py
-│   │   │       │   │   │   ├── identity_request.py
-│   │   │       │   │   │   ├── identity_request_record.py
-│   │   │       │   │   │   └── marriage_record.py
-│   │   │       │   │   └── repositories
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── bi_repository.py
-│   │   │       │   │       ├── birth_repository.py
-│   │   │       │   │       ├── cemetery_inspection_repository.py
-│   │   │       │   │       ├── citizen_repository.py
-│   │   │       │   │       ├── civil_event_repository.py
-│   │   │       │   │       ├── death_repository.py
-│   │   │       │   │       ├── document_repository.py
-│   │   │       │   │       ├── identity_request_repository.py
-│   │   │       │   │       └── marriage_repository.py
-│   │   │       │   ├── permissions
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── access_control.py
-│   │   │       │   │   └── policies.py
-│   │   │       │   └── vital_events
-│   │   │       │       ├── __init__.py
-│   │   │       │       ├── api
-│   │   │       │       │   ├── __init__.py
-│   │   │       │       │   ├── birth_routes.py
-│   │   │       │       │   ├── death_routes.py
-│   │   │       │       │   ├── marriage_routes.py
-│   │   │       │       │   └── router.py
-│   │   │       │       ├── application
-│   │   │       │       │   ├── __init__.py
-│   │   │       │       │   ├── ports
-│   │   │       │       │   └── services
-│   │   │       │       ├── domain
-│   │   │       │       │   ├── __init__.py
-│   │   │       │       │   └── entities
-│   │   │       │       ├── events
-│   │   │       │       │   └── __init__.py
-│   │   │       │       ├── infrastructure
-│   │   │       │       │   ├── __init__.py
-│   │   │       │       │   ├── models
-│   │   │       │       │   └── repositories
-│   │   │       │       └── projections
-│   │   │       │           └── __init__.py
-│   │   │       ├── civil_registry
-│   │   │       │   ├── ARCHITECTURE.md
-│   │   │       │   ├── __init__.py
-│   │   │       │   ├── adapters
-│   │   │       │   │   └── __init__.py
-│   │   │       │   ├── api
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── atestados_routes.py
-│   │   │       │   │   ├── bi_routes.py
-│   │   │       │   │   ├── certificates
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── certificate_routes.py
-│   │   │       │   │   ├── citizen_documents.py
-│   │   │       │   │   ├── citizens
-│   │   │       │   │   │   └── citizens_routes.py
-│   │   │       │   │   ├── documents
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── documents_routes.py
-│   │   │       │   │   ├── events
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── birth_routes.py
-│   │   │       │   │   │   ├── death_routes.py
-│   │   │       │   │   │   └── marriage_routes.py
-│   │   │       │   │   ├── health.py
-│   │   │       │   │   ├── historico_routes.py
-│   │   │       │   │   ├── public_router.py
-│   │   │       │   │   ├── router.py
-│   │   │       │   │   └── validacao_routes.py
-│   │   │       │   ├── application
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── ports
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── assistencia_social_service_port.py
-│   │   │       │   │   │   ├── bi_repository_port.py
-│   │   │       │   │   │   ├── birth_repository_port.py
-│   │   │       │   │   │   ├── cemetery_inspection_repository_port.py
-│   │   │       │   │   │   ├── citizen_fuc_client_port.py
-│   │   │       │   │   │   ├── citizen_port.py
-│   │   │       │   │   │   ├── citizen_repository_port.py
-│   │   │       │   │   │   ├── death_repository_port.py
-│   │   │       │   │   │   ├── document_repository_port.py
-│   │   │       │   │   │   ├── educacao_service_port.py
-│   │   │       │   │   │   ├── emprego_service_port.py
-│   │   │       │   │   │   ├── identity_request_repository_port.py
-│   │   │       │   │   │   ├── juventude_service_port.py
-│   │   │       │   │   │   ├── marriage_repository_port.py
-│   │   │       │   │   │   ├── platform_shared_ports.py
-│   │   │       │   │   │   └── saude_service_port.py
-│   │   │       │   │   ├── ports.py
-│   │   │       │   │   ├── service.py
-│   │   │       │   │   └── services
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── alter_data_service.py
-│   │   │       │   │       ├── audit.py
-│   │   │       │   │       ├── bi_event_handler.py
-│   │   │       │   │       ├── cemetery_inspection_service.py
-│   │   │       │   │       ├── certificate_state_service.py
-│   │   │       │   │       ├── citizen_query_service.py
-│   │   │       │   │       ├── events.py
-│   │   │       │   │       ├── identity_request_service.py
-│   │   │       │   │       ├── late_birth_service.py
-│   │   │       │   │       ├── queries.py
-│   │   │       │   │       ├── request_service.py
-│   │   │       │   │       ├── routing_engine.py
-│   │   │       │   │       ├── schemas.py
-│   │   │       │   │       └── services
-│   │   │       │   ├── domain
-│   │   │       │   │   ├── aggregates
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   └── citizen_aggregate.py
-│   │   │       │   │   ├── entities
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── base.py
-│   │   │       │   │   │   ├── bilhete_identidade.py
-│   │   │       │   │   │   ├── citizen.py
-│   │   │       │   │   │   └── identity_request.py
-│   │   │       │   │   ├── entities.py
-│   │   │       │   │   ├── exceptions.py
-│   │   │       │   │   ├── models
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── bi.py
-│   │   │       │   │   │   ├── bi_event.py
-│   │   │       │   │   │   ├── bi_event_record.py
-│   │   │       │   │   │   ├── bi_record.py
-│   │   │       │   │   │   ├── cemetery_inspection_record.py
-│   │   │       │   │   │   ├── certificate_record.py
-│   │   │       │   │   │   ├── citizen.py
-│   │   │       │   │   │   ├── civil_event.py
-│   │   │       │   │   │   ├── document.py
-│   │   │       │   │   │   ├── fuc_projection.py
-│   │   │       │   │   │   ├── identity_request.py
-│   │   │       │   │   │   └── identity_request_record.py
-│   │   │       │   │   └── value_objects
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── document_number.py
-│   │   │       │   │       └── nationality.py
-│   │   │       │   ├── enums.py
-│   │   │       │   ├── events
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── models.py
-│   │   │       │   │   └── service.py
-│   │   │       │   ├── exceptions.py
-│   │   │       │   ├── infrastructure
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── adapters
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── assistencia_social_service_adapter.py
-│   │   │       │   │   │   ├── educacao_service_adapter.py
-│   │   │       │   │   │   ├── emprego_service_adapter.py
-│   │   │       │   │   │   ├── juventude_service_adapter.py
-│   │   │       │   │   │   └── saude_service_adapter.py
-│   │   │       │   │   ├── citizen_repository.py
-│   │   │       │   │   ├── fuc_adapter.py
-│   │   │       │   │   ├── logging_config.py
-│   │   │       │   │   ├── models
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── bi.py
-│   │   │       │   │   │   ├── bi_event.py
-│   │   │       │   │   │   ├── bi_event_record.py
-│   │   │       │   │   │   ├── bi_record.py
-│   │   │       │   │   │   ├── birth_record.py
-│   │   │       │   │   │   ├── cemetery_inspection_model.py
-│   │   │       │   │   │   ├── cemetery_inspection_record.py
-│   │   │       │   │   │   ├── certificate_record.py
-│   │   │       │   │   │   ├── citizen.py
-│   │   │       │   │   │   ├── citizen_event_model.py
-│   │   │       │   │   │   ├── citizen_model.py
-│   │   │       │   │   │   ├── civil_event.py
-│   │   │       │   │   │   ├── death_record.py
-│   │   │       │   │   │   ├── document.py
-│   │   │       │   │   │   ├── fuc_projection.py
-│   │   │       │   │   │   ├── identity_request.py
-│   │   │       │   │   │   ├── identity_request_record.py
-│   │   │       │   │   │   └── marriage_record.py
-│   │   │       │   │   ├── persistence
-│   │   │       │   │   └── repositories
-│   │   │       │   │       ├── __init__.py
-│   │   │       │   │       ├── bi_repository.py
-│   │   │       │   │       ├── cemetery_inspection_repository.py
-│   │   │       │   │       ├── citizen_repository.py
-│   │   │       │   │       ├── civil_event_repository.py
-│   │   │       │   │       ├── document_repository.py
-│   │   │       │   │       └── identity_request_repository.py
-│   │   │       │   ├── integrations
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── citizen_fuc_client.py
-│   │   │       │   │   ├── fuc
-│   │   │       │   │   │   ├── __init__.py
-│   │   │       │   │   │   ├── adapter.py
-│   │   │       │   │   │   └── client.py
-│   │   │       │   │   └── fuc_client.py
-│   │   │       │   ├── interfaces
-│   │   │       │   │   └── api
-│   │   │       │   │       ├── endpoints
-│   │   │       │   │       └── schemas
-│   │   │       │   ├── migrations
-│   │   │       │   │   └── 2026_create_civil_registry_projection.sql
-│   │   │       │   ├── module.yaml
-│   │   │       │   ├── permissions
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── access_control.py
-│   │   │       │   │   └── policies.py
-│   │   │       │   ├── projection
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   └── civil_registry_projector.py
-│   │   │       │   ├── projections
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── citizen_projector.py
-│   │   │       │   │   ├── projectors.py
-│   │   │       │   │   └── rebuild.py
-│   │   │       │   ├── scripts
-│   │   │       │   │   └── start_justice_workers.sh
-│   │   │       │   ├── service.py
-│   │   │       │   ├── shared
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   └── orm_base.py
-│   │   │       │   ├── tests
-│   │   │       │   │   ├── __init__.py
-│   │   │       │   │   ├── conftest.py
-│   │   │       │   │   ├── test_adapters.py
-│   │   │       │   │   ├── test_auth.py
-│   │   │       │   │   ├── test_bi_routes.py
-│   │   │       │   │   ├── test_birth_events.py
-│   │   │       │   │   ├── test_certificates.py
-│   │   │       │   │   ├── test_citizen_entity.py
-│   │   │       │   │   ├── test_citizen_model.py
-│   │   │       │   │   ├── test_citizen_repository.py
-│   │   │       │   │   ├── test_citizens_integracao_routes.py
-│   │   │       │   │   ├── test_death_events.py
-│   │   │       │   │   ├── test_historico_routes.py
-│   │   │       │   │   ├── test_integracao_assistencia.py
-│   │   │       │   │   ├── test_integracao_educacao.py
-│   │   │       │   │   ├── test_integracao_emprego.py
-│   │   │       │   │   ├── test_integracao_juventude.py
-│   │   │       │   │   ├── test_integracao_saude.py
-│   │   │       │   │   ├── test_marriage_events.py
-│   │   │       │   │   └── test_validacao_routes.py
-│   │   │       │   └── workers
-│   │   │       │       └── civil_registry_projection_worker.py
-│   │   │       ├── domain
-│   │   │       │   └── exceptions.py
-│   │   │       ├── events
-│   │   │       │   ├── ARCHITECTURE.md
-│   │   │       │   ├── __init__.py
-│   │   │       │   ├── api
-│   │   │       │   ├── application
-│   │   │       │   ├── bus.py
-│   │   │       │   ├── definitions.py
-│   │   │       │   ├── domain
-│   │   │       │   │   └── exceptions.py
-│   │   │       │   ├── infrastructure
-│   │   │       │   ├── module.yaml
-│   │   │       │   └── tests
-│   │   │       ├── exceptions.py
-│   │   │       ├── infrastructure
-│   │   │       ├── module.yaml
-│   │   │       └── tests
-│   │   │           ├── api
-│   │   │           │   ├── health.py
-│   │   │           │   └── router.py
-│   │   │           ├── application
-│   │   │           ├── cemetery_management
-│   │   │           │   └── __init__.py
-│   │   │           ├── civil_registry_core
-│   │   │           │   └── __init__.py
-│   │   │           ├── domain
-│   │   │           ├── identity_documents
-│   │   │           │   └── __init__.py
-│   │   │           ├── infrastructure
-│   │   │           ├── test_e2e_civil_registry.py
-│   │   │           └── vital_events
-│   │   │               └── __init__.py
 │   │   ├── alembic
 │   │   │   ├── env.py
 │   │   │   ├── script.py.mako
@@ -512,8 +112,23 @@
 │   │   │       ├── 20260306_049_patrimonio_cultural_foundation.py
 │   │   │       ├── 20260306_050_defesa_consumidor_reclamacoes.py
 │   │   │       ├── 20260313_051_energy_logistics_justice_pillars.py
+│   │   │       ├── 20260314_052_transportes_logistica_audit_columns.py
+│   │   │       ├── 20260314_053_wallet_notifications_tables.py
+│   │   │       ├── 20260316_054_create_audit_logs.py
+│   │   │       ├── 20260316_1100_export_jobs.py
+│   │   │       ├── 20260316_1130_export_job_logs.py
+│   │   │       ├── 20260318_1200_create_sla_engine_tables.py
+│   │   │       ├── 20260318_1500_locations_parent_cascade.py
+│   │   │       ├── 20260318_1510_merge_locations_cascade_head.py
+│   │   │       ├── 20260318_1700_create_economy_financas_tables.py
+│   │   │       ├── 20260318_1715_add_economy_audit_columns.py
 │   │   │       ├── 2026_03_03_1304-3261f0e24605_modulo_juventude.py
 │   │   │       ├── 2026_03_08_0847-47abb2f40d12_taxation_domain.py
+│   │   │       ├── 2026_03_16_0639-6ce98d034292_iam_reconciliation.py
+│   │   │       ├── 2026_03_16_0651-181c15049e80_citizenship_reconciliation.py
+│   │   │       ├── 2026_03_16_0709-4b8e10487f5a_merge_heads.py
+│   │   │       ├── 2026_03_16_0752-4fabf7e6d527_core_identity_reconciliation.py
+│   │   │       ├── 2026_03_16_1618-22ab6d804070_merge_export_and_audit_heads.py
 │   │   │       ├── add_import_audit_table.py
 │   │   │       └── add_import_batch_id_to_territory.py
 │   │   ├── alembic.ini
@@ -525,4955 +140,150 @@
 │   │   │   │   ├── dependencies.py
 │   │   │   │   ├── deps.py
 │   │   │   │   ├── middleware
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── role_router.py
-│   │   │   │   └── router.py
+│   │   │   │   ├── router.py
+│   │   │   │   ├── routers
+│   │   │   │   └── schemas
 │   │   │   ├── config.py
 │   │   │   ├── conftest.py
 │   │   │   ├── conftest_auth.py
 │   │   │   ├── core
-│   │   │   │   ├── ARCHITECTURE.md
 │   │   │   │   ├── AUDIT_REPORT.json
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── audit
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── analytics.py
-│   │   │   │   │   ├── audit_logger.py
-│   │   │   │   │   └── sla_definitions.py
 │   │   │   │   ├── audit_compliance.py
-│   │   │   │   ├── auth_gateway
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── rate_limiter.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── service_token_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── gateway.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── cache
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── permission_cache.py
-│   │   │   │   │   │   └── security
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── auth_resilience.py
-│   │   │   │   │   │       └── jwt_engine.py
-│   │   │   │   │   ├── middleware
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── auth_middleware.py
-│   │   │   │   │   ├── policy_enforcement
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── policy_engine.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── request_authenticator
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── request_authenticator.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── service_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service_identity_manager.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── token_introspection
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── token_introspection.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── autonomous_economic_engine
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── economic_engine.py
-│   │   │   │   │   ├── markets
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── market_model.py
-│   │   │   │   │   └── policies
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── economic_policy.py
 │   │   │   │   ├── autonomous_government_agents
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── agents
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── agent.py
-│   │   │   │   │   ├── execution
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── agent_executor.py
-│   │   │   │   │   └── registry
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── agent_registry.py
 │   │   │   │   ├── autonomous_state
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── autonomous_government_agents
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── agent.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── digital_twin_country
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── digital_twin.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── engine.py
-│   │   │   │   │   ├── national_policy_engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── policy_engine.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── strategic_decision_ai
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── decision_ai.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── bridges
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── citizen_repository_bridge.py
-│   │   │   │   │   ├── citizen_repository_port_bridge.py
-│   │   │   │   │   ├── civil_identity_bridge.py
-│   │   │   │   │   ├── cross_domain_ports_bridge.py
-│   │   │   │   │   ├── emprego_bridge.py
-│   │   │   │   │   ├── finance_bridge.py
-│   │   │   │   │   ├── governance_service_requests_bridge.py
-│   │   │   │   │   ├── identity_bridge.py
-│   │   │   │   │   ├── infrastructure_sector_bridge.py
-│   │   │   │   │   ├── intelligence_bi_sources_bridge.py
-│   │   │   │   │   ├── justice_public_safety_bridge.py
-│   │   │   │   │   ├── resources_agricultura_bridge.py
-│   │   │   │   │   ├── resources_external_services_bridge.py
-│   │   │   │   │   ├── service_requests_bridge.py
-│   │   │   │   │   ├── society_domain_enums_bridge.py
-│   │   │   │   │   ├── society_repository_bridges.py
-│   │   │   │   │   └── society_statistics_models_bridge.py
 │   │   │   │   ├── business
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── models
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── business.py
 │   │   │   │   ├── cache
-│   │   │   │   │   └── service.py
 │   │   │   │   ├── catalog
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── blueprint.py
-│   │   │   │   │   └── models
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── module.py
-│   │   │   │   │       └── service.py
 │   │   │   │   ├── celery
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── app.py
 │   │   │   │   ├── cloud_control
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── autonomous_resource_scheduler
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── scheduler.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── control_plane.py
-│   │   │   │   │   ├── government_cloud_api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── cloud_api.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── national_container_orchestrator
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── orchestrator.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── sovereign_compute_grid
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── compute_grid.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── communication
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── config
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── constants.py
 │   │   │   │   ├── data_exchange
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── cross_ministry_data_fabric
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── government_service_registry
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── secure_data_channels
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── sovereign_xroad
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── data_platform
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── ai_training_pipeline
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── training_pipeline.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── national_data_lake
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── data_lake.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── platform.py
-│   │   │   │   │   ├── real_time_data_stream
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── event_stream.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── sovereign_data_warehouse
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── warehouse.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── database
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base.py
-│   │   │   │   │   ├── repositories
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── base_repository.py
-│   │   │   │   │   ├── session.py
-│   │   │   │   │   └── uow
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── unit_of_work.py
 │   │   │   │   ├── db
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base.py
-│   │   │   │   │   └── base_class.py
 │   │   │   │   ├── dependencies.py
 │   │   │   │   ├── dev_platform
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── architecture_guard
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── guard.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── module_generator
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── module_generator.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── platform.py
-│   │   │   │   │   ├── policy_linter
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── linter.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── service_scaffolder
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── scaffolder.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── document
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── storage
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── local_storage.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── document_file.py
-│   │   │   │   │   └── services
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── document_service.py
 │   │   │   │   ├── domain
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base_aggregate.py
-│   │   │   │   │   └── user_aggregate.py
 │   │   │   │   ├── enums.py
 │   │   │   │   ├── events
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── adapters
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── event_bus_adapter.py
-│   │   │   │   │   ├── aggregates
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── audit_chain
-│   │   │   │   │   │   ├── audit_event.py
-│   │   │   │   │   │   ├── audit_ledger.py
-│   │   │   │   │   │   └── hash_chain.py
-│   │   │   │   │   ├── base_event.py
-│   │   │   │   │   ├── bridge
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── event_bus_bridge.py
-│   │   │   │   │   ├── broker
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── redis_broker.py
-│   │   │   │   │   │   └── redis_stream_broker.py
-│   │   │   │   │   ├── bus
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── event_bus_v2.py
-│   │   │   │   │   ├── bus.py
-│   │   │   │   │   ├── bus_enhanced.py
-│   │   │   │   │   ├── config.py
-│   │   │   │   │   ├── cqrs
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── bus
-│   │   │   │   │   │   │   ├── command_bus.py
-│   │   │   │   │   │   │   └── query_bus.py
-│   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   │   └── command.py
-│   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── command_handler.py
-│   │   │   │   │   │   │   └── query_handler.py
-│   │   │   │   │   │   ├── queries
-│   │   │   │   │   │   │   └── query.py
-│   │   │   │   │   │   └── registry.py
-│   │   │   │   │   ├── decorators
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── publish.py
-│   │   │   │   │   ├── event_versioning
-│   │   │   │   │   │   ├── event_upcaster.py
-│   │   │   │   │   │   └── version_registry.py
-│   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   ├── handlers
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── event_handler.py
-│   │   │   │   │   │   └── example_handlers.py
-│   │   │   │   │   ├── migrations
-│   │   │   │   │   │   └── 001_create_outbox_table.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── event.py
-│   │   │   │   │   │   └── user_events.py
-│   │   │   │   │   ├── multi_region_replication
-│   │   │   │   │   │   ├── region_node.py
-│   │   │   │   │   │   └── replication_manager.py
-│   │   │   │   │   ├── orchestrator
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── saga_orchestrator.py
-│   │   │   │   │   ├── outbox
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── outbox_model.py
-│   │   │   │   │   │   ├── outbox_publisher.py
-│   │   │   │   │   │   └── outbox_repository.py
-│   │   │   │   │   ├── ports
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── event_bus_port.py
-│   │   │   │   │   ├── projection
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── base_projection.py
-│   │   │   │   │   │   └── projection_manager.py
-│   │   │   │   │   ├── projections
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── registry.py
-│   │   │   │   │   │   └── user_projection.py
-│   │   │   │   │   ├── registry
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── handler_registry.py
-│   │   │   │   │   ├── replay
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── engine.py
-│   │   │   │   │   │   └── event_replay.py
-│   │   │   │   │   ├── saga
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── saga.py
-│   │   │   │   │   │   ├── saga_registry.py
-│   │   │   │   │   │   └── saga_state.py
-│   │   │   │   │   ├── setup.py
-│   │   │   │   │   ├── snapshots
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── snapshot_engine.py
-│   │   │   │   │   │   └── snapshot_manager.py
-│   │   │   │   │   ├── store
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── event_repository.py
-│   │   │   │   │   │   ├── event_store.py
-│   │   │   │   │   │   ├── models.py
-│   │   │   │   │   │   ├── repositories.py
-│   │   │   │   │   │   └── sqlalchemy_repository.py
-│   │   │   │   │   ├── test_event_bus.py
-│   │   │   │   │   ├── types.py
-│   │   │   │   │   └── workers
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── event_worker.py
-│   │   │   │   │       ├── outbox_worker.py
-│   │   │   │   │       └── projection_worker.py
 │   │   │   │   ├── exceptions
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── base.py
 │   │   │   │   ├── feature_flags
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── service.py
 │   │   │   │   ├── global_governance_protocol
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── consensus
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── global_consensus.py
-│   │   │   │   │   ├── identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── global_identity.py
-│   │   │   │   │   └── treaties
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── treaty_model.py
 │   │   │   │   ├── governance
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── governance_ai
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── crisis_response_ai
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── crisis_engine.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── economic_forecasting
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── economic_forecaster.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── engine.py
-│   │   │   │   │   ├── national_risk_model
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── risk_engine.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── policy_simulation
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── policy_simulator.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── identity
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── context.py
 │   │   │   │   ├── integration
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── integrations
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── fuc_client.py
 │   │   │   │   ├── intelligence
-│   │   │   │   │   ├── behavioral_ai
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── behavior_model.py
-│   │   │   │   │   ├── crisis_prediction
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── crisis_engine.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── intelligence_event.py
-│   │   │   │   │   ├── economic_simulation
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── economy_model.py
-│   │   │   │   │   ├── national_analytics
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── analytics_engine.py
-│   │   │   │   │   └── predictive_governance
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── application
-│   │   │   │   │           ├── __init__.py
-│   │   │   │   │           └── policy_predictor.py
 │   │   │   │   ├── locks
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── manager.py
 │   │   │   │   ├── models
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── models.py
 │   │   │   │   ├── module_manifest.py
 │   │   │   │   ├── module_registry.py
 │   │   │   │   ├── monitoring
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── national_ai_superintelligence
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── ai_engine.py
-│   │   │   │   │   ├── knowledge
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── knowledge_graph.py
-│   │   │   │   │   ├── learning
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── training_pipeline.py
-│   │   │   │   │   └── models
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── ai_model.py
 │   │   │   │   ├── notifications
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── notification.py
-│   │   │   │   │   └── services
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── notification_service.py
 │   │   │   │   ├── observability
-│   │   │   │   │   ├── MIDDLEWARE_NOTE.txt
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── alert_handler.py
-│   │   │   │   │   ├── anomaly_detector.py
-│   │   │   │   │   ├── anomaly_monitoring
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── anomaly_detector.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── audit_auth.py
-│   │   │   │   │   ├── context.py
-│   │   │   │   │   ├── distributed_tracing
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── tracer.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── enterprise_formatter.py
-│   │   │   │   │   ├── enterprise_logging.py
-│   │   │   │   │   ├── logging_config.py
-│   │   │   │   │   ├── middleware.py
-│   │   │   │   │   ├── national_logging_grid
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── national_logger.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── otel_integration.py
-│   │   │   │   │   ├── platform.py
-│   │   │   │   │   ├── sovereign_metrics
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── metrics_registry.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   └── test_observability_validation.py
 │   │   │   │   ├── planetary_civilization_model
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── civilization_engine.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── civilization_entity.py
-│   │   │   │   │   │   └── civilization_event.py
-│   │   │   │   │   └── simulation
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── civilization_simulator.py
-│   │   │   │   ├── planetary_policy_optimizer
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── metrics
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── policy_metrics.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── policy_model.py
-│   │   │   │   │   └── optimizer
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── policy_optimizer.py
 │   │   │   │   ├── platform
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── quantum_internet_integration
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── crypto
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── quantum_key_exchange.py
-│   │   │   │   │   ├── network
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── quantum_node.py
-│   │   │   │   │   └── transport
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── quantum_transport.py
 │   │   │   │   ├── rate_limit
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── limiter.py
 │   │   │   │   ├── rbac
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── territorial_access.py
 │   │   │   │   ├── registry
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── resilience
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── circuit_breaker.py
-│   │   │   │   │   ├── circuit_breaker_patterns.py
-│   │   │   │   │   ├── config.py
-│   │   │   │   │   ├── decorators.py
-│   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   ├── http_client.py
-│   │   │   │   │   ├── policy.py
-│   │   │   │   │   ├── registry.py
-│   │   │   │   │   └── state.py
 │   │   │   │   ├── schemas
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── user.py
 │   │   │   │   ├── security
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── anomaly_detection
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── anomaly_engine.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── security_middleware.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── security_event.py
-│   │   │   │   │   ├── fraud_detection
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── fraud_engine.py
-│   │   │   │   │   ├── national_soc
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── soc_monitor.py
-│   │   │   │   │   ├── runtime_policy_enforcement
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── runtime_policy_engine.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── service_mutual_tls
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── mtls_service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── threat_detection
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── threat_engine.py
-│   │   │   │   │   ├── workload_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── workload_identity_service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── zero_trust_engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── application
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── zero_trust.py
-│   │   │   │   │   └── zero_trust_gateway
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── zero_trust_gateway.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── sequencing.py
 │   │   │   │   ├── services
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base_request_service.py
-│   │   │   │   │   └── base_request_service_diagrams.py
 │   │   │   │   ├── settings.py
 │   │   │   │   ├── sila_os
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── autonomous_deployment
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── deployer.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── government_sdk
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── sdk.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── national_cli
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── cli.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── os.py
-│   │   │   │   │   └── service_portal
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── portal.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── __init__.py
+│   │   │   │   ├── sla_engine
 │   │   │   │   ├── sovereign_infrastructure
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── autonomous_scaling
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── national_service_mesh
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── planetary_edge_network
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   └── sovereign_api_fabric
-│   │   │   │   │       └── __init__.py
 │   │   │   │   ├── sovereign_quantum_security
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── crypto
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── post_quantum_crypto.py
-│   │   │   │   │   ├── key_management
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── key_manager.py
-│   │   │   │   │   └── verification
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       └── signature_verifier.py
 │   │   │   │   ├── tenants
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── territory
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   └── territory.py
-│   │   │   │   │   └── service.py
 │   │   │   │   ├── use-cases
 │   │   │   │   ├── utils
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── dates.py
-│   │   │   │   │   ├── hashing.py
-│   │   │   │   │   ├── identity_safe.py
-│   │   │   │   │   └── parsing.py
 │   │   │   │   ├── validate_refactor_simple.py
 │   │   │   │   └── workflow
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── infrastructure
-│   │   │   │       │   ├── __init__.py
-│   │   │   │       │   └── repositories
-│   │   │   │       │       ├── __init__.py
-│   │   │   │       │       └── request_repository.py
-│   │   │   │       └── models
-│   │   │   │           ├── __init__.py
-│   │   │   │           ├── process.py
-│   │   │   │           ├── request.py
-│   │   │   │           └── workflow.py
 │   │   │   ├── db
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── base.py
 │   │   │   │   ├── migrations
-│   │   │   │   │   └── versions
-│   │   │   │   │       ├── 001_001_create_workflow_tables.py
-│   │   │   │   │       ├── 002_003_create_request_events.py
-│   │   │   │   │       ├── 003_002_create_attachments.py
-│   │   │   │   │       ├── 004_001_create_service_requests.py
-│   │   │   │   │       ├── 005_002_create_payments_table.py
-│   │   │   │   │       ├── 006_004_add_citizen_id_to_invoices.py
-│   │   │   │   │       ├── 007_001_create_invoices_table.py
-│   │   │   │   │       ├── 008_003_create_audit_logs_table.py
-│   │   │   │   │       ├── 009_001_create_health_tables.py
-│   │   │   │   │       ├── 010_002_add_health_indexes.py
-│   │   │   │   │       ├── 011_001_create_operational_flow_tables.py
-│   │   │   │   │       └── 012_001_expand_service_catalog_governance.py
 │   │   │   │   └── seeds
 │   │   │   ├── infrastructure
+│   │   │   │   ├── event_sourcing
+│   │   │   │   ├── message_broker
 │   │   │   │   └── repositories
-│   │   │   │       └── citizen_repository.py
 │   │   │   ├── main.py
+│   │   │   ├── main.py.bak
 │   │   │   ├── models
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── iam_user.py
 │   │   │   ├── modules
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── api
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── router.py
 │   │   │   │   ├── audit
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── state_audit
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── commands
-│   │   │   │   │       │   ├── dto
-│   │   │   │   │       │   └── services
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── entities
-│   │   │   │   │       │   ├── repositories
-│   │   │   │   │       │   ├── services
-│   │   │   │   │       │   └── value_objects
-│   │   │   │   │       ├── health.py
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── orm
-│   │   │   │   │       │   └── repositories
-│   │   │   │   │       ├── module.py
-│   │   │   │   │       ├── module.yaml
-│   │   │   │   │       └── tests
-│   │   │   │   │           └── test_state_audit_flow.py
 │   │   │   │   ├── civil_protection
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── atendimentos.py
-│   │   │   │   │   │   │   ├── bombeiros.py
-│   │   │   │   │   │   │   ├── corporacoes.py
-│   │   │   │   │   │   │   ├── despachos.py
-│   │   │   │   │   │   │   └── ocorrencias_emergenciais.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── atendimento_schema.py
-│   │   │   │   │   │       ├── bombeiro_schema.py
-│   │   │   │   │   │       ├── corporacao_schema.py
-│   │   │   │   │   │       ├── despacho_schema.py
-│   │   │   │   │   │       └── ocorrencia_emergencial_schema.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── atendimento_repository_port.py
-│   │   │   │   │   │   │   ├── bombeiro_repository_port.py
-│   │   │   │   │   │   │   ├── corporacao_repository_port.py
-│   │   │   │   │   │   │   ├── despacho_repository_port.py
-│   │   │   │   │   │   │   ├── ocorrencia_emergencial_repository_port.py
-│   │   │   │   │   │   │   └── request_service_port.py
-│   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── atendimento_service.py
-│   │   │   │   │   │       ├── bombeiro_service.py
-│   │   │   │   │   │       ├── corporacao_service.py
-│   │   │   │   │   │       ├── despacho_service.py
-│   │   │   │   │   │       └── ocorrencia_emergencial_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── models
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── atendimento.py
-│   │   │   │   │   │       ├── bombeiro.py
-│   │   │   │   │   │       ├── corporacao.py
-│   │   │   │   │   │       ├── despacho.py
-│   │   │   │   │   │       └── ocorrencia_emergencial.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── request_service_adapter.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── atendimento_model.py
-│   │   │   │   │   │   │   ├── bombeiro_model.py
-│   │   │   │   │   │   │   ├── corporacao_model.py
-│   │   │   │   │   │   │   ├── despacho_model.py
-│   │   │   │   │   │   │   └── ocorrencia_emergencial_model.py
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── sqlalchemy_atendimento_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_bombeiro_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_corporacao_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_despacho_repository.py
-│   │   │   │   │   │   │   └── sqlalchemy_ocorrencia_emergencial_repository.py
-│   │   │   │   │   │   └── repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── _fakes.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── test_atendimentos.py
-│   │   │   │   │       ├── test_bombeiros.py
-│   │   │   │   │       ├── test_corporacoes.py
-│   │   │   │   │       ├── test_despachos.py
-│   │   │   │   │       ├── test_ocorrencias_emergenciais.py
-│   │   │   │   │       └── test_orm_integration_real.py
 │   │   │   │   ├── compliance
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── conftest.py
 │   │   │   │   ├── documents
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── documents.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── schemas
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── documents.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── document_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── infrastructure
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── economy
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── apoio_empresarial
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── commands.py
-│   │   │   │   │   │   │   ├── handlers.py
-│   │   │   │   │   │   │   ├── invoice_service.py
-│   │   │   │   │   │   │   ├── payment_service.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   │   ├── enums
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── mocks
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── integrations
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── fuc_client.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── financas
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   └── public_budget
-│   │   │   │   │   │       └── infrastructure
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── public_budget
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── policies.py
-│   │   │   │   │   │   │   └── services.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── taxpayer
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── middleware.py
-│   │   │   │   │   │   │   ├── openapi.py
-│   │   │   │   │   │   │   ├── rate_limiter.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   ├── schemas
-│   │   │   │   │   │   │   └── schemas.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   │   ├── dto
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── queries
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── aggregate_entities.py
-│   │   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   │   ├── enums
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── interfaces
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── api
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── tests
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── trade
-│   │   │   │   │       ├── ARCHITECTURE.md
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── exceptions.py
-│   │   │   │   │       ├── external
-│   │   │   │   │       │   ├── ARCHITECTURE.md
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── api
-│   │   │   │   │       │   ├── application
-│   │   │   │   │       │   ├── domain
-│   │   │   │   │       │   ├── exceptions.py
-│   │   │   │   │       │   ├── infrastructure
-│   │   │   │   │       │   ├── module.yaml
-│   │   │   │   │       │   └── tests
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── module.yaml
-│   │   │   │   │       ├── services
-│   │   │   │   │       │   ├── ARCHITECTURE.md
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── api
-│   │   │   │   │       │   ├── application
-│   │   │   │   │       │   ├── domain
-│   │   │   │   │       │   ├── exceptions.py
-│   │   │   │   │       │   ├── infrastructure
-│   │   │   │   │       │   ├── module.yaml
-│   │   │   │   │       │   └── tests
-│   │   │   │   │       └── tests
 │   │   │   │   ├── educacao
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _workflow_endpoints.py
-│   │   │   │   │   │   │   ├── boletins.py
-│   │   │   │   │   │   │   ├── certificados.py
-│   │   │   │   │   │   │   ├── concursos.py
-│   │   │   │   │   │   │   ├── emprego.py
-│   │   │   │   │   │   │   ├── formacoes.py
-│   │   │   │   │   │   │   ├── inscricoes.py
-│   │   │   │   │   │   │   ├── matricula_routes.py
-│   │   │   │   │   │   │   ├── propinas.py
-│   │   │   │   │   │   │   ├── transferencias.py
-│   │   │   │   │   │   │   └── universidade.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── boletim_schema.py
-│   │   │   │   │   │       ├── certificado_schema.py
-│   │   │   │   │   │       ├── concurso_schema.py
-│   │   │   │   │   │       ├── emprego_schema.py
-│   │   │   │   │   │       ├── escola_schema.py
-│   │   │   │   │   │       ├── formacao_schema.py
-│   │   │   │   │   │       ├── inscricao_schema.py
-│   │   │   │   │   │       ├── matricula_schema.py
-│   │   │   │   │   │       ├── propina_schema.py
-│   │   │   │   │   │       ├── transferencia_schema.py
-│   │   │   │   │   │       ├── universidade_schema.py
-│   │   │   │   │   │       └── workflow_schema.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── boletim_service.py
-│   │   │   │   │   │   ├── certificado_service.py
-│   │   │   │   │   │   ├── concurso_service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── emprego_service.py
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── handlers.py
-│   │   │   │   │   │   ├── formacao_service.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── inscricao_service.py
-│   │   │   │   │   │   ├── matricula_service.py
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── boletim_repository_port.py
-│   │   │   │   │   │   │   ├── certificado_repository_port.py
-│   │   │   │   │   │   │   ├── concurso_repository_port.py
-│   │   │   │   │   │   │   ├── emprego_repository_port.py
-│   │   │   │   │   │   │   ├── escola_repository_port.py
-│   │   │   │   │   │   │   ├── formacao_repository_port.py
-│   │   │   │   │   │   │   ├── identity_service_port.py
-│   │   │   │   │   │   │   ├── inscricao_repository_port.py
-│   │   │   │   │   │   │   ├── matricula_repository_port.py
-│   │   │   │   │   │   │   ├── propina_repository_port.py
-│   │   │   │   │   │   │   ├── transferencia_repository_port.py
-│   │   │   │   │   │   │   ├── turma_repository_port.py
-│   │   │   │   │   │   │   ├── universidade_repository_port.py
-│   │   │   │   │   │   │   └── workflow_repository_port.py
-│   │   │   │   │   │   ├── propina_service.py
-│   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── matricula_service.py
-│   │   │   │   │   │   ├── transferencia_service.py
-│   │   │   │   │   │   ├── universidade_service.py
-│   │   │   │   │   │   └── workflow_service.py
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── ports
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _workflow_record.py
-│   │   │   │   │   │   │   ├── acreditacao_universitaria.py
-│   │   │   │   │   │   │   ├── alfabetizacao.py
-│   │   │   │   │   │   │   ├── ano_letivo.py
-│   │   │   │   │   │   │   ├── apoio_alimentar.py
-│   │   │   │   │   │   │   ├── apoio_alimentar_escolar.py
-│   │   │   │   │   │   │   ├── avaliacao.py
-│   │   │   │   │   │   │   ├── avaliacao_desempenho.py
-│   │   │   │   │   │   │   ├── avaliacao_institucional.py
-│   │   │   │   │   │   │   ├── boletim.py
-│   │   │   │   │   │   │   ├── bolsa_candidatura.py
-│   │   │   │   │   │   │   ├── bolsa_investigacao.py
-│   │   │   │   │   │   │   ├── candidato_emprego.py
-│   │   │   │   │   │   │   ├── cantina.py
-│   │   │   │   │   │   │   ├── capacitacao_qualidade.py
-│   │   │   │   │   │   │   ├── certificacao_competencias.py
-│   │   │   │   │   │   │   ├── certificacao_profissional.py
-│   │   │   │   │   │   │   ├── certificado_conclusao.py
-│   │   │   │   │   │   │   ├── certificado_universitario.py
-│   │   │   │   │   │   │   ├── concurso_inscricao.py
-│   │   │   │   │   │   │   ├── concurso_resultado.py
-│   │   │   │   │   │   │   ├── credenciamento.py
-│   │   │   │   │   │   │   ├── declaracao_desemprego.py
-│   │   │   │   │   │   │   ├── declaracao_escolar.py
-│   │   │   │   │   │   │   ├── educacao_comunitaria.py
-│   │   │   │   │   │   │   ├── educacao_especial.py
-│   │   │   │   │   │   │   ├── escola.py
-│   │   │   │   │   │   │   ├── estagio_publico.py
-│   │   │   │   │   │   │   ├── estatistica_superior.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── fiscalizacao_trabalho.py
-│   │   │   │   │   │   │   ├── formacao_avancada.py
-│   │   │   │   │   │   │   ├── formacao_certificada.py
-│   │   │   │   │   │   │   ├── formacao_gestores.py
-│   │   │   │   │   │   │   ├── formacao_profissional.py
-│   │   │   │   │   │   │   ├── historico_escolar.py
-│   │   │   │   │   │   │   ├── inscricao_basica.py
-│   │   │   │   │   │   │   ├── inscricao_secundaria.py
-│   │   │   │   │   │   │   ├── inscricao_superior.py
-│   │   │   │   │   │   │   ├── inscricao_tecnico.py
-│   │   │   │   │   │   │   ├── matricula.py
-│   │   │   │   │   │   │   ├── matricula_universidade.py
-│   │   │   │   │   │   │   ├── mediacao_conflito.py
-│   │   │   │   │   │   │   ├── mediacao_emprego.py
-│   │   │   │   │   │   │   ├── mobilidade_academica.py
-│   │   │   │   │   │   │   ├── mobilidade_publica.py
-│   │   │   │   │   │   │   ├── oferta_emprego.py
-│   │   │   │   │   │   │   ├── parceria_universidade.py
-│   │   │   │   │   │   │   ├── propina.py
-│   │   │   │   │   │   │   ├── reclamacao_trabalhista.py
-│   │   │   │   │   │   │   ├── reconhecimento_diploma.py
-│   │   │   │   │   │   │   ├── reconhecimento_grau.py
-│   │   │   │   │   │   │   ├── reconversao.py
-│   │   │   │   │   │   │   ├── registo_contrato.py
-│   │   │   │   │   │   │   ├── transferencia.py
-│   │   │   │   │   │   │   ├── transferencia_universitaria.py
-│   │   │   │   │   │   │   ├── turma.py
-│   │   │   │   │   │   │   └── vaga.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── academic
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── ano_letivo.py
-│   │   │   │   │   │   ├── professional
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── value_objects
-│   │   │   │   │   │   └── workflow
-│   │   │   │   │   │       └── strategies
-│   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ano_letivo_model.py
-│   │   │   │   │   │   │   ├── boletim_model.py
-│   │   │   │   │   │   │   ├── certificado_model.py
-│   │   │   │   │   │   │   ├── concurso_model.py
-│   │   │   │   │   │   │   ├── emprego_model.py
-│   │   │   │   │   │   │   ├── escola_model.py
-│   │   │   │   │   │   │   ├── formacao_model.py
-│   │   │   │   │   │   │   ├── inscricao_model.py
-│   │   │   │   │   │   │   ├── matricula_model.py
-│   │   │   │   │   │   │   ├── propina_model.py
-│   │   │   │   │   │   │   ├── transferencia_model.py
-│   │   │   │   │   │   │   ├── turma_model.py
-│   │   │   │   │   │   │   └── universidade_model.py
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _workflow_sqlalchemy_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_boletim_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_certificado_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_concurso_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_emprego_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_escola_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_formacao_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_inscricao_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_matricula_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_propina_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_transferencia_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_turma_repository.py
-│   │   │   │   │   │   │   └── sqlalchemy_universidade_repository.py
-│   │   │   │   │   │   └── repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── test_boletim.py
-│   │   │   │   │       ├── test_certificado.py
-│   │   │   │   │       ├── test_concurso.py
-│   │   │   │   │       ├── test_emprego.py
-│   │   │   │   │       ├── test_formacao.py
-│   │   │   │   │       ├── test_inscricao.py
-│   │   │   │   │       ├── test_matricula.py
-│   │   │   │   │       ├── test_propina.py
-│   │   │   │   │       ├── test_transferencia.py
-│   │   │   │   │       └── test_universidade.py
 │   │   │   │   ├── energy
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── central_geradora.py
-│   │   │   │   │   │   │   ├── consumo.py
-│   │   │   │   │   │   │   ├── faturas.py
-│   │   │   │   │   │   │   ├── geracao.py
-│   │   │   │   │   │   │   ├── linha_transmissao.py
-│   │   │   │   │   │   │   ├── subestacao.py
-│   │   │   │   │   │   │   └── usinas.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── central_geradora_schema.py
-│   │   │   │   │   │       ├── consumo_schema.py
-│   │   │   │   │   │       ├── dashboard_schema.py
-│   │   │   │   │   │       ├── fatura_schema.py
-│   │   │   │   │   │       ├── linha_transmissao_schema.py
-│   │   │   │   │   │       ├── subestacao_schema.py
-│   │   │   │   │   │       └── usina_schema.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   ├── dto
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   │   ├── definitions.py
-│   │   │   │   │   │   │   └── registry.py
-│   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── auditoria_handler.py
-│   │   │   │   │   │   │   ├── faturamento_handler.py
-│   │   │   │   │   │   │   └── notificacao_handler.py
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ambiente_service_port.py
-│   │   │   │   │   │   │   ├── central_geradora_repository_port.py
-│   │   │   │   │   │   │   ├── citizen_service_port.py
-│   │   │   │   │   │   │   ├── consumo_repository_port.py
-│   │   │   │   │   │   │   ├── fatura_repository_port.py
-│   │   │   │   │   │   │   ├── financas_publicas_service_port.py
-│   │   │   │   │   │   │   ├── geosampa_service_port.py
-│   │   │   │   │   │   │   ├── gestao_fundiaria_service_port.py
-│   │   │   │   │   │   │   ├── grid_sensor_port.py
-│   │   │   │   │   │   │   ├── linha_transmissao_repository_port.py
-│   │   │   │   │   │   │   ├── obras_publicas_service_port.py
-│   │   │   │   │   │   │   ├── ons_service_port.py
-│   │   │   │   │   │   │   ├── outbox_repository_port.py
-│   │   │   │   │   │   │   ├── request_service_port.py
-│   │   │   │   │   │   │   ├── subestacao_repository_port.py
-│   │   │   │   │   │   │   ├── urbanismo_service_port.py
-│   │   │   │   │   │   │   └── usina_repository_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── central_geradora_service.py
-│   │   │   │   │   │       ├── consumo_service.py
-│   │   │   │   │   │       ├── faturamento_service.py
-│   │   │   │   │   │       ├── geracao_service.py
-│   │   │   │   │   │       ├── linha_transmissao_service.py
-│   │   │   │   │   │       ├── subestacao_service.py
-│   │   │   │   │   │       └── usina_service.py
-│   │   │   │   │   ├── billing
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── consumo_energia.py
-│   │   │   │   │   │   │   └── fatura_energia.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── distribution
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── linha_transmissao.py
-│   │   │   │   │   │   │   └── subestacao.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── central_geradora.py
-│   │   │   │   │   │   │   ├── consumo_energia.py
-│   │   │   │   │   │   │   ├── fatura_energia.py
-│   │   │   │   │   │   │   ├── linha_transmissao.py
-│   │   │   │   │   │   │   ├── subestacao.py
-│   │   │   │   │   │   │   └── usina.py
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   ├── generation
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── central_geradora.py
-│   │   │   │   │   │   │   └── usina.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ambiente_service_adapter.py
-│   │   │   │   │   │   │   ├── aneel_adapter.py
-│   │   │   │   │   │   │   ├── citizen_service_adapter.py
-│   │   │   │   │   │   │   ├── financas_publicas_service_adapter.py
-│   │   │   │   │   │   │   ├── geosampa_service_adapter.py
-│   │   │   │   │   │   │   ├── gestao_fundiaria_service_adapter.py
-│   │   │   │   │   │   │   ├── obras_publicas_service_adapter.py
-│   │   │   │   │   │   │   ├── ons_adapter.py
-│   │   │   │   │   │   │   ├── request_service_adapter.py
-│   │   │   │   │   │   │   └── urbanismo_service_adapter.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── central_geradora_model.py
-│   │   │   │   │   │   │   ├── consumo_model.py
-│   │   │   │   │   │   │   ├── energy_invoice_model.py
-│   │   │   │   │   │   │   ├── energy_telemetry_model.py
-│   │   │   │   │   │   │   ├── fatura_model.py
-│   │   │   │   │   │   │   ├── linha_transmissao_model.py
-│   │   │   │   │   │   │   ├── outbox_event_model.py
-│   │   │   │   │   │   │   ├── subestacao_model.py
-│   │   │   │   │   │   │   └── usina_model.py
-│   │   │   │   │   │   ├── orm
-│   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── outbox.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── sqlalchemy_central_geradora_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_consumo_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_fatura_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_linha_transmissao_repository.py
-│   │   │   │   │   │   │   ├── sqlalchemy_subestacao_repository.py
-│   │   │   │   │   │   │   └── sqlalchemy_usina_repository.py
-│   │   │   │   │   │   └── resilience
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── circuit_breaker.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── governance
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── administracao_local
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── commands.py
-│   │   │   │   │   │   │   ├── dto.py
-│   │   │   │   │   │   │   ├── queries.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── value_objects.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── mappers.py
-│   │   │   │   │   │   │   ├── models.py
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── presentation
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── dependencies.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas.py
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── cooperacao_internacional
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── README.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── test_acordo_visto_services.py
-│   │   │   │   │   │   │   └── test_cooperacao_api.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── tratado_monitor_worker.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── planeamento
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── service_requests
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── clients
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── integrations
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── workflow_client.py
-│   │   │   │   │   │   ├── interfaces
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── api
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_attachments.py
-│   │   │   │   │   │       ├── test_domain_clients_orm_integration.py
-│   │   │   │   │   │       ├── test_request_service_domain_clients.py
-│   │   │   │   │   │       ├── test_requests.py
-│   │   │   │   │   │       └── test_workflow_integration.py
-│   │   │   │   │   ├── statistics
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── config.py
-│   │   │   │   │   │   ├── data_sources
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── base_data_source.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   │   └── definitions.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── integrations
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── assistencia_data_source.py
-│   │   │   │   │   │   │   ├── base_data_source.py
-│   │   │   │   │   │   │   ├── bi_connector.py
-│   │   │   │   │   │   │   ├── data_sources.py
-│   │   │   │   │   │   │   ├── educacao_data_source.py
-│   │   │   │   │   │   │   ├── emprego_data_source.py
-│   │   │   │   │   │   │   ├── identidade_data_source.py
-│   │   │   │   │   │   │   ├── juventude_data_source.py
-│   │   │   │   │   │   │   ├── saude_data_source.py
-│   │   │   │   │   │   │   ├── service_requests_data_source.py
-│   │   │   │   │   │   │   └── workflow_data_source.py
-│   │   │   │   │   │   ├── interfaces
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── api
-│   │   │   │   │   │   ├── kpis_service.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── resilience
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── circuit_breaker.py
-│   │   │   │   │   │   │   └── retry.py
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _fakes.py
-│   │   │   │   │   │   │   ├── conftest.py
-│   │   │   │   │   │   │   ├── test_aggregation.py
-│   │   │   │   │   │   │   ├── test_agregacoes.py
-│   │   │   │   │   │   │   ├── test_alertas.py
-│   │   │   │   │   │   │   ├── test_analises.py
-│   │   │   │   │   │   │   ├── test_comparativos.py
-│   │   │   │   │   │   │   ├── test_dashboards.py
-│   │   │   │   │   │   │   ├── test_e2e_fluxo_completo.py
-│   │   │   │   │   │   │   ├── test_exportacoes.py
-│   │   │   │   │   │   │   ├── test_forecasting.py
-│   │   │   │   │   │   │   ├── test_indicadores.py
-│   │   │   │   │   │   │   ├── test_integracao_multimodulo_orm.py
-│   │   │   │   │   │   │   ├── test_kpis.py
-│   │   │   │   │   │   │   ├── test_metricas.py
-│   │   │   │   │   │   │   ├── test_previsoes.py
-│   │   │   │   │   │   │   ├── test_rankings.py
-│   │   │   │   │   │   │   ├── test_relatorios.py
-│   │   │   │   │   │   │   ├── test_statistics_service.py
-│   │   │   │   │   │   │   ├── test_tendencias.py
-│   │   │   │   │   │   │   └── test_timeseries.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── agregacao_worker.py
-│   │   │   │   │   │       ├── kpi_calculation_worker.py
-│   │   │   │   │   │       ├── outbox_worker.py
-│   │   │   │   │   │       ├── relatorio_worker.py
-│   │   │   │   │   │       └── timeseries_worker.py
-│   │   │   │   │   ├── tests
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── workflow
-│   │   │   │   │       ├── ARCHITECTURE.md
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── deps.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   ├── router.py
-│   │   │   │   │       │   └── schemas
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── ports
-│   │   │   │   │       │   └── services
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── enums.py
-│   │   │   │   │       │   ├── exceptions.py
-│   │   │   │   │       │   └── models
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── adapters
-│   │   │   │   │       │   ├── models
-│   │   │   │   │       │   ├── persistence
-│   │   │   │   │       │   └── repositories
-│   │   │   │   │       ├── integrations
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── notification_client.py
-│   │   │   │   │       ├── interfaces
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── api
-│   │   │   │   │       ├── module.yaml
-│   │   │   │   │       └── tests
-│   │   │   │   │           ├── __init__.py
-│   │   │   │   │           ├── test_di_runtime_adapters.py
-│   │   │   │   │           ├── test_engine.py
-│   │   │   │   │           ├── test_transitions.py
-│   │   │   │   │           ├── test_workflow_e2e.py
-│   │   │   │   │           └── test_workflow_endpoints_testclient.py
 │   │   │   │   ├── identity
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── _deprecated
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── credential_management
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── sovereign_identity_wallet
-│   │   │   │   │   │       ├── application
-│   │   │   │   │   │       ├── domain
-│   │   │   │   │   │       └── infrastructure
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   └── services
-│   │   │   │   │   ├── biometric_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── bounded_contexts
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── access_control
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── iam
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── application
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── citizen_digital_wallet
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── citizen_identity_graph
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── identity_graph_service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       ├── legacy_adapters
-│   │   │   │   │   │       ├── models
-│   │   │   │   │   │       └── repositories
-│   │   │   │   │   ├── cross_border_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── decentralized_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── device_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── digital_signature_service
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── trust_score.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── user_model.py
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── citizen_repository.py
-│   │   │   │   │   │   │   └── user_repository.py
-│   │   │   │   │   │   └── security
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── jwt_engine.py
-│   │   │   │   │   ├── legal_signature_validation
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── middleware
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── trust_middleware.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── national_certificate_authority
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── national_login
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── oidc_provider
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── oidc_service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── permission_graph
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── policy_evaluator
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── role_engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── saml_gateway
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── smartcard_identity
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── sovereign_access_control
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── sovereign_trust_engine
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── tests
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── test_oidc_service.py
-│   │   │   │   │   │   ├── test_vc_issuance.py
-│   │   │   │   │   │   └── test_vc_revocation.py
-│   │   │   │   │   └── verifiable_credentials
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   └── services
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   └── entities
-│   │   │   │   │       └── infrastructure
-│   │   │   │   │           └── repositories
 │   │   │   │   ├── industry
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── catalogos.py
-│   │   │   │   │   │   │   └── estabelecimentos_industriais.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── catalogo_schema.py
-│   │   │   │   │   │       └── estabelecimento_industrial_schema.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── aguas_saneamento_service_port.py
-│   │   │   │   │   │   │   ├── ambiente_service_port.py
-│   │   │   │   │   │   │   ├── citizen_service_port.py
-│   │   │   │   │   │   │   ├── comercio_externo_service_port.py
-│   │   │   │   │   │   │   ├── energia_service_port.py
-│   │   │   │   │   │   │   ├── estabelecimento_industrial_repository_port.py
-│   │   │   │   │   │   │   ├── financas_impostos_service_port.py
-│   │   │   │   │   │   │   ├── geosampa_service_port.py
-│   │   │   │   │   │   │   ├── gestao_fundiaria_service_port.py
-│   │   │   │   │   │   │   ├── request_service_port.py
-│   │   │   │   │   │   │   ├── transportes_logistica_service_port.py
-│   │   │   │   │   │   │   └── urbanismo_service_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── estabelecimento_industrial_service.py
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── estabelecimento_industrial.py
-│   │   │   │   │   │   │   ├── porte_industrial.py
-│   │   │   │   │   │   │   └── ramo_industrial.py
-│   │   │   │   │   │   └── shared
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── catalogs.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── aguas_saneamento_service_adapter.py
-│   │   │   │   │   │   │   ├── ambiente_service_adapter.py
-│   │   │   │   │   │   │   ├── citizen_service_adapter.py
-│   │   │   │   │   │   │   ├── comercio_externo_service_adapter.py
-│   │   │   │   │   │   │   ├── energia_service_adapter.py
-│   │   │   │   │   │   │   ├── financas_impostos_service_adapter.py
-│   │   │   │   │   │   │   ├── geosampa_service_adapter.py
-│   │   │   │   │   │   │   ├── gestao_fundiaria_service_adapter.py
-│   │   │   │   │   │   │   ├── request_service_adapter.py
-│   │   │   │   │   │   │   ├── transportes_logistica_service_adapter.py
-│   │   │   │   │   │   │   └── urbanismo_service_adapter.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── estabelecimento_industrial_model.py
-│   │   │   │   │   │   └── repositories
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── sqlalchemy_estabelecimento_industrial_repository.py
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── conftest.py
-│   │   │   │   │       ├── pytest.ini
-│   │   │   │   │       ├── run_local_tests.sh
-│   │   │   │   │       ├── test_catalogos.py
-│   │   │   │   │       └── test_estabelecimentos_industriais.py
 │   │   │   │   ├── infrastructure
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   ├── dto
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── asset_reporting_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       ├── orm
-│   │   │   │   │   │       └── repositories
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── eventsourcing
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── sagas
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── eventsourcing
-│   │   │   │   │   │   │   ├── governance
-│   │   │   │   │   │   │   ├── messaging
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── multi_region
-│   │   │   │   │   │   │   ├── observability
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── read_model
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   ├── resilience
-│   │   │   │   │   │   │   └── streaming
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── test_dashboard_projection.py
-│   │   │   │   │   │   │   ├── test_dashboard_query_endpoint.py
-│   │   │   │   │   │   │   ├── test_editais.py
-│   │   │   │   │   │   │   ├── test_event_sourcing_governance.py
-│   │   │   │   │   │   │   ├── test_licitacoes.py
-│   │   │   │   │   │   │   ├── test_obras.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   ├── test_outbox_sqlalchemy_integration.py
-│   │   │   │   │   │   │   ├── test_projetos.py
-│   │   │   │   │   │   │   └── test_saga_execucao_obra.py
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   └── economy_asset_adapter.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── infrastructure_sector
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── aviacao_civil
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── README.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── test_aviacao_api.py
-│   │   │   │   │   │   │   └── test_voo_service.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── voo_monitor_worker.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── gestao_fundiaria
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_desapropriacoes.py
-│   │   │   │   │   │       ├── test_georreferenciamentos.py
-│   │   │   │   │   │       ├── test_imoveis.py
-│   │   │   │   │   │       ├── test_matriculas.py
-│   │   │   │   │   │       ├── test_oneracoes.py
-│   │   │   │   │   │       ├── test_orm_integration_real.py
-│   │   │   │   │   │       └── test_proprietarios.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── logistica
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   └── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   └── transport
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── infrastructure
-│   │   │   │   │   ├── meteorologia
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── integration
-│   │   │   │   │   │       └── unit
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── obras_publicas
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── core
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   └── domain
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── telecomunicacoes
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _fakes.py
-│   │   │   │   │   │   │   ├── test_anatel_adapter.py
-│   │   │   │   │   │   │   ├── test_assinantes.py
-│   │   │   │   │   │   │   ├── test_espectros.py
-│   │   │   │   │   │   │   ├── test_indicadores_qualidade.py
-│   │   │   │   │   │   │   ├── test_infraestruturas.py
-│   │   │   │   │   │   │   ├── test_operadoras.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   ├── test_outorgas_espectro.py
-│   │   │   │   │   │   │   ├── test_qualidade_servico.py
-│   │   │   │   │   │   │   └── test_slas.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── anatel_reporter.py
-│   │   │   │   │   │       ├── outbox_worker.py
-│   │   │   │   │   │       └── qualidade_monitor.py
-│   │   │   │   │   ├── tests
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── urbanismo_habitacao
-│   │   │   │   │       ├── ARCHITECTURE.md
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── deps.py
-│   │   │   │   │       │   ├── endpoints
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   ├── router.py
-│   │   │   │   │       │   └── schemas
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── ports
-│   │   │   │   │       │   ├── service.py
-│   │   │   │   │       │   └── services
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── entities.py
-│   │   │   │   │       │   ├── enums.py
-│   │   │   │   │       │   ├── exceptions.py
-│   │   │   │   │       │   └── models
-│   │   │   │   │       ├── exceptions.py
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── adapters
-│   │   │   │   │       │   ├── models
-│   │   │   │   │       │   ├── repositories
-│   │   │   │   │       │   └── repository.py
-│   │   │   │   │       ├── module.yaml
-│   │   │   │   │       └── tests
-│   │   │   │   │           ├── __init__.py
-│   │   │   │   │           ├── test_licencas_urbanisticas.py
-│   │   │   │   │           ├── test_loteamentos.py
-│   │   │   │   │           ├── test_operacoes_urbanas.py
-│   │   │   │   │           ├── test_orm_integration_real.py
-│   │   │   │   │           ├── test_parcelamentos.py
-│   │   │   │   │           ├── test_planos_diretores.py
-│   │   │   │   │           └── test_zoneamento.py
 │   │   │   │   ├── intelligence
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── arquivo_nacional
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   ├── routers
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── bi
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── integrations
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── data_sources.py
-│   │   │   │   │   │   ├── interfaces
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── api
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── conftest.py
-│   │   │   │   │   │       ├── test_dashboard.py
-│   │   │   │   │   │       ├── test_data_sources_orm_integration.py
-│   │   │   │   │   │       ├── test_kpis.py
-│   │   │   │   │   │       └── test_reports.py
-│   │   │   │   │   ├── ciencia_pesquisa
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── _fakes.py
-│   │   │   │   │   │       ├── test_instituicoes.py
-│   │   │   │   │   │       ├── test_pesquisadores.py
-│   │   │   │   │   │       ├── test_ports_contratuais.py
-│   │   │   │   │   │       └── test_projetos.py
-│   │   │   │   │   ├── defesa_consumidor
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── test_e2e_fluxo_completo.py
-│   │   │   │   │   │   │   ├── test_mediacoes.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   └── test_reclamacoes.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── outbox_worker.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── operations
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── state_machine.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── tecnologia_inovacao
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── justice
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── _deprecated
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── bounded_contexts
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── cemetery_management
-│   │   │   │   │   │   │   ├── civil_registry_core
-│   │   │   │   │   │   │   ├── identity_documents
-│   │   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── permissions
-│   │   │   │   │   │   │   └── vital_events
-│   │   │   │   │   │   ├── civil_registry
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   └── traffic_violation_adapter.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bi_emission_service.py
-│   │   │   │   │   │   │   ├── birth_service.py
-│   │   │   │   │   │   │   ├── certificate_service.py
-│   │   │   │   │   │   │   ├── citizen_service.py
-│   │   │   │   │   │   │   ├── death_service.py
-│   │   │   │   │   │   │   ├── document_service.py
-│   │   │   │   │   │   │   ├── marriage_service.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── profile_queries.py
-│   │   │   │   │   │   │   ├── queries.py
-│   │   │   │   │   │   │   ├── routing_engine.py
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bilhete_identidade.py
-│   │   │   │   │   │   │   ├── birth_record.py
-│   │   │   │   │   │   │   ├── death_record.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── identity_request.py
-│   │   │   │   │   │   │   └── marriage_record.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── legacy_adapters
-│   │   │   │   │   │   │   └── ports
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── test_sanity.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── citizen.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── nationality.py
-│   │   │   │   │   ├── events
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   ├── definitions.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── legacy_adapters
-│   │   │   │   │   │   └── models
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── traffic_violation_model.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── cemetery_management
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       ├── civil_registry_core
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── identity_documents
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── test_e2e_civil_registry.py
-│   │   │   │   │       └── vital_events
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── logistics
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   ├── dto
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── transport_orchestrator_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       └── toll_service.py
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── test_analytics.py
-│   │   │   │   │   │   │   ├── test_bilhetagem.py
-│   │   │   │   │   │   │   ├── test_frotas.py
-│   │   │   │   │   │   │   ├── test_linhas.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   └── test_viagens.py
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── orm
-│   │   │   │   │   │   └── repositories
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── migration_service
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── models
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   └── repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── integration
-│   │   │   │   │       └── unit
-│   │   │   │   │           └── domain
+│   │   │   │   ├── notifications
 │   │   │   │   ├── operations
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── operations_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── state_machine.py
-│   │   │   │   │   └── infrastructure
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── payment
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── payment_service.py
-│   │   │   │   │   │       └── webhook_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── enums.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   └── payment.py
-│   │   │   │   │   ├── payment.py
-│   │   │   │   │   └── services
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       └── payment_service.py
 │   │   │   │   ├── procurement
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── commands
-│   │   │   │   │   │   │   ├── dto
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   │       ├── orm
-│   │   │   │   │   │       └── repositories
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bid.py
-│   │   │   │   │   │   │   ├── contract.py
-│   │   │   │   │   │   │   ├── supplier.py
-│   │   │   │   │   │   │   └── tender.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── contract_repository.py
-│   │   │   │   │   │   │   ├── supplier_repository.py
-│   │   │   │   │   │   │   └── tender_repository.py
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── procurement_engine.py
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── contract_status.py
-│   │   │   │   │   │       ├── procurement_method.py
-│   │   │   │   │   │       └── tender_status.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       └── test_procurement_flow.py
 │   │   │   │   ├── public_security
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── cadeias_custodia.py
-│   │   │   │   │   │   │   ├── evidencias.py
-│   │   │   │   │   │   │   ├── investigacoes.py
-│   │   │   │   │   │   │   ├── laudos_periciais.py
-│   │   │   │   │   │   │   ├── mandados.py
-│   │   │   │   │   │   │   ├── ocorrencias.py
-│   │   │   │   │   │   │   ├── policiais.py
-│   │   │   │   │   │   │   ├── provas_periciais.py
-│   │   │   │   │   │   │   ├── unidades_policiais.py
-│   │   │   │   │   │   │   └── vestigios.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── schemas
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── cadeia_custodia_schema.py
-│   │   │   │   │   │       ├── evidencia_schema.py
-│   │   │   │   │   │       ├── investigacao_schema.py
-│   │   │   │   │   │       ├── laudo_pericial_schema.py
-│   │   │   │   │   │       ├── mandado_schema.py
-│   │   │   │   │   │       ├── ocorrencia_schema.py
-│   │   │   │   │   │       ├── policial_schema.py
-│   │   │   │   │   │       ├── prova_pericial_schema.py
-│   │   │   │   │   │       ├── unidade_policial_schema.py
-│   │   │   │   │   │       └── vestigio_schema.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── cadeia_custodia_repository_port.py
-│   │   │   │   │   │   │   ├── evidencia_repository_port.py
-│   │   │   │   │   │   │   ├── investigacao_repository_port.py
-│   │   │   │   │   │   │   ├── laudo_pericial_repository_port.py
-│   │   │   │   │   │   │   ├── mandado_repository_port.py
-│   │   │   │   │   │   │   ├── ocorrencia_repository_port.py
-│   │   │   │   │   │   │   ├── policial_repository_port.py
-│   │   │   │   │   │   │   ├── prova_pericial_repository_port.py
-│   │   │   │   │   │   │   ├── request_service_port.py
-│   │   │   │   │   │   │   ├── unidade_policial_repository_port.py
-│   │   │   │   │   │   │   └── vestigio_repository_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── cadeia_custodia_service.py
-│   │   │   │   │   │       ├── evidencia_service.py
-│   │   │   │   │   │       ├── investigacao_service.py
-│   │   │   │   │   │       ├── laudo_pericial_service.py
-│   │   │   │   │   │       ├── mandado_service.py
-│   │   │   │   │   │       ├── ocorrencia_service.py
-│   │   │   │   │   │       ├── policial_service.py
-│   │   │   │   │   │       ├── prova_pericial_service.py
-│   │   │   │   │   │       ├── unidade_policial_service.py
-│   │   │   │   │   │       └── vestigio_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── models
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── cadeia_custodia.py
-│   │   │   │   │   │       ├── evidencia.py
-│   │   │   │   │   │       ├── investigacao.py
-│   │   │   │   │   │       ├── laudo_pericial.py
-│   │   │   │   │   │       ├── mandado.py
-│   │   │   │   │   │       ├── ocorrencia.py
-│   │   │   │   │   │       ├── policial.py
-│   │   │   │   │   │       ├── prova_pericial.py
-│   │   │   │   │   │       ├── unidade_policial.py
-│   │   │   │   │   │       └── vestigio.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── request_service_adapter.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── cadeia_custodia_model.py
-│   │   │   │   │   │   │   ├── evidencia_model.py
-│   │   │   │   │   │   │   ├── investigacao_model.py
-│   │   │   │   │   │   │   ├── laudo_pericial_model.py
-│   │   │   │   │   │   │   ├── mandado_model.py
-│   │   │   │   │   │   │   ├── ocorrencia_model.py
-│   │   │   │   │   │   │   ├── policial_model.py
-│   │   │   │   │   │   │   ├── prova_pericial_model.py
-│   │   │   │   │   │   │   ├── unidade_policial_model.py
-│   │   │   │   │   │   │   └── vestigio_model.py
-│   │   │   │   │   │   └── repositories
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── sqlalchemy_cadeia_custodia_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_evidencia_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_investigacao_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_laudo_pericial_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_mandado_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_ocorrencia_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_policial_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_prova_pericial_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_unidade_policial_repository.py
-│   │   │   │   │   │       └── sqlalchemy_vestigio_repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── _fakes.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       ├── test_cadeias_custodia.py
-│   │   │   │   │       ├── test_evidencias.py
-│   │   │   │   │       ├── test_investigacoes.py
-│   │   │   │   │       ├── test_laudos_periciais.py
-│   │   │   │   │       ├── test_mandados.py
-│   │   │   │   │       ├── test_ocorrencias.py
-│   │   │   │   │       ├── test_orm_integration_real.py
-│   │   │   │   │       ├── test_policiais.py
-│   │   │   │   │       ├── test_provas_periciais.py
-│   │   │   │   │       ├── test_unidades_policiais.py
-│   │   │   │   │       └── test_vestigios.py
 │   │   │   │   ├── resources
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── agricultura
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_assistencia.py
-│   │   │   │   │   │       ├── test_certificacoes.py
-│   │   │   │   │   │       ├── test_colheitas.py
-│   │   │   │   │   │       ├── test_comercializacao.py
-│   │   │   │   │   │       ├── test_creditos.py
-│   │   │   │   │   │       ├── test_culturas.py
-│   │   │   │   │   │       ├── test_entidades_derivadas.py
-│   │   │   │   │   │       ├── test_equipamentos.py
-│   │   │   │   │   │       ├── test_estoques.py
-│   │   │   │   │   │       ├── test_fitossanidade.py
-│   │   │   │   │   │       ├── test_insumos.py
-│   │   │   │   │   │       ├── test_operacoes.py
-│   │   │   │   │   │       ├── test_plantios.py
-│   │   │   │   │   │       ├── test_produtores.py
-│   │   │   │   │   │       ├── test_propriedades.py
-│   │   │   │   │   │       ├── test_safras.py
-│   │   │   │   │   │       ├── test_talhoes.py
-│   │   │   │   │   │       └── test_zoneamento.py
-│   │   │   │   │   ├── aguas_saneamento
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── test_abastecimento.py
-│   │   │   │   │   │   │   ├── test_consumo.py
-│   │   │   │   │   │   │   ├── test_faturamento.py
-│   │   │   │   │   │   │   ├── test_faturamento_eventos.py
-│   │   │   │   │   │   │   ├── test_financas_gateway_publisher.py
-│   │   │   │   │   │   │   ├── test_infraestrutura.py
-│   │   │   │   │   │   │   ├── test_outbox_sqlalchemy_integration.py
-│   │   │   │   │   │   │   └── test_outorgas.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── outbox_worker.py
-│   │   │   │   │   ├── ambiente
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_car.py
-│   │   │   │   │   │       ├── test_estudos.py
-│   │   │   │   │   │       ├── test_fiscalizacao.py
-│   │   │   │   │   │       ├── test_licenciamento.py
-│   │   │   │   │   │       └── test_penalidades.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── florestas
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_alertas.py
-│   │   │   │   │   │       ├── test_autorizacoes_supressao.py
-│   │   │   │   │   │       ├── test_autos_infracao.py
-│   │   │   │   │   │       ├── test_certificacoes.py
-│   │   │   │   │   │       ├── test_concessoes.py
-│   │   │   │   │   │       ├── test_cras.py
-│   │   │   │   │   │       ├── test_creditos_carbono.py
-│   │   │   │   │   │       ├── test_desmatamentos.py
-│   │   │   │   │   │       ├── test_dofs.py
-│   │   │   │   │   │       ├── test_exploracoes.py
-│   │   │   │   │   │       ├── test_fiscalizacoes.py
-│   │   │   │   │   │       ├── test_focos_calor.py
-│   │   │   │   │   │       ├── test_incendios.py
-│   │   │   │   │   │       ├── test_inventarios.py
-│   │   │   │   │   │       ├── test_licencas_manejo.py
-│   │   │   │   │   │       ├── test_monitoramento.py
-│   │   │   │   │   │       ├── test_operadores_florestais.py
-│   │   │   │   │   │       ├── test_planos_manejo.py
-│   │   │   │   │   │       ├── test_produtos_florestais.py
-│   │   │   │   │   │       └── test_unidades_manejo.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── pecuaria
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_animais.py
-│   │   │   │   │   │       ├── test_pecuaristas.py
-│   │   │   │   │   │       ├── test_propriedades.py
-│   │   │   │   │   │       └── test_rebanhos.py
-│   │   │   │   │   ├── pescas
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── industrial
-│   │   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   │   └── tests
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_capturas.py
-│   │   │   │   │   │       ├── test_embarcacoes.py
-│   │   │   │   │   │       ├── test_licencas.py
-│   │   │   │   │   │       └── test_pescadores.py
-│   │   │   │   │   ├── petroleo_gas
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── recursos_minerais
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── seguranca_alimentar
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       ├── domain
-│   │   │   │   │       └── infrastructure
 │   │   │   │   ├── saude
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   └── v1
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── endpoints.py
-│   │   │   │   │   │       └── schemas.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── clinical
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── exame_service.py
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── appointment_repository_port.py
-│   │   │   │   │   │   │   ├── health_unit_repository_port.py
-│   │   │   │   │   │   │   ├── juventude_service_port.py
-│   │   │   │   │   │   │   └── workflow_service_port.py
-│   │   │   │   │   │   └── vaccine
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       └── vaccine_service.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── entities
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── medical_record.py
-│   │   │   │   │   │   │   ├── prescription.py
-│   │   │   │   │   │   │   ├── vaccine.py
-│   │   │   │   │   │   │   └── vigilancia_epidemiologica.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── services
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │       └── __init__.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── external_apis
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── models.py
-│   │   │   │   │   │   └── repositories
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── appointment_repository.py
-│   │   │   │   │   │       ├── health_unit_repository.py
-│   │   │   │   │   │       └── medical_record_repository.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── integration
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── unit
-│   │   │   │   │           └── __init__.py
 │   │   │   │   ├── society
-│   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── assistencia_social
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── _fakes.py
-│   │   │   │   │   │       ├── test_atendimento.py
-│   │   │   │   │   │       ├── test_beneficiario.py
-│   │   │   │   │   │       ├── test_beneficio_bpc_pcd.py
-│   │   │   │   │   │       ├── test_cadastro_unico.py
-│   │   │   │   │   │       ├── test_crianca_risco.py
-│   │   │   │   │   │       ├── test_endpoints.py
-│   │   │   │   │   │       ├── test_fluxo_completo_assistencia.py
-│   │   │   │   │   │       ├── test_idoso_vulneravel.py
-│   │   │   │   │   │       ├── test_orm_integration_real.py
-│   │   │   │   │   │       ├── test_pcd.py
-│   │   │   │   │   │       ├── test_programa_social.py
-│   │   │   │   │   │       ├── test_situacao_rua.py
-│   │   │   │   │   │       └── test_visita_domiciliar.py
-│   │   │   │   │   ├── cultura
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── handlers
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _fakes.py
-│   │   │   │   │   │   │   ├── test_artistas.py
-│   │   │   │   │   │   │   ├── test_bens_culturais.py
-│   │   │   │   │   │   │   ├── test_editais.py
-│   │   │   │   │   │   │   ├── test_espacos_culturais.py
-│   │   │   │   │   │   │   ├── test_eventos_culturais.py
-│   │   │   │   │   │   │   ├── test_grupos_artisticos.py
-│   │   │   │   │   │   │   ├── test_integracao_iphan.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   ├── test_patrimonios_imateriais.py
-│   │   │   │   │   │   │   └── test_projetos_culturais.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── edital_worker.py
-│   │   │   │   │   │       ├── outbox_worker.py
-│   │   │   │   │   │       └── patrimonio_worker.py
-│   │   │   │   │   ├── desporto
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── config.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── bus.py
-│   │   │   │   │   │   │   └── definitions.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── persistence
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   ├── resilience
-│   │   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   │   ├── tests
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── _fakes.py
-│   │   │   │   │   │   │   ├── test_atletas.py
-│   │   │   │   │   │   │   ├── test_clubes.py
-│   │   │   │   │   │   │   ├── test_competicoes.py
-│   │   │   │   │   │   │   ├── test_estadios.py
-│   │   │   │   │   │   │   ├── test_events.py
-│   │   │   │   │   │   │   ├── test_jogos.py
-│   │   │   │   │   │   │   ├── test_orm_integration_real.py
-│   │   │   │   │   │   │   └── test_workers.py
-│   │   │   │   │   │   └── workers
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── estatistica_worker.py
-│   │   │   │   │   │       ├── notificacao_worker.py
-│   │   │   │   │   │       ├── outbox_worker.py
-│   │   │   │   │   │       └── ranking_worker.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── emprego
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_candidatos.py
-│   │   │   │   │   │       ├── test_certificacoes.py
-│   │   │   │   │   │       ├── test_concursos.py
-│   │   │   │   │   │       ├── test_emprego_e2e.py
-│   │   │   │   │   │       ├── test_formacoes.py
-│   │   │   │   │   │       ├── test_mediacoes.py
-│   │   │   │   │   │       ├── test_ofertas.py
-│   │   │   │   │   │       └── test_trabalhistas.py
-│   │   │   │   │   ├── familia
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── README.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── sagas
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── config.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── aggregates
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── events
-│   │   │   │   │   │   │   ├── exceptions
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   ├── rules
-│   │   │   │   │   │   │   └── value_objects
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── event_handlers
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── projections
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   ├── repository.py
-│   │   │   │   │   │   │   └── resilience
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── _fakes.py
-│   │   │   │   │   │       ├── e2e
-│   │   │   │   │   │       ├── integration
-│   │   │   │   │   │       └── unit
-│   │   │   │   │   ├── igualdade
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── service.py
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   └── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   ├── juventude
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   └── repositories
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── _fakes.py
-│   │   │   │   │   │       ├── test_auxilios.py
-│   │   │   │   │   │       ├── test_formacoes.py
-│   │   │   │   │   │       ├── test_jovens.py
-│   │   │   │   │   │       ├── test_novos_slices_prioritarios.py
-│   │   │   │   │   │       ├── test_orm_integration_real.py
-│   │   │   │   │   │       ├── test_programas.py
-│   │   │   │   │   │       ├── test_risco_evasao_com_educacao.py
-│   │   │   │   │   │       └── test_workflow_service.py
-│   │   │   │   │   ├── module.yaml
-│   │   │   │   │   ├── patrimonio_cultural
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── _fakes.py
-│   │   │   │   │   │       ├── test_patrimonio_cultural_endpoints.py
-│   │   │   │   │   │       └── test_patrimonio_cultural_service.py
-│   │   │   │   │   ├── seguranca_social
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── service.py
-│   │   │   │   │   │   │   └── services
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── entities.py
-│   │   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   │   └── models
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── repositories
-│   │   │   │   │   │   │   └── repository.py
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_beneficiarios.py
-│   │   │   │   │   │       └── test_pensoes.py
-│   │   │   │   │   ├── tests
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   └── router.py
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   └── infrastructure
-│   │   │   │   │   └── trabalho_inspecao
-│   │   │   │   │       ├── ARCHITECTURE.md
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── api
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── health.py
-│   │   │   │   │       │   └── router.py
-│   │   │   │   │       ├── application
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── service.py
-│   │   │   │   │       ├── domain
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   ├── entities.py
-│   │   │   │   │       │   └── exceptions.py
-│   │   │   │   │       ├── infrastructure
-│   │   │   │   │       │   ├── __init__.py
-│   │   │   │   │       │   └── repository.py
-│   │   │   │   │       ├── module.yaml
-│   │   │   │   │       └── tests
+│   │   │   │   ├── tests
 │   │   │   │   ├── tourism
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── api
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   └── router.py
-│   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── ports
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── agencia_viagens_repository_port.py
-│   │   │   │   │   │   │   ├── ambiente_service_port.py
-│   │   │   │   │   │   │   ├── atracao_turistica_repository_port.py
-│   │   │   │   │   │   │   ├── auto_infracao_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── avaliacao_repository_port.py
-│   │   │   │   │   │   │   ├── cadastro_turista_repository_port.py
-│   │   │   │   │   │   │   ├── cadastur_repository_port.py
-│   │   │   │   │   │   │   ├── certificacao_turistica_repository_port.py
-│   │   │   │   │   │   │   ├── chegada_turistas_repository_port.py
-│   │   │   │   │   │   │   ├── citizen_service_port.py
-│   │   │   │   │   │   │   ├── classificacao_hoteleira_repository_port.py
-│   │   │   │   │   │   │   ├── comercio_servicos_service_port.py
-│   │   │   │   │   │   │   ├── condutor_visitantes_repository_port.py
-│   │   │   │   │   │   │   ├── credencial_repository_port.py
-│   │   │   │   │   │   │   ├── cultura_service_port.py
-│   │   │   │   │   │   │   ├── estatistica_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── evento_turistico_repository_port.py
-│   │   │   │   │   │   │   ├── fiscalizacao_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── fluxo_turistico_repository_port.py
-│   │   │   │   │   │   │   ├── geosampa_service_port.py
-│   │   │   │   │   │   │   ├── guia_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── hotel_repository_port.py
-│   │   │   │   │   │   │   ├── licenca_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── multa_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── ocupacao_hoteleira_repository_port.py
-│   │   │   │   │   │   │   ├── operador_turistico_repository_port.py
-│   │   │   │   │   │   │   ├── pacote_turistico_repository_port.py
-│   │   │   │   │   │   │   ├── ponto_turistico_repository_port.py
-│   │   │   │   │   │   │   ├── pousada_repository_port.py
-│   │   │   │   │   │   │   ├── promocao_turistica_repository_port.py
-│   │   │   │   │   │   │   ├── receita_turistica_repository_port.py
-│   │   │   │   │   │   │   ├── reclamacao_turismo_repository_port.py
-│   │   │   │   │   │   │   ├── registro_guia_repository_port.py
-│   │   │   │   │   │   │   ├── request_service_port.py
-│   │   │   │   │   │   │   ├── reserva_hotel_repository_port.py
-│   │   │   │   │   │   │   ├── reserva_pacote_repository_port.py
-│   │   │   │   │   │   │   ├── resort_repository_port.py
-│   │   │   │   │   │   │   ├── roteiro_repository_port.py
-│   │   │   │   │   │   │   ├── tarifa_hotel_repository_port.py
-│   │   │   │   │   │   │   ├── temporada_repository_port.py
-│   │   │   │   │   │   │   ├── transportes_logistica_service_port.py
-│   │   │   │   │   │   │   └── visitante_repository_port.py
-│   │   │   │   │   │   └── services
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── agencia_viagens_service.py
-│   │   │   │   │   │       ├── atracao_service.py
-│   │   │   │   │   │       ├── avaliacao_service.py
-│   │   │   │   │   │       ├── cadastro_turista_service.py
-│   │   │   │   │   │       ├── cadastur_service.py
-│   │   │   │   │   │       ├── certificacao_service.py
-│   │   │   │   │   │       ├── classificacao_service.py
-│   │   │   │   │   │       ├── estatistica_turismo_service.py
-│   │   │   │   │   │       ├── evento_service.py
-│   │   │   │   │   │       ├── fiscalizacao_turismo_service.py
-│   │   │   │   │   │       ├── fluxo_turistico_service.py
-│   │   │   │   │   │       ├── guia_turismo_service.py
-│   │   │   │   │   │       ├── inteligencia_turismo_service.py
-│   │   │   │   │   │       ├── licenciamento_turismo_service.py
-│   │   │   │   │   │       ├── meio_hospedagem_service.py
-│   │   │   │   │   │       ├── ocupacao_service.py
-│   │   │   │   │   │       ├── operador_turistico_service.py
-│   │   │   │   │   │       ├── pacote_service.py
-│   │   │   │   │   │       ├── penalidade_turismo_service.py
-│   │   │   │   │   │       ├── promocao_service.py
-│   │   │   │   │   │       ├── reclamacao_service.py
-│   │   │   │   │   │       ├── registro_guia_service.py
-│   │   │   │   │   │       ├── reserva_service.py
-│   │   │   │   │   │       ├── roteiro_service.py
-│   │   │   │   │   │       ├── tarifa_service.py
-│   │   │   │   │   │       └── temporada_service.py
-│   │   │   │   │   ├── core
-│   │   │   │   │   │   ├── ARCHITECTURE.md
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── api
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── deps.py
-│   │   │   │   │   │   │   ├── endpoints
-│   │   │   │   │   │   │   ├── health.py
-│   │   │   │   │   │   │   ├── router.py
-│   │   │   │   │   │   │   └── schemas
-│   │   │   │   │   │   ├── application
-│   │   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── module.yaml
-│   │   │   │   │   │   └── tests
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── test_agencias_viagens.py
-│   │   │   │   │   │       ├── test_atracoes.py
-│   │   │   │   │   │       ├── test_autos_infracao.py
-│   │   │   │   │   │       ├── test_avaliacoes.py
-│   │   │   │   │   │       ├── test_cadastro_turistas.py
-│   │   │   │   │   │       ├── test_cadastur.py
-│   │   │   │   │   │       ├── test_certificacoes.py
-│   │   │   │   │   │       ├── test_classificacoes.py
-│   │   │   │   │   │       ├── test_estatisticas.py
-│   │   │   │   │   │       ├── test_eventos.py
-│   │   │   │   │   │       ├── test_fiscalizacoes.py
-│   │   │   │   │   │       ├── test_fluxo_turistico.py
-│   │   │   │   │   │       ├── test_guias_turismo.py
-│   │   │   │   │   │       ├── test_hoteis.py
-│   │   │   │   │   │       ├── test_licencas.py
-│   │   │   │   │   │       ├── test_multas.py
-│   │   │   │   │   │       ├── test_ocupacao_hoteleira.py
-│   │   │   │   │   │       ├── test_operadores_turisticos.py
-│   │   │   │   │   │       ├── test_pacotes.py
-│   │   │   │   │   │       ├── test_pontos_turisticos.py
-│   │   │   │   │   │       ├── test_pousadas.py
-│   │   │   │   │   │       ├── test_promocoes.py
-│   │   │   │   │   │       ├── test_receitas.py
-│   │   │   │   │   │       ├── test_reclamacoes.py
-│   │   │   │   │   │       ├── test_registro_guia.py
-│   │   │   │   │   │       ├── test_reservas.py
-│   │   │   │   │   │       ├── test_roteiros.py
-│   │   │   │   │   │       ├── test_tarifas.py
-│   │   │   │   │   │       └── test_temporadas.py
-│   │   │   │   │   ├── domain
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── enums.py
-│   │   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   │   └── models
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── acessibilidade.py
-│   │   │   │   │   │       ├── agencia_viagens.py
-│   │   │   │   │   │       ├── alta_temporada.py
-│   │   │   │   │   │       ├── atracao_turistica.py
-│   │   │   │   │   │       ├── auto_infracao_turismo.py
-│   │   │   │   │   │       ├── avaliacao.py
-│   │   │   │   │   │       ├── baixa_temporada.py
-│   │   │   │   │   │       ├── cadastro_turista.py
-│   │   │   │   │   │       ├── cadastur.py
-│   │   │   │   │   │       ├── camping.py
-│   │   │   │   │   │       ├── certificacao_turistica.py
-│   │   │   │   │   │       ├── checkin.py
-│   │   │   │   │   │       ├── checkout.py
-│   │   │   │   │   │       ├── chegada_turistas.py
-│   │   │   │   │   │       ├── classificacao_hoteleira.py
-│   │   │   │   │   │       ├── condutor_visitantes.py
-│   │   │   │   │   │       ├── credencial.py
-│   │   │   │   │   │       ├── divisas.py
-│   │   │   │   │   │       ├── ecoturismo.py
-│   │   │   │   │   │       ├── entrada_saida.py
-│   │   │   │   │   │       ├── estatistica_turismo.py
-│   │   │   │   │   │       ├── estrelas.py
-│   │   │   │   │   │       ├── evento_turistico.py
-│   │   │   │   │   │       ├── excursao.py
-│   │   │   │   │   │       ├── feedback_turista.py
-│   │   │   │   │   │       ├── festival.py
-│   │   │   │   │   │       ├── fiscalizacao_turismo.py
-│   │   │   │   │   │       ├── fluxo_turistico.py
-│   │   │   │   │   │       ├── gasto_medio.py
-│   │   │   │   │   │       ├── guia_turismo.py
-│   │   │   │   │   │       ├── hotel.py
-│   │   │   │   │   │       ├── impacto_economico.py
-│   │   │   │   │   │       ├── interdicao_hotel.py
-│   │   │   │   │   │       ├── licenca_turismo.py
-│   │   │   │   │   │       ├── lodge.py
-│   │   │   │   │   │       ├── monumento.py
-│   │   │   │   │   │       ├── multa_turismo.py
-│   │   │   │   │   │       ├── museu.py
-│   │   │   │   │   │       ├── nacionalidade.py
-│   │   │   │   │   │       ├── ocupacao_hoteleira.py
-│   │   │   │   │   │       ├── operador_turistico.py
-│   │   │   │   │   │       ├── pacote_turistico.py
-│   │   │   │   │   │       ├── parque_nacional.py
-│   │   │   │   │   │       ├── perfil_turista.py
-│   │   │   │   │   │       ├── permanencia_media.py
-│   │   │   │   │   │       ├── ponto_turistico.py
-│   │   │   │   │   │       ├── pousada.py
-│   │   │   │   │   │       ├── praia.py
-│   │   │   │   │   │       ├── promocao_turistica.py
-│   │   │   │   │   │       ├── receita_turistica.py
-│   │   │   │   │   │       ├── reclamacao_turismo.py
-│   │   │   │   │   │       ├── registro_guia.py
-│   │   │   │   │   │       ├── reserva_hotel.py
-│   │   │   │   │   │       ├── reserva_natural.py
-│   │   │   │   │   │       ├── reserva_pacote.py
-│   │   │   │   │   │       ├── resort.py
-│   │   │   │   │   │       ├── restaurante_turistico.py
-│   │   │   │   │   │       ├── roteiro.py
-│   │   │   │   │   │       ├── sazonalidade.py
-│   │   │   │   │   │       ├── selo_sustentabilidade.py
-│   │   │   │   │   │       ├── sitio_historico.py
-│   │   │   │   │   │       ├── tarifa_hotel.py
-│   │   │   │   │   │       ├── temporada.py
-│   │   │   │   │   │       ├── turismo_acessivel.py
-│   │   │   │   │   │       ├── turismo_aventura.py
-│   │   │   │   │   │       ├── turismo_educacional.py
-│   │   │   │   │   │       ├── turismo_eventos.py
-│   │   │   │   │   │       ├── turismo_gastronomico.py
-│   │   │   │   │   │       ├── turismo_historico.py
-│   │   │   │   │   │       ├── turismo_negocios.py
-│   │   │   │   │   │       ├── turismo_religioso.py
-│   │   │   │   │   │       ├── turismo_saude.py
-│   │   │   │   │   │       ├── visita_guiada.py
-│   │   │   │   │   │       ├── visitante.py
-│   │   │   │   │   │       └── visto.py
-│   │   │   │   │   ├── infrastructure
-│   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   ├── adapters
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── ambiente_service_adapter.py
-│   │   │   │   │   │   │   ├── citizen_service_adapter.py
-│   │   │   │   │   │   │   ├── comercio_servicos_service_adapter.py
-│   │   │   │   │   │   │   ├── cultura_service_adapter.py
-│   │   │   │   │   │   │   ├── geosampa_service_adapter.py
-│   │   │   │   │   │   │   ├── request_service_adapter.py
-│   │   │   │   │   │   │   └── transportes_logistica_service_adapter.py
-│   │   │   │   │   │   ├── models
-│   │   │   │   │   │   │   ├── __init__.py
-│   │   │   │   │   │   │   ├── agencia_viagens_model.py
-│   │   │   │   │   │   │   ├── atracao_turistica_model.py
-│   │   │   │   │   │   │   ├── auto_infracao_turismo_model.py
-│   │   │   │   │   │   │   ├── avaliacao_model.py
-│   │   │   │   │   │   │   ├── cadastro_turista_model.py
-│   │   │   │   │   │   │   ├── cadastur_model.py
-│   │   │   │   │   │   │   ├── certificacao_turistica_model.py
-│   │   │   │   │   │   │   ├── classificacao_hoteleira_model.py
-│   │   │   │   │   │   │   ├── credencial_model.py
-│   │   │   │   │   │   │   ├── estatistica_turismo_model.py
-│   │   │   │   │   │   │   ├── evento_turistico_model.py
-│   │   │   │   │   │   │   ├── fiscalizacao_turismo_model.py
-│   │   │   │   │   │   │   ├── fluxo_turistico_model.py
-│   │   │   │   │   │   │   ├── guia_turismo_model.py
-│   │   │   │   │   │   │   ├── hotel_model.py
-│   │   │   │   │   │   │   ├── licenca_turismo_model.py
-│   │   │   │   │   │   │   ├── multa_turismo_model.py
-│   │   │   │   │   │   │   ├── ocupacao_hoteleira_model.py
-│   │   │   │   │   │   │   ├── operador_turistico_model.py
-│   │   │   │   │   │   │   ├── pacote_turistico_model.py
-│   │   │   │   │   │   │   ├── ponto_turistico_model.py
-│   │   │   │   │   │   │   ├── pousada_model.py
-│   │   │   │   │   │   │   ├── promocao_turistica_model.py
-│   │   │   │   │   │   │   ├── receita_turistica_model.py
-│   │   │   │   │   │   │   ├── reclamacao_turismo_model.py
-│   │   │   │   │   │   │   ├── registro_guia_model.py
-│   │   │   │   │   │   │   ├── reserva_hotel_model.py
-│   │   │   │   │   │   │   ├── reserva_pacote_model.py
-│   │   │   │   │   │   │   ├── roteiro_model.py
-│   │   │   │   │   │   │   ├── tarifa_hotel_model.py
-│   │   │   │   │   │   │   ├── temporada_model.py
-│   │   │   │   │   │   │   └── visitante_model.py
-│   │   │   │   │   │   └── repositories
-│   │   │   │   │   │       ├── __init__.py
-│   │   │   │   │   │       ├── sqlalchemy_agencia_viagens_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_atracao_turistica_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_auto_infracao_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_avaliacao_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_cadastro_turista_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_cadastur_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_certificacao_turistica_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_classificacao_hoteleira_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_credencial_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_estatistica_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_evento_turistico_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_fiscalizacao_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_fluxo_turistico_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_guia_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_hotel_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_licenca_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_multa_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_ocupacao_hoteleira_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_operador_turistico_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_pacote_turistico_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_ponto_turistico_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_pousada_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_promocao_turistica_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_receita_turistica_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_reclamacao_turismo_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_registro_guia_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_reserva_hotel_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_reserva_pacote_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_roteiro_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_tarifa_hotel_repository.py
-│   │   │   │   │   │       ├── sqlalchemy_temporada_repository.py
-│   │   │   │   │   │       └── sqlalchemy_visitante_repository.py
-│   │   │   │   │   └── tests
-│   │   │   │   │       ├── __init__.py
-│   │   │   │   │       ├── integration
-│   │   │   │   │       │   └── __init__.py
-│   │   │   │   │       └── unit
-│   │   │   │   │           └── __init__.py
+│   │   │   │   ├── wallet
 │   │   │   │   └── xroad
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── api
-│   │   │   │       │   ├── __init__.py
-│   │   │   │       │   ├── api
-│   │   │   │       │   │   ├── __init__.py
-│   │   │   │       │   │   ├── health.py
-│   │   │   │       │   │   └── router.py
-│   │   │   │       │   ├── application
-│   │   │   │       │   ├── domain
-│   │   │   │       │   ├── infrastructure
-│   │   │   │       │   └── router.py
-│   │   │   │       ├── application
-│   │   │   │       │   ├── __init__.py
-│   │   │   │       │   ├── api
-│   │   │   │       │   │   ├── __init__.py
-│   │   │   │       │   │   ├── health.py
-│   │   │   │       │   │   └── router.py
-│   │   │   │       │   ├── application
-│   │   │   │       │   ├── domain
-│   │   │   │       │   ├── infrastructure
-│   │   │   │       │   └── xroad_service.py
-│   │   │   │       ├── domain
-│   │   │   │       │   ├── __init__.py
-│   │   │   │       │   ├── api
-│   │   │   │       │   │   ├── __init__.py
-│   │   │   │       │   │   ├── health.py
-│   │   │   │       │   │   └── router.py
-│   │   │   │       │   ├── application
-│   │   │   │       │   ├── audit_log.py
-│   │   │   │       │   ├── domain
-│   │   │   │       │   ├── envelope.py
-│   │   │   │       │   └── infrastructure
-│   │   │   │       └── infrastructure
-│   │   │   │           ├── __init__.py
-│   │   │   │           └── audit_repository.py
 │   │   │   ├── platform
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── integration
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── observability
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── logger.py
 │   │   │   │   ├── persistence
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base_repository.py
-│   │   │   │   │   └── unit_of_work.py
 │   │   │   │   ├── runtime
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── compat_router.py
-│   │   │   │   │   ├── health_router.py
-│   │   │   │   │   └── loader.py
 │   │   │   │   └── shared
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── bridges
-│   │   │   │       │   ├── __init__.py
-│   │   │   │       │   ├── citizen_repository_bridge.py
-│   │   │   │       │   ├── citizen_repository_port_bridge.py
-│   │   │   │       │   ├── civil_identity_bridge.py
-│   │   │   │       │   ├── cross_domain_ports_bridge.py
-│   │   │   │       │   ├── emprego_bridge.py
-│   │   │   │       │   ├── finance_bridge.py
-│   │   │   │       │   ├── governance_service_requests_bridge.py
-│   │   │   │       │   ├── identity_bridge.py
-│   │   │   │       │   ├── infrastructure_sector_bridge.py
-│   │   │   │       │   ├── intelligence_bi_sources_bridge.py
-│   │   │   │       │   ├── justice_public_safety_bridge.py
-│   │   │   │       │   ├── resources_agricultura_bridge.py
-│   │   │   │       │   ├── resources_external_services_bridge.py
-│   │   │   │       │   ├── service_requests_bridge.py
-│   │   │   │       │   ├── society_domain_enums_bridge.py
-│   │   │   │       │   ├── society_repository_bridges.py
-│   │   │   │       │   └── society_statistics_models_bridge.py
-│   │   │   │       ├── db.py
-│   │   │   │       └── enums.py
 │   │   │   ├── presentation
 │   │   │   │   ├── api
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── citizen_document_routes.py
-│   │   │   │   │   └── citizen_routes.py
 │   │   │   │   └── schemas
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── citizen_document_schema.py
-│   │   │   │       └── citizen_schema.py
 │   │   │   ├── schemas
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── auth
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── login.py
 │   │   │   │   ├── business.py
 │   │   │   │   ├── citizen.py
 │   │   │   │   └── user.py
 │   │   │   ├── shared
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── auth
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── current_user.py
-│   │   │   │   │   └── permissions.py
 │   │   │   │   ├── database
 │   │   │   │   ├── db
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── base.py
-│   │   │   │   │   ├── mixins.py
-│   │   │   │   │   └── session.py
 │   │   │   │   ├── events
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── dispatcher.py
-│   │   │   │   │   └── domain_event.py
 │   │   │   │   ├── services
 │   │   │   │   ├── utils
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── datetime.py
-│   │   │   │   │   └── id_generator.py
 │   │   │   │   └── value_objects
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── email.py
-│   │   │   │       ├── money.py
-│   │   │   │       └── pagination.py
 │   │   │   ├── utils
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── security.py
@@ -5498,7 +308,23 @@
 │   │   ├── conftest.py
 │   │   ├── core
 │   │   │   ├── __init__.py
-│   │   │   ├── auth.py
+│   │   │   ├── adapters
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── adapter_factory.py
+│   │   │   ├── audit
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── adapters
+│   │   │   │   ├── audit_engine.py
+│   │   │   │   └── middleware.py
+│   │   │   ├── auth
+│   │   │   │   ├── CONSOLIDATION_REPORT.json
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── guards
+│   │   │   │   ├── jwt_handler.py
+│   │   │   │   ├── keycloak_blueprint.md
+│   │   │   │   ├── policies
+│   │   │   │   ├── providers
+│   │   │   │   └── roles
 │   │   │   ├── cache
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── redis.py
@@ -5515,17 +341,33 @@
 │   │   │   ├── events
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── event_bus.py
+│   │   │   ├── exceptions
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── domain_exception.py
+│   │   │   │   ├── domain_exception_factory.py
+│   │   │   │   ├── factory.py
+│   │   │   │   └── module_exception_factory.py
 │   │   │   ├── exceptions.py
+│   │   │   ├── exports
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── tasks.py
 │   │   │   ├── health.py
 │   │   │   ├── logger.py
 │   │   │   ├── metrics.py
+│   │   │   ├── repositories
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── base_repository.py
+│   │   │   │   └── repository_factory.py
 │   │   │   ├── repositories.py
+│   │   │   ├── routers
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── health_factory.py
+│   │   │   │   └── router_factory.py
 │   │   │   ├── schemas.py
 │   │   │   ├── scope.py
 │   │   │   ├── security
 │   │   │   │   ├── __init__.py
 │   │   │   │   └── iam_client.py
-│   │   │   ├── security.py
 │   │   │   ├── sentry.py
 │   │   │   └── services.py
 │   │   ├── db
@@ -5544,6 +386,7 @@
 │   │   ├── entrypoint.sh
 │   │   ├── env.example
 │   │   ├── extract_error.py
+│   │   ├── fix_schema.py
 │   │   ├── get-pip.py
 │   │   ├── hydrate_vc_engine.sh
 │   │   ├── interfaces
@@ -5552,6 +395,9 @@
 │   │   ├── logs
 │   │   │   └── test_db_connection.log
 │   │   ├── main.py
+│   │   ├── migrations
+│   │   │   └── versions
+│   │   │       └── 20260314_151759_merge_migrations_consolidation.py
 │   │   ├── module_health_dashboard.html
 │   │   ├── observability
 │   │   │   ├── __init__.py
@@ -5569,6 +415,7 @@
 │   │   ├── reset_local_db.py
 │   │   ├── reset_password.py
 │   │   ├── run_integration_tests_refactored.sh
+│   │   ├── run_postgres_event_store_tests.sh
 │   │   ├── run_sila_dev.sh
 │   │   ├── run_tests.py
 │   │   ├── run_unit_tests.sh
@@ -5584,6 +431,8 @@
 │   │   │   ├── complete_migration.py
 │   │   │   ├── create_module.py
 │   │   │   ├── debug_mappers.py
+│   │   │   ├── fix_missing_imports.py
+│   │   │   ├── generate_oidc_provider_keys.py
 │   │   │   ├── init-db.sql
 │   │   │   ├── legacy
 │   │   │   │   ├── check_login.py
@@ -5597,14 +446,17 @@
 │   │   │   │   ├── fix_territory_model.py
 │   │   │   │   └── inspect_routes.py
 │   │   │   ├── list_provincial_users.py
+│   │   │   ├── locations_audit.py
 │   │   │   ├── migrate_and_validate.py
 │   │   │   ├── module_tools
 │   │   │   │   ├── defesa_consumidor_generate_module.py
 │   │   │   │   ├── estatistica_generate_module.py
 │   │   │   │   ├── generate_module.py
 │   │   │   │   └── setup_full_structure.py
+│   │   │   ├── normalize_locations_title_case.sql
 │   │   │   ├── run_health_check.py
 │   │   │   ├── run_health_check.sh
+│   │   │   ├── run_locations_maintenance.sh
 │   │   │   ├── run_migration.sh
 │   │   │   ├── run_role_level_guard_tests.py
 │   │   │   ├── run_statistics_block_tests.sh
@@ -5613,6 +465,7 @@
 │   │   │   ├── seed_angola_dpa_2024.py
 │   │   │   ├── seed_citizen_roles.py
 │   │   │   ├── seed_educacao_institucional.py
+│   │   │   ├── seed_financas_dashboard.py
 │   │   │   ├── seed_institutional_catalog.py
 │   │   │   ├── seed_realistic_data.py
 │   │   │   ├── setup_health_check.py
@@ -5635,7 +488,8 @@
 │   │   │   │   ├── seed_founding_users_v2.py
 │   │   │   │   ├── seed_founding_users_with_territories.py
 │   │   │   │   ├── seed_fuc_citizen.py
-│   │   │   │   └── seed_fuc_golden_citizen.py
+│   │   │   │   ├── seed_fuc_golden_citizen.py
+│   │   │   │   └── seed_locations_dpa_2024.py
 │   │   │   ├── roles.py
 │   │   │   ├── run.py
 │   │   │   ├── run_all.py
@@ -5647,7 +501,8 @@
 │   │   │   ├── seed_admin_users.py
 │   │   │   ├── seed_citizen_documents.py
 │   │   │   ├── seed_integration_minimal.sql
-│   │   │   └── seed_phase_20_2_events.sql
+│   │   │   ├── seed_phase_20_2_events.sql
+│   │   │   └── seed_sla_completo.sql
 │   │   ├── services
 │   │   │   ├── __init__.py
 │   │   │   └── openai_client.py
@@ -5662,29 +517,23 @@
 │   │   ├── templates
 │   │   │   ├── DDD_MODULE_ENTERPRISE
 │   │   │   │   ├── application
-│   │   │   │   │   ├── dto.py
-│   │   │   │   │   └── service.py
 │   │   │   │   ├── domain
-│   │   │   │   │   ├── entities.py
-│   │   │   │   │   ├── exceptions.py
-│   │   │   │   │   └── value_objects.py
 │   │   │   │   ├── infrastructure
-│   │   │   │   │   └── repositories
-│   │   │   │   │       └── sqlalchemy_repository.py
 │   │   │   │   └── presentation
-│   │   │   │       └── router.py
 │   │   │   └── emails
 │   │   │       ├── document_shared.html
 │   │   │       ├── notification_base.html
 │   │   │       └── payment_confirmed.html
+│   │   ├── test_app_integration.py
 │   │   ├── test_payment_endpoints_manual.py
+│   │   ├── test_registry_debug.py
+│   │   ├── test_router_import.py
 │   │   ├── test_triple_bootstrap.py
 │   │   ├── tests
 │   │   │   ├── __init__.py
 │   │   │   ├── ci_test_config.json
 │   │   │   ├── citizen
 │   │   │   │   └── unit
-│   │   │   │       └── test_routing_engine.py
 │   │   │   ├── conftest.py
 │   │   │   ├── e2e
 │   │   │   │   ├── __init__.py
@@ -5693,7 +542,8 @@
 │   │   │   │   ├── test_citizenship_flow.py
 │   │   │   │   ├── test_integration_modules.py
 │   │   │   │   ├── test_matricula_flow.py
-│   │   │   │   └── test_payment_flow.py
+│   │   │   │   ├── test_payment_flow.py
+│   │   │   │   └── test_rabbitmq_integration.py
 │   │   │   ├── factories
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── base_factory.py
@@ -5708,49 +558,10 @@
 │   │   │   ├── integration
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── cross_module
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── run_cross_module_tests.py
-│   │   │   │   │   ├── test_citizenship_justice_payment.py
-│   │   │   │   │   ├── test_education_justice_finance.py
-│   │   │   │   │   ├── test_health_monitoring_notifications.py
-│   │   │   │   │   ├── test_sanitation_monitoring_notifications.py
-│   │   │   │   │   ├── validate_crud_implementation.py
-│   │   │   │   │   ├── validate_integration_tests.py
-│   │   │   │   │   └── validate_integration_tests_fixed.py
 │   │   │   │   ├── db
-│   │   │   │   │   └── __init__.py
 │   │   │   │   ├── logging_config.py
 │   │   │   │   ├── modules
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   ├── app
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── appointments
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── ci_integration.py
-│   │   │   │   │   ├── commercial
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── common
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── education
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── health
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── internal
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── justice
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── reports
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── run_new_tests.py
-│   │   │   │   │   ├── social
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   ├── statistics
-│   │   │   │   │   │   └── __init__.py
-│   │   │   │   │   └── urbanism
-│   │   │   │   │       └── __init__.py
 │   │   │   │   ├── performance
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── run_tests.sh
 │   │   │   │   ├── test_api_refactored.py
 │   │   │   │   ├── test_app.py
 │   │   │   │   ├── test_app_bootstrap.py
@@ -5759,6 +570,7 @@
 │   │   │   │   ├── test_auth_staging.py
 │   │   │   │   ├── test_citizens.py
 │   │   │   │   ├── test_commercial_schemas_fixed.py
+│   │   │   │   ├── test_cqrs_flows.py
 │   │   │   │   ├── test_db_connection.py
 │   │   │   │   ├── test_environment.py
 │   │   │   │   ├── test_global_imports.py
@@ -5767,124 +579,67 @@
 │   │   │   │   ├── test_integration.py
 │   │   │   │   ├── test_minimal_notifications.py
 │   │   │   │   ├── test_output.py
+│   │   │   │   ├── test_postgres_event_store.py
 │   │   │   │   ├── test_services.py
 │   │   │   │   ├── test_smoke.py
 │   │   │   │   ├── test_users.py
 │   │   │   │   └── utils
-│   │   │   │       ├── __init__.py
-│   │   │   │       ├── auth.py
-│   │   │   │       └── utils.py
 │   │   │   ├── load
 │   │   │   │   └── test_operations_load.py
 │   │   │   ├── module_health_check.py
 │   │   │   ├── modules
 │   │   │   │   ├── administracao_local
-│   │   │   │   │   ├── conftest.py
-│   │   │   │   │   ├── test_administracao_local_smoke.py
-│   │   │   │   │   ├── test_router.py
-│   │   │   │   │   └── test_service.py
 │   │   │   │   ├── agricultura
-│   │   │   │   │   └── test_agricultura_smoke.py
 │   │   │   │   ├── aguas_saneamento
-│   │   │   │   │   └── test_aguas_saneamento_smoke.py
 │   │   │   │   ├── ambiente
-│   │   │   │   │   └── test_ambiente_smoke.py
 │   │   │   │   ├── apoio_empresarial
-│   │   │   │   │   └── test_apoio_empresarial_smoke.py
 │   │   │   │   ├── arquivo_nacional
-│   │   │   │   │   └── test_arquivo_nacional_smoke.py
 │   │   │   │   ├── assistencia_social
-│   │   │   │   │   └── test_assistencia_social_smoke.py
 │   │   │   │   ├── aviacao_civil
-│   │   │   │   │   └── test_aviacao_civil_smoke.py
 │   │   │   │   ├── ciencia_pesquisa
-│   │   │   │   │   └── test_ciencia_pesquisa_smoke.py
 │   │   │   │   ├── comercio
-│   │   │   │   │   └── test_comercio_smoke.py
 │   │   │   │   ├── comercio_externo
-│   │   │   │   │   └── test_comercio_externo_smoke.py
 │   │   │   │   ├── cooperacao_internacional
-│   │   │   │   │   └── test_cooperacao_internacional_smoke.py
 │   │   │   │   ├── cultura
-│   │   │   │   │   └── test_cultura_smoke.py
 │   │   │   │   ├── defesa_consumidor
-│   │   │   │   │   └── test_defesa_consumidor_smoke.py
 │   │   │   │   ├── desporto
-│   │   │   │   │   └── test_desporto_smoke.py
 │   │   │   │   ├── educacao
-│   │   │   │   │   └── test_educacao_smoke.py
 │   │   │   │   ├── emprego
-│   │   │   │   │   └── test_emprego_smoke.py
 │   │   │   │   ├── energia
-│   │   │   │   │   └── test_energia_smoke.py
 │   │   │   │   ├── estatistica
-│   │   │   │   │   └── test_estatistica_smoke.py
 │   │   │   │   ├── familia
-│   │   │   │   │   └── test_familia_smoke.py
 │   │   │   │   ├── financas_impostos
-│   │   │   │   │   └── test_financas_impostos_smoke.py
 │   │   │   │   ├── florestas
-│   │   │   │   │   └── test_florestas_smoke.py
 │   │   │   │   ├── gestao_fundiaria
-│   │   │   │   │   └── test_gestao_fundiaria_smoke.py
 │   │   │   │   ├── habitacao
-│   │   │   │   │   └── test_habitacao_smoke.py
 │   │   │   │   ├── igualdade
-│   │   │   │   │   └── test_igualdade_smoke.py
 │   │   │   │   ├── industria
-│   │   │   │   │   └── test_industria_smoke.py
 │   │   │   │   ├── justica
-│   │   │   │   │   └── test_justica_smoke.py
 │   │   │   │   ├── juventude
-│   │   │   │   │   └── test_juventude_smoke.py
 │   │   │   │   ├── meteorologia
-│   │   │   │   │   └── test_meteorologia_smoke.py
 │   │   │   │   ├── migracao
-│   │   │   │   │   └── test_migracao_smoke.py
 │   │   │   │   ├── obras_publicas
-│   │   │   │   │   └── test_obras_publicas_smoke.py
 │   │   │   │   ├── patrimonio_cultural
-│   │   │   │   │   └── test_patrimonio_cultural_smoke.py
 │   │   │   │   ├── pecuaria
-│   │   │   │   │   └── test_pecuaria_smoke.py
 │   │   │   │   ├── pescas
-│   │   │   │   │   └── test_pescas_smoke.py
 │   │   │   │   ├── pescas_industriais
-│   │   │   │   │   └── test_pescas_industriais_smoke.py
 │   │   │   │   ├── petroleo_gas
-│   │   │   │   │   └── test_petroleo_gas_smoke.py
 │   │   │   │   ├── planeamento
-│   │   │   │   │   └── test_planeamento_smoke.py
 │   │   │   │   ├── portos_logistica
-│   │   │   │   │   └── test_portos_logistica_smoke.py
 │   │   │   │   ├── protecao_civil
-│   │   │   │   │   └── test_protecao_civil_smoke.py
 │   │   │   │   ├── protecao_dados
-│   │   │   │   │   └── test_protecao_dados_smoke.py
 │   │   │   │   ├── recursos_minerais
-│   │   │   │   │   └── test_recursos_minerais_smoke.py
 │   │   │   │   ├── registo_civil
-│   │   │   │   │   └── test_registo_civil_smoke.py
 │   │   │   │   ├── saude
-│   │   │   │   │   └── test_saude_smoke.py
 │   │   │   │   ├── seguranca_alimentar
-│   │   │   │   │   └── test_seguranca_alimentar_smoke.py
 │   │   │   │   ├── seguranca_publica
-│   │   │   │   │   └── test_seguranca_publica_smoke.py
 │   │   │   │   ├── seguranca_social
-│   │   │   │   │   └── test_seguranca_social_smoke.py
 │   │   │   │   ├── tecnologia_inovacao
-│   │   │   │   │   └── test_tecnologia_inovacao_smoke.py
 │   │   │   │   ├── telecomunicacoes
-│   │   │   │   │   └── test_telecomunicacoes_smoke.py
 │   │   │   │   ├── trabalho_inspecao
-│   │   │   │   │   └── test_trabalho_inspecao_smoke.py
 │   │   │   │   ├── transportes
-│   │   │   │   │   └── test_transportes_smoke.py
 │   │   │   │   ├── turismo
-│   │   │   │   │   └── test_turismo_smoke.py
 │   │   │   │   └── urbanismo
-│   │   │   │       └── test_urbanismo_smoke.py
 │   │   │   ├── test_alembic_chain.py
 │   │   │   ├── test_alembic_health.py
 │   │   │   ├── test_audit_analytics.py
@@ -5901,8 +656,6 @@
 │   │   │   ├── unit
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── reports
-│   │   │   │   │   ├── __init__.py
-│   │   │   │   │   └── unit_test_summary.json
 │   │   │   │   ├── run_unit_tests.py
 │   │   │   │   ├── test_dedup.py
 │   │   │   │   ├── test_payment_models.py
@@ -5913,11 +666,13 @@
 │   │   │   │   ├── __init__.py
 │   │   │   │   ├── generate_tests.py
 │   │   │   │   └── utils.py
+│   │   │   ├── validation
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── test_domain_logic.py
+│   │   │   │   ├── test_module_boundaries.py
+│   │   │   │   └── test_router_validation.py
 │   │   │   └── wsl.localhost
 │   │   │       └── Ubuntu
-│   │   │           └── home
-│   │   │               └── truman
-│   │   │                   └── dev
 │   │   ├── translations
 │   │   │   ├── __init__.py
 │   │   │   ├── en.json
@@ -5939,7 +694,6 @@
 │   │   ├── package.json
 │   │   ├── postcss.config.js
 │   │   ├── public
-│   │   │   ├── test.txt
 │   │   │   └── vite.svg
 │   │   ├── src
 │   │   │   ├── App.css
@@ -5948,48 +702,28 @@
 │   │   │   │   ├── adminHttp.ts
 │   │   │   │   ├── axios.ts
 │   │   │   │   ├── citizenHttp.ts
+│   │   │   │   ├── generated
 │   │   │   │   └── http.ts
 │   │   │   ├── assets
 │   │   │   │   ├── images
-│   │   │   │   │   ├── Education-Dashboard-Admin-Template.jpg:Zone.Identifier
-│   │   │   │   │   ├── bandeira-angola-ondulante.png
-│   │   │   │   │   ├── bandeira-angola-ondulante.png.jpeg:Zone.Identifier
-│   │   │   │   │   ├── brasao-angola.png
-│   │   │   │   │   ├── brasao-angola.png.jpeg:Zone.Identifier
-│   │   │   │   │   ├── level-central.webp
-│   │   │   │   │   ├── level-municipal.png
-│   │   │   │   │   ├── level-provincial.jpg
-│   │   │   │   │   ├── login-hero.jpg
-│   │   │   │   │   ├── mockup-dashboard-nacional.png.webp:Zone.Identifier
-│   │   │   │   │   ├── mockup-portal-admin-provincial.png.jpeg:Zone.Identifier
-│   │   │   │   │   ├── mockup-portal-cidadao.png.jpeg
-│   │   │   │   │   ├── mockup-portal-cidadao.png.jpeg:Zone.Identifier
-│   │   │   │   │   ├── mockup-portal-cidadao.png.png:Zone.Identifier
-│   │   │   │   │   └── mockup-portal-estudante.png.jpg:Zone.Identifier
 │   │   │   │   └── react.svg
+│   │   │   ├── auth
+│   │   │   │   └── keycloak.ts
 │   │   │   ├── components
 │   │   │   │   ├── Admin
-│   │   │   │   │   └── AdminPanel.tsx
+│   │   │   │   ├── AdminObservability.tsx
 │   │   │   │   ├── Auth
-│   │   │   │   │   ├── AdminRoute.tsx
-│   │   │   │   │   └── ProtectedRoute.tsx
 │   │   │   │   ├── Dashboard
-│   │   │   │   │   ├── DocumentsTable.tsx
-│   │   │   │   │   └── StatsCards.tsx
 │   │   │   │   ├── Documents
-│   │   │   │   │   └── DocumentCard.tsx
 │   │   │   │   ├── Layout
-│   │   │   │   │   └── Header.tsx
 │   │   │   │   ├── Layout.tsx
+│   │   │   │   ├── ObservabilityOverview.tsx
 │   │   │   │   ├── Payment
-│   │   │   │   │   └── CheckoutCard.tsx
 │   │   │   │   ├── ProtectedRoute.tsx
 │   │   │   │   ├── Search
-│   │   │   │   │   └── GlobalSearchBar.tsx
 │   │   │   │   ├── Statistics
-│   │   │   │   │   └── StatisticsSkeleton.tsx
+│   │   │   │   ├── Toast.tsx
 │   │   │   │   └── Upload
-│   │   │   │       └── UploadZone.tsx
 │   │   │   ├── constants
 │   │   │   │   └── images.ts
 │   │   │   ├── constants.tsx
@@ -5997,29 +731,35 @@
 │   │   │   │   ├── useAuth.ts
 │   │   │   │   ├── useDocumentStatus.ts
 │   │   │   │   ├── useDocumentUpload.ts
-│   │   │   │   └── useMyDocuments.ts
+│   │   │   │   ├── useMyDocuments.ts
+│   │   │   │   └── useToast.tsx
 │   │   │   ├── index.css
 │   │   │   ├── index.tsx
 │   │   │   ├── main.tsx
 │   │   │   ├── modules
+│   │   │   │   ├── admin
+│   │   │   │   ├── citizen
+│   │   │   │   ├── identity
+│   │   │   │   ├── meteorologia
 │   │   │   │   └── pagamentos
-│   │   │   │       ├── FinancialDashboard.tsx
-│   │   │   │       ├── PaymentsPage.tsx
-│   │   │   │       ├── components
-│   │   │   │       │   ├── Layout.tsx
-│   │   │   │       │   └── PaymentModal.tsx
-│   │   │   │       ├── index.tsx
-│   │   │   │       ├── services
-│   │   │   │       │   └── financeService.ts
-│   │   │   │       └── types.ts
 │   │   │   ├── pages
 │   │   │   │   ├── AdminAuditViewer.tsx
+│   │   │   │   ├── AdminCitizenFuc.tsx
+│   │   │   │   ├── AdminCitizenProfile.tsx
+│   │   │   │   ├── AdminCitizens.tsx
+│   │   │   │   ├── AdminDocumentProfile.tsx
+│   │   │   │   ├── AdminDocuments.tsx
+│   │   │   │   ├── AdminExports.tsx
+│   │   │   │   ├── AdminObservability.tsx
 │   │   │   │   ├── AdminStatistics.tsx
+│   │   │   │   ├── AdminTerritory.tsx
+│   │   │   │   ├── BiometricEnrollmentPage.tsx
 │   │   │   │   ├── CitizenDashboard.tsx
 │   │   │   │   ├── CitizenLogin.tsx
 │   │   │   │   ├── CitizenPortal.tsx
 │   │   │   │   ├── Dashboard.tsx
 │   │   │   │   ├── DocumentsView.tsx
+│   │   │   │   ├── IdentityPage.tsx
 │   │   │   │   ├── Login.tsx
 │   │   │   │   ├── MyDocuments.tsx
 │   │   │   │   ├── Notifications.tsx
@@ -6033,7 +773,7 @@
 │   │   │   ├── router
 │   │   │   │   └── routes.tsx
 │   │   │   ├── services
-│   │   │   │   ├── API_INTEGRATION_GUIDE.md
+│   │   │   │   ├── adminDocumentService.ts
 │   │   │   │   ├── api.ts
 │   │   │   │   ├── apiService.ts
 │   │   │   │   ├── auth.ts
@@ -6043,103 +783,76 @@
 │   │   │   │   ├── citizenService.ts
 │   │   │   │   ├── dashboardService.ts
 │   │   │   │   ├── documentService.ts
+│   │   │   │   ├── exportJobsService.ts
+│   │   │   │   ├── operationsService.ts
+│   │   │   │   ├── sla.ts
 │   │   │   │   └── territoryService.ts
 │   │   │   ├── store
 │   │   │   │   └── authStore.ts
 │   │   │   ├── types
+│   │   │   │   ├── api.ts
 │   │   │   │   └── auth.ts
 │   │   │   ├── types.ts
 │   │   │   └── utils
-│   │   │       └── cn.ts
+│   │   │       ├── cn.ts
+│   │   │       └── globalToast.ts
 │   │   ├── tailwind.config.js
 │   │   ├── tsconfig.app.json
 │   │   ├── tsconfig.json
 │   │   ├── tsconfig.node.json
 │   │   └── vite.config.ts
 │   └── worker
-├── batch_extraction_identity.sh
-├── batch_health_education_migrate.sh
-├── batch_health_education_mkdir.sh
-├── batch_purge_identity.sh
-├── cleanup.sh
-├── cleanup_saude_refs.py
-├── cleanup_seeds.sh
 ├── code-quality.workflow
 ├── conftest.py
-├── consolidate_and_purge.sh
-├── consolidate_identity_core.log
-├── consolidate_identity_core.sh
-├── consolidate_justice_core.log
-├── consolidate_justice_core.sh
-├── deploy-wsl2.sh
-├── docker-clean-and-up.sh
-├── docker-compose.alerts.yml
-├── docker-compose.elk.yml
-├── docker-compose.events.yml
-├── docker-compose.override.yml
-├── docker-compose.prod.yml
-├── docker-compose.yml
 ├── docs
 │   ├── AI_ARCHITECTURE_GRAPH.yaml
-│   ├── AI_ARCHITECTURE_GUIDE.md
-│   ├── AI_BOOTSTRAP_PROMPT.md
-│   ├── AI_CONTEXT.md
-│   ├── AI_DOMAIN_KERNEL.md
-│   ├── AI_GUARDRAILS.md
-│   ├── AI_WORKFLOW.md
-│   ├── ANGOLA_SETUP.md
-│   ├── ELK_OPERATIONS_GUIDE.md
 │   ├── architecture
 │   │   ├── REPOSITORY_MAP.yaml
-│   │   ├── context_map.md
 │   │   ├── domain_dependency_policy.yaml
 │   │   ├── domains
 │   │   │   ├── core_system
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── economy
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── educacao
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── environment
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── governance
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── identity
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── infrastructure
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── infrastructure_sector
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── intelligence
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── justice
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── resources
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── security
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   ├── social
-│   │   │   │   └── ARCHITECTURE.md
 │   │   │   └── society
-│   │   │       └── ARCHITECTURE.md
-│   │   ├── entrypoints
-│   │   │   ├── API_ENTRYPOINTS.md
-│   │   │   ├── BACKEND_ARCHITECTURE.md
-│   │   │   ├── DATA_FLOW.md
-│   │   │   ├── DOMAIN_MAP.md
-│   │   │   └── SYSTEM_OVERVIEW.md
-│   │   ├── migration_strategy.md
-│   │   └── module_federation_plan.md
+│   │   └── entrypoints
 │   ├── modules
-│   │   └── tree.txt
+│   │   └── tree.modules.txt
+│   ├── seed_angola_dpa_2024.cpython-312.pyc
 │   └── tree.md
-├── execute_phase_20_2_schema.py
-├── filebeat.yml
-├── grafana-dashboards.yml
-├── grafana-datasources.yml
-├── heal_identity_bridge.py
-├── identity_core.lock
-├── inspect_db.sh
+├── er_id, status, severity, ts in result.fetchall():
+├── find_broken_imports.py
+├── hell -Command "q" 2>$null
+├── infra
+│   ├── alerts
+│   │   ├── alert-rules.yml
+│   │   └── alertmanager.yml
+│   ├── docker-compose.alerts.yml
+│   ├── docker-compose.elk.yml
+│   ├── docker-compose.events.yml
+│   ├── docker-compose.override.yml
+│   ├── docker-compose.prod.yml
+│   ├── docker-compose.yml
+│   ├── identity
+│   │   ├── docker-compose.yml
+│   │   └── realm
+│   │       └── sila-realm.json
+│   ├── logging
+│   │   ├── filebeat.yml
+│   │   └── logstash.conf
+│   └── observability
+│       ├── grafana-dashboards.yml
+│       ├── grafana-datasources.yml
+│       └── prometheus.yml
 ├── interfaces
 │   ├── dashboard
 │   │   └── institutional_dashboard.py
@@ -6163,42 +876,19 @@
 │       │   │   └── http.ts
 │       │   ├── assets
 │       │   │   ├── images
-│       │   │   │   ├── auth-bg-admin.webp
-│       │   │   │   ├── auth-bg-citizen.webp
-│       │   │   │   ├── brand-logo-sila.webp
-│       │   │   │   ├── dashboard-citizen-hero.webp
-│       │   │   │   ├── feature-digital-wallet.webp
-│       │   │   │   ├── geo-level-municipal.webp
-│       │   │   │   ├── geo-level-national.webp
-│       │   │   │   ├── geo-level-provincial.webp
-│       │   │   │   ├── gov-insignia-color.webp
-│       │   │   │   ├── gov-insignia-gold.webp
-│       │   │   │   ├── seguranca_publica.png
-│       │   │   │   └── seguranca_publica.png:Zone.Identifier
 │       │   │   └── react.svg
 │       │   ├── components
 │       │   │   ├── Admin
-│       │   │   │   └── AdminPanel.tsx
 │       │   │   ├── Auth
-│       │   │   │   ├── AdminRoute.tsx
-│       │   │   │   └── ProtectedRoute.tsx
 │       │   │   ├── Dashboard
-│       │   │   │   ├── DocumentsTable.tsx
-│       │   │   │   └── StatsCards.tsx
 │       │   │   ├── Documents
-│       │   │   │   └── DocumentCard.tsx
 │       │   │   ├── Layout
-│       │   │   │   └── Header.tsx
 │       │   │   ├── Layout.tsx
 │       │   │   ├── Payment
-│       │   │   │   └── CheckoutCard.tsx
 │       │   │   ├── ProtectedRoute.tsx
 │       │   │   ├── Search
-│       │   │   │   └── GlobalSearchBar.tsx
 │       │   │   ├── Statistics
-│       │   │   │   └── StatisticsSkeleton.tsx
 │       │   │   └── Upload
-│       │   │       └── UploadZone.tsx
 │       │   ├── constants
 │       │   │   └── images.ts
 │       │   ├── constants.tsx
@@ -6210,16 +900,9 @@
 │       │   ├── index.css
 │       │   ├── main.tsx
 │       │   ├── modules
+│       │   │   ├── identity
+│       │   │   ├── meteorologia
 │       │   │   └── pagamentos
-│       │   │       ├── FinancialDashboard.tsx
-│       │   │       ├── PaymentsPage.tsx
-│       │   │       ├── components
-│       │   │       │   ├── Layout.tsx
-│       │   │       │   └── PaymentModal.tsx
-│       │   │       ├── index.tsx
-│       │   │       ├── services
-│       │   │       │   └── financeService.ts
-│       │   │       └── types.ts
 │       │   ├── pages
 │       │   │   ├── AdminAuditViewer.tsx
 │       │   │   ├── AdminStatistics.tsx
@@ -6239,10 +922,6 @@
 │       │   │   ├── Unauthorized.tsx
 │       │   │   ├── UploadDocuments.tsx
 │       │   │   └── admin
-│       │   │       ├── AdminCitizensPage.tsx
-│       │   │       ├── AdminDocumentsPage.tsx
-│       │   │       ├── AdminObservabilityPage.tsx
-│       │   │       └── AdminTerritoryPage.tsx
 │       │   ├── router
 │       │   │   └── routes.tsx
 │       │   ├── services
@@ -6262,20 +941,18 @@
 │       │   │   └── auth.ts
 │       │   ├── types.ts
 │       │   └── utils
-│       │       └── cn.ts
+│       │       ├── cn.ts
+│       │       └── globalToast.ts
 │       ├── tailwind.config.js
 │       ├── tsconfig.app.json
 │       ├── tsconfig.json
 │       ├── tsconfig.node.json
 │       └── vite.config.ts
-├── justice_core.lock
-├── lint_architecture.sh
+├── l bash -c PGPASSWORD=Trumanmarcelo_1983 psql -h localhost -U sila_user -d sila_db --pset=pager=off -c 'SELECT action, user_id, status, severity, timestamp FROM audit_logs ORDER BY timestamp DESC LIMIT 5' 2>&1 | grep -v '^$'
 ├── logs
 │   ├── event_worker.log
 │   ├── outbox_worker.log
 │   └── test_db_connection.log
-├── logstash.conf
-├── migrate_justice_structure.sh
 ├── migrations
 │   └── versions
 │       ├── 001_create_health_tables.py
@@ -6288,8 +965,13 @@
 │       ├── 003_create_request_events.py
 │       ├── 004_add_citizen_id_to_invoices.py
 │       └── __init__.py
-├── modules_report.md
 ├── mypy.ini
+├── observability
+│   ├── __init__.py
+│   ├── logging
+│   ├── metrics
+│   └── tracing
+├── openapi.json
 ├── orchestrator
 │   └── infrastructure
 │       └── factory
@@ -6306,27 +988,10 @@
 │   │   │   │   └── alerts_config.yaml
 │   │   │   ├── grafana
 │   │   │   │   ├── dashboards
-│   │   │   │   │   ├── grafana_dashboard.json
-│   │   │   │   │   ├── sila-business.json
-│   │   │   │   │   ├── sila-metrics-dashboard.json
-│   │   │   │   │   ├── sila-overview.json
-│   │   │   │   │   └── sila-performance.json
 │   │   │   │   └── provisioning
-│   │   │   │       ├── alerting
-│   │   │   │       │   ├── alerting.yml
-│   │   │   │       │   ├── alertmanager.yml
-│   │   │   │       │   └── templates
-│   │   │   │       │       └── slack.tmpl
-│   │   │   │       ├── dashboards
-│   │   │   │       │   ├── cpf-validation-dashboard.json
-│   │   │   │       │   ├── dashboard.yml
-│   │   │   │       │   └── sila-metrics-dashboard.json
-│   │   │   │       └── datasources
-│   │   │   │           └── datasource.yml
 │   │   │   ├── prometheus
 │   │   │   │   ├── prometheus.yml
 │   │   │   │   └── rules
-│   │   │   │       └── sila-alerts.yml
 │   │   │   └── validate_drift.sh
 │   │   ├── scripts
 │   │   │   └── deploy_producao.sh
@@ -6377,155 +1042,58 @@
 │       │   └── examples
 │       │       ├── sila_150_services.csv
 │       │       └── teste_servicos.csv
-│       ├── media
-│       └── reports
-│           ├── ai_architecture_graph.json
-│           ├── ai_architecture_graph_visual_report.md
-│           ├── ai_bootstrap_integration_report.md
-│           ├── ai_domain_kernel_visual_report.md
-│           ├── architecture_audit_report.json
-│           ├── architecture_index_visual_report.md
-│           ├── architecture_map.md
-│           ├── architecture_refactor_report.json
-│           ├── architecture_scan_after.json
-│           ├── architecture_scan_before.json
-│           ├── architecture_scan_report.json
-│           ├── dependency_graph.json
-│           ├── domain_overlap_report.md
-│           ├── migration_domain_inventory.md
-│           ├── module_architecture_docs_visual_report.md
-│           ├── module_dependencies.md
-│           ├── module_dependency_graph.json
-│           ├── module_health_report.md
-│           ├── module_inventory.txt
-│           └── module_map.json
-├── prometheus.yml
+│       └── media
 ├── pytest.ini
-├── quickstart-event-bus.sh
-├── repair_imports_ast.py
 ├── reports
-│   ├── PHASE_18.3_AUDIT.json
-│   ├── architecture_audit.json
-│   ├── architecture_audit.md
-│   ├── circular_dependency_scan.md
-│   ├── daily_audit
-│   │   ├── 01_arch_sync_2026-03-13_10-35-51.log
-│   │   ├── 01_arch_sync_2026-03-13_11-06-32.log
-│   │   ├── 01_arch_sync_2026-03-13_11-10-49.log
-│   │   ├── 01_arch_sync_2026-03-13_11-12-28.log
-│   │   ├── 01_arch_sync_2026-03-13_11-13-31.log
-│   │   ├── 01_arch_sync_2026-03-13_11-14-20.log
-│   │   ├── 01_arch_sync_2026-03-13_11-15-50.log
-│   │   ├── 01_arch_sync_2026-03-13_11-17-51.log
-│   │   ├── 01_arch_sync_2026-03-13_11-18-30.log
-│   │   ├── 01_arch_sync_2026-03-13_11-19-32.log
-│   │   ├── 01_arch_sync_2026-03-13_11-20-30.log
-│   │   ├── 01_arch_sync_2026-03-13_11-22-36.log
-│   │   ├── 02_domain_audit_2026-03-13_10-35-51.log
-│   │   ├── 02_domain_audit_2026-03-13_11-06-32.log
-│   │   ├── 02_domain_audit_2026-03-13_11-10-49.log
-│   │   ├── 02_domain_audit_2026-03-13_11-12-28.log
-│   │   ├── 02_domain_audit_2026-03-13_11-13-31.log
-│   │   ├── 02_domain_audit_2026-03-13_11-14-20.log
-│   │   ├── 02_domain_audit_2026-03-13_11-15-50.log
-│   │   ├── 02_domain_audit_2026-03-13_11-17-51.log
-│   │   ├── 02_domain_audit_2026-03-13_11-18-30.log
-│   │   ├── 02_domain_audit_2026-03-13_11-19-32.log
-│   │   ├── 02_domain_audit_2026-03-13_11-20-30.log
-│   │   ├── 02_domain_audit_2026-03-13_11-22-36.log
-│   │   ├── 03_module_diagnostics_2026-03-13_10-35-51.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-06-32.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-10-49.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-12-28.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-13-31.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-14-20.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-15-50.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-17-51.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-18-30.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-19-32.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-20-30.log
-│   │   ├── 03_module_diagnostics_2026-03-13_11-22-36.log
-│   │   ├── 04_import_scan_2026-03-13_10-35-51.log
-│   │   ├── 04_import_scan_2026-03-13_11-06-32.log
-│   │   ├── 04_import_scan_2026-03-13_11-10-49.log
-│   │   ├── 04_import_scan_2026-03-13_11-12-28.log
-│   │   ├── 04_import_scan_2026-03-13_11-13-31.log
-│   │   ├── 04_import_scan_2026-03-13_11-14-20.log
-│   │   ├── 04_import_scan_2026-03-13_11-15-50.log
-│   │   ├── 04_import_scan_2026-03-13_11-17-51.log
-│   │   ├── 04_import_scan_2026-03-13_11-18-30.log
-│   │   ├── 04_import_scan_2026-03-13_11-19-32.log
-│   │   ├── 04_import_scan_2026-03-13_11-20-30.log
-│   │   ├── 04_import_scan_2026-03-13_11-22-36.log
-│   │   ├── 05_router_scan_2026-03-13_10-35-51.log
-│   │   ├── 05_router_scan_2026-03-13_11-06-32.log
-│   │   ├── 05_router_scan_2026-03-13_11-10-49.log
-│   │   ├── 05_router_scan_2026-03-13_11-12-28.log
-│   │   ├── 05_router_scan_2026-03-13_11-13-31.log
-│   │   ├── 05_router_scan_2026-03-13_11-14-20.log
-│   │   ├── 05_router_scan_2026-03-13_11-15-50.log
-│   │   ├── 05_router_scan_2026-03-13_11-17-51.log
-│   │   ├── 05_router_scan_2026-03-13_11-18-30.log
-│   │   ├── 05_router_scan_2026-03-13_11-19-32.log
-│   │   ├── 05_router_scan_2026-03-13_11-20-30.log
-│   │   └── 05_router_scan_2026-03-13_11-22-36.log
-│   ├── daily_audit.json
-│   ├── daily_audit.md
-│   ├── domain_dependency_guardrail_report.md
-│   ├── educacao_reconciliation.json
-│   ├── educacao_reconciliation.md
-│   ├── entity_collision_scan.md
-│   ├── lift_core_layers_20260313_101005.json
-│   ├── lift_core_layers_20260313_101005.md
-│   ├── lift_core_layers_20260313_101036.json
-│   ├── lift_core_layers_20260313_101036.md
-│   ├── migration_domain_inventory.md
+│   ├── consolidation
+│   │   ├── consolidate_identity_core.log
+│   │   └── consolidate_justice_core.log
+│   ├── locations_corrections_full.csv
+│   ├── locations_corrections_suggested.csv
+│   ├── locations_name_audit.md
+│   ├── locks
+│   │   ├── identity_core.lock
+│   │   └── justice_core.lock
 │   ├── module_dependencies.md
 │   ├── module_dependency_graph.json
-│   ├── module_manifest_graph.json
-│   ├── operation_simetria_20260313_100626.json
-│   ├── operation_simetria_20260313_100626.md
-│   ├── operation_simetria_20260313_100827.json
-│   ├── operation_simetria_20260313_100827.md
-│   ├── operation_simetria_20260313_100855.json
-│   ├── operation_simetria_20260313_100855.md
-│   ├── repair_acl_imports_20260313_100610.json
-│   ├── repair_acl_imports_20260313_100610.md
-│   ├── repair_acl_imports_20260313_101317.json
-│   ├── repair_acl_imports_20260313_101317.md
-│   ├── repair_acl_imports_20260313_101542.json
-│   ├── repair_acl_imports_20260313_101542.md
-│   ├── replace_core_imports_targets.txt
-│   ├── sql_bottleneck_report.json
-│   ├── sql_bottleneck_report.md
-│   └── stress_test_real.json
+│   └── sla_provinces_snapshot.md
 ├── requirements
-├── run_smoke_test.sh
-├── schema_phase_20_2.sql
+│   ├── base.txt
+│   ├── dev.txt
+│   └── prod.txt
 ├── scripts
 │   ├── 05_apply_observability_global.py
 │   ├── 06_apply_resilience_global.py
 │   ├── __init__.py
+│   ├── acao_compliance_audit.py
 │   ├── ai
 │   │   ├── ai_scope_filter.py
 │   │   ├── bootstrap_context.sh
 │   │   ├── generate_ai_domain_kernel.py
 │   │   ├── generate_architecture_graph.py
 │   │   └── generate_module_architecture_docs.py
+│   ├── alembic_health_check.py
 │   ├── arch_compiler.py
 │   ├── architecture
 │   │   ├── __init__.py
+│   │   ├── analyze_deficits_detailed.sh
 │   │   ├── audit
 │   │   │   ├── circular_dependency_scan.py
 │   │   │   ├── entity_collision_scan.py
 │   │   │   └── full_arch_audit.py
 │   │   ├── consolidate_modules.sh
+│   │   ├── evaluate_deficits_simple.sh
+│   │   ├── evaluate_module_deficits.sh
 │   │   ├── fix
 │   │   │   └── replace_core_imports.sh
 │   │   ├── generate_architecture_index.py
 │   │   ├── generate_context_map.py
+│   │   ├── generate_module_discovery.sh
+│   │   ├── lint_architecture.sh
 │   │   ├── module_diagnostics.py
 │   │   ├── module_graph.py
+│   │   ├── normalize_architecture.sh
+│   │   ├── normalize_module.sh
 │   │   ├── normalize_modules_v2.sh
 │   │   ├── refactor_import_paths.sh
 │   │   ├── report_generator.py
@@ -6536,12 +1104,34 @@
 │   │   └── universalize_modules.sh
 │   ├── architecture_map_report.py
 │   ├── architecture_scan.py
+│   ├── audit
+│   │   ├── DIAGNOSTIC_REPORT.sh
+│   │   ├── generate_compliance_report.sh
+│   │   ├── inspect_db.sh
+│   │   ├── run_smoke_test.sh
+│   │   ├── smoke_test.py
+│   │   ├── test-api-cors.sh
+│   │   ├── test_audit_chain.py
+│   │   ├── test_economy_transactions.py
+│   │   ├── test_hierarchy_endpoints_runner.sh
+│   │   ├── validate_event_bus.py
+│   │   ├── validate_fixes.py
+│   │   ├── validate_phase18.1.sh
+│   │   ├── validate_routers.sh
+│   │   ├── verify_audit_artifacts.sh
+│   │   ├── verify_economy_endpoints.py
+│   │   ├── verify_endpoint.py
+│   │   ├── verify_service.py
+│   │   └── xroad_smoke_test.py
+│   ├── audit_dependencies.py
 │   ├── audit_dependencies.sh
 │   ├── audit_duplicates.sh
 │   ├── audit_imports.py
+│   ├── audit_modules.py
 │   ├── audit_modules.sh
 │   ├── audit_modules_detailed.sh
 │   ├── auto_git_push.sh
+│   ├── check_application_layer.py
 │   ├── check_python_syntax.py
 │   ├── check_yaml_syntax.py
 │   ├── clean_cache_dirs.py
@@ -6564,6 +1154,7 @@
 │   ├── create_domain_module.py
 │   ├── daily_audit.sh
 │   ├── db_diagnostico.sql
+│   ├── dependency_audit.py
 │   ├── deploy
 │   │   ├── START_NGINX.sh
 │   │   ├── package.sh
@@ -6578,8 +1169,11 @@
 │   ├── educacao_reconciliation.py
 │   ├── essential
 │   │   └── check_credentials.py
+│   ├── fase5_assessment.py
+│   ├── final_status_report.py
 │   ├── fix_npm_workspaces.sh
 │   ├── fix_router_imports.py
+│   ├── generate_modules.py
 │   ├── get_dev_token.sh
 │   ├── guardrails
 │   │   ├── allowlists
@@ -6623,10 +1217,15 @@
 │   ├── main.py
 │   ├── maintenance
 │   │   ├── changelog_auto.sh
+│   │   ├── clean_exceptions.py
 │   │   ├── clean_pendrive_safe.sh
 │   │   ├── cleanup.sh
 │   │   ├── cleanup_temp_files.sh
+│   │   ├── consolidate_and_purge.sh
+│   │   ├── consolidate_identity_core.sh
+│   │   ├── consolidate_justice_core.sh
 │   │   ├── consolidate_root_scripts.sh
+│   │   ├── fix_import_paths.sh
 │   │   ├── repair_all.sh
 │   │   ├── restructure_project.sh
 │   │   ├── run_mass_fix_dryrun.sh
@@ -6645,18 +1244,46 @@
 │   │   └── prepare_migration.sh
 │   ├── migration_domain_inventory.py
 │   ├── migrations
+│   │   ├── P0A_DELETE_BASE_REPOSITORY.py
+│   │   ├── P0A_DELETE_BASE_REPOSITORY.sh
+│   │   ├── batch_extraction_identity.sh
+│   │   ├── batch_health_education_migrate.sh
+│   │   ├── batch_health_education_mkdir.sh
+│   │   ├── batch_purge_identity.sh
+│   │   ├── create_domain_enums.sh
+│   │   ├── create_domain_exceptions.sh
+│   │   ├── execute_phase_20_2_schema.py
 │   │   ├── fix_identity_imports.py
 │   │   ├── fix_shim_docstrings.py
-│   │   └── fix_shim_escapes.py
+│   │   ├── fix_shim_escapes.py
+│   │   ├── migrate_justice_structure.sh
+│   │   └── schema_phase_20_2.sql
 │   ├── module_dependency_analysis.py
 │   ├── module_health_report.py
+│   ├── module_tools
+│   │   └── enterprise_fix.py
 │   ├── monitoring
 │   │   ├── monitor-migration.sh
 │   │   └── nginx_monitor.sh
 │   ├── normalize_endpoints.sh
 │   ├── operation_simetria.py
+│   ├── ops
+│   │   ├── access_db.sh
+│   │   ├── cleanup.sh
+│   │   ├── cleanup_seeds.sh
+│   │   ├── deploy-wsl2.sh
+│   │   ├── docker-clean-and-up.sh
+│   │   ├── quickstart-event-bus.sh
+│   │   ├── seed_citizen_events.sql
+│   │   ├── setup_dev_env.sh
+│   │   ├── setup_local_dev.sh
+│   │   └── start-dev.sh
+│   ├── performance_tests.py
+│   ├── phase5_final_report.py
 │   ├── phase_20_2_workers.sh
 │   ├── pytest_wrapper.sh
+│   ├── rabbitmq_broker_integration.py
+│   ├── rabbitmq_integration_tests.py
 │   ├── refactor_justice_imports.py
 │   ├── refactor_modules.py
 │   ├── reorg_tables_apply.py
@@ -6664,6 +1291,7 @@
 │   ├── repair_acl_imports.py
 │   ├── replace_service_hub.py
 │   ├── reset_iam_passwords.py
+│   ├── resolve_migration_heads.py
 │   ├── routes_health_monitor.py
 │   ├── run_backend_diagnosis.sh
 │   ├── run_dev_env.sh
@@ -6686,7 +1314,9 @@
 │   ├── sync_and_check_db.py
 │   ├── sync_iam_system.py
 │   ├── test_permissions.py
+│   ├── test_report_visual.py
 │   ├── tests
+│   │   ├── create_test_structure.sh
 │   │   ├── simple_test.sh
 │   │   ├── smoke-test.sh
 │   │   ├── test_example.py
@@ -6705,20 +1335,45 @@
 │   ├── utils_new
 │   │   └── validate_auth.py
 │   ├── validate_frontend_backend_integration.py
-│   └── validate_migrations.py
-├── setup_dev_env.sh
-├── setup_local_dev.sh
+│   ├── validate_migrations.py
+│   ├── validate_modules.py
+│   ├── validate_ports_adapters.py
+│   └── validate_rabbitmq.py
 ├── sila-maint
-├── smoke_test.py
-├── start-dev.sh
+├── src
+│   ├── api
+│   │   └── axios.ts
+│   ├── modules
+│   │   └── admin
+│   │       ├── components
+│   │       │   └── AdminDashboard.tsx
+│   │       ├── hooks
+│   │       │   └── useDashboard.ts
+│   │       └── types
+│   │           └── index.ts
+│   ├── pages
+│   │   └── ServicesPage.tsx
+│   ├── services
+│   │   ├── orderApi.ts
+│   │   ├── paymentApi.ts
+│   │   └── serviceApi.ts
+│   └── types
+│       └── api.ts
+├── startup.log
 ├── storage
 │   └── logs
 │       └── xroad_audit.chain
 ├── tailwind.config.js
-├── test-api-cors.sh
-├── test_audit_chain.py
-├── test_hierarchy_endpoints_runner.sh
-├── test_write.txt
+├── temp_seed.py
+├── templates
+│   ├── CORE_AUTH_INTEGRATION_TEMPLATE.py
+│   ├── MODULE_DISCOVERY_TEMPLATE.yaml
+│   ├── TEMPLATE_DOMAIN_EXCEPTION_PATTERN.py
+│   ├── TEMPLATE_EXCEPTIONS_PATTERN.py
+│   ├── TEMPLATE_REPOSITORY_PATTERN.py
+│   └── sla
+│       ├── dashboard.html
+│       └── simulator.html
 ├── tests
 │   ├── conftest.py
 │   ├── conftest_hierarchy.py
@@ -6737,6 +1392,7 @@
 │   ├── test_dedup.py
 │   ├── test_hierarchy_service_endpoints.py
 │   ├── test_institutional_catalog_blueprint.py
+│   ├── test_modules_real.py
 │   ├── test_openai_client.py
 │   ├── test_operational_state_machine.py
 │   ├── test_operations_service.py
@@ -6749,11 +1405,13 @@
 │   ├── test_phase_20_2_bridge.py
 │   ├── test_phase_20_2_extension_bridge.py
 │   └── test_phase_20_event_sourcing.py
+├── tmp
 ├── tools
 │   ├── apply_extend_existing.py
 │   ├── autoheal_imports.py
 │   ├── check_location_import.py
 │   ├── ci_import_check.py
+│   ├── cleanup_saude_refs.py
 │   ├── codegen
 │   │   ├── create_sample_csv.py
 │   │   ├── generate_module.py
@@ -6765,10 +1423,13 @@
 │   │   ├── check_env_files.py
 │   │   ├── check_imports.py
 │   │   └── check_paths.py
+│   ├── discover_auth_imports.py
+│   ├── heal_identity_bridge.py
 │   ├── migrate_all_modules.py
 │   ├── migrate_module.py
 │   ├── refactor
 │   │   └── update_paths.py
+│   ├── repair_imports_ast.py
 │   ├── run_separation_demo.sh
 │   ├── split_models_schemas.py
 │   ├── sqlite_removal_automation.py
@@ -6776,13 +1437,7 @@
 │   ├── validate_separation.py
 │   └── validators
 │       └── dependency_checker.py
-├── validate_event_bus.py
-├── validate_fixes.py
-├── validate_phase18.1.sh
-├── verify_audit_artifacts.sh
-├── verify_endpoint.py
-├── verify_service.py
-└── xroad_smoke_test.py
+└── ult = await db.execute(text(
 
-2282 directories, 4502 files
-(.venv) dev03wsl@Rochete-consultoria:~/sila-system$
+433 directories, 1006 files
+dev03wsl@Rochete-consultoria:~/sila-system$

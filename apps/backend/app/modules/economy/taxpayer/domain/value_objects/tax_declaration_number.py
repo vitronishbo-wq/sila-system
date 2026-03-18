@@ -50,7 +50,7 @@ class TaxDeclarationNumber:
         Args:
             tax_type: Tipo de imposto (ex: IRS, IVA, IRC)
             year: Ano da declaração
-            sequence: Número sequencial (será zerado à esquerda)
+            sequence: Número sequencial (será zerado �\xa0 esquerda)
             
         Returns:
             Instância de TaxDeclarationNumber

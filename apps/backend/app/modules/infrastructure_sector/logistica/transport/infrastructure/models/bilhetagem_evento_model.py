@@ -4,11 +4,9 @@ from sqlalchemy.sql import func
 import uuid
 from apps.backend.app.core.db import Base
 
-
 class BilhetagemEventoModel(Base):
     """Modelo SQLAlchemy para Evento de Bilhetagem."""
     __tablename__ = 'transporte_bilhetagem_eventos'
-    
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_evento = Column(String(100), unique=True, nullable=False, index=True)
     viagem_id = Column(UUID(as_uuid=True), ForeignKey('transporte_viagens.id'), nullable=False, index=True)

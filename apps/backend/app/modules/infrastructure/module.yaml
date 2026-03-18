@@ -1,0 +1,124 @@
+# Module Discovery: infrastructure
+# Auto-gerado 2026-03-14 08:21:48
+# Mapeia estrutura DDD/Hexagonal para navegação de subdomínios
+
+module: "infrastructure"
+name: "infrastructure"
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+type: "macro_domain"
+normalized: true
+
+# ========== ESTATÍSTICAS ==========
+statistics:
+  api_files: 9
+  application_files: 10
+  domain_files: 46
+  infrastructure_files: 59
+  total: 124
+
+# ========== PONTOS DE ENTRADA (API) ==========
+api_endpoints:
+  location: "api/endpoints/"
+  files:
+    - dashboard.py
+    - editais.py
+    - licitacoes.py
+    - obras.py
+    - projetos.py
+
+# ========== CAMADA APPLICATION ==========
+application_layer:
+  services:
+    location: "application/services/"
+    count: 0
+  
+  dto:
+    location: "application/dto/"
+    schemas: 4
+  
+  commands:
+    location: "application/commands/"
+    count: 0
+  
+  queries:
+    location: "application/queries/"
+    count: 0
+
+# ========== CAMADA DOMAIN ==========
+domain_layer:
+  services:
+    location: "domain/services/"
+    count: 0
+  
+  entities:
+    location: "domain/entities/"
+    count: 0
+  
+  models:
+    location: "domain/models/"
+    count: 8
+  
+  ports:
+    location: "domain/ports/"
+    description: "Interfaces de contrato com camada de infraestrutura"
+    count: 16
+  
+  events:
+    location: "domain/events/"
+    count: 0
+  
+  exceptions:
+    location: "domain/exceptions/"
+    description: "Exceções específicas do domínio"
+    count: 0
+
+# ========== CAMADA INFRASTRUCTURE ==========
+infrastructure_layer:
+  repositories:
+    location: "infrastructure/repositories/"
+    description: "Implementação concreta de repositórios"
+    count: 4
+  
+  adapters:
+    location: "infrastructure/adapters/"
+    description: "Adaptadores para sistemas externos"
+    count: 14
+  
+  orm:
+    location: "infrastructure/orm/"
+    description: "Modelos SQLAlchemy"
+    count: 0
+
+# ========== COMO USAR ==========
+discovery:
+  - step: 1
+    description: "Encontrar endpoint"
+    action: "Navegue em api_endpoints/files"
+  
+  - step: 2
+    description: "Encontrar serviço de orquestração"
+    action: "Procure em application_layer/services/"
+  
+  - step: 3
+    description: "Encontrar lógica de domínio"
+    action: "Procure em domain_layer/services/"
+  
+  - step: 4
+    description: "Encontrar persistência"
+    action: "Procure em infrastructure_layer/repositories/"
+
+# ========== CONFORMIDADE ==========
+conformance:
+  has_api_layer: true
+  has_application_layer: true
+  has_domain_layer: true
+  has_infrastructure_layer: true
+  has_tests: true
+  ddd_compliant: "✓"

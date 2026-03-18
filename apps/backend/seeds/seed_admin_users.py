@@ -1,71 +1,20 @@
-import uuid
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from app.core.settings import settings
-from app.core.security import get_password_hash
-from app.core.constants import UserRole, AdminLevel
-from apps.backend.app.modules.identity.models.user import User
-from datetime import datetime
+from pathlib import Path
+import sys
 
-ADMIN_USERS = [
-    {
-        "email": "central@sila.gov.ao",
-        "role": UserRole.ADMIN.value,
-        "level": AdminLevel.SUPERUSER.value,
-        "username": "central.admin"
-    },
-    {
-        "email": "prov.huambo@sila.gov.ao",
-        "role": UserRole.MANAGER.value,
-        "level": AdminLevel.PROVINCIAL.value,
-        "username": "prov.huambo"
-    },
-    {
-        "email": "mun.huambo@sila.gov.ao",
-        "role": UserRole.MANAGER.value,
-        "level": AdminLevel.MUNICIPAL.value,
-        "username": "mun.huambo"
-    },
-    {
-        "email": "comun.huambo@sila.gov.ao",
-        "role": UserRole.OFFICER.value,
-        "level": AdminLevel.COMUNAL.value,
-        "username": "comun.huambo"
-    },
-]
+BACKEND_ROOT = Path(__file__).resolve().parents[1]
+if str(BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(BACKEND_ROOT))
 
-PASSWORD = "Sila_1983"
+from scripts.seed_all_users import seed_all_users
 
 
-def seed_admin_users():
-    sync_database_url = settings.DATABASE_URL.replace("+asyncpg", "")
-    engine = create_engine(sync_database_url, echo=False)
-    SessionLocal = sessionmaker(bind=engine)
-    db = SessionLocal()
-    try:
-        for user_data in ADMIN_USERS:
-            user = db.query(User).filter_by(email=user_data["email"]).first()
-            if not user:
-                user = User(
-                    id=uuid.uuid4(),
-                    email=user_data["email"],
-                    username=user_data["username"],
-                    password_hash=get_password_hash(PASSWORD),
-                    role=user_data["role"],
-                    level=user_data["level"],
-                    is_active=True,
-                    created_at=datetime.utcnow(),
-                    updated_at=datetime.utcnow(),
-                )
-                db.add(user)
-        db.commit()
-        print("✅ Usuários administrativos criados com sucesso!")
-    except Exception as e:
-        db.rollback()
-        print(f"❌ Erro ao criar usuários administrativos: {e}")
-        raise
-    finally:
-        db.close()
+def main() -> None:
+    """
+    Legacy wrapper.
+    Standardized on iam_users via scripts/seed_all_users.py.
+    """
+    seed_all_users()
+
 
 if __name__ == "__main__":
-    seed_admin_users()
+    main()

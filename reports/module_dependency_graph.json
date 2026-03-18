@@ -1,10 +1,30 @@
 {
-  "generated_at": "2026-03-13T13:53:16.017983+00:00",
-  "modules_scanned": 26,
-  "files_scanned": 6567,
+  "generated_at": "2026-03-16T07:44:31.661715+00:00",
+  "modules_scanned": 29,
+  "files_scanned": 8237,
   "edges": [
     {
+      "source": "justice",
+      "target": "core",
+      "weight": 8
+    },
+    {
+      "source": "economy",
+      "target": "core",
+      "weight": 4
+    },
+    {
       "source": "identity",
+      "target": "core",
+      "weight": 2
+    },
+    {
+      "source": "wallet",
+      "target": "core",
+      "weight": 1
+    },
+    {
+      "source": "notifications",
       "target": "core",
       "weight": 1
     }

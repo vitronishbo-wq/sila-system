@@ -1,2 +1,0 @@
-class BI:
-    pass

@@ -4,7 +4,7 @@ All ORM models must use the canonical Base from ``app.core.database``.
 This package re-exports that Base for legacy imports.
 """
 
-from app.core.db import Base
+from apps.backend.app.core.db import Base
 
 # Optional session imports - only import when needed
 try:

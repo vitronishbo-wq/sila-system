@@ -5,10 +5,11 @@ Um módulo é uma unidade de domínio de negócio que agrupa serviços relaciona
 from datetime import datetime
 from sqlalchemy import String, Integer, Boolean, DateTime, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from typing import List, TYPE_CHECKING
+from typing import List
 from app.core.db import Base
-if TYPE_CHECKING:
-    from app.core.catalog.models.service import Service
+from app.core.catalog.models.service import Service
+import sys
+sys.modules.setdefault('apps.backend.app.core.catalog.models.module', sys.modules[__name__])
 
 class Module(Base):
     """
@@ -16,6 +17,7 @@ class Module(Base):
     Exemplos: Identidade Civil, Registos, Território, Pagamentos
     """
     __tablename__ = 'modules'
+    __table_args__ = {'extend_existing': True}
     id: Mapped[int] = mapped_column(primary_key=True)
     slug: Mapped[str] = mapped_column(String(100), unique=True, index=True)
     title: Mapped[str] = mapped_column(String(200))
@@ -27,7 +29,7 @@ class Module(Base):
     order: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    services: Mapped[List['Service']] = relationship('Service', back_populates='module', lazy='selectin')
+    services: Mapped[List[Service]] = relationship(Service, lazy='selectin')
 
     def __repr__(self) -> str:
         return f'<Module {self.slug}: {self.title}>'

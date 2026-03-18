@@ -1,1 +1,0 @@
-from apps.backend.app.modules.justice.bounded_contexts.vital_events.domain.entities.birth_record import *

@@ -1,1 +1,0 @@
-from apps.backend.app.modules.justice.bounded_contexts.vital_events.domain.entities.death_record import *

@@ -1,2 +1,2 @@
-from apps.backend.app.modules.industry.api.router import router
-__all__ = ['router']
+from .deps import get_estabelecimento_industrial_service
+__all__ = ['get_estabelecimento_industrial_service']

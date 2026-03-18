@@ -6,7 +6,7 @@ import factory
 from datetime import date
 from uuid import uuid4
 
-from app.core.bridges.identity_bridge import CitizenFUC
+from apps.backend.app.core.bridges.identity_bridge import CitizenFUC
 
 Citizen = CitizenFUC
 CitizenModel = CitizenFUC

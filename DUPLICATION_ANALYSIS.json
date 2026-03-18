@@ -1,0 +1,254 @@
+{
+  "analysis": {
+    "timestamp": "2026-03-16T00:00:00Z",
+    "system": "SILA",
+    "total_files_analyzed": 568,
+    "total_categories": 8,
+    "summary": {
+      "critical_duplicates": {
+        "count": 52,
+        "files": 52,
+        "description": "100% identical files that can be consolidated immediately"
+      },
+      "high_pattern_duplicates": {
+        "count": 261,
+        "files": 261,
+        "description": "Template pattern duplicates that can be generated from factory"
+      },
+      "medium_duplicates": {
+        "count": 230,
+        "files": 230,
+        "description": "Similar implementations with variation that need standardization"
+      }
+    },
+    "consolidation_potential": {
+      "files_to_eliminate": 543,
+      "lines_to_eliminate": 22400,
+      "current_duplication_ratio": 0.96,
+      "post_consolidation_duplication_ratio": 0.15,
+      "estimated_timeline_days": 12,
+      "effort_level": "medium"
+    }
+  },
+  "categories": [
+    {
+      "name": "base_repository.py",
+      "files_found": 28,
+      "unique_implementations": 1,
+      "duplicate_instances": 27,
+      "severity": "CRITICAL",
+      "redundant_lines": 1400,
+      "priority": "P0",
+      "action": "move_to_core",
+      "pattern": "identical_content",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/domain/repositories/base_repository.py",
+        "apps/backend/app/modules/industry/domain/repositories/base_repository.py",
+        "apps/backend/app/modules/identity/domain/repositories/base_repository.py"
+      ],
+      "consolidation_approach": "Single shared module at apps/backend/core/repositories.py",
+      "estimated_effort_days": 1
+    },
+    {
+      "name": "domain_exception.py",
+      "files_found": 26,
+      "unique_implementations": 1,
+      "duplicate_instances": 25,
+      "severity": "CRITICAL",
+      "redundant_lines": 1200,
+      "priority": "P0",
+      "action": "move_to_core",
+      "pattern": "identical_content",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/domain/exceptions/domain_exception.py",
+        "apps/backend/app/modules/industry/domain/exceptions/domain_exception.py"
+      ],
+      "consolidation_approach": "Single shared module at apps/backend/core/exceptions.py",
+      "estimated_effort_days": 1
+    },
+    {
+      "name": "exceptions.py",
+      "files_found": 181,
+      "unique_implementations": 5,
+      "duplicate_instances": 176,
+      "severity": "HIGH",
+      "redundant_lines": 8000,
+      "priority": "P1",
+      "action": "factory_pattern",
+      "pattern": "template_duplication",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/domain/exceptions.py",
+        "apps/backend/app/modules/industry/domain/exceptions.py",
+        "apps/backend/app/modules/identity/domain/exceptions.py"
+      ],
+      "consolidation_approach": "ExceptionFactory to generate module-specific exception classes",
+      "generated_classes_per_module": 4,
+      "estimated_effort_days": 3
+    },
+    {
+      "name": "repositories.py",
+      "files_found": 28,
+      "unique_implementations": 1,
+      "duplicate_instances": 27,
+      "severity": "HIGH",
+      "redundant_lines": 2800,
+      "priority": "P1",
+      "action": "factory_pattern",
+      "pattern": "template_duplication",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/infrastructure/repositories.py",
+        "apps/backend/app/modules/industry/infrastructure/repositories.py"
+      ],
+      "consolidation_approach": "RepositoryFactory to generate Abstract + MemoryRepository implementations",
+      "estimated_effort_days": 2.5
+    },
+    {
+      "name": "adapters.py",
+      "files_found": 30,
+      "unique_implementations": 1,
+      "duplicate_instances": 29,
+      "severity": "HIGH",
+      "redundant_lines": 2400,
+      "priority": "P1",
+      "action": "factory_pattern",
+      "pattern": "template_duplication",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/infrastructure/adapters.py",
+        "apps/backend/app/modules/industry/infrastructure/adapters.py"
+      ],
+      "consolidation_approach": "AdapterFactory to generate Port + Adapter pattern classes",
+      "estimated_effort_days": 2.5
+    },
+    {
+      "name": "routers.py",
+      "files_found": 28,
+      "unique_implementations": 1,
+      "duplicate_instances": 27,
+      "severity": "MEDIUM_HIGH",
+      "redundant_lines": 2100,
+      "priority": "P2",
+      "action": "router_generator",
+      "pattern": "template_duplication",
+      "sample_paths": [
+        "apps/backend/app/modules/documents/api/routers.py",
+        "apps/backend/app/modules/industry/api/routers.py"
+      ],
+      "consolidation_approach": "RouterGenerator utility to create CRUD + health endpoints",
+      "estimated_effort_days": 2
+    },
+    {
+      "name": "router.py",
+      "files_found": 128,
+      "unique_implementations": 10,
+      "duplicate_instances": 118,
+      "severity": "MEDIUM",
+      "redundant_lines": 3500,
+      "priority": "P2",
+      "action": "standardize_pattern",
+      "pattern": "composition_pattern",
+      "similarity_ratio": 0.75,
+      "sample_paths": [
+        "apps/backend/app/api/router.py",
+        "apps/backend/app/modules/documents/api/router.py",
+        "apps/backend/app/modules/industry/api/router.py"
+      ],
+      "consolidation_approach": "Standardize on composition pattern with ModuleRouter factory",
+      "estimated_effort_days": 3
+    },
+    {
+      "name": "health.py",
+      "files_found": 119,
+      "unique_implementations": 7,
+      "duplicate_instances": 112,
+      "severity": "MEDIUM",
+      "redundant_lines": 2000,
+      "priority": "P3",
+      "action": "core_template",
+      "pattern": "variant_duplication",
+      "similarity_ratio": 0.65,
+      "sample_paths": [
+        "apps/backend/app/modules/documents/api/health.py",
+        "apps/backend/app/modules/industry/api/health.py",
+        "apps/backend/app/modules/identity/api/health.py"
+      ],
+      "consolidation_approach": "Move variant B (dynamic module detection) to core, override only for custom health checks",
+      "estimated_effort_days": 2
+    }
+  ],
+  "quick_wins": [
+    {
+      "title": "P0: Consolidate identical files",
+      "files_to_consolidate": 52,
+      "lines_saved": 2600,
+      "duration_days": 2,
+      "risk": "low",
+      "actions": [
+        "Move base_repository.py to core/",
+        "Move domain_exception.py to core/",
+        "Update 54 imports",
+        "Delete 52 files",
+        "Run tests"
+      ]
+    },
+    {
+      "title": "P1: Implement factory patterns",
+      "files_to_consolidate": 261,
+      "lines_saved": 15400,
+      "duration_days": 7,
+      "risk": "medium",
+      "actions": [
+        "Create ExceptionFactory",
+        "Create RepositoryFactory",
+        "Create AdapterFactory",
+        "Convert modules to use factories",
+        "Add factory configuration system"
+      ]
+    }
+  ],
+  "metrics": {
+    "before_consolidation": {
+      "total_files": 568,
+      "total_lines": 22400,
+      "unique_implementations": 25,
+      "duplication_ratio": 0.96
+    },
+    "after_consolidation": {
+      "total_files": 25,
+      "total_lines": 3500,
+      "unique_implementations": 25,
+      "duplication_ratio": 0.15
+    },
+    "savings": {
+      "files_eliminated": 543,
+      "lines_eliminated": 18900,
+      "percentage_reduction": 85,
+      "maintenance_cost_reduction": "high"
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "CRITICAL",
+      "category": "Technical Debt",
+      "description": "Eliminate duplicate base infrastructure immediately (base_repository.py, domain_exception.py)",
+      "impact": "Low risk, high reward consolidation"
+    },
+    {
+      "priority": "HIGH", 
+      "category": "Architecture",
+      "description": "Implement factory pattern for exception, repository, and adapter generation",
+      "impact": "Enables consistency across 900+ services automatically"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "API Design",
+      "description": "Standardize router patterns across all modules",
+      "impact": "Simplifies API structure and documentation"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Maintenance",
+      "description": "Create shared health check utilities reducing duplication",
+      "impact": "Simplifies monitoring and observability"
+    }
+  ]
+}

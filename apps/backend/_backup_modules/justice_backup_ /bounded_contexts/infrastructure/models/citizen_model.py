@@ -1,2 +1,0 @@
-class CitizenModel:
-    pass

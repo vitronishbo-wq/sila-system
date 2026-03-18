@@ -8,9 +8,8 @@ class AuditEntry(BaseModel):
     destination: str
     payload_hash: str
     timestamp: str = datetime.utcnow().isoformat()
-    previous_hash: str = "0"
+    previous_hash: str = '0'
 
     def compute_hash(self) -> str:
-        # Serializa os campos para gerar o hash do bloco atual
-        data = f"{self.message_id}{self.origin}{self.destination}{self.payload_hash}{self.timestamp}{self.previous_hash}"
+        data = f'{self.message_id}{self.origin}{self.destination}{self.payload_hash}{self.timestamp}{self.previous_hash}'
         return hashlib.sha256(data.encode()).hexdigest()

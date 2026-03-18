@@ -1,6 +1,2 @@
-from fastapi import APIRouter
-router = APIRouter()
-
-@router.get('/health', tags=['health'])
-def health_check() -> dict[str, str]:
-    return {'module': 'economy', 'status': 'ok'}
+from apps.backend.core.routers.health_factory import HealthRouterFactory
+router = HealthRouterFactory.create_health_router(module_name='economy', tags=['health'])

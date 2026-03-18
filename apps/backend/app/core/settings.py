@@ -69,6 +69,9 @@ class Settings(BaseSettings):
     def ACCESS_TOKEN_EXPIRE_MINUTES(self) -> int:
         """Compatibilidade reversa: converte dias para minutos"""
         return self.ACCESS_TOKEN_EXPIRE_DAYS * 24 * 60
+    KEYCLOAK_ISSUER: str = os.getenv('KEYCLOAK_ISSUER', '')
+    KEYCLOAK_JWKS_URL: str = os.getenv('KEYCLOAK_JWKS_URL', '')
+    KEYCLOAK_CLIENT_ID: str = os.getenv('KEYCLOAK_CLIENT_ID', '')
     VITE_API_URL: str = os.getenv('VITE_API_URL', 'http://127.0.0.1:8000')
     VITE_APP_NAME: str = os.getenv('VITE_APP_NAME', 'SILA System')
     VITE_APP_ENV: str = os.getenv('VITE_APP_ENV', 'development')

@@ -7,16 +7,16 @@ from enum import Enum
 from typing import Optional
 
 class AssetType(str, Enum):
-    OBRA_PUBLICA = "obra_publica"
-    MANUTENCAO = "manutencao"
-    UTILIDADE = "utilidade"
+    OBRA_PUBLICA = 'obra_publica'
+    MANUTENCAO = 'manutencao'
+    UTILIDADE = 'utilidade'
 
 class AssetStatus(str, Enum):
-    PLANEJAMENTO = "planejamento"
-    CONSTRUCAO = "construcao"
-    OPERACIONAL = "operacional"
-    MANUTENCAO = "manutencao"
-    ENCERRADO = "encerrado"
+    PLANEJAMENTO = 'planejamento'
+    CONSTRUCAO = 'construcao'
+    OPERACIONAL = 'operacional'
+    MANUTENCAO = 'manutencao'
+    ENCERRADO = 'encerrado'
 
 @dataclass
 class InfrastructureAsset:
@@ -27,6 +27,7 @@ class InfrastructureAsset:
 
 class AssetReportingPort(ABC):
     """Abstract port for reporting assets to Treasury"""
+
     @abstractmethod
     async def register_asset(self, asset: InfrastructureAsset):
         pass

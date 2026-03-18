@@ -4,11 +4,9 @@ from sqlalchemy.sql import func
 import uuid
 from apps.backend.app.core.db import Base
 
-
 class VeiculoModel(Base):
     """Modelo SQLAlchemy para Veículo."""
     __tablename__ = 'transporte_veiculos'
-    
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_veiculo = Column(String(100), unique=True, nullable=False, index=True)
     placa = Column(String(50), unique=True, nullable=False)

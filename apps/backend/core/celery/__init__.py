@@ -17,4 +17,5 @@ app.conf.task_default_rate_limit = "100/m"
 app.autodiscover_tasks([
     "modules.notifications.tasks",
     "modules.documents.tasks",
+    "core.exports.tasks",
 ])

@@ -1,0 +1,128 @@
+{
+  "realm": "sila",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      { "name": "SUPERADMIN" },
+      { "name": "ADMIN" },
+      { "name": "MANAGER" },
+      { "name": "CITIZEN" }
+    ]
+  },
+  "users": [
+    {
+      "username": "central@sila.gov.ao",
+      "email": "central@sila.gov.ao",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Administrador",
+      "lastName": "Global",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["SUPERADMIN"],
+      "attributes": {
+        "citizen_id": [""],
+        "bi_number": [""],
+        "full_name": ["Administrador Global"],
+        "birth_date": [""],
+        "phone": [""]
+      }
+    },
+    {
+      "username": "admin@sila.gov.ao",
+      "email": "admin@sila.gov.ao",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Administrador",
+      "lastName": "Plataforma",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["ADMIN", "SUPERADMIN"],
+      "attributes": {
+        "citizen_id": [""],
+        "bi_number": [""],
+        "full_name": ["Administrador de Plataforma"],
+        "birth_date": [""],
+        "phone": [""]
+      }
+    },
+    {
+      "username": "prov.huambo@sila.gov.ao",
+      "email": "prov.huambo@sila.gov.ao",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Gestor",
+      "lastName": "Provincial",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["MANAGER"],
+      "attributes": {
+        "citizen_id": [""],
+        "bi_number": [""],
+        "full_name": ["Gestor Provincial Huambo"],
+        "birth_date": [""],
+        "phone": [""]
+      }
+    },
+    {
+      "username": "mun.huambo@sila.gov.ao",
+      "email": "mun.huambo@sila.gov.ao",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Gestor",
+      "lastName": "Municipal",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["MANAGER"],
+      "attributes": {
+        "citizen_id": [""],
+        "bi_number": [""],
+        "full_name": ["Gestor Municipal Huambo"],
+        "birth_date": [""],
+        "phone": [""]
+      }
+    },
+    {
+      "username": "comun.huambo@sila.gov.ao",
+      "email": "comun.huambo@sila.gov.ao",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Gestor",
+      "lastName": "Comunal",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["MANAGER"],
+      "attributes": {
+        "citizen_id": [""],
+        "bi_number": [""],
+        "full_name": ["Gestor Comunal Huambo"],
+        "birth_date": [""],
+        "phone": [""]
+      }
+    },
+    {
+      "username": "truman@gmail.com",
+      "email": "truman@gmail.com",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Truman",
+      "lastName": "Sapalo",
+      "credentials": [
+        { "type": "password", "value": "Sila_1983", "temporary": false }
+      ],
+      "realmRoles": ["CITIZEN"],
+      "attributes": {
+        "citizen_id": ["11111111-1983-0501-0000-000000000001"],
+        "bi_number": ["001508576HO034"],
+        "full_name": ["Truman José Sapalo"],
+        "birth_date": ["1983-05-01"],
+        "phone": [""]
+      }
+    }
+  ]
+}

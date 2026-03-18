@@ -1,0 +1,2 @@
+class IntelligenceError(Exception):
+    pass

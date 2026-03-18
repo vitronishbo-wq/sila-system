@@ -13,7 +13,7 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.settings import settings
+from apps.backend.app.core.settings import settings
 
 
 def _sync_url() -> str:

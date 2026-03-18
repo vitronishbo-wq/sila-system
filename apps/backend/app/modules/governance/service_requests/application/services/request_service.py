@@ -164,7 +164,7 @@ class RequestService(BaseRequestService[ServiceRequest, RequestRepositoryPort], 
     @trace()
     async def change_status(self, request_id: UUID, new_status: str, changed_by: UUID, reason: Optional[str]=None) -> ServiceRequest:
         """
-        Altera o status de um pedido delegando à base para notificações
+        Altera o status de um pedido delegando �\xa0 base para notificações
         """
         request = await self.repo.get_by_id(request_id)
         if not request:

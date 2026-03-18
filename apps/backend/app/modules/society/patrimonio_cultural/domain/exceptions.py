@@ -1,20 +1,45 @@
-class PatrimonioDomainError(Exception):
-    """Base exception for patrimonio cultural domain errors."""
+"""Domain exceptions for PatrimonioCultural module"""
+from apps.backend.core.exceptions.factory import ExceptionFactory
+exc = ExceptionFactory.create_module_exceptions('PatrimonioCultural')
+PatrimonioCulturalException = exc.Base
+PatrimonioCulturalNotFound = exc.NotFound
+PatrimonioCulturalValidationError = exc.ValidationError
+PatrimonioCulturalInvalidStateError = exc.InvalidStateError
 
-class AssetAlreadyClassifiedError(PatrimonioDomainError):
-    """Raised when a downgrade classification is requested."""
 
-class InvalidClassificationAuthorityError(PatrimonioDomainError):
-    """Raised when authority is invalid."""
+class UNESCOPreconditionError(PatrimonioCulturalValidationError):
+    """Precondicao UNESCO nao atendida para patrimonio cultural."""
 
-class ProtectedAssetModificationError(PatrimonioDomainError):
-    """Raised when modification requires protected status and is not allowed."""
 
-class UNESCOPreconditionError(PatrimonioDomainError):
-    """Raised when UNESCO preconditions are not met."""
+class AssetAlreadyClassifiedError(PatrimonioCulturalValidationError):
+    """Ativo patrimonial ja classificado."""
 
-class AssetNotFoundError(PatrimonioDomainError):
-    """Raised when asset does not exist."""
 
-    def __init__(self, asset_id: str):
-        super().__init__(f'Patrimonio {asset_id} nao encontrado')
+class AssetNotFoundError(PatrimonioCulturalNotFound):
+    """Ativo patrimonial nao encontrado."""
+
+
+class InvalidClassificationAuthorityError(PatrimonioCulturalValidationError):
+    """Autoridade de classificacao invalida."""
+
+
+class PatrimonioDomainError(PatrimonioCulturalException):
+    """Erro generico do dominio de patrimonio cultural."""
+
+
+class ProtectedAssetModificationError(PatrimonioCulturalValidationError):
+    """Modificacao de ativo protegido nao permitida."""
+
+
+__all__ = [
+    'PatrimonioCulturalException',
+    'PatrimonioCulturalNotFound',
+    'PatrimonioCulturalValidationError',
+    'PatrimonioCulturalInvalidStateError',
+    'UNESCOPreconditionError',
+    'AssetAlreadyClassifiedError',
+    'AssetNotFoundError',
+    'InvalidClassificationAuthorityError',
+    'PatrimonioDomainError',
+    'ProtectedAssetModificationError',
+]

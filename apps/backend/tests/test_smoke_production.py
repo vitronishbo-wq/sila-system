@@ -3,10 +3,10 @@ from datetime import datetime, timedelta
 import pytest
 from sqlalchemy import select
 from sqlalchemy.exc import ProgrammingError
-from app.core.db import AsyncSessionLocal
-from app.core.bridges.identity_bridge import CitizenFUC
-from app.core.workflow.models.process import Process
-from app.core.catalog.models.service import Service
+from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.core.bridges.identity_bridge import CitizenFUC
+from apps.backend.app.core.workflow.models.process import Process
+from apps.backend.app.core.catalog.models.service import Service
 from apps.backend.app.modules.justice.civil_registry.domain.models.document import Document
 from apps.backend.app.modules.economy.financas.domain.models.invoice import Invoice
 from apps.backend.app.modules.economy.financas.domain.models.payment import Payment

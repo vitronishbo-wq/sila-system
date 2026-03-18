@@ -5,11 +5,9 @@ from sqlalchemy.sql import func
 import uuid
 from apps.backend.app.core.db import Base
 
-
 class ObraModel(Base):
     """Modelo SQLAlchemy para Obra (Public Work)."""
     __tablename__ = 'obras_publicas_obras'
-    
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_obra = Column(String(100), unique=True, nullable=False, index=True)
     licitacao_id = Column(UUID(as_uuid=True), ForeignKey('obras_publicas_licitacoes.id'), nullable=False, index=True)

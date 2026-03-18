@@ -12,7 +12,6 @@ import json
 import logging
 import sys
 from pathlib import Path
-
 BACKEND_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(BACKEND_ROOT))
 
@@ -47,7 +46,7 @@ def test_json_formatter():
         assert 'level' in data, 'Falta level'
         assert 'message' in data, 'Falta message'
         assert 'request_id' in data, 'Falta request_id'
-        assert data['level'] == 'INFO', f"Level incorreto: {data['level']}"
+        assert data['level'] == 'INFO', f'Level incorreto: {data['level']}'
         print(f'✅ JSON Formatter produz output válido')
         print(f'   Sample: {json.dumps(data)[:100]}...')
     except Exception as e:
@@ -106,12 +105,7 @@ def main():
     print('=' * 80)
     print('🔬 SUITE DE TESTES: OBSERVABILIDADE GOVERNAMENTAL')
     print('=' * 80)
-    tests = [
-        ('ContextVars', test_context_vars),
-        ('JSON Formatter', test_json_formatter),
-        ('Circuit Breaker', test_circuit_breaker),
-        ('OTel Availability', test_otel_availability),
-    ]
+    tests = [('ContextVars', test_context_vars), ('JSON Formatter', test_json_formatter), ('Circuit Breaker', test_circuit_breaker), ('OTel Availability', test_otel_availability)]
     failures = []
     for name, test_fn in tests:
         try:
@@ -126,7 +120,7 @@ def main():
     total = len(tests)
     passed = total - len(failures)
     for name, _ in tests:
-        icon = '❌' if any(f[0] == name for f in failures) else '✅'
+        icon = '❌' if any((f[0] == name for f in failures)) else '✅'
         print(f'{icon} {name}')
     print(f'\n✅ PASSOU: {passed}/{total} testes')
     if passed == total:

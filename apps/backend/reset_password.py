@@ -1,5 +1,5 @@
 
-from app.core.security import get_password_hash
+from core.security import get_password_hash
 from apps.backend.app.modules.identity.models.user import User
 import asyncio
 from sqlalchemy import select

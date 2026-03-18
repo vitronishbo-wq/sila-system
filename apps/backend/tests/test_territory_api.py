@@ -10,7 +10,7 @@ Estratégia:
 import pytest
 from uuid import UUID
 
-from app.core.territory.models.territory import Territory
+from apps.backend.app.core.territory.models.territory import Territory
 
 
 @pytest.mark.asyncio

@@ -16,7 +16,9 @@ load_dotenv(backend_root / ".env")
 
 from app.core.db import AsyncSessionLocal
 from apps.backend.app.modules.identity.models.user import User
-from app.core.security import get_password_hash, create_access_token
+from core.security import get_password_hash
+from apps.backend.core.auth import JWTHandler
+from config.settings import settings
 
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "central@sila.gov.ao")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "Sila_1983")
@@ -47,11 +49,13 @@ async def seed_and_token():
             print(f"✅ Admin já existia, senha atualizada: {ADMIN_EMAIL}")
 
         # Criar token JWT
-        token = create_access_token({"sub": user.email})
+        jwt_handler = JWTHandler(secret_key=settings.SECRET_KEY)
+        token = jwt_handler.create_access_token(subject=user.email)
         print(f"\n🔑 Token JWT:\n{token}\n")
 
         # Decodificar validade
-        decoded = jwt.get_unverified_claims(token)
+        import jwt
+        decoded = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         exp = datetime.utcfromtimestamp(decoded["exp"])
         # Fix DeprecationWarning by using timestamp math if needed, but keeping original logic for now
         days_valid = (exp - datetime.utcnow()).days

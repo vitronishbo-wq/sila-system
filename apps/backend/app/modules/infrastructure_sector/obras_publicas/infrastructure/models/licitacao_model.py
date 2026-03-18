@@ -5,11 +5,9 @@ from sqlalchemy.sql import func
 import uuid
 from apps.backend.app.core.db import Base
 
-
 class LicitacaoModel(Base):
     """Modelo SQLAlchemy para Licitação (Bidding)."""
     __tablename__ = 'obras_publicas_licitacoes'
-    
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     numero_licitacao = Column(String(100), unique=True, nullable=False, index=True)
     edital_id = Column(UUID(as_uuid=True), ForeignKey('obras_publicas_editais.id'), nullable=False, index=True)

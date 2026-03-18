@@ -19,8 +19,9 @@ const App: React.FC = () => {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const invData = await financeService.getInvoices(role === UserRole.CITIZEN ? 'cit_123' : undefined);
-      const statData = await financeService.getStats();
+      const citizenId = role === UserRole.CITIZEN ? (localStorage.getItem('citizen_id') ?? 'cit_123') : undefined;
+      const invData = await financeService.getInvoices(citizenId);
+      const statData = citizenId ? await financeService.getFinancialStats(citizenId) : await financeService.getStats();
       setInvoices(invData);
       setStats(statData);
     } catch (error) {
@@ -61,10 +62,10 @@ const App: React.FC = () => {
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard title="Receita Total" value={`${stats?.total_revenue.toLocaleString()} AOA`} icon="money" color="emerald" />
-          <StatCard title="Montante Pendente" value={`${stats?.pending_amount.toLocaleString()} AOA`} icon="clock" color="amber" />
-          <StatCard title="Faturas Pagas" value={stats?.paid_count || 0} icon="check" color="blue" />
-          <StatCard title="Aguardando Pgto" value={stats?.pending_count || 0} icon="list" color="purple" />
+          <StatCard title="Receita Total" value={`${(stats?.total_amount ?? 0).toLocaleString()} AOA`} icon="money" color="emerald" />
+          <StatCard title="Montante Pendente" value={`${(stats?.pending_amount ?? 0).toLocaleString()} AOA`} icon="clock" color="amber" />
+          <StatCard title="Faturas Pagas" value={stats?.paid_count ?? 0} icon="check" color="blue" />
+          <StatCard title="Aguardando Pgto" value={stats?.pending_count ?? 0} icon="list" color="purple" />
         </div>
 
         {/* Content Tabs */}

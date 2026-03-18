@@ -6,7 +6,7 @@ from datetime import datetime
 from sqlalchemy import String, Boolean, Integer, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from typing import Optional
-from app.core.db import Base
+from apps.backend.app.core.db import Base
 
 class IamUser(Base):
     """

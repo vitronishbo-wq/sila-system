@@ -4,6 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from apps.backend.app.api.deps import get_db
 from apps.backend.app.modules.economy.trade.external.application.services import AgenteCargaService, CancelamentoRadarService, DrawbackExternoService, DrawbackIntegradoService, DrawbackInternoService, DrawbackIsencaoService, DrawbackRestituicaoService, DrawbackSubstituicaoService, DespachanteService, DrawbackService, DrawbackSuspensaoService, DrawbackVerdeAmareloService, ExportadorService, HabilitacaoExportadorService, HabilitacaoImportadorService, HabilitacaoRadarService, ImportadorService, RadarService, SiscomexDrawbackService, SuspensaoRadarService, TransportadorInternacionalService
 from apps.backend.app.modules.economy.trade.external.infrastructure.repositories import SQLAlchemyCancelamentoRadarRepository, SQLAlchemyDrawbackExternoRepository, SQLAlchemyDrawbackIntegradoRepository, SQLAlchemyDrawbackInternoRepository, SQLAlchemyDrawbackIsencaoRepository, SQLAlchemyDrawbackRestituicaoRepository, SQLAlchemyDrawbackSubstituicaoRepository, SQLAlchemyHabilitacaoExportadorRepository, SQLAlchemyHabilitacaoImportadorRepository, SQLAlchemyHabilitacaoRadarRepository, SQLAlchemyAgenteCargaRepository, SQLAlchemyDespachanteRepository, SQLAlchemyDrawbackRepository, SQLAlchemyDrawbackSuspensaoRepository, SQLAlchemyDrawbackVerdeAmareloRepository, SQLAlchemyImportadorRepository, SQLAlchemyRadarRepository, SQLAlchemySiscomexDrawbackRepository, SQLAlchemySuspensaoRadarRepository, SQLAlchemyTransportadorInternacionalRepository, SQLAlchemyExportadorRepository
+from apps.backend.core.auth import PermissionGuard, PolicyEngine
+_permission_guard = PermissionGuard(PolicyEngine())
 
 async def get_exportador_service(session: AsyncSession=Depends(get_db)) -> ExportadorService:
     repository = SQLAlchemyExportadorRepository(session)
@@ -88,3 +90,63 @@ async def get_drawback_verde_amarelo_service(session: AsyncSession=Depends(get_d
 async def get_siscomex_drawback_service(session: AsyncSession=Depends(get_db)) -> SiscomexDrawbackService:
     repository = SQLAlchemySiscomexDrawbackRepository(session)
     return SiscomexDrawbackService(repository=repository)
+
+async def get_exportador_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.exportador.manage'))) -> ExportadorService:
+    """Exportador service with permission guard: requires trade.exportador.manage"""
+    repository = SQLAlchemyExportadorRepository(session)
+    return ExportadorService(repository=repository)
+
+async def get_importador_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.importador.manage'))) -> ImportadorService:
+    """Importador service with permission guard: requires trade.importador.manage"""
+    repository = SQLAlchemyImportadorRepository(session)
+    return ImportadorService(repository=repository)
+
+async def get_radar_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.radar.manage'))) -> RadarService:
+    """RADAR service with permission guard: requires trade.radar.manage"""
+    repository = SQLAlchemyRadarRepository(session)
+    return RadarService(repository=repository)
+
+async def get_drawback_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.manage'))) -> DrawbackService:
+    """Drawback service with permission guard: requires trade.drawback.manage"""
+    repository = SQLAlchemyDrawbackRepository(session)
+    return DrawbackService(repository=repository)
+
+async def get_drawback_isencao_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.isencao.approve'))) -> DrawbackIsencaoService:
+    """Drawback isencao service with permission guard: requires trade.drawback.isencao.approve"""
+    repository = SQLAlchemyDrawbackIsencaoRepository(session)
+    return DrawbackIsencaoService(repository=repository)
+
+async def get_drawback_suspensao_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.suspensao.approve'))) -> DrawbackSuspensaoService:
+    """Drawback suspensao service with permission guard: requires trade.drawback.suspensao.approve"""
+    repository = SQLAlchemyDrawbackSuspensaoRepository(session)
+    return DrawbackSuspensaoService(repository=repository)
+
+async def get_drawback_restituicao_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.restituicao.approve'))) -> DrawbackRestituicaoService:
+    """Drawback restituicao service with permission guard: requires trade.drawback.restituicao.approve"""
+    repository = SQLAlchemyDrawbackRestituicaoRepository(session)
+    return DrawbackRestituicaoService(repository=repository)
+
+async def get_drawback_interno_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.interno.approve'))) -> DrawbackInternoService:
+    """Drawback interno service with permission guard: requires trade.drawback.interno.approve"""
+    repository = SQLAlchemyDrawbackInternoRepository(session)
+    return DrawbackInternoService(repository=repository)
+
+async def get_drawback_externo_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.externo.approve'))) -> DrawbackExternoService:
+    """Drawback externo service with permission guard: requires trade.drawback.externo.approve"""
+    repository = SQLAlchemyDrawbackExternoRepository(session)
+    return DrawbackExternoService(repository=repository)
+
+async def get_drawback_integrado_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.integrado.approve'))) -> DrawbackIntegradoService:
+    """Drawback integrado service with permission guard: requires trade.drawback.integrado.approve"""
+    repository = SQLAlchemyDrawbackIntegradoRepository(session)
+    return DrawbackIntegradoService(repository=repository)
+
+async def get_drawback_verde_amarelo_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.verde_amarelo.approve'))) -> DrawbackVerdeAmareloService:
+    """Drawback verde amarelo service with permission guard: requires trade.drawback.verde_amarelo.approve"""
+    repository = SQLAlchemyDrawbackVerdeAmareloRepository(session)
+    return DrawbackVerdeAmareloService(repository=repository)
+
+async def get_drawback_substituicao_service_protected(session: AsyncSession=Depends(get_db), _auth: dict=Depends(_permission_guard.required_permission('trade.drawback.substituicao.approve'))) -> DrawbackSubstituicaoService:
+    """Drawback substituicao service with permission guard: requires trade.drawback.substituicao.approve"""
+    repository = SQLAlchemyDrawbackSubstituicaoRepository(session)
+    return DrawbackSubstituicaoService(repository=repository)

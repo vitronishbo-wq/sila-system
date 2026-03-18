@@ -16,7 +16,7 @@ from fastapi import FastAPI
 from fastapi import Request
 
 from app.api.deps import get_identity_context
-from app.core.identity import IdentityContext
+from apps.backend.app.core.identity import IdentityContext
 from apps.backend.app.modules.intelligence.operations.api.router import router as operations_router
 
 

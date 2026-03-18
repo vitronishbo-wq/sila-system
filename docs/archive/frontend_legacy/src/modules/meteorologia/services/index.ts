@@ -1,0 +1,1 @@
+export { meteorologiaService } from "./meteorologiaService";

@@ -11,7 +11,7 @@ class TaxDeclarationFiled:
     Evento de Domínio: Declaração fiscal apresentada.
     
     Este evento é disparado quando uma declaração fiscal é submetida
-    com sucesso à AGT.
+    com sucesso �\xa0 AGT.
     """
     declaration_id: UUID
     taxpayer_id: UUID

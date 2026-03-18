@@ -2,7 +2,7 @@
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
 from uuid import UUID, uuid4
-from datetime import datetime
+from datetime import datetime, timezone
 
 @dataclass
 class DomainEvent:
@@ -10,7 +10,7 @@ class DomainEvent:
     aggregate_id: UUID
     event_type: str
     version: int
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:

@@ -4,7 +4,7 @@ import levelCentral from './assets/images/level-central.webp';
 import levelProvincial from './assets/images/level-provincial.jpg';
 import levelMunicipal from './assets/images/level-municipal.png';
 import mockup from './assets/images/mockup-portal-cidadao.png.jpeg';
-import loginHero from './assets/images/login-hero.jpg';
+import loginHero from './assets/images/login-hero.png';
 
 export const API_URL = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api').replace(/\/?$/, '/');
 export const APP_VERSION = '2026.1';

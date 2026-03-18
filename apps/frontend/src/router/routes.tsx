@@ -11,6 +11,10 @@ import { AdminStatistics } from "../pages/AdminStatistics";
 import { SearchDocuments } from "../pages/SearchDocuments";
 import { SearchDeepResults } from "../pages/SearchDeepResults";
 import { AdminAuditViewer } from "../pages/AdminAuditViewer";
+import { AdminDashboard } from "../modules/admin/components/AdminDashboard";
+import { MeteorologyPage } from "../modules/meteorologia/pages/MeteorologyPage";
+import { IdentityPage } from "../pages/IdentityPage";
+import { BiometricEnrollmentPage } from "../pages/BiometricEnrollmentPage";
 import Unauthorized from "../pages/Unauthorized";
 
 export default function AppRoutes() {
@@ -30,12 +34,16 @@ export default function AppRoutes() {
         <Route path="/upload" element={<UploadDocuments />} />
         <Route path="/search" element={<SearchDocuments />} />
         <Route path="/search/deep" element={<SearchDeepResults />} />
+        <Route path="/identity" element={<IdentityPage />} />
+        <Route path="/biometric-enrollment" element={<BiometricEnrollmentPage />} />
       </Route>
 
       {/* Rotas Administrativas */}
       <Route element={<AdminRoute />}>
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/statistics" element={<AdminStatistics />} />
         <Route path="/admin/audit" element={<AdminAuditViewer />} />
+        <Route path="/meteorologia" element={<MeteorologyPage />} />
       </Route>
 
       {/* Redirecionamento Padrão */}

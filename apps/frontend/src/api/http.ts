@@ -8,7 +8,7 @@ const http = axios.create({
 });
 
 http.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || localStorage.getItem('access_token');
   console.log(`[API REQUEST] ${config.method?.toUpperCase()} ${config.url}`, config.data || '');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -24,8 +24,15 @@ http.interceptors.response.use(
   (error) => {
     console.error(`[API ERROR] ${error.response?.status || 'NETWORK ERROR'} ${error.config?.url}`, error.response?.data || error.message);
     if (error.response?.status === 401) {
-      localStorage.clear();
-      window.location.hash = '/login';
+      const url = error.config?.url || '';
+      const isAdminCall = url.includes('/admin/');
+      const hasCitizenSession = !!localStorage.getItem('citizen_token');
+      if (isAdminCall && hasCitizenSession) {
+        console.warn('[API ERROR] 401 em rota admin com sessão citizen ativa', url);
+      } else {
+        localStorage.clear();
+        window.location.hash = '/login';
+      }
     }
     if (error.response?.status === 403) {
       console.error('🚫 Access Denied:', error.config?.url);

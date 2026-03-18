@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   IdCard, 
   FileText, 
@@ -15,40 +15,112 @@ import {
   CheckCircle2,
   X,
   Search,
-  ArrowRight
+  ArrowRight,
+  CreditCard as CreditCardIcon
 } from 'lucide-react';
 import PaymentModal from './components/PaymentModal';
+import { apiClient } from '@/api/generated/client';
+import type { Service as ApiService } from '@/types/api';
 
-interface Service {
-  id: string;
-  name: string;
+interface DisplayService extends ApiService {
   icon: React.ReactNode;
   color: string;
 }
 
-const SERVICES: Service[] = [
-  { id: 'identidade', name: 'Identidade Civil', icon: <IdCard className="w-8 h-8" />, color: 'bg-blue-500' },
-  { id: 'registo', name: 'Registo Civil', icon: <FileText className="w-8 h-8" />, color: 'bg-green-500' },
-  { id: 'contribuinte', name: 'Contribuinte (AGT)', icon: <UserCheck className="w-8 h-8" />, color: 'bg-yellow-500' },
-  { id: 'agua', name: 'Água e Saneamento', icon: <Droplet className="w-8 h-8" />, color: 'bg-cyan-500' },
-  { id: 'energia', name: 'Energia Elétrica', icon: <Zap className="w-8 h-8" />, color: 'bg-orange-500' },
-  { id: 'emprego', name: 'Emprego e Trabalho', icon: <Briefcase className="w-8 h-8" />, color: 'bg-purple-500' },
-  { id: 'licenciamento', name: 'Licenciamento', icon: <FileSignature className="w-8 h-8" />, color: 'bg-red-500' },
-  { id: 'transportes', name: 'Transportes', icon: <Bus className="w-8 h-8" />, color: 'bg-emerald-500' },
-  { id: 'cartorios', name: 'Cartórios e Notariado', icon: <Gavel className="w-8 h-8" />, color: 'bg-indigo-500' },
-];
+const ICON_MAP: Record<string, { icon: React.ReactNode; color: string }> = {
+  identidade: { icon: <IdCard className="w-8 h-8" />, color: 'bg-blue-500' },
+  registo: { icon: <FileText className="w-8 h-8" />, color: 'bg-green-500' },
+  contribuinte: { icon: <UserCheck className="w-8 h-8" />, color: 'bg-yellow-500' },
+  agua: { icon: <Droplet className="w-8 h-8" />, color: 'bg-cyan-500' },
+  energia: { icon: <Zap className="w-8 h-8" />, color: 'bg-orange-500' },
+  emprego: { icon: <Briefcase className="w-8 h-8" />, color: 'bg-purple-500' },
+  licenciamento: { icon: <FileSignature className="w-8 h-8" />, color: 'bg-red-500' },
+  transportes: { icon: <Bus className="w-8 h-8" />, color: 'bg-emerald-500' },
+  cartorios: { icon: <Gavel className="w-8 h-8" />, color: 'bg-indigo-500' }
+};
+
+const normalizeService = (raw: unknown, index: number): ApiService => {
+  const record = (raw && typeof raw === 'object') ? (raw as Record<string, unknown>) : {};
+  const idValue = typeof record.id === 'string' ? record.id : `service-${index}`;
+  const codeValue = typeof record.code === 'string' ? record.code : idValue;
+  const nameValue = typeof record.name === 'string' ? record.name : `Serviço ${index + 1}`;
+  const priceRaw = record.price ?? record.valor ?? record.preco;
+  const priceValue = typeof priceRaw === 'number' ? priceRaw : Number(priceRaw ?? 0);
+
+  return {
+    id: idValue,
+    code: codeValue,
+    name: nameValue,
+    price: Number.isFinite(priceValue) ? priceValue : 0
+  };
+};
+
+const toDisplayService = (service: ApiService): DisplayService => {
+  const key = `${service.code} ${service.name}`.toLowerCase();
+  const iconKey = Object.keys(ICON_MAP).find((candidate) => key.includes(candidate));
+  const mapping = iconKey ? ICON_MAP[iconKey] : { icon: <CreditCardIcon className="w-8 h-8" />, color: 'bg-slate-500' };
+
+  return {
+    ...service,
+    icon: mapping.icon,
+    color: mapping.color
+  };
+};
 
 const App: React.FC = () => {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [selectedService, setSelectedService] = useState<DisplayService | null>(null);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [services, setServices] = useState<DisplayService[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
-  const handleServiceClick = (service: Service) => {
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchServices = async () => {
+      setIsLoading(true);
+      setLoadError(null);
+
+      let data: unknown;
+      let error: unknown;
+
+      try {
+        ({ data, error } = await apiClient.GET('/api/v1/services'));
+      } catch (err) {
+        error = err;
+      }
+
+      if (!isMounted) {
+        return;
+      }
+
+      if (error) {
+        setLoadError('Não foi possível carregar os serviços. Tente novamente.');
+        setServices([]);
+        setIsLoading(false);
+        return;
+      }
+
+      const rawServices = Array.isArray(data) ? data : [];
+      const mapped = rawServices.map((item, index) => toDisplayService(normalizeService(item, index)));
+      setServices(mapped);
+      setIsLoading(false);
+    };
+
+    fetchServices();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleServiceClick = (service: DisplayService) => {
     setSelectedService(service);
     setIsPaymentModalOpen(true);
   };
 
-  const filteredServices = SERVICES.filter(s =>
+  const filteredServices = services.filter(s =>
     s.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -119,7 +191,15 @@ const App: React.FC = () => {
           </header>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredServices.length > 0 ? (
+            {isLoading ? (
+              <div className="col-span-full text-center py-12 text-gray-500">
+                <p>A carregar serviços...</p>
+              </div>
+            ) : loadError ? (
+              <div className="col-span-full text-center py-12 text-red-500">
+                <p>{loadError}</p>
+              </div>
+            ) : filteredServices.length > 0 ? (
               filteredServices.map((service) => (
                 <div 
                   key={service.id}

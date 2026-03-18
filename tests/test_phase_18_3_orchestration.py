@@ -17,11 +17,13 @@ class TestPhase18_3LocalOrchestration:
     """Audit Phase 18.3 bare-metal configuration normalization"""
     
     SILA_ROOT = Path(__file__).parent.parent
+    PROMETHEUS_PATH = SILA_ROOT / "infra" / "observability" / "prometheus.yml"
+    ALERTMANAGER_PATH = SILA_ROOT / "infra" / "alerts" / "alertmanager.yml"
     
     @pytest.fixture
     def prometheus_config(self):
         """Load prometheus.yml configuration"""
-        config_path = self.SILA_ROOT / "prometheus.yml"
+        config_path = self.PROMETHEUS_PATH
         assert config_path.exists(), f"prometheus.yml not found at {config_path}"
         
         with open(config_path, 'r') as f:
@@ -30,7 +32,7 @@ class TestPhase18_3LocalOrchestration:
     @pytest.fixture
     def alertmanager_config(self):
         """Load alertmanager.yml configuration"""
-        config_path = self.SILA_ROOT / "alertmanager.yml"
+        config_path = self.ALERTMANAGER_PATH
         assert config_path.exists(), f"alertmanager.yml not found at {config_path}"
         
         with open(config_path, 'r') as f:
@@ -42,11 +44,11 @@ class TestPhase18_3LocalOrchestration:
     
     def test_prometheus_config_exists(self):
         """✓ prometheus.yml file exists"""
-        assert (self.SILA_ROOT / "prometheus.yml").exists()
+        assert self.PROMETHEUS_PATH.exists()
     
     def test_alertmanager_config_exists(self):
         """✓ alertmanager.yml file exists"""
-        assert (self.SILA_ROOT / "alertmanager.yml").exists()
+        assert self.ALERTMANAGER_PATH.exists()
     
     def test_prometheus_devops_config_exists(self):
         """✓ devops prometheus.yml file exists"""
@@ -64,7 +66,7 @@ class TestPhase18_3LocalOrchestration:
     
     def test_no_container_dns_in_prometheus(self):
         """✓ No Docker container DNS names in prometheus.yml"""
-        config_path = self.SILA_ROOT / "prometheus.yml"
+        config_path = self.PROMETHEUS_PATH
         content = config_path.read_text()
         
         forbidden_names = [
@@ -79,7 +81,7 @@ class TestPhase18_3LocalOrchestration:
     
     def test_localhost_endpoints_in_prometheus(self):
         """✓ Prometheus targets use localhost endpoints"""
-        config_path = self.SILA_ROOT / "prometheus.yml"
+        config_path = self.PROMETHEUS_PATH
         content = config_path.read_text()
         
         required_endpoints = [
@@ -95,14 +97,14 @@ class TestPhase18_3LocalOrchestration:
     
     def test_no_container_dns_in_alertmanager(self):
         """✓ No Docker container DNS names in alertmanager.yml"""
-        config_path = self.SILA_ROOT / "alertmanager.yml"
+        config_path = self.ALERTMANAGER_PATH
         content = config_path.read_text()
         
         assert "alert-handler:8080" not in content, "Found non-normalized alert-handler endpoint"
     
     def test_127_0_0_1_webhook_in_alertmanager(self):
         """✓ Alertmanager webhooks use 127.0.0.1"""
-        config_path = self.SILA_ROOT / "alertmanager.yml"
+        config_path = self.ALERTMANAGER_PATH
         content = config_path.read_text()
         
         assert "http://127.0.0.1:8080" in content, "Webhook URL not normalized to 127.0.0.1"
@@ -208,7 +210,7 @@ class TestPhase18_3LocalOrchestration:
     
     def test_prometheus_yaml_valid(self):
         """✓ prometheus.yml is valid YAML"""
-        config_path = self.SILA_ROOT / "prometheus.yml"
+        config_path = self.PROMETHEUS_PATH
         try:
             with open(config_path, 'r') as f:
                 yaml.safe_load(f)
@@ -217,7 +219,7 @@ class TestPhase18_3LocalOrchestration:
     
     def test_alertmanager_yaml_valid(self):
         """✓ alertmanager.yml is valid YAML"""
-        config_path = self.SILA_ROOT / "alertmanager.yml"
+        config_path = self.ALERTMANAGER_PATH
         try:
             with open(config_path, 'r') as f:
                 yaml.safe_load(f)

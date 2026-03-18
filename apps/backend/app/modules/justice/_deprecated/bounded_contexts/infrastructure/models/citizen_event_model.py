@@ -1,9 +1,9 @@
 from enum import Enum
 
 class EventType(str, Enum):
-    CREATED = "created"
-    UPDATED = "updated"
-    DELETED = "deleted"
+    CREATED = 'created'
+    UPDATED = 'updated'
+    DELETED = 'deleted'
 
 class CitizenEventModel:
     pass

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from uuid import UUID
-from apps.backend.app.modules.civil_protection.application.ports.corporacao_repository_port import CorporacaoRepositoryPort
-from apps.backend.app.modules.civil_protection.application.ports.request_service_port import RequestServicePort
+from apps.backend.app.modules.civil_protection.domain.ports.corporacao_repository_port import CorporacaoRepositoryPort
+from apps.backend.app.modules.civil_protection.domain.ports.request_service_port import RequestServicePort
 from apps.backend.app.modules.civil_protection.domain.enums import StatusCorporacao
 from apps.backend.app.modules.civil_protection.domain.models.corporacao import Corporacao
 

@@ -7,8 +7,8 @@ from decimal import Decimal
 
 from sqlalchemy import select
 
-from app.core.catalog.models.service import Service
-from app.core.db import AsyncSessionLocal
+from apps.backend.app.core.catalog.models.service import Service
+from apps.backend.app.core.db import AsyncSessionLocal
 
 
 SEED_SERVICES = [

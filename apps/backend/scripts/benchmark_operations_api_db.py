@@ -26,7 +26,7 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 from app.api.deps import get_identity_context
-from app.core.identity import IdentityContext
+from apps.backend.app.core.identity import IdentityContext
 from apps.backend.app.modules.intelligence.operations.api.router import router as operations_router
 
 

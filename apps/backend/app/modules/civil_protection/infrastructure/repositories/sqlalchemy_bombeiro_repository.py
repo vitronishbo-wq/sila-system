@@ -3,7 +3,7 @@ from datetime import date
 from uuid import UUID
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.application.ports.bombeiro_repository_port import BombeiroRepositoryPort
+from apps.backend.app.modules.civil_protection.domain.ports.bombeiro_repository_port import BombeiroRepositoryPort
 from apps.backend.app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao, TipoAgenteProtecao
 from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
 from apps.backend.app.modules.civil_protection.infrastructure.models.bombeiro_model import BombeiroModel

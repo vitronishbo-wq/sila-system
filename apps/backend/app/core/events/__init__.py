@@ -18,6 +18,8 @@ from .bus_enhanced import EventBus as EnhancedEventBus
 from .broker import RedisBroker
 from .handlers import EventHandler
 from .registry import HandlerRegistry
+from .domain_event import DomainEvent as BaseDomainEvent, AuditableEvent, ComplianceEvent, StatusChangeEvent
+from .event_bus import EventBus as AbstractEventBus, InMemoryEventBus
 from .models import UserLoggedIn, UserLoggedOut, UserPasswordChanged
 from .decorators import publish_event
 from .config import EventBusConfig, BrokerType

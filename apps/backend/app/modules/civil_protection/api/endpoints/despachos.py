@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, status
 from apps.backend.app.modules.civil_protection.api.deps import get_despacho_service
-from apps.backend.app.modules.civil_protection.api.schemas.despacho_schema import DespachoCreate, DespachoResponse, DespachoStatusUpdate
+from apps.backend.app.modules.civil_protection.application.dto.despacho_schema import DespachoCreate, DespachoResponse, DespachoStatusUpdate
 from apps.backend.app.modules.civil_protection.application.services.despacho_service import DespachoService
 from apps.backend.app.modules.civil_protection.domain.enums import StatusDespacho
 router = APIRouter(prefix='/despachos', tags=['Protecao Civil - Despachos'])

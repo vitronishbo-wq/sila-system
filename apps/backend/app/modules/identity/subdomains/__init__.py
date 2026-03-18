@@ -1,0 +1,1 @@
+"""Identity subdomains consolidated under a single namespace."""

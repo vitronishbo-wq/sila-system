@@ -1,0 +1,2 @@
+class ProcurementException(Exception):
+    pass

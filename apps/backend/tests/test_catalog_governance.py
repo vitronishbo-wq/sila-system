@@ -1,6 +1,6 @@
 """Catalog governance validation for institutional-scale service definitions."""
 
-from app.core.catalog.blueprint import MODULE_BLUEPRINTS, build_service_blueprints
+from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS, build_service_blueprints
 
 
 def test_catalog_scale_targets():

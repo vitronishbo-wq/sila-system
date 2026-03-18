@@ -1,1 +1,0 @@
-from apps.backend.app.modules.justice.bounded_contexts.cemetery_management.domain.cemetery_inspection_record import *

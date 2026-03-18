@@ -9,7 +9,8 @@ Funcionalidades:
 2. ✅ Usuários por Níveis - 5 níveis administrativos
 3. ✅ Seed Institucional Educação - anos/escolas/turmas
 4. ✅ Cidadãos de Teste - 3 exemplos com vinculação territorial
-5. ✅ Validação Final - Integridade referencial
+5. ✅ Seed de Finanças - faturas/pagamentos mínimos para dashboard
+6. ✅ Validação Final - Integridade referencial
 
 Uso:
   python run_master_seed.py              # Executa tudo
@@ -23,8 +24,10 @@ import asyncio
 import logging
 import os
 import sys
+import json
 from pathlib import Path
 from uuid import uuid4
+import bcrypt
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
@@ -286,7 +289,40 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
     created_count = 0
     skipped_count = 0
     unresolved_regions = 0
-    
+
+    def _hash_password(password: str) -> str:
+        return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+    async def _ensure_role(role_name: str) -> str:
+        role_result = await session.execute(
+            text("SELECT id FROM iam_roles WHERE name = :name"),
+            {"name": role_name},
+        )
+        row = role_result.fetchone()
+        if row:
+            return row[0]
+        role_id = str(uuid4())
+        await session.execute(
+            text(
+                """
+                INSERT INTO iam_roles (
+                    id, name, description, role_type, is_system, created_at, is_active
+                ) VALUES (
+                    :id, :name, :description, :role_type, :is_system, now(), :is_active
+                )
+                """
+            ),
+            {
+                "id": role_id,
+                "name": role_name,
+                "description": f"Seed role: {role_name}",
+                "role_type": "SYSTEM",
+                "is_system": True,
+                "is_active": True,
+            },
+        )
+        return role_id
+
     try:
         for user_config in users_config:
             # Resolver region_id
@@ -302,40 +338,94 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
                     unresolved_regions += 1
                     continue
             
-            # Verificar se usuário já existe
+            role_names = ["SUPERADMIN"] if user_config["level"] == "SUPER" else ["MANAGER"]
+            role_ids = [await _ensure_role(role) for role in role_names]
+
+            metadata = {
+                "administrative_level": user_config["level"],
+                "region_id": str(region_id) if region_id else None,
+                "region_name": user_config.get("region_name"),
+            }
+
             check_result = await session.execute(
-                text("SELECT id FROM users WHERE email = :email"),
-                {"email": user_config["email"]}
+                text("SELECT id FROM iam_users WHERE email = :email"),
+                {"email": user_config["email"]},
             )
-            if check_result.fetchone():
-                logger.info(f"   ⏭️  {user_config['email']:40s} (já existe)")
-                skipped_count += 1
-                continue
-            
-            # Inserir novo usuário
+            existing = check_result.fetchone()
+
             try:
-                await session.execute(
-                    text("""
-                        INSERT INTO users 
-                        (uuid, email, full_name, hashed_password, administrative_level, 
-                         region_id, roles, is_active, is_verified, status)
-                        VALUES 
-                        (:uuid, :email, :full_name, :password, :level, 
-                         :region_id, :roles, true, true, 'ACTIVE')
-                    """),
-                    {
-                        "uuid": str(uuid4()),
-                        "email": user_config["email"],
-                        "full_name": user_config["full_name"],
-                        "password": TEST_PASSWORD,  # Hash feito no banco via trigger
-                        "level": user_config["level"],
-                        "region_id": region_id,
-                        "roles": f'["{user_config["level"]}"]'
-                    }
-                )
-                logger.info(f"   ✅ {user_config['email']:40s} ({user_config['level']})")
-                created_count += 1
-            
+                if existing:
+                    user_id = existing[0]
+                    await session.execute(
+                        text(
+                            """
+                            UPDATE iam_users
+                            SET username = :username,
+                                password_hash = :password_hash,
+                                full_name = :full_name,
+                                status = :status,
+                                is_active = true,
+                                custom_metadata = :custom_metadata
+                            WHERE id = :id
+                            """
+                        ),
+                        {
+                            "id": user_id,
+                            "username": user_config["email"],
+                            "password_hash": _hash_password(TEST_PASSWORD),
+                            "full_name": user_config["full_name"],
+                            "status": "ACTIVE",
+                            "custom_metadata": json.dumps(metadata),
+                        },
+                    )
+                    logger.info(f"   ⏭️  {user_config['email']:40s} (atualizado)")
+                    skipped_count += 1
+                else:
+                    user_id = str(uuid4())
+                    await session.execute(
+                        text(
+                            """
+                            INSERT INTO iam_users (
+                                id, username, email, password_hash, status,
+                                is_superuser, full_name, created_at, is_active,
+                                custom_metadata
+                            ) VALUES (
+                                :id, :username, :email, :password_hash, :status,
+                                :is_superuser, :full_name, now(), true,
+                                :custom_metadata
+                            )
+                            """
+                        ),
+                        {
+                            "id": user_id,
+                            "username": user_config["email"],
+                            "email": user_config["email"],
+                            "password_hash": _hash_password(TEST_PASSWORD),
+                            "status": "ACTIVE",
+                            "is_superuser": user_config["level"] == "SUPER",
+                            "full_name": user_config["full_name"],
+                            "custom_metadata": json.dumps(metadata),
+                        },
+                    )
+                    logger.info(f"   ✅ {user_config['email']:40s} ({user_config['level']})")
+                    created_count += 1
+
+                for role_id in role_ids:
+                    await session.execute(
+                        text(
+                            """
+                            INSERT INTO iam_user_roles (id, user_id, role_id, assigned_at, is_active)
+                            VALUES (:id, :user_id, :role_id, now(), true)
+                            ON CONFLICT (user_id, role_id) DO NOTHING
+                            """
+                        ),
+                        {
+                            "id": str(uuid4()),
+                            "user_id": user_id,
+                            "role_id": role_id,
+                        },
+                    )
+
             except Exception as e:
                 logger.error(f"   ❌ {user_config['email']:40s} ERRO: {e}")
 
@@ -375,7 +465,19 @@ async def seed_educacao_institucional() -> dict[str, int]:
     return result
 
 # ============================================================================
-# 4. RESOLUÇÃO TERRITORIAL (SUPORTE USERS-ONLY)
+# 4. SEED DE FINANÇAS (DASHBOARD)
+# ============================================================================
+
+async def seed_financas_dashboard() -> None:
+    """Executa seed mínimo de faturas/pagamentos para dashboard."""
+    logger.info("💰 Iniciando seed de finanças (dashboard)...")
+    from scripts.seed_financas_dashboard import seed_financas_dashboard as seed_financas
+
+    await seed_financas()
+    logger.info("✅ Finanças: seed mínimo concluído\n")
+
+# ============================================================================
+# 5. RESOLUÇÃO TERRITORIAL (SUPORTE USERS-ONLY)
 # ============================================================================
 
 async def load_territory_ids(session: AsyncSession) -> dict:
@@ -393,7 +495,7 @@ async def load_territory_ids(session: AsyncSession) -> dict:
     return {row[1]: row[0] for row in rows}
 
 # ============================================================================
-# 5. VALIDAÇÃO FINAL
+# 6. VALIDAÇÃO FINAL
 # ============================================================================
 
 async def validate_data(
@@ -416,7 +518,7 @@ async def validate_data(
         result = await session.execute(text("SELECT COUNT(*) FROM locations WHERE type = 'COMUNA'"))
         communes = result.scalar() or 0
         
-        result = await session.execute(text("SELECT COUNT(*) FROM users"))
+        result = await session.execute(text("SELECT COUNT(*) FROM iam_users"))
         users = result.scalar() or 0
         
         logger.info(f"   📊 Territórios: {provinces} províncias, {municipalities} municípios, {communes} comunas")
@@ -450,7 +552,7 @@ async def validate_data(
         return False
 
 # ============================================================================
-# 6. CLI
+# 7. CLI
 # ============================================================================
 
 def parse_args() -> argparse.Namespace:
@@ -474,7 +576,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 # ============================================================================
-# 7. MAIN
+# 8. MAIN
 # ============================================================================
 
 async def main():
@@ -513,6 +615,7 @@ async def main():
             if args.territories_only:
                 logger.info("🧭 Modo TERRITORIES-ONLY")
                 await seed_territories(session)
+                await seed_financas_dashboard()
                 ok = await validate_data(
                     session,
                     require_territories=True,
@@ -528,6 +631,7 @@ async def main():
                 logger.info("👤 Modo USERS-ONLY")
                 territory_ids = await load_territory_ids(session)
                 await seed_users(session, territory_ids)
+                await seed_financas_dashboard()
                 ok = await validate_data(
                     session,
                     require_territories=False,
@@ -543,6 +647,7 @@ async def main():
             territory_ids = await seed_territories(session)
             await seed_users(session, territory_ids)
             await seed_educacao_institucional()
+            await seed_financas_dashboard()
             ok = await validate_data(
                 session,
                 require_territories=True,

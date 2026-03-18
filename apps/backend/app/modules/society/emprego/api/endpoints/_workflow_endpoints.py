@@ -13,29 +13,29 @@ def build_workflow_router(*, tag: str, get_service: Callable, create_schema: Any
             except ValueError as exc:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
         _create.__name__ = f'create_{service_type}'
-        router.add_api_route(path, _create, methods=['POST'], response_model=response_schema, status_code=status.HTTP_201_CREATED)
+        router.add_api_route(path, _create, methods=['POST'], response_model=response_schema, status_code=status.HTTP_201_CREATED, operation_id=f'{tag}_workflow_create_{service_type}')
     for path, service_type in routes:
         _register_create(path, service_type)
 
-    @router.get('/workflow/{item_id}', response_model=response_schema)
+    @router.get('/workflow/{item_id}', response_model=response_schema, operation_id=f'{tag}_workflow_get_item')
     async def get_item(item_id: UUID, service=Depends(get_service)):
         item = await service.obter_por_id(item_id)
         if not item:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Registro nao encontrado')
         return item
 
-    @router.get('/workflow/citizen/{citizen_id}', response_model=list[response_schema])
+    @router.get('/workflow/citizen/{citizen_id}', response_model=list[response_schema], operation_id=f'{tag}_workflow_list_items')
     async def list_items(citizen_id: UUID, service_type: str | None=None, service=Depends(get_service)):
         return await service.listar_por_cidadao(citizen_id, service_type)
 
-    @router.post('/workflow/{item_id}/concluir', response_model=response_schema)
+    @router.post('/workflow/{item_id}/concluir', response_model=response_schema, operation_id=f'{tag}_workflow_concluir_item')
     async def concluir_item(item_id: UUID, data: action_schema, service=Depends(get_service)):
         try:
             return await service.concluir_registro(item_id=item_id, actor_id=data.actor_id, observacoes=data.observacoes)
         except Exception as exc:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
 
-    @router.post('/workflow/{item_id}/cancelar', response_model=response_schema)
+    @router.post('/workflow/{item_id}/cancelar', response_model=response_schema, operation_id=f'{tag}_workflow_cancelar_item')
     async def cancelar_item(item_id: UUID, data: cancel_schema, service=Depends(get_service)):
         try:
             return await service.cancelar_registro(item_id=item_id, actor_id=data.actor_id, motivo=data.motivo)

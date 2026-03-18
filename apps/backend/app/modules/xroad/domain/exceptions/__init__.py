@@ -1,0 +1,2 @@
+class XroadException(Exception):
+    pass

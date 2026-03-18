@@ -2,8 +2,8 @@
 
 from typing import AsyncGenerator
 
-from app.core.db import AsyncSessionLocal
-from app.core.security import IAMClient
+from apps.backend.app.core.db import AsyncSessionLocal
+from core.security import IAMClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

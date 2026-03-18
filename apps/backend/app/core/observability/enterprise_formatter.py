@@ -38,13 +38,8 @@ class SilaEnterpriseJSONFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """Formata um LogRecord como JSON."""
-        timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-        log_data: Dict[str, Any] = {
-            'timestamp': timestamp,
-            'level': record.levelname,
-            'logger': record.name,
-            'message': record.getMessage(),
-        }
+        timestamp = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+        log_data: Dict[str, Any] = {'timestamp': timestamp, 'level': record.levelname, 'logger': record.name, 'message': record.getMessage()}
         log_data['location'] = {'file': record.filename, 'function': record.funcName, 'line': record.lineno}
         if self.include_context:
             context = get_context_dict()

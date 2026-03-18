@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SLA Dashboard</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; }
+      header { padding: 24px; background: #0f172a; color: #fff; }
+      main { padding: 24px; }
+      .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+      .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.1); }
+      table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+      th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e2e8f0; }
+      th { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Dashboard SLA Enterprise</h1>
+      <p>Usuário: {{ user.get("email") or user.get("id") }}</p>
+    </header>
+    <main>
+      <section class="cards">
+        <div class="card">
+          <h3>Total de serviços</h3>
+          <strong>{{ stats.total_services }}</strong>
+        </div>
+        <div class="card">
+          <h3>Violações (7 dias)</h3>
+          <strong>{{ stats.recent_violations }}</strong>
+        </div>
+      </section>
+
+      <section>
+        <h2>Top violações</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Serviço</th>
+              <th>Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in stats.top_violations %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>SLAs por módulo</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Módulo</th>
+              <th>Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for module, count in stats.by_module.items() %}
+            <tr>
+              <td>{{ module }}</td>
+              <td>{{ count }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

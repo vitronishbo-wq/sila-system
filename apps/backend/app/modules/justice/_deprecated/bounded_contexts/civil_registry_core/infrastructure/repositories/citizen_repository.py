@@ -4,9 +4,10 @@ from typing import Any, Optional
 from uuid import UUID
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.application.ports.citizen_repository_port import (
-    CitizenRepositoryPort,
-)
+try:
+    from apps.backend.app.modules.justice.bounded_contexts.civil_registry_core.application.ports.citizen_repository_port import CitizenRepositoryPort
+except ModuleNotFoundError:
+    from apps.backend.app.modules.justice._deprecated.bounded_contexts.civil_registry_core.application.ports.citizen_repository_port import CitizenRepositoryPort
 from apps.backend.app.core.database.repositories import BaseRepository
 from apps.backend.app.core.bridges.identity_bridge import CitizenFUC
 logger = logging.getLogger('identity.repository.citizen')

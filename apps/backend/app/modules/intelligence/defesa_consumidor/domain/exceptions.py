@@ -1,22 +1,25 @@
-class DefesaConsumidorException(Exception):
+"""Domain exceptions for DefesaConsumidor module"""
+from apps.backend.core.exceptions.factory import ExceptionFactory
+exc = ExceptionFactory.create_module_exceptions('DefesaConsumidor')
+DefesaConsumidorException = exc.Base
+DefesaConsumidorNotFound = exc.NotFound
+DefesaConsumidorValidationError = exc.ValidationError
+DefesaConsumidorInvalidStateError = exc.InvalidStateError
 
-    def __init__(self, message: str, code: str='DC_ERROR', status_code: int=400):
-        self.message = message
-        self.code = code
-        self.status_code = status_code
-        super().__init__(self.message)
-
-class ReclamacaoNaoEncontradaException(DefesaConsumidorException):
-
-    def __init__(self, reclamacao_id: int):
-        super().__init__(f'Reclamacao {reclamacao_id} nao encontrada', 'DC_RECLAMACAO_NOT_FOUND', 404)
 
 class ReclamacaoJaEncerradaException(DefesaConsumidorException):
+    """Reclamacao ja encerrada no modulo DefesaConsumidor."""
 
-    def __init__(self, reclamacao_id: int):
-        super().__init__(f'Reclamacao {reclamacao_id} ja esta encerrada', 'DC_RECLAMACAO_ALREADY_CLOSED', 400)
 
-class ProtocoloDuplicadoException(DefesaConsumidorException):
+class ReclamacaoNaoEncontradaException(DefesaConsumidorNotFound):
+    """Reclamacao nao encontrada no modulo DefesaConsumidor."""
 
-    def __init__(self, protocolo: str):
-        super().__init__(f'Protocolo {protocolo} ja existe', 'DC_PROTOCOLO_DUPLICADO', 409)
+
+__all__ = [
+    'DefesaConsumidorException',
+    'DefesaConsumidorNotFound',
+    'DefesaConsumidorValidationError',
+    'DefesaConsumidorInvalidStateError',
+    'ReclamacaoJaEncerradaException',
+    'ReclamacaoNaoEncontradaException',
+]
