@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { AlertCircle, CheckCircle, Fingerprint, Loader } from 'lucide-react';
+import { AlertCircle, CheckCircle, Fingerprint } from 'lucide-react';
+import { BiometricCaptureFlow, BiometricMetadata } from '@/components/Biometrics';
 
-type EnrollmentStep = 'welcome' | 'instructions' | 'capture' | 'verification' | 'complete';
+type EnrollmentStep = 'welcome' | 'modality-selection' | 'biometric-capture' | 'verification' | 'complete';
 
 export const BiometricEnrollmentPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<EnrollmentStep>('welcome');
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [selectedModality, setSelectedModality] = useState<'facial' | 'fingerprint' | 'iris' | null>(null);
   const [enrollmentProgress, setEnrollmentProgress] = useState(0);
   const [biometricData, setBiometricData] = useState<{
     fingerprints: boolean;
@@ -18,51 +17,65 @@ export const BiometricEnrollmentPage: React.FC = () => {
     face: false,
     iris: false,
   });
+  const [completedModalities, setCompletedModalities] = useState<string[]>([]);
 
   const handleStartEnrollment = () => {
-    setCurrentStep('instructions');
+    setCurrentStep('modality-selection');
+    setEnrollmentProgress(20);
   };
 
-  const handleCaptureStart = () => {
-    setCurrentStep('capture');
-    setIsProcessing(true);
-    // Simulate capture process
-    const progressInterval = setInterval(() => {
-      setEnrollmentProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          setIsProcessing(false);
-          setCurrentStep('verification');
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 500);
+  const handleSelectModality = (modality: 'facial' | 'fingerprint' | 'iris') => {
+    setSelectedModality(modality);
+    setCurrentStep('biometric-capture');
+  };
+
+  const handleBiometricSuccess = (blob: Blob, metadata: BiometricMetadata) => {
+    // Atualizar estado de dados biométricos
+    if (metadata.modalityType === 'facial') {
+      setBiometricData((prev) => ({ ...prev, face: true }));
+    } else if (metadata.modalityType === 'fingerprint') {
+      setBiometricData((prev) => ({ ...prev, fingerprints: true }));
+    } else if (metadata.modalityType === 'iris') {
+      setBiometricData((prev) => ({ ...prev, iris: true }));
+    }
+
+    setCompletedModalities((prev) => [...prev, metadata.modalityType]);
+
+    // Atualizar progresso
+    const newProgress = Math.min(100, 20 + completedModalities.length * 30);
+    setEnrollmentProgress(newProgress);
+
+    // Se uma biometria foi completada, mostrar opções
+    if (completedModalities.length >= 1) {
+      setTimeout(() => {
+        setCurrentStep('verification');
+      }, 1000);
+    } else {
+      setCurrentStep('modality-selection');
+    }
+  };
+
+  const handleBiometricCancel = () => {
+    setCurrentStep('modality-selection');
+    setSelectedModality(null);
   };
 
   const handleVerificationComplete = () => {
-    setBiometricData({
-      fingerprints: true,
-      face: true,
-      iris: false,
-    });
+    setEnrollmentProgress(100);
     setCurrentStep('complete');
-  };
-
-  const handleRetry = () => {
-    setEnrollmentProgress(0);
-    setCurrentStep('instructions');
   };
 
   const handleReset = () => {
     setCurrentStep('welcome');
     setEnrollmentProgress(0);
     setBiometricData({ fingerprints: false, face: false, iris: false });
+    setCompletedModalities([]);
+    setSelectedModality(null);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-8 pb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
@@ -90,7 +103,7 @@ export const BiometricEnrollmentPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Welcome Step */}
+        {/* Content */}
         {currentStep === 'welcome' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
             <div className="text-center mb-8">
@@ -101,7 +114,7 @@ export const BiometricEnrollmentPage: React.FC = () => {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Bem-vindo à Inscrição Biométrica</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Este processo irá registrar seus dados biométricos de forma segura para autenticação futura.
+                Este processo irá registar seus dados biométricos de forma segura para autenticação futura.
               </p>
               <p className="text-sm text-gray-500">
                 O processo leva aproximadamente 5-10 minutos e requer câmera e iluminação adequada.
@@ -119,159 +132,173 @@ export const BiometricEnrollmentPage: React.FC = () => {
             </div>
 
             <div className="space-y-3">
-              <Button
+              <button
                 onClick={handleStartEnrollment}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition"
               >
                 <Fingerprint className="h-5 w-5" />
                 Iniciar Inscrição
-              </Button>
+              </button>
             </div>
           </div>
         )}
 
-        {/* Instructions Step */}
-        {currentStep === 'instructions' && (
+        {currentStep === 'modality-selection' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Instruções</h2>
-
-            <div className="space-y-6 mb-8">
-              <div className="flex gap-4">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100 flex-shrink-0">
-                  <span className="text-purple-600 font-bold">1</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Ambiente Adequado</h3>
-                  <p className="text-gray-600 text-sm">Escolha um local com boa iluminação frontal</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100 flex-shrink-0">
-                  <span className="text-purple-600 font-bold">2</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Permissões de Câmera</h3>
-                  <p className="text-gray-600 text-sm">Você será solicitado a permitir acesso à câmera</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100 flex-shrink-0">
-                  <span className="text-purple-600 font-bold">3</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Captura de Dados</h3>
-                  <p className="text-gray-600 text-sm">Siga as instruções na tela para capturar seus dados</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100 flex-shrink-0">
-                  <span className="text-purple-600 font-bold">4</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Confirmação</h3>
-                  <p className="text-gray-600 text-sm">Revise e confirme seus dados biométricos</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <Button
-                onClick={handleCaptureStart}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold"
-              >
-                Continuar
-              </Button>
-              <Button
-                onClick={handleReset}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 px-6 py-3 rounded-xl font-bold"
-              >
-                Cancelar
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {/* Capture Step */}
-        {currentStep === 'capture' && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Captura de Dados Biométricos</h2>
-
-            {isProcessing ? (
-              <div className="text-center space-y-6 py-12">
-                <div className="flex justify-center">
-                  <Loader className="h-12 w-12 text-purple-600 animate-spin" />
-                </div>
-                <div>
-                  <p className="text-gray-909 font-semibold mb-2">Processando dados biométricos...</p>
-                  <p className="text-sm text-gray-600">Por favor, mantenha-se imóvel</p>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-gray-200 rounded-full">
-                      <div className="h-full bg-purple-600 rounded-full" style={{ width: '33%' }}></div>
-                    </div>
-                    <span className="text-sm text-gray-600">Impressões digitais</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-gray-200 rounded-full">
-                      <div className="h-full bg-purple-600 rounded-full" style={{ width: `${enrollmentProgress > 50 ? '100' : '0'}%` }}></div>
-                    </div>
-                    <span className="text-sm text-gray-600">Reconhecimento facial</span>
-                  </div>
-                </div>
-              </div>
-            ) : null}
-          </div>
-        )}
-
-        {/* Verification Step */}
-        {currentStep === 'verification' && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Verificação de Dados</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {completedModalities.length === 0
+                ? 'Selecione o Tipo de Biometria'
+                : 'Registar Próxima Biometria (Opcional)'}
+            </h2>
 
             <div className="space-y-4 mb-8">
-              <div className="p-4 border border-gray-200 rounded-xl">
+              {/* Facial Recognition */}
+              <button
+                onClick={() => handleSelectModality('facial')}
+                disabled={biometricData.face}
+                className={`w-full p-6 rounded-xl border-2 transition text-left ${
+                  biometricData.face
+                    ? 'bg-green-50 border-green-300 opacity-60 cursor-not-allowed'
+                    : 'border-gray-300 hover:border-purple-400 hover:bg-purple-50'
+                }`}
+              >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Fingerprint className="h-5 w-5 text-purple-600" />
-                    <span className="font-semibold text-gray-900">Impressões Digitais</span>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">👤 Reconhecimento Facial</h3>
+                    <p className="text-gray-600 text-sm mt-1">Capturar rosto para identificação</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  {biometricData.face && <CheckCircle className="h-6 w-6 text-green-600" />}
                 </div>
-              </div>
+              </button>
 
-              <div className="p-4 border border-gray-200 rounded-xl">
+              {/* Fingerprint */}
+              <button
+                onClick={() => handleSelectModality('fingerprint')}
+                disabled={biometricData.fingerprints}
+                className={`w-full p-6 rounded-xl border-2 transition text-left ${
+                  biometricData.fingerprints
+                    ? 'bg-green-50 border-green-300 opacity-60 cursor-not-allowed'
+                    : 'border-gray-300 hover:border-purple-400 hover:bg-purple-50'
+                }`}
+              >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Fingerprint className="h-5 w-5 text-purple-600" />
-                    <span className="font-semibold text-gray-900">Reconhecimento Facial</span>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">👆 Impressões Digitais</h3>
+                    <p className="text-gray-600 text-sm mt-1">Registar impressões dos dedos</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  {biometricData.fingerprints && <CheckCircle className="h-6 w-6 text-green-600" />}
                 </div>
+              </button>
+
+              {/* Iris */}
+              <button
+                onClick={() => handleSelectModality('iris')}
+                disabled={biometricData.iris}
+                className={`w-full p-6 rounded-xl border-2 transition text-left ${
+                  biometricData.iris
+                    ? 'bg-green-50 border-green-300 opacity-60 cursor-not-allowed'
+                    : 'border-gray-300 hover:border-purple-400 hover:bg-purple-50'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">👁️ Íris</h3>
+                    <p className="text-gray-600 text-sm mt-1">Scan da íris para autenticação avançada</p>
+                  </div>
+                  {biometricData.iris && <CheckCircle className="h-6 w-6 text-green-600" />}
+                </div>
+              </button>
+            </div>
+
+            {completedModalities.length > 0 && (
+              <div className="space-y-3">
+                <button
+                  onClick={handleVerificationComplete}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold transition"
+                >
+                  ✓ Completar Inscrição
+                </button>
+                <button
+                  onClick={() => setEnrollmentProgress(Math.min(100, enrollmentProgress + 10))}
+                  className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 px-6 py-3 rounded-xl font-bold transition"
+                >
+                  + Adicionar Mais Biometria
+                </button>
               </div>
+            )}
+          </div>
+        )}
+
+        {currentStep === 'biometric-capture' && selectedModality && (
+          <BiometricCaptureFlow
+            modalityType={selectedModality}
+            onSuccess={handleBiometricSuccess}
+            onCancel={handleBiometricCancel}
+          />
+        )}
+
+        {currentStep === 'verification' && (
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Resumo de Biometrias Registadas</h2>
+
+            <div className="space-y-4 mb-8">
+              {biometricData.face && (
+                <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">👤</span>
+                      <span className="font-semibold text-gray-900">Reconhecimento Facial</span>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  </div>
+                </div>
+              )}
+
+              {biometricData.fingerprints && (
+                <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">👆</span>
+                      <span className="font-semibold text-gray-900">Impressões Digitais</span>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  </div>
+                </div>
+              )}
+
+              {biometricData.iris && (
+                <div className="p-4 border border-gray-200 rounded-xl">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">👁️</span>
+                      <span className="font-semibold text-gray-900">Íris</span>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="space-y-3">
-              <Button
+              <button
                 onClick={handleVerificationComplete}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold transition"
               >
-                Confirmar e Completar
-              </Button>
-              <Button
-                onClick={handleRetry}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 px-6 py-3 rounded-xl font-bold"
+                Finalizar Inscrição
+              </button>
+              <button
+                onClick={() => {
+                  setCurrentStep('modality-selection');
+                  setSelectedModality(null);
+                }}
+                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 px-6 py-3 rounded-xl font-bold transition"
               >
-                Repetir Captura
-              </Button>
+                Adicionar Mais Biometrias
+              </button>
             </div>
           </div>
         )}
 
-        {/* Complete Step */}
         {currentStep === 'complete' && (
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
             <div className="text-center">
@@ -282,26 +309,36 @@ export const BiometricEnrollmentPage: React.FC = () => {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Inscrição Concluída!</h2>
               <p className="text-gray-600 mb-8">
-                Seus dados biométricos foram registrados com sucesso. Você pode agora usar autenticação biométrica.
+                Suas biometrias foram registadas com sucesso. Você pode agora usar autenticação biométrica.
               </p>
 
               <div className="space-y-3 mb-8 bg-green-50 border border-green-200 rounded-xl p-6">
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="text-green-900 font-semibold">Impressões Digitais Registradas</span>
-                </div>
-                <div className="flex items-center gap-3 justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="text-green-900 font-semibold">Reconhecimento Facial Registrado</span>
-                </div>
+                {biometricData.face && (
+                  <div className="flex items-center gap-3 justify-center">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="text-green-900 font-semibold">Reconhecimento Facial Registado</span>
+                  </div>
+                )}
+                {biometricData.fingerprints && (
+                  <div className="flex items-center gap-3 justify-center">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="text-green-900 font-semibold">Impressões Digitais Registadas</span>
+                  </div>
+                )}
+                {biometricData.iris && (
+                  <div className="flex items-center gap-3 justify-center">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="text-green-900 font-semibold">Íris Registada</span>
+                  </div>
+                )}
               </div>
 
-              <Button
+              <button
                 onClick={handleReset}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold transition"
               >
                 Voltar ao Portal
-              </Button>
+              </button>
             </div>
           </div>
         )}
