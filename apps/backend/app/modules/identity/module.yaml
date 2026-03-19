@@ -4,6 +4,18 @@
 
 module: "identity"
 name: "identity"
+code: "identity"
+description: "Servicos de identificacao do cidadao"
+ui:
+  icon: "fa-id-card"
+  color: "#2563eb"
+  order: 1
+services:
+  - id: BI_EMISSAO
+    name: "Bilhete de Identidade"
+    description: "Emissao ou renovacao do BI"
+    category: identity
+    price: 1000
 exposes:
   api_routers: []
   public_models: []

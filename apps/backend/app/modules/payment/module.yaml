@@ -173,12 +173,12 @@ infrastructure_layer:
   adapters:
     location: "infrastructure/adapters/"
     description: "Adaptadores para sistemas externos"
-    count: 0 (TODO: Implementar)
+    count: 0 # TODO: Implementar
   
   orm:
     location: "infrastructure/orm/"
     description: "Modelos SQLAlchemy"
-    count: 0 (TODO: Implementar)
+    count: 0 # TODO: Implementar
 
 # ========== REGRAS DE DOMÍNIO CRÍTICAS ==========
 business_rules:

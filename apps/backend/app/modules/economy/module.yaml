@@ -4,6 +4,26 @@
 
 module: "economy"
 name: "economy"
+code: "economy"
+description: "Tributacao, taxas e pagamentos"
+ui:
+  icon: "fa-landmark"
+  color: "#f59e0b"
+  order: 4
+services:
+  - id: NIF_EMISSAO
+    name: "Emissao de NIF"
+    description: "Cadastro e regularizacao fiscal"
+    category: tax
+    price: 750
+  - id: FINANCE_TAX
+    name: "Taxas e Impostos"
+    description: "Pagamento e regularizacao fiscal"
+    category: tax
+  - id: FINANCE_PAYMENT
+    name: "Pagamentos Financeiros"
+    description: "Liquidacao de pagamentos"
+    category: tax
 exposes:
   api_routers: []
   public_models: []
