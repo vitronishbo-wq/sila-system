@@ -1,8 +1,10 @@
 from sqlalchemy import Boolean, Column, DateTime, String
+
 from apps.backend.app.core.db import Base
 
+
 class AuditCaseModel(Base):
-    __tablename__ = 'audit_cases'
+    __tablename__ = "audit_cases"
     id = Column(String, primary_key=True)
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)

@@ -5,7 +5,6 @@ This module contains tests for user-related operations such as
 retrieving, updating, and managing user accounts.
 """
 
-
 import pytest
 from fastapi import status
 
@@ -96,7 +95,7 @@ class TestUsers:
     async def test_list_users_as_admin(self, async_http_client, admin_headers, user_factory):
         """Test listing all users (admin only)."""
         # Arrange - create some test users
-        test_users = user_factory.create_batch(3)
+        user_factory.create_batch(3)
 
         # Act
         response = await async_http_client.get("/api/v1/identity/users/", headers=admin_headers)
@@ -120,11 +119,15 @@ class TestUsers:
     async def test_get_user_by_id_as_admin(self, async_http_client, admin_headers, auth_user):
         """Test retrieving a user by ID (admin only)."""
         # Act - get the current user's ID
-        me_response = await async_http_client.get("/api/v1/identity/users/me", headers=admin_headers)
+        me_response = await async_http_client.get(
+            "/api/v1/identity/users/me", headers=admin_headers
+        )
         user_id = me_response.json()["id"]
 
         # Get user by ID
-        response = await async_http_client.get(f"/api/v1/identity/users/{user_id}", headers=admin_headers)
+        response = await async_http_client.get(
+            f"/api/v1/identity/users/{user_id}", headers=admin_headers
+        )
 
         # Assert
         assert response.status_code == status.HTTP_200_OK
@@ -136,7 +139,9 @@ class TestUsers:
     async def test_update_user_as_admin(self, async_http_client, admin_headers, auth_user):
         """Test updating a user as an admin."""
         # Arrange - get the user ID
-        me_response = await async_http_client.get("/api/v1/identity/users/me", headers=admin_headers)
+        me_response = await async_http_client.get(
+            "/api/v1/identity/users/me", headers=admin_headers
+        )
         user_id = me_response.json()["id"]
 
         update_data = {
@@ -164,7 +169,9 @@ class TestUsers:
         test_user = user_factory.create()
 
         # Act
-        response = await async_http_client.delete(f"/api/v1/identity/users/{test_user.id}", headers=admin_headers)
+        response = await async_http_client.delete(
+            f"/api/v1/identity/users/{test_user.id}", headers=admin_headers
+        )
 
         # Assert
         assert response.status_code == status.HTTP_204_NO_CONTENT

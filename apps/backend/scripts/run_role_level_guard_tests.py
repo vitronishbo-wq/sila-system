@@ -4,19 +4,21 @@ This script does not rely on pytest or the project's conftest; it
 creates a minimal FastAPI app, mounts a test endpoint using the guard,
 and performs requests to validate behavior.
 """
-import json
-from fastapi import FastAPI, Depends
-from fastapi.testclient import TestClient
 
-from app.api.guards import RoleLevelGuard
+from apps.backend.app.api.guards import RoleLevelGuard
+from fastapi import Depends, FastAPI
+
 import apps.backend.app.core.territory.service as territory_service_module
 
-
 app = FastAPI()
+municipal_guard_dep = Depends(RoleLevelGuard("MUNICIPAL", resource_param="municipality_id"))
 
 
 @app.get("/test/{municipality_id}")
-async def test_endpoint(municipality_id: str, _guard=Depends(RoleLevelGuard("MUNICIPAL", resource_param="municipality_id"))):
+async def test_endpoint(
+    municipality_id: str,
+    _guard=municipal_guard_dep,
+):
     return {"ok": True}
 
 
@@ -30,12 +32,15 @@ async def fake_get_ancestors(db, target_id):
 
 def run():
     # monkeypatch TerritoryService.get_territory_ancestors
-    territory_service_module.TerritoryService.get_territory_ancestors = staticmethod(fake_get_ancestors)
+    territory_service_module.TerritoryService.get_territory_ancestors = staticmethod(
+        fake_get_ancestors
+    )
 
     # We'll test the RoleLevelGuard directly (bypassing FastAPI DI) to avoid
     # flaky dependency override behavior in this standalone runner.
-    from app.api.guards import RoleLevelGuard
     import asyncio
+
+    from apps.backend.app.api.guards import RoleLevelGuard
     from fastapi import HTTPException
 
     guard_callable = RoleLevelGuard("MUNICIPAL", resource_param="municipality_id")()
@@ -46,10 +51,30 @@ def run():
             self.query_params = query_params or {}
 
     scenarios = [
-        ("superuser bypass", {"is_superuser": True}, DummyRequest(path_params={"municipality_id": "5"}), 200),
-        ("no region denied", {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": None}, DummyRequest(path_params={"municipality_id": "5"}), 403),
-        ("region ancestor allowed", {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": 5}, DummyRequest(path_params={"municipality_id": "5"}), 200),
-        ("region not ancestor denied", {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": 999}, DummyRequest(path_params={"municipality_id": "5"}), 403),
+        (
+            "superuser bypass",
+            {"is_superuser": True},
+            DummyRequest(path_params={"municipality_id": "5"}),
+            200,
+        ),
+        (
+            "no region denied",
+            {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": None},
+            DummyRequest(path_params={"municipality_id": "5"}),
+            403,
+        ),
+        (
+            "region ancestor allowed",
+            {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": 5},
+            DummyRequest(path_params={"municipality_id": "5"}),
+            200,
+        ),
+        (
+            "region not ancestor denied",
+            {"is_superuser": False, "administrative_level": "MUNICIPAL", "region_id": 999},
+            DummyRequest(path_params={"municipality_id": "5"}),
+            403,
+        ),
     ]
 
     for name, user, request_obj, expect in scenarios:
@@ -62,7 +87,7 @@ def run():
             status = 200
         except HTTPException as he:
             status = he.status_code
-        except Exception as e:
+        except Exception:
             status = 500
 
         print(f"{name}: status={status} expected={expect}")

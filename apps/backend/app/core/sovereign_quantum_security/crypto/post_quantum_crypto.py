@@ -1,7 +1,7 @@
 import hashlib
 
-class PostQuantumCrypto:
 
+class PostQuantumCrypto:
     def encrypt(self, data):
         return hashlib.sha512(data.encode()).hexdigest()
 

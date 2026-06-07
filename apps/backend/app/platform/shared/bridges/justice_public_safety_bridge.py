@@ -1,1 +1,1 @@
-from app.core.bridges.justice_public_safety_bridge import *
+from apps.backend.app.core.bridges.justice_public_safety_bridge import *

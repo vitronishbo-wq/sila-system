@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.application.ports import GeosampaServicePort
 
-class GeosampaServiceAdapter(GeosampaServicePort):
 
+class GeosampaServiceAdapter(GeosampaServicePort):
     def __init__(self, service: GeosampaServicePort):
         self._service = service
 

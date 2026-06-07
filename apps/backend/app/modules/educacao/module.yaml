@@ -1,132 +1,475 @@
-# Module Discovery: educacao
-# Auto-gerado 2026-03-14 08:21:47
-# Mapeia estrutura DDD/Hexagonal para navegação de subdomínios
+module: educacao
+name: Educacao
+code: educacao
+description: "Matricule um estudante numa instituicao de ensino atraves de um processo digital acompanhado em tempo real."
+portal:
+  tagline: "Tudo o que precisa para a vida escolar, num so lugar."
+  learn_more_url: "https://sila.gov.ao/educacao"
+ui:
+  icon: educacao
+  color: '#2563eb'
+  order: null
 
-module: "educacao"
-name: "educacao"
+# ────────────────────────────────────────────
+# Catalogo Canonico de Servicos (orientado ao cidadao)
+# Documentacao completa em docs/architecture/domains/educacao/EDUCATION_SERVICE_CATALOG.md
+# ────────────────────────────────────────────
+services:
+
+  # ── Servicos Primarios (Portal) ──
+  - id: nova-matricula-escolar
+    name: Nova Matricula Escolar
+    description: "Matricule o seu filho(a) pela primeira vez numa escola, com acompanhamento passo a passo em tempo real."
+    category: ensino-basico
+    type: primary
+    wizard: true
+    wizard_route: /educacao/matriculas/wizard/iniciar
+    endpoint: POST /educacao/matriculas/wizard
+    status: alpha
+    depends_on: []
+    tags: [citizen, wizard, 7-steps, featured]
+
+  - id: renovacao-matricula
+    name: Renovacao de Matricula
+    description: "Renove a matricula para o proximo ano lectivo sem burocracia."
+    category: ensino-basico
+    type: primary
+    wizard: false
+    endpoint: (novo)
+    status: planned
+    depends_on: [nova-matricula-escolar]
+    tags: [citizen]
+
+  - id: transferencia-escolar
+    name: Transferencia Escolar
+    description: "Transfira o estudante entre escolas ou turmas de forma simples."
+    category: ensino-basico
+    type: primary
+    endpoint: POST /educacao/transferencias/
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: consultar-matricula
+    name: Consultar Matricula
+    description: "Veja os dados da matricula, o estado actual e todo o historico."
+    category: ensino-basico
+    type: primary
+    endpoint: GET /educacao/matriculas/citizen/{id}
+    status: alpha
+    depends_on: []
+    tags: [citizen, query]
+
+  - id: historico-escolar
+    name: Historico Escolar
+    description: "Solicite o historico escolar completo do estudante para uso pessoal ou institucional."
+    category: ensino-basico
+    type: primary
+    endpoint: POST /educacao/historicos
+    status: alpha
+    depends_on: []
+    tags: [citizen, document]
+
+  - id: declaracao-escolar
+    name: Declaracao Escolar
+    description: "Obtenha uma declaracao de frequencia ou matricula para comprovacao rapida."
+    category: ensino-basico
+    type: primary
+    endpoint: POST /educacao/declaracoes
+    status: alpha
+    depends_on: []
+    tags: [citizen, document]
+
+  - id: certificado-escolar
+    name: Certificado Escolar
+    description: "Solicite o certificado de conclusao de ciclo de ensino."
+    category: ensino-basico
+    type: primary
+    endpoint: POST /educacao/certificados/conclusao
+    status: alpha
+    depends_on: []
+    tags: [citizen, document]
+
+  - id: segunda-via-documento
+    name: Segunda Via de Documento Escolar
+    description: "Peça a segunda via de certificados, declaracoes ou historicos perdidos."
+    category: ensino-basico
+    type: primary
+    endpoint: (reutiliza certificados/declaracoes)
+    status: planned
+    depends_on: [certificado-escolar, declaracao-escolar, historico-escolar]
+    tags: [citizen, document]
+
+  # ── Ensino Tecnico ──
+  - id: inscricao-curso-tecnico
+    name: Inscricao em Curso Tecnico
+    description: "Inscrever-se em curso tecnico profissionalizante."
+    category: ensino-tecnico
+    type: canonical
+    endpoint: POST /educacao/inscricoes/tecnico
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: transferencia-tecnica
+    name: Transferencia Tecnica
+    description: "Solicitar transferencia entre cursos tecnicos."
+    category: ensino-tecnico
+    type: canonical
+    endpoint: POST /educacao/transferencias/
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: certificacao-profissional
+    name: Certificacao Profissional
+    description: "Solicitar certificado de qualificacao profissional."
+    category: ensino-tecnico
+    type: canonical
+    endpoint: POST /educacao/certificacoes/profissionais
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  # ── Ensino Superior ──
+  - id: candidatura-universitaria
+    name: Candidatura Universitaria
+    description: "Candidatar-se a uma instituicao de ensino superior."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/inscricoes/superior
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: matricula-universitaria
+    name: Matricula Universitaria
+    description: "Efectuar matricula numa instituicao de ensino superior."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/matriculas/universidade
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: transferencia-universitaria
+    name: Transferencia Universitaria
+    description: "Solicitar transferencia entre instituicoes de ensino superior."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/marketplace/transfers/request
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: mobilidade-academica
+    name: Mobilidade Academica
+    description: "Candidatar-se a programa de mobilidade academica (nacional ou internacional)."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/mobilidade/academica
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: reconhecimento-diploma
+    name: Reconhecimento de Diploma
+    description: "Solicitar reconhecimento de diploma obtido no estrangeiro."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/reconhecimentos/diploma
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: reconhecimento-grau
+    name: Reconhecimento de Grau
+    description: "Solicitar reconhecimento de grau academico obtido no estrangeiro."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/reconhecimentos/grau
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: certificado-universitario
+    name: Certificado Universitario
+    description: "Solicitar certificado de conclusao de curso superior."
+    category: ensino-superior
+    type: canonical
+    endpoint: POST /educacao/certificados/universitario
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  # ── Bolsas ──
+  - id: candidatura-bolsa
+    name: Candidatura a Bolsa
+    description: "Candidatar-se a bolsa de estudo ou investigacao."
+    category: bolsas
+    type: canonical
+    endpoint: POST /educacao/bolsas/candidaturas
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: renovacao-bolsa
+    name: Renovacao de Bolsa
+    description: "Solicitar renovacao de bolsa de estudo para novo periodo."
+    category: bolsas
+    type: canonical
+    endpoint: (novo)
+    status: planned
+    depends_on: [candidatura-bolsa]
+    tags: [citizen]
+
+  - id: consultar-bolsa
+    name: Consultar Bolsa
+    description: "Consultar status e historico de bolsas de estudo."
+    category: bolsas
+    type: canonical
+    endpoint: GET /educacao/workflow/citizen/{id}
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  # ── Formacao e Emprego ──
+  - id: inscricao-formacao
+    name: Inscricao em Formacao
+    description: "Inscrever-se em curso de formacao profissional ou capacitacao."
+    category: formacao-emprego
+    type: canonical
+    endpoint: POST /educacao/formacoes/profissional
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: consultar-formacao
+    name: Consultar Formacao
+    description: "Pesquisar e consultar ofertas de formacao disponiveis."
+    category: formacao-emprego
+    type: canonical
+    endpoint: GET /educacao/marketplace/search/
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: estagio
+    name: Estagio
+    description: "Candidatar-se a programa de estagio profissional."
+    category: formacao-emprego
+    type: canonical
+    endpoint: POST /educacao/estagios/publicos
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+  - id: intermediacao-emprego
+    name: Intermediacao de Emprego
+    description: "Registar-se para intermediacao de emprego e ofertas de trabalho."
+    category: formacao-emprego
+    type: canonical
+    endpoint: POST /educacao/emprego/mediacoes
+    status: alpha
+    depends_on: []
+    tags: [citizen]
+
+# ────────────────────────────────────────────
+# Endpoints expostos publicamente
+# ────────────────────────────────────────────
 exposes:
-  api_routers: []
-  public_models: []
-  events_published: []
+  api_routers:
+    - router: api/router.py
+      prefix: /educacao
+      description: Router principal com servicos canonicos e wizard
+      portal_visible: true
+    - router: api/endpoints/matricula_routes.py
+      prefix: /educacao/matriculas
+      status: legacy
+      portal_visible: false
+      deprecation_message: "Substituido pelo wizard de Nova Matricula (POST /educacao/matriculas/wizard)"
+    - router: api/endpoints/inscricoes.py
+      prefix: /educacao/inscricoes
+      portal_visible: false
+      tags: [internal]
+    - router: api/endpoints/transferencias.py
+      prefix: /educacao/transferencias
+      portal_visible: true
+    - router: api/endpoints/vacancies.py
+      prefix: /educacao/vacancies
+      portal_visible: false
+      tags: [internal]
+    - router: api/endpoints/certificados.py
+      prefix: /educacao/certificados
+      status: legacy
+      portal_visible: false
+      deprecation_message: "Substituido pelos servicos canonicos de Certificado, Declaracao e Historico"
+    - router: marketplace/router.py
+      prefix: /educacao/marketplace
+      portal_visible: false
+      tags: [internal]
+  public_models:
+    - Matricula
+    - Escola
+    - Turma
+    - WizardSession
+  events_published:
+    - StudentEnrolled
+    - PaymentConfirmed
+    - TransferenciaSolicitada
+    - CertificadoEmitido
+    - BolsaCandidaturaSubmetida
+
+# ────────────────────────────────────────────
+# Dependencias entre dominios
+# ────────────────────────────────────────────
 requires:
-  domains: []
-  core_services: []
-subdomains: []
-type: "macro_domain"
+  domains:
+    - identity
+    - payment
+    - administracao-local
+  core_services:
+    - CitizenRepository
+    - ServiceRequestLifecycleBridge
+    - RedisIdempotencyStore
+    - EventBus
+
+# ────────────────────────────────────────────
+# Subdominios
+# ────────────────────────────────────────────
+subdomains:
+  - name: ensino-basico
+    description: "Da pre-escola ao 2o ciclo: matriculas, historicos, certificados e transferencias"
+    type: public
+    portal_sort_order: 1
+    primary_services: [nova-matricula-escolar, renovacao-matricula, transferencia-escolar, consultar-matricula, historico-escolar, declaracao-escolar, certificado-escolar, segunda-via-documento]
+  - name: ensino-tecnico
+    description: "Cursos tecnicos profissionais e certificacoes"
+    type: public
+    portal_sort_order: 2
+    primary_services: [inscricao-curso-tecnico, transferencia-tecnica, certificacao-profissional]
+  - name: ensino-superior
+    description: "Universidades: candidaturas, matriculas, mobilidade e reconhecimento"
+    type: public
+    portal_sort_order: 3
+    primary_services: [candidatura-universitaria, matricula-universitaria, transferencia-universitaria, mobilidade-academica, reconhecimento-diploma, reconhecimento-grau, certificado-universitario]
+  - name: bolsas
+    description: "Bolsas de estudo e investigacao"
+    type: public
+    portal_sort_order: 4
+    primary_services: [candidatura-bolsa, renovacao-bolsa, consultar-bolsa]
+  - name: formacao-emprego
+    description: "Formacao profissional, estagios e intermediacao de emprego"
+    type: public
+    portal_sort_order: 5
+    primary_services: [inscricao-formacao, consultar-formacao, estagio, intermediacao-emprego]
+  - name: administracao
+    description: "Gestao interna de processos administrativos (agendamento, licenciamento, certificacao interna)"
+    type: internal
+    portal_visible: false
+
+type: macro_domain
 normalized: true
-
-# ========== ESTATÍSTICAS ==========
 statistics:
-  api_files: 29
-  application_files: 35
-  domain_files: 73
-  infrastructure_files: 32
-  total: 169
-
-# ========== PONTOS DE ENTRADA (API) ==========
+  api_files: 30
+  application_files: 36
+  domain_files: 74
+  infrastructure_files: 33
+  total: 173
 api_endpoints:
-  location: "api/endpoints/"
+  location: api/endpoints/
   files:
-    - _workflow_endpoints.py
-    - boletins.py
-    - certificados.py
-    - concursos.py
-    - emprego.py
-    - formacoes.py
-    - inscricoes.py
-    - matricula_routes.py
-    - propinas.py
-    - transferencias.py
-    - universidade.py
-
-# ========== CAMADA APPLICATION ==========
+  - _workflow_endpoints.py
+  - boletins.py
+  - certificados.py
+  - concursos.py
+  - emprego.py
+  - formacoes.py
+  - inscricoes.py
+  - matricula_routes.py
+  - propinas.py
+  - transferencias.py
+  - universidade.py
+  - wizard_matricula.py
 application_layer:
   services:
-    location: "application/services/"
+    location: application/services/
     count: 1
   files:
-    - matricula_service.py
-  
+  - matricula_service.py
+  canonical:
+    location: application/canonical/
+    description: "Servicos canonicos orientados ao cidadao"
+    count: 0
   dto:
-    location: "application/dto/"
+    location: application/dto/
     schemas: 0
-  
   commands:
-    location: "application/commands/"
+    location: application/commands/
     count: 0
-  
   queries:
-    location: "application/queries/"
+    location: application/queries/
     count: 0
-
-# ========== CAMADA DOMAIN ==========
 domain_layer:
   services:
-    location: "domain/services/"
+    location: domain/services/
     count: 0
-  
   entities:
-    location: "domain/entities/"
+    location: domain/entities/
     count: 0
-  
   models:
-    location: "domain/models/"
-    count: 1
-  
+    location: domain/models/
+    count: 2
   ports:
-    location: "domain/ports/"
-    description: "Interfaces de contrato com camada de infraestrutura"
+    location: domain/ports/
+    description: Interfaces de contrato com camada de infraestrutura
     count: 0
-  
   events:
-    location: "domain/events/"
+    location: domain/events/
     count: 0
-  
   exceptions:
-    location: "domain/exceptions/"
-    description: "Exceções específicas do domínio"
+    location: domain/exceptions/
+    description: "Excecoes especificas do dominio"
     count: 0
-
-# ========== CAMADA INFRASTRUCTURE ==========
 infrastructure_layer:
   repositories:
-    location: "infrastructure/repositories/"
-    description: "Implementação concreta de repositórios"
-    count: 13
-  
+    location: infrastructure/repositories/
+    description: "Implementacao concreta de repositorios"
+    count: 14
   adapters:
-    location: "infrastructure/adapters/"
-    description: "Adaptadores para sistemas externos"
+    location: infrastructure/adapters/
+    description: Adaptadores para sistemas externos
     count: 0
-  
   orm:
-    location: "infrastructure/orm/"
-    description: "Modelos SQLAlchemy"
-    count: 0
-
-# ========== COMO USAR ==========
+    location: infrastructure/orm/
+    description: Modelos SQLAlchemy
+    count: 1
 discovery:
-  - step: 1
-    description: "Encontrar endpoint"
-    action: "Navegue em api_endpoints/files"
-  
-  - step: 2
-    description: "Encontrar serviço de orquestração"
-    action: "Procure em application_layer/services/"
-  
-  - step: 3
-    description: "Encontrar lógica de domínio"
-    action: "Procure em domain_layer/services/"
-  
-  - step: 4
-    description: "Encontrar persistência"
-    action: "Procure em infrastructure_layer/repositories/"
-
-# ========== CONFORMIDADE ==========
+- step: 1
+  description: Consultar catalogo canonico
+  action: Veja services[] nest ficheiro ou docs/architecture/domains/educacao/EDUCATION_SERVICE_CATALOG.md
+- step: 2
+  description: Encontrar endpoint
+  action: Navegue em api_endpoints/files ou siga o mapeamento no catalogo
+- step: 3
+  description: Encontrar servico de orquestracao
+  action: Procure em application_layer/canonical/ para servicos canonicos
+- step: 4
+  description: Encontrar logica de dominio
+  action: Procure em domain_layer/models/ ou domain_layer/entities/
+- step: 5
+  description: Encontrar persistencia
+  action: Procure em infrastructure_layer/repositories/
 conformance:
   has_api_layer: true
   has_application_layer: true
   has_domain_layer: true
   has_infrastructure_layer: true
   has_tests: true
-  ddd_compliant: "✓"
+  has_service_catalog: true
+  has_wizard: true
+  ddd_compliant: true
+version: '2.0'
+last_updated: '2026-06-06'
+status: alpha
+owner: sila-core

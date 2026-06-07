@@ -50,7 +50,9 @@ def _validate_manifest(path: Path, data: dict[str, Any]) -> list[str]:
     return []
 
 
-def load_manifests(manifest_glob: str = "apps/backend/app/modules/**/module.yaml") -> dict[str, dict[str, Any]]:
+def load_manifests(
+    manifest_glob: str = "apps/backend/app/modules/**/module.yaml",
+) -> dict[str, dict[str, Any]]:
     manifests: dict[str, dict[str, Any]] = {}
     validation_errors: list[str] = []
     for file_path in sorted(glob.glob(manifest_glob, recursive=True)):
@@ -86,13 +88,17 @@ def compile_graph(manifests: dict[str, dict[str, Any]]) -> dict[str, Any]:
         manifest = manifests[source]
         requires = manifest.get("requires", {})
         domains = _as_list(requires.get("domains") if isinstance(requires, dict) else [])
-        for target in sorted(str(dep) for dep in domains if isinstance(dep, str) and dep and dep != source):
+        for target in sorted(
+            str(dep) for dep in domains if isinstance(dep, str) and dep and dep != source
+        ):
             edges.append({"from": source, "to": target})
     return {"nodes": nodes, "edges": edges}
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Compile module manifests into a dependency graph.")
+    parser = argparse.ArgumentParser(
+        description="Compile module manifests into a dependency graph."
+    )
     parser.add_argument(
         "--manifest-glob",
         default="apps/backend/app/modules/**/module.yaml",

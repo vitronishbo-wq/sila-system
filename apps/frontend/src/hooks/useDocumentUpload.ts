@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '@/api/axios';
+import { API_V1_BASE_URL } from '@/utils/runtime';
 
 interface UploadProgress {
     fileName: string;
@@ -113,7 +114,7 @@ export const useDocumentUpload = () => {
             eventSourcesRef.current.get(documentId)!.close();
         }
 
-        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const apiUrl = API_V1_BASE_URL;
         const token = getAuthToken();
         const url = new URL(`${apiUrl}/documents/status-stream`);
         if (token) url.searchParams.set('token', token);

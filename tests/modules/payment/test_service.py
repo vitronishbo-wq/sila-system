@@ -4,26 +4,26 @@ Unit tests for Payment Service
 These tests focus on business logic validation.
 """
 
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from decimal import Decimal
+from unittest.mock import AsyncMock, MagicMock, patch
 
-from apps.backend.app.modules.payment.application.services.payment_service import (
-    PaymentService,
-)
-from apps.backend.app.modules.payment.domain.enums import (
-    PaymentStatus,
-    TransactionStatus,
-    PaymentMethod,
-    TransactionType,
-)
+import pytest
+
 from apps.backend.app.modules.payment.application.dto.payment_schema import (
     PaymentCreate,
     RefundCreate,
     RefundResponse,
 )
-
+from apps.backend.app.modules.payment.application.services.payment_service import (
+    PaymentService,
+)
+from apps.backend.app.modules.payment.domain.enums import (
+    PaymentMethod,
+    PaymentStatus,
+    TransactionStatus,
+    TransactionType,
+)
 
 # ================================================
 # MOCK MODELS
@@ -42,8 +42,8 @@ class MockPayment:
         self.reference = kwargs.get("reference", f"PAY-{self.id}")
         self.description = kwargs.get("description", "Test payment")
         self.metadata_ = kwargs.get("metadata_", {})
-        self.created_at = kwargs.get("created_at", datetime.now(timezone.utc))
-        self.updated_at = kwargs.get("updated_at", datetime.now(timezone.utc))
+        self.created_at = kwargs.get("created_at", datetime.now(UTC))
+        self.updated_at = kwargs.get("updated_at", datetime.now(UTC))
 
 
 class MockTransaction:
@@ -59,7 +59,7 @@ class MockTransaction:
         self.reference = kwargs.get("reference", f"TXN-{self.id}")
         self.provider_reference = kwargs.get("provider_reference", None)
         self.metadata_ = kwargs.get("metadata_", {})
-        self.created_at = kwargs.get("created_at", datetime.now(timezone.utc))
+        self.created_at = kwargs.get("created_at", datetime.now(UTC))
 
 
 # ================================================
@@ -89,11 +89,11 @@ def mock_db_session():
         if hasattr(obj, "created_at") and (
             obj.created_at is None or isinstance(obj.created_at, MagicMock)
         ):
-            obj.created_at = datetime.now(timezone.utc)
+            obj.created_at = datetime.now(UTC)
         if hasattr(obj, "updated_at") and (
             obj.updated_at is None or isinstance(obj.updated_at, MagicMock)
         ):
-            obj.updated_at = datetime.now(timezone.utc)
+            obj.updated_at = datetime.now(UTC)
 
     session.refresh = AsyncMock(side_effect=mock_refresh)
     session.add = MagicMock()
@@ -275,9 +275,7 @@ async def test_update_payment_status_invalid_transition(
     mock_db_session._mock_scalars.first.return_value = mock_payment
 
     with pytest.raises(ValueError, match="Invalid status transition"):
-        await payment_service.update_payment_status(
-            payment_id=1, status=PaymentStatus.COMPLETED
-        )
+        await payment_service.update_payment_status(payment_id=1, status=PaymentStatus.COMPLETED)
 
 
 @pytest.mark.asyncio
@@ -295,19 +293,13 @@ async def test_update_payment_status_payment_not_found(
 
 
 @pytest.mark.asyncio
-async def test_create_refund_full_refund(
-    payment_service: PaymentService, mock_db_session
-):
+async def test_create_refund_full_refund(payment_service: PaymentService, mock_db_session):
     """Test creating a full refund."""
     payment_amount = Decimal("200.00")
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
 
     mock_payment = MockPayment(
-        id=1,
-        status=PaymentStatus.COMPLETED,
-        amount=payment_amount,
-        created_at=now,
-        updated_at=now
+        id=1, status=PaymentStatus.COMPLETED, amount=payment_amount, created_at=now, updated_at=now
     )
 
     mock_db_session._mock_scalars.first.return_value = mock_payment
@@ -319,7 +311,7 @@ async def test_create_refund_full_refund(
         reference="RFD-ABC123",
         amount=payment_amount,
         type=TransactionType.REFUND,
-        created_at=now
+        created_at=now,
     )
 
     with patch(
@@ -342,20 +334,14 @@ async def test_create_refund_full_refund(
 
 
 @pytest.mark.asyncio
-async def test_create_refund_partial_refund(
-    payment_service: PaymentService, mock_db_session
-):
+async def test_create_refund_partial_refund(payment_service: PaymentService, mock_db_session):
     """Test creating a partial refund."""
     payment_amount = Decimal("200.00")
     refund_amount = Decimal("50.00")
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
 
     mock_payment = MockPayment(
-        id=1,
-        status=PaymentStatus.COMPLETED,
-        amount=payment_amount,
-        created_at=now,
-        updated_at=now
+        id=1, status=PaymentStatus.COMPLETED, amount=payment_amount, created_at=now, updated_at=now
     )
 
     mock_db_session._mock_scalars.first.return_value = mock_payment
@@ -366,7 +352,7 @@ async def test_create_refund_partial_refund(
         reference="RFD-PARTIAL-123",
         amount=refund_amount,
         type=TransactionType.REFUND,
-        created_at=now
+        created_at=now,
     )
 
     with patch(
@@ -388,9 +374,7 @@ async def test_create_refund_partial_refund(
 
 
 @pytest.mark.asyncio
-async def test_create_refund_exceeds_amount(
-    payment_service: PaymentService, mock_db_session
-):
+async def test_create_refund_exceeds_amount(payment_service: PaymentService, mock_db_session):
     """Test that refund amount exceeding payment amount raises error."""
     payment_amount = Decimal("100.00")
 
@@ -405,9 +389,7 @@ async def test_create_refund_exceeds_amount(
     refund_data = RefundCreate(amount=100.01, reason="Test")
 
     with pytest.raises(ValueError, match=".*exceed.*payment.*amount.*"):
-        await payment_service.create_refund(
-            payment_id=1, refund_data=refund_data, user_id=10
-        )
+        await payment_service.create_refund(payment_id=1, refund_data=refund_data, user_id=10)
 
 
 @pytest.mark.asyncio
@@ -422,9 +404,7 @@ async def test_create_refund_invalid_payment_status(
     refund_data = RefundCreate(amount=50.00, reason="Test")
 
     with pytest.raises(ValueError, match=".*only refund completed payments.*"):
-        await payment_service.create_refund(
-            payment_id=1, refund_data=refund_data, user_id=10
-        )
+        await payment_service.create_refund(payment_id=1, refund_data=refund_data, user_id=10)
 
 
 @pytest.mark.asyncio
@@ -442,9 +422,7 @@ async def test_delete_payment_success(payment_service: PaymentService, mock_db_s
 
 
 @pytest.mark.asyncio
-async def test_delete_payment_not_found(
-    payment_service: PaymentService, mock_db_session
-):
+async def test_delete_payment_not_found(payment_service: PaymentService, mock_db_session):
     """Test deleting a non-existent payment."""
     mock_db_session._mock_scalars.first.return_value = None
 

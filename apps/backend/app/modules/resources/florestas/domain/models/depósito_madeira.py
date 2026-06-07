@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import Optional
 from uuid import UUID, uuid4
+
 
 @dataclass
 class DepositoMadeira:
@@ -8,8 +8,8 @@ class DepositoMadeira:
     codigo: str
     descricao: str
     ativo: bool = True
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
 
     @classmethod
-    def criar(cls, *, codigo: str, descricao: str) -> 'DepositoMadeira':
+    def criar(cls, *, codigo: str, descricao: str) -> "DepositoMadeira":
         return cls(id=uuid4(), codigo=codigo, descricao=descricao)

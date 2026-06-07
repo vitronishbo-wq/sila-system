@@ -1,2 +1,5 @@
-from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import SQLAlchemyFamilyAggregateRepository
-__all__ = ['SQLAlchemyFamilyAggregateRepository']
+from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import (
+    SQLAlchemyFamilyAggregateRepository,
+)
+
+__all__ = ["SQLAlchemyFamilyAggregateRepository"]

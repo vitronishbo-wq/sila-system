@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 
 class RoteiroCreate(BaseModel):
     titulo: str = Field(..., min_length=3)
@@ -13,6 +16,7 @@ class RoteiroCreate(BaseModel):
     acessivel: bool = True
     valor_estimado: Decimal | None = Field(default=None, ge=0)
     observacoes: str | None = None
+
 
 class RoteiroUpdate(BaseModel):
     titulo: str | None = Field(default=None, min_length=3)
@@ -26,6 +30,7 @@ class RoteiroUpdate(BaseModel):
     observacoes: str | None = None
     ativo: bool | None = None
     refresh_integracoes: bool = True
+
 
 class RoteiroResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

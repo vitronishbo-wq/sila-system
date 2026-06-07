@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.desporto.domain.enums import StatusJogo
+
 
 class JogoCreate(BaseModel):
     competicao_id: UUID
@@ -17,6 +21,7 @@ class JogoCreate(BaseModel):
     publico_estimado: int | None = Field(default=None, ge=0)
     observacoes: str | None = None
 
+
 class JogoUpdate(BaseModel):
     data_jogo: date | None = None
     local: str | None = Field(default=None, min_length=3)
@@ -30,9 +35,11 @@ class JogoUpdate(BaseModel):
     ativo: bool | None = None
     observacoes: str | None = None
 
+
 class JogoResultadoUpdate(BaseModel):
     placar_casa: int = Field(..., ge=0)
     placar_fora: int = Field(..., ge=0)
+
 
 class JogoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

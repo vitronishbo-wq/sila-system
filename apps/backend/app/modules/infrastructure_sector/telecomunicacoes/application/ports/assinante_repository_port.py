@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import Assinante
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import (
+    Assinante,
+)
+
 
 class AssinanteRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, assinante: Assinante) -> Assinante:
         raise NotImplementedError

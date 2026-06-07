@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_013_comex_drawback_modalidades_siscomex_verde_amarelo"
 down_revision = "20260301_012_comex_drawback_modalidades_externo_interno"
 branch_labels = None

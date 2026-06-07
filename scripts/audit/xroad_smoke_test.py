@@ -9,19 +9,19 @@ Tests:
 4. Trust score enforcement
 """
 
-import sys
-import os
 import asyncio
+import os
+import sys
 
-sys.path.insert(0, os.path.join(os.getcwd(), 'apps/backend'))
+sys.path.insert(0, os.path.join(os.getcwd(), "apps/backend"))
 
+from apps.backend.app.modules.xroad.application.xroad_service import XRoadInterconnect
 from apps.backend.app.modules.xroad.domain.envelope import (
-    SILAEnvelope,
+    MessageStatus,
     OriginMinistry,
     ServiceType,
-    MessageStatus,
+    SILAEnvelope,
 )
-from apps.backend.app.modules.xroad.application.xroad_service import XRoadInterconnect
 
 
 async def test_envelope_creation():
@@ -33,9 +33,9 @@ async def test_envelope_creation():
         receiver_service=OriginMinistry.MINSA,
         service_type=ServiceType.VERIFY_BIRTH_NOTICE,
         payload={
-            'citizen_nif': '123456789',
-            'birth_certificate_id': 'BI_12345',
-            'query_reason': 'IDENTITY_DOCUMENT_ISSUANCE',
+            "citizen_nif": "123456789",
+            "birth_certificate_id": "BI_12345",
+            "query_reason": "IDENTITY_DOCUMENT_ISSUANCE",
         },
     )
 
@@ -58,11 +58,13 @@ async def test_xroad_initialization():
     assert xroad.policies is not None, "❌ Policies not loaded"
     assert len(xroad.policies) > 0, "❌ No policies defined"
 
-    print(f"  ✓ X-Road service initialized")
+    print("  ✓ X-Road service initialized")
     print(f"  ✓ Policies loaded: {len(xroad.policies)}")
 
     for (sender, receiver), policy in list(xroad.policies.items())[:2]:
-        print(f"    - {sender.value} → {receiver.value}: {len(policy.allowed_service_types)} services")
+        print(
+            f"    - {sender.value} → {receiver.value}: {len(policy.allowed_service_types)} services"
+        )
 
     return True
 
@@ -79,13 +81,13 @@ async def test_envelope_validation():
         receiver_service=OriginMinistry.MINSA,
         service_type=ServiceType.VERIFY_BIRTH_NOTICE,
         trust_score=0.90,
-        signature='<mock-signature>',
-        payload={'citizen_nif': '123456789'},
+        signature="<mock-signature>",
+        payload={"citizen_nif": "123456789"},
     )
 
     is_valid, reason = await xroad.validate_envelope(envelope)
     assert is_valid, f"❌ Valid envelope rejected: {reason}"
-    print(f"  ✓ Valid envelope accepted")
+    print("  ✓ Valid envelope accepted")
 
     # Invalid: Low trust score
     envelope_low_trust = SILAEnvelope(
@@ -93,13 +95,13 @@ async def test_envelope_validation():
         receiver_service=OriginMinistry.MINSA,
         service_type=ServiceType.VERIFY_BIRTH_NOTICE,
         trust_score=0.50,  # Below 0.80 threshold
-        signature='<mock-signature>',
+        signature="<mock-signature>",
         payload={},
     )
 
     is_valid, reason = await xroad.validate_envelope(envelope_low_trust)
     assert not is_valid, "❌ Low trust envelope should be rejected"
-    assert 'trust' in reason.lower(), "❌ Reason should mention trust score"
+    assert "trust" in reason.lower(), "❌ Reason should mention trust score"
     print(f"  ✓ Low trust envelope rejected: {reason}")
 
     # Invalid: Policy violation
@@ -108,13 +110,13 @@ async def test_envelope_validation():
         receiver_service=OriginMinistry.MINFIN,  # No policy between MINJUS and MINFIN
         service_type=ServiceType.VERIFY_BIRTH_NOTICE,
         trust_score=0.90,
-        signature='<mock-signature>',
+        signature="<mock-signature>",
         payload={},
     )
 
     is_valid, reason = await xroad.validate_envelope(envelope_forbidden)
     assert not is_valid, "❌ Policy violation should be rejected"
-    assert 'policy' in reason.lower(), "❌ Reason should mention policy"
+    assert "policy" in reason.lower(), "❌ Reason should mention policy"
     print(f"  ✓ Policy violation rejected: {reason}")
 
     return True
@@ -127,12 +129,12 @@ async def test_replay_attack_prevention():
     xroad = XRoadInterconnect()
 
     envelope = SILAEnvelope(
-        message_id='test-replay-123',
+        message_id="test-replay-123",
         sender_service=OriginMinistry.MINJUS,
         receiver_service=OriginMinistry.MINSA,
         service_type=ServiceType.VERIFY_BIRTH_NOTICE,
         trust_score=0.90,
-        signature='<mock-signature>',
+        signature="<mock-signature>",
         payload={},
     )
 
@@ -144,7 +146,7 @@ async def test_replay_attack_prevention():
     # Replay attempt with same message_id
     response2 = await xroad.exchange(envelope)
     assert response2.status == MessageStatus.REPLAY_BLOCKED, "❌ Replay should be blocked"
-    assert 'replay' in response2.error.lower(), "❌ Error should mention replay"
+    assert "replay" in response2.error.lower(), "❌ Error should mention replay"
     print(f"  ✓ Replay attack blocked: {response2.error}")
 
     return True
@@ -157,14 +159,14 @@ async def test_service_discovery():
     xroad = XRoadInterconnect()
     services = await xroad.list_services()
 
-    assert services['available_services'], "❌ No services available"
-    assert len(services['available_services']) >= 8, "❌ Not enough services"
-    assert services['interop_policy_count'] > 0, "❌ No policies"
+    assert services["available_services"], "❌ No services available"
+    assert len(services["available_services"]) >= 8, "❌ Not enough services"
+    assert services["interop_policy_count"] > 0, "❌ No policies"
 
     print(f"  ✓ Available services: {len(services['available_services'])}")
     print(f"  ✓ Interop policies: {services['interop_policy_count']}")
 
-    for service in services['available_services'][:5]:
+    for service in services["available_services"][:5]:
         print(f"    - {service}")
 
     return True
@@ -195,6 +197,7 @@ async def main():
         except Exception as e:
             print(f"  ❌ Test failed: {str(e)}")
             import traceback
+
             traceback.print_exc()
             failed += 1
 
@@ -211,6 +214,6 @@ async def main():
         return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit_code = asyncio.run(main())
     sys.exit(exit_code)

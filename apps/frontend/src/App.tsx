@@ -1,28 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { UserRole } from './types';
-import type { User } from './types';
-import { authService } from './services/authService';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { UserRole } from '@/types';
+import type { User } from '@/types';
+import { authService } from '@/services/authService';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 import axios from 'axios';
+import { withApiOrigin } from '@/utils/runtime';
 
 // Pages
-import PublicLanding from './pages/PublicLanding';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Layout from './components/Layout';
-import PaymentsPage from './modules/pagamentos/PaymentsPage';
-import CitizenLogin from './pages/CitizenLogin';
-import CitizenPortal from './pages/CitizenPortal';
-import Register from './pages/Register';
-import AdminCitizens from './pages/AdminCitizens';
-import AdminCitizenProfile from './pages/AdminCitizenProfile';
-import AdminCitizenFuc from './pages/AdminCitizenFuc';
-import AdminDocuments from './pages/AdminDocuments';
-import AdminDocumentProfile from './pages/AdminDocumentProfile';
-import AdminExports from './pages/AdminExports';
-import AdminTerritory from './pages/AdminTerritory';
-import AdminObservability from './pages/AdminObservability';
+import PublicLanding from '@/pages/PublicLanding';
+import Login from '@/pages/Login';
+import Dashboard from '@/pages/Dashboard';
+import Layout from '@/components/Layout';
+import PaymentsPage from '@/modules/pagamentos/PaymentsPage';
+import CitizenLogin from '@/pages/CitizenLogin';
+import CitizenPortal from '@/pages/CitizenPortal';
+import IdentityPage from '@/pages/IdentityPage';
+import RegistryPage from '@/pages/RegistryPage';
+import TaxPage from '@/pages/TaxPage';
+import WaterPage from '@/pages/WaterPage';
+import EnergyPage from '@/pages/EnergyPage';
+import EducationPage from '@/pages/EducationPage';
+import EmploymentPage from '@/pages/EmploymentPage';
+import LicensingPage from '@/pages/LicensingPage';
+import TransportPage from '@/pages/TransportPage';
+import NotariesPage from '@/pages/NotariesPage';
+import BiometricEnrollmentPage from '@/pages/BiometricEnrollmentPage';
+import ServiceRequestPage from '@/pages/ServiceRequestPage';
+import ServiceCatalogForm from '@/pages/ServiceCatalogForm';
+import UploadDocuments from '@/pages/UploadDocuments';
+import MyDocuments from '@/pages/MyDocuments';
+import SearchDocuments from '@/pages/SearchDocuments';
+import Register from '@/pages/Register';
+import AdminCitizens from '@/pages/AdminCitizens';
+import AdminCitizenProfile from '@/pages/AdminCitizenProfile';
+import AdminCitizenFuc from '@/pages/AdminCitizenFuc';
+import AdminDocuments from '@/pages/AdminDocuments';
+import AdminDocumentProfile from '@/pages/AdminDocumentProfile';
+import AdminExports from '@/pages/AdminExports';
+import AdminTerritory from '@/pages/AdminTerritory';
+import AdminObservability from '@/pages/AdminObservability';
 
 // Componente de diagnóstico (temporário)
 const AuthDebugger: React.FC = () => {
@@ -32,7 +49,7 @@ const AuthDebugger: React.FC = () => {
   useEffect(() => {
     const fetchDebug = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/debug/auth-check');
+        const response = await axios.get(withApiOrigin('/api/debug/auth-check'));
         setDebugInfo(response.data);
       } catch (error) {
         console.error('Erro no debug:', error);
@@ -130,7 +147,31 @@ const App: React.FC = () => {
     localStorage.setItem('user', JSON.stringify(userData));
 
     // Redirect based on role
-    window.location.hash = authService.getDashboardForRole(userData.role);
+    const pendingService = localStorage.getItem('selected_service');
+    if (pendingService && userData.role === UserRole.CITIZEN) {
+      const citizenServiceRoutes: Record<string, string> = {
+        identity: '/citizen/services/identity',
+        registry: '/citizen/services/registry',
+        tax: '/citizen/services/tax',
+        water: '/citizen/services/water',
+        energy: '/citizen/services/energy',
+        educacao: '/citizen/services/educacao',
+        employment: '/citizen/services/employment',
+        licensing: '/citizen/services/licensing',
+        transport: '/citizen/services/transport',
+        notaries: '/citizen/services/notaries'
+      };
+      const route = citizenServiceRoutes[pendingService] || `/citizen/portal?service=${pendingService}`;
+      localStorage.removeItem('selected_service');
+      window.location.hash = route;
+      return;
+    }
+
+    const role = userData.role;
+    const defaultRoute = role === UserRole.CITIZEN
+      ? '/citizen/portal'
+      : authService.getDashboardForRole(role);
+    window.location.hash = defaultRoute;
   };
 
   const handleLogout = () => {
@@ -206,6 +247,23 @@ const App: React.FC = () => {
             <ProtectedRoute user={user} requiredRole={[UserRole.CITIZEN]}>
               <Routes>
                 <Route path="/portal" element={<CitizenPortal onLogout={handleLogout} />} />
+                <Route path="/services/identity" element={<IdentityPage />} />
+                <Route path="/services/identity/biometrics" element={<BiometricEnrollmentPage />} />
+                <Route path="/services/catalog/:code" element={<ServiceCatalogForm />} />
+                <Route path="/requests/new" element={<ServiceRequestPage />} />
+                <Route path="/services/registry" element={<RegistryPage />} />
+                <Route path="/services/tax" element={<TaxPage />} />
+                <Route path="/services/water" element={<WaterPage />} />
+                <Route path="/services/energy" element={<EnergyPage />} />
+                <Route path="/services/educacao" element={<EducationPage />} />
+                <Route path="/services/employment" element={<EmploymentPage />} />
+                <Route path="/services/licensing" element={<LicensingPage />} />
+                <Route path="/services/transport" element={<TransportPage />} />
+                <Route path="/services/notaries" element={<NotariesPage />} />
+                <Route path="/documents/upload" element={<UploadDocuments />} />
+                <Route path="/documents/my" element={<MyDocuments />} />
+                <Route path="/documents/search" element={<SearchDocuments />} />
+                <Route path="/payments" element={<PaymentsPage />} />
               </Routes>
             </ProtectedRoute>
           }

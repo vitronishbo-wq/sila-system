@@ -1,15 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from sqlalchemy import select, func
+
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOutorga
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.outorga_espectro_model import OutorgaEspectroModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import (
+    OutorgaEspectroRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusOutorga,
+    TipoOutorga,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import (
+    OutorgaEspectro,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.outorga_espectro_model import (
+    OutorgaEspectroModel,
+)
+
 
 class SQLAlchemyOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -37,7 +49,9 @@ class SQLAlchemyOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_numero(self, numero_outorga: str) -> OutorgaEspectro | None:
-        stmt = select(OutorgaEspectroModel).where(OutorgaEspectroModel.numero_outorga == numero_outorga.strip())
+        stmt = select(OutorgaEspectroModel).where(
+            OutorgaEspectroModel.numero_outorga == numero_outorga.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -47,12 +61,20 @@ class SQLAlchemyOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_operadora(self, operadora_id: UUID) -> list[OutorgaEspectro]:
-        stmt = select(OutorgaEspectroModel).where(OutorgaEspectroModel.operadora_id == operadora_id).order_by(OutorgaEspectroModel.data_outorga.desc())
+        stmt = (
+            select(OutorgaEspectroModel)
+            .where(OutorgaEspectroModel.operadora_id == operadora_id)
+            .order_by(OutorgaEspectroModel.data_outorga.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusOutorga) -> list[OutorgaEspectro]:
-        stmt = select(OutorgaEspectroModel).where(OutorgaEspectroModel.status == status.value).order_by(OutorgaEspectroModel.data_outorga.desc())
+        stmt = (
+            select(OutorgaEspectroModel)
+            .where(OutorgaEspectroModel.status == status.value)
+            .order_by(OutorgaEspectroModel.data_outorga.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -66,10 +88,26 @@ class SQLAlchemyOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
 
     async def next_numero(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(OutorgaEspectroModel).where(OutorgaEspectroModel.numero_outorga.like(f'OUT/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(OutorgaEspectroModel)
+            .where(OutorgaEspectroModel.numero_outorga.like(f"OUT/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'OUT/{ano}/{count + 1:05d}'
+        return f"OUT/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: OutorgaEspectroModel) -> OutorgaEspectro:
-        return OutorgaEspectro(id=model.id, numero_outorga=model.numero_outorga, operadora_id=model.operadora_id, tipo_outorga=TipoOutorga(model.tipo_outorga), faixa_inicio_mhz=float(model.faixa_inicio_mhz), faixa_fim_mhz=float(model.faixa_fim_mhz), data_outorga=model.data_outorga, data_validade=model.data_validade, status=StatusOutorga(model.status), observacoes=model.observacoes, ativo=model.ativo)
+        return OutorgaEspectro(
+            id=model.id,
+            numero_outorga=model.numero_outorga,
+            operadora_id=model.operadora_id,
+            tipo_outorga=TipoOutorga(model.tipo_outorga),
+            faixa_inicio_mhz=float(model.faixa_inicio_mhz),
+            faixa_fim_mhz=float(model.faixa_fim_mhz),
+            data_outorga=model.data_outorga,
+            data_validade=model.data_validade,
+            status=StatusOutorga(model.status),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

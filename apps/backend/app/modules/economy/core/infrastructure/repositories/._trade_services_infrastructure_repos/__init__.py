@@ -1,2 +1,0 @@
-from apps.backend.app.modules.economy.trade.services.infrastructure.repositories.sqlalchemy_estabelecimento_comercial_repository import SQLAlchemyEstabelecimentoComercialRepository
-__all__ = ['SQLAlchemyEstabelecimentoComercialRepository']

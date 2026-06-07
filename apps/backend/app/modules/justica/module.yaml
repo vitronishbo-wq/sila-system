@@ -1,0 +1,30 @@
+code: justica
+module: justica
+name: Justica
+description: Servicos juridicos e administracao da justica.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: justica
+  color: '#2563eb'
+  order: null
+services: []
+type: macro_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published:
+  - CaseCreated
+  - CaseClosed
+  - CertificateRequested
+  - NotarialActSigned
+  event_catalog: domain/event_catalog.py
+requires:
+  domains: []
+  core_services: []
+subdomains:
+- civil_registry
+- events
+- _deprecated

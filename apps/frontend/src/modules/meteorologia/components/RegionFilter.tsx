@@ -5,8 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapPin, ChevronDown, X } from 'lucide-react';
-import { useProvincias } from '../hooks';
-import type { MeteorologyFilter } from '../types';
+import { useProvincias } from '@/modules/meteorologia/hooks';
+import type { MeteorologyFilter } from '@/modules/meteorologia/types';
 
 interface RegionFilterProps {
   onFilterChange?: (filter: MeteorologyFilter) => void;

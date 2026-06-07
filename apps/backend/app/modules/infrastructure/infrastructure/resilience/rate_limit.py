@@ -1,15 +1,17 @@
 from __future__ import annotations
+
 import asyncio
 import time
+
 
 class AsyncRateLimiter:
     """Simple token-bucket limiter for outbound integrations."""
 
-    def __init__(self, *, rate: int=100, per_seconds: float=60.0) -> None:
+    def __init__(self, *, rate: int = 100, per_seconds: float = 60.0) -> None:
         if rate < 1:
-            raise ValueError('rate deve ser >= 1')
+            raise ValueError("rate deve ser >= 1")
         if per_seconds <= 0:
-            raise ValueError('per_seconds deve ser > 0')
+            raise ValueError("per_seconds deve ser > 0")
         self._rate = float(rate)
         self._per_seconds = float(per_seconds)
         self._tokens = float(rate)

@@ -1,8 +1,17 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+
+from apps.backend.app.modules.industry.domain.enums import (
+    PorteIndustrial,
+    RamoIndustrial,
+    StatusEstabelecimento,
+    TipoEstabelecimento,
+)
+
 
 class EstabelecimentoIndustrialCreate(BaseModel):
     cnpj: str
@@ -17,17 +26,22 @@ class EstabelecimentoIndustrialCreate(BaseModel):
     municipio: str
     provincia: str
 
+
 class DataInput(BaseModel):
     data: date
+
 
 class MotivoInput(BaseModel):
     motivo: str
 
+
 class RamoInput(BaseModel):
     ramo: RamoIndustrial
 
+
 class PorteInput(BaseModel):
     porte: PorteIndustrial
+
 
 class EstabelecimentoIndustrialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

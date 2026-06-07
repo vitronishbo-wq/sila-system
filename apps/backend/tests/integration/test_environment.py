@@ -28,9 +28,7 @@ def test_environment_setup(client: TestClient, db_session: Session):
 
     # Test FastAPI application
     response = client.get("/api/health")
-    assert (
-        response.status_code == 200
-    ), f"Expected status code 200, got {response.status_code}"
+    assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
     logger.info("✓ FastAPI application is running")
 
     logger.info("✓ Environment setup test completed successfully")
@@ -44,4 +42,4 @@ def test_skip_example():
 @pytest.mark.xfail
 def test_expected_failure():
     """Example of an expected test failure."""
-    assert False, "This test is expected to fail"
+    raise AssertionError("This test is expected to fail")

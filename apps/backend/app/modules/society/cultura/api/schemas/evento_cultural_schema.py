@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    StatusEventoCultural,
+    TipoEventoCultural,
+)
+
 
 class EventoCulturalCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -22,6 +29,7 @@ class EventoCulturalCreate(BaseModel):
     publico_estimado: int | None = Field(default=None, ge=0)
     observacoes: str | None = None
 
+
 class EventoCulturalUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
     tipo: TipoEventoCultural | None = None
@@ -39,6 +47,7 @@ class EventoCulturalUpdate(BaseModel):
     status: StatusEventoCultural | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class EventoCulturalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

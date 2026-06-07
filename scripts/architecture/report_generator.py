@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 try:
@@ -15,7 +15,7 @@ except ImportError:
 def write_module_map_report(scans: dict[str, ModuleScan], output: Path, modules_root: Path) -> None:
     modules = [scan.to_dict() for _, scan in sorted(scans.items())]
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "scope": str(modules_root),
         "summary": {
             "modules": len(scans),
@@ -40,7 +40,7 @@ def write_domain_overlap_markdown(
     top_n: int = 30,
 ) -> None:
     lines: list[str] = []
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
 
     lines.append("# Domain Overlap Report")
     lines.append("")

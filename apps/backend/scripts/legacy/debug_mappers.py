@@ -1,9 +1,10 @@
-
 import sys
+
 sys.path.append("/app")
 
 from apps.backend.app.modules.identity.models.user import User
 from sqlalchemy import inspect
+
 
 def debug_user():
     try:
@@ -14,7 +15,9 @@ def debug_user():
     except Exception as e:
         print(f"Error inspecting User: {e}")
         import traceback
+
         traceback.print_exc()
+
 
 if __name__ == "__main__":
     debug_user()

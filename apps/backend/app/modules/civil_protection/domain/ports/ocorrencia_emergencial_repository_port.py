@@ -1,12 +1,19 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
-from apps.backend.app.modules.civil_protection.domain.enums import StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
-from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
+
+from apps.backend.app.modules.civil_protection.domain.enums import (
+    StatusOcorrenciaEmergencial,
+    TipoOcorrenciaEmergencial,
+)
+from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import (
+    OcorrenciaEmergencial,
+)
+
 
 class OcorrenciaEmergencialRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, ocorrencia: OcorrenciaEmergencial) -> OcorrenciaEmergencial:
         raise NotImplementedError
@@ -32,7 +39,9 @@ class OcorrenciaEmergencialRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_by_status(self, status: StatusOcorrenciaEmergencial) -> list[OcorrenciaEmergencial]:
+    async def list_by_status(
+        self, status: StatusOcorrenciaEmergencial
+    ) -> list[OcorrenciaEmergencial]:
         raise NotImplementedError
 
     @abstractmethod

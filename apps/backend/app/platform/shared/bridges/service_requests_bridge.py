@@ -1,1 +1,1 @@
-from app.core.bridges.service_requests_bridge import *
+from apps.backend.app.core.bridges.service_requests_bridge import *

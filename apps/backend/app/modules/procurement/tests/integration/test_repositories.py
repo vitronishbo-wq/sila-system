@@ -1,5 +1,6 @@
 import pytest
 
+
 class TestRepositories:
     """Repository integration tests"""
 
@@ -12,6 +13,7 @@ class TestRepositories:
     async def test_repository_find(self, mock_repository):
         """Test repository find operation"""
         pass
+
 
 class TestApplicationServices:
     """Application service integration tests"""

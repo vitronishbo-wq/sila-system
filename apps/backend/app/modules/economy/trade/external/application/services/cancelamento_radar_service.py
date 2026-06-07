@@ -1,10 +1,26 @@
 from __future__ import annotations
-from apps.backend.app.modules.economy.trade.external.application.ports import CancelamentoRadarRepositoryPort
-from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import HabilitacaoServiceBase
+
+from apps.backend.app.modules.economy.trade.external.application.ports import (
+    CancelamentoRadarRepositoryPort,
+)
+from apps.backend.app.modules.economy.trade.external.application.services.habilitacao_service_base import (
+    HabilitacaoServiceBase,
+)
 from apps.backend.app.modules.economy.trade.external.domain.models import CancelamentoRadar
-from apps.backend.app.modules.economy.trade.external.exceptions import CancelamentoRadarAlreadyExistsError, CancelamentoRadarNotFoundError, InvalidCancelamentoRadarStateError
+from apps.backend.app.modules.economy.trade.external.exceptions import (
+    CancelamentoRadarAlreadyExistsError,
+    CancelamentoRadarNotFoundError,
+    InvalidCancelamentoRadarStateError,
+)
+
 
 class CancelamentoRadarService(HabilitacaoServiceBase[CancelamentoRadar]):
-
     def __init__(self, *, repository: CancelamentoRadarRepositoryPort) -> None:
-        super().__init__(repository=repository, domain_cls=CancelamentoRadar, not_found_error_cls=CancelamentoRadarNotFoundError, already_exists_error_cls=CancelamentoRadarAlreadyExistsError, invalid_state_error_cls=InvalidCancelamentoRadarStateError, entity_label='Cancelamento de Radar')
+        super().__init__(
+            repository=repository,
+            domain_cls=CancelamentoRadar,
+            not_found_error_cls=CancelamentoRadarNotFoundError,
+            already_exists_error_cls=CancelamentoRadarAlreadyExistsError,
+            invalid_state_error_cls=InvalidCancelamentoRadarStateError,
+            entity_label="Cancelamento de Radar",
+        )

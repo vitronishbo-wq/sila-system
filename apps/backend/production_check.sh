@@ -32,9 +32,9 @@ echo ""
 echo "⚙️  Core modules..."
 python << 'EOF'
 try:
-    from app.core.db import AsyncSessionLocal, importAsyncSessionLocal
-    from app.core.security import IAMClient
-    from app.core.events import get_event_bus
+    from apps.backend.app.core.db import AsyncSessionLocal, importAsyncSessionLocal
+    from apps.backend.app.core.security import IAMClient
+    from apps.backend.app.core.events import get_event_bus
     print("  ✅ core.db OK")
     print("  ✅ core.security OK")
     print("  ✅ core.events OK")
@@ -51,7 +51,7 @@ import os
 
 async def test_db():
     try:
-        from app.core.db import engine
+        from apps.backend.app.core.db import engine
         async with engine.connect() as conn:
             await conn.execute("SELECT 1")
             print("  ✅ Database connection OK")

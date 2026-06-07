@@ -2,15 +2,17 @@
 Add import_audit table
 """
 
-from alembic import op
-import sqlalchemy as sa
 from uuid import uuid4
+
+import sqlalchemy as sa
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = "add_import_audit_table"
 down_revision = "20260220_001_create_citizen_documents"
 branch_labels = None
 depends_on = None
+
 
 def upgrade():
     op.create_table(
@@ -26,6 +28,7 @@ def upgrade():
         sa.Column("errors", sa.JSON, default=[]),
         sa.Column("executed_at", sa.TIMESTAMP, server_default=sa.func.now()),
     )
+
 
 def downgrade():
     op.drop_table("import_audit")

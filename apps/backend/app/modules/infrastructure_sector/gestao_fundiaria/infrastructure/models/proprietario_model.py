@@ -1,16 +1,22 @@
 from __future__ import annotations
+
 import uuid
 from datetime import date, datetime
 from decimal import Decimal
+
 from sqlalchemy import Boolean, Date, DateTime, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from apps.backend.app.core.db import Base
 
+
 class ProprietarioModel(Base):
-    __tablename__ = 'gestao_fundiaria_proprietarios'
+    __tablename__ = "gestao_fundiaria_proprietarios"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    numero_cadastro: Mapped[str] = mapped_column(String(50), unique=True, nullable=False, index=True)
+    numero_cadastro: Mapped[str] = mapped_column(
+        String(50), unique=True, nullable=False, index=True
+    )
     nome: Mapped[str] = mapped_column(String(255), nullable=False)
     documento: Mapped[str] = mapped_column(String(64), unique=True, nullable=False, index=True)
     tipo_pessoa: Mapped[str] = mapped_column(String(24), nullable=False, index=True)
@@ -23,4 +29,6 @@ class ProprietarioModel(Base):
     endereco: Mapped[str | None] = mapped_column(String(255), nullable=True)
     data_atualizacao: Mapped[date | None] = mapped_column(Date, nullable=True)
     observacoes: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )

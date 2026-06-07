@@ -4,24 +4,28 @@ Revision ID: 20260220_001_create_citizen_documents
 Revises: 003_add_iam_system
 Create Date: 2026-02-20
 """
-from alembic import context, op
-import sqlalchemy as sa
-import sqlalchemy.dialects.postgresql as pg
+
 import enum
 from datetime import datetime
 
+import sqlalchemy as sa
+import sqlalchemy.dialects.postgresql as pg
+from alembic import context, op
+
 # revision identifiers, used by Alembic.
-revision = '20260220_001_create_citizen_documents'
-down_revision = '003_add_iam_system'
+revision = "20260220_001_create_citizen_documents"
+down_revision = "003_add_iam_system"
 branch_labels = None
 depends_on = None
 
-class DocumentTypeEnum(str, enum.Enum):
+
+class DocumentTypeEnum(enum.StrEnum):
     BI = "BI"
     PASSPORT = "PASSPORT"
     BIRTH_CERTIFICATE = "BIRTH_CERTIFICATE"
     DRIVER_LICENSE = "DRIVER_LICENSE"
     PHOTO = "PHOTO"
+
 
 def upgrade():
     offline = context.is_offline_mode()
@@ -86,17 +90,14 @@ def upgrade():
         "CREATE INDEX IF NOT EXISTS ix_citizen_documents_citizen_id "
         "ON citizen_documents (citizen_id)"
     )
+    op.execute("CREATE INDEX IF NOT EXISTS ix_citizen_documents_type ON citizen_documents (type)")
     op.execute(
-        "CREATE INDEX IF NOT EXISTS ix_citizen_documents_type "
-        "ON citizen_documents (type)"
-    )
-    op.execute(
-        "CREATE INDEX IF NOT EXISTS ix_citizen_documents_version "
-        "ON citizen_documents (version)"
+        "CREATE INDEX IF NOT EXISTS ix_citizen_documents_version ON citizen_documents (version)"
     )
 
+
 def downgrade():
-    op.drop_index('ix_citizen_documents_version', table_name='citizen_documents')
-    op.drop_index('ix_citizen_documents_type', table_name='citizen_documents')
-    op.drop_index('ix_citizen_documents_citizen_id', table_name='citizen_documents')
-    op.drop_table('citizen_documents')
+    op.drop_index("ix_citizen_documents_version", table_name="citizen_documents")
+    op.drop_index("ix_citizen_documents_type", table_name="citizen_documents")
+    op.drop_index("ix_citizen_documents_citizen_id", table_name="citizen_documents")
+    op.drop_table("citizen_documents")

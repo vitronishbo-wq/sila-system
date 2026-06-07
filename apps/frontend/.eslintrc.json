@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc.json",
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    /**
+     * 🛡️ ARCHITECTURE ENFORCEMENT
+     * These rules are CRITICAL to maintain DDD boundaries
+     */
+
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [
+              "../*",
+              "../../*",
+              "../../../*",
+              "../../../../*"
+            ],
+            "message": "❌ FORBIDDEN: Relative imports are strictly prohibited. Use @/[path] absolute aliases instead. Example: '\u0040/modules/admin/services' instead of '../../../modules/admin/services'"
+          },
+          {
+            "group": [
+              "@/services/operationsService",
+              "@/services/dashboardService",
+              "@/services/exportJobsService",
+              "@/services/adminDocumentService",
+              "@/services/adminCitizenService",
+              "@/services/citizenAuthService",
+              "@/services/documentService",
+              "@/services/sla",
+              "@/services/territoryService"
+            ],
+            "message": "❌ FORBIDDEN: This service is deprecated or not whitelisted. Import from @/modules/[domain]/services instead."
+          },
+          {
+            "group": [
+              "@/services/*"
+            ],
+            "except": [
+              "@/services/authService",
+              "@/services/apiService",
+              "@/services/authGuard"
+            ],
+            "message": "❌ FORBIDDEN: Only authService, apiService, and authGuard can be imported from @/services. All other services must be in @/modules/*/services"
+          }
+        ]
+      }
+    ],
+
+    "import/no-relative-parent-imports": "error",
+
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "alphabeticalOrder": true,
+        "caseInsensitive": true
+      }
+    ],
+
+    "import/no-cycle": [
+      "error",
+      {
+        "maxDepth": "∞"
+      }
+    ],
+
+    /**
+     * 🚫 GENERAL ESLINT RULES
+     */
+
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "prefer-const": "error",
+    "no-var": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    }
+  ]
+}

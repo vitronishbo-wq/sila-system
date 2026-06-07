@@ -1,14 +1,16 @@
 """
 Repository pattern for tourism module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class TourismRepository(ABC):
     """Abstract repository for tourism."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get tourism by ID."""
         pass
 
@@ -23,9 +25,10 @@ class TourismRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all tourism."""
         pass
+
 
 class TourismMemoryRepository(TourismRepository):
     """In-memory repository for tourism."""
@@ -33,7 +36,7 @@ class TourismMemoryRepository(TourismRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class TourismMemoryRepository(TourismRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

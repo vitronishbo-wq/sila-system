@@ -1,6 +1,6 @@
 // Re-export all components from a single point
-export { StationCard } from './StationCard';
-export { AlertsPanel } from './AlertsPanel';
-export { TrendsChart } from './TrendsChart';
-export { RegionFilter } from './RegionFilter';
-export { MeteorologyWidget } from './MeteorologyWidget';
+export { StationCard } from '@/modules/meteorologia/components/StationCard';
+export { AlertsPanel } from '@/modules/meteorologia/components/AlertsPanel';
+export { TrendsChart } from '@/modules/meteorologia/components/TrendsChart';
+export { RegionFilter } from '@/modules/meteorologia/components/RegionFilter';
+export { MeteorologyWidget } from '@/modules/meteorologia/components/MeteorologyWidget';

@@ -1,2 +1,3 @@
 from fastapi import APIRouter
-router = APIRouter(prefix='/recursos-minerais', tags=['Recursos Minerais'])
+
+router = APIRouter(prefix="/recursos-minerais", tags=["Recursos Minerais"])

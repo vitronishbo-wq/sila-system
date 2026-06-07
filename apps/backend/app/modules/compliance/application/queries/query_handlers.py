@@ -1,27 +1,35 @@
 """Compliance query handlers."""
-from typing import List, Optional
-from apps.backend.app.modules.compliance.application.queries.compliance_queries import GetAuditTrailQuery, ListComplianceEventsQuery, GetComplianceCheckQuery
-from apps.backend.app.modules.compliance.domain.ports.aggregate_repository_port import AggregateRepositoryPort
+
+from apps.backend.app.modules.compliance.application.queries.compliance_queries import (
+    GetAuditTrailQuery,
+    GetComplianceCheckQuery,
+    ListComplianceEventsQuery,
+)
+from apps.backend.app.modules.compliance.domain.ports.aggregate_repository_port import (
+    AggregateRepositoryPort,
+)
 from apps.backend.app.modules.compliance.domain.ports.audit_log_port import AuditLogPort
 
-class GetAuditTrailHandler:
 
+class GetAuditTrailHandler:
     def __init__(self, audit_repo: AuditLogPort):
         self.audit_repo = audit_repo
 
-    async def handle(self, query: GetAuditTrailQuery) -> List:
-        return await self.audit_repo.get_by_entity(query.entity_type, query.entity_id, limit=query.limit, offset=query.offset)
+    async def handle(self, query: GetAuditTrailQuery) -> list:
+        return await self.audit_repo.get_by_entity(
+            query.entity_type, query.entity_id, limit=query.limit, offset=query.offset
+        )
+
 
 class ListComplianceEventsHandler:
-
     def __init__(self, audit_repo: AuditLogPort):
         self.audit_repo = audit_repo
 
-    async def handle(self, query: ListComplianceEventsQuery) -> List:
+    async def handle(self, query: ListComplianceEventsQuery) -> list:
         return await self.audit_repo.list_all(limit=query.limit, offset=query.offset)
 
-class GetComplianceCheckHandler:
 
+class GetComplianceCheckHandler:
     def __init__(self, repo: AggregateRepositoryPort):
         self.repo = repo
 

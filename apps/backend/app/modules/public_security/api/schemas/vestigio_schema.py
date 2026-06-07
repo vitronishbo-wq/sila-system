@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.public_security.domain.enums import StatusVestigio, TipoVestigio
+
 
 class VestigioCreate(BaseModel):
     cadeia_custodia_id: UUID
@@ -13,9 +17,11 @@ class VestigioCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class VestigioStatusUpdate(BaseModel):
     status: StatusVestigio
     observacoes: str | None = None
+
 
 class VestigioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

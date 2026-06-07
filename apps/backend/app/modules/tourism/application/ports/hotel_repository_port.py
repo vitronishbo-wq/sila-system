@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira
 from apps.backend.app.modules.tourism.domain.models.hotel import Hotel
 
-class HotelRepositoryPort(ABC):
 
+class HotelRepositoryPort(ABC):
     @abstractmethod
     async def save(self, hotel: Hotel) -> Hotel:
         pass

@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULES_DIR = ROOT / "apps" / "backend" / "app" / "modules"
@@ -110,7 +109,9 @@ def create_ddd_skeleton(module_path: Path, module_name: str) -> tuple[list[str],
         router_path = api_dir / "router.py"
         health_path = api_dir / "health.py"
         module_cap = module_name.replace("_", " ").title().replace(" ", "")
-        if ensure_file(router_path, API_ROUTER_STUB.format(module=module_name, module_cap=module_cap)):
+        if ensure_file(
+            router_path, API_ROUTER_STUB.format(module=module_name, module_cap=module_cap)
+        ):
             created_files.append(str(router_path))
         if ensure_file(health_path, API_HEALTH_STUB.format(module=module_name)):
             created_files.append(str(health_path))
@@ -128,7 +129,9 @@ def create_ddd_skeleton(module_path: Path, module_name: str) -> tuple[list[str],
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Operacao Simetria - DDD skeleton + lifecycle hooks.")
+    parser = argparse.ArgumentParser(
+        description="Operacao Simetria - DDD skeleton + lifecycle hooks."
+    )
     parser.add_argument("--apply", action="store_true", help="Apply changes.")
     args = parser.parse_args()
 
@@ -140,7 +143,10 @@ def main() -> int:
         if module_path.name in skip_names or module_path.name.startswith("."):
             continue
         if not (module_path / "module.yaml").exists():
-            if not any((module_path / d).exists() for d in ("api", "application", "domain", "infrastructure", "core")):
+            if not any(
+                (module_path / d).exists()
+                for d in ("api", "application", "domain", "infrastructure", "core")
+            ):
                 continue
         module_name = module_path.name
         core_only = is_core_only(module_path)

@@ -1,11 +1,16 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusSLA,
+    TipoServico,
+)
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
 
-class SLARepositoryPort(ABC):
 
+class SLARepositoryPort(ABC):
     @abstractmethod
     async def save(self, sla: SLA) -> SLA:
         raise NotImplementedError
@@ -19,7 +24,9 @@ class SLARepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def find_ativo_por_operadora_servico(self, operadora_id: UUID, servico: TipoServico) -> SLA | None:
+    async def find_ativo_por_operadora_servico(
+        self, operadora_id: UUID, servico: TipoServico
+    ) -> SLA | None:
         raise NotImplementedError
 
     @abstractmethod

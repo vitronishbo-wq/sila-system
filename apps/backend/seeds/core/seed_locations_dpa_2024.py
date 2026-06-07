@@ -8,12 +8,12 @@ Uso:
 """
 
 import argparse
+import ast
 import asyncio
+import importlib.util
 import logging
 import os
 from pathlib import Path
-from typing import Dict, Tuple
-import importlib.util
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
@@ -41,7 +41,7 @@ async def _get_or_create_location(
     name: str,
     territory_type: str,
     parent_id,
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     if parent_id is None:
         existing = await session.execute(
             text(
@@ -103,18 +103,43 @@ async def _get_or_create_location(
     return inserted.fetchone()
 
 
-def _load_angola_dpa() -> Dict[str, Dict[str, Dict[str, list]]]:
+def _load_angola_dpa() -> dict[str, dict[str, dict[str, list]]]:
     seed_path = Path("docs/seed_angola_dpa_2024.cpython-312.pyc")
-    if not seed_path.exists():
-        raise RuntimeError("Arquivo seed_angola_dpa_2024.cpython-312.pyc não encontrado em docs/")
+    fallback_path = Path("apps/backend/scripts/seed_angola_dpa_2024.py")
 
-    spec = importlib.util.spec_from_file_location("seed_angola_dpa_2024_docs", seed_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    module = None
+    if seed_path.exists():
+        spec = importlib.util.spec_from_file_location("seed_angola_dpa_2024_docs", seed_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+    elif fallback_path.exists():
+        logger.warning(
+            "Arquivo .pyc não encontrado em docs/. Usando fallback %s",
+            fallback_path,
+        )
+        source = fallback_path.read_text(encoding="utf-8")
+        tree = ast.parse(source, filename=str(fallback_path))
+        data = None
+        for node in tree.body:
+            if not isinstance(node, ast.Assign):
+                continue
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id in ("ANGOLA_DPA", "ANGOLA_DPA_2024"):
+                    data = ast.literal_eval(node.value)
+                    break
+            if data is not None:
+                break
+        if data is None:
+            raise RuntimeError("ANGOLA_DPA não encontrado no arquivo de fallback")
+        return data.get("ANGOLA", {}) if isinstance(data, dict) and "ANGOLA" in data else data
+    else:
+        raise RuntimeError(
+            "Nenhuma fonte DPA encontrada (docs/*.pyc ou scripts/seed_angola_dpa_2024.py)"
+        )
 
     data = getattr(module, "ANGOLA_DPA", None) or getattr(module, "ANGOLA_DPA_2024", None)
     if data is None:
-        raise RuntimeError("ANGOLA_DPA não encontrado no arquivo .pyc")
+        raise RuntimeError("ANGOLA_DPA não encontrado no arquivo de seed")
     return data.get("ANGOLA", {}) if isinstance(data, dict) and "ANGOLA" in data else data
 
 
@@ -128,16 +153,16 @@ def _normalize_province_name(name: str) -> str:
     return normalized
 
 
-async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[str, int]:
+async def seed_locations(session: AsyncSession, *, reset: bool = False) -> dict[str, int]:
     angola_dpa = _load_angola_dpa()
     logger.info("🌍 Iniciando seed completo DPA 2024 para locations...")
     territory_ids = {}
 
     if reset:
-        logger.warning("⚠️ Reset ativo: limpando locations (PROVINCIA/MUNICIPIO/COMUNA) com CASCADE.")
-        await session.execute(
-            text("TRUNCATE locations CASCADE")
+        logger.warning(
+            "⚠️ Reset ativo: limpando locations (PROVINCIA/MUNICIPIO/COMUNA) com CASCADE."
         )
+        await session.execute(text("TRUNCATE locations CASCADE"))
         await session.commit()
 
     # 1) Provincias
@@ -146,7 +171,7 @@ async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[
         row = await _get_or_create_location(
             session,
             name=province_name,
-            territory_type="PROVINCIA",
+            territory_type="province",
             parent_id=None,
         )
         if row:
@@ -164,8 +189,10 @@ async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[
         for municipality_name in municipalities.keys():
             row = await _get_or_create_location(
                 session,
-                name=municipality_name.title() if municipality_name.isupper() else municipality_name,
-                territory_type="MUNICIPIO",
+                name=municipality_name.title()
+                if municipality_name.isupper()
+                else municipality_name,
+                territory_type="municipality",
                 parent_id=parent_id,
             )
             if row:
@@ -176,7 +203,9 @@ async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[
     for province_name, municipalities in angola_dpa.items():
         province_name = _normalize_province_name(province_name)
         for municipality_name, communes in municipalities.items():
-            mun_key = municipality_name.title() if municipality_name.isupper() else municipality_name
+            mun_key = (
+                municipality_name.title() if municipality_name.isupper() else municipality_name
+            )
             parent_id = territory_ids.get((province_name, mun_key, "MUNICIPIO"))
             if not parent_id:
                 logger.warning(
@@ -189,14 +218,14 @@ async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[
                 await _get_or_create_location(
                     session,
                     name=commune_name,
-                    territory_type="COMUNA",
+                    territory_type="commune",
                     parent_id=parent_id,
                 )
 
     await session.commit()
 
     stats = {}
-    for t in ("PROVINCIA", "MUNICIPIO", "COMUNA"):
+    for t in ("province", "municipality", "commune"):
         result = await session.execute(
             text("SELECT COUNT(*) FROM locations WHERE type = :type"),
             {"type": t},
@@ -206,9 +235,9 @@ async def seed_locations(session: AsyncSession, *, reset: bool = False) -> Dict[
     return stats
 
 
-async def check_counts(session: AsyncSession) -> Dict[str, int]:
+async def check_counts(session: AsyncSession) -> dict[str, int]:
     stats = {}
-    for t in ("PROVINCIA", "MUNICIPIO", "COMUNA"):
+    for t in ("province", "municipality", "commune"):
         result = await session.execute(
             text("SELECT COUNT(*) FROM locations WHERE type = :type"),
             {"type": t},

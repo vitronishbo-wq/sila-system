@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_038_transportes_logistica_orm_core"
 down_revision = "20260304_037_obras_publicas_orm_core"
 branch_labels = None
@@ -71,19 +70,43 @@ def upgrade() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_linha ON transportes_logistica_viagens (linha_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_veiculo ON transportes_logistica_viagens (veiculo_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_motorista ON transportes_logistica_viagens (motorista_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_saida ON transportes_logistica_viagens (data_hora_saida)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_origem ON transportes_logistica_viagens (origem)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_destino ON transportes_logistica_viagens (destino)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_viagem_status ON transportes_logistica_viagens (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_linha ON transportes_logistica_viagens (linha_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_veiculo ON transportes_logistica_viagens (veiculo_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_motorista ON transportes_logistica_viagens (motorista_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_saida ON transportes_logistica_viagens (data_hora_saida)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_origem ON transportes_logistica_viagens (origem)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_destino ON transportes_logistica_viagens (destino)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_viagem_status ON transportes_logistica_viagens (status)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_frota_codigo ON transportes_logistica_frotas (codigo_frota)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_frota_operadora ON transportes_logistica_frotas (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_frota_municipio ON transportes_logistica_frotas (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_frota_provincia ON transportes_logistica_frotas (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_frota_status ON transportes_logistica_frotas (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_frota_codigo ON transportes_logistica_frotas (codigo_frota)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_frota_operadora ON transportes_logistica_frotas (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_frota_municipio ON transportes_logistica_frotas (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_frota_provincia ON transportes_logistica_frotas (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_frota_status ON transportes_logistica_frotas (status)"
+    )
 
 
 def downgrade() -> None:

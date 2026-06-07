@@ -1,2 +1,3 @@
 from fastapi import APIRouter
-router = APIRouter(prefix='/nacionalizacao', tags=['Comercio Externo - Nacionalizacao'])
+
+router = APIRouter(prefix="/nacionalizacao", tags=["Comercio Externo - Nacionalizacao"])

@@ -1,4 +1,28 @@
 from apps.backend.app.modules.society.desporto.application.events.bus import EventBus, event_bus
-from apps.backend.app.modules.society.desporto.application.events.definitions import ContratoAssinadoEvent, DomainEvent, EstadioCadastradoEvent, JogoAgendadoEvent, JogoResultadoRegistradoEvent, TransferenciaConcluidaEvent, TransferenciaSolicitadaEvent
-from apps.backend.app.modules.society.desporto.application.events.registry import deserialize_event, serialize_event
-__all__ = ['EventBus', 'event_bus', 'DomainEvent', 'JogoAgendadoEvent', 'JogoResultadoRegistradoEvent', 'EstadioCadastradoEvent', 'TransferenciaSolicitadaEvent', 'TransferenciaConcluidaEvent', 'ContratoAssinadoEvent', 'serialize_event', 'deserialize_event']
+from apps.backend.app.modules.society.desporto.application.events.definitions import (
+    ContratoAssinadoEvent,
+    DomainEvent,
+    EstadioCadastradoEvent,
+    JogoAgendadoEvent,
+    JogoResultadoRegistradoEvent,
+    TransferenciaConcluidaEvent,
+    TransferenciaSolicitadaEvent,
+)
+from apps.backend.app.modules.society.desporto.application.events.registry import (
+    deserialize_event,
+    serialize_event,
+)
+
+__all__ = [
+    "EventBus",
+    "event_bus",
+    "DomainEvent",
+    "JogoAgendadoEvent",
+    "JogoResultadoRegistradoEvent",
+    "EstadioCadastradoEvent",
+    "TransferenciaSolicitadaEvent",
+    "TransferenciaConcluidaEvent",
+    "ContratoAssinadoEvent",
+    "serialize_event",
+    "deserialize_event",
+]

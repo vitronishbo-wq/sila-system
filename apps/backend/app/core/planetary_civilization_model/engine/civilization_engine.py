@@ -1,5 +1,4 @@
 class CivilizationEngine:
-
     def __init__(self):
         self.entities = []
         self.events = []
@@ -11,4 +10,4 @@ class CivilizationEngine:
         self.events.append(event)
 
     def state(self):
-        return {'entities': len(self.entities), 'events': len(self.events)}
+        return {"entities": len(self.entities), "events": len(self.events)}

@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import (
+    Pesquisador,
+)
+
 
 class PesquisadorRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, pesquisador: Pesquisador) -> Pesquisador:
         raise NotImplementedError
@@ -30,7 +34,9 @@ class PesquisadorRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def vincular_instituicao(self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None=None) -> Pesquisador | None:
+    async def vincular_instituicao(
+        self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None = None
+    ) -> Pesquisador | None:
         raise NotImplementedError
 
     @abstractmethod

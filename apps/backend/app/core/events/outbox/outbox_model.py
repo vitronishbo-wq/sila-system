@@ -1,12 +1,16 @@
 """Outbox Model for transactional event storage - Phase 19"""
-from sqlalchemy import Column, String, JSON, DateTime, Boolean, TIMESTAMP, Integer
+
 from datetime import datetime
 from uuid import uuid4
-from app.core.db.base_class import Base
+
+from apps.backend.app.core.db.base_class import Base
+from sqlalchemy import JSON, TIMESTAMP, Boolean, Column, Integer, String
+
 
 class OutboxEvent(Base):
     """Outbox table for guaranteed event publishing (transactional)"""
-    __tablename__ = 'event_outbox'
+
+    __tablename__ = "event_outbox"
     id = Column(String(36), primary_key=True, default=lambda: str(uuid4()))
     event_name = Column(String(255), nullable=False, index=True)
     event_id = Column(String(36), nullable=False, unique=True)
@@ -17,4 +21,4 @@ class OutboxEvent(Base):
     retry_count = Column(Integer, default=0)
 
     def __repr__(self):
-        return f'<OutboxEvent {self.event_name}:{self.id}>'
+        return f"<OutboxEvent {self.event_name}:{self.id}>"

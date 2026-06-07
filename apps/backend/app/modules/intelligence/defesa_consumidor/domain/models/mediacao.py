@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+
 from apps.backend.app.modules.intelligence.defesa_consumidor.domain.enums import StatusMediacao
+
 
 @dataclass
 class Mediacao:
-    id: Optional[int]
+    id: int | None
     reclamacao_id: int
     status: StatusMediacao = StatusMediacao.AGENDADA
-    data_inicio: Optional[datetime] = None
-    data_fim: Optional[datetime] = None
+    data_inicio: datetime | None = None
+    data_fim: datetime | None = None

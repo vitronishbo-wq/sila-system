@@ -1,5 +1,4 @@
 class NationalAIGovernanceEngine:
-
     def __init__(self, policy_simulator, risk_engine, economic_forecaster, crisis_ai):
         self.policy_simulator = policy_simulator
         self.risk_engine = risk_engine

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 validate_frontend_backend_integration.py
 ---------------------------------------
@@ -20,20 +19,20 @@ Features:
 """
 
 import argparse
-import requests
-import time
 import json
-import os
-import sys
-import math
 import logging
-import traceback
+import math
+import os
 import subprocess
-from pathlib import Path
+import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
+from pathlib import Path
 from statistics import median, quantiles
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Any
+
+import requests
 
 # Optional extras
 try:
@@ -135,7 +134,7 @@ def safe_json(obj):
         return str(obj)
 
 
-def load_context_file(path: str) -> Dict[str, Any]:
+def load_context_file(path: str) -> dict[str, Any]:
     """Load JSON or YAML file as context, return dict."""
     if not os.path.exists(path):
         raise FileNotFoundError(path)
@@ -157,7 +156,7 @@ def load_context_file(path: str) -> Dict[str, Any]:
     raise ValueError("Context file not JSON/YAML or unparseable")
 
 
-def run_cmd(cmd: List[str], capture: bool = False) -> Tuple[bool, Optional[str]]:
+def run_cmd(cmd: list[str], capture: bool = False) -> tuple[bool, str | None]:
     """Execute command and optionally capture output."""
     try:
         if capture:
@@ -197,9 +196,7 @@ def make_session(timeout: float, max_retries: int = MAX_RETRIES):
 # Circuit breaker manager
 # ============
 class CircuitManager:
-    def __init__(
-        self, threshold=CIRCUIT_BREAKER_THRESHOLD, timeout=CIRCUIT_BREAKER_TIMEOUT
-    ):
+    def __init__(self, threshold=CIRCUIT_BREAKER_THRESHOLD, timeout=CIRCUIT_BREAKER_TIMEOUT):
         self.threshold = threshold
         self.timeout = timeout
         self.failures = {}  # endpoint_name -> count
@@ -209,9 +206,7 @@ class CircuitManager:
         self.failures[name] = self.failures.get(name, 0) + 1
         if self.failures[name] >= self.threshold:
             self.tripped_at[name] = time.time()
-            logger.warning(
-                f"CIRCUIT TRIPPED for {name} (failures={self.failures[name]})"
-            )
+            logger.warning(f"CIRCUIT TRIPPED for {name} (failures={self.failures[name]})")
 
     def record_success(self, name: str):
         self.failures[name] = 0
@@ -235,8 +230,8 @@ class CircuitManager:
 # ============
 def do_request(
     session: requests.Session,
-    ep: Dict[str, Any],
-    auth_token: Optional[str],
+    ep: dict[str, Any],
+    auth_token: str | None,
     timeout: float,
 ):
     """Perform one request attempt (single try without high-level retry)"""
@@ -255,9 +250,7 @@ def do_request(
         elif method == "OPTIONS":
             r = session.options(url, headers=headers, timeout=timeout)
         else:
-            r = session.request(
-                method, url, json=body, headers=headers, timeout=timeout
-            )
+            r = session.request(method, url, json=body, headers=headers, timeout=timeout)
         duration = (time.time() - start) * 1000.0
         return {
             "ok": True,
@@ -273,8 +266,8 @@ def do_request(
 
 def test_endpoint_with_retries(
     session: requests.Session,
-    ep: Dict[str, Any],
-    auth_token: Optional[str],
+    ep: dict[str, Any],
+    auth_token: str | None,
     timeout: float,
     max_retries: int,
     circuit: CircuitManager,
@@ -302,10 +295,7 @@ def test_endpoint_with_retries(
         # success heuristics: ok True and acceptable status
         if res.get("ok") and (
             str(res.get("status_code", "")).startswith("2")
-            or (
-                ep.get("expect_status")
-                and res.get("status_code") in ep.get("expect_status")
-            )
+            or (ep.get("expect_status") and res.get("status_code") in ep.get("expect_status"))
         ):
             circuit.record_success(name)
             return {
@@ -329,7 +319,7 @@ def test_endpoint_with_retries(
 # ============
 # Aggregation & Metrics
 # ============
-def analyze_results(run_results: List[Dict[str, Any]]):
+def analyze_results(run_results: list[dict[str, Any]]):
     """Compute summary metrics and identify slow endpoints, error rates, etc."""
     summary = {"generated_at": now_ts(), "endpoints": []}
     total_calls = 0
@@ -338,9 +328,7 @@ def analyze_results(run_results: List[Dict[str, Any]]):
     for r in run_results:
         name = r["name"]
         if r.get("skipped"):
-            summary["endpoints"].append(
-                {"name": name, "status": "skipped", "details": r}
-            )
+            summary["endpoints"].append({"name": name, "status": "skipped", "details": r})
             continue
         attempts = r.get("attempts", 0)
         res_items = r.get("results", [])
@@ -397,18 +385,14 @@ def analyze_results(run_results: List[Dict[str, Any]]):
 # ============
 # Reporters
 # ============
-def write_json_report(
-    path: str, raw_results: List[Dict[str, Any]], summary: Dict[str, Any]
-):
+def write_json_report(path: str, raw_results: list[dict[str, Any]], summary: dict[str, Any]):
     payload = {"raw_results": raw_results, "summary": summary, "ts": now_ts()}
     with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
     logger.info(f"JSON report written to {path}")
 
 
-def write_md_report(
-    path: str, raw_results: List[Dict[str, Any]], summary: Dict[str, Any]
-):
+def write_md_report(path: str, raw_results: list[dict[str, Any]], summary: dict[str, Any]):
     lines = []
     lines.append(f"# Integration Report\n\nGenerated: {now_ts()}\n")
     lines.append("## Summary\n")
@@ -434,18 +418,16 @@ def write_md_report(
 
 def write_html_report(
     path: str,
-    raw_results: List[Dict[str, Any]],
-    summary: Dict[str, Any],
-    graph_png: Optional[str] = None,
+    raw_results: list[dict[str, Any]],
+    summary: dict[str, Any],
+    graph_png: str | None = None,
 ):
     html = ["<html><head><meta charset='utf-8'><title>Integration Report</title>"]
     html.append(
         "<style>body{font-family:sans-serif}table{border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;text-align:left}th{background:#f0f0f0}tr.fail{background:#ffe0e0}</style>"
     )
     html.append("</head><body>")
-    html.append(
-        f"<h1>Integration Report</h1><p><small>Generated: {now_ts()}</small></p>"
-    )
+    html.append(f"<h1>Integration Report</h1><p><small>Generated: {now_ts()}</small></p>")
     html.append("<h2>Summary</h2>")
     html.append("<ul>")
     html.append(f"<li><strong>Total calls:</strong> {summary['totals']['calls']}</li>")
@@ -477,7 +459,7 @@ def write_html_report(
     logger.info(f"HTML report written to {path}")
 
 
-def plot_latency(raw_results: List[Dict[str, Any]], out_png: str):
+def plot_latency(raw_results: list[dict[str, Any]], out_png: str):
     if not HAS_PLOT:
         logger.warning("matplotlib not available; skipping latency plot")
         return None
@@ -498,9 +480,7 @@ def plot_latency(raw_results: List[Dict[str, Any]], out_png: str):
     plt.barh(
         names,
         durations,
-        color=[
-            "green" if d < 100 else "orange" if d < 500 else "red" for d in durations
-        ],
+        color=["green" if d < 100 else "orange" if d < 500 else "red" for d in durations],
     )
     plt.xlabel("Duration (ms)")
     plt.title("Endpoint Latency (last attempt)")
@@ -515,9 +495,7 @@ def plot_latency(raw_results: List[Dict[str, Any]], out_png: str):
 # CLI / Orchestration
 # ============
 def parse_args():
-    p = argparse.ArgumentParser(
-        description="Validate frontend-backend integration (SILA System)"
-    )
+    p = argparse.ArgumentParser(description="Validate frontend-backend integration (SILA System)")
     p.add_argument(
         "--endpoints-file",
         "-e",
@@ -540,12 +518,8 @@ def parse_args():
         help="Command to run to retrieve auth token (e.g. ./scripts/get_dev_token.sh)",
         default=None,
     )
-    p.add_argument(
-        "--timeout", type=float, help="Per-request timeout (s)", default=DEFAULT_TIMEOUT
-    )
-    p.add_argument(
-        "--retries", type=int, help="Max retries per endpoint", default=MAX_RETRIES
-    )
+    p.add_argument("--timeout", type=float, help="Per-request timeout (s)", default=DEFAULT_TIMEOUT)
+    p.add_argument("--retries", type=int, help="Max retries per endpoint", default=MAX_RETRIES)
     p.add_argument(
         "--parallel",
         type=int,
@@ -570,9 +544,7 @@ def parse_args():
         help="Dry run (no real requests)",
         default=False,
     )
-    p.add_argument(
-        "--verbose", "-v", action="store_true", help="Verbose logging", default=False
-    )
+    p.add_argument("--verbose", "-v", action="store_true", help="Verbose logging", default=False)
     return p.parse_args()
 
 
@@ -597,9 +569,7 @@ def main():
             elif isinstance(data, list):
                 endpoints = data
             else:
-                logger.warning(
-                    "endpoints-file didn't contain 'endpoints' key; using defaults"
-                )
+                logger.warning("endpoints-file didn't contain 'endpoints' key; using defaults")
         except Exception as e:
             logger.error(f"Failed to load endpoints-file: {e}")
             sys.exit(1)
@@ -702,9 +672,7 @@ def main():
         graph_png = outdir / f"latency_{ts}.png"
         plot_latency(results, str(graph_png))
 
-    write_html_report(
-        str(html_path), results, summary, str(graph_png) if graph_png else None
-    )
+    write_html_report(str(html_path), results, summary, str(graph_png) if graph_png else None)
 
     logger.info(f"Reports written to {outdir}/")
     logger.info(f"- JSON: {json_path.name}")
@@ -725,9 +693,7 @@ def main():
                 critical_failures += 1
             else:
                 last = r.get("results")[-1] if r.get("results") else {}
-                if not last.get("ok") or not str(
-                    last.get("status_code", "")
-                ).startswith("2"):
+                if not last.get("ok") or not str(last.get("status_code", "")).startswith("2"):
                     critical_failures += 1
 
     logger.info(

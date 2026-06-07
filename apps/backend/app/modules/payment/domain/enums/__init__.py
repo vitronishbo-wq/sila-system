@@ -1,63 +1,72 @@
 """Enumeradores para o domínio de Pagamentos."""
-from enum import Enum
+
+from enum import StrEnum
 
 
-class PaymentStatus(str, Enum):
+class PaymentStatus(StrEnum):
     """Estados do ciclo de vida de um pagamento."""
-    PENDING = 'pending'
-    PROCESSING = 'processing'
-    COMPLETED = 'completed'
-    RECONCILED = 'reconciled'
-    FAILED = 'failed'
-    CANCELLED = 'cancelled'
-    REFUNDED = 'refunded'
-    DISPUTED = 'disputed'
+
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    RECONCILED = "reconciled"
+    FAILED = "failed"
+    CANCELLED = "cancelled"
+    REFUNDED = "refunded"
+    PARTIALLY_REFUNDED = "partially_refunded"
+    DISPUTED = "disputed"
 
 
-class PaymentMethod(str, Enum):
+class PaymentMethod(StrEnum):
     """Métodos de pagamento suportados."""
-    CASH = 'cash'
-    BANK_TRANSFER = 'bank_transfer'
-    CHEQUE = 'cheque'
-    DEBIT_CARD = 'debit_card'
-    CREDIT_CARD = 'credit_card'
-    INSTALLMENT_PLAN = 'installment_plan'
-    MULTICAIXA = 'multicaixa'
+
+    BNA = "bna"
+    MULTICAIXA = "multicaixa"
+    CASH = "cash"
+    BANK_TRANSFER = "bank_transfer"
+    CHEQUE = "cheque"
+    DEBIT_CARD = "debit_card"
+    CREDIT_CARD = "credit_card"
+    INSTALLMENT_PLAN = "installment_plan"
 
 
-class InvoiceStatus(str, Enum):
+class InvoiceStatus(StrEnum):
     """Estados do ciclo de vida de uma fatura."""
-    DRAFT = 'draft'
-    ISSUED = 'issued'
-    PENDING = 'pending'
-    PAID = 'paid'
-    OVERDUE = 'overdue'
-    CANCELLED = 'cancelled'
-    DISPUTED = 'disputed'
+
+    DRAFT = "draft"
+    ISSUED = "issued"
+    PENDING = "pending"
+    PAID = "paid"
+    OVERDUE = "overdue"
+    CANCELLED = "cancelled"
+    DISPUTED = "disputed"
 
 
-class TransactionType(str, Enum):
+class TransactionType(StrEnum):
     """Tipos de transações financeiras."""
-    PAYMENT = 'payment'
-    REFUND = 'refund'
-    REVERSAL = 'reversal'
-    ADJUSTMENT = 'adjustment'
+
+    PAYMENT = "payment"
+    REFUND = "refund"
+    REVERSAL = "reversal"
+    ADJUSTMENT = "adjustment"
 
 
-class TransactionStatus(str, Enum):
+class TransactionStatus(StrEnum):
     """Estados da transação no gateway de pagamento."""
-    PENDING = 'pending'
-    AUTHORIZED = 'authorized'
-    SETTLED = 'settled'
-    FAILED = 'failed'
-    CANCELLED = 'cancelled'
-    REFUNDED = 'refunded'
+
+    PENDING = "pending"
+    AUTHORIZED = "authorized"
+    SETTLED = "settled"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    CANCELLED = "cancelled"
+    REFUNDED = "refunded"
 
 
 __all__ = [
-    'PaymentStatus',
-    'PaymentMethod',
-    'InvoiceStatus',
-    'TransactionType',
-    'TransactionStatus',
+    "InvoiceStatus",
+    "PaymentMethod",
+    "PaymentStatus",
+    "TransactionStatus",
+    "TransactionType",
 ]

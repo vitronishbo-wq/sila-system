@@ -9,7 +9,6 @@ import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-
 DEFAULT_ROOTS = ("apps/backend/app/modules",)
 REQUIRED_LAYERS = ("api", "application", "domain", "infrastructure")
 IGNORED_DIRS = {
@@ -108,7 +107,11 @@ def is_type_checking_expr(expr: ast.AST) -> bool:
     if isinstance(expr, ast.Name):
         return expr.id == "TYPE_CHECKING"
     if isinstance(expr, ast.Attribute):
-        return isinstance(expr.value, ast.Name) and expr.value.id == "typing" and expr.attr == "TYPE_CHECKING"
+        return (
+            isinstance(expr.value, ast.Name)
+            and expr.value.id == "typing"
+            and expr.attr == "TYPE_CHECKING"
+        )
     return False
 
 
@@ -116,7 +119,11 @@ def is_guarded_by_type_checking(node: ast.AST, parent_map: dict[ast.AST, ast.AST
     current: ast.AST | None = node
     while current in parent_map:
         parent = parent_map[current]
-        if isinstance(parent, ast.If) and current in parent.body and is_type_checking_expr(parent.test):
+        if (
+            isinstance(parent, ast.If)
+            and current in parent.body
+            and is_type_checking_expr(parent.test)
+        ):
             return True
         current = parent
     return False
@@ -215,7 +222,9 @@ def transform_forbidden_imports(domain_file: Path, dry_run: bool) -> tuple[list[
         return actions, 0
 
     updated_lines = list(lines)
-    for start, end, replacement_block in sorted(replacements, key=lambda item: item[0], reverse=True):
+    for start, end, replacement_block in sorted(
+        replacements, key=lambda item: item[0], reverse=True
+    ):
         updated_lines[start : end + 1] = replacement_block
 
     if not has_type_checking_import(updated_lines):
@@ -277,7 +286,9 @@ def process_module(module_dir: Path, dry_run: bool) -> list[Action]:
         for domain_file in sorted(domain_dir.rglob("*.py")):
             if is_ignored_dir(domain_file):
                 continue
-            refactor_actions, _ = transform_forbidden_imports(domain_file=domain_file, dry_run=dry_run)
+            refactor_actions, _ = transform_forbidden_imports(
+                domain_file=domain_file, dry_run=dry_run
+            )
             actions.extend(refactor_actions)
 
     return actions
@@ -303,7 +314,9 @@ def main() -> int:
         print(f"Applied {len(all_actions)} refactor actions:")
         for action in all_actions:
             path = Path(action.path)
-            pretty_path = str(path.relative_to(repo_root)) if path.is_relative_to(repo_root) else action.path
+            pretty_path = (
+                str(path.relative_to(repo_root)) if path.is_relative_to(repo_root) else action.path
+            )
             print(f"- {action.kind}: {pretty_path} ({action.detail})")
 
     report = {

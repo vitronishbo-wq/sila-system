@@ -1,25 +1,18 @@
-from pathlib import Path
 import argparse
 import os
 import re
+from pathlib import Path
 
 DEFAULT_ROOT = Path("apps/backend/app")
 
 REPLACEMENTS = {
-    r"from app\.core\.iam\.infrastructure\.repositories":
-        "from apps.backend.app.modules.identity.infrastructure.repositories",
-    r"from app\.core\.iam\.infrastructure\.models":
-        "from apps.backend.app.modules.identity.infrastructure.models",
-    r"from app\.core\.iam\.domain\.entities":
-        "from apps.backend.app.modules.identity.bounded_contexts.iam.domain.entities",
-    r"from app\.core\.iam\.application\.services":
-        "from apps.backend.app.modules.identity.bounded_contexts.iam.application.services",
-    r"from app\.core\.iam\.domain\.value_objects":
-        "from apps.backend.app.modules.identity.bounded_contexts.credential_management.domain.value_objects",
-    r"import app\.core\.iam":
-        "import apps.backend.app.modules.identity",
-    r"from app\.core\.iam":
-        "from apps.backend.app.modules.identity",
+    r"from app\.core\.iam\.infrastructure\.repositories": "from apps.backend.app.modules.identity.infrastructure.repositories",
+    r"from app\.core\.iam\.infrastructure\.models": "from apps.backend.app.modules.identity.infrastructure.models",
+    r"from app\.core\.iam\.domain\.entities": "from apps.backend.app.modules.identity.bounded_contexts.iam.domain.entities",
+    r"from app\.core\.iam\.application\.services": "from apps.backend.app.modules.identity.bounded_contexts.iam.application.services",
+    r"from app\.core\.iam\.domain\.value_objects": "from apps.backend.app.modules.identity.bounded_contexts.credential_management.domain.value_objects",
+    r"import app\.core\.iam": "import apps.backend.app.modules.identity",
+    r"from app\.core\.iam": "from apps.backend.app.modules.identity",
 }
 
 

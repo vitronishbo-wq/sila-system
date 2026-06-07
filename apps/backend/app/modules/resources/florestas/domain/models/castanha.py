@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import Optional
 from uuid import UUID, uuid4
+
 
 @dataclass
 class Castanha:
@@ -8,8 +8,8 @@ class Castanha:
     codigo: str
     descricao: str
     ativo: bool = True
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
 
     @classmethod
-    def criar(cls, *, codigo: str, descricao: str) -> 'Castanha':
+    def criar(cls, *, codigo: str, descricao: str) -> "Castanha":
         return cls(id=uuid4(), codigo=codigo, descricao=descricao)

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusProva, TipoProva
 from apps.backend.app.modules.public_security.domain.models.prova_pericial import ProvaPericial
 
-class ProvaPericialRepositoryPort(ABC):
 
+class ProvaPericialRepositoryPort(ABC):
     @abstractmethod
     async def save(self, prova: ProvaPericial) -> ProvaPericial:
         raise NotImplementedError

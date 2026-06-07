@@ -76,9 +76,7 @@ def run_unit_tests():
                 print(result.stderr)
 
                 # Tenta extrair informações mesmo com falhas
-                test_count = result.stdout.count("PASSED") + result.stdout.count(
-                    "FAILED"
-                )
+                test_count = result.stdout.count("PASSED") + result.stdout.count("FAILED")
                 results[test_file] = {
                     "status": "failed",
                     "tests": test_count,
@@ -167,7 +165,7 @@ def analyze_test_functions():
             continue
 
         try:
-            with open(test_path, "r", encoding="utf-8") as f:
+            with open(test_path, encoding="utf-8") as f:
                 content = f.read()
 
             # Conta diferentes tipos de testes
@@ -205,19 +203,15 @@ def generate_summary_report(test_results, coverage_success, analysis):
 
     # Estatísticas dos testes
     total_tests = sum(result.get("tests", 0) for result in test_results.values())
-    passed_tests = sum(
-        1 for result in test_results.values() if result.get("status") == "passed"
-    )
-    failed_tests = sum(
-        1 for result in test_results.values() if result.get("status") == "failed"
-    )
+    passed_tests = sum(1 for result in test_results.values() if result.get("status") == "passed")
+    failed_tests = sum(1 for result in test_results.values() if result.get("status") == "failed")
 
-    print(f"\n📊 Estatísticas dos Testes:")
+    print("\n📊 Estatísticas dos Testes:")
     print(f"  • Total de testes executados: {total_tests}")
     print(f"  • Arquivos com sucesso: {passed_tests}")
     print(f"  • Arquivos com falhas: {failed_tests}")
     print(
-        f"  • Taxa de sucesso: {(passed_tests/len(test_results)*100):.1f}%"
+        f"  • Taxa de sucesso: {(passed_tests / len(test_results) * 100):.1f}%"
         if test_results
         else "N/A"
     )
@@ -227,7 +221,7 @@ def generate_summary_report(test_results, coverage_success, analysis):
     total_async_tests = sum(info.get("async_tests", 0) for info in analysis.values())
     total_lines = sum(info.get("lines", 0) for info in analysis.values())
 
-    print(f"\n📈 Análise de Código:")
+    print("\n📈 Análise de Código:")
     print(f"  • Funções de teste: {total_test_functions}")
     print(f"  • Testes assíncronos: {total_async_tests}")
     print(f"  • Linhas totais: {total_lines}")
@@ -285,15 +279,13 @@ def main():
     analysis = analyze_test_functions()
 
     # Gera relatório resumido
-    summary = generate_summary_report(test_results, coverage_success, analysis)
+    generate_summary_report(test_results, coverage_success, analysis)
 
     # Status final
     print("\n🏁 Status Final")
     print("=" * 60)
 
-    all_passed = all(
-        result.get("status") == "passed" for result in test_results.values()
-    )
+    all_passed = all(result.get("status") == "passed" for result in test_results.values())
 
     if all_passed and coverage_success:
         print("✅ Todos os testes passaram e cobertura OK!")

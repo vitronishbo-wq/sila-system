@@ -1,5 +1,4 @@
 class AnomalyDetector:
-
     def __init__(self):
         self.thresholds = {}
 

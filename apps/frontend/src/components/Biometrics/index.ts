@@ -1,7 +1,7 @@
 // Re-export all biometric components from a single entry point
-export { BiometricCapture } from './BiometricCapture';
-export { BiometricQualityCheck } from './BiometricQualityCheck';
-export { BiometricCaptureFlow } from './BiometricCaptureFlow';
+export { BiometricCapture } from '@/components/Biometrics/BiometricCapture';
+export { BiometricQualityCheck } from '@/components/Biometrics/BiometricQualityCheck';
+export { BiometricCaptureFlow } from '@/components/Biometrics/BiometricCaptureFlow';
 
 export type BiometricModalityType = 'facial' | 'fingerprint' | 'iris';
 

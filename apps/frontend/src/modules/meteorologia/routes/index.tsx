@@ -3,7 +3,7 @@
  */
 
 import type { RouteObject } from 'react-router-dom';
-import { MeteorologyPage } from '../pages/MeteorologyPage';
+import { MeteorologyPage } from '@/modules/meteorologia/pages/MeteorologyPage';
 
 export const meteorologiaRoutes: RouteObject[] = [
   {

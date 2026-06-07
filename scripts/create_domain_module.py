@@ -9,7 +9,6 @@ from pathlib import Path
 
 import yaml
 
-
 VALID_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
 
 
@@ -80,7 +79,9 @@ def register_in_graph(graph_path: Path, macro_domain: str, module_name: str) -> 
         submodules.sort()
 
     graph_path.parent.mkdir(parents=True, exist_ok=True)
-    graph_path.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=False), encoding="utf-8")
+    graph_path.write_text(
+        yaml.safe_dump(payload, sort_keys=False, allow_unicode=False), encoding="utf-8"
+    )
 
 
 def normalize_value(value: str | None, prompt: str) -> str:
@@ -98,7 +99,9 @@ def normalize_value(value: str | None, prompt: str) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create a domain module scaffold.")
     parser.add_argument("--module-name", help="New module name (snake_case).")
-    parser.add_argument("--macro-domain", help="Macro domain folder under apps/backend/app/modules.")
+    parser.add_argument(
+        "--macro-domain", help="Macro domain folder under apps/backend/app/modules."
+    )
     parser.add_argument(
         "--modules-root",
         default="apps/backend/app/modules",

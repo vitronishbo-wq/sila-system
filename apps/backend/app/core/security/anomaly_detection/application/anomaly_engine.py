@@ -1,5 +1,6 @@
 import statistics
 
+
 class AnomalyEngine:
     """Statistical anomaly detection using Z-score"""
 

@@ -2,6 +2,7 @@
 """
 Async stress test for PostgreSQL tables: energy_invoices and toll_passages.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -11,7 +12,7 @@ import random
 import sys
 import time
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from decimal import Decimal
 from pathlib import Path
 from uuid import uuid4
@@ -35,7 +36,9 @@ class Stats:
     batches: int = 0
 
 
-async def _insert_batch(engine, sql: str, rows: list[dict], sem: asyncio.Semaphore, stats: Stats, lock: asyncio.Lock):
+async def _insert_batch(
+    engine, sql: str, rows: list[dict], sem: asyncio.Semaphore, stats: Stats, lock: asyncio.Lock
+):
     async with sem:
         start = time.perf_counter()
         async with engine.begin() as conn:
@@ -79,7 +82,7 @@ def _invoice_rows(count: int, start_index: int) -> list[dict]:
                 "data_pagamento": None,
                 "valor_pago": None,
                 "metodo_pagamento": None,
-                "created_at": datetime.now(timezone.utc),
+                "created_at": datetime.now(UTC),
             }
         )
     return rows
@@ -87,9 +90,9 @@ def _invoice_rows(count: int, start_index: int) -> list[dict]:
 
 def _toll_rows(count: int, start_index: int) -> list[dict]:
     rows = []
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     for i in range(count):
-        idx = start_index + i
+        start_index + i
         rows.append(
             {
                 "id": uuid4(),
@@ -118,7 +121,9 @@ async def main() -> int:
         return 2
     url = _normalize_async_url(url)
 
-    engine = create_async_engine(url, pool_pre_ping=True, pool_size=args.concurrency, max_overflow=10)
+    engine = create_async_engine(
+        url, pool_pre_ping=True, pool_size=args.concurrency, max_overflow=10
+    )
     sem = asyncio.Semaphore(args.concurrency)
     lock = asyncio.Lock()
     stats = Stats()
@@ -168,7 +173,7 @@ async def main() -> int:
     avg_latency_ms = (stats.total_elapsed / stats.total_rows) * 1000 if stats.total_rows else 0.0
 
     report = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "count": args.count,
         "concurrency": args.concurrency,
         "batch_size": args.batch_size,

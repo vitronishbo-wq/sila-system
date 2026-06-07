@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 sys.path.insert(0, ".")
 
 try:
-    from app.main import app
+    from apps.backend.app.main import app
 
     print("✅ Successfully imported app")
 

@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from typing import Any
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
+
+from apps.backend.app.modules.governance.statistics.domain.enums import (
+    FonteDados,
+    Periodicidade,
+    TipoMetrica,
+)
+
 
 class MetricaCreate(BaseModel):
     nome: str = Field(..., min_length=3, max_length=200)
@@ -13,6 +21,7 @@ class MetricaCreate(BaseModel):
     periodicidade: Periodicidade
     formula: str | None = Field(None, max_length=500)
     parametros: dict[str, Any] | None = None
+
 
 class MetricaUpdate(BaseModel):
     nome: str | None = Field(None, min_length=3, max_length=200)
@@ -25,8 +34,10 @@ class MetricaUpdate(BaseModel):
     parametros: dict[str, Any] | None = None
     ativo: bool | None = None
 
+
 class MetricaValorUpdate(BaseModel):
     valor: float
+
 
 class MetricaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -47,6 +58,7 @@ class MetricaResponse(BaseModel):
     data_criacao: datetime
     data_atualizacao: datetime
     ultima_atualizacao: datetime | None
+
 
 class MetricaListaResponse(BaseModel):
     metricas: list[MetricaResponse]

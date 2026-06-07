@@ -12,14 +12,14 @@
  */
 
 import http from '@/api/http';
-import { InvoiceStatus } from '../types';
+import { InvoiceStatus } from '@/modules/pagamentos/types';
 import type {
   Invoice,
   Payment,
   FinanceStats,
   CreateInvoiceRequest,
   CreatePaymentRequest
-} from '../types';
+} from '@/modules/pagamentos/types';
 
 class FinanceService {
   private readonly apiBase = '/api/v1/financas';

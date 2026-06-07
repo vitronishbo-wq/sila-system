@@ -1,7 +1,27 @@
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_car_repository import SQLAlchemyCARRepository
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_condicionante_repository import SQLAlchemyCondicionanteRepository
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_estudo_repository import SQLAlchemyEstudoRepository
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_imovel_repository import SQLAlchemyImovelRepository
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_licenca_repository import SQLAlchemyLicencaRepository
-from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_proprietario_repository import SQLAlchemyProprietarioRepository
-__all__ = ['SQLAlchemyProprietarioRepository', 'SQLAlchemyImovelRepository', 'SQLAlchemyCARRepository', 'SQLAlchemyLicencaRepository', 'SQLAlchemyEstudoRepository', 'SQLAlchemyCondicionanteRepository']
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_car_repository import (
+    SQLAlchemyCARRepository,
+)
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_condicionante_repository import (
+    SQLAlchemyCondicionanteRepository,
+)
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_estudo_repository import (
+    SQLAlchemyEstudoRepository,
+)
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_imovel_repository import (
+    SQLAlchemyImovelRepository,
+)
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_licenca_repository import (
+    SQLAlchemyLicencaRepository,
+)
+from apps.backend.app.modules.resources.ambiente.infrastructure.repositories.sqlalchemy_proprietario_repository import (
+    SQLAlchemyProprietarioRepository,
+)
+
+__all__ = [
+    "SQLAlchemyProprietarioRepository",
+    "SQLAlchemyImovelRepository",
+    "SQLAlchemyCARRepository",
+    "SQLAlchemyLicencaRepository",
+    "SQLAlchemyEstudoRepository",
+    "SQLAlchemyCondicionanteRepository",
+]

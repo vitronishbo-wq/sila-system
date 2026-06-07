@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.defeso import Defeso
 
-class DefesoRepositoryPort(ABC):
 
+class DefesoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, defeso: Defeso) -> Defeso:
         pass

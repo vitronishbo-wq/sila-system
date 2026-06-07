@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { citizenAuthService } from '../services/citizenAuthService';
+import { citizenAuthService } from '@/services/citizenAuthService';
 
 interface CitizenLoginProps {
   onLoginSuccess: (token: string) => void;
@@ -33,7 +33,8 @@ const CitizenLogin: React.FC<CitizenLoginProps> = ({ onLoginSuccess, onBackClick
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">FUC - Cidadão</h1>
-        <p className="text-gray-600 mb-6">Aceda à sua Ficha Única do Cidadão</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Portal de Serviços</p>
+        <p className="text-gray-600 mb-6 mt-2">Aceda à sua Ficha Única do Cidadão</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

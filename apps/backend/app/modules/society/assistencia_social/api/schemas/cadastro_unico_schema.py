@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
+
 
 class CadastroUnicoCreate(BaseModel):
     citizen_id_responsavel: UUID
@@ -13,6 +17,7 @@ class CadastroUnicoCreate(BaseModel):
     acesso_agua: bool
     acesso_energia: bool
     observacoes: str | None = None
+
 
 class CadastroUnicoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -27,6 +32,7 @@ class CadastroUnicoResponse(BaseModel):
     status: StatusCadastroUnico
     data_cadastro: date
     observacoes: str | None
+
 
 class CadastroUnicoCreateResponse(BaseModel):
     cadastro: CadastroUnicoResponse

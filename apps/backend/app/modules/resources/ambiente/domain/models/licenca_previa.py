@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import TipoLicenca
-from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import LicencaAmbiental
+from apps.backend.app.modules.resources.ambiente.domain.models.licenca_ambiental import (
+    LicencaAmbiental,
+)
+
 
 class LicencaPrevia(LicencaAmbiental):
-
     @classmethod
-    def requerer(cls, *, numero_car: str, atividade: str) -> 'LicencaPrevia':
+    def requerer(cls, *, numero_car: str, atividade: str) -> LicencaPrevia:
         return cls.criar(numero_car=numero_car, tipo=TipoLicenca.PREVIA, atividade=atividade)

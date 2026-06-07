@@ -6,7 +6,6 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCOPE = REPO_ROOT / "apps" / "backend"
 DEFAULT_EXCLUDE_DIRS = {
@@ -21,30 +20,63 @@ DEFAULT_EXCLUDE_DIRS = {
 }
 
 DEFAULT_REPLACEMENTS: list[tuple[re.Pattern[str], str]] = [
-    (re.compile(r"\bfrom\s+modules\.education\b"), "from app.domain.academic"),
-    (re.compile(r"\bimport\s+modules\.education\b"), "import app.domain.academic"),
-    (re.compile(r"\bfrom\s+modules\.educacao\b"), "from app.domain.academic"),
-    (re.compile(r"\bimport\s+modules\.educacao\b"), "import app.domain.academic"),
-    (re.compile(r"\bfrom\s+modules\.finance\b"), "from app.domain.finance"),
-    (re.compile(r"\bimport\s+modules\.finance\b"), "import app.domain.finance"),
-    (re.compile(r"\bfrom\s+modules\.financas\b"), "from app.domain.finance"),
-    (re.compile(r"\bimport\s+modules\.financas\b"), "import app.domain.finance"),
-    (re.compile(r"\bfrom\s+modules\.civil_identity\b"), "from app.domain.identity"),
-    (re.compile(r"\bimport\s+modules\.civil_identity\b"), "import app.domain.identity"),
-    (re.compile(r"\bfrom\s+modules\.identidade_civil\b"), "from app.domain.identity"),
-    (re.compile(r"\bimport\s+modules\.identidade_civil\b"), "import app.domain.identity"),
-    (re.compile(r"\bfrom\s+app\.citizen\.core\.models\b"), "from apps.backend.app.modules.identity.domain.models"),
-    (re.compile(r"\bimport\s+app\.citizen\.core\.models\b"), "import apps.backend.app.modules.identity.domain.models"),
-    (re.compile(r"\bfrom\s+app\.citizen\.service\b"), "from apps.backend.app.modules.identity.service"),
-    (re.compile(r"\bimport\s+app\.citizen\.service\b"), "import apps.backend.app.modules.identity.service"),
+    (re.compile(r"\bfrom\s+modules\.education\b"), "from apps.backend.app.domain.academic"),
+    (re.compile(r"\bimport\s+modules\.education\b"), "import apps.backend.app.domain.academic"),
+    (re.compile(r"\bfrom\s+modules\.educacao\b"), "from apps.backend.app.domain.academic"),
+    (re.compile(r"\bimport\s+modules\.educacao\b"), "import apps.backend.app.domain.academic"),
+    (re.compile(r"\bfrom\s+modules\.finance\b"), "from apps.backend.app.domain.finance"),
+    (re.compile(r"\bimport\s+modules\.finance\b"), "import apps.backend.app.domain.finance"),
+    (re.compile(r"\bfrom\s+modules\.financas\b"), "from apps.backend.app.domain.finance"),
+    (re.compile(r"\bimport\s+modules\.financas\b"), "import apps.backend.app.domain.finance"),
+    (re.compile(r"\bfrom\s+modules\.civil_identity\b"), "from apps.backend.app.domain.identity"),
+    (re.compile(r"\bimport\s+modules\.civil_identity\b"), "import apps.backend.app.domain.identity"),
+    (re.compile(r"\bfrom\s+modules\.identidade_civil\b"), "from apps.backend.app.domain.identity"),
+    (re.compile(r"\bimport\s+modules\.identidade_civil\b"), "import apps.backend.app.domain.identity"),
+    (
+        re.compile(r"\bfrom\s+app\.citizen\.core\.models\b"),
+        "from apps.backend.app.modules.identity.domain.models",
+    ),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.core\.models\b"),
+        "import apps.backend.app.modules.identity.domain.models",
+    ),
+    (
+        re.compile(r"\bfrom\s+app\.citizen\.service\b"),
+        "from apps.backend.app.modules.identity.service",
+    ),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.service\b"),
+        "import apps.backend.app.modules.identity.service",
+    ),
     (re.compile(r"\bfrom\s+app\.citizen\.enums\b"), "from apps.backend.app.modules.identity.enums"),
-    (re.compile(r"\bimport\s+app\.citizen\.enums\b"), "import apps.backend.app.modules.identity.enums"),
-    (re.compile(r"\bfrom\s+app\.citizen\.exceptions\b"), "from apps.backend.app.modules.identity.exceptions"),
-    (re.compile(r"\bimport\s+app\.citizen\.exceptions\b"), "import apps.backend.app.modules.identity.exceptions"),
-    (re.compile(r"\bfrom\s+app\.citizen\.events\.models\b"), "from apps.backend.app.modules.identity.events.models"),
-    (re.compile(r"\bimport\s+app\.citizen\.events\.models\b"), "import apps.backend.app.modules.identity.events.models"),
-    (re.compile(r"\bfrom\s+app\.citizen\.projections\.projectors\b"), "from apps.backend.app.modules.identity.projections.projectors"),
-    (re.compile(r"\bimport\s+app\.citizen\.projections\.projectors\b"), "import apps.backend.app.modules.identity.projections.projectors"),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.enums\b"),
+        "import apps.backend.app.modules.identity.enums",
+    ),
+    (
+        re.compile(r"\bfrom\s+app\.citizen\.exceptions\b"),
+        "from apps.backend.app.modules.identity.exceptions",
+    ),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.exceptions\b"),
+        "import apps.backend.app.modules.identity.exceptions",
+    ),
+    (
+        re.compile(r"\bfrom\s+app\.citizen\.events\.models\b"),
+        "from apps.backend.app.modules.identity.events.models",
+    ),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.events\.models\b"),
+        "import apps.backend.app.modules.identity.events.models",
+    ),
+    (
+        re.compile(r"\bfrom\s+app\.citizen\.projections\.projectors\b"),
+        "from apps.backend.app.modules.identity.projections.projectors",
+    ),
+    (
+        re.compile(r"\bimport\s+app\.citizen\.projections\.projectors\b"),
+        "import apps.backend.app.modules.identity.projections.projectors",
+    ),
 ]
 
 
@@ -58,7 +90,7 @@ def is_excluded(path: Path) -> bool:
     for part in path.parts:
         if part in DEFAULT_EXCLUDE_DIRS:
             return True
-        if part.startswith("app.backup."):
+        if part.startswith("apps.backend.app.backup."):
             return True
     return False
 
@@ -75,11 +107,7 @@ def transform_content(content: str) -> tuple[str, int]:
 def iter_python_files(scope: Path) -> list[Path]:
     if scope.is_file() and scope.suffix == ".py":
         return [scope]
-    return sorted(
-        path
-        for path in scope.rglob("*.py")
-        if path.is_file() and not is_excluded(path)
-    )
+    return sorted(path for path in scope.rglob("*.py") if path.is_file() and not is_excluded(path))
 
 
 def apply_fixes(*, scope: Path, dry_run: bool) -> tuple[list[FileChange], int]:
@@ -132,7 +160,9 @@ def main() -> int:
         f"[SUMMARY] files_changed={len(changes)} replacements={replacement_count} scope={args.scope}"
     )
     for item in changes:
-        relative = item.path.relative_to(REPO_ROOT) if item.path.is_relative_to(REPO_ROOT) else item.path
+        relative = (
+            item.path.relative_to(REPO_ROOT) if item.path.is_relative_to(REPO_ROOT) else item.path
+        )
         print(f" - {relative} ({item.replacements} replacements)")
     return 0
 

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class TreasuryAccount:
     id: str
@@ -12,5 +13,5 @@ class TreasuryAccount:
 
     def debit(self, amount: float) -> None:
         if amount > self.balance:
-            raise ValueError('Insufficient treasury balance')
+            raise ValueError("Insufficient treasury balance")
         self.balance -= amount

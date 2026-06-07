@@ -1,4 +1,15 @@
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
-__all__ = ['PesquisadorRepositoryPort', 'InstituicaoPesquisaRepositoryPort', 'ProjetoPesquisaRepositoryPort']
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import (
+    InstituicaoPesquisaRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import (
+    PesquisadorRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import (
+    ProjetoPesquisaRepositoryPort,
+)
+
+__all__ = [
+    "PesquisadorRepositoryPort",
+    "InstituicaoPesquisaRepositoryPort",
+    "ProjetoPesquisaRepositoryPort",
+]

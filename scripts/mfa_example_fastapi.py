@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, EmailStr
-import pyotp
-import qrcode
 import base64
 from io import BytesIO
+
+import pyotp
+import qrcode
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, EmailStr
 
 
 class SetupRequest(BaseModel):

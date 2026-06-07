@@ -11,7 +11,7 @@ Fluxo de Negócio:
 """
 
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from uuid import uuid4
 
 import pytest
@@ -31,7 +31,7 @@ class MockHealthService:
         patient = {
             "id": len(self.patients) + 1,
             **patient_data,
-            "registered_at": datetime.now(timezone.utc),
+            "registered_at": datetime.now(UTC),
             "status": "ACTIVE",
         }
         self.patients.append(patient)
@@ -42,7 +42,7 @@ class MockHealthService:
         record = {
             "id": len(self.medical_records) + 1,
             **record_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
         }
         self.medical_records.append(record)
         return record
@@ -57,7 +57,7 @@ class MockHealthService:
             "id": len(self.vital_signs) + 1,
             "patient_id": patient_id,
             **vital_data,
-            "recorded_at": datetime.now(timezone.utc),
+            "recorded_at": datetime.now(UTC),
         }
         self.vital_signs.append(vital_sign)
 
@@ -70,7 +70,7 @@ class MockHealthService:
         appointment = {
             "id": len(self.appointments) + 1,
             **appointment_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "SCHEDULED",
         }
         self.appointments.append(appointment)
@@ -168,7 +168,7 @@ class MockHealthMonitoringService:
         alert = {
             "id": len(self.health_alerts) + 1,
             **alert_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "ACTIVE",
         }
         self.health_alerts.append(alert)
@@ -184,7 +184,7 @@ class MockHealthMonitoringService:
         session = {
             "id": len(self.monitoring_sessions) + 1,
             **session_data,
-            "started_at": datetime.now(timezone.utc),
+            "started_at": datetime.now(UTC),
             "status": "ACTIVE",
         }
         self.monitoring_sessions.append(session)
@@ -194,7 +194,7 @@ class MockHealthMonitoringService:
         """Analisa tendências de saúde do paciente."""
         vitals = []
         if self.health_service is not None:
-            cutoff = datetime.now(timezone.utc) - timedelta(hours=time_range_hours)
+            cutoff = datetime.now(UTC) - timedelta(hours=time_range_hours)
             vitals = [
                 v
                 for v in self.health_service.vital_signs
@@ -248,7 +248,7 @@ class MockHealthMonitoringService:
             escalation = {
                 "alert_id": alert["id"],
                 "escalated_to": "EMERGENCY_RESPONSE",
-                "escalated_at": datetime.now(timezone.utc),
+                "escalated_at": datetime.now(UTC),
                 "reason": "Critical health alert requires immediate response",
             }
             self.escalation_rules.append(escalation)
@@ -278,7 +278,7 @@ class MockHealthNotificationService:
         notification = {
             "id": len(self.notifications) + 1,
             **notification_data,
-            "sent_at": datetime.now(timezone.utc),
+            "sent_at": datetime.now(UTC),
             "type": "HEALTH_ALERT",
         }
         self.notifications.append(notification)
@@ -289,7 +289,7 @@ class MockHealthNotificationService:
         alert = {
             "id": len(self.emergency_alerts) + 1,
             **emergency_data,
-            "sent_at": datetime.now(timezone.utc),
+            "sent_at": datetime.now(UTC),
             "priority": "URGENT",
             "type": "EMERGENCY",
         }
@@ -301,7 +301,7 @@ class MockHealthNotificationService:
         reminder = {
             "id": len(self.appointment_reminders) + 1,
             **reminder_data,
-            "sent_at": datetime.now(timezone.utc),
+            "sent_at": datetime.now(UTC),
             "type": "APPOINTMENT_REMINDER",
         }
         self.appointment_reminders.append(reminder)
@@ -312,7 +312,7 @@ class MockHealthNotificationService:
         campaign = {
             "id": len(self.health_campaigns) + 1,
             **campaign_data,
-            "sent_at": datetime.now(timezone.utc),
+            "sent_at": datetime.now(UTC),
             "type": "HEALTH_CAMPAIGN",
         }
         self.health_campaigns.append(campaign)
@@ -482,7 +482,7 @@ class TestHealthMonitoringNotificationFlow:
         patient = await health_service.register_patient(sample_patient_data)
 
         # 2. Agendar consulta
-        appointment_date = datetime.now(timezone.utc) + timedelta(days=2)
+        appointment_date = datetime.now(UTC) + timedelta(days=2)
         appointment = await health_service.schedule_appointment(
             {
                 "patient_id": patient["id"],
@@ -496,7 +496,7 @@ class TestHealthMonitoringNotificationFlow:
         assert appointment["status"] == "SCHEDULED"
 
         # 3. Criar alerta de monitoramento para lembrete
-        reminder_alert = await monitoring_service.create_health_alert(
+        await monitoring_service.create_health_alert(
             {
                 "patient_id": patient["id"],
                 "alert_type": "APPOINTMENT_REMINDER",
@@ -559,7 +559,7 @@ class TestHealthMonitoringNotificationFlow:
             },
         ]
 
-        for i, vital_data in enumerate(vital_signs_data):
+        for _i, vital_data in enumerate(vital_signs_data):
             await health_service.record_vital_signs(patient["id"], vital_data)
             # Simular intervalo de tempo
             await asyncio.sleep(0.01)
@@ -572,7 +572,7 @@ class TestHealthMonitoringNotificationFlow:
         assert trends["overall_risk"] in ["MEDIUM", "HIGH"]
 
         # 4. Criar alerta de tendência
-        trend_alert = await monitoring_service.create_health_alert(
+        await monitoring_service.create_health_alert(
             {
                 "patient_id": patient["id"],
                 "alert_type": "TREND_ANALYSIS",
@@ -625,9 +625,7 @@ class TestHealthMonitoringNotificationFlow:
         ]
 
         # 3. Enviar campanha em lote
-        results = await notification_service.send_bulk_health_notifications(
-            campaign_notifications
-        )
+        results = await notification_service.send_bulk_health_notifications(campaign_notifications)
 
         assert len(results) == 50
         assert all(r["type"] in ["HEALTH_ALERT", "EMERGENCY"] for r in results)

@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
+
+from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import (
+    BemCulturalRepositoryPort,
+)
 from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
 from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
-from apps.backend.app.modules.society.cultura.infrastructure.models.bem_cultural_model import BemCulturalModel
+from apps.backend.app.modules.society.cultura.infrastructure.models.bem_cultural_model import (
+    BemCulturalModel,
+)
+
 
 class SQLAlchemyBemCulturalRepository(BemCulturalRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,7 +48,9 @@ class SQLAlchemyBemCulturalRepository(BemCulturalRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_registro(self, registro_ipat: str) -> BemCultural | None:
-        stmt = select(BemCulturalModel).where(BemCulturalModel.registro_ipat == registro_ipat.strip())
+        stmt = select(BemCulturalModel).where(
+            BemCulturalModel.registro_ipat == registro_ipat.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -51,17 +60,29 @@ class SQLAlchemyBemCulturalRepository(BemCulturalRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoPatrimonio) -> list[BemCultural]:
-        stmt = select(BemCulturalModel).where(BemCulturalModel.tipo == tipo.value).order_by(BemCulturalModel.nome.asc())
+        stmt = (
+            select(BemCulturalModel)
+            .where(BemCulturalModel.tipo == tipo.value)
+            .order_by(BemCulturalModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[BemCultural]:
-        stmt = select(BemCulturalModel).where(func.lower(BemCulturalModel.municipio) == municipio.strip().lower()).order_by(BemCulturalModel.nome.asc())
+        stmt = (
+            select(BemCulturalModel)
+            .where(func.lower(BemCulturalModel.municipio) == municipio.strip().lower())
+            .order_by(BemCulturalModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status_tombamento(self, status: StatusTombamento) -> list[BemCultural]:
-        stmt = select(BemCulturalModel).where(BemCulturalModel.status_tombamento == status.value).order_by(BemCulturalModel.nome.asc())
+        stmt = (
+            select(BemCulturalModel)
+            .where(BemCulturalModel.status_tombamento == status.value)
+            .order_by(BemCulturalModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -75,10 +96,30 @@ class SQLAlchemyBemCulturalRepository(BemCulturalRepositoryPort):
 
     async def next_registro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(BemCulturalModel).where(BemCulturalModel.registro_ipat.like(f'IPAT/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(BemCulturalModel)
+            .where(BemCulturalModel.registro_ipat.like(f"IPAT/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'IPAT/{ano}/{count + 1:05d}'
+        return f"IPAT/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: BemCulturalModel) -> BemCultural:
-        return BemCultural(id=model.id, registro_ipat=model.registro_ipat, nome=model.nome, tipo=TipoPatrimonio(model.tipo), descricao=model.descricao, localizacao=model.localizacao, municipio=model.municipio, provincia=model.provincia, data_cadastro=model.data_cadastro, status_tombamento=StatusTombamento(model.status_tombamento), coordenadas_lat=model.coordenadas_lat, coordenadas_long=model.coordenadas_long, tombamento_id=model.tombamento_id, ativo=model.ativo, observacoes=model.observacoes)
+        return BemCultural(
+            id=model.id,
+            registro_ipat=model.registro_ipat,
+            nome=model.nome,
+            tipo=TipoPatrimonio(model.tipo),
+            descricao=model.descricao,
+            localizacao=model.localizacao,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            data_cadastro=model.data_cadastro,
+            status_tombamento=StatusTombamento(model.status_tombamento),
+            coordenadas_lat=model.coordenadas_lat,
+            coordenadas_long=model.coordenadas_long,
+            tombamento_id=model.tombamento_id,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

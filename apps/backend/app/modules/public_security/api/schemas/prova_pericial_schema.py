@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.public_security.domain.enums import StatusProva, TipoProva
+
 
 class ProvaPericialCreate(BaseModel):
     ocorrencia_id: UUID
@@ -14,12 +18,15 @@ class ProvaPericialCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class ProvaPericialStatusUpdate(BaseModel):
     status: StatusProva
     observacoes: str | None = None
 
+
 class ProvaPericialVinculoCadeia(BaseModel):
     cadeia_custodia_id: UUID
+
 
 class ProvaPericialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

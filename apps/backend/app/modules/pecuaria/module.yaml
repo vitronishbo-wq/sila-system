@@ -1,0 +1,22 @@
+code: pecuaria
+module: pecuaria
+name: Pecuaria
+description: Registro e controle sanitario animal.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: pecuaria
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []

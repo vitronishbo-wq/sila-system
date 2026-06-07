@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import Any
 
-class GestaoFundiariaServicePort(ABC):
 
+class GestaoFundiariaServicePort(ABC):
     @abstractmethod
     async def available(self) -> bool:
         pass

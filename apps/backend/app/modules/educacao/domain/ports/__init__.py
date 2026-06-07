@@ -1,2 +1,31 @@
-from apps.backend.app.modules.educacao.application.ports import BoletimRepositoryPort, CertificadoRepositoryPort, ConcursoRepositoryPort, EmpregoRepositoryPort, EscolaRepositoryPort, FormacaoRepositoryPort, InscricaoRepositoryPort, MatriculaRepositoryPort, PropinaRepositoryPort, TransferenciaRepositoryPort, TurmaRepositoryPort, UniversidadeRepositoryPort, WorkflowRepositoryPort
-__all__ = ['BoletimRepositoryPort', 'CertificadoRepositoryPort', 'ConcursoRepositoryPort', 'EmpregoRepositoryPort', 'EscolaRepositoryPort', 'FormacaoRepositoryPort', 'InscricaoRepositoryPort', 'MatriculaRepositoryPort', 'PropinaRepositoryPort', 'TransferenciaRepositoryPort', 'TurmaRepositoryPort', 'UniversidadeRepositoryPort', 'WorkflowRepositoryPort']
+from apps.backend.app.modules.educacao.application.ports import (
+    BoletimRepositoryPort,
+    CertificadoRepositoryPort,
+    ConcursoRepositoryPort,
+    EmpregoRepositoryPort,
+    EscolaRepositoryPort,
+    FormacaoRepositoryPort,
+    InscricaoRepositoryPort,
+    MatriculaRepositoryPort,
+    PropinaRepositoryPort,
+    TransferenciaRepositoryPort,
+    TurmaRepositoryPort,
+    UniversidadeRepositoryPort,
+    WorkflowRepositoryPort,
+)
+
+__all__ = [
+    "BoletimRepositoryPort",
+    "CertificadoRepositoryPort",
+    "ConcursoRepositoryPort",
+    "EmpregoRepositoryPort",
+    "EscolaRepositoryPort",
+    "FormacaoRepositoryPort",
+    "InscricaoRepositoryPort",
+    "MatriculaRepositoryPort",
+    "PropinaRepositoryPort",
+    "TransferenciaRepositoryPort",
+    "TurmaRepositoryPort",
+    "UniversidadeRepositoryPort",
+    "WorkflowRepositoryPort",
+]

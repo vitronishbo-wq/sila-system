@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import FaturaTelecom
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.fatura_telecom import (
+    FaturaTelecom,
+)
+
 
 class FaturaRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, fatura: FaturaTelecom) -> FaturaTelecom:
         raise NotImplementedError

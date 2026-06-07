@@ -1,4 +1,11 @@
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import AeronaveService
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import OcorrenciaService
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import VooService
-__all__ = ['AeronaveService', 'VooService', 'OcorrenciaService']
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.aeronave_service import (
+    AeronaveService,
+)
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.ocorrencia_service import (
+    OcorrenciaService,
+)
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.services.voo_service import (
+    VooService,
+)
+
+__all__ = ["AeronaveService", "VooService", "OcorrenciaService"]

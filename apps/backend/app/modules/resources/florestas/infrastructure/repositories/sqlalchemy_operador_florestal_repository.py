@@ -1,14 +1,23 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import ConcessionarioFlorestalRepositoryPort
+
+from apps.backend.app.modules.resources.florestas.application.ports.concessionario_florestal_repository_port import (
+    ConcessionarioFlorestalRepositoryPort,
+)
 from apps.backend.app.modules.resources.florestas.domain.enums import TipoOperadorFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
-from apps.backend.app.modules.resources.florestas.infrastructure.models.operador_florestal_model import OperadorFlorestalModel
+from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import (
+    ConcessionarioFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.infrastructure.models.operador_florestal_model import (
+    OperadorFlorestalModel,
+)
+
 
 class SQLAlchemyOperadorFlorestalRepository(ConcessionarioFlorestalRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -36,7 +45,7 @@ class SQLAlchemyOperadorFlorestalRepository(ConcessionarioFlorestalRepositoryPor
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_all(self, ativo: bool | None=None) -> list[ConcessionarioFlorestal]:
+    async def list_all(self, ativo: bool | None = None) -> list[ConcessionarioFlorestal]:
         stmt = select(OperadorFlorestalModel)
         if ativo is not None:
             stmt = stmt.where(OperadorFlorestalModel.ativo == ativo)
@@ -45,5 +54,15 @@ class SQLAlchemyOperadorFlorestalRepository(ConcessionarioFlorestalRepositoryPor
 
     @staticmethod
     def _to_domain(model: OperadorFlorestalModel) -> ConcessionarioFlorestal:
-        return ConcessionarioFlorestal(id=model.id, nome=model.nome, nif=model.nif, tipo_operador=TipoOperadorFlorestal(model.tipo_operador), data_registro=model.data_registro, ativo=model.ativo, observacoes=model.observacoes)
+        return ConcessionarioFlorestal(
+            id=model.id,
+            nome=model.nome,
+            nif=model.nif,
+            tipo_operador=TipoOperadorFlorestal(model.tipo_operador),
+            data_registro=model.data_registro,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )
+
+
 SqlalchemyOperadorFlorestalRepository = SQLAlchemyOperadorFlorestalRepository

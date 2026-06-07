@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from sqlalchemy import select, func
+
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import IndicadorQualidadeRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import IndicadorQualidadeModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import (
+    IndicadorQualidadeRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusIndicadorQualidade,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import (
+    IndicadorQualidade,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.indicador_qualidade_model import (
+    IndicadorQualidadeModel,
+)
+
 
 class SQLAlchemyIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,27 +52,56 @@ class SQLAlchemyIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_indicador: str) -> IndicadorQualidade | None:
-        stmt = select(IndicadorQualidadeModel).where(IndicadorQualidadeModel.codigo_indicador == codigo_indicador.strip())
+        stmt = select(IndicadorQualidadeModel).where(
+            IndicadorQualidadeModel.codigo_indicador == codigo_indicador.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def get_by_operadora_periodo(self, operadora_id: UUID, referencia_ano: int, referencia_mes: int) -> IndicadorQualidade | None:
-        stmt = select(IndicadorQualidadeModel).where(IndicadorQualidadeModel.operadora_id == operadora_id, IndicadorQualidadeModel.referencia_ano == referencia_ano, IndicadorQualidadeModel.referencia_mes == referencia_mes).limit(1)
+    async def get_by_operadora_periodo(
+        self, operadora_id: UUID, referencia_ano: int, referencia_mes: int
+    ) -> IndicadorQualidade | None:
+        stmt = (
+            select(IndicadorQualidadeModel)
+            .where(
+                IndicadorQualidadeModel.operadora_id == operadora_id,
+                IndicadorQualidadeModel.referencia_ano == referencia_ano,
+                IndicadorQualidadeModel.referencia_mes == referencia_mes,
+            )
+            .limit(1)
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_all(self) -> list[IndicadorQualidade]:
-        stmt = select(IndicadorQualidadeModel).order_by(IndicadorQualidadeModel.referencia_ano.desc(), IndicadorQualidadeModel.referencia_mes.desc())
+        stmt = select(IndicadorQualidadeModel).order_by(
+            IndicadorQualidadeModel.referencia_ano.desc(),
+            IndicadorQualidadeModel.referencia_mes.desc(),
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_operadora(self, operadora_id: UUID) -> list[IndicadorQualidade]:
-        stmt = select(IndicadorQualidadeModel).where(IndicadorQualidadeModel.operadora_id == operadora_id).order_by(IndicadorQualidadeModel.referencia_ano.desc(), IndicadorQualidadeModel.referencia_mes.desc())
+        stmt = (
+            select(IndicadorQualidadeModel)
+            .where(IndicadorQualidadeModel.operadora_id == operadora_id)
+            .order_by(
+                IndicadorQualidadeModel.referencia_ano.desc(),
+                IndicadorQualidadeModel.referencia_mes.desc(),
+            )
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusIndicadorQualidade) -> list[IndicadorQualidade]:
-        stmt = select(IndicadorQualidadeModel).where(IndicadorQualidadeModel.status == status.value).order_by(IndicadorQualidadeModel.referencia_ano.desc(), IndicadorQualidadeModel.referencia_mes.desc())
+        stmt = (
+            select(IndicadorQualidadeModel)
+            .where(IndicadorQualidadeModel.status == status.value)
+            .order_by(
+                IndicadorQualidadeModel.referencia_ano.desc(),
+                IndicadorQualidadeModel.referencia_mes.desc(),
+            )
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -75,10 +115,30 @@ class SQLAlchemyIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(IndicadorQualidadeModel).where(IndicadorQualidadeModel.codigo_indicador.like(f'IND/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(IndicadorQualidadeModel)
+            .where(IndicadorQualidadeModel.codigo_indicador.like(f"IND/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'IND/{ano}/{count + 1:05d}'
+        return f"IND/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: IndicadorQualidadeModel) -> IndicadorQualidade:
-        return IndicadorQualidade(id=model.id, codigo_indicador=model.codigo_indicador, operadora_id=model.operadora_id, referencia_ano=model.referencia_ano, referencia_mes=model.referencia_mes, total_medicoes=model.total_medicoes, disponibilidade_media_percentual=float(model.disponibilidade_media_percentual), latencia_media_ms=float(model.latencia_media_ms), jitter_medio_ms=float(model.jitter_medio_ms), perda_pacotes_media_percentual=float(model.perda_pacotes_media_percentual), conformidade_percentual=float(model.conformidade_percentual), data_calculo=model.data_calculo, status=StatusIndicadorQualidade(model.status), observacoes=model.observacoes, ativo=model.ativo)
+        return IndicadorQualidade(
+            id=model.id,
+            codigo_indicador=model.codigo_indicador,
+            operadora_id=model.operadora_id,
+            referencia_ano=model.referencia_ano,
+            referencia_mes=model.referencia_mes,
+            total_medicoes=model.total_medicoes,
+            disponibilidade_media_percentual=float(model.disponibilidade_media_percentual),
+            latencia_media_ms=float(model.latencia_media_ms),
+            jitter_medio_ms=float(model.jitter_medio_ms),
+            perda_pacotes_media_percentual=float(model.perda_pacotes_media_percentual),
+            conformidade_percentual=float(model.conformidade_percentual),
+            data_calculo=model.data_calculo,
+            status=StatusIndicadorQualidade(model.status),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

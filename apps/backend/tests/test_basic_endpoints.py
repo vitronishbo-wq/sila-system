@@ -41,9 +41,9 @@ class TestBasicEndpoints:
         response = client.get("/health", timeout=test_settings["health_timeout"])
 
         # Validação básica
-        assert (
-            response.status_code == 200
-        ), f"Status code esperado 200, recebido {response.status_code}"
+        assert response.status_code == 200, (
+            f"Status code esperado 200, recebido {response.status_code}"
+        )
         assert response.headers["content-type"] == "application/json"
 
         # Validação de conteúdo
@@ -179,9 +179,7 @@ class TestBasicEndpoints:
         assert "access-control-allow-methods" in response.headers
 
     @pytest.mark.parametrize("endpoint", ["/health", "/info", "/", "/docs"])
-    def test_endpoints_response_time(
-        self, client: httpx.Client, endpoint, test_settings
-    ):
+    def test_endpoints_response_time(self, client: httpx.Client, endpoint, test_settings):
         """
         Testa tempo de resposta dos endpoints principais
 
@@ -200,14 +198,10 @@ class TestBasicEndpoints:
         assert response.status_code == 200
 
         # Validação de tempo de resposta (deve responder em menos de 5 segundos)
-        assert (
-            response_time < 5.0
-        ), f"Endpoint {endpoint} demorou demais: {response_time:.2f}s"
+        assert response_time < 5.0, f"Endpoint {endpoint} demorou demais: {response_time:.2f}s"
 
     @pytest.mark.asyncio
-    async def test_health_endpoint_async_real(
-        self, async_client: httpx.AsyncClient, test_settings
-    ):
+    async def test_health_endpoint_async_real(self, async_client: httpx.AsyncClient, test_settings):
         """
         Testa o endpoint /health de forma assíncrona
 
@@ -215,14 +209,12 @@ class TestBasicEndpoints:
             async_client: Cliente HTTP assíncrono
             test_settings: Configurações de teste
         """
-        response = await async_client.get(
-            "/health", timeout=test_settings["health_timeout"]
-        )
+        response = await async_client.get("/health", timeout=test_settings["health_timeout"])
 
         # Validação básica
-        assert (
-            response.status_code == 200
-        ), f"Status code esperado 200, recebido {response.status_code}"
+        assert response.status_code == 200, (
+            f"Status code esperado 200, recebido {response.status_code}"
+        )
 
         # Validação de conteúdo
         data = response.json()

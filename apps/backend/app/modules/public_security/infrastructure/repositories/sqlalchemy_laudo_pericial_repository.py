@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
+
+from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import (
+    LaudoPericialRepositoryPort,
+)
 from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
 from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
-from apps.backend.app.modules.public_security.infrastructure.models.laudo_pericial_model import LaudoPericialModel
+from apps.backend.app.modules.public_security.infrastructure.models.laudo_pericial_model import (
+    LaudoPericialModel,
+)
+
 
 class SQLAlchemyLaudoPericialRepository(LaudoPericialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -38,7 +45,9 @@ class SQLAlchemyLaudoPericialRepository(LaudoPericialRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_numero(self, numero_laudo: str) -> LaudoPericial | None:
-        stmt = select(LaudoPericialModel).where(LaudoPericialModel.numero_laudo == numero_laudo.strip())
+        stmt = select(LaudoPericialModel).where(
+            LaudoPericialModel.numero_laudo == numero_laudo.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -48,17 +57,29 @@ class SQLAlchemyLaudoPericialRepository(LaudoPericialRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_prova(self, prova_id: UUID) -> list[LaudoPericial]:
-        stmt = select(LaudoPericialModel).where(LaudoPericialModel.prova_id == prova_id).order_by(LaudoPericialModel.data_emissao.desc())
+        stmt = (
+            select(LaudoPericialModel)
+            .where(LaudoPericialModel.prova_id == prova_id)
+            .order_by(LaudoPericialModel.data_emissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoLaudo) -> list[LaudoPericial]:
-        stmt = select(LaudoPericialModel).where(LaudoPericialModel.tipo_laudo == tipo.value).order_by(LaudoPericialModel.data_emissao.desc())
+        stmt = (
+            select(LaudoPericialModel)
+            .where(LaudoPericialModel.tipo_laudo == tipo.value)
+            .order_by(LaudoPericialModel.data_emissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusLaudo) -> list[LaudoPericial]:
-        stmt = select(LaudoPericialModel).where(LaudoPericialModel.status == status.value).order_by(LaudoPericialModel.data_emissao.desc())
+        stmt = (
+            select(LaudoPericialModel)
+            .where(LaudoPericialModel.status == status.value)
+            .order_by(LaudoPericialModel.data_emissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -72,11 +93,28 @@ class SQLAlchemyLaudoPericialRepository(LaudoPericialRepositoryPort):
 
     async def next_numero(self) -> str:
         year = date.today().year
-        prefix = f'LDP/{year}/'
-        stmt = select(func.count()).select_from(LaudoPericialModel).where(LaudoPericialModel.numero_laudo.like(f'{prefix}%'))
+        prefix = f"LDP/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(LaudoPericialModel)
+            .where(LaudoPericialModel.numero_laudo.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:06d}'
+        return f"{prefix}{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: LaudoPericialModel) -> LaudoPericial:
-        return LaudoPericial(id=model.id, numero_laudo=model.numero_laudo, prova_id=model.prova_id, tipo_laudo=TipoLaudo(model.tipo_laudo), perito_id=model.perito_id, data_emissao=model.data_emissao, conclusao=model.conclusao, status=StatusLaudo(model.status), resumo=model.resumo, arquivo_url=model.arquivo_url, observacoes=model.observacoes, ativo=model.ativo)
+        return LaudoPericial(
+            id=model.id,
+            numero_laudo=model.numero_laudo,
+            prova_id=model.prova_id,
+            tipo_laudo=TipoLaudo(model.tipo_laudo),
+            perito_id=model.perito_id,
+            data_emissao=model.data_emissao,
+            conclusao=model.conclusao,
+            status=StatusLaudo(model.status),
+            resumo=model.resumo,
+            arquivo_url=model.arquivo_url,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

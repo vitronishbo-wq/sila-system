@@ -9,7 +9,6 @@ import os
 import re
 from pathlib import Path
 
-
 FROM_IMPORT_PATTERN = re.compile(r"from app\.modules\.([a-zA-Z0-9_]+)")
 IMPORT_PATTERN = re.compile(r"import app\.modules\.([a-zA-Z0-9_]+)")
 
@@ -138,7 +137,11 @@ def main() -> int:
             and (api_dir / "deps.py").exists()
         )
         has_style_b = (module / "presentation" / "router.py").exists()
-        has_style_c = (api_dir.exists() and (api_dir / "router.py").exists() and not (api_dir / "endpoints").exists())
+        has_style_c = (
+            api_dir.exists()
+            and (api_dir / "router.py").exists()
+            and not (api_dir / "endpoints").exists()
+        )
         if not has_style_a:
             style = "unknown"
             if has_style_b:
@@ -172,9 +175,7 @@ def main() -> int:
     print_section("\nWeird directories:", report["weird_dirs"])
     print("\nModule coupling (>10 deps):")
     high_coupling = [
-        (module, count)
-        for module, count in report["module_coupling"].items()
-        if count > 10
+        (module, count) for module, count in report["module_coupling"].items() if count > 10
     ]
     if not high_coupling:
         print(" - none")

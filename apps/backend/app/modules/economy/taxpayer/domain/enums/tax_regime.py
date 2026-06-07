@@ -1,15 +1,18 @@
 """Regimes fiscais."""
-from enum import Enum
 
-class TaxRegime(str, Enum):
+from enum import StrEnum
+
+
+class TaxRegime(StrEnum):
     """Regimes fiscais suportados na Angola."""
-    GERAL = 'GERAL'
-    SIMPLIFICADO = 'SIMPLIFICADO'
-    ISENTO = 'ISENTO'
-    ISENTO_BY_NATURE = 'ISENTO_BY_NATURE'
-    IMPORTACAO = 'IMPORTACAO'
-    EXPORTACAO = 'EXPORTACAO'
-    INTRA_UE = 'INTRA_UE'
+
+    GERAL = "GERAL"
+    SIMPLIFICADO = "SIMPLIFICADO"
+    ISENTO = "ISENTO"
+    ISENTO_BY_NATURE = "ISENTO_BY_NATURE"
+    IMPORTACAO = "IMPORTACAO"
+    EXPORTACAO = "EXPORTACAO"
+    INTRA_UE = "INTRA_UE"
 
     def requires_vat(self) -> bool:
         """Verifica se o regime obriga ao recolhimento de IVA."""
@@ -27,5 +30,13 @@ class TaxRegime(str, Enum):
 
     def description_pt(self) -> str:
         """Descrição do regime em português."""
-        descriptions = {'GERAL': 'Regime Geral', 'SIMPLIFICADO': 'Regime Simplificado', 'ISENTO': 'Regime Isento', 'ISENTO_BY_NATURE': 'Atividades Isentas por Natureza', 'IMPORTACAO': 'Regime de Importação', 'EXPORTACAO': 'Regime de Exportação', 'INTRA_UE': 'Operações Intra-Comunitárias'}
+        descriptions = {
+            "GERAL": "Regime Geral",
+            "SIMPLIFICADO": "Regime Simplificado",
+            "ISENTO": "Regime Isento",
+            "ISENTO_BY_NATURE": "Atividades Isentas por Natureza",
+            "IMPORTACAO": "Regime de Importação",
+            "EXPORTACAO": "Regime de Exportação",
+            "INTRA_UE": "Operações Intra-Comunitárias",
+        }
         return descriptions.get(self.value, self.value)

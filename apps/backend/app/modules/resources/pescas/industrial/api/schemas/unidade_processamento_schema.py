@@ -1,12 +1,19 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.resources.pescas.industrial.domain.enums import ClassificacaoIndustrial, TipoProcessamento
+
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import (
+    ClassificacaoIndustrial,
+    TipoProcessamento,
+)
+
 
 class UnidadeProcessamentoCreate(BaseModel):
-    cnpj: str = Field(..., pattern='^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$')
+    cnpj: str = Field(..., pattern="^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$")
     razao_social: str = Field(..., min_length=3)
     tipo_processamento: list[TipoProcessamento]
     classificacao: ClassificacaoIndustrial
@@ -21,8 +28,10 @@ class UnidadeProcessamentoCreate(BaseModel):
     armador_id: UUID | None = None
     responsavel_tecnico_id: UUID | None = None
 
+
 class UnidadeProcessamentoUpdateCapacidade(BaseModel):
     capacidade_kg_dia: Decimal = Field(..., gt=0)
+
 
 class UnidadeProcessamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

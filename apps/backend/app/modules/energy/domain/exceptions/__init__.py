@@ -1,39 +1,70 @@
-class EnergyException(Exception):
-    pass
+"""Energy domain exception surface."""
 
-class CentralGeradoraNotFoundError(EnergyException):
-    pass
 
-class InvalidCentralGeradoraStateError(EnergyException):
-    pass
+class EnergyDomainError(Exception):
+    """Base exception for the energy domain."""
 
-class SubestacaoNotFoundError(EnergyException):
-    pass
 
-class InvalidSubestacaoStateError(EnergyException):
-    pass
+class UsinaAlreadyExistsError(EnergyDomainError):
+    """Raised when a usina already exists for the provided key."""
 
-class LinhaTransmissaoNotFoundError(EnergyException):
-    pass
 
-class InvalidLinhaTransmissaoStateError(EnergyException):
-    pass
-__all__ = ['EnergyException', 'CentralGeradoraNotFoundError', 'InvalidCentralGeradoraStateError', 'SubestacaoNotFoundError', 'InvalidSubestacaoStateError', 'LinhaTransmissaoNotFoundError', 'InvalidLinhaTransmissaoStateError', 'ConsumoNotFoundError', 'FaturaEnergiaAlreadyExistsError', 'FaturaEnergiaNotFoundError', 'UsinaAlreadyExistsError', 'UsinaNotFoundError', 'InvalidUsinaStateError']
+class UsinaNotFoundError(EnergyDomainError):
+    """Raised when a usina cannot be found."""
 
-class ConsumoNotFoundError(EnergyException):
-    pass
 
-class FaturaEnergiaAlreadyExistsError(EnergyException):
-    pass
+class InvalidUsinaStateError(EnergyDomainError):
+    """Raised when a usina state transition is invalid."""
 
-class FaturaEnergiaNotFoundError(EnergyException):
-    pass
 
-class UsinaAlreadyExistsError(EnergyException):
-    pass
+class CentralGeradoraNotFoundError(EnergyDomainError):
+    """Raised when a central geradora cannot be found."""
 
-class UsinaNotFoundError(EnergyException):
-    pass
 
-class InvalidUsinaStateError(EnergyException):
-    pass
+class InvalidCentralGeradoraStateError(EnergyDomainError):
+    """Raised when a central geradora state transition is invalid."""
+
+
+class LinhaTransmissaoNotFoundError(EnergyDomainError):
+    """Raised when a linha de transmissao cannot be found."""
+
+
+class InvalidLinhaTransmissaoStateError(EnergyDomainError):
+    """Raised when a linha de transmissao state transition is invalid."""
+
+
+class SubestacaoNotFoundError(EnergyDomainError):
+    """Raised when a subestacao cannot be found."""
+
+
+class InvalidSubestacaoStateError(EnergyDomainError):
+    """Raised when a subestacao state transition is invalid."""
+
+
+class ConsumoNotFoundError(EnergyDomainError):
+    """Raised when a consumo cannot be found."""
+
+
+class FaturaEnergiaAlreadyExistsError(EnergyDomainError):
+    """Raised when an active fatura already exists for a consumo."""
+
+
+class FaturaEnergiaNotFoundError(EnergyDomainError):
+    """Raised when a fatura cannot be found."""
+
+
+__all__ = [
+    "CentralGeradoraNotFoundError",
+    "ConsumoNotFoundError",
+    "EnergyDomainError",
+    "FaturaEnergiaAlreadyExistsError",
+    "FaturaEnergiaNotFoundError",
+    "InvalidCentralGeradoraStateError",
+    "InvalidLinhaTransmissaoStateError",
+    "InvalidSubestacaoStateError",
+    "InvalidUsinaStateError",
+    "LinhaTransmissaoNotFoundError",
+    "SubestacaoNotFoundError",
+    "UsinaAlreadyExistsError",
+    "UsinaNotFoundError",
+]

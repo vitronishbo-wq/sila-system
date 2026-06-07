@@ -1,15 +1,28 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from apps.backend.app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
+
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import (
+    PolicialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.domain.enums import (
+    CargoPolicial,
+    Patente,
+    StatusAgente,
+    TipoAgente,
+    TipoVinculo,
+)
 from apps.backend.app.modules.public_security.domain.models.policial import Policial
-from apps.backend.app.modules.public_security.infrastructure.models.policial_model import PolicialModel
+from apps.backend.app.modules.public_security.infrastructure.models.policial_model import (
+    PolicialModel,
+)
+
 
 class SQLAlchemyPolicialRepository(PolicialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -62,17 +75,29 @@ class SQLAlchemyPolicialRepository(PolicialRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_unidade(self, unidade_id: UUID) -> list[Policial]:
-        stmt = select(PolicialModel).where(PolicialModel.unidade_id == unidade_id).order_by(PolicialModel.nome.asc())
+        stmt = (
+            select(PolicialModel)
+            .where(PolicialModel.unidade_id == unidade_id)
+            .order_by(PolicialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoAgente) -> list[Policial]:
-        stmt = select(PolicialModel).where(PolicialModel.tipo == tipo.value).order_by(PolicialModel.nome.asc())
+        stmt = (
+            select(PolicialModel)
+            .where(PolicialModel.tipo == tipo.value)
+            .order_by(PolicialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusAgente) -> list[Policial]:
-        stmt = select(PolicialModel).where(PolicialModel.status == status.value).order_by(PolicialModel.nome.asc())
+        stmt = (
+            select(PolicialModel)
+            .where(PolicialModel.status == status.value)
+            .order_by(PolicialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -86,12 +111,38 @@ class SQLAlchemyPolicialRepository(PolicialRepositoryPort):
 
     async def next_matricula(self, unidade_id: UUID) -> str:
         year = date.today().year
-        unidade_fragmento = str(unidade_id).split('-')[0].upper()
-        prefix = f'POL/{unidade_fragmento}/{year}/'
-        stmt = select(func.count()).select_from(PolicialModel).where(PolicialModel.matricula.like(f'{prefix}%'))
+        unidade_fragmento = str(unidade_id).split("-")[0].upper()
+        prefix = f"POL/{unidade_fragmento}/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(PolicialModel)
+            .where(PolicialModel.matricula.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:05d}'
+        return f"{prefix}{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: PolicialModel) -> Policial:
-        return Policial(id=model.id, matricula=model.matricula, unidade_id=model.unidade_id, nome=model.nome, data_nascimento=model.data_nascimento, cpf=model.cpf, rg=model.rg, tipo=TipoAgente(model.tipo), vinculo=TipoVinculo(model.vinculo), cargo=CargoPolicial(model.cargo) if model.cargo else None, patente=Patente(model.patente) if model.patente else None, data_ingresso=model.data_ingresso, status=StatusAgente(model.status), porte_arma=model.porte_arma, numero_porte=model.numero_porte, data_validade_porte=model.data_validade_porte, telefone=model.telefone, email=model.email, endereco=model.endereco, observacoes=model.observacoes, ativo=model.ativo)
+        return Policial(
+            id=model.id,
+            matricula=model.matricula,
+            unidade_id=model.unidade_id,
+            nome=model.nome,
+            data_nascimento=model.data_nascimento,
+            cpf=model.cpf,
+            rg=model.rg,
+            tipo=TipoAgente(model.tipo),
+            vinculo=TipoVinculo(model.vinculo),
+            cargo=CargoPolicial(model.cargo) if model.cargo else None,
+            patente=Patente(model.patente) if model.patente else None,
+            data_ingresso=model.data_ingresso,
+            status=StatusAgente(model.status),
+            porte_arma=model.porte_arma,
+            numero_porte=model.numero_porte,
+            data_validade_porte=model.data_validade_porte,
+            telefone=model.telefone,
+            email=model.email,
+            endereco=model.endereco,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

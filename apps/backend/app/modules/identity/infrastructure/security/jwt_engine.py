@@ -1,5 +1,6 @@
 from apps.backend.core.auth import JWTHandler
 
+
 class SovereignJWT(JWTHandler):
     """Wrapper compatível com a interface esperada pelo módulo de identidade."""
 

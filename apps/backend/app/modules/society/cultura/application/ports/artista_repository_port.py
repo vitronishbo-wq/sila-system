@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.cultura.domain.enums import TipoArtista
 from apps.backend.app.modules.society.cultura.domain.models.artista import Artista
 
-class ArtistaRepositoryPort(ABC):
 
+class ArtistaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, artista: Artista) -> Artista:
         pass

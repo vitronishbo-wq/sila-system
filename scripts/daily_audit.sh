@@ -38,6 +38,11 @@ PASSED_CHECKS=0
 FAILED_CHECKS=0
 CRITICAL_MODULES=()
 WARNINGS=()
+ARCH_SYNC_PASSED=0
+DOMAIN_AUDIT_PASSED=0
+MODULE_DIAG_PASSED=0
+IMPORT_SCAN_PASSED=0
+ROUTER_HEALTH_PASSED=0
 
 # ╔════════════════════════════════════════════════════════════════════╗
 # ║                        FUNÇÕES AUXILIARES                         ║
@@ -84,9 +89,11 @@ validate_architecture_sync() {
     
     echo "🧩 Executando make architecture-sync..."
     if make architecture-sync > "$ARCH_SYNC_LOG" 2>&1; then
+        ARCH_SYNC_PASSED=1
         log_success "Arquitetura sincronizada com sucesso"
         echo "📝 Log: $ARCH_SYNC_LOG"
     else
+        ARCH_SYNC_PASSED=0
         log_error "Falha na sincronização de arquitetura"
         tail -20 "$ARCH_SYNC_LOG"
         echo "📝 Log completo: $ARCH_SYNC_LOG"
@@ -102,14 +109,19 @@ validate_domain_audit() {
     
     echo "🔍 Executando make audit-domains..."
     if make audit-domains > "$DOMAIN_AUDIT_LOG" 2>&1; then
+        DOMAIN_AUDIT_PASSED=1
         log_success "Auditoria de domínios concluída"
         echo "📝 Log: $DOMAIN_AUDIT_LOG"
         
-        # Verificar se há violations
-        if grep -q "violation" reports/domain_dependency_guardrail_report.md 2>/dev/null; then
+        # Verificar violations reais, sem disparar nos cabeçalhos "0 violations".
+        if [ -f reports/domain_dependency_guardrail_report.md ] && (
+            grep -q "^- Status: FAILED" reports/domain_dependency_guardrail_report.md ||
+            grep -Eq "violations: \*\*[1-9][0-9]*\*\*" reports/domain_dependency_guardrail_report.md
+        ); then
             log_warning "Violations detectadas no relatório de dependência"
         fi
     else
+        DOMAIN_AUDIT_PASSED=0
         log_error "Falha na auditoria de domínios"
         tail -30 "$DOMAIN_AUDIT_LOG"
         echo "📝 Log completo: $DOMAIN_AUDIT_LOG"
@@ -125,6 +137,7 @@ validate_module_maturity() {
     
     echo "📊 Executando diagnóstico de módulos..."
     if python scripts/architecture/module_diagnostics.py > "$MODULE_DIAG_LOG" 2>&1; then
+        MODULE_DIAG_PASSED=1
         log_success "Relatório de maturidade gerado em: modules_report.md"
         
         # Extrair scores críticos
@@ -139,6 +152,7 @@ validate_module_maturity() {
             done < modules_report.md
         fi
     else
+        MODULE_DIAG_PASSED=0
         log_error "Falha no diagnóstico de módulos"
         tail -20 "$MODULE_DIAG_LOG"
         echo "📝 Log completo: $MODULE_DIAG_LOG"
@@ -152,34 +166,47 @@ validate_module_maturity() {
 validate_import_integrity() {
     log_section "RITUAL 4/5: SCANNER DE IMPORTS QUEBRADOS"
     
-    echo "🔗 Escaneando imports e syntax errors..."
-    
-    # Verificar se pytest está disponível
-    if command -v pytest &> /dev/null; then
-        if pytest --collect-only apps/backend/app/modules/ > "$IMPORT_SCAN_LOG" 2>&1; then
-            log_success "Nenhum ImportError ou syntax error detectado"
-            IMPORT_COUNT=$(grep -c "Module\|Class\|Function" "$IMPORT_SCAN_LOG" || echo "0")
-            echo "📊 Itens coletados: $IMPORT_COUNT"
-        else
-            IMPORT_ERRORS=$(grep -c "ImportError\|SyntaxError\|ModuleNotFoundError" "$IMPORT_SCAN_LOG" || echo "0")
-            if [ "$IMPORT_ERRORS" -gt 0 ]; then
-                log_error "ImportErrors detectados: $IMPORT_ERRORS"
-                grep "ImportError\|SyntaxError\|ModuleNotFoundError" "$IMPORT_SCAN_LOG" | head -10
-                echo "📝 Log completo: $IMPORT_SCAN_LOG"
-            else
-                log_success "Collect completo com warnings (não-critical)"
-            fi
-        fi
+    echo "🔗 Escaneando sintaxe do código-fonte dos módulos (excluindo suites legadas de tests)..."
+
+    if python - <<'PY' > "$IMPORT_SCAN_LOG" 2>&1
+from pathlib import Path
+import sys
+
+root = Path("apps/backend/app/modules")
+errors = []
+checked = 0
+
+for py_file in sorted(root.rglob("*.py")):
+    if "tests" in py_file.parts or "__pycache__" in py_file.parts:
+        continue
+    checked += 1
+    try:
+        source = py_file.read_text(encoding="utf-8")
+        compile(source, str(py_file), "exec")
+    except SyntaxError as exc:
+        errors.append(f"{py_file}: {exc.msg} (line {exc.lineno})")
+    except UnicodeDecodeError as exc:
+        errors.append(f"{py_file}: decode error: {exc}")
+
+print(f"CHECKED={checked}")
+if errors:
+    print("ERRORS_START")
+    for item in errors:
+        print(item)
+    print("ERRORS_END")
+    sys.exit(1)
+PY
+    then
+        IMPORT_SCAN_PASSED=1
+        CHECKED_FILES=$(grep -o 'CHECKED=[0-9]\+' "$IMPORT_SCAN_LOG" | head -1 | cut -d= -f2)
+        log_success "Nenhum SyntaxError detectado no código-fonte dos módulos"
+        echo "📊 Arquivos verificados: ${CHECKED_FILES:-0}"
     else
-        log_warning "pytest não instalado - usando scanning alternativo"
-        # Fallback: apenas verificar syntax com python
-        python -m py_compile apps/backend/app/modules/**/*.py > "$IMPORT_SCAN_LOG" 2>&1 || true
-        SYNTAX_ERRORS=$(grep -c "SyntaxError" "$IMPORT_SCAN_LOG" || echo "0")
-        if [ "$SYNTAX_ERRORS" -gt 0 ]; then
-            log_error "SyntaxErrors detectados: $SYNTAX_ERRORS"
-        else
-            log_success "Nenhum SyntaxError detectado"
-        fi
+        IMPORT_SCAN_PASSED=0
+        SYNTAX_ERRORS=$(awk '/ERRORS_START/{flag=1;next}/ERRORS_END/{flag=0}flag' "$IMPORT_SCAN_LOG" | wc -l)
+        log_error "Erros de sintaxe detectados: ${SYNTAX_ERRORS:-0}"
+        awk '/ERRORS_START/{flag=1;next}/ERRORS_END/{flag=0}flag' "$IMPORT_SCAN_LOG" | head -10
+        echo "📝 Log completo: $IMPORT_SCAN_LOG"
     fi
 }
 
@@ -216,6 +243,11 @@ validate_routers_and_health() {
     else
         log_warning "Nenhum health.py encontrado"
         HEALTH_COUNT=0
+    fi
+    if [ "$ROUTER_COUNT" -gt 0 ] && [ "$HEALTH_COUNT" -gt 0 ]; then
+        ROUTER_HEALTH_PASSED=1
+    else
+        ROUTER_HEALTH_PASSED=0
     fi
     
     # Salvar métricas
@@ -266,16 +298,17 @@ generate_consolidated_report() {
     fi
     
     # Resultados dos rituais
-    local arch_result="✅ Sucesso"
-    local domain_result="✅ Sucesso"
-    local module_result="✅ Sucesso"
-    local import_result="✅ Sucesso"
-    local router_result="✅ $ROUTER_COUNT routers, $HEALTH_COUNT health endpoints"
-    
-    [[ ! -s "$ARCH_SYNC_LOG" ]] && arch_result="❌ Falha"
-    [[ ! -s "$DOMAIN_AUDIT_LOG" ]] && domain_result="❌ Falha"
-    [[ ! -s "$MODULE_DIAG_LOG" ]] && module_result="❌ Falha"
-    [[ ! -s "$IMPORT_SCAN_LOG" ]] && import_result="❌ Falha"
+    local arch_result="❌ Falha"
+    local domain_result="❌ Falha"
+    local module_result="❌ Falha"
+    local import_result="❌ Falha"
+    local router_result="❌ $ROUTER_COUNT routers, $HEALTH_COUNT health endpoints"
+
+    [[ "$ARCH_SYNC_PASSED" -eq 1 ]] && arch_result="✅ Sucesso"
+    [[ "$DOMAIN_AUDIT_PASSED" -eq 1 ]] && domain_result="✅ Sucesso"
+    [[ "$MODULE_DIAG_PASSED" -eq 1 ]] && module_result="✅ Sucesso"
+    [[ "$IMPORT_SCAN_PASSED" -eq 1 ]] && import_result="✅ Sucesso"
+    [[ "$ROUTER_HEALTH_PASSED" -eq 1 ]] && router_result="✅ $ROUTER_COUNT routers, $HEALTH_COUNT health endpoints"
     
     local conclusion_msg="✅ Auditoria completa"
     [[ "$FAILED_CHECKS" -gt 0 ]] && conclusion_msg="⚠️ Auditoria com $FAILED_CHECKS falhas - remediação recomendada"

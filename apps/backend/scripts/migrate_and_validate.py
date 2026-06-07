@@ -15,19 +15,19 @@ Exit Codes:
     3: Fatal - System errors
 """
 
-import sys
-import json
 import argparse
+import json
+import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 # Add backend directory to Python path
 backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
 try:
-    from config.migrate_config import ConfigMigrator
-    from config import settings, validate_configuration, get_config_manager
+    from config import settings  # noqa: E402
+    from config.migrate_config import ConfigMigrator  # noqa: E402
 except ImportError as e:
     print(f"❌ FATAL: Cannot import configuration system: {e}")
     sys.exit(3)
@@ -36,9 +36,7 @@ except ImportError as e:
 class MigrationValidator:
     """Combined migration and validation for CI/CD."""
 
-    def __init__(
-        self, dry_run: bool = False, environment: str = None, strict: bool = False
-    ):
+    def __init__(self, dry_run: bool = False, environment: str = None, strict: bool = False):
         """Initialize migration validator."""
         self.dry_run = dry_run
         self.environment = environment or settings.ENVIRONMENT
@@ -62,7 +60,7 @@ class MigrationValidator:
             "summary": {"success": False, "exit_code": 0},
         }
 
-    def run_migration_and_validation(self) -> Dict[str, Any]:
+    def run_migration_and_validation(self) -> dict[str, Any]:
         """Run complete migration and validation process."""
         print("🔄 SILA Configuration Migration & Validation")
         print("=" * 60)
@@ -103,24 +101,16 @@ class MigrationValidator:
             }
 
             print(f"📁 Total files analyzed: {migration_results['total_files']}")
-            print(
-                f"🔄 Files needing migration: {migration_results['files_to_migrate']}"
-            )
-            print(
-                f"✅ Successful migrations: {migration_results['successful_migrations']}"
-            )
-            print(
-                f"❌ Failed migrations: {self.results['migration']['failed_migrations']}"
-            )
+            print(f"🔄 Files needing migration: {migration_results['files_to_migrate']}")
+            print(f"✅ Successful migrations: {migration_results['successful_migrations']}")
+            print(f"❌ Failed migrations: {self.results['migration']['failed_migrations']}")
 
             # Show migration details for failed files
             failed_migrations = [
-                r
-                for r in migration_results["migration_results"]
-                if not r.get("migrated", False)
+                r for r in migration_results["migration_results"] if not r.get("migrated", False)
             ]
             if failed_migrations:
-                print(f"\n❌ Migration Failures:")
+                print("\n❌ Migration Failures:")
                 for result in failed_migrations[:5]:  # Show first 5 failures
                     error = result.get("error", "Unknown error")
                     file_path = result.get("file", "Unknown file")
@@ -140,9 +130,7 @@ class MigrationValidator:
             # Import validation script
             from scripts.validate_config import CIConfigValidator
 
-            validator = CIConfigValidator(
-                environment=self.environment, strict_mode=self.strict
-            )
+            validator = CIConfigValidator(environment=self.environment, strict_mode=self.strict)
 
             validation_results = validator.validate_all()
 
@@ -172,10 +160,7 @@ class MigrationValidator:
 
         # Determine exit code
         if not overall_success:
-            if (
-                validation.get("total_errors", 0) > 0
-                or migration.get("failed_migrations", 0) > 0
-            ):
+            if validation.get("total_errors", 0) > 0 or migration.get("failed_migrations", 0) > 0:
                 exit_code = 2  # Error
             else:
                 exit_code = 1  # Warning
@@ -193,9 +178,7 @@ class MigrationValidator:
 
         # Print summary
         print(f"Migration Status: {'✅ SUCCESS' if migration_success else '❌ FAILED'}")
-        print(
-            f"Validation Status: {'✅ SUCCESS' if validation_success else '❌ FAILED'}"
-        )
+        print(f"Validation Status: {'✅ SUCCESS' if validation_success else '❌ FAILED'}")
         print(f"Overall Status: {'✅ SUCCESS' if overall_success else '❌ FAILED'}")
         print(f"Exit Code: {exit_code}")
 
@@ -221,9 +204,7 @@ class MigrationValidator:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(
-        description="Migrate and validate SILA configuration"
-    )
+    parser = argparse.ArgumentParser(description="Migrate and validate SILA configuration")
     parser.add_argument(
         "--dry-run",
         "-d",
@@ -238,9 +219,7 @@ def main():
         help="Enable strict mode (warnings become errors)",
     )
     parser.add_argument("--output", "-o", help="Output report file path")
-    parser.add_argument(
-        "--quiet", "-q", action="store_true", help="Quiet mode (minimal output)"
-    )
+    parser.add_argument("--quiet", "-q", action="store_true", help="Quiet mode (minimal output)")
 
     args = parser.parse_args()
 

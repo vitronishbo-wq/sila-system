@@ -1,12 +1,13 @@
 from __future__ import annotations
+
 import asyncio
 from contextlib import AbstractAsyncContextManager
 
-class AsyncBulkhead(AbstractAsyncContextManager):
 
-    def __init__(self, limit: int=20) -> None:
+class AsyncBulkhead(AbstractAsyncContextManager):
+    def __init__(self, limit: int = 20) -> None:
         if limit < 1:
-            raise ValueError('limit deve ser >= 1')
+            raise ValueError("limit deve ser >= 1")
         self._semaphore = asyncio.Semaphore(limit)
 
     async def __aenter__(self):

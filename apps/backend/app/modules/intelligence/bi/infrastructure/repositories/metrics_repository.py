@@ -1,5 +1,5 @@
-from typing import List, Optional
 from ..models.metric_model import MetricModel
+
 
 class MetricsRepository:
     """Repository responsible for reading/writing metrics.
@@ -15,8 +15,13 @@ class MetricsRepository:
         self.session.flush()
         return metric
 
-    def list(self, limit: int=100) -> List[MetricModel]:
-        return self.session.query(MetricModel).order_by(MetricModel.created_at.desc()).limit(limit).all()
+    def list(self, limit: int = 100) -> list[MetricModel]:
+        return (
+            self.session.query(MetricModel)
+            .order_by(MetricModel.created_at.desc())
+            .limit(limit)
+            .all()
+        )
 
-    def find_by_code(self, code: str) -> Optional[MetricModel]:
+    def find_by_code(self, code: str) -> MetricModel | None:
         return self.session.query(MetricModel).filter(MetricModel.code == code).first()

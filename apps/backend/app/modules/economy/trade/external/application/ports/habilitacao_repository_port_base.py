@@ -1,13 +1,18 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 from uuid import UUID
+
 from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
-from apps.backend.app.modules.economy.trade.external.domain.models.habilitacao_base import HabilitacaoBase
-THabilitacao = TypeVar('THabilitacao', bound=HabilitacaoBase)
+from apps.backend.app.modules.economy.trade.external.domain.models.habilitacao_base import (
+    HabilitacaoBase,
+)
+
+THabilitacao = TypeVar("THabilitacao", bound=HabilitacaoBase)
+
 
 class HabilitacaoRepositoryPortBase(ABC, Generic[THabilitacao]):
-
     @abstractmethod
     async def save(self, habilitacao: THabilitacao) -> THabilitacao:
         pass
@@ -21,5 +26,5 @@ class HabilitacaoRepositoryPortBase(ABC, Generic[THabilitacao]):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusHabilitacao | None=None) -> list[THabilitacao]:
+    async def list(self, *, status: StatusHabilitacao | None = None) -> list[THabilitacao]:
         pass

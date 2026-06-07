@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 import asyncio
 from typing import Any
 
-async def invoke_async_method(target: object | None, method_name: str, *args: Any, **kwargs: Any) -> tuple[bool, Any]:
+
+async def invoke_async_method(
+    target: object | None, method_name: str, *args: Any, **kwargs: Any
+) -> tuple[bool, Any]:
     if target is None:
         return (False, None)
     method = getattr(target, method_name, None)

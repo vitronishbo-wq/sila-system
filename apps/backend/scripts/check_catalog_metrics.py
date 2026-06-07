@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from sqlalchemy import create_engine, text
 
@@ -13,7 +13,7 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from apps.backend.app.core.settings import settings
+from apps.backend.app.core.settings import settings  # noqa: E402
 
 
 def _sync_url() -> str:
@@ -29,7 +29,9 @@ def main() -> None:
         metrics = {
             "modules": conn.execute(text("select count(1) from modules")).scalar(),
             "services": conn.execute(text("select count(1) from services")).scalar(),
-            "unique_codes": conn.execute(text("select count(distinct code) from services")).scalar(),
+            "unique_codes": conn.execute(
+                text("select count(distinct code) from services")
+            ).scalar(),
             "missing_workflow": conn.execute(
                 text(
                     "select count(1) from services "
@@ -37,7 +39,9 @@ def main() -> None:
                 )
             ).scalar(),
             "missing_sla": conn.execute(
-                text("select count(1) from services where estimated_days is null or estimated_days < 1")
+                text(
+                    "select count(1) from services where estimated_days is null or estimated_days < 1"
+                )
             ).scalar(),
             "orphan_services": conn.execute(
                 text(

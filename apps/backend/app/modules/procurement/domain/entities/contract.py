@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 from uuid import UUID, uuid4
+
 from ..value_objects.contract_status import ContractStatus
+
 
 @dataclass
 class Contract:

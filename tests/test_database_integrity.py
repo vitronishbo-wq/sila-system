@@ -8,10 +8,10 @@ Valida:
 - Sem registros órfãos
 """
 
-import pytest
 import os
-from sqlalchemy import text
+
 import asyncpg
+import pytest
 
 RUN_DB_INTEGRATION = os.getenv("RUN_DB_INTEGRATION", "0") == "1"
 pytestmark = [
@@ -21,6 +21,7 @@ pytestmark = [
         reason="Requires seeded Postgres dataset. Set RUN_DB_INTEGRATION=1 to run.",
     ),
 ]
+
 
 async def fetch_location_id(conn, name: str, territory_type: str):
     return await conn.fetchval(
@@ -56,27 +57,21 @@ async def test_01_locations_table_exists(db_connection):
 @pytest.mark.asyncio
 async def test_02_provinces_count(db_connection):
     """Valida Lei 14/24: exatamente 21 províncias."""
-    count = await db_connection.fetchval(
-        "SELECT COUNT(*) FROM locations WHERE type = 'PROVINCIA'"
-    )
+    count = await db_connection.fetchval("SELECT COUNT(*) FROM locations WHERE type = 'PROVINCIA'")
     assert count == 21, f"Esperado 21 províncias, encontrado {count}"
 
 
 @pytest.mark.asyncio
 async def test_03_municipalities_count(db_connection):
     """Valida Lei 14/24: exatamente 6 municípios."""
-    count = await db_connection.fetchval(
-        "SELECT COUNT(*) FROM locations WHERE type = 'MUNICIPIO'"
-    )
+    count = await db_connection.fetchval("SELECT COUNT(*) FROM locations WHERE type = 'MUNICIPIO'")
     assert count == 6, f"Esperado 6 municípios, encontrado {count}"
 
 
 @pytest.mark.asyncio
 async def test_04_communes_count(db_connection):
     """Valida Lei 14/24: exatamente 5 comunas."""
-    count = await db_connection.fetchval(
-        "SELECT COUNT(*) FROM locations WHERE type = 'COMUNA'"
-    )
+    count = await db_connection.fetchval("SELECT COUNT(*) FROM locations WHERE type = 'COMUNA'")
     assert count == 5, f"Esperado 5 comunas, encontrado {count}"
 
 
@@ -107,8 +102,10 @@ async def test_07_admin_user_exists(db_connection):
         """
     )
     assert user is not None, "Admin central@sila.gov.ao não existe"
-    assert user['administrative_level'] == 'SUPER', f"Admin deve ser SUPER, é {user['administrative_level']}"
-    assert user['region_id'] is None, f"Admin region_id deve ser NULL, é {user['region_id']}"
+    assert user["administrative_level"] == "SUPER", (
+        f"Admin deve ser SUPER, é {user['administrative_level']}"
+    )
+    assert user["region_id"] is None, f"Admin region_id deve ser NULL, é {user['region_id']}"
 
 
 @pytest.mark.asyncio
@@ -123,8 +120,12 @@ async def test_08_provincial_manager_exists(db_connection):
         """
     )
     assert user is not None, "Provincial prov.huambo@sila.gov.ao não existe"
-    assert user['administrative_level'] == 'PROVINCIAL', f"Deve ser PROVINCIAL, é {user['administrative_level']}"
-    assert user['region_id'] == huambo_id, f"Huambo region_id deve ser {huambo_id}, é {user['region_id']}"
+    assert user["administrative_level"] == "PROVINCIAL", (
+        f"Deve ser PROVINCIAL, é {user['administrative_level']}"
+    )
+    assert user["region_id"] == huambo_id, (
+        f"Huambo region_id deve ser {huambo_id}, é {user['region_id']}"
+    )
 
 
 @pytest.mark.asyncio
@@ -139,8 +140,12 @@ async def test_09_municipal_manager_exists(db_connection):
         """
     )
     assert user is not None, "Municipal mun.huambo@sila.gov.ao não existe"
-    assert user['administrative_level'] == 'MUNICIPAL', f"Deve ser MUNICIPAL, é {user['administrative_level']}"
-    assert user['region_id'] == huambo_mun_id, f"Huambo mun region_id deve ser {huambo_mun_id}, é {user['region_id']}"
+    assert user["administrative_level"] == "MUNICIPAL", (
+        f"Deve ser MUNICIPAL, é {user['administrative_level']}"
+    )
+    assert user["region_id"] == huambo_mun_id, (
+        f"Huambo mun region_id deve ser {huambo_mun_id}, é {user['region_id']}"
+    )
 
 
 @pytest.mark.asyncio
@@ -155,8 +160,12 @@ async def test_10_communal_officer_exists(db_connection):
         """
     )
     assert user is not None, "Communal comun.huambo@sila.gov.ao não existe"
-    assert user['administrative_level'] == 'COMMUNAL', f"Deve ser COMMUNAL, é {user['administrative_level']}"
-    assert user['region_id'] == comuna_centro_id, f"Comuna region_id deve ser {comuna_centro_id}, é {user['region_id']}"
+    assert user["administrative_level"] == "COMMUNAL", (
+        f"Deve ser COMMUNAL, é {user['administrative_level']}"
+    )
+    assert user["region_id"] == comuna_centro_id, (
+        f"Comuna region_id deve ser {comuna_centro_id}, é {user['region_id']}"
+    )
 
 
 @pytest.mark.asyncio
@@ -171,8 +180,12 @@ async def test_11_citizen_exists(db_connection):
         """
     )
     assert user is not None, "Citizen truman@gmail.com não existe"
-    assert user['administrative_level'] == 'LOCAL', f"Deve ser LOCAL, é {user['administrative_level']}"
-    assert user['region_id'] == comuna_centro_id, f"Cidadão region_id deve ser {comuna_centro_id}, é {user['region_id']}"
+    assert user["administrative_level"] == "LOCAL", (
+        f"Deve ser LOCAL, é {user['administrative_level']}"
+    )
+    assert user["region_id"] == comuna_centro_id, (
+        f"Cidadão region_id deve ser {comuna_centro_id}, é {user['region_id']}"
+    )
 
 
 @pytest.mark.asyncio
@@ -265,8 +278,10 @@ async def test_17_huambo_hierarchy(db_connection):
     assert prov is not None, "Huambo província não encontrada"
     assert mun is not None, "Huambo município não encontrado"
     assert com is not None, "Comuna Centro não encontrada"
-    assert mun['parent_id'] == prov, f"Huambo mun deve ter parent_id=Huambo, tem {mun['parent_id']}"
-    assert com['parent_id'] == mun['id'], f"Comuna Centro deve ter parent_id=Huambo Município, tem {com['parent_id']}"
+    assert mun["parent_id"] == prov, f"Huambo mun deve ter parent_id=Huambo, tem {mun['parent_id']}"
+    assert com["parent_id"] == mun["id"], (
+        f"Comuna Centro deve ter parent_id=Huambo Município, tem {com['parent_id']}"
+    )
 
 
 @pytest.mark.asyncio

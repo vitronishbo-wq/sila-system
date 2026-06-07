@@ -13,22 +13,22 @@ separate auth implementations.
 
 Example:
     from core.auth import JWTHandler, PolicyEngine, PermissionGuard, RoleManager
-    
+
     jwt_handler = JWTHandler()
     policy_engine = PolicyEngine()
     permission_guard = PermissionGuard(policy_engine)
     role_manager = RoleManager()
 """
 
+from .guards.permission_guard import PermissionGuard
 from .jwt_handler import JWTHandler
 from .policies.policy_engine import PolicyEngine
-from .guards.permission_guard import PermissionGuard
-from .roles.role_manager import RoleManager
 from .providers.keycloak import KeycloakAuthProvider
+from .roles.role_manager import RoleManager
 
 __all__ = [
     "JWTHandler",
-    "PolicyEngine", 
+    "PolicyEngine",
     "PermissionGuard",
     "RoleManager",
     "KeycloakAuthProvider",

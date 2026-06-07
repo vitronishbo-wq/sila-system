@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
+
 from apps.backend.app.modules.society.desporto.domain.enums import StatusJogo
 from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
 
-class JogoRepositoryPort(ABC):
 
+class JogoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, jogo: Jogo) -> Jogo:
         raise NotImplementedError

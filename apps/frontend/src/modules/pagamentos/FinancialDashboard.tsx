@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Layout from './components/Layout';
-import FinancialAssistant from './components/FinancialAssistant';
-import { financeService } from './services/financeService';
+import Layout from '@/modules/pagamentos/components/Layout';
+import FinancialAssistant from '@/modules/pagamentos/components/FinancialAssistant';
+import { financeService } from '@/modules/pagamentos/services/financeService';
 import { 
   UserRole, 
   InvoiceStatus 
-} from './types';
+} from '@/modules/pagamentos/types';
 import type { 
   Invoice, 
   FinanceStats 
-} from './types';
+} from '@/modules/pagamentos/types';
 
 const App: React.FC = () => {
   const [role, setRole] = useState<UserRole>(UserRole.ADMIN);

@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-class WorkflowServicePort(ABC):
 
+class WorkflowServicePort(ABC):
     @abstractmethod
     async def iniciar_fluxo(self, *, entidade: str, referencia_id: UUID, contexto: dict) -> str:
         pass

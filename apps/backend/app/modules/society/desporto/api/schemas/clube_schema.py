@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, TipoClube
+
 
 class ClubeCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -16,6 +20,7 @@ class ClubeCreate(BaseModel):
     instituicao_educacional_id: UUID | None = None
     observacoes: str | None = None
 
+
 class ClubeUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
     sigla: str | None = Field(default=None, min_length=2, max_length=10)
@@ -28,6 +33,7 @@ class ClubeUpdate(BaseModel):
     instituicao_educacional_id: UUID | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class ClubeResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

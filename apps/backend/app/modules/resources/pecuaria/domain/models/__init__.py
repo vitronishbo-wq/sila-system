@@ -2,7 +2,9 @@ from apps.backend.app.modules.resources.pecuaria.domain.models.alimentacao impor
 from apps.backend.app.modules.resources.pecuaria.domain.models.animal import Animal
 from apps.backend.app.modules.resources.pecuaria.domain.models.bovino import Bovino
 from apps.backend.app.modules.resources.pecuaria.domain.models.caprino import Caprino
-from apps.backend.app.modules.resources.pecuaria.domain.models.comercializacao import Comercializacao
+from apps.backend.app.modules.resources.pecuaria.domain.models.comercializacao import (
+    Comercializacao,
+)
 from apps.backend.app.modules.resources.pecuaria.domain.models.equino import Equino
 from apps.backend.app.modules.resources.pecuaria.domain.models.inseminacao import Inseminacao
 from apps.backend.app.modules.resources.pecuaria.domain.models.instalacao import Instalacao
@@ -13,11 +15,39 @@ from apps.backend.app.modules.resources.pecuaria.domain.models.pasto import Past
 from apps.backend.app.modules.resources.pecuaria.domain.models.pecuarista import Pecuarista
 from apps.backend.app.modules.resources.pecuaria.domain.models.producao_carne import ProducaoCarne
 from apps.backend.app.modules.resources.pecuaria.domain.models.producao_leite import ProducaoLeite
-from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
+from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import (
+    PropriedadePecuaria,
+)
 from apps.backend.app.modules.resources.pecuaria.domain.models.raca import Raca
-from apps.backend.app.modules.resources.pecuaria.domain.models.rastreabilidade import Rastreabilidade
+from apps.backend.app.modules.resources.pecuaria.domain.models.rastreabilidade import (
+    Rastreabilidade,
+)
 from apps.backend.app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
 from apps.backend.app.modules.resources.pecuaria.domain.models.reproducao import Reproducao
 from apps.backend.app.modules.resources.pecuaria.domain.models.suino import Suino
 from apps.backend.app.modules.resources.pecuaria.domain.models.vacina import Vacina
-__all__ = ['Pecuarista', 'PropriedadePecuaria', 'Rebanho', 'Animal', 'Raca', 'Bovino', 'Caprino', 'Ovino', 'Suino', 'Equino', 'Instalacao', 'Pasto', 'Alimentacao', 'Vacina', 'Medicamento', 'ProducaoLeite', 'ProducaoCarne', 'Reproducao', 'Inseminacao', 'Parto', 'Rastreabilidade', 'Comercializacao']
+
+__all__ = [
+    "Pecuarista",
+    "PropriedadePecuaria",
+    "Rebanho",
+    "Animal",
+    "Raca",
+    "Bovino",
+    "Caprino",
+    "Ovino",
+    "Suino",
+    "Equino",
+    "Instalacao",
+    "Pasto",
+    "Alimentacao",
+    "Vacina",
+    "Medicamento",
+    "ProducaoLeite",
+    "ProducaoCarne",
+    "Reproducao",
+    "Inseminacao",
+    "Parto",
+    "Rastreabilidade",
+    "Comercializacao",
+]

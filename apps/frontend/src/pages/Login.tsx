@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { authService } from '../services/authService';
-import { ASSETS, APP_VERSION } from '../constants';
+import { authService } from '@/services/authService';
+import { ASSETS, APP_VERSION } from '@/constants';
 
 interface LoginProps {
   onLoginSuccess?: (token: string) => void;
@@ -64,7 +64,8 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
           <div className="mb-6 text-center lg:text-left">
             <h1 className="text-2xl font-bold text-slate-900 mb-1">Bem-vindo</h1>
-            <p className="text-gray-500 text-sm">Introduza as suas credenciais para aceder ao sistema SILA.</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold">Painel Administrativo</p>
+            <p className="text-gray-500 text-sm mt-2">Introduza as suas credenciais para administrar os serviços do SILA.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-5">
@@ -125,7 +126,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </form>
 
           <div className="mt-8 text-center text-gray-400 text-xs">
-            <p>Aceder como Cidadão? <a href="#/register" className="text-slate-900 font-medium hover:underline">Crie uma conta aqui.</a></p>
+            <p>Aceder como Cidadão? <a href="#/citizen/login" className="text-slate-900 font-medium hover:underline">Entrar na FUC.</a></p>
             <div className="mt-6 flex justify-center gap-4 items-center">
               <img src={ASSETS.BRASAO} alt="MAT" className="h-5 opacity-50 grayscale" />
               <p className="border-l pl-3">v{APP_VERSION}</p>

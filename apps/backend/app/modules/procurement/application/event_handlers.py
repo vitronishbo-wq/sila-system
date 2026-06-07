@@ -1,13 +1,16 @@
 """
 Event handlers for procurement module.
 """
-from typing import Dict, Callable, Any
+
+from collections.abc import Callable
+from typing import Any
+
 
 class ProcurementEventHandlers:
     """Handles all events for procurement module."""
 
     def __init__(self):
-        self.handlers: Dict[str, Callable] = {}
+        self.handlers: dict[str, Callable] = {}
         self._register_handlers()
 
     def _register_handlers(self) -> None:
@@ -18,4 +21,6 @@ class ProcurementEventHandlers:
         """Handle an event if handler exists."""
         if event_type in self.handlers:
             self.handlers[event_type](event_data)
+
+
 handlers = ProcurementEventHandlers()

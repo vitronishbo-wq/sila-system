@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
-from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
+
+from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import (
+    AtletaRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.domain.enums import (
+    ModalidadeDesportiva,
+    PePreferencial,
+    PosicaoAtleta,
+    StatusAtleta,
+    TipoAtleta,
+)
 from apps.backend.app.modules.society.desporto.domain.models.atleta import Atleta
 from apps.backend.app.modules.society.desporto.infrastructure.models.atleta_model import AtletaModel
 
-class SQLAlchemyAtletaRepository(AtletaRepositoryPort):
 
+class SQLAlchemyAtletaRepository(AtletaRepositoryPort):
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -61,22 +72,38 @@ class SQLAlchemyAtletaRepository(AtletaRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_clube(self, clube_id: UUID) -> list[Atleta]:
-        stmt = select(AtletaModel).where(AtletaModel.clube_atual_id == clube_id).order_by(AtletaModel.nome.asc())
+        stmt = (
+            select(AtletaModel)
+            .where(AtletaModel.clube_atual_id == clube_id)
+            .order_by(AtletaModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_modalidade(self, modalidade: ModalidadeDesportiva) -> list[Atleta]:
-        stmt = select(AtletaModel).where(AtletaModel.modalidades.contains([modalidade.value])).order_by(AtletaModel.nome.asc())
+        stmt = (
+            select(AtletaModel)
+            .where(AtletaModel.modalidades.contains([modalidade.value]))
+            .order_by(AtletaModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusAtleta) -> list[Atleta]:
-        stmt = select(AtletaModel).where(AtletaModel.status == status.value).order_by(AtletaModel.nome.asc())
+        stmt = (
+            select(AtletaModel)
+            .where(AtletaModel.status == status.value)
+            .order_by(AtletaModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoAtleta) -> list[Atleta]:
-        stmt = select(AtletaModel).where(AtletaModel.tipo == tipo.value).order_by(AtletaModel.nome.asc())
+        stmt = (
+            select(AtletaModel)
+            .where(AtletaModel.tipo == tipo.value)
+            .order_by(AtletaModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -90,10 +117,37 @@ class SQLAlchemyAtletaRepository(AtletaRepositoryPort):
 
     async def next_registro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(AtletaModel).where(AtletaModel.numero_registro.like(f'ATL/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(AtletaModel)
+            .where(AtletaModel.numero_registro.like(f"ATL/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'ATL/{ano}/{count + 1:05d}'
+        return f"ATL/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: AtletaModel) -> Atleta:
-        return Atleta(id=model.id, numero_registro=model.numero_registro, nome=model.nome, data_nascimento=model.data_nascimento, naturalidade=model.naturalidade, nacionalidade=model.nacionalidade, tipo=TipoAtleta(model.tipo), modalidades=[ModalidadeDesportiva(item) for item in model.modalidades], data_cadastro=model.data_cadastro, status=StatusAtleta(model.status), posicoes=[PosicaoAtleta(item) for item in model.posicoes] if model.posicoes else None, pe_preferencial=PePreferencial(model.pe_preferencial) if model.pe_preferencial else None, altura_cm=model.altura_cm, peso_kg=model.peso_kg, clube_atual_id=model.clube_atual_id, numero_camisola=model.numero_camisola, citizen_id=model.citizen_id, ultimo_exame_id=model.ultimo_exame_id, observacoes=model.observacoes, ativo=model.ativo)
+        return Atleta(
+            id=model.id,
+            numero_registro=model.numero_registro,
+            nome=model.nome,
+            data_nascimento=model.data_nascimento,
+            naturalidade=model.naturalidade,
+            nacionalidade=model.nacionalidade,
+            tipo=TipoAtleta(model.tipo),
+            modalidades=[ModalidadeDesportiva(item) for item in model.modalidades],
+            data_cadastro=model.data_cadastro,
+            status=StatusAtleta(model.status),
+            posicoes=[PosicaoAtleta(item) for item in model.posicoes] if model.posicoes else None,
+            pe_preferencial=PePreferencial(model.pe_preferencial)
+            if model.pe_preferencial
+            else None,
+            altura_cm=model.altura_cm,
+            peso_kg=model.peso_kg,
+            clube_atual_id=model.clube_atual_id,
+            numero_camisola=model.numero_camisola,
+            citizen_id=model.citizen_id,
+            ultimo_exame_id=model.ultimo_exame_id,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

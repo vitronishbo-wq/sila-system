@@ -1,14 +1,16 @@
 """
 Repository pattern for public_security module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class PublicSecurityRepository(ABC):
     """Abstract repository for public_security."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get public_security by ID."""
         pass
 
@@ -23,9 +25,10 @@ class PublicSecurityRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all public_security."""
         pass
+
 
 class PublicSecurityMemoryRepository(PublicSecurityRepository):
     """In-memory repository for public_security."""
@@ -33,7 +36,7 @@ class PublicSecurityMemoryRepository(PublicSecurityRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class PublicSecurityMemoryRepository(PublicSecurityRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

@@ -1,2 +1,17 @@
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models import Desapropriacao, Georreferenciamento, Imovel, MatriculaImovel, Oneracao, Proprietario
-__all__ = ['Imovel', 'Proprietario', 'Oneracao', 'Desapropriacao', 'MatriculaImovel', 'Georreferenciamento']
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.models import (
+    Desapropriacao,
+    Georreferenciamento,
+    Imovel,
+    MatriculaImovel,
+    Oneracao,
+    Proprietario,
+)
+
+__all__ = [
+    "Imovel",
+    "Proprietario",
+    "Oneracao",
+    "Desapropriacao",
+    "MatriculaImovel",
+    "Georreferenciamento",
+]

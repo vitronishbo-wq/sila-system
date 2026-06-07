@@ -1,4 +1,4 @@
-import { citizenHttp } from '../api/citizenHttp';
+import { citizenHttp } from '@/api/citizenHttp';
 
 interface CitizenProfile {
   id: string;
@@ -27,8 +27,7 @@ export const citizenAuthService = {
     
     const response = await citizenHttp.post<{ access_token: string }>(
       'auth/login',
-      formData,
-      { headers: { 'Content-Type': 'multipart/form-data' } }
+      formData
     );
     
     localStorage.setItem('citizen_token', response.data.access_token);

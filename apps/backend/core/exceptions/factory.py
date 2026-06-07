@@ -11,8 +11,8 @@ Provides a compact API for module-level exceptions:
   EducacaoInvalidState = exc.InvalidState
   EducacaoInvalidStateError = exc.InvalidStateError
 """
+
 from types import SimpleNamespace
-from typing import Type
 
 from .domain_exception import DomainException
 from .module_exception_factory import ModuleExceptionFactory
@@ -23,7 +23,7 @@ class ExceptionFactory:
 
     @staticmethod
     def create_module_exceptions(
-        module_name: str, base_exception: Type[Exception] | None = None
+        module_name: str, base_exception: type[Exception] | None = None
     ) -> SimpleNamespace:
         """
         Create module exceptions with attribute access.

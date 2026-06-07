@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.saude_juvenil_repository_port import SaudeJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import StatusAcompanhamento, TipoSaudeJuvenil
+
+from apps.backend.app.modules.society.juventude.application.ports.saude_juvenil_repository_port import (
+    SaudeJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    StatusAcompanhamento,
+    TipoSaudeJuvenil,
+)
 from apps.backend.app.modules.society.juventude.domain.models.saude_juvenil import SaudeJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.saude_juvenil_model import SaudeJuvenilModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.saude_juvenil_model import (
+    SaudeJuvenilModel,
+)
+
 
 class SQLAlchemySaudeJuvenilRepository(SaudeJuvenilRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -37,7 +47,9 @@ class SQLAlchemySaudeJuvenilRepository(SaudeJuvenilRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_registo: str) -> SaudeJuvenil | None:
-        stmt = select(SaudeJuvenilModel).where(SaudeJuvenilModel.codigo_registo == codigo_registo.strip())
+        stmt = select(SaudeJuvenilModel).where(
+            SaudeJuvenilModel.codigo_registo == codigo_registo.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -47,12 +59,20 @@ class SQLAlchemySaudeJuvenilRepository(SaudeJuvenilRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[SaudeJuvenil]:
-        stmt = select(SaudeJuvenilModel).where(SaudeJuvenilModel.jovem_id == jovem_id).order_by(SaudeJuvenilModel.data_registo.desc())
+        stmt = (
+            select(SaudeJuvenilModel)
+            .where(SaudeJuvenilModel.jovem_id == jovem_id)
+            .order_by(SaudeJuvenilModel.data_registo.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusAcompanhamento) -> list[SaudeJuvenil]:
-        stmt = select(SaudeJuvenilModel).where(SaudeJuvenilModel.status_acompanhamento == status.value).order_by(SaudeJuvenilModel.data_registo.desc())
+        stmt = (
+            select(SaudeJuvenilModel)
+            .where(SaudeJuvenilModel.status_acompanhamento == status.value)
+            .order_by(SaudeJuvenilModel.data_registo.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -66,10 +86,26 @@ class SQLAlchemySaudeJuvenilRepository(SaudeJuvenilRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(SaudeJuvenilModel).where(SaudeJuvenilModel.codigo_registo.like(f'SAU/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(SaudeJuvenilModel)
+            .where(SaudeJuvenilModel.codigo_registo.like(f"SAU/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'SAU/{ano}/{count + 1:05d}'
+        return f"SAU/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: SaudeJuvenilModel) -> SaudeJuvenil:
-        return SaudeJuvenil(id=model.id, codigo_registo=model.codigo_registo, jovem_id=model.jovem_id, tipo_registo=TipoSaudeJuvenil(model.tipo_registo), descricao=model.descricao, data_registo=model.data_registo, status_acompanhamento=StatusAcompanhamento(model.status_acompanhamento), encaminhamento_necessario=model.encaminhamento_necessario, data_cadastro=model.data_cadastro or date.today(), observacoes=model.observacoes, ativo=model.ativo)
+        return SaudeJuvenil(
+            id=model.id,
+            codigo_registo=model.codigo_registo,
+            jovem_id=model.jovem_id,
+            tipo_registo=TipoSaudeJuvenil(model.tipo_registo),
+            descricao=model.descricao,
+            data_registo=model.data_registo,
+            status_acompanhamento=StatusAcompanhamento(model.status_acompanhamento),
+            encaminhamento_necessario=model.encaminhamento_necessario,
+            data_cadastro=model.data_cadastro or date.today(),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

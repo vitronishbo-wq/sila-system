@@ -1,6 +1,6 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
 from config.settings import settings
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
 
 # Engine assíncrono centralizado
 async_engine = create_async_engine(
@@ -29,6 +29,7 @@ async def get_db():
             yield session
         finally:
             await session.close()
+
 
 # Alias explícito para compatibilidade com módulos legados (payment, notifications, etc.)
 get_async_db = get_db

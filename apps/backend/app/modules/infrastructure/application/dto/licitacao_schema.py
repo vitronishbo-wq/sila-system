@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.infrastructure.domain.enums import StatusLicitacao, TipoLicitacao
+
 
 class LicitacaoCreate(BaseModel):
     objeto: str
@@ -15,18 +19,23 @@ class LicitacaoCreate(BaseModel):
     data_entrega_propostas: date
     numero_licitacao: str | None = None
 
+
 class LicitacaoAberturaInput(BaseModel):
     data_abertura: date
+
 
 class LicitacaoAdjudicacaoInput(BaseModel):
     vencedor_id: UUID
     valor_adjudicado: Decimal
 
+
 class LicitacaoHomologacaoInput(BaseModel):
     data_homologacao: date | None = None
 
+
 class LicitacaoMotivoInput(BaseModel):
     motivo: str
+
 
 class LicitacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

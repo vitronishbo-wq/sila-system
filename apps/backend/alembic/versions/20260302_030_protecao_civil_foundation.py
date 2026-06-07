@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_030_protecao_civil_foundation"
 down_revision = "20260302_029_seguranca_publica_vestigios_evidencias"
 branch_labels = None

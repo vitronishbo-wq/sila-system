@@ -1,45 +1,21 @@
-"""Domain exceptions for PatrimonioCultural module"""
-from apps.backend.core.exceptions.factory import ExceptionFactory
-exc = ExceptionFactory.create_module_exceptions('PatrimonioCultural')
-PatrimonioCulturalException = exc.Base
-PatrimonioCulturalNotFound = exc.NotFound
-PatrimonioCulturalValidationError = exc.ValidationError
-PatrimonioCulturalInvalidStateError = exc.InvalidStateError
+from __future__ import annotations
 
 
-class UNESCOPreconditionError(PatrimonioCulturalValidationError):
-    """Precondicao UNESCO nao atendida para patrimonio cultural."""
+class PatrimonioDomainError(Exception):
+    pass
 
 
-class AssetAlreadyClassifiedError(PatrimonioCulturalValidationError):
-    """Ativo patrimonial ja classificado."""
+class AssetAlreadyClassifiedError(PatrimonioDomainError):
+    pass
 
+class AssetNotFoundError(PatrimonioDomainError):
+    pass
 
-class AssetNotFoundError(PatrimonioCulturalNotFound):
-    """Ativo patrimonial nao encontrado."""
+class InvalidClassificationAuthorityError(PatrimonioDomainError):
+    pass
 
+class ProtectedAssetModificationError(PatrimonioDomainError):
+    pass
 
-class InvalidClassificationAuthorityError(PatrimonioCulturalValidationError):
-    """Autoridade de classificacao invalida."""
-
-
-class PatrimonioDomainError(PatrimonioCulturalException):
-    """Erro generico do dominio de patrimonio cultural."""
-
-
-class ProtectedAssetModificationError(PatrimonioCulturalValidationError):
-    """Modificacao de ativo protegido nao permitida."""
-
-
-__all__ = [
-    'PatrimonioCulturalException',
-    'PatrimonioCulturalNotFound',
-    'PatrimonioCulturalValidationError',
-    'PatrimonioCulturalInvalidStateError',
-    'UNESCOPreconditionError',
-    'AssetAlreadyClassifiedError',
-    'AssetNotFoundError',
-    'InvalidClassificationAuthorityError',
-    'PatrimonioDomainError',
-    'ProtectedAssetModificationError',
-]
+class UNESCOPreconditionError(PatrimonioDomainError):
+    pass

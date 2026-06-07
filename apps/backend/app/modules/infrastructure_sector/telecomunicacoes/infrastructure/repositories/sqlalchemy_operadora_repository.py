@@ -1,14 +1,27 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import OperadoraModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import (
+    OperadoraRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusOutorga,
+    TipoOperadora,
+    TipoServico,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import (
+    Operadora,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.operadora_model import (
+    OperadoraModel,
+)
+
 
 class SQLAlchemyOperadoraRepository(OperadoraRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -55,18 +68,35 @@ class SQLAlchemyOperadoraRepository(OperadoraRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_servico(self, servico: TipoServico) -> list[Operadora]:
-        stmt = select(OperadoraModel).where(OperadoraModel.servicos_autorizados.contains([servico.value])).order_by(OperadoraModel.razao_social.asc())
+        stmt = (
+            select(OperadoraModel)
+            .where(OperadoraModel.servicos_autorizados.contains([servico.value]))
+            .order_by(OperadoraModel.razao_social.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[Operadora]:
         normalized = municipio.strip().lower()
-        stmt = select(OperadoraModel).where(func.lower(OperadoraModel.municipio) == normalized).order_by(OperadoraModel.razao_social.asc())
+        stmt = (
+            select(OperadoraModel)
+            .where(func.lower(OperadoraModel.municipio) == normalized)
+            .order_by(OperadoraModel.razao_social.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_ativas(self) -> list[Operadora]:
-        stmt = select(OperadoraModel).where(OperadoraModel.ativo.is_(True), OperadoraModel.status.in_([StatusOutorga.DEFERIDA.value, StatusOutorga.RENOVADA.value])).order_by(OperadoraModel.razao_social.asc())
+        stmt = (
+            select(OperadoraModel)
+            .where(
+                OperadoraModel.ativo.is_(True),
+                OperadoraModel.status.in_(
+                    [StatusOutorga.DEFERIDA.value, StatusOutorga.RENOVADA.value]
+                ),
+            )
+            .order_by(OperadoraModel.razao_social.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -80,4 +110,25 @@ class SQLAlchemyOperadoraRepository(OperadoraRepositoryPort):
 
     @staticmethod
     def _to_domain(model: OperadoraModel) -> Operadora:
-        return Operadora(id=model.id, cnpj=model.cnpj, razao_social=model.razao_social, nome_fantasia=model.nome_fantasia, tipo=TipoOperadora(model.tipo), servicos_autorizados=[TipoServico(item) for item in model.servicos_autorizados], endereco=model.endereco, municipio=model.municipio, provincia=model.provincia, telefone=model.telefone, email=model.email, representante_legal=model.representante_legal, representante_documento=model.representante_documento, representante_cargo=model.representante_cargo, outorga_id=model.outorga_id, data_autorizacao=model.data_autorizacao, data_validade=model.data_validade, status=StatusOutorga(model.status), observacoes=model.observacoes, ativo=model.ativo)
+        return Operadora(
+            id=model.id,
+            cnpj=model.cnpj,
+            razao_social=model.razao_social,
+            nome_fantasia=model.nome_fantasia,
+            tipo=TipoOperadora(model.tipo),
+            servicos_autorizados=[TipoServico(item) for item in model.servicos_autorizados],
+            endereco=model.endereco,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            telefone=model.telefone,
+            email=model.email,
+            representante_legal=model.representante_legal,
+            representante_documento=model.representante_documento,
+            representante_cargo=model.representante_cargo,
+            outorga_id=model.outorga_id,
+            data_autorizacao=model.data_autorizacao,
+            data_validade=model.data_validade,
+            status=StatusOutorga(model.status),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

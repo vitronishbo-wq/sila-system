@@ -9,9 +9,11 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260305_048_justica_add_materia_processual"
-down_revision = ("20260305_047_estatistica_enterprise_foundation", "20260305_047_familia_foundation")
+down_revision = (
+    "20260305_047_estatistica_enterprise_foundation",
+    "20260305_047_familia_foundation",
+)
 branch_labels = None
 depends_on = None
 

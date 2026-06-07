@@ -1,8 +1,9 @@
 """Async lock manager baseline (swapable for Redis/Postgres locks)."""
+
 import asyncio
 
-class LockManager:
 
+class LockManager:
     def __init__(self):
         self._locks: dict[str, asyncio.Lock] = {}
 

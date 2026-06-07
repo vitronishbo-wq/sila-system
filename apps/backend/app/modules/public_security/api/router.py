@@ -1,6 +1,19 @@
 from fastapi import APIRouter
-from apps.backend.app.modules.public_security.api.endpoints import cadeias_custodia_router, evidencias_router, investigacoes_router, laudos_periciais_router, mandados_router, ocorrencias_router, policiais_router, provas_periciais_router, unidades_policiais_router, vestigios_router
-router = APIRouter(prefix='/seguranca-publica', tags=['Seguranca Publica'])
+
+from apps.backend.app.modules.public_security.api.endpoints import (
+    cadeias_custodia_router,
+    evidencias_router,
+    investigacoes_router,
+    laudos_periciais_router,
+    mandados_router,
+    ocorrencias_router,
+    policiais_router,
+    provas_periciais_router,
+    unidades_policiais_router,
+    vestigios_router,
+)
+
+router = APIRouter(prefix="/seguranca-publica", tags=["Seguranca Publica"])
 router.include_router(unidades_policiais_router)
 router.include_router(policiais_router)
 router.include_router(ocorrencias_router)

@@ -5,91 +5,97 @@ Creates missing domain/api/application/infrastructure files for all modules.
 Real code generation, not documentation.
 """
 
+import sys
 from pathlib import Path
 from textwrap import dedent
-import sys
+
 
 class ModuleGenerator:
     def __init__(self, modules_path):
         self.modules_path = Path(modules_path)
-    
+
     def generate_all(self):
         """Generate missing files for all modules."""
-        modules = sorted([d for d in self.modules_path.iterdir() 
-                         if d.is_dir() and not d.name.startswith('_') and d.name != 'tests'])
-        
-        print(f"\n{'='*80}")
+        modules = sorted(
+            [
+                d
+                for d in self.modules_path.iterdir()
+                if d.is_dir() and not d.name.startswith("_") and d.name != "tests"
+            ]
+        )
+
+        print(f"\n{'=' * 80}")
         print(f"[GENERATING CODE FOR {len(modules)} MODULES]")
-        print(f"{'='*80}\n")
-        
+        print(f"{'=' * 80}\n")
+
         files_created = 0
         for module in modules:
             files_created += self._generate_module(module)
-        
+
         print(f"\n[GENERATED {files_created} FILES]\n")
-    
+
     def _generate_module(self, module_path):
         """Generate missing files for a single module."""
         module_name = module_path.name
         files_created = 0
-        
+
         # Ensure directories exist
         (module_path / "domain").mkdir(exist_ok=True)
         (module_path / "application").mkdir(exist_ok=True)
         (module_path / "infrastructure").mkdir(exist_ok=True)
         (module_path / "api").mkdir(exist_ok=True)
-        
+
         # Generate domain/models.py
         models_file = module_path / "domain" / "models.py"
         if not models_file.exists():
             models_file.write_text(self._template_models(module_name))
             print(f"[OK] {module_name}/domain/models.py")
             files_created += 1
-        
+
         # Generate domain/exceptions.py
         exc_file = module_path / "domain" / "exceptions.py"
         if not exc_file.exists():
             exc_file.write_text(self._template_exceptions(module_name))
             print(f"[OK] {module_name}/domain/exceptions.py")
             files_created += 1
-        
+
         # Generate application/commands.py
         cmd_file = module_path / "application" / "commands.py"
         if not cmd_file.exists():
             cmd_file.write_text(self._template_commands(module_name))
             print(f"[OK] {module_name}/application/commands.py")
             files_created += 1
-        
+
         # Generate application/event_handlers.py
         handlers_file = module_path / "application" / "event_handlers.py"
         if not handlers_file.exists():
             handlers_file.write_text(self._template_event_handlers(module_name))
             print(f"[OK] {module_name}/application/event_handlers.py")
             files_created += 1
-        
+
         # Generate infrastructure/adapters.py
         adapters_file = module_path / "infrastructure" / "adapters.py"
         if not adapters_file.exists():
             adapters_file.write_text(self._template_adapters(module_name))
             print(f"[OK] {module_name}/infrastructure/adapters.py")
             files_created += 1
-        
+
         # Generate infrastructure/repositories.py
         repos_file = module_path / "infrastructure" / "repositories.py"
         if not repos_file.exists():
             repos_file.write_text(self._template_repositories(module_name))
             print(f"[OK] {module_name}/infrastructure/repositories.py")
             files_created += 1
-        
+
         # Generate api/routers.py
         routers_file = module_path / "api" / "routers.py"
         if not routers_file.exists():
             routers_file.write_text(self._template_routers(module_name))
             print(f"[OK] {module_name}/api/routers.py")
             files_created += 1
-        
+
         return files_created
-    
+
     def _template_models(self, module_name):
         return dedent(f'''"""
 Domain models for {module_name} module.
@@ -122,7 +128,7 @@ class {self._capitalize(module_name)} Aggregate:
         if self.id is None:
             object.__setattr__(self, 'id', {self._capitalize(module_name)}ID())
 ''')
-    
+
     def _template_exceptions(self, module_name):
         return dedent(f'''"""
 Domain exceptions for {module_name} module.
@@ -148,7 +154,7 @@ class {self._capitalize(module_name)}InvalidStateError({self._capitalize(module_
     """Raised on invalid {module_name} state transition."""
     pass
 ''')
-    
+
     def _template_commands(self, module_name):
         return dedent(f'''"""
 Application commands for {module_name} module.
@@ -185,7 +191,7 @@ class Delete{self._capitalize(module_name)}Command:
     """Command to delete a {module_name}."""
     id: UUID
 ''')
-    
+
     def _template_event_handlers(self, module_name):
         return dedent(f'''"""
 Event handlers for {module_name} module.
@@ -215,7 +221,7 @@ class {self._capitalize(module_name)}EventHandlers:
 # Global registry
 handlers = {self._capitalize(module_name)}EventHandlers()
 ''')
-    
+
     def _template_adapters(self, module_name):
         return dedent(f'''"""
 Infrastructure adapters for {module_name} module.
@@ -277,7 +283,7 @@ class {self._capitalize(module_name)}Adapter({self._capitalize(module_name)}Port
         """List all {module_name}."""
         return []
 ''')
-    
+
     def _template_repositories(self, module_name):
         return dedent(f'''"""
 Repository pattern for {module_name} module.
@@ -333,7 +339,7 @@ class {self._capitalize(module_name)}MemoryRepository({self._capitalize(module_n
     async def list_all(self) -> List[Any]:
         return list(self.data.values())
 ''')
-    
+
     def _template_routers(self, module_name):
         return dedent(f'''"""
 API routers for {module_name} module.
@@ -398,18 +404,18 @@ async def delete_{module_name}(id: str):
     """Delete {module_name} record."""
     return None
 ''')
-    
+
     def _capitalize(self, text: str) -> str:
         """Convert snake_case to PascalCase."""
-        return ''.join(word.capitalize() for word in text.split('_'))
+        return "".join(word.capitalize() for word in text.split("_"))
 
 
 if __name__ == "__main__":
     modules_path = Path(__file__).parent.parent / "apps" / "backend" / "app" / "modules"
-    
+
     if not modules_path.exists():
         print(f"[ERROR] Modules path not found: {modules_path}")
         sys.exit(1)
-    
+
     generator = ModuleGenerator(modules_path)
     generator.generate_all()

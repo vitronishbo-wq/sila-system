@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import TipoPropriedade
+
 
 class PropriedadeCreate(BaseModel):
     produtor_id: UUID
@@ -12,6 +16,7 @@ class PropriedadeCreate(BaseModel):
     area_cultivavel_ha: float
     provincia: str | None = None
     municipio: str | None = None
+
 
 class PropriedadeResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

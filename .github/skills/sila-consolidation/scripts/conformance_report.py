@@ -12,11 +12,8 @@ Usage:
 
 import argparse
 import json
-import os
-import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 
 class ModuleConformanceAuditor:
@@ -30,7 +27,7 @@ class ModuleConformanceAuditor:
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.results = {}
 
-    def audit(self) -> Dict:
+    def audit(self) -> dict:
         """Run all conformance checks."""
         if not self.core_path.exists():
             self.results = {
@@ -97,10 +94,12 @@ class ModuleConformanceAuditor:
         for rel_path, description in required:
             file_path = self.core_path / rel_path
             exists = file_path.exists()
-            checks.append({
-                "item": f"{rel_path} ({description})",
-                "status": "PASS" if exists else "FAIL",
-            })
+            checks.append(
+                {
+                    "item": f"{rel_path} ({description})",
+                    "status": "PASS" if exists else "FAIL",
+                }
+            )
 
         self.results["checks"]["required_files"] = {
             "name": "Required Boundary Files",
@@ -128,12 +127,12 @@ class ModuleConformanceAuditor:
             "name": "Entity Consolidation",
             "items": [
                 {
-                    "item": f"Entities in domain/entities/",
+                    "item": "Entities in domain/entities/",
                     "status": "PASS",
                     "count": len(entity_files),
                 },
                 {
-                    "item": f"Orphaned entities outside domain/entities",
+                    "item": "Orphaned entities outside domain/entities",
                     "status": "PASS" if len(orphaned) == 0 else "FAIL",
                     "count": len(orphaned),
                 },
@@ -174,8 +173,8 @@ class ModuleConformanceAuditor:
                     content = f.read()
 
                 # Check for domain/business logic (heuristic)
-                has_business_logic = (
-                    "if " in content and ("raise " in content or "assert " in content)
+                has_business_logic = "if " in content and (
+                    "raise " in content or "assert " in content
                 )
 
                 if not has_business_logic:
@@ -197,11 +196,13 @@ class ModuleConformanceAuditor:
 
         if ports_dir.exists():
             port_files = list(ports_dir.glob("*.py"))
-            checks.append({
-                "item": "Ports directory exists",
-                "status": "PASS",
-                "count": len(port_files),
-            })
+            checks.append(
+                {
+                    "item": "Ports directory exists",
+                    "status": "PASS",
+                    "count": len(port_files),
+                }
+            )
 
             # Check that ports use ABC
             abc_files = 0
@@ -213,11 +214,13 @@ class ModuleConformanceAuditor:
                 if "ABC" in content or "@abstractmethod" in content:
                     abc_files += 1
 
-            checks.append({
-                "item": "Ports using ABC/abstractmethod",
-                "status": "PASS" if abc_files > 0 else "WARN",
-                "count": abc_files,
-            })
+            checks.append(
+                {
+                    "item": "Ports using ABC/abstractmethod",
+                    "status": "PASS" if abc_files > 0 else "WARN",
+                    "count": abc_files,
+                }
+            )
         else:
             checks.append({"item": "Ports directory", "status": "WARN"})
 
@@ -246,10 +249,12 @@ class ModuleConformanceAuditor:
 
             for pattern in problematic_patterns:
                 if f"from apps.backend.app.modules.{self.module_name}.{pattern}" in content:
-                    violations.append({
-                        "file": str(py_file.relative_to(self.core_path)),
-                        "pattern": pattern,
-                    })
+                    violations.append(
+                        {
+                            "file": str(py_file.relative_to(self.core_path)),
+                            "pattern": pattern,
+                        }
+                    )
 
         self.results["checks"]["circular_imports"] = {
             "name": "Circular Dependency Detection",
@@ -279,10 +284,14 @@ class ModuleConformanceAuditor:
                     "count": len(test_files),
                 },
             ],
-            "passed": sum(1 for c in [
-                len(test_dirs) > 0,
-                len(test_files) > 0,
-            ] if c),
+            "passed": sum(
+                1
+                for c in [
+                    len(test_dirs) > 0,
+                    len(test_files) > 0,
+                ]
+                if c
+            ),
             "total": 2,
         }
 
@@ -326,7 +335,7 @@ class ModuleConformanceAuditor:
             "",
         ]
 
-        for check_key, check_data in self.results["checks"].items():
+        for _check_key, check_data in self.results["checks"].items():
             lines.append(f"## {check_data['name']}")
             lines.append("")
 
@@ -343,21 +352,22 @@ class ModuleConformanceAuditor:
                 )
 
             if "passed" in check_data and "total" in check_data:
-                lines.append(
-                    f"\n**Score**: {check_data['passed']}/{check_data['total']} items"
-                )
+                lines.append(f"\n**Score**: {check_data['passed']}/{check_data['total']} items")
 
             lines.append("")
 
-        lines.extend([
-            "---",
-            "",
-            "## Sign-Off",
-            "",
-            "Module consolidated and audit passed" if self.results["overall_status"] == "PASSED"
-            else "Module has conformance issues - review above",
-            "",
-        ])
+        lines.extend(
+            [
+                "---",
+                "",
+                "## Sign-Off",
+                "",
+                "Module consolidated and audit passed"
+                if self.results["overall_status"] == "PASSED"
+                else "Module has conformance issues - review above",
+                "",
+            ]
+        )
 
         return "\n".join(lines)
 

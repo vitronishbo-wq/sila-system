@@ -1,14 +1,13 @@
 # Phase 20.2: Event Bus Bridge Tests
-import pytest
 
 
 class TestPhase20_2Bridge:
     def test_bridge_interface_exists(self):
         # Verify bridge module structure
         assert True
-        
+
     def test_projection_worker_interface(self):
-        # Verify worker module structure  
+        # Verify worker module structure
         assert True
 
 

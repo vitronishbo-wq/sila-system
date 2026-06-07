@@ -1,6 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
-class ContractStatus(str, Enum):
-    ACTIVE = 'active'
-    SUSPENDED = 'suspended'
-    TERMINATED = 'terminated'
+
+class ContractStatus(StrEnum):
+    ACTIVE = "active"
+    SUSPENDED = "suspended"
+    TERMINATED = "terminated"

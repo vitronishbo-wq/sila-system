@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
 
-class LicencaPescaRepositoryPort(ABC):
 
+class LicencaPescaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, licenca: LicencaPesca) -> LicencaPesca:
         pass

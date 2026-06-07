@@ -1,6 +1,23 @@
-from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_abastecimento_repository import SQLAlchemyAbastecimentoRepository
-from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_consumo_repository import SQLAlchemyConsumoRepository
-from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_fatura_repository import SQLAlchemyFaturaRepository
-from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_infraestrutura_repository import SQLAlchemyInfraestruturaRepository
-from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_outorga_repository import SQLAlchemyOutorgaRepository
-__all__ = ['SQLAlchemyOutorgaRepository', 'SQLAlchemyInfraestruturaRepository', 'SQLAlchemyAbastecimentoRepository', 'SQLAlchemyConsumoRepository', 'SQLAlchemyFaturaRepository']
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_abastecimento_repository import (
+    SQLAlchemyAbastecimentoRepository,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_consumo_repository import (
+    SQLAlchemyConsumoRepository,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_fatura_repository import (
+    SQLAlchemyFaturaRepository,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_infraestrutura_repository import (
+    SQLAlchemyInfraestruturaRepository,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.infrastructure.repositories.sqlalchemy_outorga_repository import (
+    SQLAlchemyOutorgaRepository,
+)
+
+__all__ = [
+    "SQLAlchemyOutorgaRepository",
+    "SQLAlchemyInfraestruturaRepository",
+    "SQLAlchemyAbastecimentoRepository",
+    "SQLAlchemyConsumoRepository",
+    "SQLAlchemyFaturaRepository",
+]

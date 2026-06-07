@@ -1,14 +1,16 @@
 """
 Repository pattern for civil_protection module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class CivilProtectionRepository(ABC):
     """Abstract repository for civil_protection."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get civil_protection by ID."""
         pass
 
@@ -23,9 +25,10 @@ class CivilProtectionRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all civil_protection."""
         pass
+
 
 class CivilProtectionMemoryRepository(CivilProtectionRepository):
     """In-memory repository for civil_protection."""
@@ -33,7 +36,7 @@ class CivilProtectionMemoryRepository(CivilProtectionRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class CivilProtectionMemoryRepository(CivilProtectionRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

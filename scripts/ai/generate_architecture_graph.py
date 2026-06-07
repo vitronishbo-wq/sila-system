@@ -6,10 +6,9 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
-
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
@@ -21,7 +20,7 @@ if str(BACKEND_ROOT) not in sys.path:
 if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
-from app.core.module_registry import iter_modules  # noqa: E402
+from apps.backend.app.core.module_registry import iter_modules  # noqa: E402
 from architecture.generate_architecture_index import dump_yaml  # noqa: E402
 
 
@@ -75,15 +74,16 @@ def has_layered_architecture(module_dir: Path) -> bool:
     return all((module_dir / part).exists() for part in required)
 
 
-def build_graph_payload(system_name: str, modules_root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+def build_graph_payload(
+    system_name: str, modules_root: Path
+) -> tuple[dict[str, Any], dict[str, Any]]:
     module_map: dict[str, Any] = {}
     edges: list[dict[str, str]] = []
     missing_docs: list[str] = []
 
     specs = {spec.name: spec for spec in iter_modules(enabled_only=False)}
     module_names = sorted(
-        d.name for d in modules_root.iterdir()
-        if d.is_dir() and not d.name.startswith("__")
+        d.name for d in modules_root.iterdir() if d.is_dir() and not d.name.startswith("__")
     )
 
     for module_name in module_names:
@@ -94,8 +94,7 @@ def build_graph_payload(system_name: str, modules_root: Path) -> tuple[dict[str,
             missing_docs.append(module_name)
 
         depends_on = [
-            dep for dep in parsed["depends_on"]
-            if dep in module_names and dep != module_name
+            dep for dep in parsed["depends_on"] if dep in module_names and dep != module_name
         ]
         for dep in depends_on:
             edges.append({"source": module_name, "target": dep})
@@ -112,12 +111,12 @@ def build_graph_payload(system_name: str, modules_root: Path) -> tuple[dict[str,
 
     yaml_payload = {
         "system": system_name,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "modules": module_map,
     }
     json_payload = {
         "system": system_name,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "modules": module_map,
         "edges": edges,
         "missing_architecture_docs": missing_docs,
@@ -128,7 +127,7 @@ def build_graph_payload(system_name: str, modules_root: Path) -> tuple[dict[str,
 def render_visual_report(json_payload: dict[str, Any], output_path: Path) -> str:
     modules = json_payload.get("modules", {})
     edges = json_payload.get("edges", [])
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
 
     with_entities = sum(1 for node in modules.values() if node.get("entities"))
     with_use_cases = sum(1 for node in modules.values() if node.get("use_cases"))
@@ -164,7 +163,7 @@ def render_visual_report(json_payload: dict[str, Any], output_path: Path) -> str
     for edge in edges[:80]:
         lines.append(f"  {edge['source']} --> {edge['target']}")
     if not edges:
-        lines.append("  A[\"No edges\"]")
+        lines.append('  A["No edges"]')
     lines.append("```")
     lines.append("")
     return "\n".join(lines)

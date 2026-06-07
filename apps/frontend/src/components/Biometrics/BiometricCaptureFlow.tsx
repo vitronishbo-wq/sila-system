@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle, Loader } from 'lucide-react';
-import BiometricCapture from './BiometricCapture';
-import BiometricQualityCheck from './BiometricQualityCheck';
+import BiometricCapture from '@/components/Biometrics/BiometricCapture';
+import BiometricQualityCheck from '@/components/Biometrics/BiometricQualityCheck';
 
 type BiometricStep = 'instructions' | 'capture' | 'quality-check' | 'processing' | 'success' | 'error';
 

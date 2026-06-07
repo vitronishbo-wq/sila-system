@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.juventude.domain.enums import RiscoSocial
 from apps.backend.app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
 
-class RiscoEvasaoRepositoryPort(ABC):
 
+class RiscoEvasaoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, risco: RiscoEvasao) -> RiscoEvasao:
         raise NotImplementedError

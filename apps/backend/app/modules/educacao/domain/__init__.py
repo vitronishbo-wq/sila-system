@@ -6,4 +6,18 @@ from .inscricao_superior import InscricaoSuperior
 from .inscricao_tecnico import InscricaoTecnico
 from .matricula import Matricula, StatusMatricula
 from .turma import Turma, Turno
-__all__ = ['Matricula', 'StatusMatricula', 'Escola', 'TipoEscola', 'CicloEnsino', 'Turma', 'Turno', 'AnoLetivo', 'InscricaoBasica', 'InscricaoSecundaria', 'InscricaoSuperior', 'InscricaoTecnico']
+
+__all__ = [
+    "Matricula",
+    "StatusMatricula",
+    "Escola",
+    "TipoEscola",
+    "CicloEnsino",
+    "Turma",
+    "Turno",
+    "AnoLetivo",
+    "InscricaoBasica",
+    "InscricaoSecundaria",
+    "InscricaoSuperior",
+    "InscricaoTecnico",
+]

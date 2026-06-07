@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Copy, CheckCircle, Loader2, CreditCard } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { operationsService } from "@/services/operationsService";
+import { operationsService } from "@/modules/operations/services";
 
 interface CheckoutProps {
     amount: number;

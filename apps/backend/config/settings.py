@@ -1,9 +1,10 @@
-from pathlib import Path
-from typing import List, Optional, Union
-from functools import lru_cache
 import json
+from functools import lru_cache
+from pathlib import Path
+from typing import Annotated
+
 from pydantic import field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -50,15 +51,15 @@ class Settings(BaseSettings):
     DATABASE_MAX_OVERFLOW: int = 20
 
     # Redis & Cache
-    REDIS_URL: str = "redis://redis:6379/0"
-    REDIS_PASSWORD: Optional[str] = None
+    REDIS_URL: str = "redis://127.0.0.1:6379/0"
+    REDIS_PASSWORD: str | None = None
     REDIS_MAX_CONNECTIONS: int = 20
     CACHE_BACKEND: str = "redis"
     CACHE_TTL_SECONDS: int = 3600
-    CELERY_BROKER_URL: str = "redis://redis:6379/0"
+    CELERY_BROKER_URL: str = "redis://127.0.0.1:6379/0"
 
     # CORS
-    BACKEND_CORS_ORIGINS: List[str] = [
+    BACKEND_CORS_ORIGINS: Annotated[list[str], NoDecode] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
@@ -71,10 +72,10 @@ class Settings(BaseSettings):
     PAYMENT_WEBHOOK_SECRET: str = "whsec_test123"
 
     # Email
-    SMTP_HOST: Optional[str] = None
+    SMTP_HOST: str | None = None
     SMTP_PORT: int = 587
-    SMTP_USER: Optional[str] = None
-    SMTP_PASSWORD: Optional[str] = None
+    SMTP_USER: str | None = None
+    SMTP_PASSWORD: str | None = None
     SMTP_TLS: bool = True
     SMTP_FROM: str = "no-reply@sila.ao"
 
@@ -84,7 +85,7 @@ class Settings(BaseSettings):
     MINIO_SECRET_KEY: str = "minioadmin"
     UPLOAD_PATH: str = "uploads"
     UPLOAD_DIR: str = "/app/uploads"
-    ALLOWED_EXTENSIONS: Union[List[str], str] = ["jpg", "jpeg", "png", "pdf", "docx"]
+    ALLOWED_EXTENSIONS: list[str] | str = ["jpg", "jpeg", "png", "pdf", "docx"]
     MAX_UPLOAD_SIZE: int = 50 * 1024 * 1024  # 50MB
 
     # Monitoring & Features
@@ -96,26 +97,37 @@ class Settings(BaseSettings):
 
     @field_validator("DEBUG", mode="before")
     @classmethod
-    def parse_debug(cls, v: Union[str, bool]) -> bool:
+    def parse_debug(cls, v: str | bool) -> bool:
         if isinstance(v, str):
-            return v.strip().lower() in ('true', '1', 'yes')
+            return v.strip().lower() in ("true", "1", "yes")
         return v
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
-    def parse_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+    def parse_cors_origins(cls, v: str | list[str]) -> list[str]:
         if isinstance(v, str):
+            value = v.strip()
+            if not value:
+                return []
             try:
-                # Try to parse as JSON
-                return json.loads(v)
+                parsed = json.loads(value)
+                if isinstance(parsed, list):
+                    return [str(item).strip() for item in parsed if str(item).strip()]
+                if isinstance(parsed, str) and parsed.strip():
+                    return [parsed.strip()]
             except (json.JSONDecodeError, ValueError):
-                # Fallback to comma-separated
-                return [x.strip() for x in v.split(",")]
+                pass
+            normalized = value.strip("[]")
+            return [
+                x.strip().strip('"').strip("'")
+                for x in normalized.split(",")
+                if x.strip().strip('"').strip("'")
+            ]
         return v
 
     @field_validator("ALLOWED_EXTENSIONS", mode="before")
     @classmethod
-    def assemble_allowed_extensions(cls, v: Union[str, List[str]]) -> List[str]:
+    def assemble_allowed_extensions(cls, v: str | list[str]) -> list[str]:
         if isinstance(v, str):
             return [x.strip() for x in v.split(",")]
         return v
@@ -127,6 +139,6 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-@lru_cache()
+@lru_cache
 def get_settings() -> Settings:
     return settings

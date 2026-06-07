@@ -99,9 +99,9 @@ fi
 print_section "Validação de Imports Python"
 
 python -c "
-from app.core.iam.infrastructure.decorators import audit_session_action, audit_user_action
-from app.core.iam.infrastructure.repositories.session_repository import SessionRepository
-from app.core.iam.infrastructure.repositories.user_repository import UserRepository
+from apps.backend.app.core.iam.infrastructure.decorators import audit_session_action, audit_user_action
+from apps.backend.app.core.iam.infrastructure.repositories.session_repository import SessionRepository
+from apps.backend.app.core.iam.infrastructure.repositories.user_repository import UserRepository
 print('Todos os imports OK')
 " 2>&1 && print_status 0 "Todos os imports Python resolvidos"
 

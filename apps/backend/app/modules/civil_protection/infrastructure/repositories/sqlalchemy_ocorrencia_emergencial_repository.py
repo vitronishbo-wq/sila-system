@@ -1,15 +1,28 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.domain.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.enums import PrioridadeAtendimento, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
-from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
-from apps.backend.app.modules.civil_protection.infrastructure.models.ocorrencia_emergencial_model import OcorrenciaEmergencialModel
+
+from apps.backend.app.modules.civil_protection.domain.enums import (
+    PrioridadeAtendimento,
+    StatusOcorrenciaEmergencial,
+    TipoOcorrenciaEmergencial,
+)
+from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import (
+    OcorrenciaEmergencial,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.ocorrencia_emergencial_repository_port import (
+    OcorrenciaEmergencialRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.infrastructure.models.ocorrencia_emergencial_model import (
+    OcorrenciaEmergencialModel,
+)
+
 
 class SQLAlchemyOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -44,32 +57,55 @@ class SQLAlchemyOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryP
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_ocorrencia: str) -> OcorrenciaEmergencial | None:
-        stmt = select(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.codigo_ocorrencia == codigo_ocorrencia.strip())
+        stmt = select(OcorrenciaEmergencialModel).where(
+            OcorrenciaEmergencialModel.codigo_ocorrencia == codigo_ocorrencia.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_all(self) -> list[OcorrenciaEmergencial]:
-        stmt = select(OcorrenciaEmergencialModel).order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        stmt = select(OcorrenciaEmergencialModel).order_by(
+            OcorrenciaEmergencialModel.data_ocorrencia.desc()
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_corporacao(self, corporacao_id: UUID) -> list[OcorrenciaEmergencial]:
-        stmt = select(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.corporacao_id == corporacao_id).order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        stmt = (
+            select(OcorrenciaEmergencialModel)
+            .where(OcorrenciaEmergencialModel.corporacao_id == corporacao_id)
+            .order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoOcorrenciaEmergencial) -> list[OcorrenciaEmergencial]:
-        stmt = select(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.tipo == tipo.value).order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        stmt = (
+            select(OcorrenciaEmergencialModel)
+            .where(OcorrenciaEmergencialModel.tipo == tipo.value)
+            .order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
-    async def list_by_status(self, status: StatusOcorrenciaEmergencial) -> list[OcorrenciaEmergencial]:
-        stmt = select(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.status == status.value).order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+    async def list_by_status(
+        self, status: StatusOcorrenciaEmergencial
+    ) -> list[OcorrenciaEmergencial]:
+        stmt = (
+            select(OcorrenciaEmergencialModel)
+            .where(OcorrenciaEmergencialModel.status == status.value)
+            .order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_periodo(self, inicio: datetime, fim: datetime) -> list[OcorrenciaEmergencial]:
-        stmt = select(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.data_ocorrencia >= inicio).where(OcorrenciaEmergencialModel.data_ocorrencia <= fim).order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        stmt = (
+            select(OcorrenciaEmergencialModel)
+            .where(OcorrenciaEmergencialModel.data_ocorrencia >= inicio)
+            .where(OcorrenciaEmergencialModel.data_ocorrencia <= fim)
+            .order_by(OcorrenciaEmergencialModel.data_ocorrencia.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -83,11 +119,34 @@ class SQLAlchemyOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryP
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'OCE/{year}/'
-        stmt = select(func.count()).select_from(OcorrenciaEmergencialModel).where(OcorrenciaEmergencialModel.codigo_ocorrencia.like(f'{prefix}%'))
+        prefix = f"OCE/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(OcorrenciaEmergencialModel)
+            .where(OcorrenciaEmergencialModel.codigo_ocorrencia.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:06d}'
+        return f"{prefix}{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: OcorrenciaEmergencialModel) -> OcorrenciaEmergencial:
-        return OcorrenciaEmergencial(id=model.id, codigo_ocorrencia=model.codigo_ocorrencia, corporacao_id=model.corporacao_id, tipo=TipoOcorrenciaEmergencial(model.tipo), status=StatusOcorrenciaEmergencial(model.status), prioridade=PrioridadeAtendimento(model.prioridade), data_ocorrencia=model.data_ocorrencia, descricao=model.descricao, municipio=model.municipio, provincia=model.provincia, data_registro=model.data_registro, bombeiro_responsavel_id=model.bombeiro_responsavel_id, endereco=model.endereco, vitimas=model.vitimas, desalojados=model.desalojados, obitos=model.obitos, observacoes=model.observacoes, ativo=model.ativo)
+        return OcorrenciaEmergencial(
+            id=model.id,
+            codigo_ocorrencia=model.codigo_ocorrencia,
+            corporacao_id=model.corporacao_id,
+            tipo=TipoOcorrenciaEmergencial(model.tipo),
+            status=StatusOcorrenciaEmergencial(model.status),
+            prioridade=PrioridadeAtendimento(model.prioridade),
+            data_ocorrencia=model.data_ocorrencia,
+            descricao=model.descricao,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            data_registro=model.data_registro,
+            bombeiro_responsavel_id=model.bombeiro_responsavel_id,
+            endereco=model.endereco,
+            vitimas=model.vitimas,
+            desalojados=model.desalojados,
+            obitos=model.obitos,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

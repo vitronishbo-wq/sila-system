@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from alembic import command
 from alembic.config import Config
@@ -15,8 +15,7 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from apps.backend.app.core.settings import settings
-
+from apps.backend.app.core.settings import settings  # noqa: E402
 
 LEGACY_BRANCH_HEADS = ("add_import_batch_id_to_territory", "20231027001")
 
@@ -35,9 +34,13 @@ def _prepare_brownfield_alembic_state() -> None:
     engine = create_engine(_sync_url(), future=True)
     try:
         with engine.begin() as conn:
-            table_exists = conn.execute(text("select to_regclass('public.alembic_version')")).scalar()
+            table_exists = conn.execute(
+                text("select to_regclass('public.alembic_version')")
+            ).scalar()
             if not table_exists:
-                conn.execute(text("create table alembic_version (version_num varchar(64) not null)"))
+                conn.execute(
+                    text("create table alembic_version (version_num varchar(64) not null)")
+                )
 
             # Brownfield heuristic: schema already has operational data tables.
             has_existing_schema = bool(

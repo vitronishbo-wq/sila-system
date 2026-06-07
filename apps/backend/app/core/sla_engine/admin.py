@@ -3,26 +3,28 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from typing import Any
 
+from apps.backend.app.api.deps import get_current_user, get_db
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_current_user, get_db
 from .models import (
+    CitizenType,
+    Province,
     SLABaseDB,
     SLAOverrideCreate,
     SLAOverrideDB,
     SLAPolicyCreate,
     SLAPolicyDB,
     SLAViolationDB,
-    CitizenType,
-    Province,
 )
 
 router = APIRouter(prefix="/admin/sla", tags=["SLA Admin"])
 templates = Jinja2Templates(directory="templates")
+current_user_dep = Depends(get_current_user)
+db_dep = Depends(get_db)
 
 
 def _assert_admin(current_user: dict[str, Any]) -> None:
@@ -34,8 +36,8 @@ def _assert_admin(current_user: dict[str, Any]) -> None:
 @router.post("/base", status_code=201)
 async def create_base_sla(
     payload: dict[str, Any],
-    current_user: dict[str, Any] = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    current_user: dict[str, Any] = current_user_dep,
+    db: AsyncSession = db_dep,
 ) -> dict[str, Any]:
     _assert_admin(current_user)
     record = SLABaseDB(
@@ -59,8 +61,8 @@ async def create_base_sla(
 
 @router.get("/policies")
 async def list_policies(
-    db: AsyncSession = Depends(get_db),
-    current_user: dict[str, Any] = Depends(get_current_user),
+    db: AsyncSession = db_dep,
+    current_user: dict[str, Any] = current_user_dep,
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
     result = await db.execute(select(SLAPolicyDB).order_by(SLAPolicyDB.created_at.desc()))
@@ -84,8 +86,8 @@ async def list_policies(
 @router.post("/policies", status_code=201)
 async def create_policy(
     payload: SLAPolicyCreate,
-    current_user: dict[str, Any] = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    current_user: dict[str, Any] = current_user_dep,
+    db: AsyncSession = db_dep,
 ) -> dict[str, Any]:
     _assert_admin(current_user)
     policy = SLAPolicyDB(
@@ -111,8 +113,8 @@ async def create_policy(
 @router.post("/overrides", status_code=201)
 async def create_override(
     payload: SLAOverrideCreate,
-    current_user: dict[str, Any] = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    current_user: dict[str, Any] = current_user_dep,
+    db: AsyncSession = db_dep,
 ) -> dict[str, Any]:
     _assert_admin(current_user)
     override = SLAOverrideDB(
@@ -132,8 +134,8 @@ async def create_override(
 
 @router.get("/violations")
 async def list_violations(
-    db: AsyncSession = Depends(get_db),
-    current_user: dict[str, Any] = Depends(get_current_user),
+    db: AsyncSession = db_dep,
+    current_user: dict[str, Any] = current_user_dep,
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
     result = await db.execute(select(SLAViolationDB).order_by(SLAViolationDB.created_at.desc()))
@@ -158,15 +160,15 @@ async def list_violations(
 @router.get("/dashboard", response_class=HTMLResponse)
 async def sla_dashboard(
     request: Request,
-    db: AsyncSession = Depends(get_db),
-    current_user: dict[str, Any] = Depends(get_current_user),
+    db: AsyncSession = db_dep,
+    current_user: dict[str, Any] = current_user_dep,
 ) -> HTMLResponse:
     _assert_admin(current_user)
     total_services = await db.execute(select(func.count()).select_from(SLABaseDB))
     recent_violations = await db.execute(
-        select(func.count()).select_from(SLAViolationDB).where(
-            SLAViolationDB.created_at >= datetime.utcnow() - timedelta(days=7)
-        )
+        select(func.count())
+        .select_from(SLAViolationDB)
+        .where(SLAViolationDB.created_at >= datetime.utcnow() - timedelta(days=7))
     )
     top_violations = await db.execute(
         select(SLAViolationDB.service_id, func.count().label("count"))
@@ -195,8 +197,8 @@ async def sla_dashboard(
 @router.get("/simulator", response_class=HTMLResponse)
 async def sla_simulator(
     request: Request,
-    db: AsyncSession = Depends(get_db),
-    current_user: dict[str, Any] = Depends(get_current_user),
+    db: AsyncSession = db_dep,
+    current_user: dict[str, Any] = current_user_dep,
 ) -> HTMLResponse:
     _assert_admin(current_user)
     services_result = await db.execute(select(SLABaseDB).limit(100))

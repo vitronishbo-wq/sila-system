@@ -1,12 +1,15 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from enum import Enum
 
-class RiskLevel(str, Enum):
-    CRITICAL_RISK = 'critical_risk'
-    HIGH_RISK = 'high_risk'
-    MEDIUM_RISK = 'medium_risk'
-    LOW_RISK = 'low_risk'
+from dataclasses import dataclass
+from enum import StrEnum
+
+
+class RiskLevel(StrEnum):
+    CRITICAL_RISK = "critical_risk"
+    HIGH_RISK = "high_risk"
+    MEDIUM_RISK = "medium_risk"
+    LOW_RISK = "low_risk"
+
 
 @dataclass(frozen=True)
 class TrustScore:

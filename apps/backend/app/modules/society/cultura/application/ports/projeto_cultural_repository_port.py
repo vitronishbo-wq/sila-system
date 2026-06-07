@@ -1,11 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.society.cultura.domain.enums import StatusProjetoCultural, TipoProjetoCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    StatusProjetoCultural,
+    TipoProjetoCultural,
+)
 from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
 
-class ProjetoCulturalRepositoryPort:
 
+class ProjetoCulturalRepositoryPort:
     async def save(self, projeto: ProjetoCultural) -> ProjetoCultural:
         raise NotImplementedError
 

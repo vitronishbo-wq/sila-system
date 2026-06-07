@@ -1,7 +1,12 @@
 from uuid import UUID
+
+from apps.backend.app.api.deps import get_identity_context
 from fastapi import Depends
-from app.api.deps import get_identity_context
+
 from apps.backend.app.core.identity.context import IdentityContext
 
-async def extract_citizen_id(identity: IdentityContext=Depends(get_identity_context)) -> UUID:
+identity_context_dep = Depends(get_identity_context)
+
+
+async def extract_citizen_id(identity: IdentityContext = identity_context_dep) -> UUID:
     return identity.citizen_id()

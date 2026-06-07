@@ -1,11 +1,15 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import AcordoRepositoryPort
+
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.acordo_repository_port import (
+    AcordoRepositoryPort,
+)
 from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import StatusAcordo
 from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.acordo import Acordo
 
-class InMemoryAcordoRepository(AcordoRepositoryPort):
 
+class InMemoryAcordoRepository(AcordoRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Acordo] = {}
 

@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.domain.ports.bombeiro_repository_port import BombeiroRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.enums import CargoBombeiro, StatusAgenteProtecao, TipoAgenteProtecao
+
+from apps.backend.app.modules.civil_protection.domain.enums import (
+    CargoBombeiro,
+    StatusAgenteProtecao,
+    TipoAgenteProtecao,
+)
 from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
-from apps.backend.app.modules.civil_protection.infrastructure.models.bombeiro_model import BombeiroModel
+from apps.backend.app.modules.civil_protection.domain.ports.bombeiro_repository_port import (
+    BombeiroRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.infrastructure.models.bombeiro_model import (
+    BombeiroModel,
+)
+
 
 class SQLAlchemyBombeiroRepository(BombeiroRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -57,12 +68,20 @@ class SQLAlchemyBombeiroRepository(BombeiroRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_corporacao(self, corporacao_id: UUID) -> list[Bombeiro]:
-        stmt = select(BombeiroModel).where(BombeiroModel.corporacao_id == corporacao_id).order_by(BombeiroModel.nome.asc())
+        stmt = (
+            select(BombeiroModel)
+            .where(BombeiroModel.corporacao_id == corporacao_id)
+            .order_by(BombeiroModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusAgenteProtecao) -> list[Bombeiro]:
-        stmt = select(BombeiroModel).where(BombeiroModel.status == status.value).order_by(BombeiroModel.nome.asc())
+        stmt = (
+            select(BombeiroModel)
+            .where(BombeiroModel.status == status.value)
+            .order_by(BombeiroModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -76,12 +95,33 @@ class SQLAlchemyBombeiroRepository(BombeiroRepositoryPort):
 
     async def next_matricula(self, corporacao_id: UUID) -> str:
         year = date.today().year
-        fragment = str(corporacao_id).split('-')[0].upper()
-        prefix = f'BOM/{fragment}/{year}/'
-        stmt = select(func.count()).select_from(BombeiroModel).where(BombeiroModel.matricula.like(f'{prefix}%'))
+        fragment = str(corporacao_id).split("-")[0].upper()
+        prefix = f"BOM/{fragment}/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(BombeiroModel)
+            .where(BombeiroModel.matricula.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:05d}'
+        return f"{prefix}{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: BombeiroModel) -> Bombeiro:
-        return Bombeiro(id=model.id, matricula=model.matricula, corporacao_id=model.corporacao_id, nome=model.nome, data_nascimento=model.data_nascimento, cpf=model.cpf, rg=model.rg, tipo=TipoAgenteProtecao(model.tipo), cargo=CargoBombeiro(model.cargo) if model.cargo else None, data_ingresso=model.data_ingresso, status=StatusAgenteProtecao(model.status), telefone=model.telefone, email=model.email, endereco=model.endereco, observacoes=model.observacoes, ativo=model.ativo)
+        return Bombeiro(
+            id=model.id,
+            matricula=model.matricula,
+            corporacao_id=model.corporacao_id,
+            nome=model.nome,
+            data_nascimento=model.data_nascimento,
+            cpf=model.cpf,
+            rg=model.rg,
+            tipo=TipoAgenteProtecao(model.tipo),
+            cargo=CargoBombeiro(model.cargo) if model.cargo else None,
+            data_ingresso=model.data_ingresso,
+            status=StatusAgenteProtecao(model.status),
+            telefone=model.telefone,
+            email=model.email,
+            endereco=model.endereco,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

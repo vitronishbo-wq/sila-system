@@ -9,43 +9,44 @@ Opcional:
 - SILA_DEV_UNIVERSAL_PASSWORD (default: Sila_1983)
 - SILA_DEV_TRUMAN_CITIZEN_ID (UUID existente em citizenship_citizens)
 """
-import sys
+
 import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import json
-from sqlalchemy import create_engine, text
 import uuid
 from datetime import datetime
+
 import bcrypt
+from sqlalchemy import create_engine, text
 
 from apps.backend.app.core.settings import settings
 
 
 def hash_password(password: str) -> str:
     """Hash de senha com bcrypt"""
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 
 def seed_all_users():
     """Cria todos os usuários do sistema"""
-    
+
     # Converter DATABASE_URL de asyncpg para postgresql sync
     sync_url = settings.DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://")
-    
+
     # Configurar engine
     engine = create_engine(sync_url, echo=False)
-    
+
     # Senha universal (ambiente de desenvolvimento)
     universal_password = os.getenv("SILA_DEV_UNIVERSAL_PASSWORD", "Sila_1983")
     password_hash = hash_password(universal_password)
-    
+
     truman_citizen_id = os.getenv(
-        "SILA_DEV_TRUMAN_CITIZEN_ID",
-        "11111111-1983-0501-0000-000000000001"
+        "SILA_DEV_TRUMAN_CITIZEN_ID", "11111111-1983-0501-0000-000000000001"
     )
     truman_citizen_exists = False
-
 
     users_data = [
         # Admins
@@ -128,12 +129,12 @@ def seed_all_users():
             },
         },
     ]
-    
+
     try:
         print("=" * 60)
         print("🌱 SEED COMPLETO DE USUARIOS IAM + CITIZEN")
         print("=" * 60)
-        
+
         with engine.connect() as conn:
             with conn.begin():
                 resolved_citizen_id = truman_citizen_id
@@ -146,7 +147,9 @@ def seed_all_users():
                         truman_citizen_exists = True
                     else:
                         row = conn.execute(
-                            text("SELECT id FROM citizenship_citizens WHERE lower(email) = lower(:email) LIMIT 1"),
+                            text(
+                                "SELECT id FROM citizenship_citizens WHERE lower(email) = lower(:email) LIMIT 1"
+                            ),
                             {"email": "truman@gmail.com"},
                         ).fetchone()
                         if row:
@@ -154,7 +157,9 @@ def seed_all_users():
                             truman_citizen_exists = True
                         else:
                             residence_row = conn.execute(
-                                text("SELECT id FROM locations WHERE name = :name AND type = :type LIMIT 1"),
+                                text(
+                                    "SELECT id FROM locations WHERE name = :name AND type = :type LIMIT 1"
+                                ),
                                 {"name": "Luanda", "type": "PROVINCIA"},
                             ).fetchone()
                             residence_location_id = residence_row[0] if residence_row else None
@@ -217,14 +222,13 @@ def seed_all_users():
                 # Para cada usuário
                 for user_data in users_data:
                     user_email = user_data["email"]
-                    
+
                     # Verificar se já existe
                     result = conn.execute(
-                        text("SELECT id FROM iam_users WHERE email = :email"),
-                        {"email": user_email}
+                        text("SELECT id FROM iam_users WHERE email = :email"), {"email": user_email}
                     )
                     existing = result.fetchone()
-                    
+
                     if existing:
                         user_id = existing[0]
                         custom_metadata_json = json.dumps(user_data["custom_metadata"])
@@ -302,15 +306,14 @@ def seed_all_users():
                                 "created_at": datetime.utcnow(),
                                 "is_active": True,
                                 "custom_metadata": custom_metadata_json,
-                            }
+                            },
                         )
                         print(f"✅ Criado: {user_email}")
 
                     # Vincular roles
                     for role_name in user_data["role_names"]:
                         role = conn.execute(
-                            text("SELECT id FROM iam_roles WHERE name = :name"),
-                            {"name": role_name}
+                            text("SELECT id FROM iam_roles WHERE name = :name"), {"name": role_name}
                         ).fetchone()
                         if not role:
                             continue
@@ -337,7 +340,7 @@ def seed_all_users():
                                 "role_id": role[0],
                                 "assigned_at": datetime.utcnow(),
                                 "is_active": True,
-                            }
+                            },
                         )
                         print(f"   ├─ Role {role_name} vinculada")
 
@@ -461,7 +464,7 @@ def seed_all_users():
                     text("DELETE FROM users WHERE email = :email"),
                     {"email": "admin@sila.gov.ao"},
                 )
-                
+
                 print("\n" + "=" * 60)
                 print("📊 RESUMO FINAL")
                 print("=" * 60)
@@ -478,10 +481,11 @@ def seed_all_users():
                 print("\n" + "=" * 60)
                 print("✅ SEED CONCLUÍDO COM SUCESSO!")
                 print("=" * 60)
-        
+
     except Exception as e:
         print(f"❌ Erro: {str(e)}")
         import traceback
+
         traceback.print_exc()
     finally:
         engine.dispose()

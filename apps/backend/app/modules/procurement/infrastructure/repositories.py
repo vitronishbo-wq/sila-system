@@ -1,14 +1,16 @@
 """
 Repository pattern for procurement module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class ProcurementRepository(ABC):
     """Abstract repository for procurement."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get procurement by ID."""
         pass
 
@@ -23,9 +25,10 @@ class ProcurementRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all procurement."""
         pass
+
 
 class ProcurementMemoryRepository(ProcurementRepository):
     """In-memory repository for procurement."""
@@ -33,7 +36,7 @@ class ProcurementMemoryRepository(ProcurementRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class ProcurementMemoryRepository(ProcurementRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

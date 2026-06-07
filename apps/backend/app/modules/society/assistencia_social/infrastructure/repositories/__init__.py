@@ -1,11 +1,43 @@
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_atendimento_repository import SQLAlchemyAtendimentoRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficiario_repository import SQLAlchemyBeneficiarioRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficio_repository import SQLAlchemyBeneficioRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_cadastro_unico_repository import SQLAlchemyCadastroUnicoRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_crianca_risco_repository import SQLAlchemyCriancaRiscoRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_idoso_vulneravel_repository import SQLAlchemyIdosoVulneravelRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_pcd_repository import SQLAlchemyPCDRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_programa_social_repository import SQLAlchemyProgramaSocialRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_situacao_rua_repository import SQLAlchemySituacaoRuaRepository
-from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_visita_domiciliar_repository import SQLAlchemyVisitaDomiciliarRepository
-__all__ = ['SQLAlchemyAtendimentoRepository', 'SQLAlchemyBeneficiarioRepository', 'SQLAlchemyBeneficioRepository', 'SQLAlchemyCadastroUnicoRepository', 'SQLAlchemyCriancaRiscoRepository', 'SQLAlchemyIdosoVulneravelRepository', 'SQLAlchemyPCDRepository', 'SQLAlchemyProgramaSocialRepository', 'SQLAlchemySituacaoRuaRepository', 'SQLAlchemyVisitaDomiciliarRepository']
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_atendimento_repository import (
+    SQLAlchemyAtendimentoRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficiario_repository import (
+    SQLAlchemyBeneficiarioRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_beneficio_repository import (
+    SQLAlchemyBeneficioRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_cadastro_unico_repository import (
+    SQLAlchemyCadastroUnicoRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_crianca_risco_repository import (
+    SQLAlchemyCriancaRiscoRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_idoso_vulneravel_repository import (
+    SQLAlchemyIdosoVulneravelRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_pcd_repository import (
+    SQLAlchemyPCDRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_programa_social_repository import (
+    SQLAlchemyProgramaSocialRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_situacao_rua_repository import (
+    SQLAlchemySituacaoRuaRepository,
+)
+from apps.backend.app.modules.society.assistencia_social.infrastructure.repositories.sqlalchemy_visita_domiciliar_repository import (
+    SQLAlchemyVisitaDomiciliarRepository,
+)
+
+__all__ = [
+    "SQLAlchemyAtendimentoRepository",
+    "SQLAlchemyBeneficiarioRepository",
+    "SQLAlchemyBeneficioRepository",
+    "SQLAlchemyCadastroUnicoRepository",
+    "SQLAlchemyCriancaRiscoRepository",
+    "SQLAlchemyIdosoVulneravelRepository",
+    "SQLAlchemyPCDRepository",
+    "SQLAlchemyProgramaSocialRepository",
+    "SQLAlchemySituacaoRuaRepository",
+    "SQLAlchemyVisitaDomiciliarRepository",
+]

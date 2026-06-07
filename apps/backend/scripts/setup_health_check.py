@@ -6,10 +6,10 @@ Este script ajuda a configurar o sistema de health check para diferentes
 ambientes (desenvolvimento, teste, produção) e valida as configurações.
 """
 
+import argparse
 import sys
 from pathlib import Path
-import argparse
-from typing import Dict, Any
+from typing import Any
 
 
 class HealthCheckSetup:
@@ -51,9 +51,7 @@ class HealthCheckSetup:
         }
 
         if environment not in configs:
-            raise ValueError(
-                f"Ambiente inválido: {environment}. Use: {list(configs.keys())}"
-            )
+            raise ValueError(f"Ambiente inválido: {environment}. Use: {list(configs.keys())}")
 
         # Lê template base
         template_content = ""
@@ -87,7 +85,7 @@ class HealthCheckSetup:
 
         return "\n".join(lines)
 
-    def validate_config(self) -> Dict[str, Any]:
+    def validate_config(self) -> dict[str, Any]:
         """Valida configurações do health check."""
         print("🔍 Validando configurações...")
 
@@ -159,12 +157,12 @@ class HealthCheckSetup:
 
         return result
 
-    def _load_env_file(self) -> Dict[str, str]:
+    def _load_env_file(self) -> dict[str, str]:
         """Carrega arquivo .env como dicionário."""
         config = {}
 
         if self.env_file.exists():
-            with open(self.env_file, "r", encoding="utf-8") as f:
+            with open(self.env_file, encoding="utf-8") as f:
                 for line in f:
                     line = line.strip()
                     if line and not line.startswith("#") and "=" in line:
@@ -300,9 +298,7 @@ def main():
         "--install-deps", action="store_true", help="Instala dependências necessárias"
     )
 
-    parser.add_argument(
-        "--create-script", action="store_true", help="Cria script de exemplo"
-    )
+    parser.add_argument("--create-script", action="store_true", help="Cria script de exemplo")
 
     parser.add_argument("--all", action="store_true", help="Executa todas as operações")
 
@@ -340,9 +336,7 @@ def main():
         print("   3. Ou use o script Bash: ./backend/scripts/run_health_check.sh")
 
         if not validation_result["valid"]:
-            print(
-                "\n⚠️ Corrija os erros de configuração antes de executar o health check"
-            )
+            print("\n⚠️ Corrija os erros de configuração antes de executar o health check")
             sys.exit(1)
 
     except Exception as e:

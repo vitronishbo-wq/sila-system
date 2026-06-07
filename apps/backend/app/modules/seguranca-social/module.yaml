@@ -1,0 +1,26 @@
+code: seguranca-social
+module: seguranca-social
+name: Seguranca Social
+description: Prestacoes, contribuicoes e protecao social.
+type: "sub_domain"
+version: '1.0'
+last_updated: '2026-03-19'
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published:
+  - EmpregadorRegistado
+  - ContribuicaoRecebida
+  - BeneficioAtribuido
+  event_catalog: domain/event_catalog.py
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+ui:
+  icon: seguranca-social
+  color: '#2563eb'
+  order: null
+services: []

@@ -1,8 +1,6 @@
 """Testes unitários do Routing Engine"""
 
 
-
-
 def test_routing_engine_commune_only():
     """Serviço de comuna exclusiva deve rotear para comuna"""
     # TODO: Implementar cenário com mocks do DB

@@ -1,1 +1,1 @@
-export { identityService } from './identityService';
+export { identityService } from '@/modules/identity/services/identityService';

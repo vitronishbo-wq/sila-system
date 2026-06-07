@@ -1,18 +1,39 @@
 from __future__ import annotations
+
 from typing import Generic, TypeVar
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.economy.trade.external.application.ports import OperadorLogisticoRepositoryPort
-from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
+
+from apps.backend.app.modules.economy.trade.external.application.ports import (
+    OperadorLogisticoRepositoryPort,
+)
+from apps.backend.app.modules.economy.trade.external.domain.enums import (
+    StatusHabilitacao,
+    TipoOperador,
+    TipoPessoa,
+)
 from apps.backend.app.modules.economy.trade.external.domain.models import OperadorLogisticoBase
-from apps.backend.app.modules.economy.trade.external.infrastructure.models.operador_logistico_columns_mixin import OperadorLogisticoColumnsMixin
-TOperadorLogistico = TypeVar('TOperadorLogistico', bound=OperadorLogisticoBase)
-TOperadorLogisticoModel = TypeVar('TOperadorLogisticoModel', bound=OperadorLogisticoColumnsMixin)
+from apps.backend.app.modules.economy.trade.external.infrastructure.models.operador_logistico_columns_mixin import (
+    OperadorLogisticoColumnsMixin,
+)
 
-class SQLAlchemyOperadorLogisticoRepositoryBase(OperadorLogisticoRepositoryPort[TOperadorLogistico], Generic[TOperadorLogistico, TOperadorLogisticoModel]):
+TOperadorLogistico = TypeVar("TOperadorLogistico", bound=OperadorLogisticoBase)
+TOperadorLogisticoModel = TypeVar("TOperadorLogisticoModel", bound=OperadorLogisticoColumnsMixin)
 
-    def __init__(self, session: AsyncSession, *, model_cls: type[TOperadorLogisticoModel], domain_cls: type[TOperadorLogistico]) -> None:
+
+class SQLAlchemyOperadorLogisticoRepositoryBase(
+    OperadorLogisticoRepositoryPort[TOperadorLogistico],
+    Generic[TOperadorLogistico, TOperadorLogisticoModel],
+):
+    def __init__(
+        self,
+        session: AsyncSession,
+        *,
+        model_cls: type[TOperadorLogisticoModel],
+        domain_cls: type[TOperadorLogistico],
+    ) -> None:
         self.session = session
         self._model_cls = model_cls
         self._domain_cls = domain_cls
@@ -61,7 +82,9 @@ class SQLAlchemyOperadorLogisticoRepositoryBase(OperadorLogisticoRepositoryPort[
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list(self, *, status: StatusHabilitacao | None=None, municipio: str | None=None) -> list[TOperadorLogistico]:
+    async def list(
+        self, *, status: StatusHabilitacao | None = None, municipio: str | None = None
+    ) -> list[TOperadorLogistico]:
         stmt = select(self._model_cls)
         if status is not None:
             stmt = stmt.where(self._model_cls.status == status.value)
@@ -72,4 +95,32 @@ class SQLAlchemyOperadorLogisticoRepositoryBase(OperadorLogisticoRepositoryPort[
         return [self._to_domain(item) for item in rows]
 
     def _to_domain(self, model: TOperadorLogisticoModel) -> TOperadorLogistico:
-        return self._domain_cls(id=model.id, cadastro_radar=model.cadastro_radar, tipo_operador=TipoOperador(model.tipo_operador), tipo_pessoa=TipoPessoa(model.tipo_pessoa), status=StatusHabilitacao(model.status), razao_social=model.razao_social, cnpj_cpf=model.cnpj_cpf, endereco=model.endereco, numero=model.numero, bairro=model.bairro, municipio=model.municipio, provincia=model.provincia, cep=model.cep, nome_fantasia=model.nome_fantasia, complemento=model.complemento, pais=model.pais, telefone=model.telefone, email=model.email, site=model.site, numero_licenca=model.numero_licenca, orgao_anuente=model.orgao_anuente, data_habilitacao=model.data_habilitacao, data_validade=model.data_validade, data_suspensao=model.data_suspensao, data_cancelamento=model.data_cancelamento, motivo_cancelamento=model.motivo_cancelamento, observacoes=model.observacoes)
+        return self._domain_cls(
+            id=model.id,
+            cadastro_radar=model.cadastro_radar,
+            tipo_operador=TipoOperador(model.tipo_operador),
+            tipo_pessoa=TipoPessoa(model.tipo_pessoa),
+            status=StatusHabilitacao(model.status),
+            razao_social=model.razao_social,
+            cnpj_cpf=model.cnpj_cpf,
+            endereco=model.endereco,
+            numero=model.numero,
+            bairro=model.bairro,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            cep=model.cep,
+            nome_fantasia=model.nome_fantasia,
+            complemento=model.complemento,
+            pais=model.pais,
+            telefone=model.telefone,
+            email=model.email,
+            site=model.site,
+            numero_licenca=model.numero_licenca,
+            orgao_anuente=model.orgao_anuente,
+            data_habilitacao=model.data_habilitacao,
+            data_validade=model.data_validade,
+            data_suspensao=model.data_suspensao,
+            data_cancelamento=model.data_cancelamento,
+            motivo_cancelamento=model.motivo_cancelamento,
+            observacoes=model.observacoes,
+        )

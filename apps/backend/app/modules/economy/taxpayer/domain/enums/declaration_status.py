@@ -1,17 +1,20 @@
 """Status de declarações fiscais."""
-from enum import Enum
 
-class DeclarationStatus(str, Enum):
+from enum import StrEnum
+
+
+class DeclarationStatus(StrEnum):
     """Status possíveis de uma declaração fiscal."""
-    DRAFT = 'DRAFT'
-    SUBMITTED = 'SUBMITTED'
-    RECEIVED = 'RECEIVED'
-    PROCESSING = 'PROCESSING'
-    ACCEPTED = 'ACCEPTED'
-    REJECTED = 'REJECTED'
-    AMENDED = 'AMENDED'
-    CANCELLED = 'CANCELLED'
-    ARCHIVED = 'ARCHIVED'
+
+    DRAFT = "DRAFT"
+    SUBMITTED = "SUBMITTED"
+    RECEIVED = "RECEIVED"
+    PROCESSING = "PROCESSING"
+    ACCEPTED = "ACCEPTED"
+    REJECTED = "REJECTED"
+    AMENDED = "AMENDED"
+    CANCELLED = "CANCELLED"
+    ARCHIVED = "ARCHIVED"
 
     def is_terminal(self) -> bool:
         """Verifica se o status é terminal."""
@@ -25,5 +28,15 @@ class DeclarationStatus(str, Enum):
 
     def description_pt(self) -> str:
         """Descrição do status em português."""
-        descriptions = {'DRAFT': 'Rascunho', 'SUBMITTED': 'Submetida', 'RECEIVED': 'Recebida', 'PROCESSING': 'Em Processamento', 'ACCEPTED': 'Aceite', 'REJECTED': 'Rejeitada', 'AMENDED': 'Alterada', 'CANCELLED': 'Cancelada', 'ARCHIVED': 'Arquivada'}
+        descriptions = {
+            "DRAFT": "Rascunho",
+            "SUBMITTED": "Submetida",
+            "RECEIVED": "Recebida",
+            "PROCESSING": "Em Processamento",
+            "ACCEPTED": "Aceite",
+            "REJECTED": "Rejeitada",
+            "AMENDED": "Alterada",
+            "CANCELLED": "Cancelada",
+            "ARCHIVED": "Arquivada",
+        }
         return descriptions.get(self.value, self.value)

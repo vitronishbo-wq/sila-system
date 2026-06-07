@@ -1,5 +1,4 @@
 class GlobalIdentity:
-
     def __init__(self):
         self.registry = {}
 

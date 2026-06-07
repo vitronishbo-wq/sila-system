@@ -1,7 +1,9 @@
 import asyncio
 import logging
-from sqlalchemy import select
+
 from config.database import AsyncSessionLocal
+from sqlalchemy import select
+
 from apps.backend.app.modules.location.models.region import Region
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [INFO] %(message)s")
@@ -403,8 +405,9 @@ async def seed_dpa():
                 try:
                     # Verificar/Criar Província
                     res_p = await session.execute(
-                        select(Region).where(Region.name == prov_name,
-                                             Region.parent_id == country.id)
+                        select(Region).where(
+                            Region.name == prov_name, Region.parent_id == country.id
+                        )
                     )
                     province = res_p.scalar_one_or_none()
 
@@ -417,14 +420,16 @@ async def seed_dpa():
                     # Criar Municípios
                     for mun_name, communes in municipalities.items():
                         res_m = await session.execute(
-                            select(Region).where(Region.name == mun_name,
-                                                 Region.parent_id == province.id)
+                            select(Region).where(
+                                Region.name == mun_name, Region.parent_id == province.id
+                            )
                         )
                         municipality = res_m.scalar_one_or_none()
 
                         if not municipality:
                             municipality = Region(
-                                name=mun_name, type="MUNICIPIO", parent_id=province.id)
+                                name=mun_name, type="MUNICIPIO", parent_id=province.id
+                            )
                             session.add(municipality)
                             await session.flush()
                             logger.info(f"    • Município: {mun_name}")
@@ -432,12 +437,14 @@ async def seed_dpa():
                         # Criar Comunas (O "Pulo do Gato": busca combinada com parent_id)
                         for com_name in communes:
                             res_c = await session.execute(
-                                select(Region).where(Region.name == com_name,
-                                                     Region.parent_id == municipality.id)
+                                select(Region).where(
+                                    Region.name == com_name, Region.parent_id == municipality.id
+                                )
                             )
                             if not res_c.scalar_one_or_none():
-                                commune = Region(name=com_name, type="COMUNA",
-                                                 parent_id=municipality.id)
+                                commune = Region(
+                                    name=com_name, type="COMUNA", parent_id=municipality.id
+                                )
                                 session.add(commune)
                                 logger.info(f"      - Comuna: {com_name}")
                                 batch_count += 1
@@ -458,6 +465,7 @@ async def seed_dpa():
         except Exception as e:
             await session.rollback()
             logger.error(f"❌ Erro fatal ao popular DPA: {e}")
+
 
 if __name__ == "__main__":
     asyncio.run(seed_dpa())

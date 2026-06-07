@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class PublicBudgetRepository:
     """Lightweight repository facade for budget aggregate persistence."""
 

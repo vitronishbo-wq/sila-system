@@ -1,14 +1,16 @@
 """
 Repository pattern for operations module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class OperationsRepository(ABC):
     """Abstract repository for operations."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get operations by ID."""
         pass
 
@@ -23,9 +25,10 @@ class OperationsRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all operations."""
         pass
+
 
 class OperationsMemoryRepository(OperationsRepository):
     """In-memory repository for operations."""
@@ -33,7 +36,7 @@ class OperationsMemoryRepository(OperationsRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class OperationsMemoryRepository(OperationsRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

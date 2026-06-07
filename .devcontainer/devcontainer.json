@@ -1,0 +1,78 @@
+{
+  "name": "SILA Enterprise AI Agent",
+  "description": "Full autonomous development environment with Codex agent + isolated stack (900+ services)",
+
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+
+  "runServices": ["app", "db", "redis"],
+
+  "overrideCommand": false,
+  "containerUser": "vscode",
+
+  "remoteEnv": {
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY:-}",
+    "POSTGRES_USER": "${localEnv:POSTGRES_USER:-sila_user}",
+    "POSTGRES_PASSWORD": "${localEnv:POSTGRES_PASSWORD:-}",
+    "POSTGRES_DB": "${localEnv:POSTGRES_DB:-sila_db}",
+    "POSTGRES_HOST": "db",
+    "POSTGRES_PORT": "5432",
+    "REDIS_HOST": "redis",
+    "REDIS_PORT": "6379",
+    "SSH_AUTH_SOCK": "/ssh-agent",
+    "ENVIRONMENT": "development",
+    "AGENT_MODE": "true"
+  },
+
+  "mounts": [
+    "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent,type=bind"
+  ],
+
+  "postCreateCommand": "bash /workspace/.devcontainer/init.sh",
+  "postStartCommand": "bash /workspace/.devcontainer/init.sh",
+
+  "updateContentCommand": "pip install --no-cache-dir -r requirements.txt",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-pylance",
+        "ms-vscode.makefile-tools",
+        "ms-vscode-remote.remote-containers",
+        "GitHub.copilot",
+        "eamodio.gitlens",
+        "charliermarsh.ruff",
+        "ms-python.black-formatter"
+      ],
+      "settings": {
+        "python.linting.enabled": true,
+        "python.linting.ruffEnabled": true,
+        "[python]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [5432, 8000, 8080, 5000, 6379],
+
+  "portsAttributes": {
+    "5432": { "label": "PostgreSQL", "onAutoForward": "notify" },
+    "8000": { "label": "Backend API", "onAutoForward": "notify" },
+    "8080": { "label": "Frontend", "onAutoForward": "notify" },
+    "5000": { "label": "Worker/Scheduler", "onAutoForward": "notify" },
+    "6379": { "label": "Redis Cache", "onAutoForward": "notify" }
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/docker-from-docker:1": {}
+  }
+}

@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel
+
 
 class DocumentBase(BaseModel):
     citizen_id: str
@@ -10,9 +13,12 @@ class DocumentBase(BaseModel):
     issued_at: datetime | None = None
     valid_until: datetime | None = None
 
+
 class DocumentOut(DocumentBase):
     id: UUID
 
     class Config:
         from_attributes = True
-__all__ = ['DocumentBase', 'DocumentOut']
+
+
+__all__ = ["DocumentBase", "DocumentOut"]

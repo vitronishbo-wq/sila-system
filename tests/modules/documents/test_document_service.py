@@ -4,8 +4,8 @@ import types
 from io import BytesIO
 from pathlib import Path
 from types import SimpleNamespace
-from uuid import uuid4
 from unittest.mock import AsyncMock, MagicMock, patch
+from uuid import uuid4
 
 import pytest
 from fastapi import UploadFile
@@ -17,7 +17,6 @@ from apps.backend.app.modules.documents.application.schemas.documents import (
 from apps.backend.app.modules.documents.application.services.document_service import (
     DocumentService,
 )
-
 
 TEST_UPLOAD_DIR = Path("media/test_documents")
 
@@ -106,7 +105,9 @@ async def test_create_single_document_success(mock_db_session):
             {"apps.backend.app.modules.documents.tasks": fake_tasks_module},
         ),
     ):
-        result = await service.create_single_document(file=file, metadata=metadata, owner_id=owner_id)
+        result = await service.create_single_document(
+            file=file, metadata=metadata, owner_id=owner_id
+        )
 
     assert result.title == "Test Doc"
     assert result.owner_id == owner_id

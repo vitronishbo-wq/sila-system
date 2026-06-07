@@ -3,17 +3,18 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_DIR = ROOT / "apps" / "backend" / "app"
 MODULES_DIR = APP_DIR / "modules"
 REPORT_DIR = ROOT / "reports"
 
-IMPORT_RE = re.compile(r"^from\s+(app\.modules\.(?P<mod>[^.]+)\.(?P<path>[^ ]+))\s+import\s+(?P<symbols>.+)$")
+IMPORT_RE = re.compile(
+    r"^from\s+(app\.modules\.(?P<mod>[^.]+)\.(?P<path>[^ ]+))\s+import\s+(?P<symbols>.+)$"
+)
 
 
 @dataclass
@@ -52,7 +53,9 @@ def should_convert_to_ports(module_name: str, imported_symbols: list[str]) -> bo
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Repair ACL imports by redirecting to ports when possible.")
+    parser = argparse.ArgumentParser(
+        description="Repair ACL imports by redirecting to ports when possible."
+    )
     parser.add_argument("--apply", action="store_true", help="Apply safe replacements.")
     args = parser.parse_args()
 
@@ -76,7 +79,9 @@ def main() -> int:
             # Replace core.application.ports -> application.ports
             if path.startswith("core.application.ports"):
                 new_path = path.replace("core.application.ports", "application.ports")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
@@ -85,7 +90,9 @@ def main() -> int:
             # Replace core.application.* -> application.*
             if path.startswith("core.application."):
                 new_path = path.replace("core.application.", "application.")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
@@ -94,7 +101,9 @@ def main() -> int:
             # Replace core.domain.* -> domain.*
             if path.startswith("core.domain."):
                 new_path = path.replace("core.domain.", "domain.")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
@@ -103,7 +112,9 @@ def main() -> int:
             # Replace core.api.* -> api.*
             if path.startswith("core.api."):
                 new_path = path.replace("core.api.", "api.")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
@@ -112,7 +123,9 @@ def main() -> int:
             # Replace core.infrastructure.* -> infrastructure.*
             if path.startswith("core.infrastructure."):
                 new_path = path.replace("core.infrastructure.", "infrastructure.")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
@@ -121,17 +134,23 @@ def main() -> int:
             # Replace core.domain.enums -> domain.enums
             if path.startswith("core.domain.enums"):
                 new_path = path.replace("core.domain.enums", "domain.enums")
-                new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                new_line = line.replace(
+                    match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                )
                 changes.append(ImportChange(str(py), line, new_line))
                 updated_lines.append(new_line)
                 changed = True
                 continue
 
             # Replace infrastructure.models -> application.ports when safe
-            if path.startswith("core.infrastructure.models") or path.startswith("infrastructure.models"):
+            if path.startswith("core.infrastructure.models") or path.startswith(
+                "infrastructure.models"
+            ):
                 if should_convert_to_ports(module_name, symbols):
                     new_path = "application.ports"
-                    new_line = line.replace(match.group(0).split()[1], f"app.modules.{module_name}.{new_path}")
+                    new_line = line.replace(
+                        match.group(0).split()[1], f"apps.backend.app.modules.{module_name}.{new_path}"
+                    )
                     changes.append(ImportChange(str(py), line, new_line))
                     updated_lines.append(new_line)
                     changed = True

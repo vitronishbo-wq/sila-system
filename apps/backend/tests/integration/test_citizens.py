@@ -5,7 +5,6 @@ This module contains tests for citizen-related operations such as
 creating, retrieving, updating, and deleting citizen records.
 """
 
-
 from fastapi import status
 
 
@@ -18,9 +17,7 @@ class TestCitizens:
         citizen_data = citizen_factory.build_dict()
 
         # Act
-        response = client.post(
-            "/api/v1/citizens/", headers=auth_headers, json=citizen_data
-        )
+        response = client.post("/api/v1/citizens/", headers=auth_headers, json=citizen_data)
 
         # Assert
         assert response.status_code == status.HTTP_201_CREATED
@@ -40,9 +37,7 @@ class TestCitizens:
         citizen2 = citizen_factory.build(cpf=citizen1.cpf)
 
         # Act
-        response = client.post(
-            "/api/v1/citizens/", headers=auth_headers, json=citizen2.dict()
-        )
+        response = client.post("/api/v1/citizens/", headers=auth_headers, json=citizen2.dict())
 
         # Assert
         assert response.status_code == status.HTTP_400_BAD_REQUEST
@@ -53,9 +48,7 @@ class TestCitizens:
         """Test retrieving a citizen by ID."""
         # Arrange - create a citizen
         citizen_data = citizen_factory.build_dict()
-        create_response = client.post(
-            "/api/v1/citizens/", headers=auth_headers, json=citizen_data
-        )
+        create_response = client.post("/api/v1/citizens/", headers=auth_headers, json=citizen_data)
         citizen_id = create_response.json()["id"]
 
         # Act
@@ -73,9 +66,7 @@ class TestCitizens:
         citizens = []
         for _ in range(5):
             citizen = citizen_factory.build()
-            response = client.post(
-                "/api/v1/citizens/", headers=auth_headers, json=citizen.dict()
-            )
+            response = client.post("/api/v1/citizens/", headers=auth_headers, json=citizen.dict())
             citizens.append(response.json())
 
         # Act - get first page
@@ -137,9 +128,7 @@ class TestCitizens:
         assert response.status_code == status.HTTP_204_NO_CONTENT
 
         # Verify citizen no longer exists
-        get_response = client.get(
-            f"/api/v1/citizens/{citizen_id}", headers=auth_headers
-        )
+        get_response = client.get(f"/api/v1/citizens/{citizen_id}", headers=auth_headers)
         assert get_response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_search_citizens(self, client, auth_headers, citizen_factory):

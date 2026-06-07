@@ -2,13 +2,13 @@ import pytest
 
 pytest.importorskip("backend.main")
 
-from apps.backend.main import app
 from httpx import AsyncClient
+
+from apps.backend.main import app
 
 
 @pytest.mark.asyncio
 class TestAuthFlow:
-
     @pytest.fixture(scope="module")
     async def async_client(self):
         async with AsyncClient(app=app, base_url="http://testserver") as client:
@@ -29,9 +29,7 @@ class TestAuthFlow:
         )
         refresh_token = login_response.json().get("refresh_token")
 
-        response = await async_client.post(
-            "/auth/refresh", json={"refresh_token": refresh_token}
-        )
+        response = await async_client.post("/auth/refresh", json={"refresh_token": refresh_token})
         assert response.status_code == 200
         assert "access_token" in response.json()
 

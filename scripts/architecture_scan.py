@@ -9,7 +9,6 @@ import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-
 DEFAULT_ROOTS = ("apps/backend/app/modules",)
 REQUIRED_LAYERS = ("application", "domain", "infrastructure")
 PRESENTATION_LAYERS = ("api", "presentation")
@@ -101,7 +100,11 @@ def is_type_checking_expr(expr: ast.AST) -> bool:
     if isinstance(expr, ast.Name):
         return expr.id == "TYPE_CHECKING"
     if isinstance(expr, ast.Attribute):
-        return isinstance(expr.value, ast.Name) and expr.value.id == "typing" and expr.attr == "TYPE_CHECKING"
+        return (
+            isinstance(expr.value, ast.Name)
+            and expr.value.id == "typing"
+            and expr.attr == "TYPE_CHECKING"
+        )
     return False
 
 
@@ -109,7 +112,11 @@ def is_guarded_by_type_checking(node: ast.AST, parent_map: dict[ast.AST, ast.AST
     current: ast.AST | None = node
     while current in parent_map:
         parent = parent_map[current]
-        if isinstance(parent, ast.If) and current in parent.body and is_type_checking_expr(parent.test):
+        if (
+            isinstance(parent, ast.If)
+            and current in parent.body
+            and is_type_checking_expr(parent.test)
+        ):
             return True
         current = parent
     return False
@@ -161,10 +168,7 @@ def scan_domain_imports(
             if not isinstance(node, (ast.Import, ast.ImportFrom)):
                 continue
 
-            if (
-                not include_type_checking
-                and is_guarded_by_type_checking(node, parent_map)
-            ):
+            if not include_type_checking and is_guarded_by_type_checking(node, parent_map):
                 continue
 
             for target in import_targets(node):
@@ -188,7 +192,7 @@ def scan_domain_imports(
 
 def scan_module_structure(module_dir: Path, repo_root: Path) -> list[Violation]:
     violations: list[Violation] = []
-    
+
     # Check fixed required layers
     for layer in REQUIRED_LAYERS:
         layer_path = module_dir / layer
@@ -202,7 +206,7 @@ def scan_module_structure(module_dir: Path, repo_root: Path) -> list[Violation]:
                     line=None,
                 )
             )
-            
+
     # Check at least one presentation layer exists
     has_presentation = any((module_dir / p).is_dir() for p in PRESENTATION_LAYERS)
     if not has_presentation:
@@ -211,11 +215,11 @@ def scan_module_structure(module_dir: Path, repo_root: Path) -> list[Violation]:
                 kind="missing_layer",
                 module=module_dir.name,
                 path=str(module_dir.relative_to(repo_root)),
-                detail=f"missing presentation layer (expected 'api' or 'presentation')",
+                detail="missing presentation layer (expected 'api' or 'presentation')",
                 line=None,
             )
         )
-        
+
     return violations
 
 

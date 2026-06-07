@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from apps.backend.app.modules.logistics.domain.ports.request_service_port import RequestServicePort
 
-class RequestServiceAdapter(RequestServicePort):
 
+class RequestServiceAdapter(RequestServicePort):
     async def create_transport_request(self, *, entity_id: UUID, citizen_id: UUID, metadata: dict):
         _ = (citizen_id, metadata)
-        return {'request_id': f'TRQ-{str(entity_id)[:8].upper()}'}
+        return {"request_id": f"TRQ-{str(entity_id)[:8].upper()}"}

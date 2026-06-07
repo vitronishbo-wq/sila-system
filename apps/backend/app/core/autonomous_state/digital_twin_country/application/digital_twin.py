@@ -1,5 +1,4 @@
 class DigitalTwinCountry:
-
     def __init__(self):
         self.models = {}
 

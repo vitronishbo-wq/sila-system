@@ -1,5 +1,4 @@
 class SovereignDataPlatform:
-
     def __init__(self, data_lake, warehouse, stream, training):
         self.data_lake = data_lake
         self.warehouse = warehouse

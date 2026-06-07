@@ -1,6 +1,6 @@
 
-import http from '../api/http';
-import type { TerritoryNode } from '../types';
+import http from '@/api/http';
+import type { TerritoryNode } from '@/types';
 
 export const territoryService = {
   async getProvinces(): Promise<TerritoryNode[]> {

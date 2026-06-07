@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../services/authService';
-import { ASSETS, APP_VERSION } from '../constants';
+import { authService } from '@/services/authService';
+import { ASSETS, APP_VERSION } from '@/constants';
 
 const Register: React.FC = () => {
     const navigate = useNavigate();

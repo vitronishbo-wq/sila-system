@@ -1,0 +1,2 @@
+class EligibilityException(Exception):
+    pass

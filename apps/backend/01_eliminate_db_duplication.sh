@@ -14,9 +14,9 @@ else
         # Encontrar imports deste diretório
         grep -r "from.*$dir" app/modules --include="*.py" 2>/dev/null | cut -d: -f1 | sort -u | while read file; do
             echo "   ↳ Corrigindo: $file"
-            sed -i 's|from .*db import get_db|from app.core.db import get_db|g' "$file"
-            sed -i 's|from .*db import AsyncSessionLocal|from app.core.db import AsyncSessionLocal|g' "$file"
-            sed -i 's|from .*db import Base|from app.core.db import Base|g' "$file"
+            sed -i 's|from .*db import get_db|from apps.backend.app.core.db import get_db|g' "$file"
+            sed -i 's|from .*db import AsyncSessionLocal|from apps.backend.app.core.db import AsyncSessionLocal|g' "$file"
+            sed -i 's|from .*db import Base|from apps.backend.app.core.db import Base|g' "$file"
         done
         
         # Backup e desativar
@@ -37,7 +37,7 @@ else
         echo "   ❌ Encontrado em: $file"
         sed -i '/create_async_engine/d' "$file"
         sed -i '/AsyncSessionLocal/d' "$file"
-        sed -i 's|import AsyncSession|from app.core.db import AsyncSessionLocal; # AsyncSessionLocal|g' "$file"
+        sed -i 's|import AsyncSession|from apps.backend.app.core.db import AsyncSessionLocal; # AsyncSessionLocal|g' "$file"
         echo "      ✅ Corrigido"
     done
 fi

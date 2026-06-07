@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_007_comex_processos_radar"
 down_revision = "20260301_006_comex_radar"
 branch_labels = None
@@ -93,12 +92,8 @@ def _create_processo_radar_table(*, table_name: str, suffix: str) -> None:
     op.execute(
         f"CREATE INDEX IF NOT EXISTS ix_{table_name}_numero_processo ON {table_name} (numero_processo)"
     )
-    op.execute(
-        f"CREATE INDEX IF NOT EXISTS ix_{table_name}_status ON {table_name} (status)"
-    )
-    op.execute(
-        f"CREATE INDEX IF NOT EXISTS ix_{table_name}_cnpj_cpf ON {table_name} (cnpj_cpf)"
-    )
+    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table_name}_status ON {table_name} (status)")
+    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table_name}_cnpj_cpf ON {table_name} (cnpj_cpf)")
 
 
 def _drop_processo_radar_table(*, table_name: str) -> None:

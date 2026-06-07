@@ -1,0 +1,132 @@
+{
+  "timestamp": "2026-06-07T01:25:08.056631",
+  "version": "1.0.0",
+  "status": "COMPLETE",
+  "metrics": {
+    "routers": 1387,
+    "health_endpoints": 177,
+    "total_checks": 6,
+    "passed": 6,
+    "failed": 0,
+    "taxa_sucesso": 100.0
+  },
+  "critical_modules": [],
+  "warnings": [],
+  "artifacts": {
+    "01_arch_sync_2026-06-07_01-24-35": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-07_01-24-35.log",
+      "exists": true,
+      "size_kb": 3.1982421875
+    },
+    "02_domain_audit_2026-06-07_01-24-35": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-07_01-24-35.log",
+      "exists": true,
+      "size_kb": 1.2958984375
+    },
+    "03_module_diagnostics_2026-06-07_01-24-35": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-07_01-24-35.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "05_router_scan_2026-06-07_01-24-35": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-07_01-24-35.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "04_import_scan_2026-06-07_01-24-35": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-07_01-24-35.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "report_architecture_index_visual_report": {
+      "path": "reports/architecture_index_visual_report.md",
+      "exists": true,
+      "size_kb": 0.953125
+    },
+    "report_migration_domain_inventory": {
+      "path": "reports/migration_domain_inventory.md",
+      "exists": true,
+      "size_kb": 11.5732421875
+    },
+    "report_CHANGELOG": {
+      "path": "reports/CHANGELOG.md",
+      "exists": true,
+      "size_kb": 0.201171875
+    },
+    "report_AUTONOMY_CHECKLIST": {
+      "path": "reports/AUTONOMY_CHECKLIST.md",
+      "exists": true,
+      "size_kb": 1.7412109375
+    },
+    "report_domain_dependency_guardrail_report": {
+      "path": "reports/domain_dependency_guardrail_report.md",
+      "exists": true,
+      "size_kb": 0.45703125
+    },
+    "report_PR_DESCRIPTION": {
+      "path": "reports/PR_DESCRIPTION.md",
+      "exists": true,
+      "size_kb": 2.5771484375
+    },
+    "report_module_architecture_docs_visual_report": {
+      "path": "reports/module_architecture_docs_visual_report.md",
+      "exists": true,
+      "size_kb": 5.216796875
+    },
+    "report_AUDIT_NOTES": {
+      "path": "reports/AUDIT_NOTES.md",
+      "exists": true,
+      "size_kb": 1.66015625
+    },
+    "report_locations_name_audit": {
+      "path": "reports/locations_name_audit.md",
+      "exists": true,
+      "size_kb": 2.5244140625
+    },
+    "report_module_dependencies": {
+      "path": "reports/module_dependencies.md",
+      "exists": true,
+      "size_kb": 14.3134765625
+    },
+    "report_ai_architecture_graph_visual_report": {
+      "path": "reports/ai_architecture_graph_visual_report.md",
+      "exists": true,
+      "size_kb": 0.4892578125
+    },
+    "report_sla_provinces_snapshot": {
+      "path": "reports/sla_provinces_snapshot.md",
+      "exists": true,
+      "size_kb": 2.5283203125
+    },
+    "report_ai_domain_kernel_visual_report": {
+      "path": "reports/ai_domain_kernel_visual_report.md",
+      "exists": true,
+      "size_kb": 0.625
+    },
+    "json_daily_audit": {
+      "path": "reports/daily_audit.json",
+      "exists": true,
+      "size_kb": 3.80859375
+    },
+    "json_module_dependency_graph": {
+      "path": "reports/module_dependency_graph.json",
+      "exists": true,
+      "size_kb": 2.3740234375
+    },
+    "json_ai_architecture_graph": {
+      "path": "reports/ai_architecture_graph.json",
+      "exists": true,
+      "size_kb": 51.326171875
+    },
+    "json_autonomy_100_percent": {
+      "path": "reports/autonomy_100_percent.json",
+      "exists": true,
+      "size_kb": 6.7431640625
+    },
+    "json_module_manifest_graph": {
+      "path": "reports/module_manifest_graph.json",
+      "exists": true,
+      "size_kb": 3.4052734375
+    }
+  }
+}

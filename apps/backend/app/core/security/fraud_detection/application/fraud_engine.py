@@ -1,6 +1,7 @@
 class FraudEngine:
     """Fraud detection for financial and governmental operations"""
-    rules = {'tax': 10000000, 'transfer': 5000000, 'payment': 1000000}
+
+    rules = {"tax": 10000000, "transfer": 5000000, "payment": 1000000}
 
     def detect(self, operation, value):
         """Detect fraud based on operation thresholds"""

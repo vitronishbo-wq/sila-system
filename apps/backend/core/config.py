@@ -1,10 +1,11 @@
 import warnings
+
 from config.settings import (
     Settings,
     get_settings,
+    print_settings_summary,
     settings,
     validate_settings,
-    print_settings_summary,
 )
 
 warnings.warn(

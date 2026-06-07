@@ -1,17 +1,17 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { AdminLevel, UserRole } from '../types';
-import type { User } from '../types';
-import { ASSETS } from '../constants';
-import dashboardService from '../services/dashboardService';
+import { AdminLevel, UserRole } from '@/types';
+import type { User } from '@/types';
+import { ASSETS } from '@/constants';
+import dashboardService from '@/modules/admin/services/dashboardService';
 import type {
   DashboardData,
   NotificationItem,
   RecentRequest,
-} from '../services/dashboardService';
-import { exportJobsService } from '../services/exportJobsService';
-import type { ExportTimelineItem } from '../services/exportJobsService';
-import { API_URL } from '../constants';
+} from '@/modules/admin/services/dashboardService';
+import { exportJobsService } from '@/modules/admin/services/exportJobsService';
+import type { ExportTimelineItem } from '@/modules/admin/services/exportJobsService';
+import { API_URL } from '@/constants';
 
 /* ─── helpers ─── */
 function timeAgo(dateStr: string): string {

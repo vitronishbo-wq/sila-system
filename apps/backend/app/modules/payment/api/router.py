@@ -1,24 +1,21 @@
 """Routers para API de Pagamentos."""
-import logging
-from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+import logging
+from typing import Optional
+
+from fastapi import APIRouter, Depends, Header, HTTPException, status
 
 from ..application.dto.payment_schema import (
     CreatePaymentSchema,
-    PaymentResponse,
     PaymentHistoryResponse,
+    PaymentResponse,
 )
 from ..application.services.payment_service import PaymentService
-from ..application.ports import (
-    PaymentRepositoryPort,
-    InvoiceRepositoryPort,
-)
 from ..domain.exceptions import (
-    DuplicatePaymentError,
-    InvoiceNotFoundError,
-    InvalidInvoiceStateError,
     DomainValidationError,
+    DuplicatePaymentError,
+    InvalidInvoiceStateError,
+    InvoiceNotFoundError,
 )
 
 logger = logging.getLogger(__name__)
@@ -31,6 +28,11 @@ router = APIRouter(
         400: {"description": "Validation error"},
     },
 )
+
+# idempotency support for payment endpoints
+from foundation.resilience import create_redis_idempotency_store, idempotent
+
+_IDEMPOTENCY_STORE = create_redis_idempotency_store()
 
 
 # Dependency injection (será implementado na infrastructure)
@@ -51,23 +53,25 @@ async def get_payment_service() -> PaymentService:
         409: {"description": "Duplicate payment (idempotency)"},
     },
 )
+@idempotent(operation_name="payments.register", store=_IDEMPOTENCY_STORE, ttl_seconds=3600)
 async def register_payment(
     payment_data: CreatePaymentSchema,
     payment_service: PaymentService = Depends(get_payment_service),
+    idempotency_key: str | None = Header(None, alias="Idempotency-Key"),
 ) -> PaymentResponse:
     """
     Registar um novo pagamento.
-    
+
     A idempotência é garantida via gateway_reference. Se o mesmo pagamento
     for enviado múltiplas vezes, recebe sempre a mesma resposta sem duplicação.
-    
+
     Args:
         payment_data: Detalhes do pagamento
         payment_service: Serviço de pagamentos (injetado)
-        
+
     Returns:
         PaymentResponse com pagamento registado
-        
+
     Raises:
         DuplicatePaymentError: Se gateway_reference já existe
         InvoiceNotFoundError: Se fatura não existe
@@ -85,16 +89,14 @@ async def register_payment(
             payment_method=payment.payment_method,
             status=payment.status.value,
             created_at=payment.created_at.isoformat(),
-            confirmed_at=payment.confirmed_at.isoformat()
-            if payment.confirmed_at
-            else None,
+            confirmed_at=payment.confirmed_at.isoformat() if payment.confirmed_at else None,
         )
     except DuplicatePaymentError as e:
         logger.warning(f"Tentativa de pagamento duplicado: {e.gateway_reference}")
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail=str(e),
-        )
+        ) from e
     except InvoiceNotFoundError as e:
         logger.error(f"Fatura não encontrada: {e.invoice_id}")
         raise HTTPException(
@@ -126,11 +128,11 @@ async def get_payment_history(
 ) -> PaymentHistoryResponse:
     """
     Recuperar histórico de pagamentos de um cidadão.
-    
+
     Args:
         citizen_id: ID do cidadão
         payment_service: Serviço de pagamentos
-        
+
     Returns:
         PaymentHistoryResponse com lista completa de pagamentos
     """
@@ -149,9 +151,7 @@ async def get_payment_history(
                     payment_method=p.payment_method,
                     status=p.status.value,
                     created_at=p.created_at.isoformat(),
-                    confirmed_at=p.confirmed_at.isoformat()
-                    if p.confirmed_at
-                    else None,
+                    confirmed_at=p.confirmed_at.isoformat() if p.confirmed_at else None,
                 )
                 for p in payments
             ],
@@ -172,14 +172,14 @@ async def get_payment_history(
 async def get_payment_by_reference(
     gateway_reference: str,
     payment_service: PaymentService = Depends(get_payment_service),
-) -> Optional[PaymentResponse]:
+) -> PaymentResponse | None:
     """
     Buscar pagamento por referência de gateway (ideal para reconciliação).
-    
+
     Args:
         gateway_reference: Referência do gateway de pagamento
         payment_service: Serviço de pagamentos
-        
+
     Returns:
         PaymentResponse ou None se não encontrado
     """
@@ -200,9 +200,7 @@ async def get_payment_by_reference(
             payment_method=payment.payment_method,
             status=payment.status.value,
             created_at=payment.created_at.isoformat(),
-            confirmed_at=payment.confirmed_at.isoformat()
-            if payment.confirmed_at
-            else None,
+            confirmed_at=payment.confirmed_at.isoformat() if payment.confirmed_at else None,
         )
     except HTTPException:
         raise
@@ -216,20 +214,20 @@ async def get_payment_by_reference(
 
 @router.get(
     "/invoice/{invoice_id}/payments",
-    response_model=List[PaymentResponse],
+    response_model=list[PaymentResponse],
     summary="List payments by invoice",
 )
 async def list_payments_by_invoice(
     invoice_id: str,
     payment_service: PaymentService = Depends(get_payment_service),
-) -> List[PaymentResponse]:
+) -> list[PaymentResponse]:
     """
     Listar todos os pagamentos associados a uma fatura.
-    
+
     Args:
         invoice_id: ID da fatura
         payment_service: Serviço de pagamentos
-        
+
     Returns:
         Lista de PaymentResponse
     """
@@ -246,9 +244,7 @@ async def list_payments_by_invoice(
                 payment_method=p.payment_method,
                 status=p.status.value,
                 created_at=p.created_at.isoformat(),
-                confirmed_at=p.confirmed_at.isoformat()
-                if p.confirmed_at
-                else None,
+                confirmed_at=p.confirmed_at.isoformat() if p.confirmed_at else None,
             )
             for p in payments
         ]

@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import keycloak from './auth/keycloak'
+import '@/.'
+import App from '@/App'
+import keycloak from '@/auth/keycloak'
 
 const rootElement = document.getElementById('root');
 

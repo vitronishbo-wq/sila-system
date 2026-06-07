@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class UrbanismoAdapter:
     """Adapter para regras de zoneamento urbano."""
 

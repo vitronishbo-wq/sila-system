@@ -1,3 +1,5 @@
 class EmpregoServiceAdapter:
     pass
-__all__ = ['EmpregoServiceAdapter']
+
+
+__all__ = ["EmpregoServiceAdapter"]

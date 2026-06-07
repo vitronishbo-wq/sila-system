@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.energy.domain.enums import StatusFaturaEnergia
 from apps.backend.app.modules.energy.domain.models import FaturaEnergia
 
-class FaturaRepositoryPort(ABC):
 
+class FaturaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: FaturaEnergia) -> FaturaEnergia:
         pass
@@ -19,7 +21,13 @@ class FaturaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, unidade_consumidora_id: UUID | None=None, cpf_titular: str | None=None, status: StatusFaturaEnergia | None=None) -> list[FaturaEnergia]:
+    async def list(
+        self,
+        *,
+        unidade_consumidora_id: UUID | None = None,
+        cpf_titular: str | None = None,
+        status: StatusFaturaEnergia | None = None,
+    ) -> list[FaturaEnergia]:
         pass
 
     @abstractmethod

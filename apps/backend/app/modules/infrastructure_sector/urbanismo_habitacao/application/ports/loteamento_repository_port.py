@@ -1,10 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import Loteamento
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusLoteamento,
+    TipoLoteamento,
+)
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.loteamento import (
+    Loteamento,
+)
+
 
 class LoteamentoRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, item: Loteamento) -> Loteamento:
         pass
@@ -14,7 +21,13 @@ class LoteamentoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusLoteamento | None=None, tipo: TipoLoteamento | None=None, provincia: str | None=None) -> list[Loteamento]:
+    async def list(
+        self,
+        *,
+        status: StatusLoteamento | None = None,
+        tipo: TipoLoteamento | None = None,
+        provincia: str | None = None,
+    ) -> list[Loteamento]:
         pass
 
     @abstractmethod

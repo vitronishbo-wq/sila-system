@@ -4,13 +4,15 @@ Manual test script for payment endpoints validation
 """
 
 import asyncio
-from httpx import AsyncClient
+
 from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from httpx import AsyncClient
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+from apps.backend.app.core.db import get_db
 
 # Import payment module components
 from apps.backend.app.modules.payment.endpoints.payment_endpoints import router as payment_router
-from apps.backend.app.core.db import get_db
 
 # Setup FastAPI app
 app = FastAPI(title="SILA Payment API Test")
@@ -19,9 +21,7 @@ app.include_router(payment_router)
 # Setup database for testing
 DATABASE_URL = "postgresql+asyncpg://localhost/sila_test"
 engine = create_async_engine(DATABASE_URL, echo=False)
-AsyncSessionLocal = async_sessionmaker(
-    engine, expire_on_commit=False, class_=AsyncSession
-)
+AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 
 async def override_get_db():
@@ -38,7 +38,6 @@ async def test_all_endpoints():
     print("=" * 50)
 
     async with AsyncClient(app=app, base_url="http://test") as client:
-
         # Test 1: Health Check - Ping
         print("\n1️⃣ Testing GET /payments/ping")
         try:

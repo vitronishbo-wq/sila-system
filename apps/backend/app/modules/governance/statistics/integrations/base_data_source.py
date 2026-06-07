@@ -1,9 +1,12 @@
 from __future__ import annotations
+
+from collections.abc import Iterable
 from datetime import date, timedelta
 from decimal import Decimal
-from typing import Iterable
+
 from sqlalchemy import func
 from sqlalchemy.ext.asyncio import AsyncSession
+
 
 class BaseDataSource:
     """Base utilitaria para consultas agregadas de metricas."""

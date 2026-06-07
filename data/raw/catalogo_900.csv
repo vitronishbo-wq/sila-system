@@ -1,0 +1,11 @@
+service_code,service_name,ministry,category,description,price,legal_basis
+FIN001,Imposto sobre Rendimento da Pessoa Singular,MINFIN,Finança,Declaração IRS anual,0,Lei nº 178/99
+FIN002,Imposto sobre o Rendimento das Pessoas Coletivas,MINFIN,Finança,Declaração IRC trimestral,0,Lei nº 179/99
+EDU001,Inscrição Escolar,MINED,Educação,Inscrição em estabelecimento de ensino,500,Lei nº 48/90
+EDU002,Emissão de Cartão de Estudante,MINED,Educação,Documento de identificação estudantil,250,Lei nº 48/90
+SAUDE001,Marcação de Consulta,MINSA,Saúde,Agendamento de consulta médica,1500,Lei nº 21/92
+SAUDE002,Emissão de Receita Médica,MINSA,Saúde,Prescrição farmacêutica,0,Lei nº 21/92
+JUS001,Certidão de Óbito,MINJUS,Justiça,Documento comprobatório de morte,800,Lei nº 35/96
+JUS002,Casamento Civil,MINJUS,Justiça,Celebração de casamento civil,5000,Lei nº 35/96
+SEG001,Bilhete de Identidade,MININT,Segurança,Documento de identificação nacional,3000,Lei nº 25/88
+SEG002,Passaporte,MININT,Segurança,Documento de viagem,5000,Lei nº 25/88

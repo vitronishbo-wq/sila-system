@@ -1,13 +1,16 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 from uuid import UUID
 
-class Turno(str, Enum):
-    MANHA = 'manha'
-    TARDE = 'tarde'
-    NOITE = 'noite'
-    INTEGRAL = 'integral'
+
+class Turno(StrEnum):
+    MANHA = "manha"
+    TARDE = "tarde"
+    NOITE = "noite"
+    INTEGRAL = "integral"
+
 
 @dataclass
 class Turma:

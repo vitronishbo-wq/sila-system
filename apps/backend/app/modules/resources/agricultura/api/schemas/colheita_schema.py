@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 
 class ColheitaCreate(BaseModel):
     codigo_safra: str
@@ -10,6 +13,7 @@ class ColheitaCreate(BaseModel):
     perdas_ton: float = 0.0
     umidade_percentual: float | None = None
     observacoes: str | None = None
+
 
 class ColheitaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

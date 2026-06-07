@@ -1,7 +1,7 @@
 import ssl
 
-class MutualTLSService:
 
+class MutualTLSService:
     def __init__(self, certfile, keyfile, cafile):
         self.certfile = certfile
         self.keyfile = keyfile

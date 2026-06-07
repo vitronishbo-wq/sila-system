@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { API_URL } from '../constants';
-import { adminDocumentService } from '../services/adminDocumentService';
-import type { AdminDocumentSummary, ExportJobStatus } from '../services/adminDocumentService';
-import { useToast } from '../hooks/useToast';
+import { API_URL } from '@/constants';
+import { adminDocumentService } from '@/modules/admin/services/adminDocumentService';
+import type { AdminDocumentSummary, ExportJobStatus } from '@/modules/admin/services/adminDocumentService';
+import { useToast } from '@/hooks/useToast';
 
 const formatDate = (value?: string | null) => {
   if (!value) return '—';

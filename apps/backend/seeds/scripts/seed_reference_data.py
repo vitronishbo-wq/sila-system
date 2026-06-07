@@ -7,6 +7,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 async def run():
     """
     Funciona como placeholder para reference data seeding.
@@ -14,6 +15,7 @@ async def run():
     """
     logger.info("✓ Reference data seeding completed")
     return True
+
 
 if __name__ == "__main__":
     asyncio.run(run())

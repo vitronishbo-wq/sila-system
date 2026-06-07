@@ -1,0 +1,17 @@
+code: notifications
+module: notifications
+name: notifications
+description: Envio e orquestracao de notificacoes transversais.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

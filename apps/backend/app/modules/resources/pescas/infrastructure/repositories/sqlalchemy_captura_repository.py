@@ -1,14 +1,19 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pescas.application.ports import CapturaRepositoryPort
 from apps.backend.app.modules.resources.pescas.domain.models.captura import Captura
-from apps.backend.app.modules.resources.pescas.infrastructure.models.captura_model import CapturaModel
+from apps.backend.app.modules.resources.pescas.infrastructure.models.captura_model import (
+    CapturaModel,
+)
+
 
 class SQLAlchemyCapturaRepository(CapturaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -50,10 +55,28 @@ class SQLAlchemyCapturaRepository(CapturaRepositoryPort):
         return [self._to_domain(row) for row in rows]
 
     async def list_by_periodo(self, data_inicio: datetime, data_fim: datetime) -> list[Captura]:
-        stmt = select(CapturaModel).where(CapturaModel.data_inicio >= data_inicio, CapturaModel.data_fim <= data_fim)
+        stmt = select(CapturaModel).where(
+            CapturaModel.data_inicio >= data_inicio, CapturaModel.data_fim <= data_fim
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
     @staticmethod
     def _to_domain(model: CapturaModel) -> Captura:
-        return Captura(id=model.id, embarcacao_id=model.embarcacao_id, licenca_id=model.licenca_id, data_inicio=model.data_inicio, data_fim=model.data_fim, zona_pesca_id=model.zona_pesca_id, especie_id=model.especie_id, quantidade_kg=model.quantidade_kg, quantidade_unidades=model.quantidade_unidades, arte_pesca_id=model.arte_pesca_id, profundidade=model.profundidade, coordenadas_inicio=model.coordenadas_inicio, coordenadas_fim=model.coordenadas_fim, condicoes_mar=model.condicoes_mar, observacoes=model.observacoes)
+        return Captura(
+            id=model.id,
+            embarcacao_id=model.embarcacao_id,
+            licenca_id=model.licenca_id,
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            zona_pesca_id=model.zona_pesca_id,
+            especie_id=model.especie_id,
+            quantidade_kg=model.quantidade_kg,
+            quantidade_unidades=model.quantidade_unidades,
+            arte_pesca_id=model.arte_pesca_id,
+            profundidade=model.profundidade,
+            coordenadas_inicio=model.coordenadas_inicio,
+            coordenadas_fim=model.coordenadas_fim,
+            condicoes_mar=model.condicoes_mar,
+            observacoes=model.observacoes,
+        )

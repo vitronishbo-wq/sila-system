@@ -31,10 +31,9 @@ logger.info(f"Logging to {log_file.absolute()}")
 
 async def test_database_connection():
     """Test database connection and basic operations."""
+    from apps.backend.app.core.db import get_engine
     from sqlalchemy import text
     from sqlalchemy.ext.asyncio import AsyncSession
-
-    from app.core.db import get_engine
 
     logger.info("Testing database connection...")
 

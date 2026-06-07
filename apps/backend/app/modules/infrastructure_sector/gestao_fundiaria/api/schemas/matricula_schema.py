@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import StatusMatriculaImovel, TipoRegistro
+
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import (
+    StatusMatriculaImovel,
+    TipoRegistro,
+)
+
 
 class MatriculaCreate(BaseModel):
     imovel_inscricao: str
@@ -15,11 +22,14 @@ class MatriculaCreate(BaseModel):
     proprietario_documento: str | None = None
     numero_matricula: str | None = None
 
+
 class MatriculaTransferenciaInput(BaseModel):
     novo_documento: str
 
+
 class MatriculaMotivoInput(BaseModel):
     motivo: str
+
 
 class MatriculaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

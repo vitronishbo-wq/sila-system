@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from decimal import Decimal
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
+
 
 @dataclass
 class AtracaoTuristica:
@@ -25,18 +28,70 @@ class AtracaoTuristica:
     observacoes: str | None = None
 
     @classmethod
-    def cadastrar(cls, *, nome: str, tipo: TipoAtracao, descricao: str, endereco: str, municipio: str, provincia: str, horario_funcionamento: str, acessivel: bool, gratuita: bool=False, capacidade_visitantes_dia: int | None=None, valor_entrada: Decimal | None=None, latitude: Decimal | None=None, longitude: Decimal | None=None, observacoes: str | None=None) -> 'AtracaoTuristica':
+    def cadastrar(
+        cls,
+        *,
+        nome: str,
+        tipo: TipoAtracao,
+        descricao: str,
+        endereco: str,
+        municipio: str,
+        provincia: str,
+        horario_funcionamento: str,
+        acessivel: bool,
+        gratuita: bool = False,
+        capacidade_visitantes_dia: int | None = None,
+        valor_entrada: Decimal | None = None,
+        latitude: Decimal | None = None,
+        longitude: Decimal | None = None,
+        observacoes: str | None = None,
+    ) -> AtracaoTuristica:
         if capacidade_visitantes_dia is not None and capacidade_visitantes_dia <= 0:
-            raise ValueError('Capacidade de visitantes deve ser maior que zero')
+            raise ValueError("Capacidade de visitantes deve ser maior que zero")
         if valor_entrada is not None and valor_entrada < 0:
-            raise ValueError('Valor da entrada nao pode ser negativo')
-        return cls(id=uuid4(), codigo='', nome=nome.strip(), tipo=tipo, descricao=descricao.strip(), endereco=endereco.strip(), municipio=municipio.strip(), provincia=provincia.strip(), horario_funcionamento=horario_funcionamento.strip(), acessivel=acessivel, gratuita=gratuita, capacidade_visitantes_dia=capacidade_visitantes_dia, valor_entrada=valor_entrada, latitude=latitude, longitude=longitude, observacoes=observacoes.strip() if observacoes else None, ativa=True)
+            raise ValueError("Valor da entrada nao pode ser negativo")
+        return cls(
+            id=uuid4(),
+            codigo="",
+            nome=nome.strip(),
+            tipo=tipo,
+            descricao=descricao.strip(),
+            endereco=endereco.strip(),
+            municipio=municipio.strip(),
+            provincia=provincia.strip(),
+            horario_funcionamento=horario_funcionamento.strip(),
+            acessivel=acessivel,
+            gratuita=gratuita,
+            capacidade_visitantes_dia=capacidade_visitantes_dia,
+            valor_entrada=valor_entrada,
+            latitude=latitude,
+            longitude=longitude,
+            observacoes=observacoes.strip() if observacoes else None,
+            ativa=True,
+        )
 
-    def atualizar(self, *, nome: str | None=None, tipo: TipoAtracao | None=None, descricao: str | None=None, endereco: str | None=None, municipio: str | None=None, provincia: str | None=None, horario_funcionamento: str | None=None, acessivel: bool | None=None, gratuita: bool | None=None, capacidade_visitantes_dia: int | None=None, valor_entrada: Decimal | None=None, latitude: Decimal | None=None, longitude: Decimal | None=None, observacoes: str | None=None) -> None:
+    def atualizar(
+        self,
+        *,
+        nome: str | None = None,
+        tipo: TipoAtracao | None = None,
+        descricao: str | None = None,
+        endereco: str | None = None,
+        municipio: str | None = None,
+        provincia: str | None = None,
+        horario_funcionamento: str | None = None,
+        acessivel: bool | None = None,
+        gratuita: bool | None = None,
+        capacidade_visitantes_dia: int | None = None,
+        valor_entrada: Decimal | None = None,
+        latitude: Decimal | None = None,
+        longitude: Decimal | None = None,
+        observacoes: str | None = None,
+    ) -> None:
         if capacidade_visitantes_dia is not None and capacidade_visitantes_dia <= 0:
-            raise ValueError('Capacidade de visitantes deve ser maior que zero')
+            raise ValueError("Capacidade de visitantes deve ser maior que zero")
         if valor_entrada is not None and valor_entrada < 0:
-            raise ValueError('Valor da entrada nao pode ser negativo')
+            raise ValueError("Valor da entrada nao pode ser negativo")
         if nome is not None:
             self.nome = nome.strip()
         if tipo is not None:

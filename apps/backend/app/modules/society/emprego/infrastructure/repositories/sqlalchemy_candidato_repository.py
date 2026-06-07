@@ -1,14 +1,23 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
+
 from apps.backend.app.modules.society.emprego.application.ports import CandidatoRepositoryPort
-from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+from apps.backend.app.modules.society.emprego.domain.enums import (
+    Escolaridade,
+    SituacaoProfissional,
+    StatusCandidato,
+)
 from apps.backend.app.modules.society.emprego.domain.models.candidato import Candidato
-from apps.backend.app.modules.society.emprego.infrastructure.models.candidato_model import CandidatoModel
+from apps.backend.app.modules.society.emprego.infrastructure.models.candidato_model import (
+    CandidatoModel,
+)
+
 
 class SQLAlchemyCandidatoRepository(CandidatoRepositoryPort):
-
     def __init__(self, session):
         self.session = session
 
@@ -40,7 +49,9 @@ class SQLAlchemyCandidatoRepository(CandidatoRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_by_filtros(self, escolaridade=None, situacao=None, area_interesse=None, ativos=True):
+    async def list_by_filtros(
+        self, escolaridade=None, situacao=None, area_interesse=None, ativos=True
+    ):
         stmt = select(CandidatoModel)
         if escolaridade:
             stmt = stmt.where(CandidatoModel.escolaridade == escolaridade.value)
@@ -54,10 +65,26 @@ class SQLAlchemyCandidatoRepository(CandidatoRepositoryPort):
         return [self._to_domain(row) for row in rows]
 
     async def next_numero_processo(self, ano: int) -> str:
-        stmt = select(func.count()).select_from(CandidatoModel).where(CandidatoModel.numero_processo.like(f'CAND/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(CandidatoModel)
+            .where(CandidatoModel.numero_processo.like(f"CAND/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'CAND/{ano}/{count + 1:04d}'
+        return f"CAND/{ano}/{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: CandidatoModel) -> Candidato:
-        return Candidato(id=model.id, numero_processo=model.numero_processo, citizen_id=model.citizen_id, data_registro=model.data_registro or date.today(), escolaridade=Escolaridade(model.escolaridade), situacao=SituacaoProfissional(model.situacao), areas_interesse=model.areas_interesse or [], experiencias=model.experiencias, habilidades=model.habilidades, status=StatusCandidato(model.status), observacoes=model.observacoes)
+        return Candidato(
+            id=model.id,
+            numero_processo=model.numero_processo,
+            citizen_id=model.citizen_id,
+            data_registro=model.data_registro or date.today(),
+            escolaridade=Escolaridade(model.escolaridade),
+            situacao=SituacaoProfissional(model.situacao),
+            areas_interesse=model.areas_interesse or [],
+            experiencias=model.experiencias,
+            habilidades=model.habilidades,
+            status=StatusCandidato(model.status),
+            observacoes=model.observacoes,
+        )

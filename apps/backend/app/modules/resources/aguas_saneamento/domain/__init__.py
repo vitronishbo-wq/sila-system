@@ -1,2 +1,9 @@
-from apps.backend.app.modules.resources.aguas_saneamento.domain.models import AbastecimentoAgua, ConsumoAgua, FaturaAgua, InfraestruturaHidrica, Outorga
-__all__ = ['Outorga', 'InfraestruturaHidrica', 'AbastecimentoAgua', 'ConsumoAgua', 'FaturaAgua']
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models import (
+    AbastecimentoAgua,
+    ConsumoAgua,
+    FaturaAgua,
+    InfraestruturaHidrica,
+    Outorga,
+)
+
+__all__ = ["Outorga", "InfraestruturaHidrica", "AbastecimentoAgua", "ConsumoAgua", "FaturaAgua"]

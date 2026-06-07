@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.assistencia_social.domain.models import VisitaDomiciliar
 
-class VisitaDomiciliarRepositoryPort(ABC):
 
+class VisitaDomiciliarRepositoryPort(ABC):
     @abstractmethod
     async def save(self, entity: VisitaDomiciliar) -> VisitaDomiciliar:
         raise NotImplementedError

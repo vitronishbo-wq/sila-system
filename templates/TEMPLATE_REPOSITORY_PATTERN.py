@@ -15,7 +15,6 @@ With this pattern:
 # ============================================================================
 
 """Domain repository interfaces for Documents module"""
-from abc import ABC
 from apps.backend.core.repositories.repository_factory import RepositoryFactory
 
 # Generate repository interface using factory
@@ -44,4 +43,3 @@ __all__ = ["IDocumentsRepository"]
 # 3. Result: ONE factory replaces 28 identical hand-written interface files
 #
 # ============================================================================
-

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_017_cultura_foundation"
 down_revision = "20260302_016_pescas_industriais_foundation"
 branch_labels = None
@@ -58,11 +57,19 @@ def _create_artistas_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_registro ON cultura_artistas (registro_cultural)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_artistas_registro ON cultura_artistas (registro_cultural)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_nome ON cultura_artistas (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_citizen_id ON cultura_artistas (citizen_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_municipio ON cultura_artistas (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_provincia ON cultura_artistas (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_artistas_citizen_id ON cultura_artistas (citizen_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_artistas_municipio ON cultura_artistas (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_artistas_provincia ON cultura_artistas (provincia)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_artistas_ativo ON cultura_artistas (ativo)")
 
 
@@ -125,13 +132,23 @@ def _create_bens_culturais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_registro ON cultura_bens_culturais (registro_ipat)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_bens_registro ON cultura_bens_culturais (registro_ipat)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_nome ON cultura_bens_culturais (nome)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_tipo ON cultura_bens_culturais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_municipio ON cultura_bens_culturais (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_provincia ON cultura_bens_culturais (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_status_tombamento ON cultura_bens_culturais (status_tombamento)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_tombamento_id ON cultura_bens_culturais (tombamento_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_bens_municipio ON cultura_bens_culturais (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_bens_provincia ON cultura_bens_culturais (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_bens_status_tombamento ON cultura_bens_culturais (status_tombamento)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_bens_tombamento_id ON cultura_bens_culturais (tombamento_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_bens_ativo ON cultura_bens_culturais (ativo)")
 
 
@@ -221,20 +238,42 @@ def _create_eventos_culturais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_codigo ON cultura_eventos_culturais (codigo_evento)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_nome ON cultura_eventos_culturais (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_tipo ON cultura_eventos_culturais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_municipio ON cultura_eventos_culturais (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_provincia ON cultura_eventos_culturais (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_data_inicio ON cultura_eventos_culturais (data_inicio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_data_fim ON cultura_eventos_culturais (data_fim)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_status ON cultura_eventos_culturais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_realizador_id ON cultura_eventos_culturais (realizador_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_atracao_turistica_id ON cultura_eventos_culturais (atracao_turistica_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_codigo ON cultura_eventos_culturais (codigo_evento)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_nome ON cultura_eventos_culturais (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_tipo ON cultura_eventos_culturais (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_municipio ON cultura_eventos_culturais (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_provincia ON cultura_eventos_culturais (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_data_inicio ON cultura_eventos_culturais (data_inicio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_data_fim ON cultura_eventos_culturais (data_fim)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_status ON cultura_eventos_culturais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_realizador_id ON cultura_eventos_culturais (realizador_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_atracao_turistica_id ON cultura_eventos_culturais (atracao_turistica_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_instituicao_educacional_id ON cultura_eventos_culturais (instituicao_educacional_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_eventos_ativo ON cultura_eventos_culturais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_eventos_ativo ON cultura_eventos_culturais (ativo)"
+    )
 
 
 def upgrade() -> None:

@@ -1,0 +1,22 @@
+code: aviacao-civil
+module: aviacao-civil
+name: Aviacao Civil
+description: Licenciamento aeronautico e seguranca operacional.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: aviacao-civil
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []

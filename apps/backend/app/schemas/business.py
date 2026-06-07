@@ -1,13 +1,16 @@
-from pydantic import BaseModel, ConfigDict
 from datetime import datetime
-from typing import Optional
+
+from pydantic import BaseModel, ConfigDict
+
 
 class PaymentBase(BaseModel):
     amount: float
-    provider: str = 'multicaixa'
+    provider: str = "multicaixa"
+
 
 class PaymentCreate(PaymentBase):
-    request_id: Optional[int] = None
+    request_id: int | None = None
+
 
 class PaymentRead(PaymentBase):
     id: int
@@ -16,6 +19,7 @@ class PaymentRead(PaymentBase):
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
 
+
 class WorkflowRead(BaseModel):
     id: int
     name: str
@@ -23,6 +27,7 @@ class WorkflowRead(BaseModel):
     definition: dict
     status: str
     model_config = ConfigDict(from_attributes=True)
+
 
 class ProcessRead(BaseModel):
     id: int
@@ -33,6 +38,7 @@ class ProcessRead(BaseModel):
     updated_at: datetime
     model_config = ConfigDict(from_attributes=True)
 
+
 class ServiceRead(BaseModel):
     id: int
     code: str
@@ -41,6 +47,7 @@ class ServiceRead(BaseModel):
     is_active: bool
     model_config = ConfigDict(from_attributes=True)
 
+
 class CitizenRead(BaseModel):
     id: int
     full_name: str
@@ -48,6 +55,7 @@ class CitizenRead(BaseModel):
     province: str
     municipality: str
     model_config = ConfigDict(from_attributes=True)
+
 
 class RequestRead(BaseModel):
     id: int

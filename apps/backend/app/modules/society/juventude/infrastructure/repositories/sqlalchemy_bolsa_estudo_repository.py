@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
+
+from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import (
+    BolsaEstudoRepositoryPort,
+)
 from apps.backend.app.modules.society.juventude.domain.enums import TipoBolsa
 from apps.backend.app.modules.society.juventude.domain.models.bolsa_estudo import BolsaEstudo
-from apps.backend.app.modules.society.juventude.infrastructure.models.bolsa_estudo_model import BolsaEstudoModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.bolsa_estudo_model import (
+    BolsaEstudoModel,
+)
+
 
 class SQLAlchemyBolsaEstudoRepository(BolsaEstudoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -46,12 +53,20 @@ class SQLAlchemyBolsaEstudoRepository(BolsaEstudoRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[BolsaEstudo]:
-        stmt = select(BolsaEstudoModel).where(BolsaEstudoModel.jovem_id == jovem_id).order_by(BolsaEstudoModel.data_cadastro.desc())
+        stmt = (
+            select(BolsaEstudoModel)
+            .where(BolsaEstudoModel.jovem_id == jovem_id)
+            .order_by(BolsaEstudoModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_ativas(self) -> list[BolsaEstudo]:
-        stmt = select(BolsaEstudoModel).where(BolsaEstudoModel.ativa.is_(True)).order_by(BolsaEstudoModel.data_cadastro.desc())
+        stmt = (
+            select(BolsaEstudoModel)
+            .where(BolsaEstudoModel.ativa.is_(True))
+            .order_by(BolsaEstudoModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -65,10 +80,25 @@ class SQLAlchemyBolsaEstudoRepository(BolsaEstudoRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(BolsaEstudoModel).where(BolsaEstudoModel.codigo_bolsa.like(f'BOL/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(BolsaEstudoModel)
+            .where(BolsaEstudoModel.codigo_bolsa.like(f"BOL/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'BOL/{ano}/{count + 1:05d}'
+        return f"BOL/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: BolsaEstudoModel) -> BolsaEstudo:
-        return BolsaEstudo(id=model.id, codigo_bolsa=model.codigo_bolsa, jovem_id=model.jovem_id, tipo=TipoBolsa(model.tipo), valor_mensal=model.valor_mensal, data_inicio=model.data_inicio, data_fim=model.data_fim, data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativa=model.ativa)
+        return BolsaEstudo(
+            id=model.id,
+            codigo_bolsa=model.codigo_bolsa,
+            jovem_id=model.jovem_id,
+            tipo=TipoBolsa(model.tipo),
+            valor_mensal=model.valor_mensal,
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativa=model.ativa,
+        )

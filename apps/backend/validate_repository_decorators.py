@@ -8,14 +8,16 @@ Confirma que:
 3. Métodos críticos existem
 """
 
-import sys
 import inspect
+import sys
 from pathlib import Path
 
 # Adiciona o caminho do backend aos imports
-sys.path.insert(0, '/home/dev03wsl/sila-system/apps/backend')
+sys.path.insert(0, "/home/dev03wsl/sila-system/apps/backend")
 
-from apps.backend.app.modules.identity.infrastructure.repositories.user_repository import UserRepository
+from apps.backend.app.modules.identity.infrastructure.repositories.user_repository import (
+    UserRepository,
+)
 
 
 def check_method_exists(repo_class, method_name):
@@ -57,7 +59,7 @@ def validate_repositories():
     user_passed = 0
     user_total = len(user_methods)
 
-    for method_name, expected_action in user_methods.items():
+    for method_name, _expected_action in user_methods.items():
         is_present, msg = check_method_exists(UserRepository, method_name)
         status = "✅ PASS" if is_present else "❌ FAIL"
         print(f"{status} | UserRepository.{method_name}()")

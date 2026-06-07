@@ -1,11 +1,15 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusInscricao
-from apps.backend.app.modules.society.juventude.domain.models.inscricao_programa import InscricaoPrograma
+from apps.backend.app.modules.society.juventude.domain.models.inscricao_programa import (
+    InscricaoPrograma,
+)
+
 
 class InscricaoProgramaRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, inscricao: InscricaoPrograma) -> InscricaoPrograma:
         raise NotImplementedError

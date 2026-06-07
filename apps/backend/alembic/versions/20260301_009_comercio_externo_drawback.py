@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_009_comex_drawback"
 down_revision = "20260301_008_pecuaria_foundation"
 branch_labels = None

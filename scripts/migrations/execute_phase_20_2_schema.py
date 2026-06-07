@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-import psycopg2
 import argparse
-import sys
 import os
+import sys
+
+import psycopg2
+
 
 class Phase20_2SchemaExecutor:
-    def __init__(self, host="localhost", user="sila_user", password="Trumanmarcelo_1983", dbname="sila_db", port=5432):
+    def __init__(
+        self,
+        host="localhost",
+        user="sila_user",
+        password="Trumanmarcelo_1983",
+        dbname="sila_db",
+        port=5432,
+    ):
         self.host = host
         self.user = user
         self.password = password
         self.dbname = dbname
         self.port = port
-        self. conn = None
+        self.conn = None
 
     def connect(self):
         try:
@@ -20,7 +29,7 @@ class Phase20_2SchemaExecutor:
                 user=self.user,
                 password=self.password,
                 dbname=self.dbname,
-                port=self.port
+                port=self.port,
             )
             print("✓ Database connection successful")
             return True
@@ -33,10 +42,10 @@ class Phase20_2SchemaExecutor:
             if not os.path.exists("schema_phase_20_2.sql"):
                 print("✗ schema_phase_20_2.sql not found")
                 return False
-            
-            with open("schema_phase_20_2.sql", "r") as f:
+
+            with open("schema_phase_20_2.sql") as f:
                 schema_sql = f.read()
-            
+
             cursor = self.conn.cursor()
             cursor.execute(schema_sql)
             self.conn.commit()
@@ -51,6 +60,7 @@ class Phase20_2SchemaExecutor:
         if self.conn:
             self.conn.close()
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Phase 20.2 Schema Executor")
     parser.add_argument("--host", default="localhost", help="Database host")
@@ -58,17 +68,13 @@ if __name__ == "__main__":
     parser.add_argument("--password", default="Trumanmarcelo_1983", help="Database password")
     parser.add_argument("--dbname", default="sila_db", help="Database name")
     parser.add_argument("--port", type=int, default=5432, help="Database port")
-    
+
     args = parser.parse_args()
-    
+
     executor = Phase20_2SchemaExecutor(
-        host=args.host,
-        user=args.user,
-        password=args.password,
-        dbname=args.dbname,
-        port=args.port
+        host=args.host, user=args.user, password=args.password, dbname=args.dbname, port=args.port
     )
-    
+
     if executor.connect():
         executor.execute_schema()
         executor.close()

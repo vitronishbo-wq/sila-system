@@ -1,193 +1,195 @@
-"""Excecoes do modulo comercio_externo."""
+from __future__ import annotations
 
-class ComercioExternoError(Exception):
-    """Erro base do modulo."""
 
-class ExportadorNotFoundError(ComercioExternoError):
-    """Exportador nao encontrado."""
+class TradeExternalError(Exception):
+    pass
 
-class ExportadorAlreadyExistsError(ComercioExternoError):
-    """Exportador ja cadastrado."""
 
-class InvalidExportadorStateError(ComercioExternoError):
-    """Transicao de estado invalida para exportador."""
+class AgenteCargaAlreadyExistsError(TradeExternalError):
+    pass
 
-class ImportadorNotFoundError(ComercioExternoError):
-    """Importador nao encontrado."""
+class AgenteCargaNotFoundError(TradeExternalError):
+    pass
 
-class ImportadorAlreadyExistsError(ComercioExternoError):
-    """Importador ja cadastrado."""
+class CancelamentoRadarAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidImportadorStateError(ComercioExternoError):
-    """Transicao de estado invalida para importador."""
+class CancelamentoRadarNotFoundError(TradeExternalError):
+    pass
 
-class DespachanteNotFoundError(ComercioExternoError):
-    """Despachante nao encontrado."""
+class DespachanteAlreadyExistsError(TradeExternalError):
+    pass
 
-class DespachanteAlreadyExistsError(ComercioExternoError):
-    """Despachante ja cadastrado."""
+class DespachanteNotFoundError(TradeExternalError):
+    pass
 
-class InvalidDespachanteStateError(ComercioExternoError):
-    """Transicao de estado invalida para despachante."""
+class DrawbackAlreadyExistsError(TradeExternalError):
+    pass
 
-class AgenteCargaNotFoundError(ComercioExternoError):
-    """Agente de carga nao encontrado."""
+class DrawbackExternoAlreadyExistsError(TradeExternalError):
+    pass
 
-class AgenteCargaAlreadyExistsError(ComercioExternoError):
-    """Agente de carga ja cadastrado."""
+class DrawbackExternoNotFoundError(TradeExternalError):
+    pass
 
-class InvalidAgenteCargaStateError(ComercioExternoError):
-    """Transicao de estado invalida para agente de carga."""
+class DrawbackIntegradoAlreadyExistsError(TradeExternalError):
+    pass
 
-class TransportadorInternacionalNotFoundError(ComercioExternoError):
-    """Transportador internacional nao encontrado."""
+class DrawbackIntegradoNotFoundError(TradeExternalError):
+    pass
 
-class TransportadorInternacionalAlreadyExistsError(ComercioExternoError):
-    """Transportador internacional ja cadastrado."""
+class DrawbackInternoAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidTransportadorInternacionalStateError(ComercioExternoError):
-    """Transicao de estado invalida para transportador internacional."""
+class DrawbackInternoNotFoundError(TradeExternalError):
+    pass
 
-class HabilitacaoExportadorNotFoundError(ComercioExternoError):
-    """Habilitacao de exportador nao encontrada."""
+class DrawbackIsencaoAlreadyExistsError(TradeExternalError):
+    pass
 
-class HabilitacaoExportadorAlreadyExistsError(ComercioExternoError):
-    """Habilitacao de exportador ja cadastrada."""
+class DrawbackIsencaoNotFoundError(TradeExternalError):
+    pass
 
-class InvalidHabilitacaoExportadorStateError(ComercioExternoError):
-    """Transicao de estado invalida para habilitacao de exportador."""
+class DrawbackNotFoundError(TradeExternalError):
+    pass
 
-class HabilitacaoImportadorNotFoundError(ComercioExternoError):
-    """Habilitacao de importador nao encontrada."""
+class DrawbackRestituicaoAlreadyExistsError(TradeExternalError):
+    pass
 
-class HabilitacaoImportadorAlreadyExistsError(ComercioExternoError):
-    """Habilitacao de importador ja cadastrada."""
+class DrawbackRestituicaoNotFoundError(TradeExternalError):
+    pass
 
-class InvalidHabilitacaoImportadorStateError(ComercioExternoError):
-    """Transicao de estado invalida para habilitacao de importador."""
+class DrawbackSubstituicaoAlreadyExistsError(TradeExternalError):
+    pass
 
-class RadarNotFoundError(ComercioExternoError):
-    """Radar nao encontrado."""
+class DrawbackSubstituicaoNotFoundError(TradeExternalError):
+    pass
 
-class RadarAlreadyExistsError(ComercioExternoError):
-    """Radar ja cadastrado."""
+class DrawbackSuspensaoAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidRadarStateError(ComercioExternoError):
-    """Transicao de estado invalida para radar."""
+class DrawbackSuspensaoNotFoundError(TradeExternalError):
+    pass
 
-class HabilitacaoRadarNotFoundError(ComercioExternoError):
-    """Habilitacao de radar nao encontrada."""
+class DrawbackVerdeAmareloAlreadyExistsError(TradeExternalError):
+    pass
 
-class HabilitacaoRadarAlreadyExistsError(ComercioExternoError):
-    """Habilitacao de radar ja cadastrada."""
+class DrawbackVerdeAmareloNotFoundError(TradeExternalError):
+    pass
 
-class InvalidHabilitacaoRadarStateError(ComercioExternoError):
-    """Transicao de estado invalida para habilitacao de radar."""
+class ExportadorAlreadyExistsError(TradeExternalError):
+    pass
 
-class CancelamentoRadarNotFoundError(ComercioExternoError):
-    """Cancelamento de radar nao encontrado."""
+class ExportadorNotFoundError(TradeExternalError):
+    pass
 
-class CancelamentoRadarAlreadyExistsError(ComercioExternoError):
-    """Cancelamento de radar ja cadastrado."""
+class HabilitacaoExportadorAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidCancelamentoRadarStateError(ComercioExternoError):
-    """Transicao de estado invalida para cancelamento de radar."""
+class HabilitacaoExportadorNotFoundError(TradeExternalError):
+    pass
 
-class SuspensaoRadarNotFoundError(ComercioExternoError):
-    """Suspensao de radar nao encontrada."""
+class HabilitacaoImportadorAlreadyExistsError(TradeExternalError):
+    pass
 
-class SuspensaoRadarAlreadyExistsError(ComercioExternoError):
-    """Suspensao de radar ja cadastrada."""
+class HabilitacaoImportadorNotFoundError(TradeExternalError):
+    pass
 
-class InvalidSuspensaoRadarStateError(ComercioExternoError):
-    """Transicao de estado invalida para suspensao de radar."""
+class HabilitacaoRadarAlreadyExistsError(TradeExternalError):
+    pass
 
-class DrawbackNotFoundError(ComercioExternoError):
-    """Drawback nao encontrado."""
+class HabilitacaoRadarNotFoundError(TradeExternalError):
+    pass
 
-class DrawbackAlreadyExistsError(ComercioExternoError):
-    """Drawback ja cadastrado."""
+class ImportadorAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidDrawbackStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback."""
+class ImportadorNotFoundError(TradeExternalError):
+    pass
 
-class DrawbackExternoNotFoundError(ComercioExternoError):
-    """Drawback externo nao encontrado."""
+class InvalidAgenteCargaStateError(TradeExternalError):
+    pass
 
-class DrawbackExternoAlreadyExistsError(ComercioExternoError):
-    """Drawback externo ja cadastrado."""
+class InvalidCancelamentoRadarStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackExternoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback externo."""
+class InvalidDespachanteStateError(TradeExternalError):
+    pass
 
-class DrawbackInternoNotFoundError(ComercioExternoError):
-    """Drawback interno nao encontrado."""
+class InvalidDrawbackExternoStateError(TradeExternalError):
+    pass
 
-class DrawbackInternoAlreadyExistsError(ComercioExternoError):
-    """Drawback interno ja cadastrado."""
+class InvalidDrawbackIntegradoStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackInternoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback interno."""
+class InvalidDrawbackInternoStateError(TradeExternalError):
+    pass
 
-class DrawbackVerdeAmareloNotFoundError(ComercioExternoError):
-    """Drawback verde amarelo nao encontrado."""
+class InvalidDrawbackIsencaoStateError(TradeExternalError):
+    pass
 
-class DrawbackVerdeAmareloAlreadyExistsError(ComercioExternoError):
-    """Drawback verde amarelo ja cadastrado."""
+class InvalidDrawbackRestituicaoStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackVerdeAmareloStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback verde amarelo."""
+class InvalidDrawbackStateError(TradeExternalError):
+    pass
 
-class SiscomexDrawbackNotFoundError(ComercioExternoError):
-    """Siscomex drawback nao encontrado."""
+class InvalidDrawbackSubstituicaoStateError(TradeExternalError):
+    pass
 
-class SiscomexDrawbackAlreadyExistsError(ComercioExternoError):
-    """Siscomex drawback ja cadastrado."""
+class InvalidDrawbackSuspensaoStateError(TradeExternalError):
+    pass
 
-class InvalidSiscomexDrawbackStateError(ComercioExternoError):
-    """Transicao de estado invalida para siscomex drawback."""
+class InvalidDrawbackVerdeAmareloStateError(TradeExternalError):
+    pass
 
-class DrawbackSuspensaoNotFoundError(ComercioExternoError):
-    """Drawback suspensao nao encontrado."""
+class InvalidExportadorStateError(TradeExternalError):
+    pass
 
-class DrawbackSuspensaoAlreadyExistsError(ComercioExternoError):
-    """Drawback suspensao ja cadastrado."""
+class InvalidHabilitacaoExportadorStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackSuspensaoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback suspensao."""
+class InvalidHabilitacaoImportadorStateError(TradeExternalError):
+    pass
 
-class DrawbackIsencaoNotFoundError(ComercioExternoError):
-    """Drawback isencao nao encontrado."""
+class InvalidHabilitacaoRadarStateError(TradeExternalError):
+    pass
 
-class DrawbackIsencaoAlreadyExistsError(ComercioExternoError):
-    """Drawback isencao ja cadastrado."""
+class InvalidImportadorStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackIsencaoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback isencao."""
+class InvalidRadarStateError(TradeExternalError):
+    pass
 
-class DrawbackSubstituicaoNotFoundError(ComercioExternoError):
-    """Drawback substituicao nao encontrado."""
+class InvalidSiscomexDrawbackStateError(TradeExternalError):
+    pass
 
-class DrawbackSubstituicaoAlreadyExistsError(ComercioExternoError):
-    """Drawback substituicao ja cadastrado."""
+class InvalidSuspensaoRadarStateError(TradeExternalError):
+    pass
 
-class InvalidDrawbackSubstituicaoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback substituicao."""
+class InvalidTransportadorInternacionalStateError(TradeExternalError):
+    pass
 
-class DrawbackRestituicaoNotFoundError(ComercioExternoError):
-    """Drawback restituicao nao encontrado."""
+class RadarAlreadyExistsError(TradeExternalError):
+    pass
 
-class DrawbackRestituicaoAlreadyExistsError(ComercioExternoError):
-    """Drawback restituicao ja cadastrado."""
+class RadarNotFoundError(TradeExternalError):
+    pass
 
-class InvalidDrawbackRestituicaoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback restituicao."""
+class SiscomexDrawbackAlreadyExistsError(TradeExternalError):
+    pass
 
-class DrawbackIntegradoNotFoundError(ComercioExternoError):
-    """Drawback integrado nao encontrado."""
+class SiscomexDrawbackNotFoundError(TradeExternalError):
+    pass
 
-class DrawbackIntegradoAlreadyExistsError(ComercioExternoError):
-    """Drawback integrado ja cadastrado."""
+class SuspensaoRadarAlreadyExistsError(TradeExternalError):
+    pass
 
-class InvalidDrawbackIntegradoStateError(ComercioExternoError):
-    """Transicao de estado invalida para drawback integrado."""
+class SuspensaoRadarNotFoundError(TradeExternalError):
+    pass
+
+class TransportadorInternacionalAlreadyExistsError(TradeExternalError):
+    pass
+
+class TransportadorInternacionalNotFoundError(TradeExternalError):
+    pass

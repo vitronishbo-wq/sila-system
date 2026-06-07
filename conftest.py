@@ -1,7 +1,8 @@
 """Root conftest.py - Configures pytest and Python path for all tests."""
 
-import sys
+import importlib
 import os
+import sys
 from pathlib import Path
 
 # Adiciona a raiz do projeto e os caminhos dos módulos ao PYTHONPATH
@@ -16,32 +17,41 @@ os.chdir(project_root)
 # Configura o ambiente como teste antes de qualquer outra importação
 os.environ["ENVIRONMENT"] = "test"
 
-# Importar todos os modelos para registá-los no SQLAlchemy Registry
-# Isto previne erros de "Mapper failed to initialize" durante os testes
-try:
-    # Core Base
-    from core.db.base_class import Base
+import tempfile
+import uuid
 
-    # Identity & Access
-    from apps.backend.app.modules.identity.models.user import User
-    from apps.backend.app.modules.identity.models.identity import Identity
+policy_store_file = os.path.join(
+    tempfile.gettempdir(),
+    f"pytest_policy_store_{uuid.uuid4().hex}.json",
+)
+os.environ.setdefault("POLICY_STORE_PATH", policy_store_file)
 
-    # Location
-    from apps.backend.app.modules.location.models.region import Region
+policy_audit_file = os.path.join(
+    tempfile.gettempdir(),
+    f"pytest_policy_audit_{uuid.uuid4().hex}.log",
+)
+os.environ.setdefault("POLICY_AUDIT_PATH", policy_audit_file)
 
-    # Payments
-    from apps.backend.app.modules.payment.models import Payment, PaymentTransaction, Refund
+OPTIONAL_MODEL_MODULES = (
+    "apps.backend.app.modules.identity.domain.models.identity",
+    "apps.backend.app.modules.identity.infrastructure.models",
+    "apps.backend.app.modules.payment.infrastructure.orm",
+    "apps.backend.app.core.db.base_class",
+)
 
-    # Document Management (se existir)
-    # from apps.backend.app.modules.document.models import Document
 
-except ImportError as e:
-    # Log silencioso se os módulos ainda não estiverem todos implementados
-    print(f"Aviso durante carregamento de modelos em conftest.py: {e}")
+def _preload_optional_modules() -> None:
+    """Best-effort model preloading without coupling pytest to stale module paths."""
+    for module_name in OPTIONAL_MODEL_MODULES:
+        try:
+            importlib.import_module(module_name)
+        except Exception:
+            continue
+
+
+_preload_optional_modules()
 
 
 def pytest_configure(config):
     """Configurações adicionais do Pytest."""
-    config.addinivalue_line(
-        "markers", "asyncio: mark test to run as an asyncio test"
-    )
+    config.addinivalue_line("markers", "asyncio: mark test to run as an asyncio test")

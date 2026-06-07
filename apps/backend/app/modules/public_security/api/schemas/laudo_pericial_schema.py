@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
+
 
 class LaudoPericialCreate(BaseModel):
     prova_id: UUID
@@ -14,9 +18,11 @@ class LaudoPericialCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class LaudoPericialStatusUpdate(BaseModel):
     status: StatusLaudo
     observacoes: str | None = None
+
 
 class LaudoPericialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

@@ -12,9 +12,9 @@ from pathlib import Path
 
 def run_tests_for_module(module_name):
     """Executa testes para um módulo específico."""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"Executando testes do módulo: {module_name}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     module_path = Path(__file__).parent / module_name
 
@@ -58,11 +58,9 @@ def run_tests_for_module(module_name):
 
 def run_coverage_report():
     """Executa relatório de cobertura para os novos módulos."""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("Gerando relatório de cobertura")
-    print(f"{'='*60}")
-
-    modules = ["sanitation", "justice", "education"]
+    print(f"{'=' * 60}")
 
     try:
         # Executa pytest com cobertura
@@ -106,9 +104,9 @@ def run_coverage_report():
 
 def generate_test_summary():
     """Gera um resumo dos testes criados."""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("Resumo dos Testes Criados")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     modules = ["sanitation", "justice", "education"]
     total_tests = 0
@@ -123,7 +121,7 @@ def generate_test_summary():
         for test_file in test_files:
             # Conta número de funções de teste
             try:
-                with open(test_file, "r", encoding="utf-8") as f:
+                with open(test_file, encoding="utf-8") as f:
                     content = f.read()
                     test_functions = content.count("def test_")
                     total_tests += test_functions
@@ -140,19 +138,17 @@ def generate_test_summary():
 
     for test_file in citizenship_files:
         try:
-            with open(test_file, "r", encoding="utf-8") as f:
+            with open(test_file, encoding="utf-8") as f:
                 content = f.read()
                 citizenship_tests += content.count("def test_")
         except:
             pass
 
-    print(
-        f"📊 Funções de teste no módulo citizenship (referência): {citizenship_tests}"
-    )
+    print(f"📊 Funções de teste no módulo citizenship (referência): {citizenship_tests}")
 
     if citizenship_tests > 0:
         print(
-            f"📈 Progresso: {total_tests}/{citizenship_tests} ({(total_tests/citizenship_tests*100):.1f}%)"
+            f"📈 Progresso: {total_tests}/{citizenship_tests} ({(total_tests / citizenship_tests * 100):.1f}%)"
         )
     else:
         print(f"📈 Progresso: {total_tests} testes criados (referência não disponível)")
@@ -184,9 +180,9 @@ def main():
     coverage_success = run_coverage_report()
 
     # Resumo final
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("RESUMO FINAL")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     for module, success in results.items():
         status = "✅ SUCESSO" if success else "❌ FALHA"

@@ -1,0 +1,33 @@
+module: registo-civil
+name: Registo Civil
+code: registo-civil
+description: Registos vitais de nascimento, casamento e obito - integracao nacional
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+normalized: true
+exposes:
+  api_routers:
+  - prefix: /registo-civil
+    endpoints:
+    - POST /registo-civil/nascimento/registar (Registo de nascimento)
+    - POST /registo-civil/nascimento/consultar (Consultar nascimento)
+    - POST /registo-civil/obito/registar (Registo de obito)
+    - POST /registo-civil/obito/consultar (Consultar obito)
+    - GET /health (Health check)
+  public_models:
+  - RegistoNascimento
+  - RegistoObito
+  events_published:
+  - NascimentoRegistado
+  - ObitoRegistado
+  - CasamentoRegistado
+  event_catalog: domain/event_catalog.py
+requires:
+  domains:
+  - identity
+  - xroad
+  core_services:
+  - database_session
+subdomains: []

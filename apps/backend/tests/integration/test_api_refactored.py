@@ -8,7 +8,6 @@ focando em interações de API em vez de fluxos end-to-end.
 from unittest.mock import patch
 
 
-
 class TestAuthenticationAPI:
     """Testes de API focados em autenticação"""
 
@@ -73,9 +72,7 @@ class TestAuthenticationAPI:
 class TestBIUpdateAPI:
     """Testes de API focados em atualizações de BI"""
 
-    def test_create_bi_update_success(
-        self, client, auth_headers_user, sample_bi_update_data
-    ):
+    def test_create_bi_update_success(self, client, auth_headers_user, sample_bi_update_data):
         """Testa criação de atualização de BI com dados válidos"""
         response = client.post(
             "/api/v2/citizenship/bi-updates",
@@ -107,9 +104,7 @@ class TestBIUpdateAPI:
 
     def test_list_bi_updates(self, client, auth_headers_user, test_bi_update):
         """Testa listagem de atualizações de BI"""
-        response = client.get(
-            "/api/v2/citizenship/bi-updates", headers=auth_headers_user
-        )
+        response = client.get("/api/v2/citizenship/bi-updates", headers=auth_headers_user)
 
         assert response.status_code == 200
         data = response.json()
@@ -141,9 +136,7 @@ class TestBIUpdateAPI:
 class TestNotificationAPI:
     """Testes de API focados em notificações"""
 
-    def test_send_notification_success(
-        self, client, auth_headers_admin, sample_notification_data
-    ):
+    def test_send_notification_success(self, client, auth_headers_admin, sample_notification_data):
         """Testa envio de notificação com dados válidos"""
         response = client.post(
             "/api/v2/notifications/send",
@@ -177,9 +170,7 @@ class TestNotificationAPI:
         assert "items" in data
         assert "total" in data
 
-    def test_mark_notification_as_read(
-        self, client, auth_headers_user, test_notification
-    ):
+    def test_mark_notification_as_read(self, client, auth_headers_user, test_notification):
         """Testa marcação de notificação como lida"""
         response = client.patch(
             f"/api/v2/notifications/{test_notification.id}/read",
@@ -273,9 +264,7 @@ class TestValidationAPI:
             "full_name": "Test User",
         }
 
-        response = client.post(
-            "/api/v2/users", json=invalid_user_data, headers=auth_headers_user
-        )
+        response = client.post("/api/v2/users", json=invalid_user_data, headers=auth_headers_user)
 
         assert response.status_code == 422
         data = response.json()
@@ -347,22 +336,18 @@ class TestErrorHandlingAPI:
                 "full_name": "Test User",
             }
 
-            response = client.post(
-                "/api/v2/users", json=user_data, headers=auth_headers_user
-            )
+            response = client.post("/api/v2/users", json=user_data, headers=auth_headers_user)
             assert response.status_code == 500
 
 
 class TestPaginationAPI:
     """Testes de paginação de endpoints de listagem"""
 
-    def test_pagination_default_values(
-        self, client, auth_headers_user, test_data_factory
-    ):
+    def test_pagination_default_values(self, client, auth_headers_user, test_data_factory):
         """Testa valores padrão de paginação"""
         # Criar múltiplos registros
         for _ in range(25):
-            user_data = test_data_factory.create_user()
+            test_data_factory.create_user()
             # Simular criação via API (mock)
 
         response = client.get("/api/v2/users", headers=auth_headers_user)

@@ -7,30 +7,33 @@ This module generates mermaid diagrams showing:
 3. Data flow through template method pattern
 4. Test consolidation opportunity
 """
+
 BEFORE_AFTER_ARCHITECTURE = '\ngraph TB\n    subgraph BEFORE ["BEFORE: Parallel Implementations (Duplicated Logic)"]\n        direction TB\n        \n        CRS["RequestService<br/>(citizen/core)"]\n        SRS["RequestService<br/>(service_requests)"]\n        HCS["HealthcareService<br/>(saude_primaria)"]\n        \n        CRS --> |create_request| CR1["Create<br/>15 lines"]\n        CR1 --> |audit| CA1["Audit<br/>6 lines"]\n        CA1 --> |notify| CN1["Notify<br/>4 lines"]\n        \n        SRS --> |create_request| CR2["Create<br/>18 lines"]\n        CR2 --> |audit| CA2["Audit<br/>6 lines (DUPLICATE)"]\n        CA2 --> |notify| CN2["Notify<br/>4 lines (DUPLICATE)"]\n        \n        HCS --> |create_request| CR3["Create<br/>14 lines"]\n        CR3 --> |audit| CA3["Audit<br/>6 lines (DUPLICATE)"]\n        CA3 --> |notify| CN3["Notify<br/>4 lines (DUPLICATE)"]\n        \n        style CA1 fill:#ffcccc\n        style CA2 fill:#ffcccc\n        style CA3 fill:#ffcccc\n        style CN1 fill:#ffffcc\n        style CN2 fill:#ffffcc\n        style CN3 fill:#ffffcc\n    end\n    \n    subgraph AFTER ["AFTER: Inheritance (Unified Logic)"]\n        direction TB\n        \n        BASE["<b>BaseRequestService</b><br/>─────────────────<br/>■ create_request()<br/>■ get_request()<br/>■ list_citizen_requests()<br/>■ update_status()<br/>■ count_by_citizen()"]\n        \n        BASE --> |audit| BA["Audit<br/>1 place"]\n        BASE --> |notify| BN["Notify<br/>1 place"]\n        BA --> |hooks| BH["Override Hooks"]\n        BN --> |hooks| BH\n        \n        CRSC["RequestService<br/>(citizen)"]\n        SRSC["RequestService<br/>(service_requests)"]\n        HCSC["HealthcareService<br/>(saude_primaria)"]\n        \n        CRSC -.->|implements| BH\n        SRSC -.->|implements| BH\n        HCSC -.->|implements| BH\n        \n        BH --> |hook: validate| V["_validate_create_<br/>request()"]\n        BH --> |hook: post_save| P["_post_save_<br/>create()"]\n        BH --> |hook: perms| PRM["_check_read_<br/>permission()"]\n        \n        style BH fill:#ccffcc\n        style BA fill:#ccffcc\n        style BN fill:#ccffcc\n        style BASE fill:#cce5ff\n    end\n    \n    BEFORE -.->|REFACTOR| AFTER\n    \n    %% Styling\n    classDef duplicate fill:#ffcccc,stroke:#cc0000,stroke-width:2px\n    classDef shared fill:#ccffcc,stroke:#00cc00,stroke-width:2px\n    classDef base fill:#cce5ff,stroke:#0000cc,stroke-width:2px\n'
 TEMPLATE_METHOD_FLOW = '\ngraph LR\n    A["🚀 create_request<br/>citizen_id, request_data<br/>────────────────"] --> B["1️⃣ Validate<br/>_validate_create_<br/>request<br/>(override hook)"]\n    \n    B --> C["2️⃣ Create Model<br/>create_request_<br/>model<br/>(you implement)"]\n    \n    C --> D["3️⃣ Pre-Save<br/>_pre_save_<br/>create<br/>(override hook)"]\n    \n    D --> E["4️⃣ Save to DB<br/>repo.save<br/>request<br/>(you provide repo)"]\n    \n    E --> F["5️⃣ Post-Save<br/>_post_save_<br/>create<br/>(override hook)"]\n    \n    F --> G["6️⃣ Audit Log<br/>_audit_create<br/>AUTOMATIC"]\n    \n    G --> H["7️⃣ Return<br/>saved request"]\n    \n    style A fill:#fff3cd,stroke:#ff6b6b,stroke-width:3px\n    style B fill:#ffe0e0\n    style C fill:#e0f2e0\n    style D fill:#ffe0e0\n    style E fill:#e0e5ff\n    style F fill:#ffe0e0\n    style G fill:#fff3cd\n    style H fill:#d4edda,stroke:#00cc00,stroke-width:2px\n'
 INHERITANCE_DIAGRAM = '\ngraph TB\n    BASE["<b>BaseRequestService[TRequest, TRepo]</b><br/>─────────────────────────────<br/><i>Abstract Base Class</i><br/><br/>🔧 Required (abstract):<br/>• get_repository() → TRepository<br/>• default_status() → str<br/>• create_request_model() → TRequest<br/>• get_user_from_citizen_id() → UUID?<br/><br/>📋 Provided (template methods):<br/>• create_request() ✓<br/>• get_request() ✓<br/>• list_citizen_requests() ✓<br/>• update_status() ✓<br/>• count_by_citizen() ✓<br/><br/>🪝 Extension Hooks (optional override):<br/>• _validate_create_request()<br/>• _pre_save_create()<br/>• _post_save_create()<br/>• _check_read_permission()<br/>• _audit_create()"]\n    \n    CRS["<b>RequestService</b><br/>(app/citizen/core)<br/>────────────────<br/>✅ Implements:<br/>• get_repository()<br/>• default_status()<br/>• create_request_model()<br/>• get_user_from_citizen_id()<br/><br/>Override (optional):<br/>• _post_save_create()<br/>  (nothing needed)"]\n    \n    SRS["<b>RequestService</b><br/>(app/modules/service_)<br/>────────────────<br/>✅ Implements:<br/>• get_repository()<br/>• default_status()<br/>• create_request_model()<br/>• get_user_from_citizen_id()<br/><br/>Override (optional):<br/>• _post_save_create()<br/>  (start workflow)"]\n    \n    HCS["<b>HealthcareService</b><br/>(app/modules/saude)<br/>────────────────<br/>✅ Implements:<br/>• get_repository()<br/>• default_status()<br/>• create_request_model()<br/>• get_user_from_citizen_id()<br/><br/>Override (optional):<br/>• _validate_create_request()<br/>  (healthcare rules)<br/>• _post_save_create()<br/>  (notify health unit)"]\n    \n    BASE --> CRS\n    BASE --> SRS\n    BASE --> HCS\n    \n    style BASE fill:#cce5ff,stroke:#0000cc,stroke-width:3px\n    style CRS fill:#e0f2e0,stroke:#00cc00,stroke-width:2px\n    style SRS fill:#e0f2e0,stroke:#00cc00,stroke-width:2px\n    style HCS fill:#e0f2e0,stroke:#00cc00,stroke-width:2px\n'
 DUPLICATION_SNAPSHOT = '\ngraph TB\n    subgraph METRICS ["Duplication Metrics - Before vs After"]\n        direction LR\n        \n        LINES["<u>Duplicated Lines</u><br/><br/>Before: 63<br/>After: 0<br/>───────<br/>Saved: -100%"]\n        \n        LOCS["<u>Locations</u><br/>(audit bugs)<br/><br/>Before: 3<br/>After: 1<br/>───────<br/>-67% bugs"]\n        \n        MAINT["<u>Maintenance</u><br/>(per bug)<br/><br/>Before: 3x<br/>After: 1x<br/>───────<br/>-67%"]\n        \n        SERVICE["<u>New Service</u><br/>(onboarding)<br/><br/>Before: 2hrs<br/>After: 15min<br/>───────<br/>8x faster"]\n        \n        TEST["<u>Test Lines</u><br/>(lifecycle)<br/><br/>Before: 180<br/>After: 60<br/>───────<br/>-67%"]\n    end\n    \n    style LINES fill:#ffcccc\n    style LOCS fill:#ffcccc\n    style MAINT fill:#ffcccc\n    style SERVICE fill:#ccffcc\n    style TEST fill:#ccffcc\n'
 IMPLEMENTATION_ROADMAP = '\ngraph LR\n    A["1️⃣<br/>BaseRequestService<br/>(skeleton)<br/>✅ DONE"] --> B["2️⃣<br/>Citizen RequestService<br/>(first implementation)<br/>🔧 TODO"]\n    \n    B --> C["3️⃣<br/>Service_requests<br/>RequestService<br/>🔧 TODO"]\n    \n    C --> D["4️⃣<br/>HealthcareService<br/>🔧 TODO"]\n    \n    D --> E["5️⃣<br/>Consolidate Tests<br/>(AÇÃO 4)<br/>📋 PENDING"]\n    \n    style A fill:#d4edda,stroke:#00cc00,stroke-width:2px\n    style B fill:#fff3cd,stroke:#ff9800,stroke-width:2px\n    style C fill:#fff3cd,stroke:#ff9800,stroke-width:2px\n    style D fill:#fff3cd,stroke:#ff9800,stroke-width:2px\n    style E fill:#e0e5ff,stroke:#0000cc,stroke-width:2px\n'
-if __name__ == '__main__':
-    print('\n# AÇÃO 3 Architecture Diagrams\n# Run with: python -m app.core.services.base_request_service_diagrams\n\nThese diagrams can be rendered in markdown using:\nrenderMermaidDiagram(markup, title)\n    ')
-    print('\n' + '=' * 70)
-    print('DIAGRAM 1: BEFORE vs AFTER Architecture')
-    print('=' * 70)
+if __name__ == "__main__":
+    print(
+        "\n# AÇÃO 3 Architecture Diagrams\n# Run with: python -m apps.backend.app.core.services.base_request_service_diagrams\n\nThese diagrams can be rendered in markdown using:\nrenderMermaidDiagram(markup, title)\n    "
+    )
+    print("\n" + "=" * 70)
+    print("DIAGRAM 1: BEFORE vs AFTER Architecture")
+    print("=" * 70)
     print(BEFORE_AFTER_ARCHITECTURE)
-    print('\n' + '=' * 70)
-    print('DIAGRAM 2: Template Method Pattern Flow')
-    print('=' * 70)
+    print("\n" + "=" * 70)
+    print("DIAGRAM 2: Template Method Pattern Flow")
+    print("=" * 70)
     print(TEMPLATE_METHOD_FLOW)
-    print('\n' + '=' * 70)
-    print('DIAGRAM 3: Inheritance Hierarchy')
-    print('=' * 70)
+    print("\n" + "=" * 70)
+    print("DIAGRAM 3: Inheritance Hierarchy")
+    print("=" * 70)
     print(INHERITANCE_DIAGRAM)
-    print('\n' + '=' * 70)
-    print('DIAGRAM 4: Duplication Metrics')
-    print('=' * 70)
+    print("\n" + "=" * 70)
+    print("DIAGRAM 4: Duplication Metrics")
+    print("=" * 70)
     print(DUPLICATION_SNAPSHOT)
-    print('\n' + '=' * 70)
-    print('DIAGRAM 5: Implementation Roadmap')
-    print('=' * 70)
+    print("\n" + "=" * 70)
+    print("DIAGRAM 5: Implementation Roadmap")
+    print("=" * 70)
     print(IMPLEMENTATION_ROADMAP)

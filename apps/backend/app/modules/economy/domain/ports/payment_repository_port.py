@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 from apps.backend.app.modules.economy.domain.models.payment import Payment
 
+
 class PaymentRepositoryPort(ABC):
-    """ Contrato de repositório para Payment. """
+    """Contrato de repositório para Payment."""
 
     @abstractmethod
     async def create(self, payment: Payment) -> Payment:
@@ -14,19 +15,19 @@ class PaymentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, payment_id: str) -> Optional[Payment]:
+    async def get_by_id(self, payment_id: str) -> Payment | None:
         pass
 
     @abstractmethod
-    async def get_by_citizen(self, citizen_id: str) -> List[Payment]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Payment]:
         pass
 
     @abstractmethod
-    async def list_by_invoice(self, invoice_id: str) -> List[Payment]:
+    async def list_by_invoice(self, invoice_id: str) -> list[Payment]:
         pass
 
     @abstractmethod
-    async def get_by_gateway_ref(self, gateway_reference: str) -> Optional[Payment]:
+    async def get_by_gateway_ref(self, gateway_reference: str) -> Payment | None:
         pass
 
     @abstractmethod
@@ -34,7 +35,7 @@ class PaymentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Payment]:
         pass
 
     @abstractmethod

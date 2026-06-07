@@ -21,15 +21,16 @@ Uso:
 
 import argparse
 import asyncio
+import json
 import logging
 import os
 import sys
-import json
 from pathlib import Path
 from uuid import uuid4
+
 import bcrypt
 from sqlalchemy import text
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 # Garantir import absoluto de módulos irmãos (ex.: scripts.seed_educacao_institucional)
@@ -43,8 +44,8 @@ if str(BACKEND_ROOT) not in sys.path:
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s | %(levelname)-8s | %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    format="%(asctime)s | %(levelname)-8s | %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger(__name__)
 
@@ -100,6 +101,7 @@ COMMUNES = {
     "Huambo (Município)": ["Comuna Centro", "Comuna Norte", "Comuna Sul"],
     "Bailundo": ["Bailundo Centro", "Bailundo Rural"],
 }
+
 
 async def _get_or_create_location(
     session: AsyncSession,
@@ -175,12 +177,13 @@ async def _get_or_create_location(
     )
     return inserted.fetchone()
 
+
 async def seed_territories(session: AsyncSession) -> dict:
     """Insere territórios com UPSERT idempotente"""
     logger.info("🌍 Iniciando seed de territórios Lei 14/24...")
-    
+
     territory_ids = {}
-    
+
     try:
         # 1️⃣ PROVÍNCIAS
         logger.info("📍 Inserindo 21 províncias...")
@@ -195,7 +198,7 @@ async def seed_territories(session: AsyncSession) -> dict:
                 location_id, name = row
                 territory_ids[name] = location_id
                 logger.info(f"   ✅ {name:25s} (ID: {location_id})")
-        
+
         # 2️⃣ MUNICÍPIOS
         logger.info("📍 Inserindo 6 municípios...")
         for province_name, municipalities in MUNICIPALITIES.items():
@@ -203,7 +206,7 @@ async def seed_territories(session: AsyncSession) -> dict:
             if not parent_id:
                 logger.warning(f"   ⚠️ Província '{province_name}' não encontrada!")
                 continue
-            
+
             for mun_name in municipalities:
                 row = await _get_or_create_location(
                     session,
@@ -215,7 +218,7 @@ async def seed_territories(session: AsyncSession) -> dict:
                     location_id, name = row
                     territory_ids[name] = location_id
                     logger.info(f"   ✅ {name:25s} (ID: {location_id})")
-        
+
         # 3️⃣ COMUNAS
         logger.info("📍 Inserindo 5 comunas...")
         for mun_name, communes in COMMUNES.items():
@@ -223,7 +226,7 @@ async def seed_territories(session: AsyncSession) -> dict:
             if not parent_id:
                 logger.warning(f"   ⚠️ Município '{mun_name}' não encontrado!")
                 continue
-            
+
             for comm_name in communes:
                 row = await _get_or_create_location(
                     session,
@@ -235,24 +238,26 @@ async def seed_territories(session: AsyncSession) -> dict:
                     location_id, name = row
                     territory_ids[name] = location_id
                     logger.info(f"   ✅ {name:25s} (ID: {location_id})")
-        
+
         await session.commit()
         logger.info(f"✅ Seed de territórios completo: {len(territory_ids)} registros\n")
         return territory_ids
-    
+
     except Exception as e:
         logger.error(f"❌ Erro ao fazer seed de territórios: {e}")
         await session.rollback()
         raise
 
+
 # ============================================================================
 # 2. SEED DE USUÁRIOS (5 NÍVEIS)
 # ============================================================================
 
+
 async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
     """Insere usuários por níveis administrativos"""
     logger.info("👥 Iniciando seed de usuários (5 níveis)...")
-    
+
     users_config = [
         {
             "email": "admin@sila.gov.ao",
@@ -285,7 +290,7 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
             "region_name": "Comuna Centro",
         },
     ]
-    
+
     created_count = 0
     skipped_count = 0
     unresolved_regions = 0
@@ -337,7 +342,7 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
                     )
                     unresolved_regions += 1
                     continue
-            
+
             role_names = ["SUPERADMIN"] if user_config["level"] == "SUPER" else ["MANAGER"]
             role_ids = [await _ensure_role(role) for role in role_names]
 
@@ -434,18 +439,22 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
                 f"{unresolved_regions} usuário(s) sem território resolvido. "
                 "Execute seed de territórios antes de --users-only."
             )
-        
+
         await session.commit()
-        logger.info(f"✅ Seed de usuários completo: {created_count} criados, {skipped_count} já existentes\n")
-    
+        logger.info(
+            f"✅ Seed de usuários completo: {created_count} criados, {skipped_count} já existentes\n"
+        )
+
     except Exception as e:
         logger.error(f"❌ Erro ao fazer seed de usuários: {e}")
         await session.rollback()
         raise
 
+
 # ============================================================================
 # 3. SEED EDUCAÇÃO INSTITUCIONAL
 # ============================================================================
+
 
 async def seed_educacao_institucional() -> dict[str, int]:
     """Executa seed institucional de educação no fluxo mestre."""
@@ -464,9 +473,11 @@ async def seed_educacao_institucional() -> dict[str, int]:
     )
     return result
 
+
 # ============================================================================
 # 4. SEED DE FINANÇAS (DASHBOARD)
 # ============================================================================
+
 
 async def seed_financas_dashboard() -> None:
     """Executa seed mínimo de faturas/pagamentos para dashboard."""
@@ -476,9 +487,11 @@ async def seed_financas_dashboard() -> None:
     await seed_financas()
     logger.info("✅ Finanças: seed mínimo concluído\n")
 
+
 # ============================================================================
 # 5. RESOLUÇÃO TERRITORIAL (SUPORTE USERS-ONLY)
 # ============================================================================
+
 
 async def load_territory_ids(session: AsyncSession) -> dict:
     """Carrega mapa name -> id para territórios já existentes."""
@@ -494,9 +507,11 @@ async def load_territory_ids(session: AsyncSession) -> dict:
     rows = result.fetchall()
     return {row[1]: row[0] for row in rows}
 
+
 # ============================================================================
 # 6. VALIDAÇÃO FINAL
 # ============================================================================
+
 
 async def validate_data(
     session: AsyncSession,
@@ -506,54 +521,62 @@ async def validate_data(
 ) -> bool:
     """Valida integridade dos dados inseridos por modo de execução."""
     logger.info("✓ Validando integridade dos dados...")
-    
+
     try:
         # Contar territórios
-        result = await session.execute(text("SELECT COUNT(*) FROM locations WHERE type = 'PROVINCIA'"))
+        result = await session.execute(
+            text("SELECT COUNT(*) FROM locations WHERE type = 'PROVINCIA'")
+        )
         provinces = result.scalar() or 0
-        
-        result = await session.execute(text("SELECT COUNT(*) FROM locations WHERE type = 'MUNICIPIO'"))
+
+        result = await session.execute(
+            text("SELECT COUNT(*) FROM locations WHERE type = 'MUNICIPIO'")
+        )
         municipalities = result.scalar() or 0
-        
+
         result = await session.execute(text("SELECT COUNT(*) FROM locations WHERE type = 'COMUNA'"))
         communes = result.scalar() or 0
-        
+
         result = await session.execute(text("SELECT COUNT(*) FROM iam_users"))
         users = result.scalar() or 0
-        
-        logger.info(f"   📊 Territórios: {provinces} províncias, {municipalities} municípios, {communes} comunas")
+
+        logger.info(
+            f"   📊 Territórios: {provinces} províncias, {municipalities} municípios, {communes} comunas"
+        )
         logger.info(f"   👥 Usuários: {users}")
-        
+
         # Validações
         success = True
         if require_territories and provinces < 21:
             logger.warning(f"   ⚠️ Esperado 21 províncias, encontrado {provinces}")
             success = False
-        
+
         if require_territories and municipalities < 6:
             logger.warning(f"   ⚠️ Esperado 6 municípios, encontrado {municipalities}")
             success = False
-        
+
         if require_territories and communes < 5:
             logger.warning(f"   ⚠️ Esperado 5 comunas, encontrado {communes}")
             success = False
-        
+
         if require_users and users == 0:
             logger.warning("   ⚠️ Nenhum usuário encontrado!")
             success = False
-        
+
         if success:
             logger.info("✅ Validação concluída com sucesso!\n")
-        
+
         return success
-    
+
     except Exception as e:
         logger.error(f"❌ Erro na validação: {e}")
         return False
 
+
 # ============================================================================
 # 7. CLI
 # ============================================================================
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Master seed do SILA System.")
@@ -575,9 +598,11 @@ def parse_args() -> argparse.Namespace:
     )
     return parser.parse_args()
 
+
 # ============================================================================
 # 8. MAIN
 # ============================================================================
+
 
 async def main():
     """Executa o seed completo"""
@@ -593,10 +618,10 @@ async def main():
 ║                                                                            ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 """)
-    
+
     engine = create_async_engine(DATABASE_URL, echo=False)
     AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
-    
+
     try:
         async with AsyncSessionLocal() as session:
             if args.check:
@@ -658,13 +683,14 @@ async def main():
                 return 0
             logger.error("❌ SEED COM FALHAS")
             return 1
-    
+
     except Exception as e:
         logger.error(f"❌ Erro crítico: {e}")
         return 1
-    
+
     finally:
         await engine.dispose()
+
 
 if __name__ == "__main__":
     exit_code = asyncio.run(main())

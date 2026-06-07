@@ -3,16 +3,15 @@ Test the economy transactions endpoint
 Demonstrates the consolidated economy core API
 """
 
-import sys
 import json
-from datetime import datetime
+import sys
 
 # Add the backend to path
-sys.path.insert(0, '/home/dev03wsl/sila-system/apps/backend')
+sys.path.insert(0, "/home/dev03wsl/sila-system/apps/backend")
 
-from fastapi.testclient import TestClient
+from apps.backend.app.modules.economy.api.router import router as economy_router
 from fastapi import FastAPI
-from app.modules.economy.api.router import router as economy_router
+from fastapi.testclient import TestClient
 
 # Create minimal test app (avoiding full main.py with identity module issues)
 app = FastAPI(title="Economy Module Test")
@@ -27,7 +26,7 @@ def test_transactions():
     print("=" * 70)
     print("ECONOMY TRANSACTIONS ENDPOINT TEST")
     print("=" * 70)
-    
+
     # Test 1: Health check
     print("\n1️⃣ Testing /economy/ping endpoint:")
     response = client.get("/economy/ping")
@@ -35,39 +34,33 @@ def test_transactions():
     print(f"   Response: {response.json()}")
     assert response.status_code == 200
     print("   ✅ PASSED")
-    
+
     # Test 2: Create transaction with your curl example
     print("\n2️⃣ Testing POST /economy/transactions (from curl example):")
-    payload = {
-        "amount": 1000,
-        "currency": "AOA"
-    }
+    payload = {"amount": 1000, "currency": "AOA"}
     print(f"   Payload: {json.dumps(payload, indent=2)}")
     response = client.post("/economy/transactions", json=payload)
     print(f"   Status: {response.status_code}")
     result = response.json()
-    print(f"   Response:")
+    print("   Response:")
     print(f"     - ID: {result['id']}")
     print(f"     - Amount: {result['amount']} {result['currency']}")
     print(f"     - Status: {result['status']}")
     print(f"     - Module: {result['module']}")
     assert response.status_code == 200
-    assert result['amount'] == 1000
-    assert result['currency'] == 'AOA'
+    assert result["amount"] == 1000
+    assert result["currency"] == "AOA"
     print("   ✅ PASSED")
-    
+
     # Test 3: Invalid currency
     print("\n3️⃣ Testing error handling (invalid currency):")
-    payload = {
-        "amount": 500,
-        "currency": "XXX"
-    }
+    payload = {"amount": 500, "currency": "XXX"}
     response = client.post("/economy/transactions", json=payload)
     print(f"   Status: {response.status_code}")
     print(f"   Error: {response.json()['detail']}")
     assert response.status_code == 400
     print("   ✅ PASSED (correctly rejected invalid currency)")
-    
+
     # Test 4: Get transaction
     print("\n4️⃣ Testing GET /economy/transactions/{{id}}:")
     response = client.get("/economy/transactions/TRX-123456789")
@@ -77,7 +70,7 @@ def test_transactions():
     print(f"   Status: {result['status']}")
     assert response.status_code == 200
     print("   ✅ PASSED")
-    
+
     # Test 5: List transactions
     print("\n5️⃣ Testing GET /economy/transactions (list):")
     response = client.get("/economy/transactions?skip=0&limit=10")
@@ -87,7 +80,7 @@ def test_transactions():
     print(f"   Total transactions: {result['total']}")
     assert response.status_code == 200
     print("   ✅ PASSED")
-    
+
     # Summary
     print("\n" + "=" * 70)
     print("✅ ALL TESTS PASSED")
@@ -99,7 +92,7 @@ def test_transactions():
     print("\n💡 CURL EXAMPLE:")
     print("   curl -X POST http://localhost:8000/economy/transactions \\")
     print("     -H 'Content-Type: application/json' \\")
-    print("     -d '{\"amount\":1000,\"currency\":\"AOA\"}'")
+    print('     -d \'{"amount":1000,"currency":"AOA"}\'')
     print("\n🏗️ ARCHITECTURE:")
     print("   ✅ Consolidated in: core/")
     print("   ✅ Hexagonal layers: domain → application → infrastructure")
@@ -114,5 +107,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n❌ TEST FAILED: {str(e)}")
         import traceback
+
         traceback.print_exc()
         sys.exit(1)

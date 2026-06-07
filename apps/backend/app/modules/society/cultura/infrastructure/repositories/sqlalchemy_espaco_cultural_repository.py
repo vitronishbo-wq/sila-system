@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
+
+from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import (
+    EspacoCulturalRepositoryPort,
+)
 from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
 from apps.backend.app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
-from apps.backend.app.modules.society.cultura.infrastructure.models.espaco_cultural_model import EspacoCulturalModel
+from apps.backend.app.modules.society.cultura.infrastructure.models.espaco_cultural_model import (
+    EspacoCulturalModel,
+)
+
 
 class SQLAlchemyEspacoCulturalRepository(EspacoCulturalRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -44,7 +51,9 @@ class SQLAlchemyEspacoCulturalRepository(EspacoCulturalRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_espaco: str) -> EspacoCultural | None:
-        stmt = select(EspacoCulturalModel).where(EspacoCulturalModel.codigo_espaco == codigo_espaco.strip())
+        stmt = select(EspacoCulturalModel).where(
+            EspacoCulturalModel.codigo_espaco == codigo_espaco.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -54,12 +63,20 @@ class SQLAlchemyEspacoCulturalRepository(EspacoCulturalRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoEspacoCultural) -> list[EspacoCultural]:
-        stmt = select(EspacoCulturalModel).where(EspacoCulturalModel.tipo == tipo.value).order_by(EspacoCulturalModel.nome.asc())
+        stmt = (
+            select(EspacoCulturalModel)
+            .where(EspacoCulturalModel.tipo == tipo.value)
+            .order_by(EspacoCulturalModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[EspacoCultural]:
-        stmt = select(EspacoCulturalModel).where(func.lower(EspacoCulturalModel.municipio) == municipio.strip().lower()).order_by(EspacoCulturalModel.nome.asc())
+        stmt = (
+            select(EspacoCulturalModel)
+            .where(func.lower(EspacoCulturalModel.municipio) == municipio.strip().lower())
+            .order_by(EspacoCulturalModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -73,10 +90,33 @@ class SQLAlchemyEspacoCulturalRepository(EspacoCulturalRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EspacoCulturalModel).where(EspacoCulturalModel.codigo_espaco.like(f'ESP/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EspacoCulturalModel)
+            .where(EspacoCulturalModel.codigo_espaco.like(f"ESP/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'ESP/{ano}/{count + 1:05d}'
+        return f"ESP/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: EspacoCulturalModel) -> EspacoCultural:
-        return EspacoCultural(id=model.id, codigo_espaco=model.codigo_espaco, nome=model.nome, tipo=TipoEspacoCultural(model.tipo), municipio=model.municipio, provincia=model.provincia, endereco=model.endereco, capacidade=model.capacidade, area_m2=model.area_m2, administracao=model.administracao, responsavel_cpf=model.responsavel_cpf, data_registro=model.data_registro, orgao_gestor=model.orgao_gestor, ano_inauguracao=model.ano_inauguracao, acessibilidade=model.acessibilidade, visitas_anuais=model.visitas_anuais, ativo=model.ativo, observacoes=model.observacoes)
+        return EspacoCultural(
+            id=model.id,
+            codigo_espaco=model.codigo_espaco,
+            nome=model.nome,
+            tipo=TipoEspacoCultural(model.tipo),
+            municipio=model.municipio,
+            provincia=model.provincia,
+            endereco=model.endereco,
+            capacidade=model.capacidade,
+            area_m2=model.area_m2,
+            administracao=model.administracao,
+            responsavel_cpf=model.responsavel_cpf,
+            data_registro=model.data_registro,
+            orgao_gestor=model.orgao_gestor,
+            ano_inauguracao=model.ano_inauguracao,
+            acessibilidade=model.acessibilidade,
+            visitas_anuais=model.visitas_anuais,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

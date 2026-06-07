@@ -1,6 +1,5 @@
 class CircuitBreaker:
-
-    def __init__(self, failure_threshold: int=5) -> None:
+    def __init__(self, failure_threshold: int = 5) -> None:
         self.failure_threshold = failure_threshold
         self.failures = 0
 

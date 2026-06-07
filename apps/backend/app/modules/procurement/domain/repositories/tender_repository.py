@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 
-class TenderRepository(ABC):
 
+class TenderRepository(ABC):
     @abstractmethod
     def get(self, tender_id):
         raise NotImplementedError

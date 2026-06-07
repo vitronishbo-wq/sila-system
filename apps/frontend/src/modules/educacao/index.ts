@@ -1,0 +1,11 @@
+export { EducacaoAdminLayout } from './components/EducacaoAdminLayout';
+export { EducacaoDashboard } from './components/EducacaoDashboard';
+export { WorkflowMonitor } from './components/WorkflowMonitor';
+export { DelegacoesPanel } from './components/DelegacoesPanel';
+export { ScopeChecker } from './components/ScopeChecker';
+export { NacionalDashboard } from './components/NacionalDashboard';
+export { ProvincialDashboard } from './components/ProvincialDashboard';
+export { MunicipalDashboard } from './components/MunicipalDashboard';
+export { EscolaDashboard } from './components/EscolaDashboard';
+export { educacaoAdminService } from './services/educacaoAdminService';
+export type * from './types';

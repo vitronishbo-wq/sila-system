@@ -11,7 +11,6 @@ import sqlalchemy as sa
 from alembic import op
 from sqlalchemy.dialects.postgresql import UUID
 
-
 revision = "20260306_049_patrimonio_cultural_foundation"
 down_revision = "20260305_048_meteorologia_foundation"
 branch_labels = None
@@ -37,7 +36,9 @@ def upgrade() -> None:
         sa.Column("historical_period", sa.String(length=120), nullable=True),
         sa.Column("cultural_significance", sa.Text(), nullable=True),
         sa.Column("legal_reference", sa.String(length=200), nullable=True),
-        sa.Column("classifications", sa.JSON(), nullable=False, server_default=sa.text("'[]'::json")),
+        sa.Column(
+            "classifications", sa.JSON(), nullable=False, server_default=sa.text("'[]'::json")
+        ),
         sa.Column("events", sa.JSON(), nullable=False, server_default=sa.text("'[]'::json")),
         sa.Column(
             "preservation_actions",
@@ -116,7 +117,9 @@ def downgrade() -> None:
         "ix_patrimonio_assets_status_classification",
         table_name="patrimonio_cultural_assets",
     )
-    op.drop_index("ix_patrimonio_assets_classification_level", table_name="patrimonio_cultural_assets")
+    op.drop_index(
+        "ix_patrimonio_assets_classification_level", table_name="patrimonio_cultural_assets"
+    )
     op.drop_index("ix_patrimonio_assets_status", table_name="patrimonio_cultural_assets")
     op.drop_index("ix_patrimonio_assets_municipality", table_name="patrimonio_cultural_assets")
     op.drop_index("ix_patrimonio_assets_province", table_name="patrimonio_cultural_assets")

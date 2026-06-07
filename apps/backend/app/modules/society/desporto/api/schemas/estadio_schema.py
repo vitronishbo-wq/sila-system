@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.desporto.domain.enums import EstadoRelvado, TipoEstadio
+
 
 class EstadioCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -15,6 +19,7 @@ class EstadioCreate(BaseModel):
     clube_mandante_id: UUID | None = None
     observacoes: str | None = None
 
+
 class EstadioUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
     tipo: TipoEstadio | None = None
@@ -26,6 +31,7 @@ class EstadioUpdate(BaseModel):
     clube_mandante_id: UUID | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class EstadioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

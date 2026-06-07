@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { AlertTriangle, AlertCircle, ChevronDown, X } from 'lucide-react';
-import type { Alert } from '../types';
+import type { Alert } from '@/modules/meteorologia/types';
 
 interface AlertsPanelProps {
   alertas: Alert[];

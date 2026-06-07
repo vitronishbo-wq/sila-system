@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_020_desporto_slice2_clubes_jogos"
 down_revision = "20260302_019_desporto_foundation"
 branch_labels = None
@@ -85,15 +84,21 @@ def _create_clubes_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_codigo ON desporto_clubes (codigo_clube)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_clubes_codigo ON desporto_clubes (codigo_clube)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_nome ON desporto_clubes (nome)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_sigla ON desporto_clubes (sigla)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_tipo ON desporto_clubes (tipo)")
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_desporto_clubes_modalidade_principal ON desporto_clubes (modalidade_principal)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_municipio ON desporto_clubes (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_clubes_provincia ON desporto_clubes (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_clubes_municipio ON desporto_clubes (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_clubes_provincia ON desporto_clubes (provincia)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_desporto_clubes_codigo_obra_instalacao ON desporto_clubes (codigo_obra_instalacao)"
     )
@@ -173,14 +178,28 @@ def _create_jogos_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_codigo ON desporto_jogos (codigo_jogo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_competicao_id ON desporto_jogos (competicao_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_clube_casa_id ON desporto_jogos (clube_casa_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_clube_fora_id ON desporto_jogos (clube_fora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_data_jogo ON desporto_jogos (data_jogo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_codigo ON desporto_jogos (codigo_jogo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_competicao_id ON desporto_jogos (competicao_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_clube_casa_id ON desporto_jogos (clube_casa_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_clube_fora_id ON desporto_jogos (clube_fora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_data_jogo ON desporto_jogos (data_jogo)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_status ON desporto_jogos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_municipio ON desporto_jogos (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_desporto_jogos_provincia ON desporto_jogos (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_municipio ON desporto_jogos (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_provincia ON desporto_jogos (provincia)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_desporto_jogos_codigo_obra_instalacao ON desporto_jogos (codigo_obra_instalacao)"
     )

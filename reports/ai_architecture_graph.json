@@ -1,0 +1,2076 @@
+{
+  "system": "sila-system",
+  "generated_at": "2026-06-07T12:05:44.635768+00:00",
+  "modules": {
+    "_scaffold": {
+      "path": "apps/backend/app/modules/_scaffold",
+      "domain_group": "unknown",
+      "layered_architecture": false,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "administracao-local": {
+      "path": "apps/backend/app/modules/administracao-local",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "agricultura": {
+      "path": "apps/backend/app/modules/agricultura",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "aguas-saneamento": {
+      "path": "apps/backend/app/modules/aguas-saneamento",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "ambiente": {
+      "path": "apps/backend/app/modules/ambiente",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "api": {
+      "path": "apps/backend/app/modules/api",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "ApiAggregate",
+        "ApiID",
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "IssueAPIAccessTokenCommandHandler",
+        "ProcessAPIRequestCommandHandler",
+        "RegisterAPIEndpointCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /"
+      ],
+      "depends_on": []
+    },
+    "apoio-empresarial": {
+      "path": "apps/backend/app/modules/apoio-empresarial",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "arquivo-nacional": {
+      "path": "apps/backend/app/modules/arquivo-nacional",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "assistencia-social": {
+      "path": "apps/backend/app/modules/assistencia-social",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "audit": {
+      "path": "apps/backend/app/modules/audit",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditAggregate",
+        "AuditID",
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateAuditProgramCommandHandler",
+        "ReportAuditFindingCommandHandler",
+        "StartAuditExecutionCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /"
+      ],
+      "depends_on": []
+    },
+    "aviacao-civil": {
+      "path": "apps/backend/app/modules/aviacao-civil",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "ciencia-pesquisa": {
+      "path": "apps/backend/app/modules/ciencia-pesquisa",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "civil_protection": {
+      "path": "apps/backend/app/modules/civil_protection",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "Atendimento",
+        "AtendimentoRepositoryPort",
+        "AuditStatus",
+        "Bombeiro",
+        "BombeiroRepositoryPort",
+        "CargoBombeiro",
+        "CivilProtectionAggregate",
+        "CivilProtectionID",
+        "Corporacao",
+        "CorporacaoRepositoryPort",
+        "Despacho",
+        "DespachoRepositoryPort",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OcorrenciaEmergencial",
+        "OcorrenciaEmergencialRepositoryPort",
+        "OperationType",
+        "PrioridadeAtendimento",
+        "ProcessStatus",
+        "RequestServicePort",
+        "SortOrder",
+        "StatusAgenteProtecao",
+        "StatusAtendimento",
+        "StatusCorporacao",
+        "StatusDespacho",
+        "StatusOcorrenciaEmergencial",
+        "TipoAgenteProtecao",
+        "TipoOcorrenciaEmergencial",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "AtendimentoService",
+        "BombeiroService",
+        "CorporacaoService",
+        "DespachoService",
+        "InitiateEvacuationCommandHandler",
+        "IssueEmergencyAlertCommandHandler",
+        "OcorrenciaEmergencialService",
+        "RecordDisasterEventCommandHandler",
+        "atualizar_status",
+        "buscar_atendimento",
+        "buscar_bombeiro",
+        "buscar_corporacao",
+        "buscar_despacho",
+        "buscar_ocorrencia",
+        "cadastrar_bombeiro",
+        "cadastrar_corporacao",
+        "finalizar_atendimento",
+        "handle",
+        "listar_atendimentos",
+        "listar_bombeiros",
+        "listar_corporacoes",
+        "listar_despachos",
+        "listar_ocorrencias",
+        "registrar_atendimento",
+        "registrar_despacho",
+        "registrar_ocorrencia",
+        "remover_atendimento",
+        "remover_bombeiro",
+        "remover_corporacao",
+        "remover_despacho",
+        "remover_ocorrencia"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "comercio": {
+      "path": "apps/backend/app/modules/comercio",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "comercio-externo": {
+      "path": "apps/backend/app/modules/comercio-externo",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "compliance": {
+      "path": "apps/backend/app/modules/compliance",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AggregateRepositoryPort",
+        "AuditLevel",
+        "AuditStatus",
+        "ComplianceAggregate",
+        "ComplianceCheck",
+        "ComplianceID",
+        "ComplianceStatus",
+        "DocumentType",
+        "DomainEntity",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "ConductInspectionCommandHandler",
+        "CreateComplianceObligationCommandHandler",
+        "ProtecaoDadosService",
+        "ReportViolationCommandHandler",
+        "handle"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "cooperacao-internacional": {
+      "path": "apps/backend/app/modules/cooperacao-internacional",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "cultura": {
+      "path": "apps/backend/app/modules/cultura",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "defesa-consumidor": {
+      "path": "apps/backend/app/modules/defesa-consumidor",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "desporto": {
+      "path": "apps/backend/app/modules/desporto",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "documents": {
+      "path": "apps/backend/app/modules/documents",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "DocumentsAggregate",
+        "DocumentsID",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateDocumentsCommand",
+        "DeleteDocumentsCommand",
+        "Document",
+        "DocumentService",
+        "DocumentVersion",
+        "UpdateDocumentsCommand",
+        "create_single_document",
+        "delete_document",
+        "get_document_by_id",
+        "validate"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "economy": {
+      "path": "apps/backend/app/modules/economy",
+      "domain_group": "economy",
+      "layered_architecture": true,
+      "entities": [
+        "AssistenciaSocialServicePort",
+        "AuditStatus",
+        "BudgetLine",
+        "CostCenterCode",
+        "DocumentType",
+        "DomainValidationError",
+        "DuplicatePaymentError",
+        "EconomyAggregate",
+        "EconomyError",
+        "EconomyID",
+        "EducacaoServicePort",
+        "EmpregoServicePort",
+        "EntityStatus",
+        "EntityType",
+        "FUCClient",
+        "FUCError",
+        "FinancialAudit",
+        "FiscalTransfer",
+        "IdentidadeServicePort",
+        "InvalidInvoiceStateError",
+        "Invoice",
+        "InvoiceNotFoundError",
+        "InvoiceRepositoryPort",
+        "InvoiceStatus",
+        "JuventudeServicePort",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "Payment",
+        "PaymentMethod",
+        "PaymentRepositoryPort",
+        "PaymentStatus",
+        "ProcessStatus",
+        "RevenueCode",
+        "SaudeServicePort",
+        "ServiceRequestsServicePort",
+        "SortOrder",
+        "TreasuryAccount",
+        "TreasuryEntryType",
+        "TreasuryLedgerEngine",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "IssueTaxRegistrationCommandHandler",
+        "RegisterEconomicAgentCommandHandler",
+        "StartEconomicActivityCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1/ping"
+      ],
+      "depends_on": []
+    },
+    "educacao": {
+      "path": "apps/backend/app/modules/educacao",
+      "domain_group": "educacao",
+      "layered_architecture": true,
+      "entities": [
+        "AnoLetivo",
+        "AuditStatus",
+        "CicloEnsino",
+        "DocumentType",
+        "EducacaoAggregate",
+        "EducacaoError",
+        "EducacaoID",
+        "EntityStatus",
+        "EntityType",
+        "Escola",
+        "InscricaoBasica",
+        "InscricaoSecundaria",
+        "InscricaoSuperior",
+        "InscricaoTecnico",
+        "LifecycleStatus",
+        "Matricula",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "StatusFluxo",
+        "StatusMatricula",
+        "TipoEscola",
+        "TipoInscricao",
+        "Turma",
+        "Turno",
+        "ValidationLevel",
+        "WorkflowRecord"
+      ],
+      "use_cases": [
+        "AwardAcademicDegreeCommandHandler",
+        "EnrollStudentCommandHandler",
+        "RegisterEducationInstitutionCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1"
+      ],
+      "depends_on": []
+    },
+    "emprego": {
+      "path": "apps/backend/app/modules/emprego",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "energia": {
+      "path": "apps/backend/app/modules/energia",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "energy": {
+      "path": "apps/backend/app/modules/energy",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "BandeiraTarifaria",
+        "CentralGeradora",
+        "ClasseTensao",
+        "ConsumoEnergia",
+        "DocumentType",
+        "EnergyAggregate",
+        "EnergyID",
+        "EntityStatus",
+        "EntityType",
+        "FaturaEnergia",
+        "FonteEnergia",
+        "LifecycleStatus",
+        "LinhaTransmissao",
+        "NotificationPriority",
+        "OperationType",
+        "OutboxWorker",
+        "ProcessStatus",
+        "SortOrder",
+        "StatusFaturaEnergia",
+        "StatusInfraEnergia",
+        "StatusUsina",
+        "Subestacao",
+        "TipoFatura",
+        "TipoLeituraEnergia",
+        "TipoUsina",
+        "Usina",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "AuditoriaHandler",
+        "CentralGeradoraService",
+        "ConsumoService",
+        "CreateEnergyCommand",
+        "DeleteEnergyCommand",
+        "FaturamentoHandler",
+        "FaturamentoService",
+        "GeracaoService",
+        "LinhaTransmissaoService",
+        "NotificacaoHandler",
+        "SubestacaoService",
+        "UpdateEnergyCommand",
+        "UsinaService",
+        "atualizar_potencia_fiscalizada",
+        "cadastrar",
+        "cadastrar_usina",
+        "desativar_usina",
+        "gerar_fatura_por_consumo",
+        "get_visao_consolidada",
+        "has_ons_adapter",
+        "iniciar_construcao",
+        "iniciar_operacao",
+        "listar",
+        "obter_por_id",
+        "obter_por_numero",
+        "on_demanda_critica",
+        "on_fatura_gerada",
+        "on_interrupcao",
+        "on_leitura_realizada",
+        "on_qualidade_inconforme",
+        "paralisar_usina",
+        "registrar_leitura",
+        "registrar_pagamento",
+        "validate"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "estatistica": {
+      "path": "apps/backend/app/modules/estatistica",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "familia": {
+      "path": "apps/backend/app/modules/familia",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "financas-impostos": {
+      "path": "apps/backend/app/modules/financas-impostos",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "florestas": {
+      "path": "apps/backend/app/modules/florestas",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "gestao-fundiaria": {
+      "path": "apps/backend/app/modules/gestao-fundiaria",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "governance": {
+      "path": "apps/backend/app/modules/governance",
+      "domain_group": "governance",
+      "layered_architecture": true,
+      "entities": [
+        "AggregateRepositoryPort",
+        "ApprovalLevel",
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "GovernanceAggregate",
+        "GovernanceError",
+        "GovernanceID",
+        "GovernanceRequest",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "RequestStatus",
+        "SortOrder",
+        "ValidationLevel",
+        "Workflow",
+        "WorkflowPort",
+        "WorkflowStatus"
+      ],
+      "use_cases": [
+        "ApprovePublicServiceCommandHandler",
+        "MakeGovernmentDecisionCommandHandler",
+        "PublishPolicyCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1"
+      ],
+      "depends_on": []
+    },
+    "habitacao": {
+      "path": "apps/backend/app/modules/habitacao",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "identity": {
+      "path": "apps/backend/app/modules/identity",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AggregateRepositoryPort",
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "EventPublisherPort",
+        "Identity",
+        "IdentityAggregate",
+        "IdentityID",
+        "IdentityStatus",
+        "InvalidSignatureError",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "QRSignatureValidator",
+        "QRVerificationService",
+        "RiskLevel",
+        "SortOrder",
+        "TrustLevel",
+        "TrustScore",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "EnrollBiometricDataCommandHandler",
+        "RequestIdentityDocumentCommandHandler",
+        "VerifyIdentityDocumentCommandHandler",
+        "handle"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "igualdade": {
+      "path": "apps/backend/app/modules/igualdade",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "industria": {
+      "path": "apps/backend/app/modules/industria",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "industry": {
+      "path": "apps/backend/app/modules/industry",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "EstabelecimentoIndustrial",
+        "EstabelecimentoIndustrialAlreadyExistsError",
+        "EstabelecimentoIndustrialNotFoundError",
+        "IndustryAggregate",
+        "IndustryError",
+        "IndustryID",
+        "InvalidEstabelecimentoIndustrialStateError",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "Porte",
+        "PorteIndustrial",
+        "ProcessStatus",
+        "Ramo",
+        "RamoIndustrial",
+        "SortOrder",
+        "StatusEstabelecimento",
+        "TipoEstabelecimento",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateIndustryCommand",
+        "DeleteIndustryCommand",
+        "EstabelecimentoIndustrialService",
+        "UpdateIndustryCommand",
+        "associar_ramo",
+        "cadastrar",
+        "definir_porte",
+        "iniciar_atividades",
+        "listar",
+        "obter_por_id",
+        "paralisar",
+        "reativar",
+        "suspender_atividades",
+        "validate"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "infrastructure": {
+      "path": "apps/backend/app/modules/infrastructure",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AditivoContratual",
+        "AguasSaneamentoServicePort",
+        "AmbienteServicePort",
+        "AuditStatus",
+        "CitizenServicePort",
+        "DocumentType",
+        "DomainEntity",
+        "Edital",
+        "EditalRepositoryPort",
+        "EntityStatus",
+        "EntityType",
+        "FinancasPublicasServicePort",
+        "FiscalizacaoObra",
+        "GestaoFundiariaServicePort",
+        "InfrastructureAggregate",
+        "InfrastructureID",
+        "JusticaServicePort",
+        "Licitacao",
+        "LicitacaoRepositoryPort",
+        "LifecycleStatus",
+        "MedicaoObra",
+        "NaturezaObra",
+        "NotificationPriority",
+        "Obra",
+        "ObraRepositoryPort",
+        "OperationType",
+        "OutboxRepositoryPort",
+        "ProcessStatus",
+        "ProjetoObra",
+        "ProjetoRepositoryPort",
+        "RequestServicePort",
+        "ServiceRequestsServicePort",
+        "SortOrder",
+        "StatusContrato",
+        "StatusEdital",
+        "StatusLicitacao",
+        "StatusObra",
+        "StatusProjeto",
+        "TermoRecebimento",
+        "TipoAditivo",
+        "TipoContrato",
+        "TipoLicitacao",
+        "TipoMedicao",
+        "TipoObra",
+        "TipoOcorrencia",
+        "TipoProjeto",
+        "TransportesServicePort",
+        "UrbanismoHabitacaoServicePort",
+        "ValidationLevel",
+        "WorkflowServicePort"
+      ],
+      "use_cases": [
+        "ApproveMaintenancePlanCommandHandler",
+        "CompleteMaintenanceWorkCommandHandler",
+        "RegisterInfrastructureAssetCommandHandler",
+        "handle"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "infrastructure_sector": {
+      "path": "apps/backend/app/modules/infrastructure_sector",
+      "domain_group": "infrastructure_sector",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "InfrastructureSectorAggregate",
+        "InfrastructureSectorError",
+        "InfrastructureSectorID",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateInfrastructureSectorCommand",
+        "DeleteInfrastructureSectorCommand",
+        "UpdateInfrastructureSectorCommand",
+        "validate"
+      ],
+      "api": [
+        "GET /v1"
+      ],
+      "depends_on": []
+    },
+    "integracao-nacional": {
+      "path": "apps/backend/app/modules/integracao-nacional",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [],
+      "use_cases": [],
+      "api": [],
+      "depends_on": []
+    },
+    "intelligence": {
+      "path": "apps/backend/app/modules/intelligence",
+      "domain_group": "intelligence",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "IntelligenceAggregate",
+        "IntelligenceError",
+        "IntelligenceID",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "AuthorizeIntelligenceAccessCommandHandler",
+        "ClassifyIntelligenceCommandHandler",
+        "SubmitIntelligenceReportCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1"
+      ],
+      "depends_on": []
+    },
+    "justica": {
+      "path": "apps/backend/app/modules/justica",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "justice": {
+      "path": "apps/backend/app/modules/justice",
+      "domain_group": "justice",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "BilheteIdentidade",
+        "BirthRecord",
+        "Citizen",
+        "DeathRecord",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "JusticeAggregate",
+        "JusticeError",
+        "JusticeFinesAdapter",
+        "JusticeID",
+        "LifecycleStatus",
+        "MarriageRecord",
+        "NationalityMode",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "IssueBirthCertificateCommandHandler",
+        "IssueIdentityDocumentCommandHandler",
+        "RegisterBirthRecordCommandHandler",
+        "RegisterCitizenCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1/ping"
+      ],
+      "depends_on": []
+    },
+    "juventude": {
+      "path": "apps/backend/app/modules/juventude",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "logistics": {
+      "path": "apps/backend/app/modules/logistics",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AmbienteServicePort",
+        "AuditStatus",
+        "BilhetagemDomainService",
+        "BilhetagemEletronica",
+        "BilhetagemRepositoryPort",
+        "Bilhete",
+        "CitizenServicePort",
+        "ClassificacaoVia",
+        "ComercioExternoServicePort",
+        "DemandaOperacional",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "FinancasServicePort",
+        "FiscalizacaoTransporte",
+        "Frota",
+        "FrotaDomainService",
+        "FrotaRepositoryPort",
+        "GeosampaServicePort",
+        "LifecycleStatus",
+        "Linha",
+        "LinhaDomainService",
+        "LinhaRepositoryPort",
+        "LogisticsAggregate",
+        "LogisticsID",
+        "Manutencao",
+        "ModalTransporte",
+        "NotificationPriority",
+        "ObrasPublicasServicePort",
+        "OperationType",
+        "ProcessStatus",
+        "QualidadeServico",
+        "RequestServicePort",
+        "Rodovia",
+        "SegurancaPublicaServicePort",
+        "ServiceRequestsServicePort",
+        "SortOrder",
+        "StatusFrota",
+        "StatusLinha",
+        "StatusReconciliacaoFinanceira",
+        "StatusVeiculoOperacional",
+        "StatusViagem",
+        "Tarifa",
+        "TipoAutoInfracao",
+        "TipoCarga",
+        "TipoConteiner",
+        "TipoFiscalizacao",
+        "TipoIntegracao",
+        "TipoOutorga",
+        "TipoPavimento",
+        "TipoTarifa",
+        "TipoTerminal",
+        "TipoVeiculo",
+        "TipoVia",
+        "TipoViagem",
+        "UrbanismoServicePort",
+        "ValidationLevel",
+        "Veiculo",
+        "VeiculoRepositoryPort",
+        "Viagem",
+        "ViagemDomainService",
+        "ViagemRepositoryPort",
+        "WorkflowServicePort"
+      ],
+      "use_cases": [
+        "BilhetagemService",
+        "CreateLogisticsCommand",
+        "DeleteLogisticsCommand",
+        "ElectronicTollService",
+        "FrotaService",
+        "LinhaService",
+        "OperacaoAnalyticsService",
+        "UpdateLogisticsCommand",
+        "ViagemService",
+        "adicionar_veiculo",
+        "atualizar_tarifa",
+        "cadastrar_veiculo",
+        "calcular_demanda",
+        "calcular_qualidade",
+        "cancelar_viagem",
+        "concluir_viagem",
+        "criar_frota",
+        "criar_linha",
+        "has_financas_adapter",
+        "has_geosampa_adapter",
+        "has_service_requests_adapter",
+        "has_urbanismo_adapter",
+        "has_workflow_adapter",
+        "iniciar_viagem",
+        "listar",
+        "listar_eventos",
+        "listar_linhas",
+        "listar_veiculos",
+        "obter_evento",
+        "obter_linha",
+        "obter_por_codigo",
+        "obter_por_id",
+        "obter_veiculo",
+        "process_toll_passage",
+        "programar_viagem",
+        "reconciliar_evento",
+        "registrar_evento",
+        "registrar_fiscalizacao",
+        "registrar_indicadores",
+        "registrar_manutencao",
+        "validate",
+        "vincular_veiculo"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "marketplace": {
+      "path": "apps/backend/app/modules/marketplace",
+      "domain_group": "unknown",
+      "layered_architecture": false,
+      "entities": [],
+      "use_cases": [
+        "InstantTransferOrchestrator",
+        "orchestrate"
+      ],
+      "api": [
+        "POST /instant-transfer"
+      ],
+      "depends_on": []
+    },
+    "meteorologia": {
+      "path": "apps/backend/app/modules/meteorologia",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "migracao": {
+      "path": "apps/backend/app/modules/migracao",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "migration_service": {
+      "path": "apps/backend/app/modules/migration_service",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "DomainEntity",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "MigrationServiceAggregate",
+        "MigrationServiceID",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "DecideVisaApprovalCommandHandler",
+        "IssuePassportCommandHandler",
+        "MigracaoService",
+        "SubmitVisaApplicationCommandHandler",
+        "handle"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "notifications": {
+      "path": "apps/backend/app/modules/notifications",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "NotificationsAggregate",
+        "NotificationsID"
+      ],
+      "use_cases": [
+        "DeleteNotificationCommand",
+        "DeleteNotificationCommandHandler",
+        "MarkNotificationAsReadCommand",
+        "MarkNotificationAsReadCommandHandler",
+        "SendNotificationCommand",
+        "SendNotificationCommandHandler",
+        "execute"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "obras-publicas": {
+      "path": "apps/backend/app/modules/obras-publicas",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "operations": {
+      "path": "apps/backend/app/modules/operations",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "OperationsAggregate",
+        "OperationsID",
+        "OrderStatus",
+        "PaymentStatus",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateOperationsCommand",
+        "DeleteOperationsCommand",
+        "OperationsService",
+        "UpdateOperationsCommand",
+        "complete_order",
+        "confirm_payment",
+        "generate_payment",
+        "validate"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "patrimonio-cultural": {
+      "path": "apps/backend/app/modules/patrimonio-cultural",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "payment": {
+      "path": "apps/backend/app/modules/payment",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "DomainValidationError",
+        "DuplicatePaymentError",
+        "EntityStatus",
+        "EntityType",
+        "InvalidInvoiceStateError",
+        "InvoiceNotFoundError",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "Payment",
+        "PaymentAggregate",
+        "PaymentID",
+        "PaymentProviderPort",
+        "PaymentRepositoryPort",
+        "ProcessStatus",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreatePaymentCommand",
+        "DeletePaymentCommand",
+        "Payment",
+        "PaymentService",
+        "PaymentTransaction",
+        "PaymentWebhookService",
+        "UpdatePaymentCommand",
+        "WebhookEngine",
+        "create_payment",
+        "create_refund",
+        "delete_payment",
+        "get_by_reference",
+        "get_payment",
+        "get_payment_by_reference",
+        "get_payment_history",
+        "list_payments_by_invoice",
+        "process_event",
+        "process_webhook",
+        "register_payment",
+        "update_payment_status",
+        "update_status",
+        "validate",
+        "verify_signature"
+      ],
+      "api": [
+        "GET /citizen/{citizen_id}/history",
+        "GET /invoice/{invoice_id}/payments",
+        "GET /reference/{gateway_reference}",
+        "POST /register"
+      ],
+      "depends_on": []
+    },
+    "pecuaria": {
+      "path": "apps/backend/app/modules/pecuaria",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "pescas": {
+      "path": "apps/backend/app/modules/pescas",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "pescas-industriais": {
+      "path": "apps/backend/app/modules/pescas-industriais",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "petroleo-gas": {
+      "path": "apps/backend/app/modules/petroleo-gas",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "planeamento": {
+      "path": "apps/backend/app/modules/planeamento",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "portos-logistica": {
+      "path": "apps/backend/app/modules/portos-logistica",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "procurement": {
+      "path": "apps/backend/app/modules/procurement",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "Bid",
+        "BidRepositoryPort",
+        "BidStatus",
+        "Contract",
+        "ContractRepository",
+        "ContractRepositoryPort",
+        "ContractStatus",
+        "DocumentType",
+        "EconomyPaymentPort",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "PaymentRequest",
+        "PaymentResponse",
+        "ProcessStatus",
+        "ProcurementAggregate",
+        "ProcurementEngine",
+        "ProcurementID",
+        "ProcurementMethod",
+        "SortOrder",
+        "Supplier",
+        "SupplierRepository",
+        "SupplierRepositoryPort",
+        "Tender",
+        "TenderRepository",
+        "TenderRepositoryPort",
+        "TenderStatus",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateProcurementCommand",
+        "DeleteProcurementCommand",
+        "UpdateProcurementCommand",
+        "validate"
+      ],
+      "api": [
+        "DELETE /{id}",
+        "GET /",
+        "GET /health",
+        "GET /health/live",
+        "GET /health/ready",
+        "GET /{id}",
+        "POST /",
+        "POST /bid",
+        "POST /evaluate/{tender_id}",
+        "POST /supplier",
+        "POST /tender",
+        "PUT /{id}"
+      ],
+      "depends_on": []
+    },
+    "protecao-civil": {
+      "path": "apps/backend/app/modules/protecao-civil",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "protecao-dados": {
+      "path": "apps/backend/app/modules/protecao-dados",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "public_security": {
+      "path": "apps/backend/app/modules/public_security",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "CadeiaCustodia",
+        "CargoPolicial",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "Evidencia",
+        "Investigacao",
+        "LaudoPericial",
+        "LifecycleStatus",
+        "Mandado",
+        "NotificationPriority",
+        "Ocorrencia",
+        "OperationType",
+        "Patente",
+        "Policial",
+        "PrioridadeOcorrencia",
+        "ProcessStatus",
+        "ProvaPericial",
+        "PublicSecurityAggregate",
+        "PublicSecurityID",
+        "SortOrder",
+        "StatusAgente",
+        "StatusCadeiaCustodia",
+        "StatusEvidencia",
+        "StatusInvestigacao",
+        "StatusLaudo",
+        "StatusMandado",
+        "StatusOcorrencia",
+        "StatusProva",
+        "StatusUnidadePolicial",
+        "StatusVestigio",
+        "TipoAgente",
+        "TipoEvidencia",
+        "TipoLaudo",
+        "TipoMandado",
+        "TipoOcorrencia",
+        "TipoProva",
+        "TipoUnidadePolicial",
+        "TipoVestigio",
+        "TipoVinculo",
+        "UnidadePolicial",
+        "ValidationLevel",
+        "Vestigio"
+      ],
+      "use_cases": [
+        "CadeiaCustodiaService",
+        "CreatePublicSecurityCommand",
+        "DeletePublicSecurityCommand",
+        "EvidenciaService",
+        "InvestigacaoService",
+        "LaudoPericialService",
+        "MandadoService",
+        "OcorrenciaService",
+        "PolicialService",
+        "ProvaPericialService",
+        "UnidadePolicialService",
+        "UpdatePublicSecurityCommand",
+        "VestigioService",
+        "abrir_investigacao",
+        "ativar_porte",
+        "atualizar_status",
+        "buscar_cadeia",
+        "buscar_evidencia",
+        "buscar_investigacao",
+        "buscar_laudo",
+        "buscar_mandado",
+        "buscar_ocorrencia",
+        "buscar_policial",
+        "buscar_prova",
+        "buscar_unidade",
+        "buscar_vestigio",
+        "cadastrar_policial",
+        "cadastrar_unidade",
+        "coletar_prova",
+        "emitir_laudo",
+        "expedir_mandado",
+        "iniciar_cadeia",
+        "listar_cadeias",
+        "listar_evidencias",
+        "listar_investigacoes",
+        "listar_laudos",
+        "listar_mandados",
+        "listar_ocorrencias",
+        "listar_policiais",
+        "listar_provas",
+        "listar_unidades",
+        "listar_vestigios",
+        "registrar_evidencia",
+        "registrar_movimentacao",
+        "registrar_ocorrencia",
+        "registrar_vestigio",
+        "remover_cadeia",
+        "remover_evidencia",
+        "remover_investigacao",
+        "remover_laudo",
+        "remover_mandado",
+        "remover_ocorrencia",
+        "remover_policial",
+        "remover_prova",
+        "remover_unidade",
+        "remover_vestigio",
+        "validate",
+        "vincular_cadeia_custodia"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "recursos-minerais": {
+      "path": "apps/backend/app/modules/recursos-minerais",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "registo-civil": {
+      "path": "apps/backend/app/modules/registo-civil",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [],
+      "use_cases": [],
+      "api": [],
+      "depends_on": []
+    },
+    "resources": {
+      "path": "apps/backend/app/modules/resources",
+      "domain_group": "resources",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "ResourcesAggregate",
+        "ResourcesError",
+        "ResourcesID",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "CreateResourcesCommand",
+        "DeleteResourcesCommand",
+        "UpdateResourcesCommand",
+        "validate"
+      ],
+      "api": [
+        "GET /v1"
+      ],
+      "depends_on": []
+    },
+    "saude": {
+      "path": "apps/backend/app/modules/saude",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "HealthUnitType",
+        "LifecycleStatus",
+        "MedicalRecord",
+        "MedicationType",
+        "NotificationPriority",
+        "OperationType",
+        "Prescription",
+        "PrescriptionItem",
+        "PrescriptionStatus",
+        "ProcessStatus",
+        "SaudeAggregate",
+        "SaudeID",
+        "SortOrder",
+        "VaccineDose",
+        "ValidationLevel",
+        "VigilanciaEpidemiologica",
+        "VigilanciaStatus",
+        "VitalSigns"
+      ],
+      "use_cases": [
+        "CompleteVaccinationCommandHandler",
+        "RecordMedicalVisitCommandHandler",
+        "RegisterHealthProviderCommandHandler",
+        "handle"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "seguranca-alimentar": {
+      "path": "apps/backend/app/modules/seguranca-alimentar",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "seguranca-publica": {
+      "path": "apps/backend/app/modules/seguranca-publica",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "seguranca-social": {
+      "path": "apps/backend/app/modules/seguranca-social",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "society": {
+      "path": "apps/backend/app/modules/society",
+      "domain_group": "society",
+      "layered_architecture": true,
+      "entities": [
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SocietyAggregate",
+        "SocietyError",
+        "SocietyID",
+        "SortOrder",
+        "ValidationLevel"
+      ],
+      "use_cases": [
+        "ApproveWelfareEligibilityCommandHandler",
+        "ProcessWelfarePaymentCommandHandler",
+        "SubmitWelfareApplicationCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /v1/ping"
+      ],
+      "depends_on": []
+    },
+    "tecnologia-inovacao": {
+      "path": "apps/backend/app/modules/tecnologia-inovacao",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "telecomunicacoes": {
+      "path": "apps/backend/app/modules/telecomunicacoes",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "tests": {
+      "path": "apps/backend/app/modules/tests",
+      "domain_group": "unknown",
+      "layered_architecture": false,
+      "entities": [],
+      "use_cases": [],
+      "api": [],
+      "depends_on": []
+    },
+    "tourism": {
+      "path": "apps/backend/app/modules/tourism",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "Acessibilidade",
+        "AgenciaViagens",
+        "AltaTemporada",
+        "AtracaoTuristica",
+        "AuditStatus",
+        "AutoInfracaoTurismo",
+        "Avaliacao",
+        "BaixaTemporada",
+        "CadastroTurista",
+        "Cadastur",
+        "Camping",
+        "CertificacaoTuristica",
+        "Checkin",
+        "Checkout",
+        "ChegadaTuristas",
+        "ClassificacaoHoteleira",
+        "CondutorVisitantes",
+        "Credencial",
+        "Divisas",
+        "DocumentType",
+        "Ecoturismo",
+        "EntityStatus",
+        "EntityType",
+        "EntradaSaida",
+        "EstatisticaTurismo",
+        "Estrelas",
+        "EventoTuristico",
+        "Excursao",
+        "FeedbackTurista",
+        "Festival",
+        "FiscalizacaoTurismo",
+        "FluxoTuristico",
+        "GastoMedio",
+        "GuiaTurismo",
+        "Hotel",
+        "ImpactoEconomico",
+        "InterdicaoHotel",
+        "LicencaTurismo",
+        "LifecycleStatus",
+        "Lodge",
+        "Monumento",
+        "MultaTurismo",
+        "Museu",
+        "Nacionalidade",
+        "NotificationPriority",
+        "OcupacaoHoteleira",
+        "OperadorTuristico",
+        "OperationType",
+        "PacoteTuristico",
+        "ParqueNacional",
+        "PerfilTurista",
+        "PermanenciaMedia",
+        "PontoTuristico",
+        "Pousada",
+        "Praia",
+        "ProcessStatus",
+        "PromocaoTuristica",
+        "ReceitaTuristica",
+        "ReclamacaoTurismo",
+        "RegistroGuia",
+        "ReservaHotel",
+        "ReservaNatural",
+        "ReservaPacote",
+        "Resort",
+        "RestauranteTuristico",
+        "Roteiro",
+        "Sazonalidade",
+        "SeloSustentabilidade",
+        "SitioHistorico",
+        "SortOrder",
+        "StatusReserva",
+        "TarifaHotel",
+        "Temporada",
+        "TipoAtracao",
+        "TipoMeioHospedagem",
+        "TipoOperadorTuristico",
+        "TipoTarifa",
+        "TourismAggregate",
+        "TourismID",
+        "TurismoAcessivel"
+      ],
+      "use_cases": [
+        "AgenciaViagensService",
+        "AtracaoService",
+        "AvaliacaoService",
+        "CadastroTuristaService",
+        "CadasturService",
+        "CertificacaoService",
+        "ClassificacaoService",
+        "ConductTourismQualityInspectionCommandHandler",
+        "EstatisticaTurismoService",
+        "EventoService",
+        "FiscalizacaoTurismoService",
+        "FluxoTuristicoService",
+        "GuiaTurismoService",
+        "InteligenciaTurismoService",
+        "IssueTourismOperatingLicenseCommandHandler",
+        "LicenciamentoTurismoService",
+        "MeioHospedagemService",
+        "OcupacaoService",
+        "OperadorTuristicoService",
+        "PacoteService",
+        "PenalidadeTurismoService",
+        "PromocaoService",
+        "ReclamacaoService",
+        "RegisterTourismBusinessCommandHandler",
+        "RegistroGuiaService",
+        "ReservaService",
+        "RoteiroService",
+        "TarifaService",
+        "TemporadaService",
+        "atualizar",
+        "atualizar_pousada",
+        "buscar_hotel",
+        "buscar_pousada",
+        "cadastrar",
+        "cadastrar_hotel",
+        "cadastrar_pousada",
+        "handle",
+        "listar",
+        "listar_hoteis",
+        "listar_hoteis_por_classificacao",
+        "listar_pousadas",
+        "obter",
+        "remover",
+        "remover_pousada"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "trabalho-inspecao": {
+      "path": "apps/backend/app/modules/trabalho-inspecao",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "transportes": {
+      "path": "apps/backend/app/modules/transportes",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "turismo": {
+      "path": "apps/backend/app/modules/turismo",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "urbanismo": {
+      "path": "apps/backend/app/modules/urbanismo",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "PlaceholderModel"
+      ],
+      "use_cases": [],
+      "api": [
+        "GET /health"
+      ],
+      "depends_on": []
+    },
+    "wallet": {
+      "path": "apps/backend/app/modules/wallet",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "WalletAggregate",
+        "WalletID"
+      ],
+      "use_cases": [
+        "CreateWalletCommand",
+        "CreateWalletCommandHandler",
+        "DepositCommand",
+        "DepositCommandHandler",
+        "WithdrawCommand",
+        "WithdrawCommandHandler",
+        "execute"
+      ],
+      "api": [],
+      "depends_on": []
+    },
+    "xroad": {
+      "path": "apps/backend/app/modules/xroad",
+      "domain_group": "unknown",
+      "layered_architecture": true,
+      "entities": [
+        "AuditEntry",
+        "AuditStatus",
+        "DocumentType",
+        "EntityStatus",
+        "EntityType",
+        "LifecycleStatus",
+        "NotificationPriority",
+        "OperationType",
+        "ProcessStatus",
+        "SILAEnvelope",
+        "SortOrder",
+        "ValidationLevel",
+        "XroadAggregate",
+        "XroadID"
+      ],
+      "use_cases": [
+        "ApproveXRoadServiceAccessCommandHandler",
+        "InvokeXRoadServiceCommandHandler",
+        "RegisterXRoadServiceCommandHandler",
+        "handle"
+      ],
+      "api": [
+        "GET /services/discovery",
+        "POST /biometric-sync",
+        "POST /health/notify-death",
+        "POST /health/validate-bi-status",
+        "POST /health/verify-citizenship",
+        "POST /justice/batch-identity-validation",
+        "POST /justice/check-death-status",
+        "POST /justice/verify-birth-notice"
+      ],
+      "depends_on": []
+    }
+  },
+  "edges": [],
+  "missing_architecture_docs": []
+}

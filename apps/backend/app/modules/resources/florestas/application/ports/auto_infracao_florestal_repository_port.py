@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-class AutoInfracaoFlorestalRepositoryPort(ABC):
 
+class AutoInfracaoFlorestalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: object) -> object:
         pass

@@ -21,8 +21,8 @@ Supports --dry-run mode for audit-only runs (no filesystem changes).
 """
 
 import argparse
-import json
 import hashlib
+import json
 import shutil
 import subprocess
 from pathlib import Path
@@ -44,9 +44,7 @@ def sha256(path: Path) -> str:
 
 def load_index():
     if not Path(INDEX_FILE).exists():
-        raise FileNotFoundError(
-            f"Missing {INDEX_FILE}. Generate it before running dedup."
-        )
+        raise FileNotFoundError(f"Missing {INDEX_FILE}. Generate it before running dedup.")
     with open(INDEX_FILE) as f:
         return json.load(f)
 

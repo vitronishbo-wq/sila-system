@@ -1,25 +1,12 @@
-"""Domain exceptions for DefesaConsumidor module"""
-from apps.backend.core.exceptions.factory import ExceptionFactory
-exc = ExceptionFactory.create_module_exceptions('DefesaConsumidor')
-DefesaConsumidorException = exc.Base
-DefesaConsumidorNotFound = exc.NotFound
-DefesaConsumidorValidationError = exc.ValidationError
-DefesaConsumidorInvalidStateError = exc.InvalidStateError
+from __future__ import annotations
 
 
-class ReclamacaoJaEncerradaException(DefesaConsumidorException):
-    """Reclamacao ja encerrada no modulo DefesaConsumidor."""
+class DefesaConsumidorError(Exception):
+    pass
 
 
-class ReclamacaoNaoEncontradaException(DefesaConsumidorNotFound):
-    """Reclamacao nao encontrada no modulo DefesaConsumidor."""
+class ReclamacaoJaEncerradaException(DefesaConsumidorError):
+    pass
 
-
-__all__ = [
-    'DefesaConsumidorException',
-    'DefesaConsumidorNotFound',
-    'DefesaConsumidorValidationError',
-    'DefesaConsumidorInvalidStateError',
-    'ReclamacaoJaEncerradaException',
-    'ReclamacaoNaoEncontradaException',
-]
+class ReclamacaoNaoEncontradaException(DefesaConsumidorError):
+    pass

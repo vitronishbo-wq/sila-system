@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import type { TerritoryNode } from '../types';
-import { territoryService } from '../services/territoryService';
-import { useToast } from '../hooks/useToast';
+import type { TerritoryNode } from '@/types';
+import { territoryService } from '@/services/territoryService';
+import { useToast } from '@/hooks/useToast';
 
 const normalize = (value: string) => value.toLowerCase();
 

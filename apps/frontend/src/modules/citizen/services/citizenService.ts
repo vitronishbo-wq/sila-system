@@ -1,4 +1,4 @@
-import { citizenHttp } from "../../../api/citizenHttp";
+import { citizenHttp } from "@/api/citizenHttp";
 
 export const citizenService = {
   getNotifications: () => citizenHttp.get("/citizen/notifications"),

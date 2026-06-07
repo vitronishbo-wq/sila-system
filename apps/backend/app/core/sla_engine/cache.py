@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import Any, Dict, Optional
+from typing import Any
 
 try:
     import redis.asyncio as redis_async
@@ -13,19 +13,19 @@ except Exception:
 class SLAEngineCache:
     def __init__(self, url: str | None = None, ttl_seconds: int = 300):
         self._ttl = ttl_seconds
-        self._memory: Dict[str, Any] = {}
+        self._memory: dict[str, Any] = {}
         self._redis = None
         if redis_async and url:
             self._redis = redis_async.from_url(url, decode_responses=True)
 
-    async def get(self, key: str) -> Optional[Dict[str, Any]]:
+    async def get(self, key: str) -> dict[str, Any] | None:
         if self._redis:
             raw = await self._redis.get(key)
             if raw:
                 return json.loads(raw)
         return self._memory.get(key)
 
-    async def set(self, key: str, value: Dict[str, Any]) -> None:
+    async def set(self, key: str, value: dict[str, Any]) -> None:
         if self._redis:
             await self._redis.set(key, json.dumps(value), ex=self._ttl)
             return
@@ -42,16 +42,16 @@ class SLACache:
         self._redis = redis_client
         self._ttl = ttl
         self._prefix = "sla:calc:"
-        self._memory: Dict[str, Any] = {}
+        self._memory: dict[str, Any] = {}
 
-    def _generate_key(self, service_id: str, context: Optional[Dict] = None) -> str:
+    def _generate_key(self, service_id: str, context: dict | None = None) -> str:
         if context:
             context_str = json.dumps(context, sort_keys=True)
             context_hash = hashlib.md5(context_str.encode()).hexdigest()[:8]
             return f"{self._prefix}{service_id}:{context_hash}"
         return f"{self._prefix}{service_id}"
 
-    async def get(self, service_id: str, context: Optional[Dict] = None) -> Optional[Dict[str, Any]]:
+    async def get(self, service_id: str, context: dict | None = None) -> dict[str, Any] | None:
         key = self._generate_key(service_id, context)
         if self._redis:
             raw = await self._redis.get(key)
@@ -62,9 +62,9 @@ class SLACache:
     async def set(
         self,
         service_id: str,
-        context: Optional[Dict],
-        value: Dict[str, Any],
-        ttl: Optional[int] = None,
+        context: dict | None,
+        value: dict[str, Any],
+        ttl: int | None = None,
     ) -> None:
         key = self._generate_key(service_id, context)
         if self._redis:

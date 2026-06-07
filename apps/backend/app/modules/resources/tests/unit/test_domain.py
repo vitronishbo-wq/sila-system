@@ -1,5 +1,6 @@
 import pytest
 
+
 class TestDomainEntities:
     """Domain entity tests"""
 
@@ -10,6 +11,7 @@ class TestDomainEntities:
     def test_entity_validation(self):
         """Test entity validation rules"""
         pass
+
 
 class TestDomainServices:
     """Domain service tests"""

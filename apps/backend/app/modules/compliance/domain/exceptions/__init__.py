@@ -1,2 +1,0 @@
-class ProtecaoDadosError(Exception):
-    pass

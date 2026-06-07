@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
+
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import (
+    JovemRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    Escolaridade,
+    FaixaEtaria,
+    SituacaoOcupacional,
+    TipoVulnerabilidade,
+)
 from apps.backend.app.modules.society.juventude.domain.models.jovem import Jovem
 from apps.backend.app.modules.society.juventude.infrastructure.models.jovem_model import JovemModel
 
-class SQLAlchemyJovemRepository(JovemRepositoryPort):
 
+class SQLAlchemyJovemRepository(JovemRepositoryPort):
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -33,7 +43,9 @@ class SQLAlchemyJovemRepository(JovemRepositoryPort):
         model.telefone = jovem.telefone
         model.email = jovem.email
         model.citizen_id = jovem.citizen_id
-        model.vulnerabilidades = [item.value for item in jovem.vulnerabilidades] if jovem.vulnerabilidades else None
+        model.vulnerabilidades = (
+            [item.value for item in jovem.vulnerabilidades] if jovem.vulnerabilidades else None
+        )
         model.programas = jovem.programas
         model.auxilios = jovem.auxilios
         model.formacoes = jovem.formacoes
@@ -69,28 +81,48 @@ class SQLAlchemyJovemRepository(JovemRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_faixa_etaria(self, faixa_etaria: FaixaEtaria) -> list[Jovem]:
-        stmt = select(JovemModel).where(JovemModel.faixa_etaria == faixa_etaria.value).order_by(JovemModel.nome.asc())
+        stmt = (
+            select(JovemModel)
+            .where(JovemModel.faixa_etaria == faixa_etaria.value)
+            .order_by(JovemModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_escolaridade(self, escolaridade: Escolaridade) -> list[Jovem]:
-        stmt = select(JovemModel).where(JovemModel.escolaridade == escolaridade.value).order_by(JovemModel.nome.asc())
+        stmt = (
+            select(JovemModel)
+            .where(JovemModel.escolaridade == escolaridade.value)
+            .order_by(JovemModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_situacao(self, situacao: SituacaoOcupacional) -> list[Jovem]:
-        stmt = select(JovemModel).where(JovemModel.situacao_ocupacional == situacao.value).order_by(JovemModel.nome.asc())
+        stmt = (
+            select(JovemModel)
+            .where(JovemModel.situacao_ocupacional == situacao.value)
+            .order_by(JovemModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[Jovem]:
         normalized = municipio.strip().lower()
-        stmt = select(JovemModel).where(func.lower(JovemModel.municipio) == normalized).order_by(JovemModel.nome.asc())
+        stmt = (
+            select(JovemModel)
+            .where(func.lower(JovemModel.municipio) == normalized)
+            .order_by(JovemModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_vulneraveis(self) -> list[Jovem]:
-        stmt = select(JovemModel).where(func.array_length(JovemModel.vulnerabilidades, 1) > 0).order_by(JovemModel.nome.asc())
+        stmt = (
+            select(JovemModel)
+            .where(func.array_length(JovemModel.vulnerabilidades, 1) > 0)
+            .order_by(JovemModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -104,10 +136,45 @@ class SQLAlchemyJovemRepository(JovemRepositoryPort):
 
     async def next_registro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(JovemModel).where(JovemModel.numero_registro.like(f'JOV/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(JovemModel)
+            .where(JovemModel.numero_registro.like(f"JOV/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'JOV/{ano}/{count + 1:05d}'
+        return f"JOV/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: JovemModel) -> Jovem:
-        return Jovem(id=model.id, numero_registro=model.numero_registro, nome=model.nome, data_nascimento=model.data_nascimento, faixa_etaria=FaixaEtaria(model.faixa_etaria), genero=model.genero, naturalidade=model.naturalidade, nacionalidade=model.nacionalidade, escolaridade=Escolaridade(model.escolaridade), situacao_ocupacional=SituacaoOcupacional(model.situacao_ocupacional), endereco=model.endereco, municipio=model.municipio, provincia=model.provincia, telefone=model.telefone, email=model.email, citizen_id=model.citizen_id, vulnerabilidades=[TipoVulnerabilidade(item) for item in model.vulnerabilidades] if model.vulnerabilidades else None, programas=model.programas, auxilios=model.auxilios, formacoes=model.formacoes, experiencias=model.experiencias, interesses=model.interesses, habilidades=model.habilidades, encaminhamentos=model.encaminhamentos, acompanhamento_psicossocial=model.acompanhamento_psicossocial, data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativo=model.ativo)
+        return Jovem(
+            id=model.id,
+            numero_registro=model.numero_registro,
+            nome=model.nome,
+            data_nascimento=model.data_nascimento,
+            faixa_etaria=FaixaEtaria(model.faixa_etaria),
+            genero=model.genero,
+            naturalidade=model.naturalidade,
+            nacionalidade=model.nacionalidade,
+            escolaridade=Escolaridade(model.escolaridade),
+            situacao_ocupacional=SituacaoOcupacional(model.situacao_ocupacional),
+            endereco=model.endereco,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            telefone=model.telefone,
+            email=model.email,
+            citizen_id=model.citizen_id,
+            vulnerabilidades=[TipoVulnerabilidade(item) for item in model.vulnerabilidades]
+            if model.vulnerabilidades
+            else None,
+            programas=model.programas,
+            auxilios=model.auxilios,
+            formacoes=model.formacoes,
+            experiencias=model.experiencias,
+            interesses=model.interesses,
+            habilidades=model.habilidades,
+            encaminhamentos=model.encaminhamentos,
+            acompanhamento_psicossocial=model.acompanhamento_psicossocial,
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

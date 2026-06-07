@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_022_juventude_programas_formacoes"
 down_revision = "20260302_021_juventude_foundation"
 branch_labels = None
@@ -95,13 +94,27 @@ def _create_programas_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_codigo_programa ON juventude_programas (codigo_programa)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_nome ON juventude_programas (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_tipo ON juventude_programas (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_status ON juventude_programas (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_municipio ON juventude_programas (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_provincia ON juventude_programas (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_programas_ativo ON juventude_programas (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_codigo_programa ON juventude_programas (codigo_programa)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_nome ON juventude_programas (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_tipo ON juventude_programas (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_status ON juventude_programas (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_municipio ON juventude_programas (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_provincia ON juventude_programas (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_programas_ativo ON juventude_programas (ativo)"
+    )
 
 
 def _create_formacoes_table() -> None:
@@ -175,12 +188,24 @@ def _create_formacoes_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_codigo_formacao ON juventude_formacoes (codigo_formacao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_jovem_id ON juventude_formacoes (jovem_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_programa_id ON juventude_formacoes (programa_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_nome_curso ON juventude_formacoes (nome_curso)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_status ON juventude_formacoes (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_ativo ON juventude_formacoes (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_codigo_formacao ON juventude_formacoes (codigo_formacao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_jovem_id ON juventude_formacoes (jovem_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_programa_id ON juventude_formacoes (programa_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_nome_curso ON juventude_formacoes (nome_curso)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_status ON juventude_formacoes (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_juventude_formacoes_ativo ON juventude_formacoes (ativo)"
+    )
 
 
 def upgrade() -> None:

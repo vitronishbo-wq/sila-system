@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao, TipoOperador, TipoPessoa
+
+from apps.backend.app.modules.economy.trade.external.domain.enums import (
+    StatusHabilitacao,
+    TipoOperador,
+    TipoPessoa,
+)
+
 
 class HabilitacaoCreateBase(BaseModel):
     tipo_pessoa: TipoPessoa
@@ -11,14 +19,17 @@ class HabilitacaoCreateBase(BaseModel):
     numero_processo: str
     data_solicitacao: date
 
+
 class HabilitacaoAprovacaoInput(BaseModel):
     numero_radar: str
     data_analise: date
     data_validade: date
 
+
 class HabilitacaoRejeicaoInput(BaseModel):
     data_analise: date
     motivo: str
+
 
 class HabilitacaoResponseBase(BaseModel):
     model_config = ConfigDict(from_attributes=True)

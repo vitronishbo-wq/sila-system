@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class ObrasPublicasAdapter:
     """Adapter para validacao de licencas de obras de infraestrutura."""
 

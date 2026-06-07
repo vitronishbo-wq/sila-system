@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 from ...domain.repositories.audit_log_repository import AuditLogRepository
 
-class AuditLogRepositoryImpl(AuditLogRepository):
 
+class AuditLogRepositoryImpl(AuditLogRepository):
     def __init__(self):
         self._events = []
 

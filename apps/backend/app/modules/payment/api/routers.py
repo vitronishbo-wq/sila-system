@@ -1,4 +1,5 @@
 """Consolidação de routers para o módulo de Pagamentos."""
+
 from fastapi import APIRouter
 
 from .health import router as health_router

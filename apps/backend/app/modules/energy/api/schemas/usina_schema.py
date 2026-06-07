@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina, TipoUsina
+
 
 class UsinaCreate(BaseModel):
     codigo_aneel: str
@@ -16,14 +20,18 @@ class UsinaCreate(BaseModel):
     municipio: str
     provincia: str
 
+
 class UsinaDataInput(BaseModel):
     data: date
+
 
 class UsinaMotivoInput(BaseModel):
     motivo: str
 
+
 class UsinaPotenciaInput(BaseModel):
     potencia: Decimal
+
 
 class UsinaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

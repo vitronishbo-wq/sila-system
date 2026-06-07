@@ -1,0 +1,44 @@
+module: integracao-nacional
+name: Integracao Nacional
+code: integracao-nacional
+description: Integracoes com sistemas nacionais - BI, NIF, Moradas, Verificacao Documental, Registo Civil
+type: macro_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+normalized: true
+exposes:
+  api_routers:
+  - prefix: /integracao-nacional
+    endpoints:
+    - GET /health (Health check)
+  public_models: []
+  events_published: []
+requires:
+  domains:
+  - identity
+  - educacao
+  - payment
+  - registo-civil
+  - xroad
+  core_services:
+  - database_session
+  - observability.trace
+subdomains:
+- bi (Bilhete de Identidade)
+- nif (Numero de Identificacao Fiscal)
+- moradas (Normalizacao de Enderecos)
+- verificacao-documental (Verificacao Documental)
+statistics:
+  api_files: 2
+  application_files: 4
+  domain_files: 6
+  infrastructure_files: 4
+  total: 16
+conformance:
+  has_api_layer: true
+  has_application_layer: true
+  has_domain_layer: true
+  has_infrastructure_layer: true
+  has_tests: false
+  ddd_compliant: true

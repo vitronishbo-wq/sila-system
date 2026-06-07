@@ -1,15 +1,24 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
+
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import (
+    ProgramaRepositoryPort,
+)
 from apps.backend.app.modules.society.juventude.domain.enums import StatusPrograma, TipoPrograma
-from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.programa_juvenil_model import ProgramaJuvenilModel
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import (
+    ProgramaJuvenil,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.models.programa_juvenil_model import (
+    ProgramaJuvenilModel,
+)
+
 
 class SQLAlchemyProgramaRepository(ProgramaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -39,7 +48,9 @@ class SQLAlchemyProgramaRepository(ProgramaRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_programa: str) -> ProgramaJuvenil | None:
-        stmt = select(ProgramaJuvenilModel).where(ProgramaJuvenilModel.codigo_programa == codigo_programa.strip())
+        stmt = select(ProgramaJuvenilModel).where(
+            ProgramaJuvenilModel.codigo_programa == codigo_programa.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -49,12 +60,20 @@ class SQLAlchemyProgramaRepository(ProgramaRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoPrograma) -> list[ProgramaJuvenil]:
-        stmt = select(ProgramaJuvenilModel).where(ProgramaJuvenilModel.tipo == tipo.value).order_by(ProgramaJuvenilModel.nome.asc())
+        stmt = (
+            select(ProgramaJuvenilModel)
+            .where(ProgramaJuvenilModel.tipo == tipo.value)
+            .order_by(ProgramaJuvenilModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusPrograma) -> list[ProgramaJuvenil]:
-        stmt = select(ProgramaJuvenilModel).where(ProgramaJuvenilModel.status == status.value).order_by(ProgramaJuvenilModel.nome.asc())
+        stmt = (
+            select(ProgramaJuvenilModel)
+            .where(ProgramaJuvenilModel.status == status.value)
+            .order_by(ProgramaJuvenilModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -68,10 +87,28 @@ class SQLAlchemyProgramaRepository(ProgramaRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(ProgramaJuvenilModel).where(ProgramaJuvenilModel.codigo_programa.like(f'PRG/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(ProgramaJuvenilModel)
+            .where(ProgramaJuvenilModel.codigo_programa.like(f"PRG/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'PRG/{ano}/{count + 1:05d}'
+        return f"PRG/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: ProgramaJuvenilModel) -> ProgramaJuvenil:
-        return ProgramaJuvenil(id=model.id, codigo_programa=model.codigo_programa, nome=model.nome, tipo=TipoPrograma(model.tipo), data_inicio=model.data_inicio, data_fim=model.data_fim, vagas=model.vagas, municipio=model.municipio, provincia=model.provincia, status=StatusPrograma(model.status), data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativo=model.ativo)
+        return ProgramaJuvenil(
+            id=model.id,
+            codigo_programa=model.codigo_programa,
+            nome=model.nome,
+            tipo=TipoPrograma(model.tipo),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            vagas=model.vagas,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            status=StatusPrograma(model.status),
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.public_security.domain.enums import PrioridadeOcorrencia, StatusOcorrencia, TipoOcorrencia
+
+from apps.backend.app.modules.public_security.domain.enums import (
+    PrioridadeOcorrencia,
+    StatusOcorrencia,
+    TipoOcorrencia,
+)
+
 
 class OcorrenciaCreate(BaseModel):
     unidade_id: UUID
@@ -20,9 +28,11 @@ class OcorrenciaCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class OcorrenciaStatusUpdate(BaseModel):
     status: StatusOcorrencia
     observacoes: str | None = None
+
 
 class OcorrenciaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

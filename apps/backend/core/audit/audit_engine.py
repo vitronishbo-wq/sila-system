@@ -1,12 +1,13 @@
 """Central audit engine for SILA system"""
-from typing import Dict, Any, Optional, List
-from dataclasses import dataclass, field, asdict
+
+from abc import ABC
+from dataclasses import dataclass, field
 from datetime import datetime
-from enum import Enum
-from abc import ABC, abstractmethod
+from enum import StrEnum
 from uuid import uuid4
 
-class AuditAction(str, Enum):
+
+class AuditAction(StrEnum):
     CREATE = "CREATE"
     READ = "READ"
     UPDATE = "UPDATE"
@@ -14,15 +15,18 @@ class AuditAction(str, Enum):
     APPROVE = "APPROVE"
     LOGIN = "LOGIN"
 
-class AuditStatus(str, Enum):
+
+class AuditStatus(StrEnum):
     INITIATED = "INITIATED"
     COMPLETED = "COMPLETED"
     FAILED = "FAILED"
 
-class AuditSeverity(str, Enum):
+
+class AuditSeverity(StrEnum):
     INFO = "INFO"
     ERROR = "ERROR"
     CRITICAL = "CRITICAL"
+
 
 @dataclass
 class AuditRecord:
@@ -36,34 +40,52 @@ class AuditRecord:
     result_code: int = 0
     result_message: str = ""
 
+
 class AuditAdapter(ABC):
-    async def store(self, record: AuditRecord) -> bool: pass
-    async def retrieve(self, audit_id: str) -> Optional[AuditRecord]: pass
-    async def query(self, **filters) -> List[AuditRecord]: pass
+    async def store(self, record: AuditRecord) -> bool:
+        pass
+
+    async def retrieve(self, audit_id: str) -> AuditRecord | None:
+        pass
+
+    async def query(self, **filters) -> list[AuditRecord]:
+        pass
+
 
 class InMemoryAuditAdapter(AuditAdapter):
     def __init__(self):
-        self.records: Dict[str, AuditRecord] = {}
+        self.records: dict[str, AuditRecord] = {}
+
     async def store(self, record: AuditRecord) -> bool:
         self.records[record.audit_id] = record
         return True
-    async def retrieve(self, audit_id: str) -> Optional[AuditRecord]:
+
+    async def retrieve(self, audit_id: str) -> AuditRecord | None:
         return self.records.get(audit_id)
-    async def query(self, **filters) -> List[AuditRecord]:
+
+    async def query(self, **filters) -> list[AuditRecord]:
         return list(self.records.values())
 
+
 class AuditEngine:
-    def __init__(self, adapter: Optional[AuditAdapter] = None):
+    def __init__(self, adapter: AuditAdapter | None = None):
         self.adapter = adapter or InMemoryAuditAdapter()
         self._pending = {}
-    
-    async def initiate(self, user_id: str, module: str, action: AuditAction,
-                      request_path: str = "", request_method: str = "GET") -> AuditRecord:
-        record = AuditRecord(user_id=user_id, module=module, action=action,
-                           request_path=request_path)
+
+    async def initiate(
+        self,
+        user_id: str,
+        module: str,
+        action: AuditAction,
+        request_path: str = "",
+        request_method: str = "GET",
+    ) -> AuditRecord:
+        record = AuditRecord(
+            user_id=user_id, module=module, action=action, request_path=request_path
+        )
         self._pending[record.audit_id] = record
         return record
-    
+
     async def complete(self, audit_id: str, result_code: int = 200) -> bool:
         if audit_id not in self._pending:
             return False
@@ -73,7 +95,7 @@ class AuditEngine:
         await self.adapter.store(record)
         del self._pending[audit_id]
         return True
-    
+
     async def fail(self, audit_id: str, error_code: int = 500, error_message: str = "") -> bool:
         if audit_id not in self._pending:
             return False
@@ -85,7 +107,9 @@ class AuditEngine:
         del self._pending[audit_id]
         return True
 
-_audit_engine: Optional[AuditEngine] = None
+
+_audit_engine: AuditEngine | None = None
+
 
 def get_audit_engine() -> AuditEngine:
     global _audit_engine
@@ -93,7 +117,8 @@ def get_audit_engine() -> AuditEngine:
         _audit_engine = AuditEngine()
     return _audit_engine
 
-async def initialize_audit(adapter: Optional[AuditAdapter] = None) -> AuditEngine:
+
+async def initialize_audit(adapter: AuditAdapter | None = None) -> AuditEngine:
     global _audit_engine
     _audit_engine = AuditEngine(adapter)
     return _audit_engine

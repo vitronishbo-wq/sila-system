@@ -19,24 +19,18 @@ Exit Codes:
     3: Fatal - System errors during validation
 """
 
-import sys
-import json
 import argparse
+import json
+import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 # Add backend directory to Python path
 backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
 try:
-    from config import (
-        settings,
-        validate_configuration,
-        get_config_manager,
-        SettingsValidator,
-        ConfigurationError,
-    )
+    from config import SettingsValidator, settings, validate_configuration  # noqa: E402
 except ImportError as e:
     print(f"❌ FATAL: Cannot import configuration system: {e}")
     sys.exit(3)
@@ -59,7 +53,7 @@ class CIConfigValidator:
             "performance_issues": [],
         }
 
-    def validate_all(self) -> Dict[str, Any]:
+    def validate_all(self) -> dict[str, Any]:
         """Run all configuration validations."""
         print(f"🔍 Validating SILA Configuration for environment: {self.environment}")
         print("=" * 70)
@@ -141,9 +135,7 @@ class CIConfigValidator:
                 security_issues.append("Default SECRET_KEY detected in production")
 
             if not settings.SESSION_COOKIE_SECURE:
-                security_issues.append(
-                    "SESSION_COOKIE_SECURE must be True in production"
-                )
+                security_issues.append("SESSION_COOKIE_SECURE must be True in production")
 
             if settings.ALGORITHM != "HS256":
                 security_issues.append("JWT algorithm should be HS256 for production")
@@ -155,9 +147,7 @@ class CIConfigValidator:
         # CORS validation
         allowed_origins = settings.allowed_origins_list
         if self.environment == "production" and "localhost" in str(allowed_origins):
-            security_issues.append(
-                "localhost origins should not be allowed in production"
-            )
+            security_issues.append("localhost origins should not be allowed in production")
 
         # Database security
         if self.environment == "production":
@@ -165,9 +155,7 @@ class CIConfigValidator:
                 "password" in settings.POSTGRES_PASSWORD.lower()
                 or "change" in settings.POSTGRES_PASSWORD.lower()
             ):
-                security_issues.append(
-                    "Default database password detected in production"
-                )
+                security_issues.append("Default database password detected in production")
 
         if security_issues:
             self.results["security_issues"].extend(security_issues)
@@ -203,9 +191,7 @@ class CIConfigValidator:
         # Test environment checks
         if self.environment == "test":
             if settings.TEST_DATABASE_URL == settings.DATABASE_URL:
-                env_issues.append(
-                    "Test database should be different from main database"
-                )
+                env_issues.append("Test database should be different from main database")
 
         if env_issues:
             self.results["environment_issues"].extend(env_issues)
@@ -225,24 +211,18 @@ class CIConfigValidator:
             perf_issues.append("DATABASE_POOL_SIZE should be at least 5 for production")
 
         if settings.DATABASE_MAX_OVERFLOW < 10:
-            perf_issues.append(
-                "DATABASE_MAX_OVERFLOW should be at least 10 for production"
-            )
+            perf_issues.append("DATABASE_MAX_OVERFLOW should be at least 10 for production")
 
         # Redis configuration
         if settings.REDIS_MAX_CONNECTIONS < 20:
-            perf_issues.append(
-                "REDIS_MAX_CONNECTIONS should be at least 20 for production"
-            )
+            perf_issues.append("REDIS_MAX_CONNECTIONS should be at least 20 for production")
 
         # Rate limiting
         if not settings.RATE_LIMIT_ENABLED and self.environment == "production":
             perf_issues.append("RATE_LIMIT should be enabled in production")
 
         if settings.RATE_LIMIT_PER_MINUTE < 60 and self.environment == "production":
-            perf_issues.append(
-                "RATE_LIMIT_PER_MINUTE should be at least 60 for production"
-            )
+            perf_issues.append("RATE_LIMIT_PER_MINUTE should be at least 60 for production")
 
         if perf_issues:
             self.results["performance_issues"].extend(perf_issues)
@@ -261,9 +241,7 @@ class CIConfigValidator:
                 self.results["errors"].append("BNA_API_KEY must be set in production")
                 print("  ❌ BNA_API_KEY must be set in production")
             else:
-                self.results["warnings"].append(
-                    "BNA_API_KEY should be set for BNA integration"
-                )
+                self.results["warnings"].append("BNA_API_KEY should be set for BNA integration")
                 print("  ⚠️  BNA_API_KEY should be set for BNA integration")
         else:
             print("  ✅ BNA API configuration is valid")
@@ -271,9 +249,7 @@ class CIConfigValidator:
         # Email configuration
         if self.environment == "production":
             if not settings.SMTP_USERNAME or not settings.SMTP_PASSWORD:
-                self.results["errors"].append(
-                    "SMTP credentials must be set in production"
-                )
+                self.results["errors"].append("SMTP credentials must be set in production")
                 print("  ❌ SMTP credentials must be set in production")
             else:
                 print("  ✅ Email configuration is valid")
@@ -281,10 +257,7 @@ class CIConfigValidator:
             print("  ℹ️  Email configuration skipped (non-production)")
 
         # Storage configuration
-        if (
-            settings.MINIO_ACCESS_KEY == "minioadmin"
-            and self.environment == "production"
-        ):
+        if settings.MINIO_ACCESS_KEY == "minioadmin" and self.environment == "production":
             self.results["security_issues"].append(
                 "Default MinIO credentials detected in production"
             )
@@ -300,9 +273,7 @@ class CIConfigValidator:
         if not settings.DATABASE_URL:
             self.results["errors"].append("DATABASE_URL is not set")
             print("  ❌ DATABASE_URL is not set")
-        elif not settings.DATABASE_URL.startswith(
-            ("postgresql://", "postgresql+asyncpg://")
-        ):
+        elif not settings.DATABASE_URL.startswith(("postgresql://", "postgresql+asyncpg://")):
             self.results["errors"].append("DATABASE_URL must be a PostgreSQL URL")
             print("  ❌ DATABASE_URL must be a PostgreSQL URL")
         else:
@@ -311,9 +282,7 @@ class CIConfigValidator:
         # Test database validation
         if self.environment in ["test", "staging"]:
             if not settings.TEST_DATABASE_URL:
-                self.results["errors"].append(
-                    "TEST_DATABASE_URL is required for test/staging"
-                )
+                self.results["errors"].append("TEST_DATABASE_URL is required for test/staging")
                 print("  ❌ TEST_DATABASE_URL is required for test/staging")
             else:
                 print("  ✅ Test database URL is valid")
@@ -342,9 +311,7 @@ class CIConfigValidator:
                 print(f"  📁 Created upload directory: {upload_path}")
             else:
                 if not upload_path.is_dir():
-                    self.results["errors"].append(
-                        f"UPLOAD_PATH is not a directory: {upload_path}"
-                    )
+                    self.results["errors"].append(f"UPLOAD_PATH is not a directory: {upload_path}")
                     print(f"  ❌ UPLOAD_PATH is not a directory: {upload_path}")
                 else:
                     print("  ✅ Upload directory is valid")
@@ -366,9 +333,7 @@ class CIConfigValidator:
             print("  ❌ MAX_UPLOAD_SIZE must be positive")
         elif settings.MAX_UPLOAD_SIZE > 100 * 1024 * 1024:  # 100MB
             if self.environment == "production":
-                self.results["warnings"].append(
-                    "MAX_UPLOAD_SIZE is very large for production"
-                )
+                self.results["warnings"].append("MAX_UPLOAD_SIZE is very large for production")
                 print("  ⚠️  MAX_UPLOAD_SIZE is very large for production")
             else:
                 print("  ✅ Upload size is valid")
@@ -383,9 +348,7 @@ class CIConfigValidator:
             + len(self.results["environment_issues"])
         )
 
-        total_warnings = len(self.results["warnings"]) + len(
-            self.results["performance_issues"]
-        )
+        total_warnings = len(self.results["warnings"]) + len(self.results["performance_issues"])
 
         self.results["valid"] = total_errors == 0
         self.results["total_errors"] = total_errors
@@ -414,9 +377,7 @@ class CIConfigValidator:
                 print(f"  - {issue}")
 
         if self.results["environment_issues"]:
-            print(
-                f"\n🌍 Environment Issues ({len(self.results['environment_issues'])}):"
-            )
+            print(f"\n🌍 Environment Issues ({len(self.results['environment_issues'])}):")
             for issue in self.results["environment_issues"]:
                 print(f"  - {issue}")
 
@@ -426,18 +387,14 @@ class CIConfigValidator:
                 print(f"  - {warning}")
 
         if self.results["performance_issues"]:
-            print(
-                f"\n⚡ Performance Issues ({len(self.results['performance_issues'])}):"
-            )
+            print(f"\n⚡ Performance Issues ({len(self.results['performance_issues'])}):")
             for issue in self.results["performance_issues"]:
                 print(f"  - {issue}")
 
 
 def main():
     """Main entry point for the validation script."""
-    parser = argparse.ArgumentParser(
-        description="Validate SILA configuration for CI/CD"
-    )
+    parser = argparse.ArgumentParser(description="Validate SILA configuration for CI/CD")
     parser.add_argument(
         "--environment",
         "-e",
@@ -452,17 +409,13 @@ def main():
     parser.add_argument(
         "--output", "-o", choices=["text", "json"], default="text", help="Output format"
     )
-    parser.add_argument(
-        "--quiet", "-q", action="store_true", help="Quiet mode (minimal output)"
-    )
+    parser.add_argument("--quiet", "-q", action="store_true", help="Quiet mode (minimal output)")
 
     args = parser.parse_args()
 
     try:
         # Initialize validator
-        validator = CIConfigValidator(
-            environment=args.environment, strict_mode=args.strict
-        )
+        validator = CIConfigValidator(environment=args.environment, strict_mode=args.strict)
 
         # Run validation
         results = validator.validate_all()

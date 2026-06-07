@@ -1,21 +1,26 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/components/Auth/ProtectedRoute";
 import { AdminRoute } from "@/components/Auth/AdminRoute";
-import Login from "../pages/Login";
-import PortalSelection from "../pages/PortalSelection";
-import CitizenDashboard from "../pages/CitizenDashboard";
-import NotificationPage from "../pages/Notifications";
-import { MyDocuments } from "../pages/MyDocuments";
-import { UploadDocuments } from "../pages/UploadDocuments";
-import { AdminStatistics } from "../pages/AdminStatistics";
-import { SearchDocuments } from "../pages/SearchDocuments";
-import { SearchDeepResults } from "../pages/SearchDeepResults";
-import { AdminAuditViewer } from "../pages/AdminAuditViewer";
-import { AdminDashboard } from "../modules/admin/components/AdminDashboard";
-import { MeteorologyPage } from "../modules/meteorologia/pages/MeteorologyPage";
-import { IdentityPage } from "../pages/IdentityPage";
-import { BiometricEnrollmentPage } from "../pages/BiometricEnrollmentPage";
-import Unauthorized from "../pages/Unauthorized";
+import Login from "@/pages/Login";
+import PortalSelection from "@/pages/PortalSelection";
+import CitizenDashboard from "@/pages/CitizenDashboard";
+import NotificationPage from "@/pages/Notifications";
+import { MyDocuments } from "@/pages/MyDocuments";
+import { UploadDocuments } from "@/pages/UploadDocuments";
+import { AdminStatistics } from "@/pages/AdminStatistics";
+import { SearchDocuments } from "@/pages/SearchDocuments";
+import { SearchDeepResults } from "@/pages/SearchDeepResults";
+import { AdminAuditViewer } from "@/pages/AdminAuditViewer";
+import { AdminDashboard } from "@/modules/admin/components/AdminDashboard";
+import { MeteorologyPage } from "@/modules/meteorologia/pages/MeteorologyPage";
+import { IdentityPage } from "@/pages/IdentityPage";
+import { BiometricEnrollmentPage } from "@/pages/BiometricEnrollmentPage";
+import { EducacaoAdminLayout } from "@/modules/educacao/components/EducacaoAdminLayout";
+import { EducacaoDashboard } from "@/modules/educacao/components/EducacaoDashboard";
+import { WorkflowMonitor } from "@/modules/educacao/components/WorkflowMonitor";
+import { DelegacoesPanel } from "@/modules/educacao/components/DelegacoesPanel";
+import { ScopeChecker } from "@/modules/educacao/components/ScopeChecker";
+import Unauthorized from "@/pages/Unauthorized";
 
 export default function AppRoutes() {
   return (
@@ -44,6 +49,13 @@ export default function AppRoutes() {
         <Route path="/admin/statistics" element={<AdminStatistics />} />
         <Route path="/admin/audit" element={<AdminAuditViewer />} />
         <Route path="/meteorologia" element={<MeteorologyPage />} />
+        <Route path="/educacao/admin" element={<EducacaoAdminLayout />}>
+          <Route index element={<Navigate to="/educacao/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<EducacaoDashboard />} />
+          <Route path="workflows" element={<WorkflowMonitor />} />
+          <Route path="delegacoes" element={<DelegacoesPanel />} />
+          <Route path="scope" element={<ScopeChecker />} />
+        </Route>
       </Route>
 
       {/* Redirecionamento Padrão */}

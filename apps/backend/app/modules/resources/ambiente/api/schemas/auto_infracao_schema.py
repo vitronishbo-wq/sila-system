@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
+
+from apps.backend.app.modules.resources.ambiente.domain.enums import (
+    StatusAutoInfracao,
+    TipoAutoInfracao,
+)
+
 
 class AutoInfracaoCreate(BaseModel):
     numero_fiscalizacao: str
@@ -12,9 +19,11 @@ class AutoInfracaoCreate(BaseModel):
     fiscal_id: UUID
     valor_multa: Decimal | None = None
 
+
 class AutoInfracaoJulgamentoInput(BaseModel):
     mantido: bool
     observacoes: str | None = None
+
 
 class AutoInfracaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

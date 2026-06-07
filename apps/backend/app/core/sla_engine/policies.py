@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
-from sqlalchemy import and_, or_, select
+from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .models import SLAContext, SLAOverrideDB, SLAPolicyDB
@@ -30,7 +31,7 @@ async def load_policies(
     db: AsyncSession,
     service_id: str,
     context: SLAContext,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     now = datetime.utcnow()
     stmt = (
         select(SLAPolicyDB)
@@ -45,7 +46,7 @@ async def load_policies(
     result = await db.execute(stmt)
     rows = result.scalars().all()
 
-    scoped: List[Dict[str, Any]] = []
+    scoped: list[dict[str, Any]] = []
     for row in rows:
         if row.scope == "global":
             scoped.append(_row_to_dict(row))
@@ -67,7 +68,7 @@ async def load_overrides(
     db: AsyncSession,
     service_id: str,
     context: SLAContext,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     stmt = (
         select(SLAOverrideDB)
         .where(SLAOverrideDB.enabled.is_(True))
@@ -76,14 +77,18 @@ async def load_overrides(
     result = await db.execute(stmt)
     rows = result.scalars().all()
     ctx = _context_dict(context)
-    overrides: List[Dict[str, Any]] = []
+    overrides: list[dict[str, Any]] = []
     for row in rows:
         conditions = row.conditions or {}
         if not conditions:
             continue
         if conditions.get("service_id") and conditions.get("service_id") != service_id:
             continue
-        if all(_matches_condition(ctx.get(key), value) for key, value in conditions.items() if key in ctx):
+        if all(
+            _matches_condition(ctx.get(key), value)
+            for key, value in conditions.items()
+            if key in ctx
+        ):
             overrides.append(
                 {
                     "id": row.id,
@@ -97,7 +102,7 @@ async def load_overrides(
     return overrides
 
 
-def _row_to_dict(row: SLAPolicyDB) -> Dict[str, Any]:
+def _row_to_dict(row: SLAPolicyDB) -> dict[str, Any]:
     return {
         "id": row.id,
         "scope": row.scope,
@@ -114,11 +119,11 @@ class SLAPolicyManager:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def list(self) -> List[Dict[str, Any]]:
+    async def list(self) -> builtins.list[dict[str, Any]]:
         result = await self.db.execute(select(SLAPolicyDB))
         return [_row_to_dict(row) for row in result.scalars().all()]
 
-    async def list_overrides(self) -> List[Dict[str, Any]]:
+    async def list_overrides(self) -> builtins.list[dict[str, Any]]:
         result = await self.db.execute(select(SLAOverrideDB))
         rows = result.scalars().all()
         return [

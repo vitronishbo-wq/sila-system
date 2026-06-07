@@ -1,16 +1,18 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
-from enum import Enum
-from typing import Optional
+from enum import StrEnum
 from uuid import UUID
 
-class StatusMatricula(str, Enum):
-    PENDENTE = 'pendente'
-    ATIVA = 'ativa'
-    TRANSFERIDA = 'transferida'
-    CANCELADA = 'cancelada'
-    CONCLUIDA = 'concluida'
+
+class StatusMatricula(StrEnum):
+    PENDENTE = "pendente"
+    ATIVA = "ativa"
+    TRANSFERIDA = "transferida"
+    CANCELADA = "cancelada"
+    CONCLUIDA = "concluida"
+
 
 @dataclass
 class Matricula:
@@ -22,20 +24,20 @@ class Matricula:
     ano_letivo_id: UUID
     data_matricula: date
     status: StatusMatricula
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
 
     def ativar(self) -> None:
         if self.status != StatusMatricula.PENDENTE:
-            raise ValueError('Apenas matriculas pendentes podem ser ativadas')
+            raise ValueError("Apenas matriculas pendentes podem ser ativadas")
         self.status = StatusMatricula.ATIVA
 
     def transferir(self) -> None:
         if self.status != StatusMatricula.ATIVA:
-            raise ValueError('Apenas matriculas ativas podem ser transferidas')
+            raise ValueError("Apenas matriculas ativas podem ser transferidas")
         self.status = StatusMatricula.TRANSFERIDA
 
     def cancelar(self, motivo: str) -> None:
         if self.status in {StatusMatricula.CONCLUIDA, StatusMatricula.CANCELADA}:
-            raise ValueError(f'Matricula ja esta {self.status.value}')
+            raise ValueError(f"Matricula ja esta {self.status.value}")
         self.status = StatusMatricula.CANCELADA
         self.observacoes = motivo

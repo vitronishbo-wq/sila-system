@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusPlanoDiretor, TipoPlanoDiretor
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusPlanoDiretor,
+    TipoPlanoDiretor,
+)
+
 
 class PlanoDiretorCreate(BaseModel):
     nome: str
@@ -14,19 +21,24 @@ class PlanoDiretorCreate(BaseModel):
     municipio: str | None = None
     codigo_plano: str | None = None
 
+
 class PlanoDiretorAudienciaInput(BaseModel):
     participantes: int
+
 
 class PlanoDiretorAprovacaoCamaraInput(BaseModel):
     lei_aprovacao: str
     ano_aprovacao: int
 
+
 class PlanoDiretorSancaoInput(BaseModel):
     data_publicacao: date
+
 
 class PlanoDiretorValidadeInput(BaseModel):
     data_inicio: date
     data_fim: date
+
 
 class PlanoDiretorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

@@ -1,3 +1,19 @@
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.bus import EventBus, event_bus
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import DomainEvent, FaturaTelecomGeradaEvent, QualidadeServicoAferidaEvent, ReclamacaoTelecomAbertaEvent
-__all__ = ['EventBus', 'event_bus', 'DomainEvent', 'FaturaTelecomGeradaEvent', 'ReclamacaoTelecomAbertaEvent', 'QualidadeServicoAferidaEvent']
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.bus import (
+    EventBus,
+    event_bus,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.events.definitions import (
+    DomainEvent,
+    FaturaTelecomGeradaEvent,
+    QualidadeServicoAferidaEvent,
+    ReclamacaoTelecomAbertaEvent,
+)
+
+__all__ = [
+    "EventBus",
+    "event_bus",
+    "DomainEvent",
+    "FaturaTelecomGeradaEvent",
+    "ReclamacaoTelecomAbertaEvent",
+    "QualidadeServicoAferidaEvent",
+]

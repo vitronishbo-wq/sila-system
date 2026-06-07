@@ -16,16 +16,17 @@ Usage:
   python seed_angola_dpa_v3.py --check   # Apenas verificar estado atual
 """
 
-import psycopg2
 import argparse
 from pathlib import Path
+
+import psycopg2
 from dotenv import load_dotenv
 
 backend_root = Path(__file__).resolve().parent.parent.parent
 # PYTHONPATH should be configured via setup_dev_env.sh; do not mutate sys.path here.
 
 load_dotenv(backend_root / ".env")
-from app.core.settings import settings
+from apps.backend.app.core.settings import settings  # noqa: E402
 
 # ============================================================================
 # CONFIG
@@ -45,7 +46,7 @@ PROVINCE_CODES = {
     "Zaire": "ZAI",
     "Uíge": "UIG",
     "Bengo": "BGO",
-    "Icolo e Bengo": "ICB",    # Nova (de Bengo)
+    "Icolo e Bengo": "ICB",  # Nova (de Bengo)
     "Luanda": "LUA",
     "Cuanza-Norte": "CNO",
     "Cuanza-Sul": "CSU",
@@ -56,12 +57,12 @@ PROVINCE_CODES = {
     "Huambo": "HUA",
     "Bié": "BIE",
     "Moxico": "MOX",
-    "Moxico Leste": "MXL",    # Nova (de Moxico)
+    "Moxico Leste": "MXL",  # Nova (de Moxico)
     "Huíla": "HUI",
     "Namibe": "NAM",
     "Cunene": "CNN",
-    "Cubango": "CCU",          # Antiga "Cuando Cubango" (renomeada)
-    "Cuando": "CND",           # Nova (de Cuando Cubango)
+    "Cubango": "CCU",  # Antiga "Cuando Cubango" (renomeada)
+    "Cuando": "CND",  # Nova (de Cuando Cubango)
 }
 
 # Angola DPA 2024 - Todas as províncias com municípios e comunas
@@ -286,6 +287,7 @@ ANGOLA_DPA_2024 = {
 # DATABASE OPERATIONS
 # ============================================================================
 
+
 def ensure_closure_table(cur):
     """Cria a closure table se não existir (fallback para deploys sem migration)."""
     cur.execute("""
@@ -301,89 +303,101 @@ def ensure_closure_table(cur):
 def upsert_territory(cur, code: str, name: str, t_type: str, parent_id=None):
     """
     Insere ou atualiza um território. Retorna (id, was_inserted).
-    
+
     Args:
         cur: psycopg2 cursor
         code: Código único do território
         name: Nome do território
         t_type: Tipo (COUNTRY, PROVINCE, MUNICIPALITY, COMMUNE)
         parent_id: UUID do pai (None para country)
-    
+
     Returns:
         Tuple (uuid, bool): ID do território e se foi inserido (True) ou atualizado (False)
     """
     # Primeiro tenta buscar existente
     cur.execute("SELECT id FROM territories WHERE code = %s", (code,))
     row = cur.fetchone()
-    
+
     if row:
         # Já existe, atualiza nome se diferente
         existing_id = row[0]
-        cur.execute("""
+        cur.execute(
+            """
             UPDATE territories 
             SET name = %s 
             WHERE id = %s AND name != %s
-        """, (name, existing_id, name))
+        """,
+            (name, existing_id, name),
+        )
         return existing_id, False
     else:
         # Insere novo
-        cur.execute("""
+        cur.execute(
+            """
             INSERT INTO territories (id, code, name, type, parent_id)
             VALUES (gen_random_uuid(), %s, %s, %s, %s)
             RETURNING id;
-        """, (code, name, t_type, parent_id))
+        """,
+            (code, name, t_type, parent_id),
+        )
         return cur.fetchone()[0], True
 
 
 def maintain_closure(cur, descendant_id, parent_id=None):
     """
     Mantém a closure table para queries hierárquicas.
-    
+
     Args:
         cur: psycopg2 cursor
         descendant_id: UUID do nó
         parent_id: UUID do pai (None para raiz)
     """
     # Auto-referência (depth 0)
-    cur.execute("""
+    cur.execute(
+        """
         INSERT INTO territory_closure (ancestor_id, descendant_id, depth)
         VALUES (%s, %s, 0)
         ON CONFLICT DO NOTHING;
-    """, (descendant_id, descendant_id))
-    
+    """,
+        (descendant_id, descendant_id),
+    )
+
     # Links dos ancestrais do pai
     if parent_id:
-        cur.execute("""
+        cur.execute(
+            """
             INSERT INTO territory_closure (ancestor_id, descendant_id, depth)
             SELECT ancestor_id, %s, depth + 1
             FROM territory_closure
             WHERE descendant_id = %s
             ON CONFLICT DO NOTHING;
-        """, (descendant_id, parent_id))
+        """,
+            (descendant_id, parent_id),
+        )
 
 
 def get_current_stats(cur):
     """Retorna estatísticas atuais do banco."""
     stats = {}
-    
+
     cur.execute("SELECT COUNT(*) FROM territories WHERE type = 'COUNTRY'")
     stats["countries"] = cur.fetchone()[0]
-    
+
     cur.execute("SELECT COUNT(*) FROM territories WHERE type = 'PROVINCE'")
     stats["provinces"] = cur.fetchone()[0]
-    
+
     cur.execute("SELECT COUNT(*) FROM territories WHERE type = 'MUNICIPALITY'")
     stats["municipalities"] = cur.fetchone()[0]
-    
+
     cur.execute("SELECT COUNT(*) FROM territories WHERE type = 'COMMUNE'")
     stats["communes"] = cur.fetchone()[0]
-    
+
     try:
         cur.execute("SELECT COUNT(*) FROM territory_closure")
         stats["closure_rows"] = cur.fetchone()[0]
     except:
         stats["closure_rows"] = 0
-    
+
     return stats
 
 
@@ -391,23 +405,24 @@ def get_current_stats(cur):
 # SEED LOGIC
 # ============================================================================
 
+
 def seed_angola(check_only=False):
     """
     Seed principal: popula todos os territórios de Angola DPA 2024.
-    
+
     Args:
         check_only: Se True, apenas mostra estatísticas sem inserir
     """
     conn = psycopg2.connect(**DB_CONFIG)
     conn.autocommit = False
     cur = conn.cursor()
-    
+
     try:
         # Estatísticas pré-seed
         print("\n" + "=" * 70)
         print("🌍 SILA SEED v3: Angola DPA 2024 (Idempotente)")
         print("=" * 70)
-        
+
         print("\n📊 Estado atual do banco:")
         stats_before = get_current_stats(cur)
         print(f"   • Países:     {stats_before['countries']}")
@@ -415,18 +430,18 @@ def seed_angola(check_only=False):
         print(f"   • Municípios: {stats_before['municipalities']}")
         print(f"   • Comunas:    {stats_before['communes']}")
         print(f"   • Closure:    {stats_before['closure_rows']} relações")
-        
+
         if check_only:
             print("\n✅ Modo --check: nenhuma alteração feita.")
             return
-        
+
         # Garantir closure table existe
         ensure_closure_table(cur)
-        
+
         # Contadores
         inserted = {"country": 0, "province": 0, "municipality": 0, "commune": 0}
         updated = {"country": 0, "province": 0, "municipality": 0, "commune": 0}
-        
+
         # 1️⃣ País: Angola
         print("\n🌍 [1/4] Processando PAÍS...")
         country_id, was_new = upsert_territory(cur, "AO", "ANGOLA", "COUNTRY")
@@ -437,85 +452,97 @@ def seed_angola(check_only=False):
         else:
             updated["country"] += 1
             print(f"   ♻️  ANGOLA já existe (ID: {country_id})")
-        
+
         # 2️⃣ Províncias
         print("\n📍 [2/4] Processando PROVÍNCIAS...")
         province_ids = {}
-        
+
         for prov_name in ANGOLA_DPA_2024.keys():
             p_code = PROVINCE_CODES.get(prov_name, prov_name[:3].upper())
             p_id, was_new = upsert_territory(cur, p_code, prov_name, "PROVINCE", country_id)
             maintain_closure(cur, p_id, country_id)
             province_ids[prov_name] = p_id
-            
+
             if was_new:
                 inserted["province"] += 1
                 print(f"   ✅ {prov_name} ({p_code})")
             else:
                 updated["province"] += 1
                 print(f"   ♻️  {prov_name} ({p_code})")
-        
+
         # 3️⃣ Municípios
         print("\n🏙️  [3/4] Processando MUNICÍPIOS...")
         municipality_ids = {}
-        
+
         for prov_name, municipalities in ANGOLA_DPA_2024.items():
             p_id = province_ids[prov_name]
             p_code = PROVINCE_CODES.get(prov_name, prov_name[:3].upper())
-            
+
             for mun_name in municipalities.keys():
                 m_code = f"{p_code}-{mun_name[:3].upper()}"
                 m_id, was_new = upsert_territory(cur, m_code, mun_name, "MUNICIPALITY", p_id)
                 maintain_closure(cur, m_id, p_id)
                 municipality_ids[(prov_name, mun_name)] = m_id
-                
+
                 if was_new:
                     inserted["municipality"] += 1
-        
-        print(f"   Inseridos: {inserted['municipality']}, Existentes: {sum(1 for k in municipality_ids) - inserted['municipality']}")
-        
+
+        print(
+            f"   Inseridos: {inserted['municipality']}, Existentes: {sum(1 for k in municipality_ids) - inserted['municipality']}"
+        )
+
         # 4️⃣ Comunas
         print("\n🏘️  [4/4] Processando COMUNAS...")
-        
+
         for prov_name, municipalities in ANGOLA_DPA_2024.items():
             p_code = PROVINCE_CODES.get(prov_name, prov_name[:3].upper())
-            
+
             for mun_name, communes in municipalities.items():
                 m_id = municipality_ids[(prov_name, mun_name)]
                 m_code = f"{p_code}-{mun_name[:3].upper()}"
-                
+
                 for com_name in communes:
                     c_code = f"{m_code}-{com_name[:3].upper()}"
                     com_id, was_new = upsert_territory(cur, c_code, com_name, "COMMUNE", m_id)
                     maintain_closure(cur, com_id, m_id)
-                    
+
                     if was_new:
                         inserted["commune"] += 1
-        
+
         print(f"   Comunas processadas: {inserted['commune']} novas")
-        
+
         # Commit
         conn.commit()
-        
+
         # Estatísticas pós-seed
         print("\n" + "=" * 70)
         print("📊 RESULTADO FINAL:")
         print("=" * 70)
-        
+
         stats_after = get_current_stats(cur)
         print(f"\n   {'Tipo':<15} {'Antes':<10} {'Depois':<10} {'Novos':<10}")
-        print(f"   {'-'*45}")
-        print(f"   {'Países':<15} {stats_before['countries']:<10} {stats_after['countries']:<10} {inserted['country']:<10}")
-        print(f"   {'Províncias':<15} {stats_before['provinces']:<10} {stats_after['provinces']:<10} {inserted['province']:<10}")
-        print(f"   {'Municípios':<15} {stats_before['municipalities']:<10} {stats_after['municipalities']:<10} {inserted['municipality']:<10}")
-        print(f"   {'Comunas':<15} {stats_before['communes']:<10} {stats_after['communes']:<10} {inserted['commune']:<10}")
-        print(f"   {'Closure':<15} {stats_before['closure_rows']:<10} {stats_after['closure_rows']:<10}")
-        
+        print(f"   {'-' * 45}")
+        print(
+            f"   {'Países':<15} {stats_before['countries']:<10} {stats_after['countries']:<10} {inserted['country']:<10}"
+        )
+        print(
+            f"   {'Províncias':<15} {stats_before['provinces']:<10} {stats_after['provinces']:<10} {inserted['province']:<10}"
+        )
+        print(
+            f"   {'Municípios':<15} {stats_before['municipalities']:<10} {stats_after['municipalities']:<10} {inserted['municipality']:<10}"
+        )
+        print(
+            f"   {'Comunas':<15} {stats_before['communes']:<10} {stats_after['communes']:<10} {inserted['commune']:<10}"
+        )
+        print(
+            f"   {'Closure':<15} {stats_before['closure_rows']:<10} {stats_after['closure_rows']:<10}"
+        )
+
         total_new = sum(inserted.values())
         print(f"\n   ✅ Total de novos registros: {total_new}")
-        print(f"   ✅ Seed completado com sucesso!")
+        print("   ✅ Seed completado com sucesso!")
         print("=" * 70 + "\n")
-        
+
     except Exception as e:
         conn.rollback()
         print(f"\n❌ ERRO: {e}")
@@ -530,12 +557,13 @@ def show_hierarchy(limit=50):
     """Mostra os primeiros N registros da hierarquia."""
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor()
-    
+
     print("\n" + "=" * 70)
     print(f"📋 HIERARQUIA DE TERRITÓRIOS (primeiros {limit} registros)")
     print("=" * 70)
-    
-    cur.execute("""
+
+    cur.execute(
+        """
         SELECT t.code, t.name, t.type, p.name as parent_name
         FROM territories t
         LEFT JOIN territories p ON t.parent_id = p.id
@@ -548,16 +576,18 @@ def show_hierarchy(limit=50):
             END,
             t.name
         LIMIT %s
-    """, (limit,))
-    
+    """,
+        (limit,),
+    )
+
     print(f"\n   {'Código':<20} {'Nome':<30} {'Tipo':<15} {'Pai':<20}")
-    print(f"   {'-'*85}")
-    
+    print(f"   {'-' * 85}")
+
     for row in cur.fetchall():
         code, name, t_type, parent = row
         parent_display = parent or "-"
         print(f"   {code:<20} {name:<30} {t_type:<15} {parent_display:<20}")
-    
+
     cur.close()
     conn.close()
     print()
@@ -566,6 +596,7 @@ def show_hierarchy(limit=50):
 # ============================================================================
 # MAIN
 # ============================================================================
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -576,13 +607,15 @@ Exemplos:
   python seed_angola_dpa_v3.py          # Seed completo
   python seed_angola_dpa_v3.py --check  # Apenas mostra estatísticas
   python seed_angola_dpa_v3.py --show   # Mostra hierarquia após seed
-        """
+        """,
     )
     parser.add_argument("--check", action="store_true", help="Apenas verificar estado atual")
     parser.add_argument("--show", action="store_true", help="Mostrar hierarquia após seed")
-    parser.add_argument("--limit", type=int, default=50, help="Limite de registros a mostrar (padrão: 50)")
+    parser.add_argument(
+        "--limit", type=int, default=50, help="Limite de registros a mostrar (padrão: 50)"
+    )
     args = parser.parse_args()
-    
+
     if args.check:
         seed_angola(check_only=True)
     else:

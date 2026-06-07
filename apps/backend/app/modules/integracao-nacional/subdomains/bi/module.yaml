@@ -1,0 +1,28 @@
+module: bi
+name: Bilhete de Identidade
+code: bi
+description: Verificacao e consulta de Bilhete de Identidade nacional
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+parent: integracao-nacional
+exposes:
+  api_routers:
+  - prefix: /integracao-nacional/bi
+    endpoints:
+    - POST /integracao-nacional/bi/validar (Validar BI)
+    - POST /integracao-nacional/bi/consultar (Consultar dados do BI)
+  public_models:
+  - BiVerificationResult
+  - BiConsultaResult
+  events_published:
+  - BiVerificado
+  - BiConsultado
+requires:
+  domains:
+  - identity
+  - xroad
+  core_services:
+  - database_session
+subdomains: []

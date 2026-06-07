@@ -1,12 +1,18 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional
-from apps.backend.app.modules.intelligence.defesa_consumidor.domain.enums import CategoriaReclamacao, Prioridade, StatusReclamacao
+
+from apps.backend.app.modules.intelligence.defesa_consumidor.domain.enums import (
+    CategoriaReclamacao,
+    Prioridade,
+    StatusReclamacao,
+)
+
 
 @dataclass
 class Reclamacao:
-    id: Optional[int]
+    id: int | None
     protocolo: str
     consumidor_id: int
     estabelecimento_id: int
@@ -15,15 +21,15 @@ class Reclamacao:
     categoria: CategoriaReclamacao
     status: StatusReclamacao = StatusReclamacao.ABERTA
     prioridade: Prioridade = Prioridade.MEDIA
-    valor_reclamado: Optional[float] = None
+    valor_reclamado: float | None = None
     data_abertura: datetime = field(default_factory=datetime.utcnow)
-    data_resolucao: Optional[datetime] = None
+    data_resolucao: datetime | None = None
     resolvido: bool = False
-    descricao_resposta: Optional[str] = None
+    descricao_resposta: str | None = None
 
-    def finalizar(self, resolvido: bool=True, descricao_resposta: Optional[str]=None) -> None:
+    def finalizar(self, resolvido: bool = True, descricao_resposta: str | None = None) -> None:
         if self.resolvido:
-            raise ValueError('Reclamacao ja esta finalizada')
+            raise ValueError("Reclamacao ja esta finalizada")
         self.resolvido = resolvido
         self.status = StatusReclamacao.ENCERRADA
         self.data_resolucao = datetime.utcnow()
@@ -31,7 +37,7 @@ class Reclamacao:
 
     def escalar_prioridade(self) -> None:
         if self.resolvido:
-            raise ValueError('Nao e possivel escalar reclamacao finalizada')
+            raise ValueError("Nao e possivel escalar reclamacao finalizada")
         ordem = [Prioridade.BAIXA, Prioridade.MEDIA, Prioridade.ALTA, Prioridade.CRITICA]
         idx = ordem.index(self.prioridade)
         if idx < len(ordem) - 1:

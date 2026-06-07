@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 
-async def retry_async(func: Callable, *args, retries: int=3, delay_seconds: float=0.2, **kwargs):
+
+async def retry_async(
+    func: Callable, *args, retries: int = 3, delay_seconds: float = 0.2, **kwargs
+):
     last_error = None
     for attempt in range(retries):
         try:

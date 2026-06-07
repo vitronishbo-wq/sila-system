@@ -1,9 +1,12 @@
-from typing import List, Optional
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from apps.backend.app.modules.payment.domain.models.payment import Payment
-from apps.backend.app.modules.payment.domain.ports.payment_repository_port import PaymentRepositoryPort
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from ...domain.models.payment import Payment
+from apps.backend.app.modules.payment.domain.ports.payment_repository_port import (
+    PaymentRepositoryPort,
+)
 from apps.backend.app.modules.payment.infrastructure.orm.payment_model import PaymentModel
+
 
 class SQLAlchemyPaymentRepository(PaymentRepositoryPort):
     """Adapter: SQLAlchemy implementation of PaymentRepositoryPort."""
@@ -25,35 +28,42 @@ class SQLAlchemyPaymentRepository(PaymentRepositoryPort):
         await self.session.flush()
         return payment
 
-    async def get_by_id(self, payment_id: str) -> Optional[Payment]:
+    async def get_by_id(self, payment_id: str) -> Payment | None:
         """Retrieve payment by ID."""
         stmt = select(PaymentModel).where(PaymentModel.id == payment_id)
         result = await self.session.execute(stmt)
         model = result.scalar_one_or_none()
         return model.to_domain() if model else None
 
-    async def get_by_reference(self, reference: str) -> Optional[Payment]:
+    async def get_by_reference(self, reference: str) -> Payment | None:
         """Retrieve payment by reference."""
         stmt = select(PaymentModel).where(PaymentModel.reference == reference)
         result = await self.session.execute(stmt)
         model = result.scalar_one_or_none()
         return model.to_domain() if model else None
 
-    async def list_by_citizen(self, citizen_id: str, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_by_citizen(
+        self, citizen_id: str, limit: int = 100, offset: int = 0
+    ) -> list[Payment]:
         """List payments for a citizen."""
-        stmt = select(PaymentModel).where(PaymentModel.citizen_id == citizen_id).limit(limit).offset(offset)
+        stmt = (
+            select(PaymentModel)
+            .where(PaymentModel.citizen_id == citizen_id)
+            .limit(limit)
+            .offset(offset)
+        )
         result = await self.session.execute(stmt)
         models = result.scalars().all()
         return [m.to_domain() for m in models]
 
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_by_status(self, status: str, limit: int = 100, offset: int = 0) -> list[Payment]:
         """List payments by status."""
         stmt = select(PaymentModel).where(PaymentModel.status == status).limit(limit).offset(offset)
         result = await self.session.execute(stmt)
         models = result.scalars().all()
         return [m.to_domain() for m in models]
 
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Payment]:
         """List all payments."""
         stmt = select(PaymentModel).limit(limit).offset(offset)
         result = await self.session.execute(stmt)

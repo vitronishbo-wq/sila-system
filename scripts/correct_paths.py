@@ -4,10 +4,8 @@ SILA System - Path Correction Utility
 Corrige paths relativos e absolutos em scripts Python e Shell
 """
 
-import os
 import re
 from pathlib import Path
-from typing import List, Dict, Tuple
 
 # Padrões de paths problemáticos
 PATH_PATTERNS = {
@@ -63,7 +61,7 @@ def get_parent_level(script_path: Path, target: str) -> int:
 
 def get_correct_backend_path(match, script_path: Path) -> str:
     """Gera o caminho correto para o backend a partir de qualquer script"""
-    project_root = get_project_root()
+    get_project_root()
     parent_levels = get_parent_level(script_path, "apps/backend")
 
     return f"""# Adicionar backend ao Python path
@@ -84,12 +82,12 @@ def fix_relative_dots(match, script_path: Path) -> str:
     return f'str(Path(__file__).resolve().parents[{parent_levels}] / "{target_path}")'
 
 
-def scan_python_file(file_path: Path) -> List[Dict]:
+def scan_python_file(file_path: Path) -> list[dict]:
     """Escaneia um arquivo Python procurando problemas de path"""
     issues = []
 
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             content = f.read()
 
         # Verificar cada padrão
@@ -116,7 +114,7 @@ def scan_python_file(file_path: Path) -> List[Dict]:
 def fix_python_file(file_path: Path, dry_run: bool = True) -> bool:
     """Corrige paths em um arquivo Python"""
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             original_content = f.read()
 
         modified_content = original_content
@@ -149,9 +147,7 @@ def fix_python_file(file_path: Path, dry_run: bool = True) -> bool:
 
                 print(f"✅ Corrigido: {file_path.relative_to(get_project_root())}")
             else:
-                print(
-                    f"🔍 Mudanças necessárias em: {file_path.relative_to(get_project_root())}"
-                )
+                print(f"🔍 Mudanças necessárias em: {file_path.relative_to(get_project_root())}")
 
             for change in changes_made:
                 print(change)
@@ -165,8 +161,10 @@ def fix_python_file(file_path: Path, dry_run: bool = True) -> bool:
         return False
 
 
-def scan_directory(directory: Path, extensions: List[str] = [".py"]) -> List[Path]:
+def scan_directory(directory: Path, extensions: list[str] = None) -> list[Path]:
     """Escaneia diretório recursivamente procurando arquivos"""
+    if extensions is None:
+        extensions = [".py"]
     files = []
 
     for ext in extensions:
@@ -175,7 +173,7 @@ def scan_directory(directory: Path, extensions: List[str] = [".py"]) -> List[Pat
     return files
 
 
-def generate_report(all_issues: List[Dict]) -> str:
+def generate_report(all_issues: list[dict]) -> str:
     """Gera relatório de problemas encontrados"""
     if not all_issues:
         return "✅ Nenhum problema de path encontrado!"
@@ -212,15 +210,11 @@ def main():
     """Função principal"""
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Corrige paths em scripts do SILA System"
-    )
+    parser = argparse.ArgumentParser(description="Corrige paths em scripts do SILA System")
     parser.add_argument(
         "--scan-only", action="store_true", help="Apenas escanear, não fazer correções"
     )
-    parser.add_argument(
-        "--fix", action="store_true", help="Aplicar correções (cria backups)"
-    )
+    parser.add_argument("--fix", action="store_true", help="Aplicar correções (cria backups)")
     parser.add_argument(
         "--directories",
         nargs="+",

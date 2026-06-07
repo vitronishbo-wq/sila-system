@@ -7,7 +7,6 @@ Create Date: 2026-02-28 02:35:00.000000
 
 from alembic import op
 
-
 revision = "20260228_002_catalog_schema"
 down_revision = "20260228_001_merge_legacy_heads"
 branch_labels = None
@@ -69,7 +68,9 @@ def upgrade():
         "ALTER TABLE IF EXISTS services "
         "ADD COLUMN IF NOT EXISTS visibility VARCHAR(20) NOT NULL DEFAULT 'PUBLIC'"
     )
-    op.execute("ALTER TABLE IF EXISTS services ADD COLUMN IF NOT EXISTS version INTEGER NOT NULL DEFAULT 1")
+    op.execute(
+        "ALTER TABLE IF EXISTS services ADD COLUMN IF NOT EXISTS version INTEGER NOT NULL DEFAULT 1"
+    )
     op.execute(
         "ALTER TABLE IF EXISTS services ADD COLUMN IF NOT EXISTS business_priority INTEGER NOT NULL DEFAULT 100"
     )
@@ -79,7 +80,9 @@ def upgrade():
     op.execute("CREATE INDEX IF NOT EXISTS ix_services_module_id ON services (module_id)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_services_territory_id ON services (territory_id)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_services_visibility ON services (visibility)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_services_module_active ON services (module_id, is_active)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_services_module_active ON services (module_id, is_active)"
+    )
 
     op.execute(
         """

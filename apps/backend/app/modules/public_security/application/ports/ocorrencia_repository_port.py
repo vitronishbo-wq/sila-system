@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusOcorrencia, TipoOcorrencia
 from apps.backend.app.modules.public_security.domain.models.ocorrencia import Ocorrencia
 
-class OcorrenciaRepositoryPort(ABC):
 
+class OcorrenciaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, ocorrencia: Ocorrencia) -> Ocorrencia:
         raise NotImplementedError

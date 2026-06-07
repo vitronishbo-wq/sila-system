@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import VistoRepositoryPort
+
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.visto_repository_port import (
+    VistoRepositoryPort,
+)
 from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.visto import Visto
 
-class InMemoryVistoRepository(VistoRepositoryPort):
 
+class InMemoryVistoRepository(VistoRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Visto] = {}
 

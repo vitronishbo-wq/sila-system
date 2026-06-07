@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from apps.backend.app.core.bridges.emprego_bridge import CandidatoRepositoryPort
 from apps.backend.app.modules.society.seguranca_social.application.ports import EmpregoServicePort
+
 
 class EmpregoServiceAdapter(EmpregoServicePort):
     """Reuse emprego repository to validate desempregado eligibility."""

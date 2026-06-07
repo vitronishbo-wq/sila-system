@@ -3,21 +3,18 @@ Unit tests for Payment API Endpoints
 Uses a mock test app to avoid import path conflicts between test context and runtime context.
 """
 
+from datetime import UTC, datetime, timezone
+
 import pytest
 import pytest_asyncio
-from unittest.mock import AsyncMock, MagicMock, patch
-from datetime import datetime, timezone
-from decimal import Decimal
-
 from fastapi import FastAPI, status
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
 
 from apps.backend.app.modules.payment.domain.enums import (
-    PaymentStatus,
     PaymentMethod,
+    PaymentStatus,
     TransactionType,
 )
-
 
 # ================================================
 # Create test app with mock endpoints
@@ -36,21 +33,29 @@ async def status_endpoint():
     return {
         "status": "healthy",
         "service": "payment",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
     }
 
 
 @test_app.post("/api/v1/payment/", status_code=201)
 async def create_payment(payment: dict = None):
     # Validate required fields
-    if not payment or "amount" not in payment or "currency" not in payment or "method" not in payment:
+    if (
+        not payment
+        or "amount" not in payment
+        or "currency" not in payment
+        or "method" not in payment
+    ):
         from fastapi import HTTPException
+
         raise HTTPException(status_code=422, detail="Missing required fields")
     if payment.get("amount", 0) < 0:
         from fastapi import HTTPException
+
         raise HTTPException(status_code=422, detail="Invalid amount")
     if payment.get("method") not in [m.value for m in PaymentMethod]:
         from fastapi import HTTPException
+
         raise HTTPException(status_code=422, detail="Invalid method")
     return {
         "id": 1,
@@ -61,8 +66,8 @@ async def create_payment(payment: dict = None):
         "reference": f"PAY-{payment['method']}",
         "description": payment.get("description", ""),
         "metadata": payment.get("metadata", {}),
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
+        "updated_at": datetime.now(UTC).isoformat(),
     }
 
 
@@ -70,6 +75,7 @@ async def create_payment(payment: dict = None):
 async def get_payment(payment_id: int):
     if payment_id == 999:
         from fastapi import HTTPException
+
         raise HTTPException(status_code=404, detail="Payment not found")
     return {
         "id": payment_id,
@@ -80,13 +86,15 @@ async def get_payment(payment_id: int):
         "reference": "PAY-123",
         "description": "Test payment",
         "metadata": {"order_id": "123"},
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
+        "updated_at": datetime.now(UTC).isoformat(),
     }
 
 
 @test_app.get("/api/v1/payment/")
-async def list_payments(status_filter: str = None, method: str = None, skip: int = 0, limit: int = 100):
+async def list_payments(
+    status_filter: str = None, method: str = None, skip: int = 0, limit: int = 100
+):
     return [
         {
             "id": 1,
@@ -97,8 +105,8 @@ async def list_payments(status_filter: str = None, method: str = None, skip: int
             "reference": "PAY-123",
             "description": "Test payment 1",
             "metadata": {},
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "created_at": datetime.now(UTC).isoformat(),
+            "updated_at": datetime.now(UTC).isoformat(),
         },
         {
             "id": 2,
@@ -109,9 +117,9 @@ async def list_payments(status_filter: str = None, method: str = None, skip: int
             "reference": "PAY-456",
             "description": "Test payment 2",
             "metadata": {},
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-        }
+            "created_at": datetime.now(UTC).isoformat(),
+            "updated_at": datetime.now(UTC).isoformat(),
+        },
     ]
 
 
@@ -119,6 +127,7 @@ async def list_payments(status_filter: str = None, method: str = None, skip: int
 async def get_transaction(transaction_id: int):
     if transaction_id == 999:
         from fastapi import HTTPException
+
         raise HTTPException(status_code=404, detail="Transaction not found")
     return {
         "id": transaction_id,
@@ -130,8 +139,8 @@ async def get_transaction(transaction_id: int):
         "reference": "TX-123",
         "provider_reference": "PROV-123",
         "metadata": {},
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
+        "updated_at": datetime.now(UTC).isoformat(),
     }
 
 
@@ -143,9 +152,7 @@ async def get_transaction(transaction_id: int):
 @pytest_asyncio.fixture
 async def async_client():
     """Async client fixture for API tests."""
-    async with AsyncClient(
-        transport=ASGITransport(app=test_app), base_url="http://test"
-    ) as client:
+    async with AsyncClient(transport=ASGITransport(app=test_app), base_url="http://test") as client:
         yield client
 
 

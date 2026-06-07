@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusSLA,
+    TipoServico,
+)
+
 
 class SLACreate(BaseModel):
     operadora_id: UUID
@@ -18,8 +25,10 @@ class SLACreate(BaseModel):
     data_fim: date | None = None
     observacoes: str | None = None
 
+
 class SLAStatusUpdate(BaseModel):
     status: StatusSLA
+
 
 class SLAResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

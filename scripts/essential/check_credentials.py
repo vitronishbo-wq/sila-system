@@ -3,11 +3,9 @@
 
 This script scans the codebase for any credentials that don't match the allowed patterns.
 """
-import os
 import re
 import sys
 from pathlib import Path
-from typing import List, Tuple, Optional
 
 # Allowed credentials
 ALLOWED_CREDENTIALS = {
@@ -55,7 +53,7 @@ def is_excluded(path: Path) -> bool:
     return any(path.name == exclude or path.suffix.lstrip('.') == exclude.lstrip('*')
         for exclude in EXCLUDED_PATHS) or any(part.startswith('.') and part not in ('.github', '.vscode') for part in path.parts)
 
-def check_file(file_path: Path) -> List[Tuple[int, str, str]]:
+def check_file(file_path: Path) -> list[tuple[int, str, str]]:
     """Check a single file for credential violations."""
     violations = []
 
@@ -71,11 +69,11 @@ def check_file(file_path: Path) -> List[Tuple[int, str, str]]:
                 if cred_type == 'db_url':
                     url = match.group(0)
                     if 'postgres:Truman1*Marcelo1*@' not in url and 'os.getenv("DATABASE_URL")' not in url:
-                        violations.append((line_num, cred_type, line.strip()
+                        violations.append((line_num, cred_type, line.strip()))
                 else:
                     value = match.group(3) if len(match.groups()) >= 3 else match.group(1)
                     if value and value.lower() not in (v.lower() for v in ALLOWED_CREDENTIALS.values()):
-                        violations.append((line_num, cred_type, line.strip()
+                        violations.append((line_num, cred_type, line.strip()))
 
     return violations
 

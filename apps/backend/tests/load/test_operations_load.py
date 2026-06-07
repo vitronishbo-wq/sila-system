@@ -12,13 +12,11 @@ from uuid import UUID, uuid4
 
 import httpx
 import pytest
-from fastapi import FastAPI
-from fastapi import Request
+from apps.backend.app.api.deps import get_identity_context
+from fastapi import FastAPI, Request
 
-from app.api.deps import get_identity_context
 from apps.backend.app.core.identity import IdentityContext
 from apps.backend.app.modules.intelligence.operations.api.router import router as operations_router
-
 
 pytestmark = pytest.mark.load
 
@@ -54,10 +52,14 @@ async def _get_first_service_id(client: httpx.AsyncClient) -> str:
     return services[0]["id"]
 
 
-async def _create_order_flow(client: httpx.AsyncClient, service_id: str, citizen_id: UUID) -> tuple[str, str]:
+async def _create_order_flow(
+    client: httpx.AsyncClient, service_id: str, citizen_id: UUID
+) -> tuple[str, str]:
     headers = {"x-citizen-id": str(citizen_id)}
 
-    order_response = await client.post("/api/v1/orders", json={"service_id": service_id}, headers=headers)
+    order_response = await client.post(
+        "/api/v1/orders", json={"service_id": service_id}, headers=headers
+    )
     assert order_response.status_code == 201, order_response.text
     order_id = order_response.json()["id"]
 
@@ -164,7 +166,9 @@ async def test_confirm_payment_contention_multi_worker_real_db_lock():
             )
             assert order_response.status_code == 200, order_response.text
             payload = order_response.json()
-            paid_transitions = [h for h in payload.get("status_history", []) if h.get("to") == "PAID"]
+            paid_transitions = [
+                h for h in payload.get("status_history", []) if h.get("to") == "PAID"
+            ]
             assert len(paid_transitions) == 1, payload.get("status_history")
     finally:
         app.dependency_overrides.pop(get_identity_context, None)

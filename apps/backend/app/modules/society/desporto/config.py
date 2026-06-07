@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class DesportoConfig:
     outbox_batch_size: int = 100

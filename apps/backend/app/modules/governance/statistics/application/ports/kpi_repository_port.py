@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
 from apps.backend.app.modules.governance.statistics.domain.models.kpi import KPI
 
-class KPIRepositoryPort(ABC):
 
+class KPIRepositoryPort(ABC):
     @abstractmethod
     async def create(self, kpi: KPI) -> KPI:
         raise NotImplementedError
@@ -18,11 +20,11 @@ class KPIRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> list[KPI]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[KPI]:
         raise NotImplementedError
 
     @abstractmethod
-    async def list_by_status(self, status: StatusKPI, limit: int=100) -> list[KPI]:
+    async def list_by_status(self, status: StatusKPI, limit: int = 100) -> list[KPI]:
         raise NotImplementedError
 
     @abstractmethod

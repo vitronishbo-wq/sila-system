@@ -15,5 +15,5 @@ if not (
 
 
 def test_commercial_schemas_present():
-    assert getattr(comm_schemas, "CommercialLicenseCreate") is not None
-    assert getattr(comm_schemas, "CommercialLicenseResponse") is not None
+    assert comm_schemas.CommercialLicenseCreate is not None
+    assert comm_schemas.CommercialLicenseResponse is not None

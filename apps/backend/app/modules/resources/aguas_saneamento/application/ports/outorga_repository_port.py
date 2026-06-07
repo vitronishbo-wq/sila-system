@@ -1,11 +1,16 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
+
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import (
+    StatusOutorga,
+    TipoOutorga,
+)
 from apps.backend.app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
 
-class OutorgaRepositoryPort(ABC):
 
+class OutorgaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Outorga) -> Outorga:
         pass
@@ -15,7 +20,13 @@ class OutorgaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, requerente_id: UUID | None=None, tipo: TipoOutorga | None=None, status: StatusOutorga | None=None) -> list[Outorga]:
+    async def list(
+        self,
+        *,
+        requerente_id: UUID | None = None,
+        tipo: TipoOutorga | None = None,
+        status: StatusOutorga | None = None,
+    ) -> list[Outorga]:
         pass
 
     @abstractmethod

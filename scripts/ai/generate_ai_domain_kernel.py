@@ -4,20 +4,18 @@
 from __future__ import annotations
 
 import argparse
-from collections import defaultdict
-from datetime import datetime, timezone
-from pathlib import Path
 import sys
-
+from collections import defaultdict
+from datetime import UTC, datetime
+from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.module_registry import iter_modules  # noqa: E402
+from apps.backend.app.core.module_registry import iter_modules  # noqa: E402
 from generate_architecture_graph import parse_sectioned_lists  # noqa: E402
-
 
 DOMAIN_METADATA: dict[str, tuple[str, str]] = {
     "governance": (
@@ -203,9 +201,7 @@ def build_domain_kernel(
     registry_order = [spec.name for spec in iter_modules(enabled_only=False)]
     module_names = [name for name in registry_order if name in modules_graph]
     module_set = set(module_names)
-    module_names.extend(
-        sorted(name for name in modules_graph.keys() if name not in module_set)
-    )
+    module_names.extend(sorted(name for name in modules_graph.keys() if name not in module_set))
     module_details: dict[str, dict[str, object]] = {}
 
     for module_name in module_names:
@@ -220,7 +216,7 @@ def build_domain_kernel(
         domain_modules[domain] = sorted(domain_modules[domain])
 
     cross_domain: dict[tuple[str, str], int] = defaultdict(int)
-    for source, data in modules_graph.items():
+    for _source, data in modules_graph.items():
         source_domain = str(data.get("domain_group", "unknown"))
         deps = data.get("depends_on", [])
         if not isinstance(deps, list):
@@ -281,7 +277,9 @@ def build_domain_kernel(
             sample_use_cases.extend(module_details[module_name]["use_cases"][:2])  # type: ignore[index]
         entity_preview = ", ".join(sample_entities[:4]) if sample_entities else "n/a"
         use_case_preview = ", ".join(sample_use_cases[:4]) if sample_use_cases else "n/a"
-        lines.append(f"Sinais do dominio: entidades `{entity_preview}`; use cases `{use_case_preview}`.")
+        lines.append(
+            f"Sinais do dominio: entidades `{entity_preview}`; use cases `{use_case_preview}`."
+        )
         lines.append("")
         lines.append("---")
         lines.append("")
@@ -364,7 +362,7 @@ def build_domain_kernel(
     lines.append(f"- Cobertura ARCHITECTURE.md: **{doc_coverage}/{module_count}**")
     lines.append(f"- Relacoes cross-domain: **{cross_domain_edges}**")
     lines.append("- Arquitetura: **DDD Modular**")
-    lines.append("- Indice arquitetural: `ARCHITECTURE_INDEX.yaml`")
+    lines.append("- Indice arquitetural: `docs/architecture/ARCHITECTURE_INDEX.yaml`")
     lines.append("- Graph: `docs/AI_ARCHITECTURE_GRAPH.yaml`")
     lines.append("")
     lines.append(
@@ -391,7 +389,7 @@ def render_visual_report(
     summary: dict[str, object],
     output_path: Path,
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     domain_modules = summary.get("domain_modules", {})
     matrix = summary.get("cross_domain_matrix", {})
     if not isinstance(domain_modules, dict):
@@ -434,7 +432,7 @@ def render_visual_report(
         source, target = relation.split("->", 1)
         lines.append(f"  {source} -->|{count}| {target}")
     if not matrix:
-        lines.append("  A[\"No cross-domain edges\"]")
+        lines.append('  A["No cross-domain edges"]')
     lines.append("```")
     lines.append("")
     return "\n".join(lines)

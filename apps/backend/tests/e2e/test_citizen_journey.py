@@ -1,9 +1,11 @@
 """Testes E2E completos - Fluxo nacional do cidadão SILA"""
 
-import pytest
 import asyncio
-from uuid import uuid4
 from datetime import datetime, timedelta
+from uuid import uuid4
+
+import pytest
+
 
 # Fixtures
 @pytest.fixture(scope="session")
@@ -24,11 +26,11 @@ async def auth_token() -> str:
 @pytest.mark.asyncio
 class TestCitizenJourney:
     """Fluxo completo do cidadão: nascimento → BI → saúde → finanças → pagamento → serviço"""
-    
+
     async def test_01_citizen_birth_registration(self):
         """✅ FASE 1: Registo de Nascimento"""
         print("\n📝 Teste 1: Registo de Nascimento")
-        
+
         # Dados de teste
         birth_data = {
             "name": "Maria Silva Santos",
@@ -37,131 +39,131 @@ class TestCitizenJourney:
             "mother_name": "Ana Silva",
             "father_name": "João Silva",
             "hospital": "Hospital Geral de Luanda",
-            "nationality": "Angolana"
+            "nationality": "Angolana",
         }
-        
+
         # Verificar que os dados são válidos
         assert birth_data["name"] != ""
         assert birth_data["birth_date"] != ""
         assert birth_data["nationality"] == "Angolana"
-        
+
         print("   ✅ Dados de nascimento validados")
-        
+
         # Simular resposta
         birth_response = {
             "id": str(uuid4()),
             "birth_id": "BIRTH_2024_001",
             "status": "registered",
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
         }
-        
+
         assert birth_response["status"] == "registered"
         print(f"   ✅ Nascimento registado: {birth_response['birth_id']}")
-        
+
         return birth_response
-    
+
     async def test_02_identity_bi_emission(self):
         """✅ FASE 2: Emissão de BI (Bilhete de Identidade)"""
         print("\n📝 Teste 2: Emissão de BI")
-        
+
         birth_data = await self.test_01_citizen_birth_registration()
-        
+
         bi_data = {
             "citizen_name": "Maria Silva Santos",
             "birth_id": birth_data["id"],
             "bi_type": "normal",
             "validity_years": 10,
-            "gender": "F"
+            "gender": "F",
         }
-        
+
         # Simular resposta
         bi_response = {
             "id": str(uuid4()),
             "bi_number": "00123456LA010",
             "citizen_name": bi_data["citizen_name"],
             "issue_date": datetime.now().isoformat(),
-            "expiry_date": (datetime.now() + timedelta(days=365*10)).isoformat(),
-            "status": "emitted"
+            "expiry_date": (datetime.now() + timedelta(days=365 * 10)).isoformat(),
+            "status": "emitted",
         }
-        
+
         assert bi_response["bi_number"] != ""
         assert bi_response["status"] == "emitted"
         print(f"   ✅ BI emitido: {bi_response['bi_number']}")
-        
+
         return bi_response
-    
+
     async def test_03_health_appointment_booking(self):
         """✅ FASE 3: Marcação de Consulta Médica"""
         print("\n📝 Teste 3: Marcação de Consulta Médica")
-        
+
         bi_data = await self.test_02_identity_bi_emission()
-        
+
         appointment_data = {
             "citizen_bi": bi_data["bi_number"],
             "health_unit": "Hospital Municipal",
             "specialty": "pediatria",
             "appointment_date": (datetime.now() + timedelta(days=7)).isoformat(),
-            "appointment_time": "10:00"
+            "appointment_time": "10:00",
         }
-        
+
         # Simular resposta
         appointment_response = {
             "id": str(uuid4()),
             "appointment_id": "APT_2024_001",
             "citizen_bi": appointment_data["citizen_bi"],
             "status": "scheduled",
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
         }
-        
+
         assert appointment_response["status"] == "scheduled"
         print(f"   ✅ Consulta marcada: {appointment_response['appointment_id']}")
-        
+
         return appointment_response
-    
+
     async def test_04_invoice_creation(self):
         """✅ FASE 4: Criação de Fatura"""
         print("\n📝 Teste 4: Criação de Fatura")
-        
+
         bi_data = await self.test_02_identity_bi_emission()
         appointment_data = await self.test_03_health_appointment_booking()
-        
+
         invoice_data = {
             "citizen_bi": bi_data["bi_number"],
             "amount": 15000.00,
             "currency": "AOA",
             "description": "Consulta médica - Pediatria",
             "due_date": (datetime.now() + timedelta(days=10)).isoformat(),
-            "service_id": appointment_data["id"]
+            "service_id": appointment_data["id"],
         }
-        
+
         # Simular resposta
         invoice_response = {
             "id": str(uuid4()),
             "invoice_number": "INV_2024_001",
             "amount": invoice_data["amount"],
             "status": "pending",
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
         }
-        
+
         assert invoice_response["amount"] == 15000.00
         assert invoice_response["status"] == "pending"
         print(f"   ✅ Fatura criada: {invoice_response['invoice_number']}")
-        
+
         return invoice_response
-    
+
     async def test_05_payment_processing(self):
         """✅ FASE 5: Processamento de Pagamento"""
         print("\n📝 Teste 5: Processamento de Pagamento")
-        
+
         invoice_data = await self.test_04_invoice_creation()
-        
+
         payment_data = {
             "invoice_id": invoice_data["id"],
             "amount": invoice_data["amount"],
             "payment_method": "card",
-            "card_last_digits": "4242"
+            "card_last_digits": "4242",
         }
-        
+
         # Simular resposta
         payment_response = {
             "id": str(uuid4()),
@@ -169,70 +171,70 @@ class TestCitizenJourney:
             "amount": payment_data["amount"],
             "status": "completed",
             "transaction_id": "TXN_" + str(uuid4()),
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
         }
-        
+
         assert payment_response["status"] == "completed"
         assert payment_response["amount"] == payment_data["amount"]
         print(f"   ✅ Pagamento processado: {payment_response['payment_id']}")
-        
+
         return payment_response
-    
+
     async def test_06_service_request_creation(self):
         """✅ FASE 6: Criação de Pedido de Serviço"""
         print("\n📝 Teste 6: Criação de Pedido de Serviço")
-        
+
         bi_data = await self.test_02_identity_bi_emission()
         payment_data = await self.test_05_payment_processing()
-        
+
         request_data = {
             "citizen_bi": bi_data["bi_number"],
             "service_type": "certificate",
             "description": "Certidão de nascimento",
-            "payment_id": payment_data["id"]
+            "payment_id": payment_data["id"],
         }
-        
+
         # Simular resposta
         request_response = {
             "id": str(uuid4()),
             "request_id": "REQ_2024_001",
             "service_type": request_data["service_type"],
             "status": "pending",
-            "created_at": datetime.now().isoformat()
+            "created_at": datetime.now().isoformat(),
         }
-        
+
         assert request_response["status"] == "pending"
         print(f"   ✅ Pedido criado: {request_response['request_id']}")
-        
+
         return request_response
-    
+
     async def test_07_workflow_tracking(self):
         """✅ FASE 7: Acompanhamento de Workflow"""
         print("\n📝 Teste 7: Acompanhamento de Workflow")
-        
+
         request_data = await self.test_06_service_request_creation()
-        
+
         # Simular consulta de status
         workflow_response = {
             "request_id": request_data["request_id"],
             "status": "processing",
             "current_stage": "document_generation",
             "estimated_completion": (datetime.now() + timedelta(days=3)).isoformat(),
-            "updated_at": datetime.now().isoformat()
+            "updated_at": datetime.now().isoformat(),
         }
-        
+
         assert workflow_response["request_id"] == request_data["request_id"]
         print(f"   ✅ Workflow em: {workflow_response['current_stage']}")
-        
+
         return workflow_response
-    
+
     @pytest.mark.asyncio
     async def test_full_citizen_journey(self):
         """🎉 TESTE COMPLETO: Jornada total do cidadão"""
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("🎉 INICIANDO JORNADA COMPLETA DO CIDADÃO")
-        print("="*60)
-        
+        print("=" * 60)
+
         # Executar todas as fases
         birth = await self.test_01_citizen_birth_registration()
         bi = await self.test_02_identity_bi_emission()
@@ -241,21 +243,21 @@ class TestCitizenJourney:
         payment = await self.test_05_payment_processing()
         request = await self.test_06_service_request_creation()
         workflow = await self.test_07_workflow_tracking()
-        
-        print("\n" + "="*60)
+
+        print("\n" + "=" * 60)
         print("✅ JORNADA DO CIDADÃO CONCLUÍDA COM SUCESSO")
-        print("="*60)
+        print("=" * 60)
         print(f"""
         Resumo:
-        - Nascimento: {birth['birth_id']}
-        - BI: {bi['bi_number']}
-        - Consulta: {appointment['appointment_id']}
-        - Fatura: {invoice['invoice_number']}
-        - Pagamento: {payment['payment_id']}
-        - Pedido: {request['request_id']}
-        - Workflow: {workflow['current_stage']}
+        - Nascimento: {birth["birth_id"]}
+        - BI: {bi["bi_number"]}
+        - Consulta: {appointment["appointment_id"]}
+        - Fatura: {invoice["invoice_number"]}
+        - Pagamento: {payment["payment_id"]}
+        - Pedido: {request["request_id"]}
+        - Workflow: {workflow["current_stage"]}
         """)
-        
+
         # Validações finais
         assert birth["status"] == "registered"
         assert bi["status"] == "emitted"
@@ -264,7 +266,7 @@ class TestCitizenJourney:
         assert payment["status"] == "completed"
         assert request["status"] == "pending"
         assert workflow["status"] == "processing"
-        
+
         return {
             "birth": birth,
             "bi": bi,
@@ -272,19 +274,19 @@ class TestCitizenJourney:
             "invoice": invoice,
             "payment": payment,
             "request": request,
-            "workflow": workflow
+            "workflow": workflow,
         }
 
 
 @pytest.mark.asyncio
 class TestSystemIntegration:
     """Testes de integração do sistema"""
-    
+
     async def test_system_health(self):
         """Verificar saúde geral do sistema"""
         print("\n✅ Sistema em bom funcionamento")
         assert True
-    
+
     async def test_modules_availability(self):
         """Verificar disponibilidade de módulos"""
         modules = [
@@ -293,13 +295,13 @@ class TestSystemIntegration:
             "saude_primaria",
             "financas",
             "service_requests",
-            "workflow"
+            "workflow",
         ]
-        
+
         for module in modules:
             assert module != ""
             print(f"   ✅ Módulo '{module}' disponível")
-    
+
     async def test_api_endpoints(self):
         """Verificar endpoints das APIs"""
         endpoints = [
@@ -308,9 +310,9 @@ class TestSystemIntegration:
             "/api/v1/saude_primaria",
             "/api/v1/financas",
             "/api/v1/service_requests",
-            "/api/v1/workflow"
+            "/api/v1/workflow",
         ]
-        
+
         for endpoint in endpoints:
             assert endpoint != ""
             print(f"   ✅ Endpoint '{endpoint}' disponível")

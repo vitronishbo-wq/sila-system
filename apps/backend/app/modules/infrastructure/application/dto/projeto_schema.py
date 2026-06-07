@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
+
 
 class ProjetoCreate(BaseModel):
     nome: str
@@ -17,14 +21,18 @@ class ProjetoCreate(BaseModel):
     obra_id: UUID | None = None
     descricao: str | None = None
 
+
 class ProjetoInicioInput(BaseModel):
     data_inicio: date
+
 
 class ProjetoConclusaoInput(BaseModel):
     data_fim: date
 
+
 class ProjetoMotivoInput(BaseModel):
     motivo: str
+
 
 class ProjetoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

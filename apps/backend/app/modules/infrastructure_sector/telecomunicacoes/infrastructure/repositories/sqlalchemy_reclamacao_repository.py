@@ -1,15 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import ReclamacaoRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusReclamacaoTelecom, TipoReclamacaoTelecom
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import Reclamacao
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.reclamacao_model import ReclamacaoTelecomModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.reclamacao_repository_port import (
+    ReclamacaoRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusReclamacaoTelecom,
+    TipoReclamacaoTelecom,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.reclamacao import (
+    Reclamacao,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.reclamacao_model import (
+    ReclamacaoTelecomModel,
+)
+
 
 class SQLAlchemyReclamacaoRepository(ReclamacaoRepositoryPort):
-
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
@@ -36,12 +48,18 @@ class SQLAlchemyReclamacaoRepository(ReclamacaoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_protocolo(self, protocolo: str) -> Reclamacao | None:
-        stmt = select(ReclamacaoTelecomModel).where(ReclamacaoTelecomModel.protocolo == protocolo.strip())
+        stmt = select(ReclamacaoTelecomModel).where(
+            ReclamacaoTelecomModel.protocolo == protocolo.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_by_assinante(self, assinante_id: UUID) -> list[Reclamacao]:
-        stmt = select(ReclamacaoTelecomModel).where(ReclamacaoTelecomModel.assinante_id == assinante_id).order_by(ReclamacaoTelecomModel.data_abertura.desc())
+        stmt = (
+            select(ReclamacaoTelecomModel)
+            .where(ReclamacaoTelecomModel.assinante_id == assinante_id)
+            .order_by(ReclamacaoTelecomModel.data_abertura.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -52,10 +70,25 @@ class SQLAlchemyReclamacaoRepository(ReclamacaoRepositoryPort):
 
     async def next_protocolo(self) -> str:
         year = date.today().year
-        stmt = select(func.count()).select_from(ReclamacaoTelecomModel).where(ReclamacaoTelecomModel.protocolo.like(f'RCT/{year}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(ReclamacaoTelecomModel)
+            .where(ReclamacaoTelecomModel.protocolo.like(f"RCT/{year}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'RCT/{year}/{count + 1:06d}'
+        return f"RCT/{year}/{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: ReclamacaoTelecomModel) -> Reclamacao:
-        return Reclamacao(id=model.id, protocolo=model.protocolo, assinante_id=model.assinante_id, tipo=TipoReclamacaoTelecom(model.tipo), descricao=model.descricao, prioridade=model.prioridade, status=StatusReclamacaoTelecom(model.status), data_abertura=model.data_abertura, data_fechamento=model.data_fechamento, resposta=model.resposta)
+        return Reclamacao(
+            id=model.id,
+            protocolo=model.protocolo,
+            assinante_id=model.assinante_id,
+            tipo=TipoReclamacaoTelecom(model.tipo),
+            descricao=model.descricao,
+            prioridade=model.prioridade,
+            status=StatusReclamacaoTelecom(model.status),
+            data_abertura=model.data_abertura,
+            data_fechamento=model.data_fechamento,
+            resposta=model.resposta,
+        )

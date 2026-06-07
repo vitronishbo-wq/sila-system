@@ -1,7 +1,10 @@
 """Event bus port for cross-module decoupling."""
+
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import Any
+
 
 class EventBusPort(ABC):
     """Minimal contract for publishing and subscribing to domain events."""

@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.public_security.domain.enums import StatusMandado, TipoMandado
+
 
 class MandadoCreate(BaseModel):
     ocorrencia_id: UUID
@@ -15,9 +19,11 @@ class MandadoCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class MandadoStatusUpdate(BaseModel):
     status: StatusMandado
     observacoes: str | None = None
+
 
 class MandadoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

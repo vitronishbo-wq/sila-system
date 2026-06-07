@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any
-from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, Periodicidade, TipoMetrica
+
+from apps.backend.app.modules.governance.statistics.domain.enums import (
+    FonteDados,
+    Periodicidade,
+    TipoMetrica,
+)
+
 
 @dataclass(slots=True)
 class Metrica:
@@ -27,7 +34,9 @@ class Metrica:
         if self.valor_anterior in (None, 0) or self.valor_atual is None:
             self.variacao_percentual = None
             return self.variacao_percentual
-        self.variacao_percentual = (self.valor_atual - self.valor_anterior) / self.valor_anterior * 100
+        self.variacao_percentual = (
+            (self.valor_atual - self.valor_anterior) / self.valor_anterior * 100
+        )
         return self.variacao_percentual
 
     def atualizar_valor(self, novo_valor: float) -> None:
@@ -40,9 +49,9 @@ class Metrica:
     @property
     def tendencia(self) -> str:
         if self.variacao_percentual is None:
-            return 'estavel'
+            return "estavel"
         if self.variacao_percentual > 0:
-            return 'crescente'
+            return "crescente"
         if self.variacao_percentual < 0:
-            return 'decrescente'
-        return 'estavel'
+            return "decrescente"
+        return "estavel"

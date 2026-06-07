@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pescas.application.ports import EmbarcacaoRepositoryPort
 from apps.backend.app.modules.resources.pescas.domain.enums import ModalidadePesca, TipoEmbarcacao
 from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
-from apps.backend.app.modules.resources.pescas.infrastructure.models.embarcacao_model import EmbarcacaoModel
+from apps.backend.app.modules.resources.pescas.infrastructure.models.embarcacao_model import (
+    EmbarcacaoModel,
+)
+
 
 class SQLAlchemyEmbarcacaoRepository(EmbarcacaoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -62,10 +67,35 @@ class SQLAlchemyEmbarcacaoRepository(EmbarcacaoRepositoryPort):
 
     async def next_inscricao(self, porto: str) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EmbarcacaoModel).where(EmbarcacaoModel.numero_inscricao.like(f'{porto}/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EmbarcacaoModel)
+            .where(EmbarcacaoModel.numero_inscricao.like(f"{porto}/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{porto}/{ano}/{count + 1:04d}'
+        return f"{porto}/{ano}/{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: EmbarcacaoModel) -> Embarcacao:
-        return Embarcacao(id=model.id, nome=model.nome, numero_inscricao=model.numero_inscricao, tipo=TipoEmbarcacao(model.tipo), modalidades=[ModalidadePesca(item) for item in model.modalidades], comprimento=model.comprimento, arqueacao_bruta=model.arqueacao_bruta, potencia_motor=model.potencia_motor, capacidade_porao=model.capacidade_porao, tripulacao_minima=model.tripulacao_minima, porto_registro=model.porto_registro, ano_construcao=model.ano_construcao, material_casco=model.material_casco, proprietario_id=model.proprietario_id, armador_id=model.armador_id, licenca_id=model.licenca_id, sistema_rastreio=model.sistema_rastreio, data_inspecao=model.data_inspecao, data_validade_doc=model.data_validade_doc, observacoes=model.observacoes)
+        return Embarcacao(
+            id=model.id,
+            nome=model.nome,
+            numero_inscricao=model.numero_inscricao,
+            tipo=TipoEmbarcacao(model.tipo),
+            modalidades=[ModalidadePesca(item) for item in model.modalidades],
+            comprimento=model.comprimento,
+            arqueacao_bruta=model.arqueacao_bruta,
+            potencia_motor=model.potencia_motor,
+            capacidade_porao=model.capacidade_porao,
+            tripulacao_minima=model.tripulacao_minima,
+            porto_registro=model.porto_registro,
+            ano_construcao=model.ano_construcao,
+            material_casco=model.material_casco,
+            proprietario_id=model.proprietario_id,
+            armador_id=model.armador_id,
+            licenca_id=model.licenca_id,
+            sistema_rastreio=model.sistema_rastreio,
+            data_inspecao=model.data_inspecao,
+            data_validade_doc=model.data_validade_doc,
+            observacoes=model.observacoes,
+        )

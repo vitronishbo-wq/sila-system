@@ -1,8 +1,7 @@
-from typing import Optional
 from ..models.dashboard_model import DashboardModel
 
-class DashboardRepository:
 
+class DashboardRepository:
     def __init__(self, session):
         self.session = session
 
@@ -11,10 +10,10 @@ class DashboardRepository:
         self.session.flush()
         return dashboard
 
-    def get(self, id: int) -> Optional[DashboardModel]:
+    def get(self, id: int) -> DashboardModel | None:
         return self.session.query(DashboardModel).get(id)
 
-    def list(self, owner_id: Optional[int]=None):
+    def list(self, owner_id: int | None = None):
         q = self.session.query(DashboardModel)
         if owner_id is not None:
             q = q.filter(DashboardModel.owner_id == owner_id)

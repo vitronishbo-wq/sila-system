@@ -42,7 +42,7 @@ start_outbox_worker() {
     cd "$SILA_HOME/apps/backend"
     
     PYTHONPATH=".:$SILA_HOME/apps/backend:$SILA_HOME" \
-    python3 -m app.core.events.workers.outbox_worker \
+    python3 -m apps.backend.app.core.events.workers.outbox_worker \
         > "$LOG_DIR/outbox_worker.log" 2>&1 &
     
     local pid=$!
@@ -58,7 +58,7 @@ start_event_worker() {
     cd "$SILA_HOME/apps/backend"
     
     PYTHONPATH=".:$SILA_HOME/apps/backend:$SILA_HOME" \
-    python3 -m app.core.events.workers.event_worker \
+    python3 -m apps.backend.app.core.events.workers.event_worker \
         > "$LOG_DIR/event_worker.log" 2>&1 &
     
     local pid=$!

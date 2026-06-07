@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.tourism.domain.enums import ClassificacaoHoteleira, TipoMeioHospedagem
+
 
 @dataclass
 class Pousada:
@@ -29,14 +32,66 @@ class Pousada:
     observacoes: str | None = None
 
     @classmethod
-    def cadastrar(cls, *, nome: str, classificacao: ClassificacaoHoteleira, cnpj: str, endereco: str, numero: str, bairro: str, municipio: str, provincia: str, cep: str, telefone: str, email: str, quartos: int, capacidade_maxima: int, proprietario_id: UUID) -> 'Pousada':
+    def cadastrar(
+        cls,
+        *,
+        nome: str,
+        classificacao: ClassificacaoHoteleira,
+        cnpj: str,
+        endereco: str,
+        numero: str,
+        bairro: str,
+        municipio: str,
+        provincia: str,
+        cep: str,
+        telefone: str,
+        email: str,
+        quartos: int,
+        capacidade_maxima: int,
+        proprietario_id: UUID,
+    ) -> Pousada:
         if quartos <= 0:
-            raise ValueError('Quantidade de quartos deve ser maior que zero')
+            raise ValueError("Quantidade de quartos deve ser maior que zero")
         if capacidade_maxima <= 0:
-            raise ValueError('Capacidade maxima deve ser maior que zero')
-        return cls(id=uuid4(), cadastur='', nome=nome.strip(), tipo=TipoMeioHospedagem.POUSADA, classificacao=classificacao, cnpj=cnpj.strip(), endereco=endereco.strip(), numero=numero.strip(), bairro=bairro.strip(), municipio=municipio.strip(), provincia=provincia.strip(), cep=cep.strip(), telefone=telefone.strip(), email=email.strip().lower(), quartos=quartos, capacidade_maxima=capacidade_maxima, proprietario_id=proprietario_id, data_abertura=date.today(), ativa=True)
+            raise ValueError("Capacidade maxima deve ser maior que zero")
+        return cls(
+            id=uuid4(),
+            cadastur="",
+            nome=nome.strip(),
+            tipo=TipoMeioHospedagem.POUSADA,
+            classificacao=classificacao,
+            cnpj=cnpj.strip(),
+            endereco=endereco.strip(),
+            numero=numero.strip(),
+            bairro=bairro.strip(),
+            municipio=municipio.strip(),
+            provincia=provincia.strip(),
+            cep=cep.strip(),
+            telefone=telefone.strip(),
+            email=email.strip().lower(),
+            quartos=quartos,
+            capacidade_maxima=capacidade_maxima,
+            proprietario_id=proprietario_id,
+            data_abertura=date.today(),
+            ativa=True,
+        )
 
-    def atualizar_dados(self, *, nome: str | None=None, endereco: str | None=None, numero: str | None=None, bairro: str | None=None, municipio: str | None=None, provincia: str | None=None, cep: str | None=None, telefone: str | None=None, email: str | None=None, site: str | None=None, observacoes: str | None=None, classificacao: ClassificacaoHoteleira | None=None) -> None:
+    def atualizar_dados(
+        self,
+        *,
+        nome: str | None = None,
+        endereco: str | None = None,
+        numero: str | None = None,
+        bairro: str | None = None,
+        municipio: str | None = None,
+        provincia: str | None = None,
+        cep: str | None = None,
+        telefone: str | None = None,
+        email: str | None = None,
+        site: str | None = None,
+        observacoes: str | None = None,
+        classificacao: ClassificacaoHoteleira | None = None,
+    ) -> None:
         if nome is not None:
             self.nome = nome.strip()
         if endereco is not None:

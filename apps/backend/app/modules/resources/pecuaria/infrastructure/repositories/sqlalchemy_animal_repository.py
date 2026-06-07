@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pecuaria.application.ports import AnimalRepositoryPort
 from apps.backend.app.modules.resources.pecuaria.domain.enums import Sexo, StatusAnimal, TipoAnimal
 from apps.backend.app.modules.resources.pecuaria.domain.models.animal import Animal
-from apps.backend.app.modules.resources.pecuaria.infrastructure.models.animal_model import AnimalModel
+from apps.backend.app.modules.resources.pecuaria.infrastructure.models.animal_model import (
+    AnimalModel,
+)
+
 
 class SQLAlchemyAnimalRepository(AnimalRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -58,7 +63,9 @@ class SQLAlchemyAnimalRepository(AnimalRepositoryPort):
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(model) for model in rows]
 
-    async def list_by_filtros(self, *, tipo: TipoAnimal | None=None, status: StatusAnimal | None=None) -> list[Animal]:
+    async def list_by_filtros(
+        self, *, tipo: TipoAnimal | None = None, status: StatusAnimal | None = None
+    ) -> list[Animal]:
         stmt = select(AnimalModel)
         if tipo:
             stmt = stmt.where(AnimalModel.tipo == tipo.value)
@@ -70,10 +77,33 @@ class SQLAlchemyAnimalRepository(AnimalRepositoryPort):
     async def next_brinco(self, propriedade_id: UUID) -> str:
         ano = date.today().year
         prefix = str(propriedade_id)[:8]
-        stmt = select(func.count()).select_from(AnimalModel).where(AnimalModel.brinco.like(f'{prefix}/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(AnimalModel)
+            .where(AnimalModel.brinco.like(f"{prefix}/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}/{ano}/{count + 1:04d}'
+        return f"{prefix}/{ano}/{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: AnimalModel) -> Animal:
-        return Animal(id=model.id, brinco=model.brinco, nome=model.nome, tipo=TipoAnimal(model.tipo), raca_id=model.raca_id, sexo=Sexo(model.sexo), data_nascimento=model.data_nascimento, peso_nascimento=model.peso_nascimento, peso_atual=model.peso_atual, status=StatusAnimal(model.status), proprietario_id=model.proprietario_id, propriedade_id=model.propriedade_id, rebanho_id=model.rebanho_id, mae_id=model.mae_id, pai_id=model.pai_id, data_entrada=model.data_entrada, data_saida=model.data_saida, observacoes=model.observacoes)
+        return Animal(
+            id=model.id,
+            brinco=model.brinco,
+            nome=model.nome,
+            tipo=TipoAnimal(model.tipo),
+            raca_id=model.raca_id,
+            sexo=Sexo(model.sexo),
+            data_nascimento=model.data_nascimento,
+            peso_nascimento=model.peso_nascimento,
+            peso_atual=model.peso_atual,
+            status=StatusAnimal(model.status),
+            proprietario_id=model.proprietario_id,
+            propriedade_id=model.propriedade_id,
+            rebanho_id=model.rebanho_id,
+            mae_id=model.mae_id,
+            pai_id=model.pai_id,
+            data_entrada=model.data_entrada,
+            data_saida=model.data_saida,
+            observacoes=model.observacoes,
+        )

@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusAlvara, TipoAlvara
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusAlvara,
+    TipoAlvara,
+)
+
 
 class AlvaraCreate(BaseModel):
     numero_processo: str
@@ -16,13 +23,16 @@ class AlvaraCreate(BaseModel):
     area_autorizada: Decimal | None = None
     codigo_alvara: str | None = None
 
+
 class AlvaraDeferimentoInput(BaseModel):
     data_emissao: date
     data_validade: date
     analista_id: UUID
 
+
 class AlvaraMotivoInput(BaseModel):
     motivo: str
+
 
 class AlvaraResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

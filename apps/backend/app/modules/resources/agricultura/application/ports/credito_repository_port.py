@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCredito
 from apps.backend.app.modules.resources.agricultura.domain.models.credito_rural import CreditoRural
 
-class CreditoRepositoryPort(ABC):
 
+class CreditoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: CreditoRural) -> CreditoRural:
         pass
@@ -14,7 +16,9 @@ class CreditoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, codigo_produtor: str | None=None, status: StatusCredito | None=None) -> list[CreditoRural]:
+    async def list(
+        self, *, codigo_produtor: str | None = None, status: StatusCredito | None = None
+    ) -> list[CreditoRural]:
         pass
 
     @abstractmethod

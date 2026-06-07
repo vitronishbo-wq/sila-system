@@ -1,12 +1,13 @@
 """Configuração para testes E2E"""
 
-import pytest
 import asyncio
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
+
+import pytest
 from httpx import AsyncClient
 
 # Para adicionar app quando estiver ready
-# from app.main import app
+# from apps.backend.app.main import app
 
 
 @pytest.fixture(scope="session")
@@ -23,7 +24,7 @@ async def client() -> AsyncGenerator[AsyncClient, None]:
     # Quando tiver app configurada:
     # async with AsyncClient(app=app, base_url="http://test") as ac:
     #     yield ac
-    
+
     # Para agora, retornar mock
     yield None
 

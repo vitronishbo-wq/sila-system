@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEmbargo
 from apps.backend.app.modules.resources.ambiente.domain.models.embargo import Embargo
 
-class EmbargoRepositoryPort(ABC):
 
+class EmbargoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Embargo) -> Embargo:
         pass
@@ -14,7 +16,9 @@ class EmbargoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, numero_auto_infracao: str | None=None, status: StatusEmbargo | None=None) -> list[Embargo]:
+    async def list(
+        self, *, numero_auto_infracao: str | None = None, status: StatusEmbargo | None = None
+    ) -> list[Embargo]:
         pass
 
     @abstractmethod

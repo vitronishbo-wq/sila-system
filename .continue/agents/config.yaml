@@ -1,0 +1,23 @@
+name: SILA
+
+models:
+  - title: Gemini 2.5 Flash
+    provider: google
+    model: gemini-2.5-flash
+    apiKey: AQ.Ab8RN6LlaD_TbQv20znPjxw68s5CEi3Dbk89x-YvQ9JpxUuHjA
+
+  - title: Gemini 3 Flash Preview
+    provider: google
+    model: gemini-3-flash-preview
+    apiKey: AQ.Ab8RN6LlaD_TbQv20znPjxw68s5CEi3Dbk89x-YvQ9JpxUuHjA
+
+  - title: Gemini 3.1 Pro Preview
+    provider: google
+    model: gemini-3.1-pro-preview
+    apiKey: AQ.Ab8RN6LlaD_TbQv20znPjxw68s5CEi3Dbk89x-YvQ9JpxUuHjA
+
+tabAutocompleteModel:
+  title: Gemini 2.5 Flash
+  provider: google
+  model: gemini-2.5-flash
+  apiKey: AQ.Ab8RN6LlaD_TbQv20znPjxw68s5CEi3Dbk89x-YvQ9JpxUuHjA

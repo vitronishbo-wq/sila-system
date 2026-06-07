@@ -1,0 +1,1 @@
+- [x] Step 2: Edit apps/frontend/src/pages/PublicLanding.tsx to add imports from constants/images.ts and display FLAG + LOGO in header

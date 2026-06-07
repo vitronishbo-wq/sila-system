@@ -11,10 +11,11 @@ USO:
     python3 reorg_tables_apply.py --modules apps/backend/modules --apply
     (ou sem --apply para só gerar relatório e mapping)
 """
-import re
-import os
+
 import argparse
 import json
+import os
+import re
 from pathlib import Path
 
 TAB_RE = re.compile(r'__tablename__\s*=\s*["\']([^"\']+)["\']')

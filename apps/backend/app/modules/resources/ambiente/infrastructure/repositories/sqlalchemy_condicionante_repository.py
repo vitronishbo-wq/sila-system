@@ -1,8 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
-from apps.backend.app.modules.resources.ambiente.application.ports.condicionante_repository_port import CondicionanteRepositoryPort
+
+from apps.backend.app.modules.resources.ambiente.application.ports.condicionante_repository_port import (
+    CondicionanteRepositoryPort,
+)
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCondicionante
 from apps.backend.app.modules.resources.ambiente.domain.models.condicionante import Condicionante
+
 
 class SQLAlchemyCondicionanteRepository(CondicionanteRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -18,7 +23,9 @@ class SQLAlchemyCondicionanteRepository(CondicionanteRepositoryPort):
     async def get_by_codigo(self, codigo_condicionante: str) -> Condicionante | None:
         return self._items.get(codigo_condicionante)
 
-    async def list(self, *, numero_licenca: str | None=None, status: StatusCondicionante | None=None) -> list[Condicionante]:
+    async def list(
+        self, *, numero_licenca: str | None = None, status: StatusCondicionante | None = None
+    ) -> list[Condicionante]:
         values = list(self._items.values())
         if numero_licenca:
             values = [item for item in values if item.numero_licenca == numero_licenca]
@@ -28,4 +35,4 @@ class SQLAlchemyCondicionanteRepository(CondicionanteRepositoryPort):
 
     async def next_codigo(self) -> str:
         self._seq += 1
-        return f'COND/{date.today().year}/{self._seq:06d}'
+        return f"COND/{date.today().year}/{self._seq:06d}"

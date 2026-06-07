@@ -1,8 +1,10 @@
-import pytest
 import asyncio
 from pathlib import Path
 
-@pytest.fixture(scope='session')
+import pytest
+
+
+@pytest.fixture(scope="session")
 def event_loop():
     """Create event loop for async tests"""
     try:
@@ -13,17 +15,18 @@ def event_loop():
     yield loop
     loop.close()
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def app_root():
     """Application root path"""
     return Path(__file__).parent.parent.parent.parent
+
 
 @pytest.fixture
 def mock_logger():
     """Mock logger fixture"""
 
     class MockLogger:
-
         def info(self, msg):
             pass
 
@@ -35,4 +38,5 @@ def mock_logger():
 
         def debug(self, msg):
             pass
+
     return MockLogger()

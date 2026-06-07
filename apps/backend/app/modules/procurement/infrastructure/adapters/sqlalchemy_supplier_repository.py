@@ -1,9 +1,12 @@
-from typing import List, Optional
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.procurement.domain.models.supplier import Supplier
-from apps.backend.app.modules.procurement.domain.ports.supplier_repository_port import SupplierRepositoryPort
+from apps.backend.app.modules.procurement.domain.ports.supplier_repository_port import (
+    SupplierRepositoryPort,
+)
 from apps.backend.app.modules.procurement.infrastructure.orm.supplier_model import SupplierModel
+
 
 class SQLAlchemySupplierRepository(SupplierRepositoryPort):
     """Adapter: SQLAlchemy implementation of SupplierRepositoryPort."""
@@ -25,28 +28,32 @@ class SQLAlchemySupplierRepository(SupplierRepositoryPort):
         await self.session.flush()
         return supplier
 
-    async def get_by_id(self, supplier_id: str) -> Optional[Supplier]:
+    async def get_by_id(self, supplier_id: str) -> Supplier | None:
         """Get supplier by ID."""
         stmt = select(SupplierModel).where(SupplierModel.id == supplier_id)
         result = await self.session.execute(stmt)
         model = result.scalar_one_or_none()
         return model.to_domain() if model else None
 
-    async def get_by_tax_id(self, tax_id: str) -> Optional[Supplier]:
+    async def get_by_tax_id(self, tax_id: str) -> Supplier | None:
         """Get supplier by tax ID."""
         stmt = select(SupplierModel).where(SupplierModel.tax_id == tax_id)
         result = await self.session.execute(stmt)
         model = result.scalar_one_or_none()
         return model.to_domain() if model else None
 
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Supplier]:
+    async def list_by_status(
+        self, status: str, limit: int = 100, offset: int = 0
+    ) -> list[Supplier]:
         """List suppliers by status."""
-        stmt = select(SupplierModel).where(SupplierModel.status == status).limit(limit).offset(offset)
+        stmt = (
+            select(SupplierModel).where(SupplierModel.status == status).limit(limit).offset(offset)
+        )
         result = await self.session.execute(stmt)
         models = result.scalars().all()
         return [m.to_domain() for m in models]
 
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Supplier]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Supplier]:
         """List all suppliers."""
         stmt = select(SupplierModel).limit(limit).offset(offset)
         result = await self.session.execute(stmt)

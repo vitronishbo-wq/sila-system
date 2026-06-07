@@ -12,23 +12,14 @@ Default is dry-run. Use --apply to write changes.
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import re
+from pathlib import Path
 
+DOMAIN_IMPORT_RE = re.compile(r"^\s*from\s+[\w\.]*domain_exception\s+import\s+(?P<imports>.+)$")
+BASE_IMPORT_RE = re.compile(r"^\s*from\s+[\w\.]*base_repository\s+import\s+(?P<imports>.+)$")
 
-DOMAIN_IMPORT_RE = re.compile(
-    r"^\s*from\s+[\w\.]*domain_exception\s+import\s+(?P<imports>.+)$"
-)
-BASE_IMPORT_RE = re.compile(
-    r"^\s*from\s+[\w\.]*base_repository\s+import\s+(?P<imports>.+)$"
-)
-
-DOMAIN_REPLACEMENT = (
-    "from apps.backend.core.exceptions.domain_exception import DomainException"
-)
-BASE_REPLACEMENT = (
-    "from apps.backend.core.repositories.base_repository import BaseRepository"
-)
+DOMAIN_REPLACEMENT = "from apps.backend.core.exceptions.domain_exception import DomainException"
+BASE_REPLACEMENT = "from apps.backend.core.repositories.base_repository import BaseRepository"
 
 
 def _needs_review(import_list: str, expected: str) -> bool:

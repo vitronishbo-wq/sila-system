@@ -1,104 +1,315 @@
 from apps.backend.app.modules.resources.florestas.domain.models.aceiro import Aceiro
-from apps.backend.app.modules.resources.florestas.domain.models.alerta_desmatamento import AlertaDesmatamento
-from apps.backend.app.modules.resources.florestas.domain.models.altura_comercial import AlturaComercial
+from apps.backend.app.modules.resources.florestas.domain.models.alerta_desmatamento import (
+    AlertaDesmatamento,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.altura_comercial import (
+    AlturaComercial,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.app import App
-from apps.backend.app.modules.resources.florestas.domain.models.apreensao_madeira import ApreensaoMadeira
+from apps.backend.app.modules.resources.florestas.domain.models.apreensao_madeira import (
+    ApreensaoMadeira,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.area_concedida import AreaConcedida
 from apps.backend.app.modules.resources.florestas.domain.models.area_desmatada import AreaDesmatada
 from apps.backend.app.modules.resources.florestas.domain.models.area_manejada import AreaManejada
 from apps.backend.app.modules.resources.florestas.domain.models.area_queimada import AreaQueimada
-from apps.backend.app.modules.resources.florestas.domain.models.area_recuperada import AreaRecuperada
-from apps.backend.app.modules.resources.florestas.domain.models.area_reflorestada import AreaReflorestada
+from apps.backend.app.modules.resources.florestas.domain.models.area_recuperada import (
+    AreaRecuperada,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.area_reflorestada import (
+    AreaReflorestada,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.arraste import Arraste
 from apps.backend.app.modules.resources.florestas.domain.models.arvore import Arvore
 from apps.backend.app.modules.resources.florestas.domain.models.assentamento import Assentamento
 from apps.backend.app.modules.resources.florestas.domain.models.asv import Asv
-from apps.backend.app.modules.resources.florestas.domain.models.auto_infracao_florestal import AutoInfracaoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.autorizacao_supressao import AutorizacaoSupressao
+from apps.backend.app.modules.resources.florestas.domain.models.auto_infracao_florestal import (
+    AutoInfracaoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.autorizacao_supressao import (
+    AutorizacaoSupressao,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.biomassa import Biomassa
 from apps.backend.app.modules.resources.florestas.domain.models.borracha import Borracha
 from apps.backend.app.modules.resources.florestas.domain.models.brigada import Brigada
-from apps.backend.app.modules.resources.florestas.domain.models.cadastro_ambiental_rural import CadastroAmbientalRural
+from apps.backend.app.modules.resources.florestas.domain.models.cadastro_ambiental_rural import (
+    CadastroAmbientalRural,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.car import Car
 from apps.backend.app.modules.resources.florestas.domain.models.carbono import Carbono
 from apps.backend.app.modules.resources.florestas.domain.models.carvao import Carvao
 from apps.backend.app.modules.resources.florestas.domain.models.castanha import Castanha
-from apps.backend.app.modules.resources.florestas.domain.models.censo_florestal import CensoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.censo_florestal import (
+    CensoFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.cerflor import Cerflor
-from apps.backend.app.modules.resources.florestas.domain.models.certificacao_florestal import CertificacaoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.certificacao_florestal import (
+    CertificacaoFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.ciclo_corte import CicloCorte
-from apps.backend.app.modules.resources.florestas.domain.models.combate_incendio import CombateIncendio
-from apps.backend.app.modules.resources.florestas.domain.models.comercializacao_florestal import ComercializacaoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.combate_incendio import (
+    CombateIncendio,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.comercializacao_florestal import (
+    ComercializacaoFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.compensados import Compensados
-from apps.backend.app.modules.resources.florestas.domain.models.comunidade_tradicional import ComunidadeTradicional
-from apps.backend.app.modules.resources.florestas.domain.models.concessao_florestal import ConcessaoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.comunidade_tradicional import (
+    ComunidadeTradicional,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.concessao_florestal import (
+    ConcessaoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import (
+    ConcessionarioFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.corte_seletivo import CorteSeletivo
-from apps.backend.app.modules.resources.florestas.domain.models.cota_reserva_ambiental import CotaReservaAmbiental
+from apps.backend.app.modules.resources.florestas.domain.models.cota_reserva_ambiental import (
+    CotaReservaAmbiental,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.cra import Cra
-from apps.backend.app.modules.resources.florestas.domain.models.credito_carbono import CreditoCarbono
+from apps.backend.app.modules.resources.florestas.domain.models.credito_carbono import (
+    CreditoCarbono,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.dap import Dap
-from apps.backend.app.modules.resources.florestas.domain.models.depósito_madeira import DepositoMadeira
-from apps.backend.app.modules.resources.florestas.domain.models.desmatamento_ilegal import DesmatamentoIlegal
+from apps.backend.app.modules.resources.florestas.domain.models.depósito_madeira import (
+    DepositoMadeira,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.desmatamento_ilegal import (
+    DesmatamentoIlegal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.deter import Deter
 from apps.backend.app.modules.resources.florestas.domain.models.doação_madeira import DoacaoMadeira
-from apps.backend.app.modules.resources.florestas.domain.models.documento_origem_florestal import DocumentoOrigemFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.documento_origem_florestal import (
+    DocumentoOrigemFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.dof import Dof
-from apps.backend.app.modules.resources.florestas.domain.models.embargo_florestal import EmbargoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.empresa_florestal import EmpresaFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.especie_florestal import EspecieFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.estatistica_florestal import EstatisticaFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.estoque_carbono import EstoqueCarbono
-from apps.backend.app.modules.resources.florestas.domain.models.exploracao_florestal import ExploracaoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.exportacao_madeira import ExportacaoMadeira
+from apps.backend.app.modules.resources.florestas.domain.models.embargo_florestal import (
+    EmbargoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.empresa_florestal import (
+    EmpresaFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.especie_florestal import (
+    EspecieFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.estatistica_florestal import (
+    EstatisticaFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.estoque_carbono import (
+    EstoqueCarbono,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.exploracao_florestal import (
+    ExploracaoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.exportacao_madeira import (
+    ExportacaoMadeira,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.extração import Extracao
-from apps.backend.app.modules.resources.florestas.domain.models.fiscalizacao_florestal import FiscalizacaoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.fiscalizacao_florestal import (
+    FiscalizacaoFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.foco_calor import FocoCalor
 from apps.backend.app.modules.resources.florestas.domain.models.frutos import Frutos
 from apps.backend.app.modules.resources.florestas.domain.models.fsc import Fsc
-from apps.backend.app.modules.resources.florestas.domain.models.guia_transporte_florestal import GuiaTransporteFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.importacao_madeira import ImportacaoMadeira
-from apps.backend.app.modules.resources.florestas.domain.models.incêndio_florestal import IncendioFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.guia_transporte_florestal import (
+    GuiaTransporteFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.importacao_madeira import (
+    ImportacaoMadeira,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.incêndio_florestal import (
+    IncendioFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import (
+    InventarioFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.iso_14001 import Iso14001
 from apps.backend.app.modules.resources.florestas.domain.models.laminados import Laminados
 from apps.backend.app.modules.resources.florestas.domain.models.leilão_madeira import LeilaoMadeira
 from apps.backend.app.modules.resources.florestas.domain.models.lenha import Lenha
 from apps.backend.app.modules.resources.florestas.domain.models.licenca_manejo import LicencaManejo
-from apps.backend.app.modules.resources.florestas.domain.models.madeira_serrada import MadeiraSerrada
-from apps.backend.app.modules.resources.florestas.domain.models.monitoramento_satelite import MonitoramentoSatelite
+from apps.backend.app.modules.resources.florestas.domain.models.madeira_serrada import (
+    MadeiraSerrada,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.monitoramento_satelite import (
+    MonitoramentoSatelite,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.muda import Muda
-from apps.backend.app.modules.resources.florestas.domain.models.multa_florestal import MultaFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.nota_fiscal_florestal import NotaFiscalFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.ocorrencia_incendio import OcorrenciaIncendio
-from apps.backend.app.modules.resources.florestas.domain.models.outorga_florestal import OutorgaFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.multa_florestal import (
+    MultaFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.nota_fiscal_florestal import (
+    NotaFiscalFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.ocorrencia_incendio import (
+    OcorrenciaIncendio,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.outorga_florestal import (
+    OutorgaFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.parcela import Parcela
 from apps.backend.app.modules.resources.florestas.domain.models.pefc import Pefc
-from apps.backend.app.modules.resources.florestas.domain.models.plano_manejo_florestal import PlanoManejoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.plantas_medicinais import PlantasMedicinais
+from apps.backend.app.modules.resources.florestas.domain.models.plano_manejo_florestal import (
+    PlanoManejoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.plantas_medicinais import (
+    PlantasMedicinais,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.plantio import Plantio
 from apps.backend.app.modules.resources.florestas.domain.models.pmfs import Pmfs
 from apps.backend.app.modules.resources.florestas.domain.models.pnfm import Pnfm
 from apps.backend.app.modules.resources.florestas.domain.models.prodes import Prodes
-from apps.backend.app.modules.resources.florestas.domain.models.produtos_nao_madeireiros import ProdutosNaoMadeireiros
-from apps.backend.app.modules.resources.florestas.domain.models.produção_madeireira import ProducaoMadeireira
-from apps.backend.app.modules.resources.florestas.domain.models.produção_nao_madeireira import ProducaoNaoMadeireira
-from apps.backend.app.modules.resources.florestas.domain.models.projeto_carbono import ProjetoCarbono
+from apps.backend.app.modules.resources.florestas.domain.models.produtos_nao_madeireiros import (
+    ProdutosNaoMadeireiros,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.produção_madeireira import (
+    ProducaoMadeireira,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.produção_nao_madeireira import (
+    ProducaoNaoMadeireira,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.projeto_carbono import (
+    ProjetoCarbono,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.rad import Rad
-from apps.backend.app.modules.resources.florestas.domain.models.recuperacao_area_degradada import RecuperacaoAreaDegradada
+from apps.backend.app.modules.resources.florestas.domain.models.recuperacao_area_degradada import (
+    RecuperacaoAreaDegradada,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.redd import Redd
-from apps.backend.app.modules.resources.florestas.domain.models.reflorestamento import Reflorestamento
-from apps.backend.app.modules.resources.florestas.domain.models.reposicao_florestal import ReposicaoFlorestal
+from apps.backend.app.modules.resources.florestas.domain.models.reflorestamento import (
+    Reflorestamento,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.reposicao_florestal import (
+    ReposicaoFlorestal,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.reserva_legal import ReservaLegal
 from apps.backend.app.modules.resources.florestas.domain.models.resina import Resina
-from apps.backend.app.modules.resources.florestas.domain.models.semente_florestal import SementeFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.servidao_ambiental import ServidaoAmbiental
-from apps.backend.app.modules.resources.florestas.domain.models.talhao_florestal import TalhaoFlorestal
-from apps.backend.app.modules.resources.florestas.domain.models.termo_apreensao import TermoApreensao
+from apps.backend.app.modules.resources.florestas.domain.models.semente_florestal import (
+    SementeFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.servidao_ambiental import (
+    ServidaoAmbiental,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.talhao_florestal import (
+    TalhaoFlorestal,
+)
+from apps.backend.app.modules.resources.florestas.domain.models.termo_apreensao import (
+    TermoApreensao,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.toras import Toras
 from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
-from apps.backend.app.modules.resources.florestas.domain.models.verificacao_carbono import VerificacaoCarbono
+from apps.backend.app.modules.resources.florestas.domain.models.verificacao_carbono import (
+    VerificacaoCarbono,
+)
 from apps.backend.app.modules.resources.florestas.domain.models.viveiro import Viveiro
 from apps.backend.app.modules.resources.florestas.domain.models.volume_madeira import VolumeMadeira
-from apps.backend.app.modules.resources.florestas.domain.models.óleos_essenciais import OleosEssenciais
-__all__ = ['Aceiro', 'AlertaDesmatamento', 'AlturaComercial', 'App', 'ApreensaoMadeira', 'AreaConcedida', 'AreaDesmatada', 'AreaManejada', 'AreaQueimada', 'AreaRecuperada', 'AreaReflorestada', 'Arraste', 'Arvore', 'Assentamento', 'Asv', 'AutoInfracaoFlorestal', 'AutorizacaoSupressao', 'Biomassa', 'Borracha', 'Brigada', 'CadastroAmbientalRural', 'Car', 'Carbono', 'Carvao', 'Castanha', 'CensoFlorestal', 'Cerflor', 'CertificacaoFlorestal', 'CicloCorte', 'CombateIncendio', 'ComercializacaoFlorestal', 'Compensados', 'ComunidadeTradicional', 'ConcessaoFlorestal', 'ConcessionarioFlorestal', 'CorteSeletivo', 'CotaReservaAmbiental', 'Cra', 'CreditoCarbono', 'Dap', 'DepositoMadeira', 'DesmatamentoIlegal', 'Deter', 'DoacaoMadeira', 'DocumentoOrigemFlorestal', 'Dof', 'EmbargoFlorestal', 'EmpresaFlorestal', 'EspecieFlorestal', 'EstatisticaFlorestal', 'EstoqueCarbono', 'ExploracaoFlorestal', 'ExportacaoMadeira', 'Extracao', 'FiscalizacaoFlorestal', 'FocoCalor', 'Frutos', 'Fsc', 'GuiaTransporteFlorestal', 'ImportacaoMadeira', 'IncendioFlorestal', 'InventarioFlorestal', 'Iso14001', 'Laminados', 'LeilaoMadeira', 'Lenha', 'LicencaManejo', 'MadeiraSerrada', 'MonitoramentoSatelite', 'Muda', 'MultaFlorestal', 'NotaFiscalFlorestal', 'OcorrenciaIncendio', 'OutorgaFlorestal', 'Parcela', 'Pefc', 'PlanoManejoFlorestal', 'PlantasMedicinais', 'Plantio', 'Pmfs', 'Pnfm', 'Prodes', 'ProdutosNaoMadeireiros', 'ProducaoMadeireira', 'ProducaoNaoMadeireira', 'ProjetoCarbono', 'Rad', 'RecuperacaoAreaDegradada', 'Redd', 'Reflorestamento', 'ReposicaoFlorestal', 'ReservaLegal', 'Resina', 'SementeFlorestal', 'ServidaoAmbiental', 'TalhaoFlorestal', 'TermoApreensao', 'Toras', 'UnidadeManejo', 'VerificacaoCarbono', 'Viveiro', 'VolumeMadeira', 'OleosEssenciais']
+from apps.backend.app.modules.resources.florestas.domain.models.óleos_essenciais import (
+    OleosEssenciais,
+)
+
+__all__ = [
+    "Aceiro",
+    "AlertaDesmatamento",
+    "AlturaComercial",
+    "App",
+    "ApreensaoMadeira",
+    "AreaConcedida",
+    "AreaDesmatada",
+    "AreaManejada",
+    "AreaQueimada",
+    "AreaRecuperada",
+    "AreaReflorestada",
+    "Arraste",
+    "Arvore",
+    "Assentamento",
+    "Asv",
+    "AutoInfracaoFlorestal",
+    "AutorizacaoSupressao",
+    "Biomassa",
+    "Borracha",
+    "Brigada",
+    "CadastroAmbientalRural",
+    "Car",
+    "Carbono",
+    "Carvao",
+    "Castanha",
+    "CensoFlorestal",
+    "Cerflor",
+    "CertificacaoFlorestal",
+    "CicloCorte",
+    "CombateIncendio",
+    "ComercializacaoFlorestal",
+    "Compensados",
+    "ComunidadeTradicional",
+    "ConcessaoFlorestal",
+    "ConcessionarioFlorestal",
+    "CorteSeletivo",
+    "CotaReservaAmbiental",
+    "Cra",
+    "CreditoCarbono",
+    "Dap",
+    "DepositoMadeira",
+    "DesmatamentoIlegal",
+    "Deter",
+    "DoacaoMadeira",
+    "DocumentoOrigemFlorestal",
+    "Dof",
+    "EmbargoFlorestal",
+    "EmpresaFlorestal",
+    "EspecieFlorestal",
+    "EstatisticaFlorestal",
+    "EstoqueCarbono",
+    "ExploracaoFlorestal",
+    "ExportacaoMadeira",
+    "Extracao",
+    "FiscalizacaoFlorestal",
+    "FocoCalor",
+    "Frutos",
+    "Fsc",
+    "GuiaTransporteFlorestal",
+    "ImportacaoMadeira",
+    "IncendioFlorestal",
+    "InventarioFlorestal",
+    "Iso14001",
+    "Laminados",
+    "LeilaoMadeira",
+    "Lenha",
+    "LicencaManejo",
+    "MadeiraSerrada",
+    "MonitoramentoSatelite",
+    "Muda",
+    "MultaFlorestal",
+    "NotaFiscalFlorestal",
+    "OcorrenciaIncendio",
+    "OutorgaFlorestal",
+    "Parcela",
+    "Pefc",
+    "PlanoManejoFlorestal",
+    "PlantasMedicinais",
+    "Plantio",
+    "Pmfs",
+    "Pnfm",
+    "Prodes",
+    "ProdutosNaoMadeireiros",
+    "ProducaoMadeireira",
+    "ProducaoNaoMadeireira",
+    "ProjetoCarbono",
+    "Rad",
+    "RecuperacaoAreaDegradada",
+    "Redd",
+    "Reflorestamento",
+    "ReposicaoFlorestal",
+    "ReservaLegal",
+    "Resina",
+    "SementeFlorestal",
+    "ServidaoAmbiental",
+    "TalhaoFlorestal",
+    "TermoApreensao",
+    "Toras",
+    "UnidadeManejo",
+    "VerificacaoCarbono",
+    "Viveiro",
+    "VolumeMadeira",
+    "OleosEssenciais",
+]

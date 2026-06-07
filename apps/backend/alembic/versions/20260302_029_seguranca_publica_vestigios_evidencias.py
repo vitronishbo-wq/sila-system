@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_029_seguranca_publica_vestigios_evidencias"
 down_revision = "20260302_028_seguranca_publica_cadeia_custodia_laudos"
 branch_labels = None
@@ -88,19 +87,33 @@ def _create_vestigios_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_codigo ON seguranca_vestigios (codigo_vestigio)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_codigo ON seguranca_vestigios (codigo_vestigio)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_cadeia_id ON seguranca_vestigios (cadeia_custodia_id)"
     )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_ocorrencia_id ON seguranca_vestigios (ocorrencia_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_tipo ON seguranca_vestigios (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_status ON seguranca_vestigios (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_data_coleta ON seguranca_vestigios (data_coleta)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_localizacao ON seguranca_vestigios (localizacao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_coletado_por ON seguranca_vestigios (coletado_por_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_ativo ON seguranca_vestigios (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_tipo ON seguranca_vestigios (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_status ON seguranca_vestigios (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_data_coleta ON seguranca_vestigios (data_coleta)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_localizacao ON seguranca_vestigios (localizacao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_coletado_por ON seguranca_vestigios (coletado_por_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_vestigios_ativo ON seguranca_vestigios (ativo)"
+    )
 
 
 def _create_evidencias_table() -> None:
@@ -169,21 +182,33 @@ def _create_evidencias_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_codigo ON seguranca_evidencias (codigo_evidencia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_vestigio_id ON seguranca_evidencias (vestigio_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_codigo ON seguranca_evidencias (codigo_evidencia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_vestigio_id ON seguranca_evidencias (vestigio_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_cadeia_id ON seguranca_evidencias (cadeia_custodia_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_tipo ON seguranca_evidencias (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_status ON seguranca_evidencias (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_tipo ON seguranca_evidencias (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_status ON seguranca_evidencias (status)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_data_registro ON seguranca_evidencias (data_registro)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_fonte ON seguranca_evidencias (fonte)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_fonte ON seguranca_evidencias (fonte)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_analisado_por ON seguranca_evidencias (analisado_por_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_ativo ON seguranca_evidencias (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_evidencias_ativo ON seguranca_evidencias (ativo)"
+    )
 
 
 def upgrade() -> None:

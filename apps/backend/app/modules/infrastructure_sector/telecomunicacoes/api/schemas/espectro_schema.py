@@ -1,7 +1,15 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusEspectro,
+    TipoEspectro,
+    TipoServico,
+)
+
 
 class EspectroCreate(BaseModel):
     tipo: TipoEspectro
@@ -13,11 +21,14 @@ class EspectroCreate(BaseModel):
     outorga_id: UUID | None = None
     observacoes: str | None = None
 
+
 class EspectroStatusUpdate(BaseModel):
     status: StatusEspectro
 
+
 class EspectroVincularOutorga(BaseModel):
     outorga_id: UUID
+
 
 class EspectroResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

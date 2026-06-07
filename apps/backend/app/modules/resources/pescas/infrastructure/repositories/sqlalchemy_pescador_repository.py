@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pescas.application.ports import PescadorRepositoryPort
 from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
 from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
-from apps.backend.app.modules.resources.pescas.infrastructure.models.pescador_model import PescadorModel
+from apps.backend.app.modules.resources.pescas.infrastructure.models.pescador_model import (
+    PescadorModel,
+)
+
 
 class SQLAlchemyPescadorRepository(PescadorRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,7 +46,7 @@ class SQLAlchemyPescadorRepository(PescadorRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_by_tipo(self, tipo: TipoPescador | None=None) -> list[Pescador]:
+    async def list_by_tipo(self, tipo: TipoPescador | None = None) -> list[Pescador]:
         stmt = select(PescadorModel)
         if tipo:
             stmt = stmt.where(PescadorModel.tipo == tipo.value)
@@ -50,10 +55,26 @@ class SQLAlchemyPescadorRepository(PescadorRepositoryPort):
 
     async def next_registro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(PescadorModel).where(PescadorModel.numero_registro.like(f'PES/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(PescadorModel)
+            .where(PescadorModel.numero_registro.like(f"PES/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'PES/{ano}/{count + 1:06d}'
+        return f"PES/{ano}/{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: PescadorModel) -> Pescador:
-        return Pescador(id=model.id, nome=model.nome, numero_registro=model.numero_registro, tipo=TipoPescador(model.tipo), citizen_id=model.citizen_id, data_registro=model.data_registro, ativo=model.ativo, telefone=model.telefone, email=model.email, cooperativa_id=model.cooperativa_id, observacoes=model.observacoes)
+        return Pescador(
+            id=model.id,
+            nome=model.nome,
+            numero_registro=model.numero_registro,
+            tipo=TipoPescador(model.tipo),
+            citizen_id=model.citizen_id,
+            data_registro=model.data_registro,
+            ativo=model.ativo,
+            telefone=model.telefone,
+            email=model.email,
+            cooperativa_id=model.cooperativa_id,
+            observacoes=model.observacoes,
+        )

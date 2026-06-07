@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusVoluntariado
+
+from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import (
+    VoluntariadoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusVoluntariado,
+)
 from apps.backend.app.modules.society.juventude.domain.models.voluntariado import Voluntariado
-from apps.backend.app.modules.society.juventude.infrastructure.models.voluntariado_model import VoluntariadoModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.voluntariado_model import (
+    VoluntariadoModel,
+)
+
 
 class SQLAlchemyVoluntariadoRepository(VoluntariadoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -38,7 +48,9 @@ class SQLAlchemyVoluntariadoRepository(VoluntariadoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_voluntariado: str) -> Voluntariado | None:
-        stmt = select(VoluntariadoModel).where(VoluntariadoModel.codigo_voluntariado == codigo_voluntariado.strip())
+        stmt = select(VoluntariadoModel).where(
+            VoluntariadoModel.codigo_voluntariado == codigo_voluntariado.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -48,12 +60,20 @@ class SQLAlchemyVoluntariadoRepository(VoluntariadoRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[Voluntariado]:
-        stmt = select(VoluntariadoModel).where(VoluntariadoModel.jovem_id == jovem_id).order_by(VoluntariadoModel.data_cadastro.desc())
+        stmt = (
+            select(VoluntariadoModel)
+            .where(VoluntariadoModel.jovem_id == jovem_id)
+            .order_by(VoluntariadoModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusVoluntariado) -> list[Voluntariado]:
-        stmt = select(VoluntariadoModel).where(VoluntariadoModel.status == status.value).order_by(VoluntariadoModel.data_cadastro.desc())
+        stmt = (
+            select(VoluntariadoModel)
+            .where(VoluntariadoModel.status == status.value)
+            .order_by(VoluntariadoModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -67,10 +87,27 @@ class SQLAlchemyVoluntariadoRepository(VoluntariadoRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(VoluntariadoModel).where(VoluntariadoModel.codigo_voluntariado.like(f'VOL/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(VoluntariadoModel)
+            .where(VoluntariadoModel.codigo_voluntariado.like(f"VOL/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'VOL/{ano}/{count + 1:05d}'
+        return f"VOL/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: VoluntariadoModel) -> Voluntariado:
-        return Voluntariado(id=model.id, codigo_voluntariado=model.codigo_voluntariado, jovem_id=model.jovem_id, organizacao=model.organizacao, causa=AreaInteresse(model.causa), carga_horaria_total=model.carga_horaria_total, data_inicio=model.data_inicio, data_fim=model.data_fim, status=StatusVoluntariado(model.status), data_cadastro=model.data_cadastro or date.today(), observacoes=model.observacoes, ativo=model.ativo)
+        return Voluntariado(
+            id=model.id,
+            codigo_voluntariado=model.codigo_voluntariado,
+            jovem_id=model.jovem_id,
+            organizacao=model.organizacao,
+            causa=AreaInteresse(model.causa),
+            carga_horaria_total=model.carga_horaria_total,
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            status=StatusVoluntariado(model.status),
+            data_cadastro=model.data_cadastro or date.today(),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

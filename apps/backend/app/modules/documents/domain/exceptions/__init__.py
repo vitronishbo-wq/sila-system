@@ -1,2 +1,0 @@
-class DocumentsException(Exception):
-    pass

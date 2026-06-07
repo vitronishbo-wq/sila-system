@@ -1,0 +1,23 @@
+module: moradas
+name: Normalizacao de Moradas
+code: moradas
+description: Normalizacao, validacao e geocodificacao de enderecos angolanos
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+parent: integracao-nacional
+exposes:
+  api_routers:
+  - prefix: /integracao-nacional/moradas
+    endpoints:
+    - POST /integracao-nacional/moradas/normalizar (Normalizar morada)
+    - POST /integracao-nacional/moradas/validar (Validar morada)
+  public_models:
+  - MoradaNormalizada
+  events_published: []
+requires:
+  domains: []
+  core_services:
+  - database_session
+subdomains: []

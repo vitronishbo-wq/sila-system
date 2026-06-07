@@ -3,7 +3,6 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 BACKEND_APP = REPO_ROOT / "apps" / "backend" / "app"
 MODULES_ROOT = BACKEND_APP / "modules"
@@ -36,7 +35,11 @@ def _collect_cross_module_imports() -> set[tuple[str, str, str]]:
             continue
 
         for node in ast.walk(tree):
-            if isinstance(node, ast.ImportFrom) and node.module and node.module.startswith("app.modules."):
+            if (
+                isinstance(node, ast.ImportFrom)
+                and node.module
+                and node.module.startswith("app.modules.")
+            ):
                 parts = node.module.split(".")
                 if len(parts) > 2:
                     target = parts[2]
@@ -100,16 +103,17 @@ def test_no_legacy_app_citizen_imports_in_tests():
             except SyntaxError:
                 continue
             for node in ast.walk(tree):
-                if isinstance(node, ast.ImportFrom) and node.module and node.module.startswith("app.citizen"):
+                if (
+                    isinstance(node, ast.ImportFrom)
+                    and node.module
+                    and node.module.startswith("app.citizen")
+                ):
                     hits.add(path.relative_to(REPO_ROOT).as_posix())
                 elif isinstance(node, ast.Import):
                     if any(alias.name.startswith("app.citizen") for alias in node.names):
                         hits.add(path.relative_to(REPO_ROOT).as_posix())
     unexpected = sorted(hits - ALLOWED_LEGACY_APP_CITIZEN_IMPORTS_IN_TESTS)
-    assert not unexpected, (
-        "New legacy app.citizen imports found in tests/modules: "
-        f"{unexpected}"
-    )
+    assert not unexpected, f"New legacy app.citizen imports found in tests/modules: {unexpected}"
 
 
 def test_cross_module_imports_do_not_expand():
@@ -126,10 +130,10 @@ def test_identity_consolidation_blocks_direct_citizen_imports_from_identity():
         (BACKEND_APP / "core" / "bridges" / "civil_identity_bridge.py").resolve(),
     }
     blocked_modules = (
-        "app.modules.justice.civil_registry.application.services.citizen_service",
-        "app.modules.justice.civil_registry.domain.models.citizen",
-        "app.modules.justice.civil_registry.infrastructure.models.citizen_model",
-        "app.modules.justice.civil_registry.infrastructure.repositories.citizen_repository",
+        "apps.backend.app.modules.justice.civil_registry.application.services.citizen_service",
+        "apps.backend.app.modules.justice.civil_registry.domain.models.citizen",
+        "apps.backend.app.modules.justice.civil_registry.infrastructure.models.citizen_model",
+        "apps.backend.app.modules.justice.civil_registry.infrastructure.repositories.citizen_repository",
     )
     hits: list[str] = []
     for path in _iter_python_files(BACKEND_APP):
@@ -162,14 +166,29 @@ def test_identity_consolidation_blocks_direct_citizen_imports_from_identity():
 
 def test_compat_citizen_repositories_delegate_to_canonical_identity_adapter():
     compatibility_files = [
-        BACKEND_APP / "modules" / "identity" / "infrastructure" / "repositories" / "citizen_repository.py",
+        BACKEND_APP
+        / "modules"
+        / "identity"
+        / "infrastructure"
+        / "repositories"
+        / "citizen_repository.py",
         BACKEND_APP / "infrastructure" / "repositories" / "citizen_repository.py",
     ]
-    canonical_import = "from app.core.bridges.citizen_repository_bridge import CitizenRepository as CanonicalCitizenRepository"
     for path in compatibility_files:
         text = path.read_text(encoding="utf-8", errors="ignore")
         rel = path.relative_to(BACKEND_APP).as_posix()
-        assert canonical_import in text, (
+        tree = ast.parse(text)
+        delegates_to_canonical = any(
+            isinstance(node, ast.ImportFrom)
+            and node.module == "apps.backend.app.core.bridges.citizen_repository_bridge"
+            and any(
+                alias.name == "CitizenRepository"
+                and alias.asname == "CanonicalCitizenRepository"
+                for alias in node.names
+            )
+            for node in ast.walk(tree)
+        )
+        assert delegates_to_canonical, (
             f"{rel} must delegate to canonical identity citizen repository adapter"
         )
         assert "select(" not in text, (

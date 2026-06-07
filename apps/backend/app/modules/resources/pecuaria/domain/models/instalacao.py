@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.resources.pecuaria.domain.enums import TipoInstalacao
+
 
 @dataclass
 class Instalacao:
@@ -10,5 +12,5 @@ class Instalacao:
     descricao: str
 
     @classmethod
-    def criar(cls, *, propriedade_id: UUID, tipo: TipoInstalacao, descricao: str) -> 'Instalacao':
+    def criar(cls, *, propriedade_id: UUID, tipo: TipoInstalacao, descricao: str) -> "Instalacao":
         return cls(id=uuid4(), propriedade_id=propriedade_id, tipo=tipo, descricao=descricao)

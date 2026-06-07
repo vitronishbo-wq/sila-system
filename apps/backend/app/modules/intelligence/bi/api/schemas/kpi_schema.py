@@ -1,12 +1,14 @@
 from pydantic import BaseModel
-from typing import Optional
+
 
 class KPIBase(BaseModel):
     code: str
     value: float
 
+
 class KPIResponse(KPIBase):
-    period: Optional[str]
+    period: str | None
+
 
 class KPIDomainResponse(BaseModel):
     domain: str
@@ -14,6 +16,7 @@ class KPIDomainResponse(BaseModel):
     generated_at: str
     metrics: dict[str, float | int]
     metric_count: int
+
 
 class KPIConsolidatedResponse(BaseModel):
     reference_date: str

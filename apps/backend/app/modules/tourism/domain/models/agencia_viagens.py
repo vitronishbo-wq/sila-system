@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
+
 
 @dataclass
 class AgenciaViagens:
@@ -26,10 +28,64 @@ class AgenciaViagens:
     observacoes: str | None = None
 
     @classmethod
-    def cadastrar(cls, *, nome_fantasia: str, razao_social: str, cnpj: str, email: str, telefone: str, endereco: str, numero: str, bairro: str, municipio: str, provincia: str, cep: str, proprietario_id: UUID, especialidades: list[str] | None=None, site: str | None=None, observacoes: str | None=None) -> 'AgenciaViagens':
-        return cls(id=uuid4(), registro='', nome_fantasia=nome_fantasia.strip(), razao_social=razao_social.strip(), cnpj=cnpj.strip(), email=email.strip().lower(), telefone=telefone.strip(), endereco=endereco.strip(), numero=numero.strip(), bairro=bairro.strip(), municipio=municipio.strip(), provincia=provincia.strip(), cep=cep.strip(), proprietario_id=proprietario_id, data_registro=date.today(), ativa=True, especialidades=list(especialidades or []), site=site.strip() if site else None, observacoes=observacoes.strip() if observacoes else None)
+    def cadastrar(
+        cls,
+        *,
+        nome_fantasia: str,
+        razao_social: str,
+        cnpj: str,
+        email: str,
+        telefone: str,
+        endereco: str,
+        numero: str,
+        bairro: str,
+        municipio: str,
+        provincia: str,
+        cep: str,
+        proprietario_id: UUID,
+        especialidades: list[str] | None = None,
+        site: str | None = None,
+        observacoes: str | None = None,
+    ) -> AgenciaViagens:
+        return cls(
+            id=uuid4(),
+            registro="",
+            nome_fantasia=nome_fantasia.strip(),
+            razao_social=razao_social.strip(),
+            cnpj=cnpj.strip(),
+            email=email.strip().lower(),
+            telefone=telefone.strip(),
+            endereco=endereco.strip(),
+            numero=numero.strip(),
+            bairro=bairro.strip(),
+            municipio=municipio.strip(),
+            provincia=provincia.strip(),
+            cep=cep.strip(),
+            proprietario_id=proprietario_id,
+            data_registro=date.today(),
+            ativa=True,
+            especialidades=list(especialidades or []),
+            site=site.strip() if site else None,
+            observacoes=observacoes.strip() if observacoes else None,
+        )
 
-    def atualizar(self, *, nome_fantasia: str | None=None, razao_social: str | None=None, email: str | None=None, telefone: str | None=None, endereco: str | None=None, numero: str | None=None, bairro: str | None=None, municipio: str | None=None, provincia: str | None=None, cep: str | None=None, especialidades: list[str] | None=None, site: str | None=None, observacoes: str | None=None) -> None:
+    def atualizar(
+        self,
+        *,
+        nome_fantasia: str | None = None,
+        razao_social: str | None = None,
+        email: str | None = None,
+        telefone: str | None = None,
+        endereco: str | None = None,
+        numero: str | None = None,
+        bairro: str | None = None,
+        municipio: str | None = None,
+        provincia: str | None = None,
+        cep: str | None = None,
+        especialidades: list[str] | None = None,
+        site: str | None = None,
+        observacoes: str | None = None,
+    ) -> None:
         if nome_fantasia is not None:
             self.nome_fantasia = nome_fantasia.strip()
         if razao_social is not None:

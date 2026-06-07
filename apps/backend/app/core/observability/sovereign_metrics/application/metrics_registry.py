@@ -1,5 +1,4 @@
 class SovereignMetricsRegistry:
-
     def __init__(self):
         self.metrics = {}
 

@@ -1,4 +1,3 @@
-
 # Fluxo simplificado: criar cidadão -> simular processo -> associar pagamento
 
 

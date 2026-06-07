@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import date
+
 from apps.backend.app.modules.resources.pescas.domain.models.producao_pesca import ProducaoPesca
 
-class ProducaoPescaRepositoryPort(ABC):
 
+class ProducaoPescaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, producao: ProducaoPesca) -> ProducaoPesca:
         pass

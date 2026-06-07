@@ -1,8 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.agricultura.domain.enums import AptidaoSolo, StatusCadastroAmbiental, StatusZoneamento, TipoZonaAgricola
+
+from apps.backend.app.modules.resources.agricultura.domain.enums import (
+    AptidaoSolo,
+    StatusCadastroAmbiental,
+    StatusZoneamento,
+    TipoZonaAgricola,
+)
+
 
 class ZoneamentoCreate(BaseModel):
     codigo_propriedade: str
@@ -14,8 +23,10 @@ class ZoneamentoCreate(BaseModel):
     validade_ate: date | None = None
     observacoes: str | None = None
 
+
 class ZoneamentoRevogacaoInput(BaseModel):
     motivo: str
+
 
 class CadastroAmbientalCreate(BaseModel):
     reserva_legal_percentual: float
@@ -23,11 +34,14 @@ class CadastroAmbientalCreate(BaseModel):
     area_protecao_ha: float
     numero_processo: str | None = None
 
+
 class CadastroAmbientalValidacaoInput(BaseModel):
     numero_processo: str
 
+
 class CadastroAmbientalPendenciaInput(BaseModel):
     pendencia: str
+
 
 class ZoneamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -43,6 +57,7 @@ class ZoneamentoResponse(BaseModel):
     restricoes: list[str] | None = None
     validade_ate: date | None = None
     observacoes: str | None = None
+
 
 class CadastroAmbientalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusOperacaoUrbana,
+    TipoOperacaoUrbana,
+)
+
 
 class OperacaoUrbanaCreate(BaseModel):
     nome: str
@@ -18,18 +25,23 @@ class OperacaoUrbanaCreate(BaseModel):
     data_fim_prevista: date | None = None
     codigo_operacao: str | None = None
 
+
 class OperacaoUrbanaInicioInput(BaseModel):
     data_inicio_real: date
+
 
 class OperacaoUrbanaExecucaoInput(BaseModel):
     percentual_execucao: Decimal
     investimento_executado: Decimal | None = None
 
+
 class OperacaoUrbanaConclusaoInput(BaseModel):
     data_fim_real: date
 
+
 class OperacaoUrbanaMotivoInput(BaseModel):
     motivo: str
+
 
 class OperacaoUrbanaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

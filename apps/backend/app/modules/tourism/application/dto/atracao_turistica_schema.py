@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
+
 
 class AtracaoTuristicaCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -20,6 +24,7 @@ class AtracaoTuristicaCreate(BaseModel):
     longitude: Decimal | None = None
     observacoes: str | None = None
 
+
 class AtracaoTuristicaUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
     tipo: TipoAtracao | None = None
@@ -36,6 +41,7 @@ class AtracaoTuristicaUpdate(BaseModel):
     longitude: Decimal | None = None
     observacoes: str | None = None
     ativa: bool | None = None
+
 
 class AtracaoTuristicaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

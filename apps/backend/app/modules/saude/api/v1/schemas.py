@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 
 class VaccineDoseInput(BaseModel):
     citizen_id: UUID
@@ -13,6 +16,7 @@ class VaccineDoseInput(BaseModel):
     application_date: date
     next_dose_date: date | None = None
     adverse_reactions: str | None = None
+
 
 class VaccineDoseResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

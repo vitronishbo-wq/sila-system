@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_039_transportes_logistica_linhas_bilhetagem"
 down_revision = "20260304_038_transportes_logistica_orm_core"
 branch_labels = None
@@ -120,18 +119,40 @@ def upgrade() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_codigo ON transportes_logistica_linhas (codigo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_modal ON transportes_logistica_linhas (modal)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_tipo_viagem ON transportes_logistica_linhas (tipo_viagem)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_origem ON transportes_logistica_linhas (origem)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_destino ON transportes_logistica_linhas (destino)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_operadora ON transportes_logistica_linhas (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_linha_status ON transportes_logistica_linhas (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_codigo ON transportes_logistica_linhas (codigo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_modal ON transportes_logistica_linhas (modal)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_tipo_viagem ON transportes_logistica_linhas (tipo_viagem)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_origem ON transportes_logistica_linhas (origem)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_destino ON transportes_logistica_linhas (destino)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_operadora ON transportes_logistica_linhas (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_linha_status ON transportes_logistica_linhas (status)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_veiculo_placa ON transportes_logistica_veiculos (placa)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_veiculo_tipo ON transportes_logistica_veiculos (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_veiculo_status ON transportes_logistica_veiculos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_tl_veiculo_operadora ON transportes_logistica_veiculos (operadora_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_veiculo_placa ON transportes_logistica_veiculos (placa)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_veiculo_tipo ON transportes_logistica_veiculos (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_veiculo_status ON transportes_logistica_veiculos (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_tl_veiculo_operadora ON transportes_logistica_veiculos (operadora_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_tl_veiculo_proprietario ON transportes_logistica_veiculos (proprietario_id)"
     )

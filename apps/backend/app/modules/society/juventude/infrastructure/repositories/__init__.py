@@ -1,18 +1,71 @@
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_acompanhamento_juvenil_repository import SQLAlchemyAcompanhamentoJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_auxilio_repository import SQLAlchemyAuxilioRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_bolsa_estudo_repository import SQLAlchemyBolsaEstudoRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_empreendedorismo_juvenil_repository import SQLAlchemyEmpreendedorismoJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_estagio_juvenil_repository import SQLAlchemyEstagioJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_evento_juvenil_repository import SQLAlchemyEventoJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_formacao_repository import SQLAlchemyFormacaoRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_inscricao_programa_repository import SQLAlchemyInscricaoProgramaRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_intercambio_juvenil_repository import SQLAlchemyIntercambioJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_jovem_repository import SQLAlchemyJovemRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_mentor_repository import SQLAlchemyMentorRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_politica_juventude_repository import SQLAlchemyPoliticaJuventudeRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_programa_repository import SQLAlchemyProgramaRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_risco_evasao_repository import SQLAlchemyRiscoEvasaoRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_saude_juvenil_repository import SQLAlchemySaudeJuvenilRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_voluntariado_repository import SQLAlchemyVoluntariadoRepository
-from apps.backend.app.modules.society.juventude.infrastructure.repositories._workflow_sqlalchemy_repository import SQLAlchemyWorkflowRepository
-__all__ = ['SQLAlchemyAcompanhamentoJuvenilRepository', 'SQLAlchemyJovemRepository', 'SQLAlchemyAuxilioRepository', 'SQLAlchemyBolsaEstudoRepository', 'SQLAlchemyEstagioJuvenilRepository', 'SQLAlchemyInscricaoProgramaRepository', 'SQLAlchemyIntercambioJuvenilRepository', 'SQLAlchemyMentorRepository', 'SQLAlchemyEventoJuvenilRepository', 'SQLAlchemyVoluntariadoRepository', 'SQLAlchemyEmpreendedorismoJuvenilRepository', 'SQLAlchemySaudeJuvenilRepository', 'SQLAlchemyPoliticaJuventudeRepository', 'SQLAlchemyProgramaRepository', 'SQLAlchemyFormacaoRepository', 'SQLAlchemyRiscoEvasaoRepository', 'SQLAlchemyWorkflowRepository']
+from apps.backend.app.modules.society.juventude.infrastructure.repositories._workflow_sqlalchemy_repository import (
+    SQLAlchemyWorkflowRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_acompanhamento_juvenil_repository import (
+    SQLAlchemyAcompanhamentoJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_auxilio_repository import (
+    SQLAlchemyAuxilioRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_bolsa_estudo_repository import (
+    SQLAlchemyBolsaEstudoRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_empreendedorismo_juvenil_repository import (
+    SQLAlchemyEmpreendedorismoJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_estagio_juvenil_repository import (
+    SQLAlchemyEstagioJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_evento_juvenil_repository import (
+    SQLAlchemyEventoJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_formacao_repository import (
+    SQLAlchemyFormacaoRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_inscricao_programa_repository import (
+    SQLAlchemyInscricaoProgramaRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_intercambio_juvenil_repository import (
+    SQLAlchemyIntercambioJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_jovem_repository import (
+    SQLAlchemyJovemRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_mentor_repository import (
+    SQLAlchemyMentorRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_politica_juventude_repository import (
+    SQLAlchemyPoliticaJuventudeRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_programa_repository import (
+    SQLAlchemyProgramaRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_risco_evasao_repository import (
+    SQLAlchemyRiscoEvasaoRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_saude_juvenil_repository import (
+    SQLAlchemySaudeJuvenilRepository,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.repositories.sqlalchemy_voluntariado_repository import (
+    SQLAlchemyVoluntariadoRepository,
+)
+
+__all__ = [
+    "SQLAlchemyAcompanhamentoJuvenilRepository",
+    "SQLAlchemyJovemRepository",
+    "SQLAlchemyAuxilioRepository",
+    "SQLAlchemyBolsaEstudoRepository",
+    "SQLAlchemyEstagioJuvenilRepository",
+    "SQLAlchemyInscricaoProgramaRepository",
+    "SQLAlchemyIntercambioJuvenilRepository",
+    "SQLAlchemyMentorRepository",
+    "SQLAlchemyEventoJuvenilRepository",
+    "SQLAlchemyVoluntariadoRepository",
+    "SQLAlchemyEmpreendedorismoJuvenilRepository",
+    "SQLAlchemySaudeJuvenilRepository",
+    "SQLAlchemyPoliticaJuventudeRepository",
+    "SQLAlchemyProgramaRepository",
+    "SQLAlchemyFormacaoRepository",
+    "SQLAlchemyRiscoEvasaoRepository",
+    "SQLAlchemyWorkflowRepository",
+]

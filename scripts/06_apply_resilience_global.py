@@ -20,31 +20,26 @@ processed = 0
 for client_file in sorted(integration_files):
     content = client_file.read_text()
     original_content = content
-    
+
     # Verificar se usa httpx diretamente
     if "httpx" in content and "ResilientClient" not in content:
-        
         # Adicionar import
-        if "from app.core.resilience import ResilientClient" not in content:
-            lines = content.split('\n')
+        if "from apps.backend.app.core.resilience import ResilientClient" not in content:
+            lines = content.split("\n")
             import_end = 0
-            
+
             for i, line in enumerate(lines):
-                if line.startswith(('from ', 'import ')) or line.strip() == '':
+                if line.startswith(("from ", "import ")) or line.strip() == "":
                     import_end = i + 1
-                elif line.strip() and not line.startswith(('from ', 'import ', '#')):
+                elif line.strip() and not line.startswith(("from ", "import ", "#")):
                     break
-            
-            lines.insert(import_end, 'from app.core.resilience import ResilientClient')
-            content = '\n'.join(lines)
-        
+
+            lines.insert(import_end, "from apps.backend.app.core.resilience import ResilientClient")
+            content = "\n".join(lines)
+
         # Substituir httpx.AsyncClient por ResilientClient
-        content = re.sub(
-            r'httpx\.AsyncClient\(([^)]*)\)',
-            r'ResilientClient(\1)',
-            content
-        )
-        
+        content = re.sub(r"httpx\.AsyncClient\(([^)]*)\)", r"ResilientClient(\1)", content)
+
         client_file.write_text(content)
         rel_path = client_file.relative_to(BASE)
         print(f"   ✅ {rel_path}")
@@ -65,31 +60,26 @@ repo_processed = 0
 for repo_file in sorted(repo_files):
     content = repo_file.read_text()
     original_content = content
-    
+
     # Verificar se usa httpx diretamente
     if "httpx" in content and "ResilientClient" not in content:
-        
         # Adicionar import
-        if "from app.core.resilience import ResilientClient" not in content:
-            lines = content.split('\n')
+        if "from apps.backend.app.core.resilience import ResilientClient" not in content:
+            lines = content.split("\n")
             import_end = 0
-            
+
             for i, line in enumerate(lines):
-                if line.startswith(('from ', 'import ')) or line.strip() == '':
+                if line.startswith(("from ", "import ")) or line.strip() == "":
                     import_end = i + 1
-                elif line.strip() and not line.startswith(('from ', 'import ', '#')):
+                elif line.strip() and not line.startswith(("from ", "import ", "#")):
                     break
-            
-            lines.insert(import_end, 'from app.core.resilience import ResilientClient')
-            content = '\n'.join(lines)
-        
+
+            lines.insert(import_end, "from apps.backend.app.core.resilience import ResilientClient")
+            content = "\n".join(lines)
+
         # Substituir httpx.AsyncClient por ResilientClient
-        content = re.sub(
-            r'httpx\.AsyncClient\(([^)]*)\)',
-            r'ResilientClient(\1)',
-            content
-        )
-        
+        content = re.sub(r"httpx\.AsyncClient\(([^)]*)\)", r"ResilientClient(\1)", content)
+
         repo_file.write_text(content)
         rel_path = repo_file.relative_to(BASE)
         print(f"   ✅ {rel_path}")

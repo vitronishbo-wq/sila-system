@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.public_security.domain.enums import CargoPolicial, Patente, StatusAgente, TipoAgente, TipoVinculo
+
+from apps.backend.app.modules.public_security.domain.enums import (
+    CargoPolicial,
+    Patente,
+    StatusAgente,
+    TipoAgente,
+    TipoVinculo,
+)
+
 
 class PolicialCreate(BaseModel):
     unidade_id: UUID
     nome: str = Field(..., min_length=3)
     data_nascimento: date
-    cpf: str = Field(..., pattern='^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$')
+    cpf: str = Field(..., pattern="^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$")
     rg: str
     tipo: TipoAgente
     vinculo: TipoVinculo
@@ -20,13 +30,16 @@ class PolicialCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class PolicialStatusUpdate(BaseModel):
     status: StatusAgente
     motivo: str | None = None
 
+
 class PolicialPorteUpdate(BaseModel):
     numero_porte: str
     data_validade: date
+
 
 class PolicialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

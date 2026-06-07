@@ -1,6 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
-class ProcurementMethod(str, Enum):
-    OPEN_COMPETITION = 'open_competition'
-    LIMITED = 'limited'
-    DIRECT_AWARD = 'direct_award'
+
+class ProcurementMethod(StrEnum):
+    OPEN_COMPETITION = "open_competition"
+    LIMITED = "limited"
+    DIRECT_AWARD = "direct_award"

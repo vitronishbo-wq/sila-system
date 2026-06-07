@@ -9,12 +9,11 @@ import json
 import re
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import yaml
-
 
 CORE_IMPORT_RE = re.compile(r"^\s*(?:from|import)\s+app\.modules\.", re.MULTILINE)
 MODULE_IMPORT_RE = re.compile(
@@ -138,9 +137,9 @@ def load_module_manifests(repo_root: Path, manifest_glob: str) -> dict[str, Modu
         payload = load_structured(path)
         if not isinstance(payload, dict):
             continue
-        name = payload.get("name")
+        name = payload.get("code") or payload.get("module") or payload.get("name") or path.parent.name
         if not isinstance(name, str) or not name:
-            continue
+            name = path.parent.name
         requires = payload.get("requires", {})
         requires_domains = {
             str(item)
@@ -187,7 +186,7 @@ def scan_module_imports(repo_root: Path) -> dict[tuple[str, str], set[str]]:
             if not target_module or target_module == source_module:
                 continue
             suffix = match.group("suffix") or ""
-            import_path = f"app.modules.{target_module}{suffix}"
+            import_path = f"apps.backend.app.modules.{target_module}{suffix}"
             imports_by_edge.setdefault((source_module, target_module), set()).add(import_path)
     return imports_by_edge
 
@@ -232,7 +231,7 @@ def build_report(
     core_violations: list[tuple[str, int, str]],
     cycle_violations: list[list[str]],
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     failed = any(
         (
             graph_violations,
@@ -360,7 +359,11 @@ def main() -> int:
     manifest_violations: list[tuple[str, str, str, int]] = []
 
     for source, target, weight in observed_edges:
-        if source in declared_deps and target not in declared_deps[source] and target not in INTERNAL_TARGETS:
+        if (
+            source in declared_deps
+            and target not in declared_deps[source]
+            and target not in INTERNAL_TARGETS
+        ):
             graph_violations.append((source, target, weight))
 
         source_domain = module_domains.get(source, source)
@@ -387,14 +390,21 @@ def main() -> int:
         ):
             manifest_violations.append((source, target, "requires.domains_missing_target", weight))
 
-        if source_manifest and target_manifest and target not in INTERNAL_TARGETS and target != source:
+        if (
+            source_manifest
+            and target_manifest
+            and target not in INTERNAL_TARGETS
+            and target != source
+        ):
             imported_paths = import_map.get((source, target), set())
             if not target_manifest.exposed_paths:
                 manifest_violations.append(
                     (source, target, "target_has_no_exposed_contracts", weight)
                 )
             for import_path in sorted(imported_paths):
-                if not any(import_path.startswith(prefix) for prefix in target_manifest.exposed_paths):
+                if not any(
+                    import_path.startswith(prefix) for prefix in target_manifest.exposed_paths
+                ):
                     manifest_violations.append(
                         (source, target, f"import_not_exposed:{import_path}", weight)
                     )

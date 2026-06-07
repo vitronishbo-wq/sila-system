@@ -10,7 +10,6 @@ Uso:
 
 import ast
 from pathlib import Path
-from typing import List
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -45,7 +44,7 @@ def should_scan(path: Path) -> bool:
 
 
 def main() -> None:
-    violations: List[str] = []
+    violations: list[str] = []
 
     for path in ROOT.rglob("*.py"):
         if not should_scan(path):
@@ -68,9 +67,7 @@ def main() -> None:
                 for alias in node.names:
                     for root in LEGACY_ROOTS:
                         if alias.name == root or alias.name.startswith(root + "."):
-                            violations.append(
-                                f"{rel}: import {alias.name} (usar apps.{root}...)"
-                            )
+                            violations.append(f"{rel}: import {alias.name} (usar apps.{root}...)")
 
     if not violations:
         print("✅ Nenhum import legacy de backend/frontend encontrado.")

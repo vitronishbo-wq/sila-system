@@ -1,6 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
-class TreasuryEntryType(str, Enum):
-    REVENUE = 'revenue'
-    EXPENSE = 'expense'
-    TRANSFER = 'transfer'
+
+class TreasuryEntryType(StrEnum):
+    REVENUE = "revenue"
+    EXPENSE = "expense"
+    TRANSFER = "transfer"

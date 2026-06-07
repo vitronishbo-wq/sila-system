@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from functools import wraps
 from typing import Any
 
-def with_retry(attempts: int=3, backoff_seconds: float=0.5) -> Callable:
+
+def with_retry(attempts: int = 3, backoff_seconds: float = 0.5) -> Callable:
 
     def decorator(fn: Callable) -> Callable:
 
@@ -22,5 +24,7 @@ def with_retry(attempts: int=3, backoff_seconds: float=0.5) -> Callable:
             if last_error is not None:
                 raise last_error
             return None
+
         return wrapper
+
     return decorator

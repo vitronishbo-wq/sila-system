@@ -1,9 +1,18 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from uuid import UUID
-from apps.backend.app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
+
+from apps.backend.app.modules.economy.trade.services.domain.enums import (
+    PorteComercial,
+    RamoComercial,
+    StatusComercial,
+    TipoEstabelecimentoComercial,
+    TipoRegimeTributario,
+)
+
 
 @dataclass
 class EstabelecimentoComercialModel:

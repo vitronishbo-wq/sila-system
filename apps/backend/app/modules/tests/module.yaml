@@ -1,0 +1,17 @@
+code: tests
+module: tests
+name: tests
+description: Suporte interno para contratos e assets de teste.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
+
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import (
+    MetodoPagamento,
+    StatusFatura,
+)
+
 
 class FaturaEmitirInput(BaseModel):
     consumo_id: UUID
@@ -13,13 +20,16 @@ class FaturaEmitirInput(BaseModel):
     tarifa_m3: Decimal
     data_vencimento: date
 
+
 class FaturaPagamentoInput(BaseModel):
     data_pagamento: date
     valor_pago: Decimal
     metodo_pagamento: MetodoPagamento
 
+
 class FaturaMotivoInput(BaseModel):
     motivo: str
+
 
 class FaturaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.civil_protection.domain.enums import StatusDespacho
 from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
 
-class DespachoRepositoryPort(ABC):
 
+class DespachoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, despacho: Despacho) -> Despacho:
         raise NotImplementedError

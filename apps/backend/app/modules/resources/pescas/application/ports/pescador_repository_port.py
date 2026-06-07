@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
 from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
 
-class PescadorRepositoryPort(ABC):
 
+class PescadorRepositoryPort(ABC):
     @abstractmethod
     async def save(self, pescador: Pescador) -> Pescador:
         pass
@@ -18,7 +20,7 @@ class PescadorRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_tipo(self, tipo: TipoPescador | None=None) -> list[Pescador]:
+    async def list_by_tipo(self, tipo: TipoPescador | None = None) -> list[Pescador]:
         pass
 
     @abstractmethod

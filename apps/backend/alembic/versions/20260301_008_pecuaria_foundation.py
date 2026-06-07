@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_008_pecuaria_foundation"
 down_revision = "20260301_007_comex_processos_radar"
 branch_labels = None
@@ -279,15 +278,9 @@ def _create_animais_table() -> None:
         """
     )
 
-    op.execute(
-        "CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_brinco ON pecuaria_animais (brinco)"
-    )
-    op.execute(
-        "CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_tipo ON pecuaria_animais (tipo)"
-    )
-    op.execute(
-        "CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_status ON pecuaria_animais (status)"
-    )
+    op.execute("CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_brinco ON pecuaria_animais (brinco)")
+    op.execute("CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_tipo ON pecuaria_animais (tipo)")
+    op.execute("CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_status ON pecuaria_animais (status)")
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pecuaria_animais_proprietario_id ON pecuaria_animais (proprietario_id)"
     )

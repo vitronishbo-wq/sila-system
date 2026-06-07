@@ -1,0 +1,26 @@
+module: verificacao-documental
+name: Verificacao Documental
+code: verificacao-documental
+description: Verificacao de documentos digitalizados usando OCR e validacao de autenticidade
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+parent: integracao-nacional
+exposes:
+  api_routers:
+  - prefix: /integracao-nacional/verificacao-documental
+    endpoints:
+    - POST /integracao-nacional/verificacao-documental/verificar (Verificar documento)
+    - GET /integracao-nacional/verificacao-documental/tipos (Listar tipos documentais)
+  public_models:
+  - DocumentVerificationResult
+  events_published:
+  - DocumentoVerificado
+requires:
+  domains:
+  - identity
+  - educacao
+  core_services:
+  - database_session
+subdomains: []

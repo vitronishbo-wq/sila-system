@@ -1,14 +1,16 @@
 """
 Repository pattern for audit module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class AuditRepository(ABC):
     """Abstract repository for audit."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get audit by ID."""
         pass
 
@@ -23,9 +25,10 @@ class AuditRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all audit."""
         pass
+
 
 class AuditMemoryRepository(AuditRepository):
     """In-memory repository for audit."""
@@ -33,7 +36,7 @@ class AuditMemoryRepository(AuditRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class AuditMemoryRepository(AuditRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

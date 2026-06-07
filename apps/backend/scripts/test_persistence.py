@@ -18,19 +18,26 @@ from datetime import datetime
 
 # FastAPI / SQLAlchemy
 from sqlalchemy import select
+
 from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.core.settings import settings
+from apps.backend.app.modules.governance.service_requests.domain.enums import (
+    RequestChannel,
+    ServiceType,
+)
 
 # Domain models
-from apps.backend.app.modules.governance.service_requests.domain.models.service_request import ServiceRequest
-from apps.backend.app.modules.governance.service_requests.domain.value_objects.request_number import RequestNumber
-from apps.backend.app.modules.governance.service_requests.domain.enums import (
-    ServiceType,
-    RequestChannel,
+from apps.backend.app.modules.governance.service_requests.domain.models.service_request import (
+    ServiceRequest,
+)
+from apps.backend.app.modules.governance.service_requests.domain.value_objects.request_number import (
+    RequestNumber,
 )
 
 # Infrastructure models
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_model import RequestModel
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_model import (
+    RequestModel,
+)
 
 # Repositories
 from apps.backend.app.modules.governance.service_requests.infrastructure.repositories.request_repository import (
@@ -61,9 +68,7 @@ async def test_persistence():
         print("\n[2/6] Verificando modelos ORM...")
         try:
             # Check if tables exist in BD via query
-            tables_exist = await session.execute(
-                select(1).select_from(RequestModel.__table__)
-            )
+            tables_exist = await session.execute(select(1).select_from(RequestModel.__table__))
             tables_exist.scalar()
             print("✅ Tabela 'service_requests' existe no BD")
         except Exception as e:
@@ -101,6 +106,7 @@ async def test_persistence():
         except Exception as e:
             print(f"❌ FALHA ao criar domínio: {e}")
             import traceback
+
             traceback.print_exc()
             return False
 
@@ -117,6 +123,7 @@ async def test_persistence():
         except Exception as e:
             print(f"❌ FALHA ao salvar: {e}")
             import traceback
+
             traceback.print_exc()
             await session.rollback()
             return False
@@ -128,7 +135,7 @@ async def test_persistence():
             retrieved = await request_repo.get_by_id(domain_request.id)
 
             if not retrieved:
-                print(f"❌ FALHA: ServiceRequest não foi encontrado após salvar!")
+                print("❌ FALHA: ServiceRequest não foi encontrado após salvar!")
                 return False
 
             print(
@@ -142,6 +149,7 @@ async def test_persistence():
         except Exception as e:
             print(f"❌ FALHA ao recuperar: {e}")
             import traceback
+
             traceback.print_exc()
             return False
 
@@ -160,8 +168,8 @@ async def test_persistence():
             assert retrieved.sla_due_at is not None
 
             print("✅ Validação de integridade passou:")
-            print(f"   - Todos os campos foram persistidos corretamente")
-            print(f"   - Relacionamentos estão OK")
+            print("   - Todos os campos foram persistidos corretamente")
+            print("   - Relacionamentos estão OK")
             print(f"   - SLA foi calculado: {retrieved.sla_due_at}")
 
         except AssertionError as e:
@@ -173,14 +181,14 @@ async def test_persistence():
         print("✅ TODOS OS TESTES DE PERSISTÊNCIA PASSARAM COM SUCESSO!")
         print("=" * 70)
         print("\n📋 Resumo:")
-        print(f"   - BD: PostgreSQL (sila_system)")
-        print(f"   - Conexão: OK")
-        print(f"   - Tabelas: OK (24 tabelas registradas)")
-        print(f"   - ORM Mapping: OK")
-        print(f"   - Create: OK")
-        print(f"   - Persist: OK")
-        print(f"   - Retrieve: OK")
-        print(f"   - Validação: OK")
+        print("   - BD: PostgreSQL (sila_system)")
+        print("   - Conexão: OK")
+        print("   - Tabelas: OK (24 tabelas registradas)")
+        print("   - ORM Mapping: OK")
+        print("   - Create: OK")
+        print("   - Persist: OK")
+        print("   - Retrieve: OK")
+        print("   - Validação: OK")
         print("\n✨ A aplicação está pronta para produção!\n")
 
         return True
@@ -188,6 +196,7 @@ async def test_persistence():
     except Exception as e:
         print(f"\n❌ ERRO NÃO TRATADO: {e}")
         import traceback
+
         traceback.print_exc()
         return False
 
@@ -196,7 +205,7 @@ async def test_persistence():
 
 
 async def main():
-    print(f"\n🚀 Iniciando Teste de Persistência")
+    print("\n🚀 Iniciando Teste de Persistência")
     print(f"   Database: {settings.DATABASE_URL[:50]}...")
     print(f"   Timestamp: {datetime.now().isoformat()}")
 

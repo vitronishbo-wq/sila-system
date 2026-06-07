@@ -1,5 +1,5 @@
 import type { Order } from '@/types/api';
-import { operationsService } from './operationsService';
+import { operationsService } from '@/modules/operations/services/operationsService';
 
 export type AttachDocumentsRequest = FormData | Record<string, unknown>;
 export type AttachDocumentsResponse = Order;

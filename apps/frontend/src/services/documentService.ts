@@ -1,7 +1,7 @@
 
-import http from '../api/http';
-import { DocumentStatus } from '../types';
-import type { Document } from '../types';
+import http from '@/api/http';
+import { DocumentStatus } from '@/types';
+import type { Document } from '@/types';
 
 export const documentService = {
   async list(status?: DocumentStatus, skip = 0, limit = 20): Promise<Document[]> {

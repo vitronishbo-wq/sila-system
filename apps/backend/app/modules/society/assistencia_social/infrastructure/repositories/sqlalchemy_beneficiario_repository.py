@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import BeneficiarioRepositoryPort
-from apps.backend.app.modules.society.assistencia_social.domain.enums import FaixaVulnerabilidade, SituacaoBeneficiario
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.beneficiario_repository_port import (
+    BeneficiarioRepositoryPort,
+)
+from apps.backend.app.modules.society.assistencia_social.domain.enums import (
+    FaixaVulnerabilidade,
+    SituacaoBeneficiario,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.models import Beneficiario
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import BeneficiarioModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficiario_model import (
+    BeneficiarioModel,
+)
+
 
 class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -53,4 +63,14 @@ class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
 
     @staticmethod
     def _to_domain(model: BeneficiarioModel) -> Beneficiario:
-        return Beneficiario(id=model.id, numero_registro=model.numero_registro, citizen_id=model.citizen_id, cadastro_unico_id=model.cadastro_unico_id, faixa_vulnerabilidade=FaixaVulnerabilidade(model.faixa_vulnerabilidade), situacao=SituacaoBeneficiario(model.situacao), data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativo=model.ativo)
+        return Beneficiario(
+            id=model.id,
+            numero_registro=model.numero_registro,
+            citizen_id=model.citizen_id,
+            cadastro_unico_id=model.cadastro_unico_id,
+            faixa_vulnerabilidade=FaixaVulnerabilidade(model.faixa_vulnerabilidade),
+            situacao=SituacaoBeneficiario(model.situacao),
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

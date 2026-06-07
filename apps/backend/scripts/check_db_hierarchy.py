@@ -1,8 +1,10 @@
 import asyncio
-from sqlalchemy import select
+
 from config.database import AsyncSessionLocal
-from apps.backend.app.modules.location.models.region import Region
+from sqlalchemy import select
 from sqlalchemy.orm import selectinload
+
+from apps.backend.app.modules.location.models.region import Region
 
 
 async def check_hierarchy():
@@ -18,8 +20,9 @@ async def check_hierarchy():
             print(f"\n🌍 [PAIS] ID: {country.id} | Nome: {country.name}")
 
             # 2. Buscar Províncias deste país
-            stmt_p = select(Region).where(Region.parent_id ==
-                                          country.id, Region.type == "PROVINCIA")
+            stmt_p = select(Region).where(
+                Region.parent_id == country.id, Region.type == "PROVINCIA"
+            )
             res_p = await session.execute(stmt_p)
             provinces = res_p.scalars().all()
 
@@ -29,14 +32,17 @@ async def check_hierarchy():
             for prov in provinces:
                 print(f"      📍 [PROVINCIA] ID: {prov.id} | Nome: {prov.name}")
 
-                stmt_m = select(Region).where(Region.parent_id ==
-                                              prov.id, Region.type == "MUNICIPIO")
+                stmt_m = select(Region).where(
+                    Region.parent_id == prov.id, Region.type == "MUNICIPIO"
+                )
                 res_m = await session.execute(stmt_m)
                 municipalities = res_m.scalars().all()
 
                 for mun in municipalities[:2]:  # Amostra de 2 municípios
                     print(
-                        f"         • [MUNICIPIO] ID: {mun.id} | Nome: {mun.name} (Parent: {mun.parent_id})")
+                        f"         • [MUNICIPIO] ID: {mun.id} | Nome: {mun.name} (Parent: {mun.parent_id})"
+                    )
+
 
 if __name__ == "__main__":
     asyncio.run(check_hierarchy())

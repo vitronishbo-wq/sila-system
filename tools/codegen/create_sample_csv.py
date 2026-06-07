@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Sample CSV file for SILA service generation.
 
@@ -231,18 +230,14 @@ def create_sample_csv():
     print(f"   Modules covered: {len(set(row[0] for row in sample_services))}")
     print()
     print("Usage examples:")
-    print(f"   # Generate all services")
+    print("   # Generate all services")
     print(f"   python tools/codegen/generate_module.py batch --csv {csv_path}")
     print()
-    print(f"   # Generate only citizen services")
-    print(
-        f"   python tools/codegen/generate_module.py batch --csv {csv_path} --type citizen"
-    )
+    print("   # Generate only citizen services")
+    print(f"   python tools/codegen/generate_module.py batch --csv {csv_path} --type citizen")
     print()
-    print(f"   # Generate only internal services")
-    print(
-        f"   python tools/codegen/generate_module.py batch --csv {csv_path} --type internal"
-    )
+    print("   # Generate only internal services")
+    print(f"   python tools/codegen/generate_module.py batch --csv {csv_path} --type internal")
     print()
     print("Note: Make sure target modules exist before running generation.")
 

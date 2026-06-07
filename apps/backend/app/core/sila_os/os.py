@@ -1,5 +1,4 @@
 class SILAOperatingSystem:
-
     def __init__(self, cli, sdk, portal, deployment):
         self.cli = cli
         self.sdk = sdk

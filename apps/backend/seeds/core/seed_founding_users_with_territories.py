@@ -12,10 +12,11 @@ Senha universal: Sila_1983
 """
 
 import json
-import psycopg2
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+
+import psycopg2
+from dotenv import load_dotenv
 
 # Load environment
 backend_root = Path(__file__).resolve().parent.parent.parent
@@ -72,7 +73,7 @@ FOUNDING_USERS = [
 
 def main():
     """Associate founding users to territories"""
-    
+
     try:
         conn = psycopg2.connect(
             host=DB_HOST,
@@ -82,19 +83,19 @@ def main():
             password=DB_PASSWORD,
         )
         cursor = conn.cursor()
-        
+
         print("=" * 80)
         print("🔗 ASSOCIANDO USUÁRIOS FUNDADORES A TERRITÓRIOS")
         print("=" * 80)
-        
+
         updated_count = 0
-        
+
         for user_config in FOUNDING_USERS:
             email = user_config["email"]
             role = user_config["role"]
             level = user_config["level"]
             territory_id = None
-            
+
             # Resolve territory if needed
             if user_config["territory_query"]:
                 cursor.execute(user_config["territory_query"])
@@ -114,7 +115,7 @@ def main():
             else:
                 print(f"\n  🌍 {email}")
                 print(f"     Role: {role:20} | Level: {level:12} | Territory: NATIONAL (NULL)")
-            
+
             # Update iam_users with territory metadata
             cursor.execute(
                 """
@@ -136,20 +137,20 @@ def main():
                     email,
                 ),
             )
-            
+
             if cursor.rowcount > 0:
                 updated_count += 1
-                print(f"     ✅ Atualizado")
+                print("     ✅ Atualizado")
             else:
-                print(f"     ⚠️  Usuário não encontrado")
-        
+                print("     ⚠️  Usuário não encontrado")
+
         conn.commit()
-        
+
         print("\n" + "=" * 80)
         print("📊 RESULTADO")
         print("=" * 80)
         print(f"  ✅ {updated_count} usuários associados a territórios")
-        
+
         # Validação final
         print("\n" + "=" * 80)
         print("✅ VALIDAÇÃO: Usuários com territórios")
@@ -173,21 +174,23 @@ def main():
             ORDER BY iu.email
             """
         )
-        
+
         rows = cursor.fetchall()
         for row in rows:
             roles = ", ".join(row[1]) if isinstance(row[1], list) else str(row[1] or "")
             admin_level = str(row[2] or "")
             territory_name = str(row[3] or "")
             territory_type = str(row[4] or "")
-            print(f"  {row[0]:35} | {roles:20} | {admin_level:12} | {territory_name:25} | {territory_type}")
-        
+            print(
+                f"  {row[0]:35} | {roles:20} | {admin_level:12} | {territory_name:25} | {territory_type}"
+            )
+
         cursor.close()
         conn.close()
-        
+
         print("\n✅ SEED COMPLETADO COM SUCESSO")
         print("=" * 80)
-        
+
     except Exception as e:
         print(f"\n❌ ERRO: {e}")
         raise

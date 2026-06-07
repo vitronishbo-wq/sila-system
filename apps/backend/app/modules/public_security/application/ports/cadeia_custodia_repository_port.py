@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusCadeiaCustodia
 from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
 
-class CadeiaCustodiaRepositoryPort(ABC):
 
+class CadeiaCustodiaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, cadeia: CadeiaCustodia) -> CadeiaCustodia:
         raise NotImplementedError

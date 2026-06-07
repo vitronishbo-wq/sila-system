@@ -1,1 +1,1 @@
-METRICA_VALOR_ATUALIZADO = 'metrica.valor_atualizado'
+METRICA_VALOR_ATUALIZADO = "metrica.valor_atualizado"

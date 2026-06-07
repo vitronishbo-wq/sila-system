@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.logistics.domain.enums import StatusFrota, TipoTarifa
+
 
 class FrotaCreate(BaseModel):
     nome: str
@@ -13,11 +17,13 @@ class FrotaCreate(BaseModel):
     codigo_frota: str | None = None
     observacoes: str | None = None
 
+
 class FrotaAdicionarVeiculoInput(BaseModel):
     veiculo_id: UUID
     placa: str
     tipo: str
     capacidade: int | None = None
+
 
 class FrotaManutencaoInput(BaseModel):
     veiculo_id: UUID
@@ -27,12 +33,14 @@ class FrotaManutencaoInput(BaseModel):
     data_manutencao: date | None = None
     observacoes: str | None = None
 
+
 class FrotaTarifaInput(BaseModel):
     tipo_tarifa: TipoTarifa
     valor: Decimal
     motivo: str
     data_inicio_vigencia: date | None = None
     data_fim_vigencia: date | None = None
+
 
 class FrotaFiscalizacaoInput(BaseModel):
     fiscal_id: UUID
@@ -41,6 +49,7 @@ class FrotaFiscalizacaoInput(BaseModel):
     data_fiscalizacao: date | None = None
     auto_infracao: str | None = None
     observacoes: str | None = None
+
 
 class FrotaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

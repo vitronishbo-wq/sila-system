@@ -4,15 +4,18 @@ Base factory for all test data factories.
 This module provides a BaseFactory class that all other factories should inherit from.
 It includes common configurations and utilities for generating test data.
 """
+
+from typing import Any, Generic, TypeVar
+
 import factory
 from faker import Faker
-from typing import Any, Dict, Type, TypeVar, Generic
 
 # Configure Faker for consistent test data
 fake = Faker()
 Faker.seed(42)  # For deterministic test data
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class BaseFactory(factory.Factory, Generic[T]):
     """
@@ -23,11 +26,12 @@ class BaseFactory(factory.Factory, Generic[T]):
     - Support for both in-memory and persisted instances
     - Common field generators
     """
+
     class Meta:
         abstract = True
 
     @classmethod
-    def _create(cls, model_class: Type[T], *args: Any, **kwargs: Any) -> T:
+    def _create(cls, model_class: type[T], *args: Any, **kwargs: Any) -> T:
         """
         Create an instance of the model, with support for both in-memory and persisted instances.
 
@@ -51,7 +55,7 @@ class BaseFactory(factory.Factory, Generic[T]):
         return model_class(*args, **kwargs)
 
     @classmethod
-    def build_dict(cls, **kwargs: Any) -> Dict[str, Any]:
+    def build_dict(cls, **kwargs: Any) -> dict[str, Any]:
         """
         Build a dictionary of attributes without creating a model instance.
 
@@ -77,6 +81,7 @@ class BaseFactory(factory.Factory, Generic[T]):
         """
         return [cls.create(**kwargs) for _ in range(size)]
 
+
 # Common field factories for reuse across models
 class CommonFields:
     """Common field generators that can be reused across multiple factories."""
@@ -94,6 +99,7 @@ class CommonFields:
     @staticmethod
     def cpf() -> str:
         """Generate a valid Brazilian CPF."""
+
         def generate_cpf() -> str:
             cpf = [fake.random_digit() for _ in range(9)]
 
@@ -107,6 +113,6 @@ class CommonFields:
             digit = 11 - (total % 11)
             cpf.append(digit if digit < 10 else 0)
 
-            return ''.join(map(str, cpf))
+            return "".join(map(str, cpf))
 
         return factory.LazyFunction(generate_cpf)

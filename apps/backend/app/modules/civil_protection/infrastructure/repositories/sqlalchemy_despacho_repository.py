@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.domain.ports.despacho_repository_port import DespachoRepositoryPort
+
 from apps.backend.app.modules.civil_protection.domain.enums import StatusDespacho
 from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
-from apps.backend.app.modules.civil_protection.infrastructure.models.despacho_model import DespachoModel
+from apps.backend.app.modules.civil_protection.domain.ports.despacho_repository_port import (
+    DespachoRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.infrastructure.models.despacho_model import (
+    DespachoModel,
+)
+
 
 class SQLAlchemyDespachoRepository(DespachoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -47,12 +54,20 @@ class SQLAlchemyDespachoRepository(DespachoRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_ocorrencia(self, ocorrencia_id: UUID) -> list[Despacho]:
-        stmt = select(DespachoModel).where(DespachoModel.ocorrencia_id == ocorrencia_id).order_by(DespachoModel.data_despacho.desc())
+        stmt = (
+            select(DespachoModel)
+            .where(DespachoModel.ocorrencia_id == ocorrencia_id)
+            .order_by(DespachoModel.data_despacho.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusDespacho) -> list[Despacho]:
-        stmt = select(DespachoModel).where(DespachoModel.status == status.value).order_by(DespachoModel.data_despacho.desc())
+        stmt = (
+            select(DespachoModel)
+            .where(DespachoModel.status == status.value)
+            .order_by(DespachoModel.data_despacho.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -66,11 +81,27 @@ class SQLAlchemyDespachoRepository(DespachoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'DSP/{year}/'
-        stmt = select(func.count()).select_from(DespachoModel).where(DespachoModel.codigo_despacho.like(f'{prefix}%'))
+        prefix = f"DSP/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(DespachoModel)
+            .where(DespachoModel.codigo_despacho.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:06d}'
+        return f"{prefix}{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: DespachoModel) -> Despacho:
-        return Despacho(id=model.id, codigo_despacho=model.codigo_despacho, ocorrencia_id=model.ocorrencia_id, corporacao_id=model.corporacao_id, status=StatusDespacho(model.status), data_despacho=model.data_despacho, data_ultima_atualizacao=model.data_ultima_atualizacao, bombeiro_responsavel_id=model.bombeiro_responsavel_id, meio_deslocamento=model.meio_deslocamento, observacoes=model.observacoes, ativo=model.ativo)
+        return Despacho(
+            id=model.id,
+            codigo_despacho=model.codigo_despacho,
+            ocorrencia_id=model.ocorrencia_id,
+            corporacao_id=model.corporacao_id,
+            status=StatusDespacho(model.status),
+            data_despacho=model.data_despacho,
+            data_ultima_atualizacao=model.data_ultima_atualizacao,
+            bombeiro_responsavel_id=model.bombeiro_responsavel_id,
+            meio_deslocamento=model.meio_deslocamento,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

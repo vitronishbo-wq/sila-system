@@ -1,13 +1,18 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import and_, func, select
-from apps.backend.app.modules.educacao.application.ports.workflow_repository_port import WorkflowRepositoryPort
+
+from apps.backend.app.modules.educacao.application.ports.workflow_repository_port import (
+    WorkflowRepositoryPort,
+)
 from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
 from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
-class SQLAlchemyWorkflowRepository(WorkflowRepositoryPort):
 
+class SQLAlchemyWorkflowRepository(WorkflowRepositoryPort):
     def __init__(self, session, model_cls):
         self.session = session
         self.model_cls = model_cls
@@ -33,7 +38,7 @@ class SQLAlchemyWorkflowRepository(WorkflowRepositoryPort):
         model = await self.session.get(self.model_cls, id)
         return self._to_domain(model) if model else None
 
-    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None=None):
+    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None = None):
         stmt = select(self.model_cls).where(self.model_cls.citizen_id == citizen_id)
         if service_type:
             stmt = stmt.where(self.model_cls.service_type == service_type)
@@ -42,15 +47,42 @@ class SQLAlchemyWorkflowRepository(WorkflowRepositoryPort):
         return [self._to_domain(row) for row in rows]
 
     async def exists_active_for_citizen(self, citizen_id: UUID, service_type: str) -> bool:
-        stmt = select(self.model_cls.id).where(and_(self.model_cls.citizen_id == citizen_id, self.model_cls.service_type == service_type, self.model_cls.status.in_([StatusFluxo.PENDENTE.value, StatusFluxo.CONFIRMADA.value, StatusFluxo.EM_ANALISE.value, StatusFluxo.APROVADA.value])))
+        stmt = select(self.model_cls.id).where(
+            and_(
+                self.model_cls.citizen_id == citizen_id,
+                self.model_cls.service_type == service_type,
+                self.model_cls.status.in_(
+                    [
+                        StatusFluxo.PENDENTE.value,
+                        StatusFluxo.CONFIRMADA.value,
+                        StatusFluxo.EM_ANALISE.value,
+                        StatusFluxo.APROVADA.value,
+                    ]
+                ),
+            )
+        )
         return (await self.session.execute(stmt)).first() is not None
 
     async def next_numero_processo(self, ano: int, service_type: str, process_prefix: str) -> str:
-        prefix = f'{process_prefix}/{service_type.upper()}/{ano}/'
-        count_stmt = select(func.count()).select_from(self.model_cls).where(self.model_cls.numero_processo.like(f'{prefix}%'))
+        prefix = f"{process_prefix}/{service_type.upper()}/{ano}/"
+        count_stmt = (
+            select(func.count())
+            .select_from(self.model_cls)
+            .where(self.model_cls.numero_processo.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(count_stmt)).scalar() or 0
-        return f'{prefix}{count + 1:04d}'
+        return f"{prefix}{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model) -> WorkflowRecord:
-        return WorkflowRecord(id=model.id, numero_processo=model.numero_processo, service_type=model.service_type, citizen_id=model.citizen_id, instituicao_id=model.instituicao_id, data_registo=model.data_registo or date.today(), status=StatusFluxo(model.status), observacoes=model.observacoes, metadata=model.metadata_json or {})
+        return WorkflowRecord(
+            id=model.id,
+            numero_processo=model.numero_processo,
+            service_type=model.service_type,
+            citizen_id=model.citizen_id,
+            instituicao_id=model.instituicao_id,
+            data_registo=model.data_registo or date.today(),
+            status=StatusFluxo(model.status),
+            observacoes=model.observacoes,
+            metadata=model.metadata_json or {},
+        )

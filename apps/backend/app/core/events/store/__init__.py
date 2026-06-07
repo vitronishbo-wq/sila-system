@@ -1,4 +1,13 @@
 """Event Store module - Phase 20"""
-from .models import EventStoreEntry, SnapshotEntry, ProjectionEntry
-from .repositories import EventStoreRepository, SnapshotRepository, ProjectionRepository
-__all__ = ['EventStoreEntry', 'SnapshotEntry', 'ProjectionEntry', 'EventStoreRepository', 'SnapshotRepository', 'ProjectionRepository']
+
+from .models import EventStoreEntry, ProjectionEntry, SnapshotEntry
+from .repositories import EventStoreRepository, ProjectionRepository, SnapshotRepository
+
+__all__ = [
+    "EventStoreEntry",
+    "SnapshotEntry",
+    "ProjectionEntry",
+    "EventStoreRepository",
+    "SnapshotRepository",
+    "ProjectionRepository",
+]

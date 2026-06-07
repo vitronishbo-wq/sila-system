@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
 from apps.backend.app.modules.society.desporto.domain.models.contrato import Contrato
 
-class ContratoRepositoryPort(ABC):
 
+class ContratoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, contrato: Contrato) -> Contrato:
         raise NotImplementedError

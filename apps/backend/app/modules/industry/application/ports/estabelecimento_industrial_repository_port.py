@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.industry.domain.enums import RamoIndustrial, StatusEstabelecimento
 from apps.backend.app.modules.industry.domain.models import EstabelecimentoIndustrial
 
-class EstabelecimentoIndustrialRepositoryPort(ABC):
 
+class EstabelecimentoIndustrialRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: EstabelecimentoIndustrial) -> EstabelecimentoIndustrial:
         pass
@@ -19,5 +21,11 @@ class EstabelecimentoIndustrialRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusEstabelecimento | None=None, ramo: RamoIndustrial | None=None, municipio: str | None=None) -> list[EstabelecimentoIndustrial]:
+    async def list(
+        self,
+        *,
+        status: StatusEstabelecimento | None = None,
+        ramo: RamoIndustrial | None = None,
+        municipio: str | None = None,
+    ) -> list[EstabelecimentoIndustrial]:
         pass

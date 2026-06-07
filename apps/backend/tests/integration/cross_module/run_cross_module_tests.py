@@ -22,9 +22,7 @@ from pathlib import Path
 def run_command(cmd, cwd=None):
     """Executa comando e retorna resultado."""
     try:
-        result = subprocess.run(
-            cmd, shell=True, capture_output=True, text=True, cwd=cwd
-        )
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=cwd)
         return result.returncode, result.stdout, result.stderr
     except Exception as e:
         return 1, "", str(e)
@@ -166,12 +164,8 @@ def run_cross_module_tests():
                     if "failed" in line and "passed" in line:
                         # Ex: "8 passed, 2 failed in 3.45s"
                         parts = line.split()
-                        passed_idx = next(
-                            i for i, p in enumerate(parts) if p == "passed"
-                        )
-                        failed_idx = next(
-                            i for i, p in enumerate(parts) if p == "failed"
-                        )
+                        passed_idx = next(i for i, p in enumerate(parts) if p == "passed")
+                        failed_idx = next(i for i, p in enumerate(parts) if p == "failed")
 
                         tests_passed = int(parts[passed_idx - 1])
                         tests_failed = int(parts[failed_idx - 1])
@@ -218,9 +212,7 @@ def run_cross_module_tests():
     print_section("Resultados por Fluxo")
     for flow_name, result in results.items():
         status_icon = (
-            "✅"
-            if result["status"] == "PASSED"
-            else "❌" if result["status"] == "FAILED" else "⚠️"
+            "✅" if result["status"] == "PASSED" else "❌" if result["status"] == "FAILED" else "⚠️"
         )
         print(f"{status_icon} {flow_name}")
         print(f"   Status: {result['status']}")
@@ -250,9 +242,7 @@ def run_cross_module_tests():
             "total_tests": total_tests,
             "total_passed": total_passed,
             "total_failed": total_failed,
-            "success_rate": (
-                (total_passed / total_tests * 100) if total_tests > 0 else 0
-            ),
+            "success_rate": ((total_passed / total_tests * 100) if total_tests > 0 else 0),
         },
         "flows": results,
         "integration_flows": integration_flows,

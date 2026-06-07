@@ -3,7 +3,7 @@ import { useAuthStore } from "@/store/authStore";
 import { Bell, LogOut, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
-import { GlobalSearchBar } from "../Search/GlobalSearchBar";
+import { GlobalSearchBar } from "@/components/Search/GlobalSearchBar";
 import { useNavigate } from "react-router-dom";
 
 export const Header = () => {

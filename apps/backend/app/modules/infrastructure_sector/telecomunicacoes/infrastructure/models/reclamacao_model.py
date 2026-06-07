@@ -1,13 +1,17 @@
 from __future__ import annotations
+
 import uuid
 from datetime import datetime
+
 from sqlalchemy import DateTime, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from apps.backend.app.core.db import Base
 
+
 class ReclamacaoTelecomModel(Base):
-    __tablename__ = 'telecom_reclamacoes'
+    __tablename__ = "telecom_reclamacoes"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     protocolo: Mapped[str] = mapped_column(String(60), unique=True, nullable=False, index=True)
     assinante_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), nullable=False, index=True)
@@ -18,5 +22,9 @@ class ReclamacaoTelecomModel(Base):
     data_abertura: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     data_fechamento: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     resposta: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    updated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), onupdate=func.now())
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+    updated_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), onupdate=func.now()
+    )

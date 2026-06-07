@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.pcd_repository_port import PCDRepositoryPort
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.pcd_repository_port import (
+    PCDRepositoryPort,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
 from apps.backend.app.modules.society.assistencia_social.domain.models import PessoaComDeficiencia
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.pcd_model import PCDModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.pcd_model import (
+    PCDModel,
+)
+
 
 class SQLAlchemyPCDRepository(PCDRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -36,7 +43,11 @@ class SQLAlchemyPCDRepository(PCDRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[PessoaComDeficiencia]:
-        stmt = select(PCDModel).where(PCDModel.beneficiario_id == beneficiario_id).order_by(PCDModel.data_registro.desc())
+        stmt = (
+            select(PCDModel)
+            .where(PCDModel.beneficiario_id == beneficiario_id)
+            .order_by(PCDModel.data_registro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -55,4 +66,16 @@ class SQLAlchemyPCDRepository(PCDRepositoryPort):
 
     @staticmethod
     def _to_domain(model: PCDModel) -> PessoaComDeficiencia:
-        return PessoaComDeficiencia(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, citizen_id_pcd=model.citizen_id_pcd, tipo_deficiencia=model.tipo_deficiencia, cid=model.cid, grau_deficiencia=model.grau_deficiencia, laudo_id=model.laudo_id, bpc_ativo=model.bpc_ativo, data_registro=model.data_registro, status=StatusAcompanhamento(model.status))
+        return PessoaComDeficiencia(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            citizen_id_pcd=model.citizen_id_pcd,
+            tipo_deficiencia=model.tipo_deficiencia,
+            cid=model.cid,
+            grau_deficiencia=model.grau_deficiencia,
+            laudo_id=model.laudo_id,
+            bpc_ativo=model.bpc_ativo,
+            data_registro=model.data_registro,
+            status=StatusAcompanhamento(model.status),
+        )

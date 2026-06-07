@@ -5,12 +5,11 @@ import json
 from datetime import datetime, timedelta
 
 import click
+from apps.backend.app.core.db import AsyncSessionLocal
 from sqlalchemy import func, select
-from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.db import AsyncSessionLocal
 from .calculator import SLACalculator
-from .models import CitizenType, Province, SLAContext, SLABaseDB, SLAPolicyDB, SLAViolationDB
+from .models import CitizenType, Province, SLABaseDB, SLAContext, SLAPolicyDB, SLAViolationDB
 
 
 @click.group()
@@ -22,7 +21,7 @@ def sla() -> None:
 @click.option("--file", "-f", "file_path", required=True, help="Arquivo JSON com SLAs")
 def import_slas(file_path: str) -> None:
     async def _run() -> None:
-        with open(file_path, "r", encoding="utf-8") as handle:
+        with open(file_path, encoding="utf-8") as handle:
             data = json.load(handle)
         async with AsyncSessionLocal() as db:  # type: AsyncSession
             try:

@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from datetime import datetime
+
 from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaValidationError
+
 
 @dataclass(frozen=True)
 class Periodo:
@@ -9,4 +11,4 @@ class Periodo:
 
     def __post_init__(self) -> None:
         if self.fim < self.inicio:
-            raise EstatisticaValidationError('fim nao pode ser anterior ao inicio')
+            raise EstatisticaValidationError("fim nao pode ser anterior ao inicio")

@@ -8,12 +8,12 @@ from fastapi.middleware.cors import CORSMiddleware
 _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 if _REPO_ROOT not in sys.path:
     sys.path.append(_REPO_ROOT)
-from app.platform.observability.logger import get_sila_logger
-from app.platform.runtime.compat_router import router as compat_router
-from app.platform.runtime.health_router import router as health_router
-from app.platform.runtime.loader import discover_and_register_routers
-from app.core.events.bridge.event_bus_bridge import EventBusBridge
-from app.core.events.workers.projection_worker import ProjectionWorker
+from apps.backend.app.platform.observability.logger import get_sila_logger
+from apps.backend.app.platform.runtime.compat_router import router as compat_router
+from apps.backend.app.platform.runtime.health_router import router as health_router
+from apps.backend.app.platform.runtime.loader import discover_and_register_routers
+from apps.backend.app.core.events.bridge.event_bus_bridge import EventBusBridge
+from apps.backend.app.core.events.workers.projection_worker import ProjectionWorker
 from apps.backend.app.modules.identity.middleware.trust_middleware import TrustEvaluationMiddleware
 logger = get_sila_logger('sila-core')
 
@@ -66,7 +66,7 @@ def create_app():
     app.include_router(health_router)
     app.include_router(compat_router)
     try:
-        from app.api.router import api_router
+        from apps.backend.app.api.router import api_router
         app.include_router(api_router)
         logger.info('✓ Core API router loaded (events, etc.)')
     except Exception as e:

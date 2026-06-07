@@ -60,7 +60,7 @@ class TestQualityChecker:
 
             for test_file in module_path.glob("test_*.py"):
                 try:
-                    with open(test_file, "r", encoding="utf-8") as f:
+                    with open(test_file, encoding="utf-8") as f:
                         content = f.read()
                         test_count += content.count("def test_")
                 except Exception as e:
@@ -100,9 +100,7 @@ class TestQualityChecker:
                         print(f"   {result.stderr}")
                         syntax_ok = False
                 except Exception as e:
-                    print(
-                        f"❌ {module}: {test_file.name} - erro ao verificar sintaxe: {e}"
-                    )
+                    print(f"❌ {module}: {test_file.name} - erro ao verificar sintaxe: {e}")
                     syntax_ok = False
 
             self.results[module]["syntax_ok"] = syntax_ok
@@ -117,13 +115,13 @@ class TestQualityChecker:
 
             for test_file in module_path.glob("test_*.py"):
                 try:
-                    with open(test_file, "r", encoding="utf-8") as f:
+                    with open(test_file, encoding="utf-8") as f:
                         content = f.read()
                         lines = content.split("\n")
 
                         # Verifica imports hardcoded
                         for i, line in enumerate(lines, 1):
-                            if "from app." in line and "test" not in str(test_file):
+                            if "from apps.backend.app." in line and "test" not in str(test_file):
                                 if "main" not in line:  # main.py é aceitável
                                     import_issues.append(
                                         f"{test_file.name}:{i} - import direto de app"
@@ -131,14 +129,10 @@ class TestQualityChecker:
 
                             # Verifica imports relativos
                             if line.strip().startswith("from .."):
-                                import_issues.append(
-                                    f"{test_file.name}:{i} - import relativo"
-                                )
+                                import_issues.append(f"{test_file.name}:{i} - import relativo")
 
                 except Exception as e:
-                    import_issues.append(
-                        f"{test_file.name} - erro ao analisar imports: {e}"
-                    )
+                    import_issues.append(f"{test_file.name} - erro ao analisar imports: {e}")
 
             if not import_issues:
                 print(f"✅ {module}: imports OK")
@@ -166,9 +160,7 @@ class TestQualityChecker:
                 "modules_with_files": sum(
                     1 for r in self.results.values() if r.get("files_exist", False)
                 ),
-                "total_test_functions": sum(
-                    r.get("test_count", 0) for r in self.results.values()
-                ),
+                "total_test_functions": sum(r.get("test_count", 0) for r in self.results.values()),
                 "modules_with_min_tests": sum(
                     1
                     for r in self.results.values()
@@ -192,7 +184,7 @@ class TestQualityChecker:
 
         # Exibe resumo
         summary = report["summary"]
-        print(f"\n📈 RESUMO:")
+        print("\n📈 RESUMO:")
         print(f"   Módulos verificados: {summary['total_modules']}")
         print(f"   Módulos com arquivos: {summary['modules_with_files']}")
         print(f"   Total de testes: {summary['total_test_functions']}")
@@ -210,9 +202,7 @@ class TestQualityChecker:
         checks = []
 
         # Verifica se todos os arquivos existem
-        all_files_exist = all(
-            r.get("files_exist", False) for r in self.results.values()
-        )
+        all_files_exist = all(r.get("files_exist", False) for r in self.results.values())
         if all_files_exist:
             checks.append("✅ Todos os arquivos de teste existem")
         else:
@@ -221,8 +211,7 @@ class TestQualityChecker:
 
         # Verifica número mínimo de testes
         all_min_tests = all(
-            r.get("test_count", 0) >= self.min_tests_per_module
-            for r in self.results.values()
+            r.get("test_count", 0) >= self.min_tests_per_module for r in self.results.values()
         )
         if all_min_tests:
             checks.append("✅ Todos os módulos têm testes suficientes")
@@ -337,7 +326,7 @@ jobs:
         self.run_syntax_check()
         self.check_import_quality()
 
-        report = self.generate_quality_report()
+        self.generate_quality_report()
         ready = self.check_ci_readiness()
 
         if ready:

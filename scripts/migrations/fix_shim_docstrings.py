@@ -1,5 +1,5 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 ROOT = Path("apps/backend/app/modules/justice")
 PATTERN = re.compile(r'("""[^"]*""")\s+from ')

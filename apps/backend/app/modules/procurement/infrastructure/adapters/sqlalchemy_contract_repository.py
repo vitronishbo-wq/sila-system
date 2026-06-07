@@ -1,9 +1,12 @@
-from typing import List, Optional
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.procurement.domain.models.contract import Contract
-from apps.backend.app.modules.procurement.domain.ports.contract_repository_port import ContractRepositoryPort
+from apps.backend.app.modules.procurement.domain.ports.contract_repository_port import (
+    ContractRepositoryPort,
+)
 from apps.backend.app.modules.procurement.infrastructure.orm.contract_model import ContractModel
+
 
 class SQLAlchemyContractRepository(ContractRepositoryPort):
     """Adapter: SQLAlchemy implementation of ContractRepositoryPort."""
@@ -25,21 +28,25 @@ class SQLAlchemyContractRepository(ContractRepositoryPort):
         await self.session.flush()
         return contract
 
-    async def get_by_id(self, contract_id: str) -> Optional[Contract]:
+    async def get_by_id(self, contract_id: str) -> Contract | None:
         """Get contract by ID."""
         stmt = select(ContractModel).where(ContractModel.id == contract_id)
         result = await self.session.execute(stmt)
         model = result.scalar_one_or_none()
         return model.to_domain() if model else None
 
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Contract]:
+    async def list_by_status(
+        self, status: str, limit: int = 100, offset: int = 0
+    ) -> list[Contract]:
         """List contracts by status."""
-        stmt = select(ContractModel).where(ContractModel.status == status).limit(limit).offset(offset)
+        stmt = (
+            select(ContractModel).where(ContractModel.status == status).limit(limit).offset(offset)
+        )
         result = await self.session.execute(stmt)
         models = result.scalars().all()
         return [m.to_domain() for m in models]
 
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Contract]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Contract]:
         """List all contracts."""
         stmt = select(ContractModel).limit(limit).offset(offset)
         result = await self.session.execute(stmt)

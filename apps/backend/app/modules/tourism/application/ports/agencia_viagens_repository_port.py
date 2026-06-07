@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.tourism.domain.models.agencia_viagens import AgenciaViagens
 
-class AgenciaViagensRepositoryPort(ABC):
 
+class AgenciaViagensRepositoryPort(ABC):
     @abstractmethod
     async def save(self, agencia: AgenciaViagens) -> AgenciaViagens:
         pass
@@ -22,7 +24,9 @@ class AgenciaViagensRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, municipio: str | None=None, ativa: bool | None=None) -> list[AgenciaViagens]:
+    async def list(
+        self, *, municipio: str | None = None, ativa: bool | None = None
+    ) -> list[AgenciaViagens]:
         pass
 
     @abstractmethod

@@ -1,7 +1,8 @@
-from enum import Enum
+from enum import StrEnum
 
-class AuditSeverity(str, Enum):
-    LOW = 'low'
-    MEDIUM = 'medium'
-    HIGH = 'high'
-    CRITICAL = 'critical'
+
+class AuditSeverity(StrEnum):
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    CRITICAL = "critical"

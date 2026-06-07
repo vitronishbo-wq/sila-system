@@ -1,5 +1,4 @@
 class RealTimeDataStream:
-
     def __init__(self):
         self.subscribers = {}
 

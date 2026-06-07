@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID
+
 from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+
 
 @dataclass
 class AbastecimentoModel:

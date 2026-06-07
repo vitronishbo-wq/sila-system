@@ -1,4 +1,7 @@
-from apps.backend.app.modules.society.emprego.application.ports.workflow_repository_port import WorkflowRepositoryPort
+from apps.backend.app.modules.society.emprego.application.ports.workflow_repository_port import (
+    WorkflowRepositoryPort,
+)
+
 
 class FiscalizacaoRepositoryPort(WorkflowRepositoryPort):
     pass

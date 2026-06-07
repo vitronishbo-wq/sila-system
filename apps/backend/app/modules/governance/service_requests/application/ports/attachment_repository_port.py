@@ -1,8 +1,10 @@
 """Attachment repository port"""
+
 from abc import ABC, abstractmethod
-from typing import List, Optional
 from uuid import UUID
+
 from ...domain.models.attachment import Attachment
+
 
 class AttachmentRepositoryPort(ABC):
     """Attachment repository interface"""
@@ -13,12 +15,12 @@ class AttachmentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, attachment_id: UUID) -> Optional[Attachment]:
+    async def get_by_id(self, attachment_id: UUID) -> Attachment | None:
         """Get attachment by ID"""
         pass
 
     @abstractmethod
-    async def get_by_request(self, request_id: UUID) -> List[Attachment]:
+    async def get_by_request(self, request_id: UUID) -> list[Attachment]:
         """Get all attachments for a request"""
         pass
 

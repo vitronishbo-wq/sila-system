@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Any, Dict
+from typing import Any
 
 import requests
-
 
 API_KEY = os.getenv("OPENAI_API_KEY", "")
 API_URL = os.getenv("OPENAI_API_URL", "https://api.openai.com/v1/responses")
 
 
-def generate_text(prompt: str, model: str = "gpt-4o-mini") -> Dict[str, Any]:
+def generate_text(prompt: str, model: str = "gpt-4o-mini") -> dict[str, Any]:
     if not API_KEY:
         raise RuntimeError("OPENAI_API_KEY is not set")
 

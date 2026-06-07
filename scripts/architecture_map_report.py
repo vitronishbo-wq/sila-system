@@ -6,7 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -14,7 +14,7 @@ BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.module_registry import (
+from apps.backend.app.core.module_registry import (
     DOMAIN_INDEX,
     find_bootstrap_misalignment,
     find_unregistered_modules,
@@ -35,7 +35,7 @@ def render_report(
     dependency_payload: dict | None,
     modules_root: Path,
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     unregistered = find_unregistered_modules(modules_root)
     misaligned = find_bootstrap_misalignment(modules_root)
     api_bootstrap = [spec.name for spec in iter_bootstrap_modules("api")]
@@ -84,7 +84,9 @@ def render_report(
     lines.append(f"- Unregistered module folders: **{len(unregistered)}**")
     if unregistered:
         lines.append(f"  - {', '.join(f'`{name}`' for name in unregistered)}")
-    lines.append(f"- Bootstrap misalignment (registered but missing on disk): **{len(misaligned)}**")
+    lines.append(
+        f"- Bootstrap misalignment (registered but missing on disk): **{len(misaligned)}**"
+    )
     if misaligned:
         lines.append(f"  - {', '.join(f'`{name}`' for name in misaligned)}")
     lines.append("")
@@ -95,7 +97,9 @@ def render_report(
         lines.append(f"- Distinct edges: **{len(dependency_payload.get('edges', []))}**")
         lines.append(f"- Circular groups: **{len(dependency_payload.get('cycles', []))}**")
     else:
-        lines.append("- Dependency graph JSON not found. Run `scripts/module_dependency_analysis.py`.")
+        lines.append(
+            "- Dependency graph JSON not found. Run `scripts/module_dependency_analysis.py`."
+        )
     lines.append("")
 
     return "\n".join(lines)

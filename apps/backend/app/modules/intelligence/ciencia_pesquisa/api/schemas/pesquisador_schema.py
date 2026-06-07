@@ -1,8 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    AreaConhecimento,
+    NivelFormacao,
+    StatusVinculoPesquisador,
+    TipoVinculoPesquisador,
+)
+
 
 class PesquisadorCreate(BaseModel):
     nome_completo: str = Field(..., min_length=3)
@@ -20,12 +29,15 @@ class PesquisadorCreate(BaseModel):
     researcher_id: str | None = None
     scopus_id: str | None = None
 
+
 class PesquisadorVincularInstituicaoInput(BaseModel):
     instituicao_id: UUID
     unidade_pesquisa_id: UUID | None = None
 
+
 class PesquisadorEncerrarVinculoInput(BaseModel):
     data_fim_vinculo: date | None = None
+
 
 class PesquisadorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

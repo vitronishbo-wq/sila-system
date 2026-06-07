@@ -1,16 +1,23 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.desporto.application.ports.contrato_repository_port import ContratoRepositoryPort
+
+from apps.backend.app.modules.society.desporto.application.ports.contrato_repository_port import (
+    ContratoRepositoryPort,
+)
 from apps.backend.app.modules.society.desporto.domain.enums import StatusContrato, TipoContrato
 from apps.backend.app.modules.society.desporto.domain.models.contrato import Contrato
-from apps.backend.app.modules.society.desporto.infrastructure.models.contrato_model import ContratoModel
+from apps.backend.app.modules.society.desporto.infrastructure.models.contrato_model import (
+    ContratoModel,
+)
+
 
 class SQLAlchemyContratoRepository(ContratoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -49,22 +56,38 @@ class SQLAlchemyContratoRepository(ContratoRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_atleta(self, atleta_id: UUID) -> list[Contrato]:
-        stmt = select(ContratoModel).where(ContratoModel.atleta_id == atleta_id).order_by(ContratoModel.data_inicio.desc())
+        stmt = (
+            select(ContratoModel)
+            .where(ContratoModel.atleta_id == atleta_id)
+            .order_by(ContratoModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_clube(self, clube_id: UUID) -> list[Contrato]:
-        stmt = select(ContratoModel).where(ContratoModel.clube_id == clube_id).order_by(ContratoModel.data_inicio.desc())
+        stmt = (
+            select(ContratoModel)
+            .where(ContratoModel.clube_id == clube_id)
+            .order_by(ContratoModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoContrato) -> list[Contrato]:
-        stmt = select(ContratoModel).where(ContratoModel.tipo == tipo.value).order_by(ContratoModel.data_inicio.desc())
+        stmt = (
+            select(ContratoModel)
+            .where(ContratoModel.tipo == tipo.value)
+            .order_by(ContratoModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusContrato) -> list[Contrato]:
-        stmt = select(ContratoModel).where(ContratoModel.status == status.value).order_by(ContratoModel.data_inicio.desc())
+        stmt = (
+            select(ContratoModel)
+            .where(ContratoModel.status == status.value)
+            .order_by(ContratoModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -78,10 +101,29 @@ class SQLAlchemyContratoRepository(ContratoRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(ContratoModel).where(ContratoModel.codigo_contrato.like(f'CTR/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(ContratoModel)
+            .where(ContratoModel.codigo_contrato.like(f"CTR/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'CTR/{ano}/{count + 1:05d}'
+        return f"CTR/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: ContratoModel) -> Contrato:
-        return Contrato(id=model.id, codigo_contrato=model.codigo_contrato, atleta_id=model.atleta_id, clube_id=model.clube_id, tipo=TipoContrato(model.tipo), data_inicio=model.data_inicio, data_fim=model.data_fim, salario_mensal=Decimal(model.salario_mensal), clausula_rescisao=Decimal(model.clausula_rescisao) if model.clausula_rescisao is not None else None, status=StatusContrato(model.status), ativo=model.ativo, observacoes=model.observacoes)
+        return Contrato(
+            id=model.id,
+            codigo_contrato=model.codigo_contrato,
+            atleta_id=model.atleta_id,
+            clube_id=model.clube_id,
+            tipo=TipoContrato(model.tipo),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            salario_mensal=Decimal(model.salario_mensal),
+            clausula_rescisao=Decimal(model.clausula_rescisao)
+            if model.clausula_rescisao is not None
+            else None,
+            status=StatusContrato(model.status),
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

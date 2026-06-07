@@ -1,31 +1,65 @@
 from __future__ import annotations
-from datetime import datetime
-from fastapi import APIRouter, Depends, HTTPException, Query, status
-from apps.backend.app.modules.governance.statistics.api.deps import get_timeseries_service
-from apps.backend.app.modules.governance.statistics.api.schemas.timeseries_schema import TimeSeriesCreate, TimeSeriesListaResponse, TimeSeriesResponse
-from apps.backend.app.modules.governance.statistics.application.services.timeseries_service import TimeSeriesService
-from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
-router = APIRouter(prefix='/timeseries', tags=['Estatistica - TimeSeries'])
 
-@router.post('/', response_model=TimeSeriesResponse, status_code=status.HTTP_201_CREATED)
-async def registrar_ponto(data: TimeSeriesCreate, service: TimeSeriesService=Depends(get_timeseries_service)) -> TimeSeriesResponse:
+from datetime import datetime
+
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+
+from apps.backend.app.modules.governance.statistics.api.deps import get_timeseries_service
+from apps.backend.app.modules.governance.statistics.api.schemas.timeseries_schema import (
+    TimeSeriesCreate,
+    TimeSeriesListaResponse,
+    TimeSeriesResponse,
+)
+from apps.backend.app.modules.governance.statistics.application.services.timeseries_service import (
+    TimeSeriesService,
+)
+from apps.backend.app.modules.governance.statistics.exceptions import EstatisticaNotFoundError
+
+router = APIRouter(prefix="/timeseries", tags=["Estatistica - TimeSeries"])
+
+timeseries_service_dep = Depends(get_timeseries_service)
+fim_query = Query(None)
+inicio_query = Query(None)
+limit_query = Query(200, ge=1, le=1000)
+
+
+@router.post("/", response_model=TimeSeriesResponse, status_code=status.HTTP_201_CREATED)
+async def registrar_ponto(
+    data: TimeSeriesCreate, service: TimeSeriesService = timeseries_service_dep
+) -> TimeSeriesResponse:
     try:
         return TimeSeriesResponse.model_validate(await service.registrar_ponto(data.model_dump()))
     except EstatisticaNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
-@router.get('/metrica/{metrica_id}', response_model=TimeSeriesListaResponse)
-async def listar_serie(metrica_id: int, inicio: datetime | None=Query(None), fim: datetime | None=Query(None), limit: int=Query(200, ge=1, le=1000), service: TimeSeriesService=Depends(get_timeseries_service)) -> TimeSeriesListaResponse:
+
+@router.get("/metrica/{metrica_id}", response_model=TimeSeriesListaResponse)
+async def listar_serie(
+    metrica_id: int,
+    inicio: datetime | None = inicio_query,
+    fim: datetime | None = fim_query,
+    limit: int = limit_query,
+    service: TimeSeriesService = timeseries_service_dep,
+) -> TimeSeriesListaResponse:
     try:
-        pontos = await service.listar_serie(metrica_id=metrica_id, inicio=inicio, fim=fim, limit=limit)
-        return TimeSeriesListaResponse(pontos=[TimeSeriesResponse.model_validate(p) for p in pontos], total=len(pontos), metrica_id=metrica_id)
+        pontos = await service.listar_serie(
+            metrica_id=metrica_id, inicio=inicio, fim=fim, limit=limit
+        )
+        return TimeSeriesListaResponse(
+            pontos=[TimeSeriesResponse.model_validate(p) for p in pontos],
+            total=len(pontos),
+            metrica_id=metrica_id,
+        )
     except EstatisticaNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
-@router.get('/metrica/{metrica_id}/latest', response_model=TimeSeriesResponse | None)
-async def obter_ultimo(metrica_id: int, service: TimeSeriesService=Depends(get_timeseries_service)) -> TimeSeriesResponse | None:
+
+@router.get("/metrica/{metrica_id}/latest", response_model=TimeSeriesResponse | None)
+async def obter_ultimo(
+    metrica_id: int, service: TimeSeriesService = timeseries_service_dep
+) -> TimeSeriesResponse | None:
     try:
         ponto = await service.obter_ultimo(metrica_id)
         return TimeSeriesResponse.model_validate(ponto) if ponto else None
     except EstatisticaNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc

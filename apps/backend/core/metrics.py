@@ -1,15 +1,16 @@
+import logging
+import time
+
 from fastapi import FastAPI, Response
 from prometheus_client import (
-    Counter,
-    Histogram,
-    generate_latest,
-    CollectorRegistry,
-    ProcessCollector,
-    GCCollector,
     CONTENT_TYPE_LATEST,
+    CollectorRegistry,
+    Counter,
+    GCCollector,
+    Histogram,
+    ProcessCollector,
+    generate_latest,
 )
-import time
-import logging
 
 # Create a registry for metrics
 registry = CollectorRegistry()
@@ -50,9 +51,7 @@ REQUEST_DURATION = Histogram(
     registry=registry,
 )
 ACTIVE_USERS = Counter("active_users_total", "Total active users", registry=registry)
-ERROR_COUNT = Counter(
-    "errors_total", "Total errors", ["endpoint", "error_type"], registry=registry
-)
+ERROR_COUNT = Counter("errors_total", "Total errors", ["endpoint", "error_type"], registry=registry)
 
 logger = logging.getLogger(__name__)
 
@@ -74,22 +73,20 @@ def metrics_middleware(app: FastAPI):
                 status_code=response.status_code,
             ).inc()
 
-            REQUEST_DURATION.labels(
-                method=request.method, endpoint=request.url.path
-            ).observe(process_time)
+            REQUEST_DURATION.labels(method=request.method, endpoint=request.url.path).observe(
+                process_time
+            )
 
             return response
         except Exception as e:
             process_time = time.time() - start_time
-            REQUEST_DURATION.labels(
-                method=request.method, endpoint=request.url.path
-            ).observe(process_time)
+            REQUEST_DURATION.labels(method=request.method, endpoint=request.url.path).observe(
+                process_time
+            )
 
             # Log error and increment error counter
             logger.error(f"Error in {request.method} {request.url.path}: {str(e)}")
-            ERROR_COUNT.labels(
-                endpoint=request.url.path, error_type=type(e).__name__
-            ).inc()
+            ERROR_COUNT.labels(endpoint=request.url.path, error_type=type(e).__name__).inc()
             raise
 
     return app

@@ -12,6 +12,7 @@ SEEDS = [
     # Adicione novos paths aqui na ordem de dependência
 ]
 
+
 async def run_seeds():
     print("🚀 Iniciando semeadura do banco de dados...")
     for seed_path in SEEDS:
@@ -24,6 +25,7 @@ async def run_seeds():
                 print(f"  ⚠️ Ignorado: {seed_path} não possui função run()")
         except Exception as e:
             print(f"  ❌ Erro em {seed_path}: {e}")
+
 
 if __name__ == "__main__":
     asyncio.run(run_seeds())

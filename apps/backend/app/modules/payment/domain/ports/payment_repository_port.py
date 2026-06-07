@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
-from apps.backend.app.modules.payment.domain.models.payment import Payment
+
+from ..models.payment import Payment
+
 
 class PaymentRepositoryPort(ABC):
     """Port: Contract for Payment persistence."""
@@ -16,27 +17,29 @@ class PaymentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, payment_id: str) -> Optional[Payment]:
+    async def get_by_id(self, payment_id: str) -> Payment | None:
         """Retrieve payment by ID."""
         pass
 
     @abstractmethod
-    async def get_by_reference(self, reference: str) -> Optional[Payment]:
+    async def get_by_reference(self, reference: str) -> Payment | None:
         """Retrieve payment by reference."""
         pass
 
     @abstractmethod
-    async def list_by_citizen(self, citizen_id: str, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_by_citizen(
+        self, citizen_id: str, limit: int = 100, offset: int = 0
+    ) -> list[Payment]:
         """List payments for a specific citizen."""
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_by_status(self, status: str, limit: int = 100, offset: int = 0) -> list[Payment]:
         """List payments filtered by status."""
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Payment]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Payment]:
         """List all payments with pagination."""
         pass
 

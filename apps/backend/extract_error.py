@@ -1,6 +1,6 @@
 import re
 
-with open("test_users_s.txt", "r") as f:
+with open("test_users_s.txt") as f:
     content = f.read()
 
 # Procura por exceções que não sejam InFailedSQLTransactionError

@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.emprego.domain.enums import Escolaridade, SituacaoProfissional, StatusCandidato
+
+from apps.backend.app.modules.society.emprego.domain.enums import (
+    Escolaridade,
+    SituacaoProfissional,
+    StatusCandidato,
+)
+
 
 class CandidatoCreate(BaseModel):
     citizen_id: UUID
@@ -11,10 +18,12 @@ class CandidatoCreate(BaseModel):
     situacao: SituacaoProfissional
     areas_interesse: list[str] = Field(..., min_length=1)
 
+
 class CandidatoUpdate(BaseModel):
-    escolaridade: Optional[Escolaridade] = None
-    situacao: Optional[SituacaoProfissional] = None
-    areas_interesse: Optional[list[str]] = None
+    escolaridade: Escolaridade | None = None
+    situacao: SituacaoProfissional | None = None
+    areas_interesse: list[str] | None = None
+
 
 class CandidatoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -26,13 +35,15 @@ class CandidatoResponse(BaseModel):
     situacao: SituacaoProfissional
     areas_interesse: list[str]
     status: StatusCandidato
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
+
 
 class CandidatoFilter(BaseModel):
-    escolaridade: Optional[Escolaridade] = None
-    situacao: Optional[SituacaoProfissional] = None
-    area_interesse: Optional[str] = None
+    escolaridade: Escolaridade | None = None
+    situacao: SituacaoProfissional | None = None
+    area_interesse: str | None = None
+
 
 class CandidatoDeactivate(BaseModel):
     actor_id: UUID
-    motivo: str = Field(default='Desativado manualmente', min_length=3, max_length=500)
+    motivo: str = Field(default="Desativado manualmente", min_length=3, max_length=500)

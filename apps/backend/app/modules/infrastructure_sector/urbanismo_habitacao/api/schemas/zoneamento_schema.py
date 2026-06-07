@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusZoneamento, TipoZona, UsoPermitido
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusZoneamento,
+    TipoZona,
+    UsoPermitido,
+)
+
 
 class ZoneamentoCreate(BaseModel):
     nome: str
@@ -14,11 +22,14 @@ class ZoneamentoCreate(BaseModel):
     municipio: str | None = None
     codigo_zoneamento: str | None = None
 
+
 class ZoneamentoVigenciaInput(BaseModel):
     data_inicio_vigencia: date
 
+
 class ZoneamentoMotivoInput(BaseModel):
     motivo: str
+
 
 class ZoneamentoParametrosInput(BaseModel):
     usos_permitidos: list[UsoPermitido] | None = None
@@ -28,6 +39,7 @@ class ZoneamentoParametrosInput(BaseModel):
     recuo_frontal_minimo: Decimal | None = None
     permeabilidade_minima: Decimal | None = None
     area_lote_minima: Decimal | None = None
+
 
 class ZoneamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

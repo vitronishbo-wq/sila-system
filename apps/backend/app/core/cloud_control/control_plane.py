@@ -1,5 +1,4 @@
 class SovereignCloudControlPlane:
-
     def __init__(self, compute_grid, orchestrator, scheduler, api):
         self.compute_grid = compute_grid
         self.orchestrator = orchestrator

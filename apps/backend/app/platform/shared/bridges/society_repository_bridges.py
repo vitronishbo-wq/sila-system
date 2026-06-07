@@ -1,1 +1,1 @@
-from app.core.bridges.society_repository_bridges import *
+from apps.backend.app.core.bridges.society_repository_bridges import *

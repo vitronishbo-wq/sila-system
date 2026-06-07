@@ -1,6 +1,6 @@
 system:
   name: sila-system
-generated_at: '2026-03-07T21:49:57Z'
+generated_at: '2026-05-27T11:25:19Z'
 backend:
   path: apps/backend/app
   domains:

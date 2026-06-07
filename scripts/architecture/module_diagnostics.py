@@ -26,31 +26,25 @@ for module in sorted(set(module_roots), key=lambda p: p.as_posix()):
     health = (module / "api/health.py").is_file()
     infra = (module / "infrastructure").is_dir()
 
-    score = sum([
-        models,
-        services,
-        router,
-        health,
-        infra
-    ])
+    score = sum([models, services, router, health, infra])
 
-    results.append({
-        "name": name,
-        "models": models,
-        "services": services,
-        "router": router,
-        "health": health,
-        "infra": infra,
-        "score": score * 20
-    })
+    results.append(
+        {
+            "name": name,
+            "models": models,
+            "services": services,
+            "router": router,
+            "health": health,
+            "infra": infra,
+            "score": score * 20,
+        }
+    )
 
 with open(REPORT, "w", encoding="utf-8") as f:
-
     f.write("# SILA MODULE MATURITY REPORT\n\n")
     f.write(f"Total modules analyzed: {len(results)}\n\n")
 
     for r in sorted(results, key=lambda x: x["score"]):
-
         f.write(f"## {r['name']}\n")
 
         f.write(f"- models: {'✓' if r['models'] else '✗'}\n")
@@ -71,7 +65,11 @@ with open(REPORT, "w", encoding="utf-8") as f:
             f.write(f"- {r['name']} -> {r['score']}%\n")
 
     f.write("\n## ECONOMY FOCUS\n\n")
-    economy = [r for r in sorted(results, key=lambda x: (x["score"], x["name"])) if r["name"].startswith("economy.")]
+    economy = [
+        r
+        for r in sorted(results, key=lambda x: (x["score"], x["name"]))
+        if r["name"].startswith("economy.")
+    ]
     if not economy:
         f.write("- none\n")
     else:

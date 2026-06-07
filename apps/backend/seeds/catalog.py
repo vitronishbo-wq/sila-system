@@ -1,15 +1,17 @@
 import asyncio
+
+from apps.backend.app.core.catalog.models.module import Module
+from apps.backend.app.core.catalog.models.service import Service
+from apps.backend.app.core.db import AsyncSessionLocal
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.catalog.models.module import Module
-from app.core.catalog.models.service import Service
-from app.core.db import AsyncSessionLocal
+
 
 async def seed_catalog(session: AsyncSession):
     print("Seeding catalog (modules & services)...")
-    
+
+
 async def seed_catalog(session: AsyncSession):
     print("Seeding catalog (modules & services)...")
-    
 
     # 1. Modules
     identidade = Module(
@@ -21,7 +23,7 @@ async def seed_catalog(session: AsyncSession):
         color="#C8102E",
         is_active=True,
         is_foundational=True,
-        order=1
+        order=1,
     )
     registo = Module(
         id=2,
@@ -32,7 +34,7 @@ async def seed_catalog(session: AsyncSession):
         color="#002366",
         is_active=True,
         is_foundational=True,
-        order=2
+        order=2,
     )
     financas = Module(
         id=3,
@@ -43,11 +45,11 @@ async def seed_catalog(session: AsyncSession):
         color="#006400",
         is_active=True,
         is_foundational=True,
-        order=3
+        order=3,
     )
-    
+
     session.add_all([identidade, registo, financas])
-    await session.flush() # Ensure IDs are available
+    await session.flush()  # Ensure IDs are available
 
     # 2. Services
     services = [
@@ -60,7 +62,7 @@ async def seed_catalog(session: AsyncSession):
             estimated_days=7,
             is_public=True,
             is_essential=True,
-            icon_slug="id-card"
+            icon_slug="id-card",
         ),
         # Registo Civil
         Service(
@@ -71,7 +73,7 @@ async def seed_catalog(session: AsyncSession):
             estimated_days=3,
             is_public=True,
             is_essential=True,
-            icon_slug="baby"
+            icon_slug="baby",
         ),
         # Finanças
         Service(
@@ -82,16 +84,19 @@ async def seed_catalog(session: AsyncSession):
             estimated_days=1,
             is_public=False,
             is_essential=False,
-            icon_slug="credit-card"
-        )
+            icon_slug="credit-card",
+        ),
     ]
-    
+
     session.add_all(services)
     await session.commit()
     print("✅ Catalog seeded.")
 
+
 if __name__ == "__main__":
+
     async def main():
         async with AsyncSessionLocal() as session:
             await seed_catalog(session)
+
     asyncio.run(main())

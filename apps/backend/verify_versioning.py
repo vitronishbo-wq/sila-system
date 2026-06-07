@@ -1,15 +1,17 @@
+import asyncio
+import os
+import sys
+from io import BytesIO
+from uuid import uuid4
+
+from apps.backend.app.core.db import AsyncSessionLocal
+from fastapi import UploadFile
+
 from apps.backend.app.modules.documents.application.schemas.documents import DocumentCreate
 from apps.backend.app.modules.documents.application.services.document_service import (
     DocumentService,
 )
 from apps.backend.app.modules.identity.models.user import User
-from app.core.db import AsyncSessionLocal
-import asyncio
-import os
-import sys
-from uuid import uuid4
-from fastapi import UploadFile
-from io import BytesIO
 
 # Adiciona o path do projeto
 sys.path.append(os.path.join(os.getcwd(), "apps", "backend"))
@@ -27,7 +29,7 @@ async def verify_versioning():
             email=f"tester_{uuid4().hex[:6]}@sila.ao",
             full_name="Document Tester",
             hashed_password="hashed_fake_password",
-            is_active=True
+            is_active=True,
         )
         db.add(user)
         await db.commit()
@@ -39,12 +41,12 @@ async def verify_versioning():
             filename="contrato_v1.pdf",
             file=BytesIO(b"Conteudo da versao 1"),
             size=len(b"Conteudo da versao 1"),
-            headers={"content-type": "application/pdf"}
+            headers={"content-type": "application/pdf"},
         )
         metadata = DocumentCreate(
             title="Contrato de Prestação de Serviços",
             description="Contrato inicial",
-            is_public=False
+            is_public=False,
         )
 
         doc = await service.upload_document(file_v1, metadata, user.id)
@@ -57,14 +59,14 @@ async def verify_versioning():
             filename="contrato_v2_final.pdf",
             file=BytesIO(b"Conteudo da versao 2 atualizado"),
             size=len(b"Conteudo da versao 2 atualizado"),
-            headers={"content-type": "application/pdf"}
+            headers={"content-type": "application/pdf"},
         )
 
         new_v = await service.create_new_version(
             document_id=doc.id,
             file=file_v2,
             uploaded_by_id=user.id,
-            changelog="Atualização das cláusulas financeiras"
+            changelog="Atualização das cláusulas financeiras",
         )
         print(f"✅ Nova versão criada: {new_v.version_number} (ID: {new_v.id})")
 
@@ -79,9 +81,11 @@ async def verify_versioning():
         await db.refresh(doc)
         if doc.current_version_id == new_v.id:
             print(
-                f"✅ Documento aponta corretamente para a versão mais recente (V{new_v.version_number})")
+                f"✅ Documento aponta corretamente para a versão mais recente (V{new_v.version_number})"
+            )
         else:
             print("✗ Erro: current_version_id não atualizado corretamente")
+
 
 if __name__ == "__main__":
     asyncio.run(verify_versioning())

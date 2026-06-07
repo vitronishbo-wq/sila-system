@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLicencaUrbanistica, TipoAlvara
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusLicencaUrbanistica,
+    TipoAlvara,
+)
+
 
 class LicencaUrbanisticaCreate(BaseModel):
     numero_processo: str
@@ -16,13 +23,16 @@ class LicencaUrbanisticaCreate(BaseModel):
     area_construida_prevista: Decimal | None = None
     codigo_licenca: str | None = None
 
+
 class LicencaUrbanisticaDeferimentoInput(BaseModel):
     data_emissao: date
     data_validade: date
     tecnico_responsavel_id: UUID
 
+
 class LicencaUrbanisticaMotivoInput(BaseModel):
     motivo: str
+
 
 class LicencaUrbanisticaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

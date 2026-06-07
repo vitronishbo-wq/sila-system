@@ -12,7 +12,7 @@ BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.module_registry import (  # noqa: E402
+from apps.backend.app.core.module_registry import (  # noqa: E402
     discover_module_names,
     find_bootstrap_misalignment,
     find_unregistered_modules,
@@ -23,9 +23,7 @@ from app.core.module_registry import (  # noqa: E402
 def find_missing_enabled_modules(modules_root: Path) -> tuple[str, ...]:
     discovered = set(discover_module_names(modules_root))
     missing = sorted(
-        spec.name
-        for spec in iter_modules(enabled_only=True)
-        if spec.name not in discovered
+        spec.name for spec in iter_modules(enabled_only=True) if spec.name not in discovered
     )
     return tuple(missing)
 

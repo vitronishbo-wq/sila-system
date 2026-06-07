@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_005_comex_habilitacoes"
 down_revision = "20260301_004_comex_transportadores_internacionais"
 branch_labels = None

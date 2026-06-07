@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
 from apps.backend.app.modules.energy.domain.models import Subestacao
 
-class SubestacaoRepositoryPort(ABC):
 
+class SubestacaoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Subestacao) -> Subestacao:
         pass
@@ -15,7 +17,7 @@ class SubestacaoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusInfraEnergia | None=None) -> list[Subestacao]:
+    async def list(self, *, status: StatusInfraEnergia | None = None) -> list[Subestacao]:
         pass
 
     @abstractmethod

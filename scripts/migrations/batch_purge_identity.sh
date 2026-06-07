@@ -185,17 +185,17 @@ echo "---"
 ORPHANED=0
 for py_file in $(find "$PROJECT_ROOT/app/modules/identity/core" -name "*.py" -type f); do
     # Check for imports of deleted contexts
-    if grep -q "from app.modules.identity.verifiable_credentials" "$py_file" 2>/dev/null; then
+    if grep -q "from apps.backend.app.modules.identity.verifiable_credentials" "$py_file" 2>/dev/null; then
         echo "  ⚠ Found orphaned import in: $(basename $py_file)"
         ORPHANED=$((ORPHANED + 1))
     fi
     
-    if grep -q "from app.modules.identity.sovereign_trust_engine" "$py_file" 2>/dev/null; then
+    if grep -q "from apps.backend.app.modules.identity.sovereign_trust_engine" "$py_file" 2>/dev/null; then
         echo "  ⚠ Found orphaned import in: $(basename $py_file)"
         ORPHANED=$((ORPHANED + 1))
     fi
     
-    if grep -q "from app.modules.identity.bounded_contexts" "$py_file" 2>/dev/null; then
+    if grep -q "from apps.backend.app.modules.identity.bounded_contexts" "$py_file" 2>/dev/null; then
         echo "  ⚠ Found orphaned import in: $(basename $py_file)"
         ORPHANED=$((ORPHANED + 1))
     fi

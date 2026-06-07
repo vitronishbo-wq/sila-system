@@ -1,5 +1,5 @@
-from app.core.sla_engine.calculator import apply_context_factors
-from app.core.sla_engine.models import SLAContext, Province, CitizenType, ChannelType, LoadLevel
+from apps.backend.app.core.sla_engine.calculator import apply_context_factors
+from apps.backend.app.core.sla_engine.models import ChannelType, CitizenType, LoadLevel, Province, SLAContext
 
 
 def test_apply_context_factors_basic():

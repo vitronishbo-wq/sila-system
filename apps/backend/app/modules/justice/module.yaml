@@ -1,9 +1,12 @@
-# Module Discovery: justice
-# Auto-gerado 2026-03-14 08:21:49
-# Mapeia estrutura DDD/Hexagonal para navegação de subdomínios
-
-module: "justice"
-name: "justice"
+module: justice
+name: Justica e Registo
+code: justice
+description: Registo civil, certidoes e actos juridicos
+ui:
+  icon: fa-scale-balanced
+  color: '#0ea5e9'
+  order: 3
+services: []
 exposes:
   api_routers: []
   public_models: []
@@ -12,109 +15,85 @@ requires:
   domains: []
   core_services: []
 subdomains: []
-type: "macro_domain"
+type: macro_domain
 normalized: true
-
-# ========== ESTATÍSTICAS ==========
 statistics:
   api_files: 4
   application_files: 5
   domain_files: 19
   infrastructure_files: 20
   total: 48
-
-# ========== PONTOS DE ENTRADA (API) ==========
 api_endpoints:
-  location: "api/endpoints/"
-  files:
-    # Nenhum endpoint específico encontrado
-
-# ========== CAMADA APPLICATION ==========
+  location: api/endpoints/
+  files: null
 application_layer:
   services:
-    location: "application/services/"
+    location: application/services/
     count: 0
-  
   dto:
-    location: "application/dto/"
+    location: application/dto/
     schemas: 0
-  
   commands:
-    location: "application/commands/"
+    location: application/commands/
     count: 0
-  
   queries:
-    location: "application/queries/"
+    location: application/queries/
     count: 0
-
-# ========== CAMADA DOMAIN ==========
 domain_layer:
   services:
-    location: "domain/services/"
+    location: domain/services/
     count: 0
-  
   entities:
-    location: "domain/entities/"
+    location: domain/entities/
     count: 0
-  
   models:
-    location: "domain/models/"
+    location: domain/models/
     count: 0
-  
   ports:
-    location: "domain/ports/"
-    description: "Interfaces de contrato com camada de infraestrutura"
+    location: domain/ports/
+    description: Interfaces de contrato com camada de infraestrutura
     count: 0
-  
   events:
-    location: "domain/events/"
+    location: domain/events/
     count: 0
-  
   exceptions:
-    location: "domain/exceptions/"
-    description: "Exceções específicas do domínio"
+    location: domain/exceptions/
+    description: "Exce\xE7\xF5es espec\xEDficas do dom\xEDnio"
     count: 0
-
-# ========== CAMADA INFRASTRUCTURE ==========
 infrastructure_layer:
   repositories:
-    location: "infrastructure/repositories/"
-    description: "Implementação concreta de repositórios"
+    location: infrastructure/repositories/
+    description: "Implementa\xE7\xE3o concreta de reposit\xF3rios"
     count: 0
-  
   adapters:
-    location: "infrastructure/adapters/"
-    description: "Adaptadores para sistemas externos"
+    location: infrastructure/adapters/
+    description: Adaptadores para sistemas externos
     count: 0
-  
   orm:
-    location: "infrastructure/orm/"
-    description: "Modelos SQLAlchemy"
+    location: infrastructure/orm/
+    description: Modelos SQLAlchemy
     count: 0
-
-# ========== COMO USAR ==========
 discovery:
-  - step: 1
-    description: "Encontrar endpoint"
-    action: "Navegue em api_endpoints/files"
-  
-  - step: 2
-    description: "Encontrar serviço de orquestração"
-    action: "Procure em application_layer/services/"
-  
-  - step: 3
-    description: "Encontrar lógica de domínio"
-    action: "Procure em domain_layer/services/"
-  
-  - step: 4
-    description: "Encontrar persistência"
-    action: "Procure em infrastructure_layer/repositories/"
-
-# ========== CONFORMIDADE ==========
+- step: 1
+  description: Encontrar endpoint
+  action: Navegue em api_endpoints/files
+- step: 2
+  description: "Encontrar servi\xE7o de orquestra\xE7\xE3o"
+  action: Procure em application_layer/services/
+- step: 3
+  description: "Encontrar l\xF3gica de dom\xEDnio"
+  action: Procure em domain_layer/services/
+- step: 4
+  description: "Encontrar persist\xEAncia"
+  action: Procure em infrastructure_layer/repositories/
 conformance:
   has_api_layer: true
   has_application_layer: true
   has_domain_layer: true
   has_infrastructure_layer: true
   has_tests: true
-  ddd_compliant: "✓"
+  ddd_compliant: "\u2713"
+version: '1.0'
+last_updated: '2026-03-19'
+status: alpha
+owner: sila-core

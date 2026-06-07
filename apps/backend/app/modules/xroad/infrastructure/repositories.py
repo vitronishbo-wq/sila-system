@@ -1,14 +1,16 @@
 """
 Repository pattern for xroad module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class XroadRepository(ABC):
     """Abstract repository for xroad."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get xroad by ID."""
         pass
 
@@ -23,9 +25,10 @@ class XroadRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all xroad."""
         pass
+
 
 class XroadMemoryRepository(XroadRepository):
     """In-memory repository for xroad."""
@@ -33,7 +36,7 @@ class XroadMemoryRepository(XroadRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class XroadMemoryRepository(XroadRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

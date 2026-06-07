@@ -1,0 +1,46 @@
+system: sila-system
+generated_at: '2026-05-27T11:25:19Z'
+modules:
+  economy:
+    /v1/ping:
+      router: apps/backend/app/modules/economy/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/economy/application
+  educacao: {}
+  governance:
+    /v1:
+      router: apps/backend/app/modules/governance/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/governance/application/services
+  infrastructure_sector:
+    /v1:
+      router: apps/backend/app/modules/infrastructure_sector/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/infrastructure_sector/application/services
+  intelligence:
+    /v1:
+      router: apps/backend/app/modules/intelligence/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/intelligence/application/services
+  justice:
+    /v1/ping:
+      router: apps/backend/app/modules/justice/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/justice/application/services
+  resources:
+    /v1:
+      router: apps/backend/app/modules/resources/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/resources/application/services
+  society:
+    /v1/ping:
+      router: apps/backend/app/modules/society/api/router.py
+      methods:
+        - GET
+      service: apps/backend/app/modules/society/application/services

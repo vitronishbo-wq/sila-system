@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from typing import Literal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.infrastructure.domain.enums import NaturezaObra, StatusObra, TipoObra
+
 
 class ObraCreate(BaseModel):
     nome: str
@@ -22,28 +26,36 @@ class ObraCreate(BaseModel):
     codigo_obra: str | None = None
     descricao: str | None = None
 
+
 class ObraContratacaoInput(BaseModel):
     contrato_id: UUID
     empreiteira_id: UUID
     valor_contratado: Decimal
 
+
 class ObraInicioExecucaoInput(BaseModel):
     data_inicio: date
+
 
 class ObraProgressoInput(BaseModel):
     percentual: Decimal
 
+
 class ObraValorInput(BaseModel):
     valor: Decimal
+
 
 class ObraSuspensaoInput(BaseModel):
     motivo: str
 
+
 class ObraConclusaoInput(BaseModel):
     data_conclusao: date
 
+
 class ObraEntregaInput(BaseModel):
     data_entrega: date
+
 
 class ObraMedicaoDetalhadaInput(BaseModel):
     periodo_referencia: str
@@ -54,12 +66,14 @@ class ObraMedicaoDetalhadaInput(BaseModel):
     observacoes: str | None = None
     data_medicao: date | None = None
 
+
 class ObraAditivoInput(BaseModel):
-    tipo: Literal['prazo', 'valor', 'objeto', 'ambos']
+    tipo: Literal["prazo", "valor", "objeto", "ambos"]
     justificativa: str
-    valor_aditivo: Decimal = Decimal('0')
+    valor_aditivo: Decimal = Decimal("0")
     prazo_adicional_dias: int = 0
     data_assinatura: date | None = None
+
 
 class ObraFiscalizacaoInput(BaseModel):
     fiscal_id: UUID
@@ -68,11 +82,13 @@ class ObraFiscalizacaoInput(BaseModel):
     recomendacoes: str | None = None
     data_fiscalizacao: date | None = None
 
+
 class ObraTermoRecebimentoInput(BaseModel):
-    tipo: Literal['provisorio', 'definitivo']
+    tipo: Literal["provisorio", "definitivo"]
     responsavel_id: UUID
     data_termo: date | None = None
     observacoes: str | None = None
+
 
 class ObraResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -120,6 +136,7 @@ class ObraResponse(BaseModel):
     termos_recebimento: list[dict] = Field(default_factory=list)
     trilha_auditoria: list[dict] = Field(default_factory=list)
 
+
 class ObraDashboardReadResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     obra_id: str
@@ -129,6 +146,7 @@ class ObraDashboardReadResponse(BaseModel):
     valor_total: Decimal
     valor_executado: Decimal
     percentual_execucao: Decimal
+
 
 class EventStoreEntryResponse(BaseModel):
     id: str
@@ -141,6 +159,7 @@ class EventStoreEntryResponse(BaseModel):
     region_code: str
     correlation_id: str
     created_at: str | None = None
+
 
 class ObraRehydratedStateResponse(BaseModel):
     obra_id: str

@@ -2,32 +2,37 @@
 Payment Port - Interface for procurement to request fund releases from Economy Core.
 Implements the hexagonal architecture boundary between Procurement and Economy modules.
 """
+
 from abc import ABC, abstractmethod
-from typing import Optional
-from decimal import Decimal
 from dataclasses import dataclass
 from datetime import datetime
+from decimal import Decimal
+
 
 @dataclass
 class PaymentRequest:
     """Data transfer object for payment requests."""
+
     contract_id: str
     vendor_did: str
     amount: Decimal
-    currency: str = 'AOA'
-    description: str = ''
+    currency: str = "AOA"
+    description: str = ""
     metadata: dict = None
+
 
 @dataclass
 class PaymentResponse:
     """Data transfer object for payment responses."""
+
     payment_id: str
     contract_id: str
     status: str
     amount: Decimal
-    settled_at: Optional[datetime] = None
-    transaction_reference: str = ''
-    error_reason: Optional[str] = None
+    settled_at: datetime | None = None
+    transaction_reference: str = ""
+    error_reason: str | None = None
+
 
 class EconomyPaymentPort(ABC):
     """
@@ -40,13 +45,13 @@ class EconomyPaymentPort(ABC):
     async def request_funds(self, payment_request: PaymentRequest) -> PaymentResponse:
         """
         Request funds to be released for a contract.
-        
+
         Args:
             payment_request: Details of the payment to authorize
-            
+
         Returns:
             PaymentResponse with status and transaction reference
-            
+
         Raises:
             InsufficientFundsError: Budget does not allow payment
             VendorNotValidError: Vendor DID not validated

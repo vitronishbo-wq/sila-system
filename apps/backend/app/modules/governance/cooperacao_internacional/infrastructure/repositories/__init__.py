@@ -1,4 +1,15 @@
-from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import InMemoryAcordoRepository
-from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import InMemoryProjetoCooperacaoRepository
-from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import InMemoryVistoRepository
-__all__ = ['InMemoryAcordoRepository', 'InMemoryProjetoCooperacaoRepository', 'InMemoryVistoRepository']
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_acordo_repository import (
+    InMemoryAcordoRepository,
+)
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_projeto_repository import (
+    InMemoryProjetoCooperacaoRepository,
+)
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories.inmemory_visto_repository import (
+    InMemoryVistoRepository,
+)
+
+__all__ = [
+    "InMemoryAcordoRepository",
+    "InMemoryProjetoCooperacaoRepository",
+    "InMemoryVistoRepository",
+]

@@ -4,11 +4,9 @@
 from __future__ import annotations
 
 import argparse
-import re
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 DOMAIN_TOKENS = (
     "governance",
@@ -55,7 +53,7 @@ def collect(paths: tuple[Path, ...]) -> dict[str, list[str]]:
 
 
 def render(grouped: dict[str, list[str]]) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     total = sum(len(items) for items in grouped.values())
 
     lines: list[str] = []

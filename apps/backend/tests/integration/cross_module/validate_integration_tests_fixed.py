@@ -67,20 +67,14 @@ def validate_test_structure():
             ]
 
             if not test_classes:
-                result.add_failure(
-                    f"Classe em {test_file}", "Nenhuma classe de teste encontrada"
-                )
+                result.add_failure(f"Classe em {test_file}", "Nenhuma classe de teste encontrada")
                 continue
 
             test_class = test_classes[0]
-            test_methods = [
-                method for method in dir(test_class) if method.startswith("test_")
-            ]
+            test_methods = [method for method in dir(test_class) if method.startswith("test_")]
 
             if not test_methods:
-                result.add_failure(
-                    f"Métodos em {test_file}", "Nenhum método de teste encontrado"
-                )
+                result.add_failure(f"Métodos em {test_file}", "Nenhum método de teste encontrado")
                 continue
 
             result.add_success(f"{test_file}: {len(test_methods)} testes encontrados")
@@ -123,16 +117,13 @@ def validate_mock_services():
 
         for service_name, methods in essential_methods.items():
             service = locals()[
-                service_name.lower().replace("mock", "").replace("service", "")
-                + "_service"
+                service_name.lower().replace("mock", "").replace("service", "") + "_service"
             ]
             for method in methods:
                 if hasattr(service, method):
                     result.add_success(f"{service_name}.{method}")
                 else:
-                    result.add_failure(
-                        f"{service_name}.{method}", "Método não encontrado"
-                    )
+                    result.add_failure(f"{service_name}.{method}", "Método não encontrado")
 
     except Exception as e:
         result.add_failure("Importação de serviços mock", str(e))
@@ -167,14 +158,10 @@ def validate_integration_logic():
         ]
 
         for flow_name, test_class in test_classes:
-            test_methods = [
-                method for method in dir(test_class) if method.startswith("test_")
-            ]
+            test_methods = [method for method in dir(test_class) if method.startswith("test_")]
 
             if len(test_methods) >= 5:  # Esperar pelo menos 5 testes por fluxo
-                result.add_success(
-                    f"{flow_name}: {len(test_methods)} testes de integração"
-                )
+                result.add_success(f"{flow_name}: {len(test_methods)} testes de integração")
             else:
                 result.add_failure(
                     f"{flow_name}",
@@ -183,19 +170,13 @@ def validate_integration_logic():
 
             # Validar métodos críticos
             critical_methods = [
-                method
-                for method in test_methods
-                if "complete" in method or "flow" in method
+                method for method in test_methods if "complete" in method or "flow" in method
             ]
 
             if critical_methods:
-                result.add_success(
-                    f"{flow_name}: {len(critical_methods)} testes de fluxo completo"
-                )
+                result.add_success(f"{flow_name}: {len(critical_methods)} testes de fluxo completo")
             else:
-                result.add_failure(
-                    f"{flow_name}", "Nenhum teste de fluxo completo encontrado"
-                )
+                result.add_failure(f"{flow_name}", "Nenhum teste de fluxo completo encontrado")
 
     except Exception as e:
         result.add_failure("Importação de classes de teste", str(e))
@@ -349,7 +330,7 @@ def main():
     print(f"⚡ Suporte Assíncrono: {async_result.summary()}")
     print(f"💼 Regras de Negócio: {business_result.summary()}")
 
-    print(f"\n📈 RESUMO GERAL:")
+    print("\n📈 RESUMO GERAL:")
     print(f"   Total de validações: {total_tests}")
     print(f"   ✅ Passaram: {total_passed}")
     print(f"   ❌ Falharam: {total_failed}")
@@ -368,7 +349,7 @@ def main():
     )
 
     if all_errors:
-        print(f"\n🔍 ERROS ENCONTRADOS:")
+        print("\n🔍 ERROS ENCONTRADOS:")
         for error in all_errors[:5]:  # Mostrar apenas os 5 primeiros
             print(f"   • {error}")
         if len(all_errors) > 5:

@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
+
 
 class EditalCreate(BaseModel):
     titulo: str
@@ -13,14 +17,18 @@ class EditalCreate(BaseModel):
     data_encerramento: date
     numero_edital: str | None = None
 
+
 class EditalMotivoInput(BaseModel):
     motivo: str
+
 
 class EditalRetificacaoInput(BaseModel):
     descricao: str
 
+
 class EditalEncerramentoInput(BaseModel):
     data_encerramento: date | None = None
+
 
 class EditalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

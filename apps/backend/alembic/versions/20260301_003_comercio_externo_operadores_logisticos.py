@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_003_comex_operadores_logisticos"
 down_revision = "20260301_002_comex_importadores"
 branch_labels = None
@@ -107,15 +106,9 @@ def _create_operador_logistico_table(*, table_name: str, tipo_operador: str, suf
         """
     )
 
-    op.execute(
-        f"CREATE INDEX IF NOT EXISTS ix_{table_name}_cnpj_cpf ON {table_name} (cnpj_cpf)"
-    )
-    op.execute(
-        f"CREATE INDEX IF NOT EXISTS ix_{table_name}_status ON {table_name} (status)"
-    )
-    op.execute(
-        f"CREATE INDEX IF NOT EXISTS ix_{table_name}_municipio ON {table_name} (municipio)"
-    )
+    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table_name}_cnpj_cpf ON {table_name} (cnpj_cpf)")
+    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table_name}_status ON {table_name} (status)")
+    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table_name}_municipio ON {table_name} (municipio)")
 
 
 def _drop_operador_logistico_table(*, table_name: str) -> None:

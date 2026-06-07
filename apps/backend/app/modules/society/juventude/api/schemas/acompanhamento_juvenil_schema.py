@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusAcompanhamento
+
 
 class AcompanhamentoJuvenilCreate(BaseModel):
     jovem_id: UUID
@@ -12,12 +16,15 @@ class AcompanhamentoJuvenilCreate(BaseModel):
     proxima_revisao: date | None = None
     observacoes: str | None = None
 
+
 class AcompanhamentoJuvenilEvolucao(BaseModel):
     descricao: str = Field(..., min_length=3)
     proxima_revisao: date | None = None
 
+
 class AcompanhamentoJuvenilEncerrar(BaseModel):
     observacoes: str | None = None
+
 
 class AcompanhamentoJuvenilResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

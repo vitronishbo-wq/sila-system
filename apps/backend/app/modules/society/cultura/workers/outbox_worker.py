@@ -1,17 +1,25 @@
 from __future__ import annotations
+
 import asyncio
+from collections.abc import Callable
 from datetime import datetime
-from typing import Callable
+
 
 class OutboxWorker:
-
-    def __init__(self, *, outbox, event_publisher: Callable[[dict], object] | None=None, interval_seconds: int=10, batch_size: int=100) -> None:
+    def __init__(
+        self,
+        *,
+        outbox,
+        event_publisher: Callable[[dict], object] | None = None,
+        interval_seconds: int = 10,
+        batch_size: int = 100,
+    ) -> None:
         self.outbox = outbox
         self.event_publisher = event_publisher
         self.interval_seconds = interval_seconds
         self.batch_size = batch_size
         self.running = False
-        self.stats = {'publicados': 0, 'falhas': 0, 'ultimo_lote': None}
+        self.stats = {"publicados": 0, "falhas": 0, "ultimo_lote": None}
 
     async def start(self) -> None:
         self.running = True
@@ -32,7 +40,7 @@ class OutboxWorker:
                     result = self.event_publisher(event)
                     if asyncio.iscoroutine(result):
                         await result
-                self.stats['publicados'] += 1
+                self.stats["publicados"] += 1
             except Exception:
-                self.stats['falhas'] += 1
-        self.stats['ultimo_lote'] = datetime.utcnow().isoformat()
+                self.stats["falhas"] += 1
+        self.stats["ultimo_lote"] = datetime.utcnow().isoformat()

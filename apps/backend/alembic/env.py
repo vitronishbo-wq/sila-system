@@ -1,16 +1,19 @@
+import asyncio
 import os
 import sys
-import asyncio
 from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-# Add backend directory to sys.path so imports work when running from backend directory
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+# Add repository root to sys.path so imports like `apps.backend...` work from any cwd.
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
-from app.core.db import Base
+from apps.backend.app.core.db import Base
+from apps.backend.app.core.settings import settings
 
 config = context.config
 if config.config_file_name:
@@ -18,8 +21,10 @@ if config.config_file_name:
 
 target_metadata = Base.metadata
 
+
 def get_url():
-    return os.getenv("DATABASE_URL", "postgresql+asyncpg://sila_user:Trumanmarcelo_1983@127.0.0.1:5432/sila_db")
+    return settings.DATABASE_URL
+
 
 def run_migrations_offline():
     url = get_url()
@@ -27,16 +32,19 @@ def run_migrations_offline():
     with context.begin_transaction():
         context.run_migrations()
 
+
 async def run_async_migrations():
     configuration = config.get_section(config.config_ini_section)
     configuration["sqlalchemy.url"] = get_url()
-    
+
     from sqlalchemy.pool import NullPool
+
     connectable = async_engine_from_config(configuration, prefix="sqlalchemy.", poolclass=NullPool)
-    
+
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
     await connectable.dispose()
+
 
 def do_run_migrations(connection):
     # Alembic defaults `alembic_version.version_num` to VARCHAR(32), but this
@@ -59,8 +67,10 @@ def do_run_migrations(connection):
     with context.begin_transaction():
         context.run_migrations()
 
+
 def run_migrations_online():
     asyncio.run(run_async_migrations())
+
 
 if context.is_offline_mode():
     run_migrations_offline()

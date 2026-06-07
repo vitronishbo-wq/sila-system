@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEvento, TipoEvento
+
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusEvento,
+    TipoEvento,
+)
+
 
 class EventoJuvenilCreate(BaseModel):
     titulo: str = Field(..., min_length=3)
@@ -15,8 +23,10 @@ class EventoJuvenilCreate(BaseModel):
     vagas: int | None = Field(default=None, gt=0)
     observacoes: str | None = None
 
+
 class EventoJuvenilInscricao(BaseModel):
     jovem_id: UUID
+
 
 class EventoJuvenilResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

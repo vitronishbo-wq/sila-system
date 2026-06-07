@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { UserRole } from '../types';
+import { UserRole } from '@/modules/pagamentos/types';
 
 interface LayoutProps {
   children: React.ReactNode;

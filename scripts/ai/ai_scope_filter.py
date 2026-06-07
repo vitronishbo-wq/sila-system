@@ -11,8 +11,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-
-DEFAULT_SCOPE_FILE = "AI_FILE_SCOPE.yaml"
+DEFAULT_SCOPE_FILE = ".ai/AI_FILE_SCOPE.yaml"
 
 
 def _parse_list_lines(lines: list[str], key: str) -> list[str]:
@@ -23,7 +22,7 @@ def _parse_list_lines(lines: list[str], key: str) -> list[str]:
         if not line.strip() or line.lstrip().startswith("#"):
             continue
         if not line.startswith(" ") and line.endswith(":"):
-            in_key = (line[:-1] == key)
+            in_key = line[:-1] == key
             continue
         if in_key and line.lstrip().startswith("- "):
             values.append(line.split("- ", 1)[1].strip())
@@ -58,7 +57,9 @@ def load_policy(scope_file: Path) -> dict[str, object]:
     }
 
 
-def should_scan_file(path: Path, ignore_dirs: set[str], max_file_size_kb: int, max_lines: int) -> bool:
+def should_scan_file(
+    path: Path, ignore_dirs: set[str], max_file_size_kb: int, max_lines: int
+) -> bool:
     if any(part in ignore_dirs for part in path.parts):
         return False
     if not path.is_file():

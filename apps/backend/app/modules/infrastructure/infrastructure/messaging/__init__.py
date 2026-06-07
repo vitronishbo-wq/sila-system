@@ -1,2 +1,5 @@
-from apps.backend.app.modules.infrastructure.infrastructure.messaging.outbox_worker import OutboxWorker
-__all__ = ['OutboxWorker']
+from apps.backend.app.modules.infrastructure.infrastructure.messaging.outbox_worker import (
+    OutboxWorker,
+)
+
+__all__ = ["OutboxWorker"]

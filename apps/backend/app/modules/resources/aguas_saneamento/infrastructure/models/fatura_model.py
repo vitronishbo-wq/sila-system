@@ -1,9 +1,15 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
-from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import MetodoPagamento, StatusFatura
+
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import (
+    MetodoPagamento,
+    StatusFatura,
+)
+
 
 @dataclass
 class FaturaModel:

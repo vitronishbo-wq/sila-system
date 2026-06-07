@@ -5,7 +5,6 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 
-
 ALEMBIC_VERSIONS = Path(__file__).resolve().parents[1] / "alembic" / "versions"
 
 
@@ -25,7 +24,11 @@ def _collect_revisions() -> tuple[set[str], set[str]]:
         file_revision = None
         file_down = None
         for node in module.body:
-            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            if (
+                isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+            ):
                 name = node.targets[0].id
                 value = _literal_eval(node.value)
                 if name == "revision" and isinstance(value, str):

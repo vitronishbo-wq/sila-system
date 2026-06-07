@@ -16,11 +16,10 @@ Uso:
     python tools/migrate_module.py backend/modules/payment --skip-tests
 """
 
-import sys
 import argparse
 import subprocess
+import sys
 from pathlib import Path
-from typing import Tuple
 
 
 class ModuleMigrator:
@@ -32,16 +31,14 @@ class ModuleMigrator:
         self.skip_tests = skip_tests
         self.root = Path(__file__).parent.parent
 
-    def run_tool(self, script: str, args: list = None) -> Tuple[bool, str]:
+    def run_tool(self, script: str, args: list = None) -> tuple[bool, str]:
         """Executa uma ferramenta e retorna sucesso e output."""
         cmd = [sys.executable, f"tools/{script}"]
         if args:
             cmd.extend(args)
 
         try:
-            result = subprocess.run(
-                cmd, cwd=self.root, capture_output=True, text=True, timeout=30
-            )
+            result = subprocess.run(cmd, cwd=self.root, capture_output=True, text=True, timeout=30)
             return result.returncode == 0, result.stdout + result.stderr
         except subprocess.TimeoutExpired:
             return False, "Timeout executando comando"
@@ -50,7 +47,7 @@ class ModuleMigrator:
 
     def print_step(self, step: int, title: str):
         """Imprime cabeçalho de etapa."""
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"📍 ETAPA {step}: {title}")
         print("=" * 60)
 
@@ -68,7 +65,7 @@ class ModuleMigrator:
             return False
 
         print(f"✅ Módulo encontrado: {self.module_name}")
-        print(f"✅ models.py existe")
+        print("✅ models.py existe")
 
         return True
 
@@ -76,9 +73,7 @@ class ModuleMigrator:
         """Separa models e schemas."""
         self.print_step(2, "Separação Models/Schemas")
 
-        success, output = self.run_tool(
-            "split_models_schemas.py", [str(self.module_path)]
-        )
+        success, output = self.run_tool("split_models_schemas.py", [str(self.module_path)])
 
         print(output)
 
@@ -94,9 +89,7 @@ class ModuleMigrator:
 
         # Primeiro audita
         print("🔍 Auditando imports...")
-        success, output = self.run_tool(
-            "audit_imports.py", ["--module", self.module_name]
-        )
+        success, output = self.run_tool("audit_imports.py", ["--module", self.module_name])
 
         if "Nenhum problema encontrado" in output:
             print("✅ Nenhum problema de import encontrado")
@@ -104,9 +97,7 @@ class ModuleMigrator:
 
         # Se encontrou problemas, corrige
         print("🔧 Problemas encontrados, corrigindo...")
-        success, output = self.run_tool(
-            "audit_imports.py", ["--module", self.module_name, "--fix"]
-        )
+        success, output = self.run_tool("audit_imports.py", ["--module", self.module_name, "--fix"])
 
         print(output)
 
@@ -116,9 +107,7 @@ class ModuleMigrator:
         """Validação final."""
         self.print_step(4, "Validação Final")
 
-        success, output = self.run_tool(
-            "validate_separation.py", [str(self.module_path)]
-        )
+        success, output = self.run_tool("validate_separation.py", [str(self.module_path)])
 
         print(output)
 
@@ -147,7 +136,7 @@ class ModuleMigrator:
         print(f"   1. Revisar {self.module_path}/models.py")
         print(f"   2. Revisar {self.module_path}/schemas.py")
         print(f"   3. Verificar {self.module_path}/__init__.py")
-        print(f"   4. Testar endpoints relacionados")
+        print("   4. Testar endpoints relacionados")
 
     def migrate(self) -> bool:
         """Executa migração completa."""
@@ -186,7 +175,7 @@ class ModuleMigrator:
         print("\n📋 Arquivos modificados:")
         print(f"   • {self.module_path}/models.py (limpo)")
         print(f"   • {self.module_path}/schemas.py (atualizado)")
-        print(f"   • Backups criados (.py.bak)")
+        print("   • Backups criados (.py.bak)")
 
         print("\n🎯 Próximos passos:")
         print("   1. Revisar as mudanças")
@@ -208,13 +197,9 @@ Exemplos:
         """,
     )
 
-    parser.add_argument(
-        "module_path", help="Caminho do módulo (ex: backend/modules/location)"
-    )
+    parser.add_argument("module_path", help="Caminho do módulo (ex: backend/modules/location)")
 
-    parser.add_argument(
-        "--skip-tests", action="store_true", help="Pula sugestões de testes"
-    )
+    parser.add_argument("--skip-tests", action="store_true", help="Pula sugestões de testes")
 
     args = parser.parse_args()
 

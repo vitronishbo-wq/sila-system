@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, TipoProcessamento, TipoProdutoProcessado
+
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import (
+    MercadoDestino,
+    TipoProcessamento,
+    TipoProdutoProcessado,
+)
+
 
 class ProdutoProcessadoCreate(BaseModel):
     unidade_processamento_id: UUID
@@ -15,6 +23,7 @@ class ProdutoProcessadoCreate(BaseModel):
     mercado_destino: MercadoDestino
     observacoes: str | None = None
 
+
 class ProdutoProcessadoUpdate(BaseModel):
     nome_comercial: str | None = Field(default=None, min_length=2)
     tipo_produto: TipoProdutoProcessado | None = None
@@ -24,6 +33,7 @@ class ProdutoProcessadoUpdate(BaseModel):
     mercado_destino: MercadoDestino | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class ProdutoProcessadoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

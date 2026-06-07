@@ -1,12 +1,17 @@
 import datetime
 
-class NationalLogger:
 
+class NationalLogger:
     def __init__(self):
         self.logs = []
 
     def log(self, service, level, message):
-        entry = {'timestamp': datetime.datetime.utcnow().isoformat(), 'service': service, 'level': level, 'message': message}
+        entry = {
+            "timestamp": datetime.datetime.utcnow().isoformat(),
+            "service": service,
+            "level": level,
+            "message": message,
+        }
         self.logs.append(entry)
         return entry
 

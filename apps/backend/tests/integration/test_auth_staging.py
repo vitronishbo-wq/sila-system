@@ -31,9 +31,7 @@ async def test_rate_limit():
 async def test_logout():
     # This test assumes a valid refresh token is available
     async with httpx.AsyncClient() as client:
-        response = await client.post(
-            f"{BASE_URL}/logout", json={"refresh_token": "invalid_token"}
-        )
+        response = await client.post(f"{BASE_URL}/logout", json={"refresh_token": "invalid_token"})
         assert response.status_code in [200, 400, 401]
 
 

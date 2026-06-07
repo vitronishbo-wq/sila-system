@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusHabiteSe, TipoHabiteSe
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusHabiteSe,
+    TipoHabiteSe,
+)
+
 
 class HabiteSeCreate(BaseModel):
     numero_processo: str
@@ -16,16 +23,20 @@ class HabiteSeCreate(BaseModel):
     area_vistoriada: Decimal | None = None
     codigo_habite_se: str | None = None
 
+
 class HabiteSeVistoriaInput(BaseModel):
     data_vistoria: date
     tecnico_vistoriador_id: UUID
+
 
 class HabiteSeEmissaoInput(BaseModel):
     data_emissao: date
     data_validade: date | None = None
 
+
 class HabiteSeMotivoInput(BaseModel):
     motivo: str
+
 
 class HabiteSeResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

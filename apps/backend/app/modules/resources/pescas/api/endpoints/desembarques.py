@@ -1,14 +1,32 @@
 from __future__ import annotations
+
 from fastapi import APIRouter, Depends, status
+
 from apps.backend.app.modules.resources.pescas.api.deps import get_desembarque_service
-from apps.backend.app.modules.resources.pescas.api.schemas.desembarque_schema import DesembarqueCreate, DesembarqueResponse
-from apps.backend.app.modules.resources.pescas.application.services.desembarque_service import DesembarqueService
-router = APIRouter(prefix='/desembarques', tags=['Pescas - Desembarques'])
+from apps.backend.app.modules.resources.pescas.api.schemas.desembarque_schema import (
+    DesembarqueCreate,
+    DesembarqueResponse,
+)
+from apps.backend.app.modules.resources.pescas.application.services.desembarque_service import (
+    DesembarqueService,
+)
 
-@router.post('/', response_model=DesembarqueResponse, status_code=status.HTTP_201_CREATED)
-async def registrar_desembarque(data: DesembarqueCreate, service: DesembarqueService=Depends(get_desembarque_service)):
-    return await service.registrar_desembarque(captura_id=data.captura_id, porto_desembarque=data.porto_desembarque, quantidade_kg=data.quantidade_kg)
+router = APIRouter(prefix="/desembarques", tags=["Pescas - Desembarques"])
 
-@router.get('/', response_model=list[DesembarqueResponse])
-async def listar_desembarques(service: DesembarqueService=Depends(get_desembarque_service)):
+desembarque_service_dep = Depends(get_desembarque_service)
+
+
+@router.post("/", response_model=DesembarqueResponse, status_code=status.HTTP_201_CREATED)
+async def registrar_desembarque(
+    data: DesembarqueCreate, service: DesembarqueService = desembarque_service_dep
+):
+    return await service.registrar_desembarque(
+        captura_id=data.captura_id,
+        porto_desembarque=data.porto_desembarque,
+        quantidade_kg=data.quantidade_kg,
+    )
+
+
+@router.get("/", response_model=list[DesembarqueResponse])
+async def listar_desembarques(service: DesembarqueService = desembarque_service_dep):
     return await service.listar()

@@ -1,16 +1,28 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.projeto_pesquisa_model import ProjetoPesquisaModel
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import (
+    ProjetoPesquisaRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    AreaConhecimento,
+    StatusProjetoPesquisa,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import (
+    ProjetoPesquisa,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.projeto_pesquisa_model import (
+    ProjetoPesquisaModel,
+)
+
 
 class SQLAlchemyProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -42,7 +54,9 @@ class SQLAlchemyProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_projeto: str) -> ProjetoPesquisa | None:
-        stmt = select(ProjetoPesquisaModel).where(ProjetoPesquisaModel.codigo_projeto == codigo_projeto.strip())
+        stmt = select(ProjetoPesquisaModel).where(
+            ProjetoPesquisaModel.codigo_projeto == codigo_projeto.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -52,16 +66,26 @@ class SQLAlchemyProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_instituicao(self, instituicao_id: UUID) -> list[ProjetoPesquisa]:
-        stmt = select(ProjetoPesquisaModel).where(ProjetoPesquisaModel.instituicao_id == instituicao_id).order_by(ProjetoPesquisaModel.codigo_projeto.asc())
+        stmt = (
+            select(ProjetoPesquisaModel)
+            .where(ProjetoPesquisaModel.instituicao_id == instituicao_id)
+            .order_by(ProjetoPesquisaModel.codigo_projeto.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_pesquisador(self, pesquisador_id: UUID) -> list[ProjetoPesquisa]:
-        stmt = select(ProjetoPesquisaModel).where(ProjetoPesquisaModel.equipe_pesquisadores_ids.contains([pesquisador_id])).order_by(ProjetoPesquisaModel.codigo_projeto.asc())
+        stmt = (
+            select(ProjetoPesquisaModel)
+            .where(ProjetoPesquisaModel.equipe_pesquisadores_ids.contains([pesquisador_id]))
+            .order_by(ProjetoPesquisaModel.codigo_projeto.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
-    async def vincular_pesquisadores(self, *, projeto_id: UUID, pesquisador_ids: list[UUID]) -> ProjetoPesquisa | None:
+    async def vincular_pesquisadores(
+        self, *, projeto_id: UUID, pesquisador_ids: list[UUID]
+    ) -> ProjetoPesquisa | None:
         model = await self.session.get(ProjetoPesquisaModel, projeto_id)
         if not model:
             return None
@@ -86,14 +110,34 @@ class SQLAlchemyProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PROJ/{year}/'
-        stmt = select(func.count()).select_from(ProjetoPesquisaModel).where(ProjetoPesquisaModel.codigo_projeto.like(f'{prefix}%'))
+        prefix = f"PROJ/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(ProjetoPesquisaModel)
+            .where(ProjetoPesquisaModel.codigo_projeto.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:05d}'
+        return f"{prefix}{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: ProjetoPesquisaModel) -> ProjetoPesquisa:
         orcamento = model.orcamento_previsto
         if isinstance(orcamento, Decimal):
             orcamento = float(orcamento)
-        return ProjetoPesquisa(id=model.id, codigo_projeto=model.codigo_projeto, titulo=model.titulo, resumo=model.resumo, instituicao_id=model.instituicao_id, coordenador_id=model.coordenador_id, equipe_pesquisadores_ids=list(model.equipe_pesquisadores_ids or []), area_conhecimento=AreaConhecimento(model.area_conhecimento), data_inicio=model.data_inicio, data_fim_prevista=model.data_fim_prevista, data_fim_real=model.data_fim_real, status=StatusProjetoPesquisa(model.status), palavras_chave=list(model.palavras_chave or []), orcamento_previsto=orcamento, ativo=model.ativo)
+        return ProjetoPesquisa(
+            id=model.id,
+            codigo_projeto=model.codigo_projeto,
+            titulo=model.titulo,
+            resumo=model.resumo,
+            instituicao_id=model.instituicao_id,
+            coordenador_id=model.coordenador_id,
+            equipe_pesquisadores_ids=list(model.equipe_pesquisadores_ids or []),
+            area_conhecimento=AreaConhecimento(model.area_conhecimento),
+            data_inicio=model.data_inicio,
+            data_fim_prevista=model.data_fim_prevista,
+            data_fim_real=model.data_fim_real,
+            status=StatusProjetoPesquisa(model.status),
+            palavras_chave=list(model.palavras_chave or []),
+            orcamento_previsto=orcamento,
+            ativo=model.ativo,
+        )

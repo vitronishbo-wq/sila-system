@@ -1,7 +1,0 @@
-from __future__ import annotations
-from apps.backend.app.modules.economy.trade.external.application.ports import DrawbackVerdeAmareloRepositoryPort
-from apps.backend.app.modules.economy.trade.external.domain.models import DrawbackVerdeAmarelo
-from apps.backend.app.modules.economy.trade.external.infrastructure.repositories.in_memory_habilitacao_repository_base import InMemoryHabilitacaoRepositoryBase
-
-class InMemoryDrawbackVerdeAmareloRepository(InMemoryHabilitacaoRepositoryBase[DrawbackVerdeAmarelo], DrawbackVerdeAmareloRepositoryPort):
-    pass

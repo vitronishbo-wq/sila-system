@@ -15,8 +15,8 @@ import {
   AlertTriangle,
   TrendingUp,
 } from 'lucide-react';
-import type { MeteorologiaEstacao, Alert } from '../types';
-import { useEstacao, useAlertas } from '../hooks';
+import type { MeteorologiaEstacao, Alert } from '@/modules/meteorologia/types';
+import { useEstacao, useAlertas } from '@/modules/meteorologia/hooks';
 
 interface StationCardProps {
   estacaoId: string;

@@ -1,12 +1,16 @@
 """Null-safe parsing helpers (split from legacy helpers.py)."""
-from typing import Any, Optional, TypeVar
-T = TypeVar('T')
 
-def safe_get(obj: Any, attr: str, default: Optional[T]=None) -> Optional[T]:
+from typing import Any, TypeVar
+
+T = TypeVar("T")
+
+
+def safe_get(obj: Any, attr: str, default: T | None = None) -> T | None:
     """Retorna atributo se existir; caso contrário retorna default."""
     if obj is None:
         return default
     return getattr(obj, attr, default)
+
 
 def safe_str(value: Any) -> str | None:
     """Converte valor para str de forma segura."""
@@ -17,11 +21,13 @@ def safe_str(value: Any) -> str | None:
     except Exception:
         return None
 
+
 def safe_enum_value(value: Any) -> Any:
     """Extrai `.value` de enums, mantendo fallback para objetos comuns."""
     if value is None:
         return None
-    return getattr(value, 'value', value)
+    return getattr(value, "value", value)
+
 
 class SafeMapper:
     """Mapeador seguro de atributos para dicionário."""

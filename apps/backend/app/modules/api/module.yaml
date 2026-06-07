@@ -1,0 +1,17 @@
+code: api
+module: api
+name: api
+description: Modulo transversal para capacidades de API e compatibilidade de integracao.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

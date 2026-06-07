@@ -259,7 +259,9 @@ def upgrade() -> None:
             """
         )
 
-    if has_declarations and not _has_index(inspector, "payment_declarations", "idx_declaration_status_due_date"):
+    if has_declarations and not _has_index(
+        inspector, "payment_declarations", "idx_declaration_status_due_date"
+    ):
         op.create_index(
             "idx_declaration_status_due_date",
             "payment_declarations",
@@ -275,7 +277,9 @@ def upgrade() -> None:
             postgresql_where=sa.text("status IN ('PENDING', 'PARTIAL')"),
         )
 
-    if has_certificates and not _has_index(inspector, "payment_certificates", "idx_certificate_expires_status"):
+    if has_certificates and not _has_index(
+        inspector, "payment_certificates", "idx_certificate_expires_status"
+    ):
         op.create_index(
             "idx_certificate_expires_status",
             "payment_certificates",

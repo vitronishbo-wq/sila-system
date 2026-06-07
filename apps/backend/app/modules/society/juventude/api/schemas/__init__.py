@@ -1,18 +1,145 @@
-from apps.backend.app.modules.society.juventude.api.schemas.auxilio_schema import AuxilioCreate, AuxilioResponse, AuxilioStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.acompanhamento_juvenil_schema import AcompanhamentoJuvenilCreate, AcompanhamentoJuvenilEncerrar, AcompanhamentoJuvenilEvolucao, AcompanhamentoJuvenilResponse
-from apps.backend.app.modules.society.juventude.api.schemas.bolsa_estudo_schema import BolsaEstudoCreate, BolsaEstudoEncerrar, BolsaEstudoResponse
-from apps.backend.app.modules.society.juventude.api.schemas.empreendedorismo_juvenil_schema import EmpreendedorismoJuvenilCreate, EmpreendedorismoJuvenilResponse, EmpreendedorismoJuvenilStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.estagio_juvenil_schema import EstagioJuvenilCreate, EstagioJuvenilResponse, EstagioJuvenilStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.evento_juvenil_schema import EventoJuvenilCreate, EventoJuvenilInscricao, EventoJuvenilResponse
-from apps.backend.app.modules.society.juventude.api.schemas.formacao_schema import FormacaoCreate, FormacaoResponse, FormacaoStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.inscricao_programa_schema import InscricaoProgramaCancelar, InscricaoProgramaCreate, InscricaoProgramaResponse
-from apps.backend.app.modules.society.juventude.api.schemas.intercambio_juvenil_schema import IntercambioJuvenilCreate, IntercambioJuvenilResponse, IntercambioJuvenilStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.jovem_schema import JovemCreate, JovemResponse, JovemUpdate, VulnerabilidadeAdd
-from apps.backend.app.modules.society.juventude.api.schemas.mentor_schema import MentorAtribuirJovem, MentorCreate, MentorResponse, MentorStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.politica_juventude_schema import PoliticaJuventudeCreate, PoliticaJuventudeResponse, PoliticaJuventudeStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.programa_schema import ProgramaCreate, ProgramaResponse, ProgramaStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.risco_evasao_schema import RiscoEvasaoAvaliar, RiscoEvasaoResponse
-from apps.backend.app.modules.society.juventude.api.schemas.saude_juvenil_schema import SaudeJuvenilCreate, SaudeJuvenilResponse, SaudeJuvenilStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.voluntariado_schema import VoluntariadoCreate, VoluntariadoResponse, VoluntariadoStatusUpdate
-from apps.backend.app.modules.society.juventude.api.schemas.workflow_schema import WorkflowCancelar, WorkflowConcluir, WorkflowCreate, WorkflowResponse
-__all__ = ['JovemCreate', 'JovemUpdate', 'VulnerabilidadeAdd', 'JovemResponse', 'AcompanhamentoJuvenilCreate', 'AcompanhamentoJuvenilEvolucao', 'AcompanhamentoJuvenilEncerrar', 'AcompanhamentoJuvenilResponse', 'AuxilioCreate', 'AuxilioStatusUpdate', 'AuxilioResponse', 'BolsaEstudoCreate', 'BolsaEstudoEncerrar', 'BolsaEstudoResponse', 'EstagioJuvenilCreate', 'EstagioJuvenilStatusUpdate', 'EstagioJuvenilResponse', 'InscricaoProgramaCreate', 'InscricaoProgramaCancelar', 'InscricaoProgramaResponse', 'IntercambioJuvenilCreate', 'IntercambioJuvenilStatusUpdate', 'IntercambioJuvenilResponse', 'MentorCreate', 'MentorStatusUpdate', 'MentorAtribuirJovem', 'MentorResponse', 'EventoJuvenilCreate', 'EventoJuvenilInscricao', 'EventoJuvenilResponse', 'VoluntariadoCreate', 'VoluntariadoStatusUpdate', 'VoluntariadoResponse', 'EmpreendedorismoJuvenilCreate', 'EmpreendedorismoJuvenilStatusUpdate', 'EmpreendedorismoJuvenilResponse', 'SaudeJuvenilCreate', 'SaudeJuvenilStatusUpdate', 'SaudeJuvenilResponse', 'PoliticaJuventudeCreate', 'PoliticaJuventudeStatusUpdate', 'PoliticaJuventudeResponse', 'ProgramaCreate', 'ProgramaStatusUpdate', 'ProgramaResponse', 'FormacaoCreate', 'FormacaoStatusUpdate', 'FormacaoResponse', 'RiscoEvasaoAvaliar', 'RiscoEvasaoResponse', 'WorkflowCreate', 'WorkflowConcluir', 'WorkflowCancelar', 'WorkflowResponse']
+from apps.backend.app.modules.society.juventude.api.schemas.acompanhamento_juvenil_schema import (
+    AcompanhamentoJuvenilCreate,
+    AcompanhamentoJuvenilEncerrar,
+    AcompanhamentoJuvenilEvolucao,
+    AcompanhamentoJuvenilResponse,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.auxilio_schema import (
+    AuxilioCreate,
+    AuxilioResponse,
+    AuxilioStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.bolsa_estudo_schema import (
+    BolsaEstudoCreate,
+    BolsaEstudoEncerrar,
+    BolsaEstudoResponse,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.empreendedorismo_juvenil_schema import (
+    EmpreendedorismoJuvenilCreate,
+    EmpreendedorismoJuvenilResponse,
+    EmpreendedorismoJuvenilStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.estagio_juvenil_schema import (
+    EstagioJuvenilCreate,
+    EstagioJuvenilResponse,
+    EstagioJuvenilStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.evento_juvenil_schema import (
+    EventoJuvenilCreate,
+    EventoJuvenilInscricao,
+    EventoJuvenilResponse,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.formacao_schema import (
+    FormacaoCreate,
+    FormacaoResponse,
+    FormacaoStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.inscricao_programa_schema import (
+    InscricaoProgramaCancelar,
+    InscricaoProgramaCreate,
+    InscricaoProgramaResponse,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.intercambio_juvenil_schema import (
+    IntercambioJuvenilCreate,
+    IntercambioJuvenilResponse,
+    IntercambioJuvenilStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.jovem_schema import (
+    JovemCreate,
+    JovemResponse,
+    JovemUpdate,
+    VulnerabilidadeAdd,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.mentor_schema import (
+    MentorAtribuirJovem,
+    MentorCreate,
+    MentorResponse,
+    MentorStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.politica_juventude_schema import (
+    PoliticaJuventudeCreate,
+    PoliticaJuventudeResponse,
+    PoliticaJuventudeStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.programa_schema import (
+    ProgramaCreate,
+    ProgramaResponse,
+    ProgramaStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.risco_evasao_schema import (
+    RiscoEvasaoAvaliar,
+    RiscoEvasaoResponse,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.saude_juvenil_schema import (
+    SaudeJuvenilCreate,
+    SaudeJuvenilResponse,
+    SaudeJuvenilStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.voluntariado_schema import (
+    VoluntariadoCreate,
+    VoluntariadoResponse,
+    VoluntariadoStatusUpdate,
+)
+from apps.backend.app.modules.society.juventude.api.schemas.workflow_schema import (
+    WorkflowCancelar,
+    WorkflowConcluir,
+    WorkflowCreate,
+    WorkflowResponse,
+)
+
+__all__ = [
+    "JovemCreate",
+    "JovemUpdate",
+    "VulnerabilidadeAdd",
+    "JovemResponse",
+    "AcompanhamentoJuvenilCreate",
+    "AcompanhamentoJuvenilEvolucao",
+    "AcompanhamentoJuvenilEncerrar",
+    "AcompanhamentoJuvenilResponse",
+    "AuxilioCreate",
+    "AuxilioStatusUpdate",
+    "AuxilioResponse",
+    "BolsaEstudoCreate",
+    "BolsaEstudoEncerrar",
+    "BolsaEstudoResponse",
+    "EstagioJuvenilCreate",
+    "EstagioJuvenilStatusUpdate",
+    "EstagioJuvenilResponse",
+    "InscricaoProgramaCreate",
+    "InscricaoProgramaCancelar",
+    "InscricaoProgramaResponse",
+    "IntercambioJuvenilCreate",
+    "IntercambioJuvenilStatusUpdate",
+    "IntercambioJuvenilResponse",
+    "MentorCreate",
+    "MentorStatusUpdate",
+    "MentorAtribuirJovem",
+    "MentorResponse",
+    "EventoJuvenilCreate",
+    "EventoJuvenilInscricao",
+    "EventoJuvenilResponse",
+    "VoluntariadoCreate",
+    "VoluntariadoStatusUpdate",
+    "VoluntariadoResponse",
+    "EmpreendedorismoJuvenilCreate",
+    "EmpreendedorismoJuvenilStatusUpdate",
+    "EmpreendedorismoJuvenilResponse",
+    "SaudeJuvenilCreate",
+    "SaudeJuvenilStatusUpdate",
+    "SaudeJuvenilResponse",
+    "PoliticaJuventudeCreate",
+    "PoliticaJuventudeStatusUpdate",
+    "PoliticaJuventudeResponse",
+    "ProgramaCreate",
+    "ProgramaStatusUpdate",
+    "ProgramaResponse",
+    "FormacaoCreate",
+    "FormacaoStatusUpdate",
+    "FormacaoResponse",
+    "RiscoEvasaoAvaliar",
+    "RiscoEvasaoResponse",
+    "WorkflowCreate",
+    "WorkflowConcluir",
+    "WorkflowCancelar",
+    "WorkflowResponse",
+]

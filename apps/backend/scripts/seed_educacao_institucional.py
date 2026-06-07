@@ -11,9 +11,9 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import sys
 from datetime import date
 from pathlib import Path
-import sys
 from uuid import UUID
 
 from sqlalchemy import select
@@ -24,19 +24,18 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from apps.backend.app.core.db import AsyncSessionLocal
-from apps.backend.app.modules.educacao.infrastructure.models import (
+from apps.backend.app.core.db import AsyncSessionLocal  # noqa: E402
+from apps.backend.app.modules.educacao.infrastructure.models import (  # noqa: E402
     AnoLetivoModel,
     EscolaModel,
     TurmaModel,
 )
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import (  # noqa: F401
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.attachment_model import (  # noqa: E402,F401
     AttachmentModel,
 )
-from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import (  # noqa: F401
+from apps.backend.app.modules.governance.service_requests.infrastructure.models.request_event_model import (  # noqa: E402,F401
     RequestEventModel,
 )
-
 
 ANOS = [
     {
@@ -175,8 +174,14 @@ async def seed(dry_run: bool) -> dict[str, int]:
         try:
             for item in ANOS:
                 row = (
-                    await session.execute(select(AnoLetivoModel).where(AnoLetivoModel.ano == item["ano"]))
-                ).scalars().first()
+                    (
+                        await session.execute(
+                            select(AnoLetivoModel).where(AnoLetivoModel.ano == item["ano"])
+                        )
+                    )
+                    .scalars()
+                    .first()
+                )
                 if row:
                     row.data_inicio = item["data_inicio"]
                     row.data_fim = item["data_fim"]
@@ -188,10 +193,14 @@ async def seed(dry_run: bool) -> dict[str, int]:
 
             for item in ESCOLAS:
                 row = (
-                    await session.execute(
-                        select(EscolaModel).where(EscolaModel.codigo_med == item["codigo_med"])
+                    (
+                        await session.execute(
+                            select(EscolaModel).where(EscolaModel.codigo_med == item["codigo_med"])
+                        )
                     )
-                ).scalars().first()
+                    .scalars()
+                    .first()
+                )
                 if row:
                     for key, value in item.items():
                         setattr(row, key, value)
@@ -202,14 +211,18 @@ async def seed(dry_run: bool) -> dict[str, int]:
 
             for item in TURMAS:
                 row = (
-                    await session.execute(
-                        select(TurmaModel).where(
-                            TurmaModel.escola_id == item["escola_id"],
-                            TurmaModel.ano_letivo_id == item["ano_letivo_id"],
-                            TurmaModel.codigo == item["codigo"],
+                    (
+                        await session.execute(
+                            select(TurmaModel).where(
+                                TurmaModel.escola_id == item["escola_id"],
+                                TurmaModel.ano_letivo_id == item["ano_letivo_id"],
+                                TurmaModel.codigo == item["codigo"],
+                            )
                         )
                     )
-                ).scalars().first()
+                    .scalars()
+                    .first()
+                )
                 if row:
                     for key, value in item.items():
                         setattr(row, key, value)

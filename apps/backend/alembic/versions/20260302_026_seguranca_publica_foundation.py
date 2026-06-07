@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_026_seguranca_publica_foundation"
 down_revision = "20260302_025_telecomunicacoes_qualidade_sla_indicadores"
 branch_labels = None
@@ -90,13 +89,27 @@ def _create_unidades_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_codigo ON seguranca_unidades_policiais (codigo_unidade)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_nome ON seguranca_unidades_policiais (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_tipo ON seguranca_unidades_policiais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_municipio ON seguranca_unidades_policiais (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_provincia ON seguranca_unidades_policiais (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_status ON seguranca_unidades_policiais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_ativo ON seguranca_unidades_policiais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_codigo ON seguranca_unidades_policiais (codigo_unidade)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_nome ON seguranca_unidades_policiais (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_tipo ON seguranca_unidades_policiais (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_municipio ON seguranca_unidades_policiais (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_provincia ON seguranca_unidades_policiais (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_status ON seguranca_unidades_policiais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_unidades_ativo ON seguranca_unidades_policiais (ativo)"
+    )
 
 
 def _create_policiais_table() -> None:
@@ -218,14 +231,28 @@ def _create_policiais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_matricula ON seguranca_policiais (matricula)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_unidade_id ON seguranca_policiais (unidade_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_nome ON seguranca_policiais (nome)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_matricula ON seguranca_policiais (matricula)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_unidade_id ON seguranca_policiais (unidade_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_nome ON seguranca_policiais (nome)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_cpf ON seguranca_policiais (cpf)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_tipo ON seguranca_policiais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_vinculo ON seguranca_policiais (vinculo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_status ON seguranca_policiais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_ativo ON seguranca_policiais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_tipo ON seguranca_policiais (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_vinculo ON seguranca_policiais (vinculo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_status ON seguranca_policiais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_policiais_ativo ON seguranca_policiais (ativo)"
+    )
 
 
 def _create_ocorrencias_table() -> None:
@@ -324,17 +351,39 @@ def _create_ocorrencias_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_codigo ON seguranca_ocorrencias (codigo_ocorrencia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_unidade_id ON seguranca_ocorrencias (unidade_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_policial_responsavel ON seguranca_ocorrencias (policial_responsavel_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_tipo ON seguranca_ocorrencias (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_status ON seguranca_ocorrencias (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_prioridade ON seguranca_ocorrencias (prioridade)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_data_ocorrencia ON seguranca_ocorrencias (data_ocorrencia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_data_registro ON seguranca_ocorrencias (data_registro)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_municipio ON seguranca_ocorrencias (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_provincia ON seguranca_ocorrencias (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_ativo ON seguranca_ocorrencias (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_codigo ON seguranca_ocorrencias (codigo_ocorrencia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_unidade_id ON seguranca_ocorrencias (unidade_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_policial_responsavel ON seguranca_ocorrencias (policial_responsavel_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_tipo ON seguranca_ocorrencias (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_status ON seguranca_ocorrencias (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_prioridade ON seguranca_ocorrencias (prioridade)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_data_ocorrencia ON seguranca_ocorrencias (data_ocorrencia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_data_registro ON seguranca_ocorrencias (data_registro)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_municipio ON seguranca_ocorrencias (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_provincia ON seguranca_ocorrencias (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_ocorrencias_ativo ON seguranca_ocorrencias (ativo)"
+    )
 
 
 def upgrade() -> None:

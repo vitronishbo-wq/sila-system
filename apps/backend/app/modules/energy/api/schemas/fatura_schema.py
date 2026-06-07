@@ -1,18 +1,24 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.energy.domain.enums import BandeiraTarifaria, StatusFaturaEnergia
+
 
 class FaturaGerarPorConsumoInput(BaseModel):
     consumo_id: UUID
     data_referencia: date | None = None
 
+
 class FaturaPagamentoInput(BaseModel):
     data_pagamento: date
     valor_pago: Decimal
     metodo_pagamento: str
+
 
 class FaturaEnergiaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

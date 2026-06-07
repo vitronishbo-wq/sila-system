@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import ActionType, AssetType, ClassificationLevel
+
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import (
+    ActionType,
+    AssetType,
+    ClassificationLevel,
+)
+
 
 class CulturalAssetCreateSchema(BaseModel):
     name: str = Field(..., min_length=3, max_length=200)
@@ -18,6 +26,7 @@ class CulturalAssetCreateSchema(BaseModel):
     cultural_significance: str | None = None
     legal_reference: str | None = None
 
+
 class ClassificationRequestSchema(BaseModel):
     classification_level: ClassificationLevel
     authority: str
@@ -25,13 +34,14 @@ class ClassificationRequestSchema(BaseModel):
     certificate_number: str | None = None
     legal_basis: str | None = None
 
-    @field_validator('authority')
+    @field_validator("authority")
     @classmethod
     def validate_authority(cls, value: str) -> str:
-        valid = {'MinCultura', 'UNESCO', 'Governo Provincial', 'Municipio'}
+        valid = {"MinCultura", "UNESCO", "Governo Provincial", "Municipio"}
         if value not in valid:
-            raise ValueError(f'Autoridade deve ser uma de: {sorted(valid)}')
+            raise ValueError(f"Autoridade deve ser uma de: {sorted(valid)}")
         return value
+
 
 class PreservationActionSchema(BaseModel):
     action_type: ActionType
@@ -41,6 +51,7 @@ class PreservationActionSchema(BaseModel):
     cost: float | None = Field(default=None, ge=0)
     funding_source: str | None = None
 
+
 class CulturalEventSchema(BaseModel):
     name: str = Field(..., min_length=3, max_length=200)
     event_date: datetime
@@ -48,6 +59,7 @@ class CulturalEventSchema(BaseModel):
     description: str | None = Field(default=None, max_length=2000)
     expected_attendance: int | None = Field(default=None, ge=0)
     requires_authorization: bool = False
+
 
 class CulturalAssetResponseSchema(BaseModel):
     model_config = ConfigDict(from_attributes=True)

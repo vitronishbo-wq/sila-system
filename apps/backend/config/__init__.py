@@ -3,13 +3,13 @@
 Configuração centralizada do sistema SILA (Pydantic V2).
 """
 
-from .settings import settings, Settings, get_settings
 from .manager import ConfigManager, get_config_manager
+from .settings import Settings, get_settings, settings
 from .validator import (
-    validate_configuration,
-    SettingsValidator,
     ConfigurationError,
+    SettingsValidator,
     print_validation_report,
+    validate_configuration,
 )
 
 # Aliases para compatibilidade legada (core/config.py)

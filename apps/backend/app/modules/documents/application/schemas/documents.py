@@ -1,11 +1,14 @@
-from enum import Enum
+from enum import StrEnum
+
 from pydantic import BaseModel
 
-class DocumentStatus(str, Enum):
-    PENDING = 'pending'
-    APPROVED = 'approved'
-    REJECTED = 'rejected'
-    DELETED = 'deleted'
+
+class DocumentStatus(StrEnum):
+    PENDING = "pending"
+    APPROVED = "approved"
+    REJECTED = "rejected"
+    DELETED = "deleted"
+
 
 class DocumentCreate(BaseModel):
     title: str

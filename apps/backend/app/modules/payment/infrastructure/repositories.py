@@ -1,11 +1,10 @@
 """Implementações concretas de repositórios com SQLAlchemy."""
-import logging
-from typing import List, Optional
 
+import logging
+
+from ..application.ports import InvoiceRepositoryPort, PaymentRepositoryPort
+from ..domain.models import Invoice, Payment
 from .base_repository import BaseRepository
-from ..domain.models import Payment, Invoice
-from ..domain.enums import PaymentStatus, InvoiceStatus
-from ..application.ports import PaymentRepositoryPort, InvoiceRepositoryPort
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +35,7 @@ class SqlAlchemyPaymentRepository(BaseRepository, PaymentRepositoryPort):
             logger.error(f"Erro ao salvar pagamento: {e}")
             raise
 
-    async def get_by_id(self, payment_id: str) -> Optional[Payment]:
+    async def get_by_id(self, payment_id: str) -> Payment | None:
         """Recupera pagamento por ID."""
         try:
             logger.debug(f"Recuperando pagamento: {payment_id}")
@@ -45,7 +44,7 @@ class SqlAlchemyPaymentRepository(BaseRepository, PaymentRepositoryPort):
             logger.error(f"Erro ao recuperar pagamento: {e}")
             raise
 
-    async def get_by_citizen(self, citizen_id: str) -> List[Payment]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Payment]:
         """Lista pagamentos de um cidadão."""
         try:
             logger.debug(f"Recuperando pagamentos do cidadão: {citizen_id}")
@@ -54,7 +53,7 @@ class SqlAlchemyPaymentRepository(BaseRepository, PaymentRepositoryPort):
             logger.error(f"Erro ao recuperar pagamentos: {e}")
             raise
 
-    async def list_by_invoice(self, invoice_id: str) -> List[Payment]:
+    async def list_by_invoice(self, invoice_id: str) -> list[Payment]:
         """Lista pagamentos associados a uma fatura."""
         try:
             logger.debug(f"Recuperando pagamentos da fatura: {invoice_id}")
@@ -63,7 +62,7 @@ class SqlAlchemyPaymentRepository(BaseRepository, PaymentRepositoryPort):
             logger.error(f"Erro ao listar pagamentos: {e}")
             raise
 
-    async def get_by_gateway_ref(self, gateway_reference: str) -> Optional[Payment]:
+    async def get_by_gateway_ref(self, gateway_reference: str) -> Payment | None:
         """Recupera pagamento por referência de gateway (idempotência)."""
         try:
             logger.debug(f"Recuperando pagamento por referência: {gateway_reference}")
@@ -81,7 +80,7 @@ class SqlAlchemyPaymentRepository(BaseRepository, PaymentRepositoryPort):
             logger.error(f"Erro ao verificar existência: {e}")
             raise
 
-    async def list_all(self, limit: int = 100, offset: int = 0) -> List[Payment]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Payment]:
         """Lista todos os pagamentos com paginação."""
         try:
             logger.debug(f"Listando pagamentos (limit={limit}, offset={offset})")
@@ -134,7 +133,7 @@ class SqlAlchemyInvoiceRepository(BaseRepository, InvoiceRepositoryPort):
             logger.error(f"Erro ao salvar fatura: {e}")
             raise
 
-    async def get_by_id(self, invoice_id: str) -> Optional[Invoice]:
+    async def get_by_id(self, invoice_id: str) -> Invoice | None:
         """Recupera fatura por ID."""
         try:
             logger.debug(f"Recuperando fatura: {invoice_id}")
@@ -143,7 +142,7 @@ class SqlAlchemyInvoiceRepository(BaseRepository, InvoiceRepositoryPort):
             logger.error(f"Erro ao recuperar fatura: {e}")
             raise
 
-    async def get_by_citizen(self, citizen_id: str) -> List[Invoice]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Invoice]:
         """Lista faturas de um cidadão."""
         try:
             logger.debug(f"Recuperando faturas do cidadão: {citizen_id}")
@@ -152,7 +151,7 @@ class SqlAlchemyInvoiceRepository(BaseRepository, InvoiceRepositoryPort):
             logger.error(f"Erro ao recuperar faturas: {e}")
             raise
 
-    async def list_by_status(self, status: str) -> List[Invoice]:
+    async def list_by_status(self, status: str) -> list[Invoice]:
         """Lista faturas por status."""
         try:
             logger.debug(f"Listando faturas com status: {status}")
@@ -161,7 +160,7 @@ class SqlAlchemyInvoiceRepository(BaseRepository, InvoiceRepositoryPort):
             logger.error(f"Erro ao listar faturas: {e}")
             raise
 
-    async def list_all(self, limit: int = 100, offset: int = 0) -> List[Invoice]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Invoice]:
         """Lista todas as faturas com paginação."""
         try:
             logger.debug(f"Listando faturas (limit={limit}, offset={offset})")
@@ -192,4 +191,5 @@ class SqlAlchemyInvoiceRepository(BaseRepository, InvoiceRepositoryPort):
 # Compatible legacy class
 class PaymentRepository(SqlAlchemyPaymentRepository):
     """Compatibilidade com nome anterior."""
+
     pass

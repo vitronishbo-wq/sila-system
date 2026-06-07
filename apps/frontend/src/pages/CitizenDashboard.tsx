@@ -1,4 +1,4 @@
-import { StatsCards } from "../components/Dashboard/StatsCards";
+import { StatsCards } from "@/components/Dashboard/StatsCards";
 import { FileText, Clock, AlertTriangle, FolderOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 

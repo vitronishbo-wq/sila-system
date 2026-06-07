@@ -8,14 +8,13 @@ sem depender de frameworks externos como FastAPI ou pytest.
 
 import sys
 import time
-import traceback
 from datetime import datetime
 from pathlib import Path
-from unittest.mock import Mock
 
 
 class MockTestResult:
     """Mock para resultados de teste."""
+
     def __init__(self):
         self.passed = 0
         self.failed = 0
@@ -35,7 +34,7 @@ class MockTestResult:
         if total == 0:
             return "Nenhum teste executado"
         success_rate = (self.passed / total) * 100
-        return f"{self.passed}/{total} testes passaram ({success_rate:.1f}%)")
+        return f"{self.passed}/{total} testes passaram ({success_rate:.1f}%)"
 
 
 def validate_test_structure():
@@ -47,7 +46,7 @@ def validate_test_structure():
     test_files = [
         "test_sanitation_monitoring_notifications.py",
         "test_education_justice_finance.py",
-        "test_health_monitoring_notifications.py"
+        "test_health_monitoring_notifications.py",
     ]
 
     for test_file in test_files:
@@ -57,20 +56,22 @@ def validate_test_structure():
                 continue
 
             # Importar o módulo de teste
-            module_name = test_file.replace('.py', '')
+            module_name = test_file.replace(".py", "")
             spec = __import__(module_name)
 
             # Verificar se existe classe de teste
-            test_classes = [obj for name, obj in vars(spec).items()
-                          if name.startswith('Test') and hasattr(obj, '__dict__')]
+            test_classes = [
+                obj
+                for name, obj in vars(spec).items()
+                if name.startswith("Test") and hasattr(obj, "__dict__")
+            ]
 
             if not test_classes:
                 result.add_failure(f"Classe em {test_file}", "Nenhuma classe de teste encontrada")
                 continue
 
             test_class = test_classes[0]
-            test_methods = [method for method in dir(test_class)
-                          if method.startswith('test_')]
+            test_methods = [method for method in dir(test_class) if method.startswith("test_")]
 
             if not test_methods:
                 result.add_failure(f"Métodos em {test_file}", "Nenhum método de teste encontrado")
@@ -111,11 +112,13 @@ def validate_mock_services():
         essential_methods = {
             "MockSanitationService": ["create_record", "validate_record_data"],
             "MockMonitoringService": ["create_alert", "create_metric"],
-            "MockNotificationService": ["send_notification", "send_bulk_notification"]
+            "MockNotificationService": ["send_notification", "send_bulk_notification"],
         }
 
         for service_name, methods in essential_methods.items():
-            service = locals()[service_name.lower().replace('mock', '').replace('service', '') + '_service']
+            service = locals()[
+                service_name.lower().replace("mock", "").replace("service", "") + "_service"
+            ]
             for method in methods:
                 if hasattr(service, method):
                     result.add_success(f"{service_name}.{method}")
@@ -148,21 +151,23 @@ def validate_integration_logic():
         test_classes = [
             ("Sanitation-Monitoring-Notifications", TestSanitationMonitoringNotificationFlow),
             ("Education-Justice-Finance", TestEducationJusticeFinanceFlow),
-            ("Health-Monitoring-Notifications", TestHealthMonitoringNotificationFlow)
+            ("Health-Monitoring-Notifications", TestHealthMonitoringNotificationFlow),
         ]
 
         for flow_name, test_class in test_classes:
-            test_methods = [method for method in dir(test_class)
-                          if method.startswith('test_')]
+            test_methods = [method for method in dir(test_class) if method.startswith("test_")]
 
             if len(test_methods) >= 5:  # Esperar pelo menos 5 testes por fluxo
                 result.add_success(f"{flow_name}: {len(test_methods)} testes de integração")
             else:
-                result.add_failure(f"{flow_name}", f"Apenas {len(test_methods)} testes encontrados (mínimo 5)")
+                result.add_failure(
+                    f"{flow_name}", f"Apenas {len(test_methods)} testes encontrados (mínimo 5)"
+                )
 
             # Validar métodos críticos
-            critical_methods = [method for method in test_methods
-                              if 'complete' in method or 'flow' in method]
+            critical_methods = [
+                method for method in test_methods if "complete" in method or "flow" in method
+            ]
 
             if critical_methods:
                 result.add_success(f"{flow_name}: {len(critical_methods)} testes de fluxo completo")
@@ -194,7 +199,7 @@ def validate_async_support():
             record_data = {
                 "service_type": "Coleta de Lixo",
                 "location": "Test Location",
-                "priority": "MEDIA"
+                "priority": "MEDIA",
             }
             return await service.create_record(record_data)
 
@@ -237,7 +242,7 @@ def validate_business_rules():
             valid_data = {
                 "service_type": "Coleta de Lixo",
                 "location": "Test Location",
-                "priority": "MEDIA"
+                "priority": "MEDIA",
             }
             return await sanitation_service.validate_record_data(valid_data)
 
@@ -246,10 +251,7 @@ def validate_business_rules():
 
         def test_fee_calculation():
             invoice_data = {
-                "items": [
-                    {"type": "ACADEMIC_CERTIFICATE"},
-                    {"type": "JUDICIAL_VALIDATION"}
-                ]
+                "items": [{"type": "ACADEMIC_CERTIFICATE"}, {"type": "JUDICIAL_VALIDATION"}]
             }
             return finance_service._calculate_total_amount(invoice_data)
 
@@ -292,10 +294,20 @@ def main():
     business_result = validate_business_rules()
 
     # Compilar resultados
-    total_passed = (structure_result.passed + mock_result.passed +
-                   logic_result.passed + async_result.passed + business_result.passed)
-    total_failed = (structure_result.failed + mock_result.failed +
-                   logic_result.failed + async_result.failed + business_result.failed)
+    total_passed = (
+        structure_result.passed
+        + mock_result.passed
+        + logic_result.passed
+        + async_result.passed
+        + business_result.passed
+    )
+    total_failed = (
+        structure_result.failed
+        + mock_result.failed
+        + logic_result.failed
+        + async_result.failed
+        + business_result.failed
+    )
     total_tests = total_passed + total_failed
 
     # Relatório final
@@ -309,7 +321,7 @@ def main():
     print(f"⚡ Suporte Assíncrono: {async_result.summary()}")
     print(f"💼 Regras de Negócio: {business_result.summary()}")
 
-    print(f"\n📈 RESUMO GERAL:")
+    print("\n📈 RESUMO GERAL:")
     print(f"   Total de validações: {total_tests}")
     print(f"   ✅ Passaram: {total_passed}")
     print(f"   ❌ Falharam: {total_failed}")
@@ -319,11 +331,16 @@ def main():
         print(f"   📊 Taxa de sucesso: {success_rate:.1f}%")
 
     # Mostrar erros se houver
-    all_errors = (structure_result.errors + mock_result.errors +
-                 logic_result.errors + async_result.errors + business_result.errors)
+    all_errors = (
+        structure_result.errors
+        + mock_result.errors
+        + logic_result.errors
+        + async_result.errors
+        + business_result.errors
+    )
 
     if all_errors:
-        print(f"\n🔍 ERROS ENCONTRADOS:")
+        print("\n🔍 ERROS ENCONTRADOS:")
         for error in all_errors[:5]:  # Mostrar apenas os 5 primeiros
             print(f"   • {error}")
         if len(all_errors) > 5:

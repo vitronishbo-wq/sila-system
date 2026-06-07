@@ -12,6 +12,6 @@ try:
     print("Imported modules.location.models OK")
     for name in ("CommuneCreate", "CommuneResponse", "CommuneUpdate"):
         print(f"{name} ->", hasattr(m, name))
-except Exception as e:
+except Exception:
     print("IMPORT CHECK FAILED:")
     raise

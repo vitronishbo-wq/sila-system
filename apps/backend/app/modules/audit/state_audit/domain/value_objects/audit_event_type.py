@@ -1,8 +1,9 @@
-from enum import Enum
+from enum import StrEnum
 
-class AuditEventType(str, Enum):
-    TAX_COLLECTED = 'TaxCollected'
-    BUDGET_COMMITTED = 'BudgetCommitted'
-    TENDER_CREATED = 'TenderCreated'
-    CONTRACT_AWARDED = 'ContractAwarded'
-    PAYMENT_EXECUTED = 'PaymentExecuted'
+
+class AuditEventType(StrEnum):
+    TAX_COLLECTED = "TaxCollected"
+    BUDGET_COMMITTED = "BudgetCommitted"
+    TENDER_CREATED = "TenderCreated"
+    CONTRACT_AWARDED = "ContractAwarded"
+    PAYMENT_EXECUTED = "PaymentExecuted"

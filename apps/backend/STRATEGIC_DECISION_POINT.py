@@ -9,8 +9,6 @@ Status: AWAITING STRATEGIC DIRECTION
 # ESTADO ATUAL DO SISTEMA (TRIPLE BOOTSTRAP RESOLVIDO)
 # ============================================================================
 
-from datetime import datetime
-
 current_state = {
     "timestamp": "2026-03-11T00:00:00Z",
     "identity_layer": {
@@ -18,8 +16,8 @@ current_state = {
         "components": [
             "UserModel (UUID, citizen_id, async repository)",
             "PasswordHash (bcrypt + argon2)",
-            "CitizenEventConsumer (justice → identity bridge)"
-        ]
+            "CitizenEventConsumer (justice → identity bridge)",
+        ],
     },
     "auth_gateway_core": {
         "status": "OPERATIONAL",
@@ -28,8 +26,8 @@ current_state = {
             "Rate Limiter (200 req/60s)",
             "CircuitBreaker (5 fails = 30s trip)",
             "ServiceTokenService (hex64 tokens)",
-            "AuthMiddleware (global)"
-        ]
+            "AuthMiddleware (global)",
+        ],
     },
     "security_layer": {
         "status": "OPERATIONAL",
@@ -38,8 +36,8 @@ current_state = {
             "AnomalyEngine (Z-score/3σ)",
             "FraudEngine (threshold rules)",
             "ZeroTrustEngine (per-request auth)",
-            "SOCMonitor (national SOC events)"
-        ]
+            "SOCMonitor (national SOC events)",
+        ],
     },
     "intelligence_layer": {
         "status": "OPERATIONAL",
@@ -48,8 +46,8 @@ current_state = {
             "PolicyPredictor (trend forecasting)",
             "EconomyModel (GDP/inflation sim)",
             "CrisisEngine (risk scoring)",
-            "NationalAnalytics (aggregation)"
-        ]
+            "NationalAnalytics (aggregation)",
+        ],
     },
     "dependencies": {
         "status": "RESOLVED",
@@ -63,9 +61,9 @@ current_state = {
             "python-jose ✅",
             "numpy ✅",
             "pandas ✅",
-            "scikit-learn ✅"
-        ]
-    }
+            "scikit-learn ✅",
+        ],
+    },
 }
 
 # ============================================================================
@@ -83,10 +81,10 @@ option_1_digital_twin = {
                 "Service mesh topology (900+ nodes visualization)",
                 "Real-time data flow (WebSocket streaming)",
                 "Latency metrics per region",
-                "Service health dashboard"
+                "Service health dashboard",
             ],
             "estimated_files": 35,
-            "estimated_time": "45 min"
+            "estimated_time": "45 min",
         },
         "layer_2_live_monitoring": {
             "description": "Connect security + intelligence layers to digital twin",
@@ -95,10 +93,10 @@ option_1_digital_twin = {
                 "AnomalyEngine → Alert overlay (anomalies by service)",
                 "FraudEngine → Fraud density map",
                 "CrisisEngine → National risk zones",
-                "Intelligence events → Policy impact visualization"
+                "Intelligence events → Policy impact visualization",
             ],
             "estimated_files": 20,
-            "estimated_time": "30 min"
+            "estimated_time": "30 min",
         },
         "layer_3_simulation_display": {
             "description": "Show real-time simulation results on map",
@@ -106,11 +104,11 @@ option_1_digital_twin = {
                 "EconomyModel output → Regional GDP projection",
                 "PolicyPredictor → Policy impact zones",
                 "Crisis forecast → Risk assessment by region",
-                "Multiple scenario comparison (what-if analysis)"
+                "Multiple scenario comparison (what-if analysis)",
             ],
             "estimated_files": 15,
-            "estimated_time": "25 min"
-        }
+            "estimated_time": "25 min",
+        },
     },
     "total_files": "70 new files",
     "total_time": "100 minutes",
@@ -119,7 +117,7 @@ option_1_digital_twin = {
     "dependencies": "All 25 engines already built ✅",
     "next_consumer": "Executive dashboard, Government Council",
     "risk_profile": "LOW (all dependencies exist)",
-    "go_live_readiness": "95% (WebSocket infrastructure ready)"
+    "go_live_readiness": "95% (WebSocket infrastructure ready)",
 }
 
 # ============================================================================
@@ -137,10 +135,10 @@ option_2_vital_events = {
                 "MarriageRecord aggregate",
                 "DeathCertificate aggregate",
                 "VitalEventTimeline (event sourcing)",
-                "VitalEventValidation (business rules)"
+                "VitalEventValidation (business rules)",
             ],
             "estimated_files": 20,
-            "estimated_time": "30 min"
+            "estimated_time": "30 min",
         },
         "layer_2_async_repositories": {
             "description": "Async persistence layer with SQL transactions",
@@ -149,10 +147,10 @@ option_2_vital_events = {
                 "MarriageRepository (async CRUD)",
                 "DeathRepository (async CRUD)",
                 "VitalEventAuditRepository (immutable ledger)",
-                "Transactional consistency (atomic operations)"
+                "Transactional consistency (atomic operations)",
             ],
             "estimated_files": 25,
-            "estimated_time": "40 min"
+            "estimated_time": "40 min",
         },
         "layer_3_event_integration": {
             "description": "Connect to identity, audit, and intelligence layers",
@@ -161,10 +159,10 @@ option_2_vital_events = {
                 "Audit trail (immutable event log)",
                 "BehavioralAnalytics (demographic shifts)",
                 "CrisisEngine input (population changes)",
-                "NationalAnalytics aggregation (vital statistics)"
+                "NationalAnalytics aggregation (vital statistics)",
             ],
             "estimated_files": 18,
-            "estimated_time": "35 min"
+            "estimated_time": "35 min",
         },
         "layer_4_data_validation": {
             "description": "Blockchain-inspired validation for vital events",
@@ -173,11 +171,11 @@ option_2_vital_events = {
                 "Tamper detection (hash chain)",
                 "Multi-signature for marriage records",
                 "Immutable audit trail",
-                "Zero-knowledge proof validation"
+                "Zero-knowledge proof validation",
             ],
             "estimated_files": 15,
-            "estimated_time": "25 min"
-        }
+            "estimated_time": "25 min",
+        },
     },
     "total_files": "78 new files",
     "total_time": "130 minutes",
@@ -186,7 +184,7 @@ option_2_vital_events = {
     "dependencies": "UserModel already built ✅ | Async infrastructure ready ✅",
     "next_consumer": "Justice module, Citizen portal, National statistics bureau",
     "risk_profile": "MEDIUM (blockchain validation adds complexity)",
-    "go_live_readiness": "80% (core persistence ready, validation needs testing)"
+    "go_live_readiness": "80% (core persistence ready, validation needs testing)",
 }
 
 # ============================================================================
@@ -196,28 +194,28 @@ option_2_vital_events = {
 comparison = {
     "Visualization Power": {
         "digital_twin": "⭐⭐⭐⭐⭐ — Real-time national monitoring",
-        "vital_events": "⭐⭐ — Internal data only"
+        "vital_events": "⭐⭐ — Internal data only",
     },
     "Data Permanence": {
         "digital_twin": "⭐⭐ — In-memory visualization",
-        "vital_events": "⭐⭐⭐⭐⭐ — Permanent cryptographic ledger"
+        "vital_events": "⭐⭐⭐⭐⭐ — Permanent cryptographic ledger",
     },
     "Citizen Impact": {
         "digital_twin": "⭐⭐⭐ — Macro-level decision making",
-        "vital_events": "⭐⭐⭐⭐⭐ — Birth rights, legal status, identity"
+        "vital_events": "⭐⭐⭐⭐⭐ — Birth rights, legal status, identity",
     },
     "Urgency": {
         "digital_twin": "⭐⭐⭐ — Executive dashboard needs",
-        "vital_events": "⭐⭐⭐⭐ — Essential for citizen lifecycle"
+        "vital_events": "⭐⭐⭐⭐ — Essential for citizen lifecycle",
     },
     "Scalability": {
         "digital_twin": "⭐⭐⭐⭐ — WebSocket handles 50k+ concurrent",
-        "vital_events": "⭐⭐⭐⭐⭐ — ACID DB scales infinitely"
+        "vital_events": "⭐⭐⭐⭐⭐ — ACID DB scales infinitely",
     },
     "Strategic Readiness": {
         "digital_twin": "⭐⭐⭐⭐⭐ — All engines present",
-        "vital_events": "⭐⭐⭐ — Foundation built, validation needed"
-    }
+        "vital_events": "⭐⭐⭐ — Foundation built, validation needed",
+    },
 }
 
 # ============================================================================
@@ -255,6 +253,6 @@ DECISÃO AGUARDANDO SEU COMANDO, COMANDANTE:
 """
 
 print(strategic_recommendation)
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("Status: AWAITING STRATEGIC DIRECTION")
-print("="*80)
+print("=" * 80)

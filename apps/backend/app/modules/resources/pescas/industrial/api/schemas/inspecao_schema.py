@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao, TipoSeloInspecao
+
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import (
+    StatusInspecao,
+    TipoSeloInspecao,
+)
+
 
 class InspecaoCreate(BaseModel):
     unidade_processamento_id: UUID
@@ -12,12 +19,14 @@ class InspecaoCreate(BaseModel):
     lote_producao_id: UUID | None = None
     observacoes: str | None = None
 
+
 class InspecaoStatusUpdate(BaseModel):
     status: StatusInspecao
     pontuacao: int | None = Field(default=None, ge=0, le=100)
     aprovada: bool | None = None
     inconformidades: list[str] | None = None
     observacoes: str | None = None
+
 
 class InspecaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

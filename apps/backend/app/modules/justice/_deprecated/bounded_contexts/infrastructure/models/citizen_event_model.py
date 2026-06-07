@@ -1,9 +1,11 @@
-from enum import Enum
+from enum import Enum, StrEnum
 
-class EventType(str, Enum):
-    CREATED = 'created'
-    UPDATED = 'updated'
-    DELETED = 'deleted'
+
+class EventType(StrEnum):
+    CREATED = "created"
+    UPDATED = "updated"
+    DELETED = "deleted"
+
 
 class CitizenEventModel:
     pass

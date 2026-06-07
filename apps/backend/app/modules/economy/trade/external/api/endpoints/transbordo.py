@@ -1,2 +1,3 @@
 from fastapi import APIRouter
-router = APIRouter(prefix='/transbordo', tags=['Comercio Externo - Transbordo'])
+
+router = APIRouter(prefix="/transbordo", tags=["Comercio Externo - Transbordo"])

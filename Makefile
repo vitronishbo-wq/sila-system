@@ -23,41 +23,81 @@ NORM_V2         := $(SCRIPTS_DIR)/architecture/normalize_modules_v2.sh
 POLICY_YAML     := $(DOCS_DIR)/architecture/domain_dependency_policy.yaml
 ARCH_AUDIT_DIR  := $(SCRIPTS_DIR)/architecture/audit
 ARCH_FIX_SCRIPT := $(SCRIPTS_DIR)/architecture/fix/replace_core_imports.sh
+DEV_ENV_LOADER  := $(SCRIPTS_DIR)/dev/load_runtime_env.sh
+RUN_LOCAL_SH    := $(SCRIPTS_DIR)/dev/run_local.sh
 
 # Binários
 PYTHON          := python3
 BACKEND_PYTHON  := $(BACKEND_DIR)/.venv/bin/python
 
-.PHONY: help setup audit-domains audit-macro generate-graph compile-manifests check-cycles validate-policy audit-full sovereign-ritual architecture-report context-map scaffold-module architecture-sync arch-audit arch-fix daily-audit clean-audit consolidate-audit seed-test-db fix-npm-workspaces cleanup-root cleanup-root-preview cleanup-root-auto clean
+.PHONY: help setup audit-domains audit-macro generate-graph compile-manifests check-cycles validate-policy audit-full sovereign-ritual architecture-report context-map scaffold-module architecture-sync arch-audit arch-fix daily-audit clean-audit consolidate-audit seed-test-db fix-npm-workspaces cleanup-root cleanup-root-preview cleanup-root-auto clean devcontainer-build devcontainer-up devcontainer-down infra-up infra-down env-print run-local pipeline test lint lint-fix format registry-check registry-cache-clear db-migrate db-rollback db-backup db-restore db-reset db-reset-full codex-agent
 
 help:
-	@echo "🚀 SILA System - Gestão de Arquitetura"
+	@echo "🚀 SILA System - Gestão de Arquitetura + Dev Autonomy"
 	@echo ""
-	@echo "Alvos de Auditoria:"
+	@echo "=== DevContainer & Pipeline (NOVO) ==="
+	@echo "  make dev-setup        -> Build container + start stack + migrate DB"
+	@echo "  make dev-clean        -> Stop container + clean artifacts"
+	@echo "  make devcontainer-up  -> Start docker-compose stack"
+	@echo "  make devcontainer-down -> Stop docker-compose stack"
+	@echo "  make infra-up         -> Start local PostgreSQL + Redis only"
+	@echo "  make infra-down       -> Stop local PostgreSQL + Redis only"
+	@echo "  make env-print        -> Show resolved host/container runtime env"
+	@echo "  make run-local        -> Start infra + migrate + backend + frontend"
+	@echo "  make pipeline         -> registry-check → lint-fix → lint → migrate → test → audit"
+	@echo ""
+	@echo "=== Self-Healing Pipeline (100% Autonomy) ==="
+	@echo "  make post-mutation-pipeline -> ruff fix + black + pytest (auto-run after changes)"
+	@echo "  make migration-guardrail    -> alembic upgrade head (with validation + guard-rails)"
+	@echo "  make watch-mode             -> Auto-run tests on .py changes (requires watchdog)"
+	@echo ""
+	@echo "=== Database Operations ==="
+	@echo "  make db-migrate       -> Run Alembic migrations (upgrade head)"
+	@echo "  make db-rollback      -> Rollback last migration"
+	@echo "  make db-reset         -> Full reset (downgrade base → upgrade head)"
+	@echo "  make db-backup        -> Cria snapshot SQL completo em backups/"
+	@echo "  make db-restore file=backups/arquivo.sql -> Restaura um dump SQL"
+	@echo "  make db-reset-full    -> Recria o volume do Postgres e restaura backups/latest.sql"
+	@echo ""
+	@echo "=== Testing & Quality ==="
+	@echo "  make test             -> Run pytest with coverage"
+	@echo "  make lint-fix         -> Ruff fix + format"
+	@echo "  make lint             -> Ruff check + format --check"
+	@echo "  make format           -> Ruff formatter"
+	@echo "  make registry-check   -> Smoke check ALL_MODELS registry"
+	@echo "  make registry-cache-clear -> Clear registry discovery cache"
+	@echo ""
+	@echo "=== Codex Agent (Full Autonomy) ==="
+	@echo "  make codex-agent      -> Start Codex in (approval_policy=never) mode"
+	@echo ""
+	@echo "=== Architecture Audit ==="
 	@echo "  make audit-domains    -> Executa auditoria completa (Scan + Comparação)"
 	@echo "  make audit-macro      -> Valida fronteiras de macro-domínios (Física)"
 	@echo "  make generate-graph   -> Escaneia o código e gera o grafo observado"
 	@echo "  make compile-manifests -> Compila contratos module.yaml em grafo de manifestos"
 	@echo "  make check-cycles     -> Bloqueia dependências circulares conforme política YAML"
 	@echo "  make validate-policy  -> Valida grafo observado contra arquitetura + política YAML"
-	@echo "  make audit-full       -> generate-graph -> compile-manifests -> audit-macro -> check-cycles -> validate-policy"
-	@echo "  make sovereign-ritual -> architecture-report -> run_all_guardrails -> check_domain_dependencies"
+	@echo "  make audit-full       -> generate-graph → compile-manifests → audit-macro → check-cycles → validate-policy"
+	@echo "  make sovereign-ritual -> architecture-report → run_all_guardrails → check_domain_dependencies"
 	@echo ""
-	@echo "Alvos de Documentação Viva:"
+	@echo "=== Documentation ==="
 	@echo "  make context-map       -> Gera docs/architecture/context_map.md via grafo observado"
 	@echo "  make scaffold-module   -> Executa scaffold interativo de módulo + auto-registro no grafo"
 	@echo "  make architecture-sync -> Universaliza estrutura dos macro-domínios + compila manifests"
 	@echo "  make arch-audit       -> Auditoria arquitetural E2E em lote (compliance/ciclos/colisões)"
 	@echo "  make arch-fix         -> Normalização universal + auto-fix imports + arch-audit"
 	@echo "  make daily-audit      -> 🕐 Ritual Diário: 5 validadores + relatório consolidado"
-	@echo "  make clean-audit      -> 🧹 Limpa artefatos do ritual diário"
-	@echo "  make consolidate-audit -> Consolidação avançada de artefatos em MD + JSON"
-	@echo "  make seed-test-db     -> 🌱 Seed mínimo para testes de integração (RUN_DB_INTEGRATION=1)"
 	@echo ""
-	@echo "Alvos de Setup:"
+	@echo "=== Cleanup ==="
+	@echo "  make cleanup-root-preview -> Lista o que será removido (preview)"
+	@echo "  make cleanup-root-force   -> Executa a limpeza pesada (CUIDADO)"
+	@echo "  make check-leaks          -> Procura lógica sensível antes da purga"
+	@echo "  make clean            -> Remove caches e relatórios temporários"
+	@echo ""
+	@echo "=== Setup ==="
 	@echo "  make setup            -> Prepara o ambiente e dependências"
 	@echo "  make fix-npm-workspaces -> Repara colisões de workspaces e reinstala npm"
-	@echo "  make clean            -> Remove caches e relatórios temporários"
+	@echo ""
 
 # --- 1. Fluxo de Auditoria (A Ordem Perfeita) ---
 
@@ -82,6 +122,7 @@ audit-macro:
 
 # Alvo principal: Faz o scan primeiro, depois compara com a arquitetura declarada
 audit-domains: generate-graph compile-manifests audit-macro
+	@$(MAKE) architecture-report
 	@echo "📊 [Guardrail] Cruzando Código Real vs. Grafo de Arquitetura..."
 	@$(PYTHON) $(CHECK_DEPS) \
 		--observed-json $(REPORTS_DIR)/module_dependency_graph.json \
@@ -89,7 +130,6 @@ audit-domains: generate-graph compile-manifests audit-macro
 		--policy-yaml $(POLICY_YAML) \
 		--report-output $(REPORTS_DIR)/domain_dependency_guardrail_report.md \
 		--repo-root .
-	@$(MAKE) architecture-report
 
 check-cycles:
 	@echo "🔁 [Guardrail] Verificando ciclos de dependência..."
@@ -119,6 +159,7 @@ sovereign-ritual: architecture-report
 architecture-report:
 	@echo "📝 [Report] Gerando inventário e saúde dos domínios..."
 	@$(PYTHON) $(SCRIPTS_DIR)/migration_domain_inventory.py --output $(REPORTS_DIR)/migration_domain_inventory.md
+	@$(PYTHON) $(SCRIPTS_DIR)/ai/generate_architecture_graph.py
 	@echo "✅ Auditoria concluída. Relatório em: $(REPORTS_DIR)/"
 
 context-map:
@@ -201,8 +242,11 @@ clean:
 # --- 3. Limpeza de Artefatos (Extensões vs. Scope) ---
 
 cleanup-root-preview:
-	@echo "🔍 Preview de ficheiros phantom a remover..."
-	@$(PYTHON) $(SCRIPTS_DIR)/cleanup_artifacts.py --dry-run
+	@echo "--- Ficheiros Fantasmas Detectados ---"
+	@find . -maxdepth 1 -type f -name "*.json" -not -name "package.json"
+	@find . -maxdepth 1 -type f -name "*.csv"
+	@echo "--- Directórios Fora de Escopo ---"
+	@ls -d docs/architecture docs/archive docs/templates 2>/dev/null || echo "Limpo"
 
 cleanup-root:
 	@echo "🧹 Removendo artefatos phantom do diretório raiz..."
@@ -212,4 +256,181 @@ cleanup-root-auto:
 	@echo "🧹 Removendo automaticamente todos os artefatos phantom..."
 	@$(PYTHON) $(SCRIPTS_DIR)/cleanup_artifacts.py --auto
 
-.PHONY: cleanup-root cleanup-root-preview cleanup-root-auto
+cleanup-root-force:
+	@echo "🚀 Iniciando purga atômica..."
+	@rm -rf $(ROOT_DIR)/docs/architecture
+	@rm -rf $(ROOT_DIR)/docs/archive
+	@rm -rf $(ROOT_DIR)/docs/templates
+	@rm -rf $(ROOT_DIR)/src
+	@find . -maxdepth 1 -type f -name "DUPLICATION_*" -delete
+	@find . -maxdepth 1 -type f -name "CONSOLIDATION_*" -delete
+	@echo "✅ Autonomia restaurada. Terreno limpo."
+
+check-leaks:
+	@echo "🔍 Minerando lógica sensível antes da purga..."
+	@grep -rliE "NIF|BI|provincia|municipio" $(DOCS_DIR) || echo "Nenhum dado sensível encontrado."
+
+# ============================================================================
+# DevContainer & CI/CD Pipeline (Codex Full Autonomy Mode)
+# ============================================================================
+
+devcontainer-build:
+	@echo "🐳 Building DevContainer..."
+	@docker compose -f .devcontainer/docker-compose.yml build --no-cache
+
+devcontainer-up:
+	@echo "🚀 Starting DevContainer stack..."
+	@docker compose -f .devcontainer/docker-compose.yml up -d
+	@echo "✅ Services running:"
+	@echo "   - App container: sila-dev-agent"
+	@echo "   - PostgreSQL: localhost:5432"
+	@echo "   - Redis: localhost:6379"
+
+devcontainer-down:
+	@echo "⛔ Stopping DevContainer stack..."
+	@docker compose -f .devcontainer/docker-compose.yml down
+
+infra-up:
+	@echo "🚀 Starting local infra (PostgreSQL + Redis)..."
+	@docker compose -f .devcontainer/docker-compose.yml up -d db redis
+	@echo "✅ Infra running on localhost:5432 and localhost:6379"
+
+infra-down:
+	@echo "⛔ Stopping local infra (PostgreSQL + Redis)..."
+	@docker compose -f .devcontainer/docker-compose.yml stop db redis
+
+env-print:
+	@$(DEV_ENV_LOADER) "$${ENV_MODE:-auto}" --print
+
+# === Database Operations ===
+
+db-migrate:
+	@echo "🔄 Running database migrations..."
+	@bash -lc 'source "$(ROOT_DIR)/.venv/bin/activate" && eval "$$($(DEV_ENV_LOADER) "$${ENV_MODE:-auto}")" && cd $(BACKEND_DIR) && alembic upgrade head'
+	@echo "✅ Migrations complete"
+
+db-rollback:
+	@echo "⏮️  Rolling back last migration..."
+	@bash -lc 'source "$(ROOT_DIR)/.venv/bin/activate" && eval "$$($(DEV_ENV_LOADER) "$${ENV_MODE:-auto}")" && cd $(BACKEND_DIR) && alembic downgrade -1'
+	@echo "✅ Rollback complete"
+
+db-reset:
+	@echo "🔄 Resetting database..."
+	@bash -lc 'source "$(ROOT_DIR)/.venv/bin/activate" && eval "$$($(DEV_ENV_LOADER) "$${ENV_MODE:-auto}")" && cd $(BACKEND_DIR) && alembic downgrade base && alembic upgrade head'
+	@echo "✅ Database reset complete"
+
+db-backup:
+	@bash $(SCRIPTS_DIR)/db_backup.sh
+
+db-restore:
+	@if [ -z "$(file)" ]; then \
+		echo "❌ Uso: make db-restore file=backups/full_YYYYMMDD_HHMMSS.sql"; \
+		exit 1; \
+	fi
+	@bash $(SCRIPTS_DIR)/db_restore.sh "$(file)"
+
+db-reset-full:
+	@if [ -n "$(file)" ]; then \
+		bash $(SCRIPTS_DIR)/db_reset_full.sh "$(file)"; \
+	else \
+		bash $(SCRIPTS_DIR)/db_reset_full.sh; \
+	fi
+
+# === Testing & Quality ===
+
+test:
+	@echo "🧪 Running test suite..."
+	@if python3 -c "import pytest_cov" >/dev/null 2>&1; then \
+		pytest -v --cov=apps/backend/app --cov-report=html tests/; \
+	else \
+		echo "⚠️ pytest-cov não instalado; executando testes sem cobertura"; \
+		pytest -v tests/; \
+	fi
+	@echo "✅ Tests complete"
+
+lint:
+	@echo "🔍 Running linters..."
+	@ruff check . && ruff format --check .
+	@echo "✅ Lint complete"
+
+lint-fix:
+	@echo "🧹 Auto-fixing lint..."
+	@ruff check --fix --unsafe-fixes . && ruff format .
+	@echo "✅ Lint fix complete"
+
+format:
+	@echo "🎨 Formatting code..."
+	@ruff format .
+	@echo "✅ Format complete"
+
+registry-check:
+	@echo "🧭 Running registry smoke check..."
+	@cd $(BACKEND_DIR) && SILA_REGISTRY_SMOKE_CHECK=1 $(PYTHON) -c "from app.db.registry import smoke_check_all_models"
+	@echo "✅ Registry check complete"
+
+registry-cache-clear:
+	@echo "🧹 Clearing registry cache..."
+	@rm -f $(BACKEND_DIR)/app/db/registry/.cache/registry_modules.json
+	@echo "✅ Registry cache cleared"
+
+# === Post-Mutation Pipeline (Self-Healing Code Agent) ===
+
+post-mutation-pipeline:
+	@echo "🔄 Executing post-mutation pipeline..."
+	@echo "   (ruff fix → black → pytest)"
+	@bash $(SCRIPTS_DIR)/post-mutation-pipeline.sh
+
+migration-guardrail:
+	@echo "🔐 Executing migration guardrail..."
+	@echo "   (alembic upgrade head with validation)"
+	@bash $(SCRIPTS_DIR)/migration-guardrail.sh
+
+# Watch mode (requires watchdog: pip install watchdog pyaml)
+watch-mode:
+	@echo "👁️  Starting watch mode (auto-run tests on Python changes)..."
+	@watchmedo auto-restart --patterns="*.py" --recursive --ignore-patterns="__pycache__|.venv|dist|build" -- \
+		python -m pytest tests/ -v --tb=short
+	@echo "✅ Watch mode enabled"
+
+# === Main Pipeline (Build → Migrate → Test) ===
+
+pipeline:
+	set -e
+	$(MAKE) registry-check
+	$(MAKE) lint-fix
+	$(MAKE) lint
+	$(MAKE) db-migrate
+	$(MAKE) test
+	$(MAKE) audit-full
+	@echo ""
+	@echo "🎉 PIPELINE COMPLETO!"
+	@echo "✓ Code formatted & linted"
+	@echo "✓ Database migrated"
+	@echo "✓ Tests passed"
+	@echo "✓ Architecture validated"
+	@echo ""
+
+# === Codex Agent (Full Autonomy Commands) ===
+
+codex-agent:
+	@echo "🤖 Starting Codex Agent in FULL AUTONOMY mode..."
+	@echo "Commands:"
+	@echo "  'implement JWT auth' -> Codex writes code, runs migrations, tests"
+	@echo "  'add SPA service' -> Codex scaffolds, integrates, tests"
+	@echo "  'refactor module X' -> Codex refactors, validates, commits"
+	@echo ""
+	@echo "Agent is now AUTONOMOUS - no approval needed"
+	@echo ""
+
+# === Development Shortcuts ===
+
+dev-setup: devcontainer-build devcontainer-up db-migrate
+	@echo "✅ Dev environment ready!"
+
+dev-clean: devcontainer-down clean
+	@echo "✅ Dev environment cleaned"
+
+run-local:
+	@ENV_MODE="$${ENV_MODE:-auto}" $(RUN_LOCAL_SH)
+
+.PHONY: cleanup-root cleanup-root-preview cleanup-root-auto cleanup-root-force check-leaks

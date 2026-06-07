@@ -1,18 +1,42 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import InspecaoSanitariaIndustrialRepositoryPort
-from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import LoteProducaoRepositoryPort
-from apps.backend.app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import ProdutoProcessadoRepositoryPort
-from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import UnidadeProcessamentoRepositoryPort
-from apps.backend.app.modules.resources.pescas.industrial.domain.enums import MercadoDestino, StatusInspecao, StatusLoteProducao, TipoProcessamento, TipoProdutoProcessado
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import LoteProducao
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.produto_processado import ProdutoProcessado
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.inspecao_sanitaria_industrial_repository_port import (
+    InspecaoSanitariaIndustrialRepositoryPort,
+)
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.lote_producao_repository_port import (
+    LoteProducaoRepositoryPort,
+)
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.produto_processado_repository_port import (
+    ProdutoProcessadoRepositoryPort,
+)
+from apps.backend.app.modules.resources.pescas.industrial.application.ports.unidade_processamento_repository_port import (
+    UnidadeProcessamentoRepositoryPort,
+)
+from apps.backend.app.modules.resources.pescas.industrial.domain.enums import (
+    MercadoDestino,
+    StatusInspecao,
+    StatusLoteProducao,
+    TipoProcessamento,
+    TipoProdutoProcessado,
+)
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import (
+    InspecaoSanitariaIndustrial,
+)
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.lote_producao import (
+    LoteProducao,
+)
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.produto_processado import (
+    ProdutoProcessado,
+)
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import (
+    UnidadeProcessamento,
+)
+
 
 class InMemoryUnidadeRepository(UnidadeProcessamentoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, UnidadeProcessamento] = {}
 
@@ -45,8 +69,8 @@ class InMemoryUnidadeRepository(UnidadeProcessamentoRepositoryPort):
     async def delete(self, unidade_id: UUID) -> bool:
         return self._items.pop(unidade_id, None) is not None
 
-class InMemoryProdutoRepository(ProdutoProcessadoRepositoryPort):
 
+class InMemoryProdutoRepository(ProdutoProcessadoRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, ProdutoProcessado] = {}
 
@@ -68,7 +92,11 @@ class InMemoryProdutoRepository(ProdutoProcessadoRepositoryPort):
         return sorted(self._items.values(), key=lambda item: item.codigo_produto)
 
     async def list_by_unidade(self, unidade_processamento_id: UUID) -> list[ProdutoProcessado]:
-        values = [item for item in self._items.values() if item.unidade_processamento_id == unidade_processamento_id]
+        values = [
+            item
+            for item in self._items.values()
+            if item.unidade_processamento_id == unidade_processamento_id
+        ]
         return sorted(values, key=lambda item: item.codigo_produto)
 
     async def list_by_tipo(self, tipo_produto: TipoProdutoProcessado) -> list[ProdutoProcessado]:
@@ -84,12 +112,12 @@ class InMemoryProdutoRepository(ProdutoProcessadoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PRD/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_produto.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"PRD/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_produto.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryLoteRepository(LoteProducaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, LoteProducao] = {}
 
@@ -111,11 +139,19 @@ class InMemoryLoteRepository(LoteProducaoRepositoryPort):
         return sorted(self._items.values(), key=lambda item: item.codigo_lote)
 
     async def list_by_unidade(self, unidade_processamento_id: UUID) -> list[LoteProducao]:
-        values = [item for item in self._items.values() if item.unidade_processamento_id == unidade_processamento_id]
+        values = [
+            item
+            for item in self._items.values()
+            if item.unidade_processamento_id == unidade_processamento_id
+        ]
         return sorted(values, key=lambda item: item.codigo_lote)
 
     async def list_by_produto(self, produto_processado_id: UUID) -> list[LoteProducao]:
-        values = [item for item in self._items.values() if item.produto_processado_id == produto_processado_id]
+        values = [
+            item
+            for item in self._items.values()
+            if item.produto_processado_id == produto_processado_id
+        ]
         return sorted(values, key=lambda item: item.codigo_lote)
 
     async def list_by_status(self, status: StatusLoteProducao) -> list[LoteProducao]:
@@ -123,7 +159,11 @@ class InMemoryLoteRepository(LoteProducaoRepositoryPort):
         return sorted(values, key=lambda item: item.codigo_lote)
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[LoteProducao]:
-        values = [item for item in self._items.values() if item.data_producao >= data_inicio and item.data_producao <= data_fim]
+        values = [
+            item
+            for item in self._items.values()
+            if item.data_producao >= data_inicio and item.data_producao <= data_fim
+        ]
         return sorted(values, key=lambda item: (item.data_producao, item.codigo_lote))
 
     async def delete(self, lote_id: UUID) -> bool:
@@ -131,12 +171,12 @@ class InMemoryLoteRepository(LoteProducaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'LOT/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_lote.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"LOT/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_lote.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryInspecaoRepository(InspecaoSanitariaIndustrialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, InspecaoSanitariaIndustrial] = {}
 
@@ -157,8 +197,14 @@ class InMemoryInspecaoRepository(InspecaoSanitariaIndustrialRepositoryPort):
     async def list_all(self) -> list[InspecaoSanitariaIndustrial]:
         return sorted(self._items.values(), key=lambda item: item.codigo_inspecao)
 
-    async def list_by_unidade(self, unidade_processamento_id: UUID) -> list[InspecaoSanitariaIndustrial]:
-        values = [item for item in self._items.values() if item.unidade_processamento_id == unidade_processamento_id]
+    async def list_by_unidade(
+        self, unidade_processamento_id: UUID
+    ) -> list[InspecaoSanitariaIndustrial]:
+        values = [
+            item
+            for item in self._items.values()
+            if item.unidade_processamento_id == unidade_processamento_id
+        ]
         return sorted(values, key=lambda item: item.codigo_inspecao)
 
     async def list_by_status(self, status: StatusInspecao) -> list[InspecaoSanitariaIndustrial]:
@@ -166,11 +212,19 @@ class InMemoryInspecaoRepository(InspecaoSanitariaIndustrialRepositoryPort):
         return sorted(values, key=lambda item: item.codigo_inspecao)
 
     async def list_by_lote(self, lote_producao_id: UUID) -> list[InspecaoSanitariaIndustrial]:
-        values = [item for item in self._items.values() if item.lote_producao_id == lote_producao_id]
+        values = [
+            item for item in self._items.values() if item.lote_producao_id == lote_producao_id
+        ]
         return sorted(values, key=lambda item: item.codigo_inspecao)
 
-    async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[InspecaoSanitariaIndustrial]:
-        values = [item for item in self._items.values() if item.data_agendada >= data_inicio and item.data_agendada <= data_fim]
+    async def list_by_periodo(
+        self, data_inicio: date, data_fim: date
+    ) -> list[InspecaoSanitariaIndustrial]:
+        values = [
+            item
+            for item in self._items.values()
+            if item.data_agendada >= data_inicio and item.data_agendada <= data_fim
+        ]
         return sorted(values, key=lambda item: (item.data_agendada, item.codigo_inspecao))
 
     async def delete(self, inspecao_id: UUID) -> bool:
@@ -178,6 +232,6 @@ class InMemoryInspecaoRepository(InspecaoSanitariaIndustrialRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'INS/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_inspecao.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"INS/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_inspecao.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"

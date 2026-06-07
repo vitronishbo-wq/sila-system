@@ -3,7 +3,7 @@
  * Digital BI Issuance & Biometric Validation
  */
 
-import http from '../../../api/http';
+import http from '@/api/http';
 import type {
   CitizenProfile,
   CitizenListResponse,
@@ -21,7 +21,7 @@ import type {
   BITemplate,
   IdentityAuditLog,
   IdentityStatistics,
-} from '../types';
+} from '@/modules/identity/types';
 
 const IDENTITY_API = '/civil-identity';
 

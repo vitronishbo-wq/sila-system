@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_037_obras_publicas_orm_core"
 down_revision = "20260304_036_urbanismo_habitacao_orm_core"
 branch_labels = None
@@ -140,10 +139,14 @@ def upgrade() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_prj_codigo ON obras_publicas_projetos (codigo_projeto)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_prj_codigo ON obras_publicas_projetos (codigo_projeto)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_prj_tipo ON obras_publicas_projetos (tipo)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_prj_status ON obras_publicas_projetos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_prj_orgao ON obras_publicas_projetos (orgao_responsavel_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_prj_orgao ON obras_publicas_projetos (orgao_responsavel_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_op_prj_responsavel ON obras_publicas_projetos (responsavel_tecnico_id)"
     )
@@ -153,29 +156,55 @@ def upgrade() -> None:
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_tipo ON obras_publicas_obras (tipo)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_natureza ON obras_publicas_obras (natureza)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_status ON obras_publicas_obras (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_orgao_id ON obras_publicas_obras (orgao_responsavel_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_orgao_id ON obras_publicas_obras (orgao_responsavel_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_op_obra_orgao_tipo ON obras_publicas_obras (orgao_responsavel_tipo)"
     )
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_bairro ON obras_publicas_obras (bairro)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_municipio ON obras_publicas_obras (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_provincia ON obras_publicas_obras (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_gestor ON obras_publicas_obras (gestor_responsavel_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_fiscal ON obras_publicas_obras (fiscal_responsavel_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_empreiteira ON obras_publicas_obras (empreiteira_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_contrato ON obras_publicas_obras (contrato_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_municipio ON obras_publicas_obras (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_provincia ON obras_publicas_obras (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_gestor ON obras_publicas_obras (gestor_responsavel_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_fiscal ON obras_publicas_obras (fiscal_responsavel_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_empreiteira ON obras_publicas_obras (empreiteira_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_obra_contrato ON obras_publicas_obras (contrato_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_projeto ON obras_publicas_obras (projeto_id)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_obra_imovel ON obras_publicas_obras (imovel_id)")
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_numero ON obras_publicas_licitacoes (numero_licitacao)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_lic_numero ON obras_publicas_licitacoes (numero_licitacao)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_tipo ON obras_publicas_licitacoes (tipo)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_status ON obras_publicas_licitacoes (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_obra_id ON obras_publicas_licitacoes (obra_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_orgao ON obras_publicas_licitacoes (orgao_responsavel_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_lic_vencedor ON obras_publicas_licitacoes (vencedor_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_lic_obra_id ON obras_publicas_licitacoes (obra_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_lic_orgao ON obras_publicas_licitacoes (orgao_responsavel_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_lic_vencedor ON obras_publicas_licitacoes (vencedor_id)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_edt_numero ON obras_publicas_editais (numero_edital)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_edt_licitacao ON obras_publicas_editais (licitacao_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_edt_numero ON obras_publicas_editais (numero_edital)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_edt_licitacao ON obras_publicas_editais (licitacao_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_op_edt_status ON obras_publicas_editais (status)")
 
 

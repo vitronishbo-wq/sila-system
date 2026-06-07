@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import UnidadeManejoRepositoryPort
+
+from apps.backend.app.modules.resources.florestas.application.ports.unidade_manejo_repository_port import (
+    UnidadeManejoRepositoryPort,
+)
 from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
 from apps.backend.app.modules.resources.florestas.domain.models.unidade_manejo import UnidadeManejo
-from apps.backend.app.modules.resources.florestas.infrastructure.models.unidade_manejo_model import UnidadeManejoModel
+from apps.backend.app.modules.resources.florestas.infrastructure.models.unidade_manejo_model import (
+    UnidadeManejoModel,
+)
+
 
 class SQLAlchemyUnidadeManejoRepository(UnidadeManejoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -60,12 +67,37 @@ class SQLAlchemyUnidadeManejoRepository(UnidadeManejoRepositoryPort):
 
     async def next_codigo(self, operador_id: UUID) -> str:
         ano = date.today().year
-        prefixo = f'UM/{operador_id}/{ano}/'
-        stmt = select(func.count()).select_from(UnidadeManejoModel).where(UnidadeManejoModel.codigo_um.like(f'{prefixo}%'))
+        prefixo = f"UM/{operador_id}/{ano}/"
+        stmt = (
+            select(func.count())
+            .select_from(UnidadeManejoModel)
+            .where(UnidadeManejoModel.codigo_um.like(f"{prefixo}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefixo}{count + 1:04d}'
+        return f"{prefixo}{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: UnidadeManejoModel) -> UnidadeManejo:
-        return UnidadeManejo(id=model.id, codigo_um=model.codigo_um, nome=model.nome, area_total_ha=model.area_total_ha, area_manejo_ha=model.area_manejo_ha, area_preservacao_ha=model.area_preservacao_ha, tipo_manejo=TipoManejo(model.tipo_manejo), ciclo_corte=TipoCicloCorte(model.ciclo_corte), operador_id=model.operador_id, imovel_id=model.imovel_id, plano_manejo_id=model.plano_manejo_id, licenca_id=model.licenca_id, data_criacao=model.data_criacao, data_aprovacao=model.data_aprovacao, data_validade=model.data_validade, coordenadas_centroide=model.coordenadas_centroide, arquivo_shp=model.arquivo_shp, observacoes=model.observacoes)
+        return UnidadeManejo(
+            id=model.id,
+            codigo_um=model.codigo_um,
+            nome=model.nome,
+            area_total_ha=model.area_total_ha,
+            area_manejo_ha=model.area_manejo_ha,
+            area_preservacao_ha=model.area_preservacao_ha,
+            tipo_manejo=TipoManejo(model.tipo_manejo),
+            ciclo_corte=TipoCicloCorte(model.ciclo_corte),
+            operador_id=model.operador_id,
+            imovel_id=model.imovel_id,
+            plano_manejo_id=model.plano_manejo_id,
+            licenca_id=model.licenca_id,
+            data_criacao=model.data_criacao,
+            data_aprovacao=model.data_aprovacao,
+            data_validade=model.data_validade,
+            coordenadas_centroide=model.coordenadas_centroide,
+            arquivo_shp=model.arquivo_shp,
+            observacoes=model.observacoes,
+        )
+
+
 SqlalchemyUnidadeManejoRepository = SQLAlchemyUnidadeManejoRepository

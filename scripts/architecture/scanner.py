@@ -114,7 +114,11 @@ def _is_service_file(rel_path: Path) -> bool:
 
 def _is_repository_file(rel_path: Path) -> bool:
     text = rel_path.as_posix()
-    return "/repositories/" in text or text.endswith("repository.py") or text.endswith("repositories.py")
+    return (
+        "/repositories/" in text
+        or text.endswith("repository.py")
+        or text.endswith("repositories.py")
+    )
 
 
 def _is_router_file(rel_path: Path) -> bool:
@@ -170,7 +174,9 @@ def _scan_module(module_dir: Path, modules_root: Path) -> ModuleScan:
 
             elif isinstance(node, ast.FunctionDef):
                 scan.concept_tokens.extend(_tokenize_identifier(node.name))
-                if is_service_file and node.name.startswith(("create", "update", "delete", "list", "get")):
+                if is_service_file and node.name.startswith(
+                    ("create", "update", "delete", "list", "get")
+                ):
                     scan.services.append(node.name)
 
             elif isinstance(node, ast.AsyncFunctionDef):

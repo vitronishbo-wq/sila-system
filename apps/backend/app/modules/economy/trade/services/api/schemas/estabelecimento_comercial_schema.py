@@ -1,9 +1,19 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.economy.trade.services.domain.enums import PorteComercial, RamoComercial, StatusComercial, TipoEstabelecimentoComercial, TipoRegimeTributario
+
+from apps.backend.app.modules.economy.trade.services.domain.enums import (
+    PorteComercial,
+    RamoComercial,
+    StatusComercial,
+    TipoEstabelecimentoComercial,
+    TipoRegimeTributario,
+)
+
 
 class EstabelecimentoComercialCreate(BaseModel):
     cnpj: str
@@ -21,21 +31,27 @@ class EstabelecimentoComercialCreate(BaseModel):
     provincia: str
     cep: str
 
+
 class DataInput(BaseModel):
     data: date
+
 
 class MotivoInput(BaseModel):
     motivo: str
 
+
 class RamoInput(BaseModel):
     ramo: RamoComercial
+
 
 class PorteInput(BaseModel):
     porte: PorteComercial
 
+
 class EncerramentoInput(BaseModel):
     data_encerramento: date
     motivo: str
+
 
 class EstabelecimentoComercialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

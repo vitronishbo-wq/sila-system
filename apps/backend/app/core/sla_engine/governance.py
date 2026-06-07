@@ -1,12 +1,19 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Any, Dict
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .models import SLABaseDB, SLAPolicyCreate, SLAPolicyDB, SLAOverrideCreate, SLAOverrideDB, SLAVersionDB, SLAStatus
+from .models import (
+    SLABaseDB,
+    SLAOverrideCreate,
+    SLAOverrideDB,
+    SLAPolicyCreate,
+    SLAPolicyDB,
+    SLAStatus,
+    SLAVersionDB,
+)
 
 
 async def create_version_snapshot(
@@ -45,7 +52,9 @@ async def approve_version(
     version.status = SLAStatus.APPROVED.value
     version.approved_at = datetime.utcnow()
     version.approved_by = approved_by
-    base_result = await db.execute(select(SLABaseDB).where(SLABaseDB.service_id == version.service_id))
+    base_result = await db.execute(
+        select(SLABaseDB).where(SLABaseDB.service_id == version.service_id)
+    )
     base = base_result.scalar_one_or_none()
     if base:
         base.base_hours = version.base_hours
@@ -59,7 +68,9 @@ class SLAGovernance:
     def __init__(self, db: AsyncSession):
         self.db = db
 
-    async def create_policy(self, policy: SLAPolicyCreate, created_by: str | None = None) -> SLAPolicyDB:
+    async def create_policy(
+        self, policy: SLAPolicyCreate, created_by: str | None = None
+    ) -> SLAPolicyDB:
         record = SLAPolicyDB(
             scope=policy.scope,
             scope_id=policy.scope_id,
@@ -79,7 +90,9 @@ class SLAGovernance:
         await self.db.refresh(record)
         return record
 
-    async def create_override(self, override: SLAOverrideCreate, created_by: str | None = None) -> SLAOverrideDB:
+    async def create_override(
+        self, override: SLAOverrideCreate, created_by: str | None = None
+    ) -> SLAOverrideDB:
         _ = created_by
         record = SLAOverrideDB(
             name=override.name,

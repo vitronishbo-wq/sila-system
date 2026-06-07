@@ -15,19 +15,19 @@ Exit Codes:
     3: Fatal - System errors
 """
 
-import sys
-import json
 import argparse
+import json
+import sys
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any
 
 # Add backend directory to Python path
 backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
 try:
-    from config.migrate_config import ConfigMigrator
     from config import settings, validate_configuration
+    from config.migrate_config import ConfigMigrator
     from scripts.validate_config import CIConfigValidator
 except ImportError as e:
     print(f"❌ FATAL: Cannot import configuration system: {e}")
@@ -51,7 +51,7 @@ class CompleteMigration:
             "warnings": [],
         }
 
-    def run_complete_migration(self) -> Dict[str, Any]:
+    def run_complete_migration(self) -> dict[str, Any]:
         """Run complete migration process."""
         print("🚀 SILA Complete Configuration Migration")
         print("=" * 60)
@@ -83,7 +83,7 @@ class CompleteMigration:
 
         return self.results
 
-    def _validate_only(self) -> Dict[str, Any]:
+    def _validate_only(self) -> dict[str, Any]:
         """Run validation only."""
         try:
             # Validate configuration
@@ -136,7 +136,7 @@ class CompleteMigration:
             print(f"❌ {error_msg}")
             self.results["errors"].append(error_msg)
 
-    def _categorize_files(self, files: List[Path]) -> Dict[str, List[Path]]:
+    def _categorize_files(self, files: list[Path]) -> dict[str, list[Path]]:
         """Categorize files by type."""
         categories = {
             "Core modules": [],
@@ -182,13 +182,10 @@ class CompleteMigration:
 
             self.results["files_migrated"] = migration_results["successful_migrations"]
             self.results["files_failed"] = (
-                migration_results["files_to_migrate"]
-                - migration_results["successful_migrations"]
+                migration_results["files_to_migrate"] - migration_results["successful_migrations"]
             )
 
-            print(
-                f"✅ Successfully migrated: {migration_results['successful_migrations']} files"
-            )
+            print(f"✅ Successfully migrated: {migration_results['successful_migrations']} files")
 
             if self.results["files_failed"] > 0:
                 print(f"❌ Failed migrations: {self.results['files_failed']} files")
@@ -215,9 +212,7 @@ class CompleteMigration:
                 print("⚠️  Migration completed with some failures (force mode)")
                 self.results["migration_completed"] = True
             else:
-                print(
-                    "❌ Migration incomplete. Use --force to continue despite failures."
-                )
+                print("❌ Migration incomplete. Use --force to continue despite failures.")
                 self.results["migration_completed"] = False
 
         except Exception as e:
@@ -287,7 +282,7 @@ class CompleteMigration:
             print("❌ Migration Status: INCOMPLETE")
 
         # Statistics
-        print(f"\n📈 Statistics:")
+        print("\n📈 Statistics:")
         print(f"  - Files migrated: {self.results['files_migrated']}")
         print(f"  - Files failed: {self.results['files_failed']}")
 
@@ -313,7 +308,7 @@ class CompleteMigration:
                 print(f"  ... and {len(self.results['warnings']) - 3} more warnings")
 
         # Next steps
-        print(f"\n📋 Next Steps:")
+        print("\n📋 Next Steps:")
         if self.results["migration_completed"] and self.results["validation_passed"]:
             print("  ✅ Migration completed successfully!")
             print("  🧪 Run your application tests")
@@ -340,9 +335,7 @@ class CompleteMigration:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(
-        description="Complete SILA configuration migration"
-    )
+    parser = argparse.ArgumentParser(description="Complete SILA configuration migration")
     parser.add_argument(
         "--force",
         "-f",

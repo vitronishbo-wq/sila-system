@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import TipoPessoa, TipoTitularidade
+
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import (
+    TipoPessoa,
+    TipoTitularidade,
+)
+
 
 class ProprietarioCreate(BaseModel):
     nome: str
@@ -15,17 +22,21 @@ class ProprietarioCreate(BaseModel):
     telefone: str | None = None
     endereco: str | None = None
 
+
 class ProprietarioContatoInput(BaseModel):
     email: str | None = None
     telefone: str | None = None
     endereco: str | None = None
 
+
 class ProprietarioTitularidadeInput(BaseModel):
     tipo_titularidade: TipoTitularidade
     percentual_titularidade: Decimal | None = None
 
+
 class ProprietarioMotivoInput(BaseModel):
     motivo: str
+
 
 class ProprietarioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

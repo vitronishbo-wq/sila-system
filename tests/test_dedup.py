@@ -1,10 +1,7 @@
 import unittest
-from pathlib import Path
-import json
 
 
 class TestDeduplication(unittest.TestCase):
-
     def setUp(self):
         """Set up test environment."""
         # Create temporary files or mock data if needed

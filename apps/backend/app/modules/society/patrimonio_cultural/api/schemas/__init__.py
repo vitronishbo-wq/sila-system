@@ -1,2 +1,15 @@
-from apps.backend.app.modules.society.patrimonio_cultural.api.schemas.cultural_asset_schema import ClassificationRequestSchema, CulturalAssetCreateSchema, CulturalAssetResponseSchema, CulturalEventSchema, PreservationActionSchema
-__all__ = ['CulturalAssetCreateSchema', 'ClassificationRequestSchema', 'PreservationActionSchema', 'CulturalEventSchema', 'CulturalAssetResponseSchema']
+from apps.backend.app.modules.society.patrimonio_cultural.api.schemas.cultural_asset_schema import (
+    ClassificationRequestSchema,
+    CulturalAssetCreateSchema,
+    CulturalAssetResponseSchema,
+    CulturalEventSchema,
+    PreservationActionSchema,
+)
+
+__all__ = [
+    "CulturalAssetCreateSchema",
+    "ClassificationRequestSchema",
+    "PreservationActionSchema",
+    "CulturalEventSchema",
+    "CulturalAssetResponseSchema",
+]

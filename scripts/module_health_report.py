@@ -7,7 +7,7 @@ import argparse
 import json
 from collections import Counter
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -71,7 +71,9 @@ def collect_health(modules_root: Path, tests_root: Path, dep_json: Path) -> list
     inbound, outbound = load_dependency_counters(dep_json)
     items: list[ModuleHealth] = []
 
-    for module_dir in sorted(d for d in modules_root.iterdir() if d.is_dir() and not d.name.startswith("__")):
+    for module_dir in sorted(
+        d for d in modules_root.iterdir() if d.is_dir() and not d.name.startswith("__")
+    ):
         py_files = len(list(module_dir.rglob("*.py")))
         test_dir_local = module_dir / "tests"
         test_dir_global = tests_root / module_dir.name
@@ -96,7 +98,7 @@ def collect_health(modules_root: Path, tests_root: Path, dep_json: Path) -> list
 
 
 def render_report(items: list[ModuleHealth]) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     grade_counter = Counter(item.grade for item in items)
 
     lines: list[str] = []
@@ -114,7 +116,9 @@ def render_report(items: list[ModuleHealth]) -> str:
     lines.append("")
     lines.append("## Health Matrix")
     lines.append("")
-    lines.append("| Module | Grade | Score | Py files | Domain | Application | Infrastructure | API/Presentation | Tests | Inbound deps | Outbound deps |")
+    lines.append(
+        "| Module | Grade | Score | Py files | Domain | Application | Infrastructure | API/Presentation | Tests | Inbound deps | Outbound deps |"
+    )
     lines.append("| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | ---: | ---: |")
 
     for item in items:
@@ -129,7 +133,9 @@ def render_report(items: list[ModuleHealth]) -> str:
     lines.append("## Notes")
     lines.append("")
     lines.append("- Score uses structural completeness + basic module size signal.")
-    lines.append("- Inbound/Outbound deps are derived from `module_dependency_graph.json` when available.")
+    lines.append(
+        "- Inbound/Outbound deps are derived from `module_dependency_graph.json` when available."
+    )
     lines.append("")
     return "\n".join(lines)
 

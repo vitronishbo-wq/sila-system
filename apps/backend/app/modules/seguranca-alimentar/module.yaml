@@ -1,0 +1,22 @@
+code: seguranca-alimentar
+module: seguranca-alimentar
+name: Seguranca Alimentar
+description: Controle de qualidade e abastecimento alimentar.
+type: "sub_domain"
+version: '1.0'
+last_updated: '2026-03-19'
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+ui:
+  icon: seguranca-alimentar
+  color: '#2563eb'
+  order: null
+services: []

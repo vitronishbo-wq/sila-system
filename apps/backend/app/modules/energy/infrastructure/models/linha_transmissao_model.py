@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from apps.backend.app.modules.energy.domain.enums import StatusInfraEnergia
+
 
 @dataclass
 class LinhaTransmissaoModel:

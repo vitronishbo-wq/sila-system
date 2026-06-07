@@ -1,19 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusAssistencia
+
 
 class AssistenciaCreate(BaseModel):
     codigo_propriedade: str
     tecnico_nome: str
     objetivo: str
 
+
 class AssistenciaConclusaoInput(BaseModel):
     recomendacoes: str | None = None
 
+
 class AssistenciaCancelamentoInput(BaseModel):
     motivo: str
+
 
 class AssistenciaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

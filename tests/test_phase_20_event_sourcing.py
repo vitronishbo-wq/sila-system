@@ -1,18 +1,11 @@
 """Phase 20: Event Sourcing - Compliance Audit Tests"""
 
-import pytest
 from uuid import uuid4
-from datetime import datetime, timedelta
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
 
-from app.core.domain.user_aggregate import UserAggregate, UserCreatedEvent
-from app.core.events.store.models import EventStoreEntry
-from app.core.events.store.repositories import EventStoreRepository, SnapshotRepository
-from app.core.events.snapshots.snapshot_engine import SnapshotEngine
-from app.core.events.projections.registry import ProjectionRegistry
-from app.core.events.projections.user_projection import UserProjection, UserPermissionsProjection
-from app.core.events.replay.engine import ReplayEngine
+import pytest
+from apps.backend.app.core.domain.user_aggregate import UserAggregate
+from apps.backend.app.core.events.projections.user_projection import UserProjection
+from apps.backend.app.core.events.store.models import EventStoreEntry
 
 
 class TestEventStore:
@@ -22,7 +15,7 @@ class TestEventStore:
     async def test_event_store_append(self):
         """Event Store can append events."""
         user_id = uuid4()
-        
+
         event = EventStoreEntry(
             aggregate_id=user_id,
             aggregate_type="User",
@@ -31,7 +24,7 @@ class TestEventStore:
             payload={"email": "test@example.com", "name": "Test User"},
             metadata={"tenant_id": "tenant_1"},
         )
-        
+
         assert event.aggregate_id == user_id
         assert event.version == 1
         assert event.event_type == "USER_CREATED"
@@ -39,7 +32,7 @@ class TestEventStore:
     def test_event_store_immutability(self):
         """Event Store entries are logically immutable."""
         user_id = uuid4()
-        
+
         event = EventStoreEntry(
             aggregate_id=user_id,
             aggregate_type="User",
@@ -47,7 +40,7 @@ class TestEventStore:
             version=1,
             payload={"test": "data"},
         )
-        
+
         # In a real system, the database row would be immutable
         # We can verify the schema enforces this via unique constraints
         assert event.aggregate_id is not None
@@ -59,7 +52,7 @@ class TestAggregateRoot:
     def test_user_aggregate_creation(self):
         """User Aggregate can be created."""
         user = UserAggregate(user_id=uuid4())
-        
+
         assert user.id is not None
         assert user.version == 0
         assert user.status.value == "CREATED"
@@ -67,13 +60,13 @@ class TestAggregateRoot:
     def test_user_aggregate_record_event(self):
         """User Aggregate can record events."""
         user = UserAggregate(user_id=uuid4())
-        
+
         user.create_user(
             email="test@example.com",
             name="Test User",
             tenant_id=uuid4(),
         )
-        
+
         assert user.version == 1
         assert user.email == "test@example.com"
         assert len(user.uncommitted_events) == 1
@@ -99,15 +92,15 @@ class TestAggregateRoot:
         """User Aggregate can grant permissions."""
         user = UserAggregate(user_id=uuid4())
         tenant_id = uuid4()
-        
+
         user.create_user(
             email="test@example.com",
             name="Test User",
             tenant_id=tenant_id,
         )
-        
+
         user.grant_permission("view", "documents")
-        
+
         assert "view:documents" in user.permissions
         assert user.version == 2
 
@@ -115,15 +108,15 @@ class TestAggregateRoot:
         """User Aggregate prevents duplicate permissions."""
         user = UserAggregate(user_id=uuid4())
         tenant_id = uuid4()
-        
+
         user.create_user(
             email="test@example.com",
             name="Test User",
             tenant_id=tenant_id,
         )
-        
+
         user.grant_permission("view", "documents")
-        
+
         with pytest.raises(ValueError):
             user.grant_permission("view", "documents")
 
@@ -134,7 +127,7 @@ class TestEventReplay:
     def test_aggregate_from_events(self):
         """Aggregate can be reconstructed from events."""
         user_id = uuid4()
-        
+
         # Create original
         user = UserAggregate(user_id=user_id)
         user.create_user(
@@ -143,13 +136,13 @@ class TestEventReplay:
             tenant_id=uuid4(),
         )
         user.grant_permission("view", "documents")
-        
+
         # Reconstruct from events
         events = user.uncommitted_events
-        
+
         # Create new aggregate from event history
         reconstructed = UserAggregate.from_events(user_id, events)
-        
+
         assert reconstructed.id == user_id
         assert reconstructed.email == user.email
         assert reconstructed.permissions == user.permissions
@@ -161,8 +154,8 @@ class TestSnapshots:
 
     def test_snapshot_configuration(self):
         """Snapshot engine has correct configuration."""
-        from app.core.events.snapshots import SnapshotEngine
-        
+        from apps.backend.app.core.events.snapshots import SnapshotEngine
+
         # Verify snapshot interval configuration
         assert SnapshotEngine.SNAPSHOT_INTERVAL == 100
 
@@ -172,9 +165,8 @@ class TestProjections:
 
     def test_projection_exists(self):
         """CQRS projections are defined."""
-        from app.core.events.projections import ProjectionRegistry, BaseProjection
-        from app.core.events.projections.user_projection import UserProjection
-        
+        from apps.backend.app.core.events.projections import BaseProjection, ProjectionRegistry
+
         assert BaseProjection is not None
         assert ProjectionRegistry is not None
         assert UserProjection is not None
@@ -185,31 +177,36 @@ class TestPhase20Compliance:
 
     def test_event_store_exists(self):
         """Event Store infrastructure exists."""
-        from app.core.events.store import EventStoreEntry, EventStoreRepository
+        from apps.backend.app.core.events.store import EventStoreEntry, EventStoreRepository
+
         assert EventStoreEntry is not None
         assert EventStoreRepository is not None
 
     def test_snapshots_exist(self):
         """Snapshots infrastructure exists."""
-        from app.core.events.snapshots import SnapshotEngine
+        from apps.backend.app.core.events.snapshots import SnapshotEngine
+
         assert SnapshotEngine is not None
 
     def test_aggregates_exist(self):
         """Aggregate pattern exists."""
-        from app.core.domain import BaseAggregate
-        from app.core.domain.user_aggregate import UserAggregate
+        from apps.backend.app.core.domain import BaseAggregate
+        from apps.backend.app.core.domain.user_aggregate import UserAggregate
+
         assert BaseAggregate is not None
         assert UserAggregate is not None
 
     def test_projections_exist(self):
         """CQRS Projections exist."""
-        from app.core.events.projections import ProjectionRegistry, BaseProjection
+        from apps.backend.app.core.events.projections import BaseProjection, ProjectionRegistry
+
         assert ProjectionRegistry is not None
         assert BaseProjection is not None
 
     def test_replay_exists(self):
         """Replay engine exists."""
-        from app.core.events.replay import ReplayEngine
+        from apps.backend.app.core.events.replay import ReplayEngine
+
         assert ReplayEngine is not None
 
 

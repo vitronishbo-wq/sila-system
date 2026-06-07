@@ -3,7 +3,6 @@ Testes de endpoints /ping para todos os módulos do SILA Backend
 Verifica se cada módulo está respondendo corretamente
 """
 
-
 import httpx
 import pytest
 from pydantic import BaseModel, ValidationError
@@ -69,26 +68,22 @@ class TestModulePingEndpoints:
                 data = response.json()
 
                 # Validação básica
-                assert isinstance(
-                    data, dict
-                ), f"Resposta do módulo {module_name} deve ser um dicionário"
+                assert isinstance(data, dict), (
+                    f"Resposta do módulo {module_name} deve ser um dicionário"
+                )
 
                 # Validações de conteúdo esperado
-                assert (
-                    "status" in data
-                ), f"Response do módulo {module_name} deve ter 'status'"
-                assert (
-                    "message" in data
-                ), f"Response do módulo {module_name} deve ter 'message'"
+                assert "status" in data, f"Response do módulo {module_name} deve ter 'status'"
+                assert "message" in data, f"Response do módulo {module_name} deve ter 'message'"
 
                 # Validação de valores
                 assert data["status"] in [
                     "success",
                     "ok",
                 ], f"Status do módulo {module_name} inválido: {data['status']}"
-                assert (
-                    data["message"] == "pong"
-                ), f"Message do módulo {module_name} deveria ser 'pong'"
+                assert data["message"] == "pong", (
+                    f"Message do módulo {module_name} deveria ser 'pong'"
+                )
 
                 # Validação Pydantic (se os campos necessários existirem)
                 if all(key in data for key in ["status", "message", "timestamp"]):
@@ -97,15 +92,11 @@ class TestModulePingEndpoints:
                         assert ping_response.status in ["success", "ok"]
                         assert ping_response.message == "pong"
                     except ValidationError as e:
-                        pytest.fail(
-                            f"Validação Pydantic falhou para módulo {module_name}: {e}"
-                        )
+                        pytest.fail(f"Validação Pydantic falhou para módulo {module_name}: {e}")
 
             elif response.status_code == 404:
                 # Endpoint não existe - aceitável para alguns módulos
-                pytest.skip(
-                    f"Endpoint /ping para módulo {module_name} não implementado (404)"
-                )
+                pytest.skip(f"Endpoint /ping para módulo {module_name} não implementado (404)")
             else:
                 pytest.fail(
                     f"Status code inesperado para módulo {module_name}: {response.status_code}"
@@ -159,7 +150,7 @@ class TestModulePingEndpoints:
             name for name, result in results.items() if not result.get("success", False)
         ]
 
-        print(f"\n📊 Relatório de Testes de Módulos:")
+        print("\n📊 Relatório de Testes de Módulos:")
         print(f"✅ Sucesso: {len(successful_modules)}/{len(working_modules)}")
         print(f"❌ Falharam: {len(failed_modules)}")
 
@@ -221,9 +212,7 @@ class TestModulePingEndpoints:
             # Exceções são aceitáveis para módulos com problemas conhecidos
             pass
 
-    def test_module_ping_response_consistency(
-        self, client: httpx.Client, working_modules
-    ):
+    def test_module_ping_response_consistency(self, client: httpx.Client, working_modules):
         """
         Testa consistência das respostas de ping entre módulos
 
@@ -254,9 +243,9 @@ class TestModulePingEndpoints:
 
             # Todos os status devem ser success/ok
             valid_statuses = {"success", "ok"}
-            assert statuses.issubset(
-                valid_statuses
-            ), f"Status inválidos encontrados: {statuses - valid_statuses}"
+            assert statuses.issubset(valid_statuses), (
+                f"Status inválidos encontrados: {statuses - valid_statuses}"
+            )
 
     def test_module_ping_performance(self, client: httpx.Client, working_modules):
         """
@@ -273,10 +262,7 @@ class TestModulePingEndpoints:
 
             try:
                 response = client.get(endpoint, timeout=5.0)
-                if (
-                    response.status_code == 200
-                    and response.elapsed.total_seconds() > 2.0
-                ):
+                if response.status_code == 200 and response.elapsed.total_seconds() > 2.0:
                     slow_modules.append(module_name)
             except Exception:
                 continue
@@ -286,9 +272,7 @@ class TestModulePingEndpoints:
             pytest.fail(f"Módulos lentos detectados: {', '.join(slow_modules)}")
 
     @pytest.mark.asyncio
-    async def test_concurrent_module_pings(
-        self, async_client: httpx.AsyncClient, working_modules
-    ):
+    async def test_concurrent_module_pings(self, async_client: httpx.AsyncClient, working_modules):
         """
         Testa endpoints /ping de forma concorrente
 
@@ -321,20 +305,14 @@ class TestModulePingEndpoints:
 
         # Analisar resultados
         successful = sum(
-            1
-            for result in results
-            if isinstance(result, dict) and result.get("success", False)
+            1 for result in results if isinstance(result, dict) and result.get("success", False)
         )
         total = len(results)
 
-        print(
-            f"\n🚀 Teste Concorrente: {successful}/{total} módulos responderam com sucesso"
-        )
+        print(f"\n🚀 Teste Concorrente: {successful}/{total} módulos responderam com sucesso")
 
         # Pelo menos 50% devem funcionar em modo concorrente
-        assert (
-            successful >= total * 0.5
-        ), f"Taxa de sucesso muito baixa: {successful}/{total}"
+        assert successful >= total * 0.5, f"Taxa de sucesso muito baixa: {successful}/{total}"
 
 
 class TestModulePingErrorHandling:
@@ -351,9 +329,7 @@ class TestModulePingErrorHandling:
         response = await async_client.get("/api/v1/modulo-inexistente/ping")
         assert response.status_code == 404
 
-    def test_module_ping_with_invalid_method(
-        self, client: httpx.Client, working_modules
-    ):
+    def test_module_ping_with_invalid_method(self, client: httpx.Client, working_modules):
         """
         Testa método inválido nos endpoints /ping
 

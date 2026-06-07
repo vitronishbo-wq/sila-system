@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   X, 
   CreditCard, 
@@ -11,7 +11,7 @@ import {
   ArrowRight,
   Info
 } from 'lucide-react';
-import { operationsService } from '@/services/operationsService';
+import { operationsService } from '@/modules/operations/services';
 import type { Service as ApiService } from '@/types/api';
 
 interface DisplayService extends ApiService {
@@ -22,16 +22,17 @@ interface DisplayService extends ApiService {
 interface PaymentModalProps {
   service: DisplayService;
   onClose: () => void;
+  initialOrderId?: string;
 }
 
 type PaymentStep = 'method' | 'processing' | 'result';
 type PaymentMethod = 'reference' | 'qrcode';
 
-const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
+const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose, initialOrderId }) => {
   const [step, setStep] = useState<PaymentStep>('method');
   const [method, setMethod] = useState<PaymentMethod | null>(null);
   const [copied, setCopied] = useState(false);
-  const [orderId, setOrderId] = useState<string | null>(null);
+  const [orderId, setOrderId] = useState<string | null>(initialOrderId ?? null);
   const [paymentReference, setPaymentReference] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isConfirming, setIsConfirming] = useState(false);
@@ -45,6 +46,12 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ service, onClose }) => {
     style: 'currency',
     currency: 'AOA'
   });
+
+  useEffect(() => {
+    if (initialOrderId) {
+      setOrderId(initialOrderId);
+    }
+  }, [initialOrderId]);
 
   const ensurePaymentReference = async (): Promise<string> => {
     if (paymentReference) {

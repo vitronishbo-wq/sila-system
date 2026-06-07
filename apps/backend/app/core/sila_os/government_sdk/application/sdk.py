@@ -1,5 +1,4 @@
 class GovernmentSDK:
-
     def __init__(self, event_bus, identity):
         self.event_bus = event_bus
         self.identity = identity

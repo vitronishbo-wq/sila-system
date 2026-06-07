@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.energy.domain.models import ConsumoEnergia
 
-class ConsumoRepositoryPort(ABC):
 
+class ConsumoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: ConsumoEnergia) -> ConsumoEnergia:
         pass
@@ -18,5 +20,7 @@ class ConsumoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, unidade_consumidora_id: UUID | None=None, cpf_titular: str | None=None) -> list[ConsumoEnergia]:
+    async def list(
+        self, *, unidade_consumidora_id: UUID | None = None, cpf_titular: str | None = None
+    ) -> list[ConsumoEnergia]:
         pass

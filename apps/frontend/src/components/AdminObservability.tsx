@@ -10,8 +10,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
-import { getSLAViolations, listSLAServiceBase, predictSLABreach } from '../services/sla';
-import type { SLABreachPrediction, SLAViolation } from '../services/sla';
+import { getSLAViolations, listSLAServiceBase, predictSLABreach } from '@/services/sla';
+import type { SLABreachPrediction, SLAViolation } from '@/services/sla';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Tooltip, Legend);
 
@@ -145,7 +145,7 @@ const AdminObservability: React.FC = () => {
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <div className="rounded-lg bg-white p-4 shadow">
-          <h2 className="mb-4 text-lg font-semibold">Predição de SLA</h2>
+          <h2 className="mb-4 text-lg font-semibold">Predicção de SLA</h2>
           <select
             className="mb-4 w-full rounded border p-2"
             value={selectedService}

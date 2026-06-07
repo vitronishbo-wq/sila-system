@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from typing import Any, Dict, Iterable, List, Optional, Set
+from collections.abc import Iterable
+from typing import Any
 
 import jwt
+from core.auth.roles.role_manager import RoleManager
 from jwt import PyJWKClient
 from jwt.exceptions import InvalidTokenError
-
-from core.auth.roles.role_manager import RoleManager
 
 
 class KeycloakAuthProvider:
@@ -19,8 +19,8 @@ class KeycloakAuthProvider:
         issuer: str,
         jwks_url: str,
         client_id: str,
-        algorithms: Optional[List[str]] = None,
-        role_mapping: Optional[Dict[str, str]] = None,
+        algorithms: list[str] | None = None,
+        role_mapping: dict[str, str] | None = None,
     ) -> None:
         self.issuer = issuer
         self.jwks_url = jwks_url
@@ -30,7 +30,7 @@ class KeycloakAuthProvider:
         self._jwks_client = PyJWKClient(self.jwks_url)
         self._role_manager = RoleManager()
 
-    def _decode(self, token: str, verify_exp: bool = True) -> Dict[str, Any]:
+    def _decode(self, token: str, verify_exp: bool = True) -> dict[str, Any]:
         signing_key = self._jwks_client.get_signing_key_from_jwt(token)
         try:
             return jwt.decode(
@@ -44,18 +44,14 @@ class KeycloakAuthProvider:
         except Exception as exc:  # pragma: no cover - passthrough
             raise InvalidTokenError(f"Token validation failed: {exc}") from exc
 
-    def _extract_roles(self, claims: Dict[str, Any]) -> List[str]:
-        roles: Set[str] = set()
+    def _extract_roles(self, claims: dict[str, Any]) -> list[str]:
+        roles: set[str] = set()
 
-        realm_roles = (
-            claims.get("realm_access", {}).get("roles", []) or []
-        )
+        realm_roles = claims.get("realm_access", {}).get("roles", []) or []
         roles.update(realm_roles)
 
         resource_access = claims.get("resource_access", {}) or {}
-        client_roles = (
-            resource_access.get(self.client_id, {}).get("roles", []) or []
-        )
+        client_roles = resource_access.get(self.client_id, {}).get("roles", []) or []
         roles.update(client_roles)
 
         direct_roles = claims.get("roles", []) or []
@@ -66,14 +62,14 @@ class KeycloakAuthProvider:
         mapped = {self.role_mapping.get(r, r) for r in roles}
         return sorted(mapped)
 
-    def _roles_to_permissions(self, roles: Iterable[str]) -> List[str]:
-        permissions: Set[str] = set()
+    def _roles_to_permissions(self, roles: Iterable[str]) -> list[str]:
+        permissions: set[str] = set()
         for role in roles:
             if self._role_manager.role_exists(role):
                 permissions.update(self._role_manager.get_permissions(role))
         return sorted(permissions)
 
-    def authenticate(self, token: str) -> Dict[str, Any]:
+    def authenticate(self, token: str) -> dict[str, Any]:
         claims = self._decode(token)
         roles = self._extract_roles(claims)
         permissions = self._roles_to_permissions(roles)

@@ -5,7 +5,6 @@ import argparse
 import shutil
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 

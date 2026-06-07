@@ -1,9 +1,14 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.resources.ambiente.application.ports.car_repository_port import CARRepositoryPort
+
+from apps.backend.app.modules.resources.ambiente.application.ports.car_repository_port import (
+    CARRepositoryPort,
+)
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR
 from apps.backend.app.modules.resources.ambiente.domain.models.car import CAR
+
 
 class SQLAlchemyCARRepository(CARRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -31,7 +36,7 @@ class SQLAlchemyCARRepository(CARRepositoryPort):
                 return item
         return None
 
-    async def list_by_status(self, status: StatusCAR | None=None) -> list[CAR]:
+    async def list_by_status(self, status: StatusCAR | None = None) -> list[CAR]:
         values = list(self._items.values())
         if status:
             values = [item for item in values if item.status == status]
@@ -39,4 +44,4 @@ class SQLAlchemyCARRepository(CARRepositoryPort):
 
     async def next_numero(self) -> str:
         self._seq += 1
-        return f'CAR/{date.today().year}/{self._seq:06d}'
+        return f"CAR/{date.today().year}/{self._seq:06d}"

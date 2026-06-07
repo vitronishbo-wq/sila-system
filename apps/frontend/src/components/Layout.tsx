@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { UserRole } from '../types';
-import type { User } from '../types';
-import { ASSETS, API_URL } from '../constants';
-import dashboardService from '../services/dashboardService';
-import { ToastProvider } from '../hooks/useToast';
+import { UserRole } from '@/types';
+import type { User } from '@/types';
+import { ASSETS, API_URL } from '@/constants';
+import { dashboardService } from '@/modules/admin/services';
+import { ToastProvider } from '@/hooks/useToast';
+import AdminAreaBanner from '@/components/Admin/AdminAreaBanner';
 
 interface LayoutProps {
   user: User;
@@ -460,6 +461,8 @@ const Layout: React.FC<LayoutProps> = ({ user, children, onLogout }) => {
             </div>
           </div>
         </header>
+
+        <AdminAreaBanner />
 
         <main className="flex-1 overflow-y-auto p-8">
           {children}

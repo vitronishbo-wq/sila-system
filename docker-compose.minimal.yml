@@ -1,0 +1,144 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: sila-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sila_db}
+      POSTGRES_USER: ${POSTGRES_USER:-sila_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Trumanmarcelo_1983}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sila_user} -d ${POSTGRES_DB:-sila_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - sila-network
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: sila-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - sila-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: sila-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - sila-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements/dev.txt
+    container_name: sila-backend
+    restart: unless-stopped
+    env_file:
+      - ./apps/backend/.env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - ASYNC_DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - RUN_MIGRATIONS=true
+    volumes:
+      - ./apps/backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    entrypoint: /app/entrypoint.sh
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - sila-network
+
+  automation:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements/dev.txt
+    container_name: sila-automation
+    restart: unless-stopped
+    env_file:
+      - ./apps/backend/.env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - ASYNC_DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - DLQ_ENABLED=true
+      - DLQ_MAX_RETRIES=3
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    entrypoint: /app/entrypoint.sh
+    command: python start_automation_worker.py
+    networks:
+      - sila-network
+
+  dlq-worker:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      args:
+        REQUIREMENTS_FILE: requirements/dev.txt
+    container_name: sila-dlq-worker
+    restart: unless-stopped
+    env_file:
+      - ./apps/backend/.env
+    environment:
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - RABBITMQ_DLX_EXCHANGE=sila.automation.dlx
+      - RABBITMQ_DLQ_QUEUE=sila_dlq_main
+      - DLQ_ENABLED=true
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    entrypoint: /app/entrypoint.sh
+    command: python start_dlq_worker.py
+    networks:
+      - sila-network
+
+volumes:
+  postgres_data:
+
+networks:
+  sila-network:
+    driver: bridge

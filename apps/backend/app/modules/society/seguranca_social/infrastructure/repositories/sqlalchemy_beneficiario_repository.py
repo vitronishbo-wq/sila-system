@@ -1,14 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
-from apps.backend.app.modules.society.seguranca_social.application.ports import BeneficiarioRepositoryPort
-from apps.backend.app.modules.society.seguranca_social.domain.enums import EstadoBeneficiario, RegimeSegurancaSocial, TipoBeneficiario
-from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import Beneficiario
-from apps.backend.app.modules.society.seguranca_social.infrastructure.models.beneficiario_model import BeneficiarioModel
+
+from apps.backend.app.modules.society.seguranca_social.application.ports import (
+    BeneficiarioRepositoryPort,
+)
+from apps.backend.app.modules.society.seguranca_social.domain.enums import (
+    EstadoBeneficiario,
+    RegimeSegurancaSocial,
+    TipoBeneficiario,
+)
+from apps.backend.app.modules.society.seguranca_social.domain.models.beneficiario import (
+    Beneficiario,
+)
+from apps.backend.app.modules.society.seguranca_social.infrastructure.models.beneficiario_model import (
+    BeneficiarioModel,
+)
+
 
 class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
-
     def __init__(self, session):
         self.session = session
 
@@ -42,7 +55,9 @@ class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_numero(self, numero_beneficiario: str):
-        stmt = select(BeneficiarioModel).where(BeneficiarioModel.numero_beneficiario == numero_beneficiario)
+        stmt = select(BeneficiarioModel).where(
+            BeneficiarioModel.numero_beneficiario == numero_beneficiario
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -58,10 +73,27 @@ class SQLAlchemyBeneficiarioRepository(BeneficiarioRepositoryPort):
         return [self._to_domain(row) for row in rows]
 
     async def next_numero_beneficiario(self, ano: int) -> str:
-        stmt = select(func.count()).select_from(BeneficiarioModel).where(BeneficiarioModel.numero_beneficiario.like(f'BEN/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(BeneficiarioModel)
+            .where(BeneficiarioModel.numero_beneficiario.like(f"BEN/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'BEN/{ano}/{count + 1:04d}'
+        return f"BEN/{ano}/{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: BeneficiarioModel) -> Beneficiario:
-        return Beneficiario(id=model.id, numero_beneficiario=model.numero_beneficiario, citizen_id=model.citizen_id, data_inscricao=model.data_inscricao or date.today(), tipo=TipoBeneficiario(model.tipo), regime=RegimeSegurancaSocial(model.regime), estado=EstadoBeneficiario(model.estado), data_ativacao=model.data_ativacao, data_suspensao=model.data_suspensao, data_cancelamento=model.data_cancelamento, motivo_cancelamento=model.motivo_cancelamento, observacoes=model.observacoes)
+        return Beneficiario(
+            id=model.id,
+            numero_beneficiario=model.numero_beneficiario,
+            citizen_id=model.citizen_id,
+            data_inscricao=model.data_inscricao or date.today(),
+            tipo=TipoBeneficiario(model.tipo),
+            regime=RegimeSegurancaSocial(model.regime),
+            estado=EstadoBeneficiario(model.estado),
+            data_ativacao=model.data_ativacao,
+            data_suspensao=model.data_suspensao,
+            data_cancelamento=model.data_cancelamento,
+            motivo_cancelamento=model.motivo_cancelamento,
+            observacoes=model.observacoes,
+        )

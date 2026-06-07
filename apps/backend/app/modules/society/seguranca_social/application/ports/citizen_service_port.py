@@ -1,12 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Optional
 from uuid import UUID
 
-class CitizenServicePort(ABC):
 
+class CitizenServicePort(ABC):
     @abstractmethod
-    async def get_citizen(self, citizen_id: UUID) -> Optional[object]:
+    async def get_citizen(self, citizen_id: UUID) -> object | None:
         pass
 
     @abstractmethod

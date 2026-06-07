@@ -1,4 +1,25 @@
 from apps.backend.app.modules.educacao.api.deps import get_concurso_service
-from apps.backend.app.modules.educacao.api.endpoints._workflow_endpoints import build_workflow_router
-from apps.backend.app.modules.educacao.api.schemas.concurso_schema import ConcursoCancelar, ConcursoConcluir, ConcursoCreate, ConcursoResponse
-router = build_workflow_router(tag='Educacao - Concursos', get_service=get_concurso_service, create_schema=ConcursoCreate, response_schema=ConcursoResponse, concluir_schema=ConcursoConcluir, cancelar_schema=ConcursoCancelar, routes=[('/concursos/inscricoes', 'concurso_inscricao'), ('/concursos/resultados', 'concurso_resultado'), ('/mobilidade/funcao-publica', 'mobilidade_publica'), ('/avaliacoes/desempenho-publico', 'avaliacao_desempenho')])
+from apps.backend.app.modules.educacao.api.endpoints._workflow_endpoints import (
+    build_workflow_router,
+)
+from apps.backend.app.modules.educacao.api.schemas.concurso_schema import (
+    ConcursoCancelar,
+    ConcursoConcluir,
+    ConcursoCreate,
+    ConcursoResponse,
+)
+
+router = build_workflow_router(
+    tag="Educacao - Concursos",
+    get_service=get_concurso_service,
+    create_schema=ConcursoCreate,
+    response_schema=ConcursoResponse,
+    concluir_schema=ConcursoConcluir,
+    cancelar_schema=ConcursoCancelar,
+    routes=[
+        ("/concursos/inscricoes", "concurso_inscricao"),
+        ("/concursos/resultados", "concurso_resultado"),
+        ("/mobilidade/funcao-publica", "mobilidade_publica"),
+        ("/avaliacoes/desempenho-publico", "avaliacao_desempenho"),
+    ],
+)

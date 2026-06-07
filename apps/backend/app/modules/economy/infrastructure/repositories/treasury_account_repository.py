@@ -1,9 +1,11 @@
 """
 Treasury Account Repository - Persistence for treasury accounts.
 """
+
 import logging
-from typing import List, Optional
+
 logger = logging.getLogger(__name__)
+
 
 class TreasuryAccountRepository:
     """Repository for managing treasury accounts."""
@@ -11,17 +13,17 @@ class TreasuryAccountRepository:
     async def create_account(self, account_data: dict):
         """Create a new treasury account."""
         try:
-            logger.info(f'Creating treasury account')
+            logger.info("Creating treasury account")
             return account_data
         except Exception as e:
-            logger.error(f'Failed to create treasury account: {e}')
+            logger.error(f"Failed to create treasury account: {e}")
             raise
 
-    async def get_by_id(self, account_id: str) -> Optional[dict]:
+    async def get_by_id(self, account_id: str) -> dict | None:
         """Retrieve a treasury account by ID."""
         return None
 
-    async def list_accounts(self, filters: dict=None) -> List[dict]:
+    async def list_accounts(self, filters: dict = None) -> list[dict]:
         """List treasury accounts with optional filters."""
         return []
 

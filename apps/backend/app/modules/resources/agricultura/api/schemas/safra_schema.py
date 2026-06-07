@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusSafra
+
 
 class SafraCreate(BaseModel):
     codigo_propriedade: str
@@ -11,8 +15,10 @@ class SafraCreate(BaseModel):
     area_plantada_ha: float
     producao_estimada_ton: float
 
+
 class ColheitaInput(BaseModel):
     producao_real_ton: float
+
 
 class SafraResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

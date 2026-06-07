@@ -1,0 +1,58 @@
+{
+  "services": [
+    {
+      "service_code": "BI_EMISSAO",
+      "name": "Bilhete de Identidade",
+      "category": "identity",
+      "description": "Emissao e renovacao do bilhete de identidade",
+      "price": 1000,
+      "base_hours": 24,
+      "priority": "high",
+      "tier": "gold",
+      "version": "1.0",
+      "legal_basis": "Lei 01/24",
+      "form_fields": [
+        { "key": "citizen_name", "label": "Nome completo", "type": "text", "required": true, "placeholder": "Nome conforme documento" },
+        { "key": "bi_number", "label": "Numero BI", "type": "bi", "required": true, "mask": "bi" },
+        { "key": "birth_date", "label": "Data de nascimento", "type": "date", "required": true },
+        { "key": "delivery_mode", "label": "Entrega", "type": "radio", "required": true, "options": ["digital", "presencial", "expresso"] },
+        { "key": "supporting_files", "label": "Anexos", "type": "upload", "required": false },
+        { "key": "terms_accept", "label": "Confirmo que os dados sao verdadeiros", "type": "checkbox", "required": true }
+      ]
+    },
+    {
+      "service_code": "NIF_EMISSAO",
+      "name": "Emissao de NIF",
+      "category": "tax",
+      "description": "Cadastro fiscal e regularizacao",
+      "price": 750,
+      "base_hours": 72,
+      "priority": "medium",
+      "tier": "silver",
+      "version": "1.0",
+      "form_fields": [
+        { "key": "citizen_name", "label": "Nome completo", "type": "text", "required": true },
+        { "key": "nif", "label": "Numero de NIF", "type": "nif", "required": false, "mask": "nif" },
+        { "key": "contact_phone", "label": "Contacto", "type": "text", "required": true },
+        { "key": "terms_accept", "label": "Confirmo que os dados sao verdadeiros", "type": "checkbox", "required": true }
+      ]
+    },
+    {
+      "service_code": "CERTIDAO_REGISTO",
+      "name": "Certidao do Registo Civil",
+      "category": "registry",
+      "description": "Emissao de certidoes do registo civil",
+      "price": 500,
+      "base_hours": 48,
+      "priority": "medium",
+      "tier": "silver",
+      "version": "1.0",
+      "form_fields": [
+        { "key": "citizen_name", "label": "Nome completo", "type": "text", "required": true },
+        { "key": "certificate_type", "label": "Tipo de certidao", "type": "select", "required": true, "options": ["nascimento", "casamento", "obito", "outra"] },
+        { "key": "supporting_files", "label": "Anexos", "type": "upload", "required": false },
+        { "key": "terms_accept", "label": "Confirmo que os dados sao verdadeiros", "type": "checkbox", "required": true }
+      ]
+    }
+  ]
+}

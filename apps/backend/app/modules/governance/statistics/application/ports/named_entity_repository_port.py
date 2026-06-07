@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import Any
 
-class NamedEntityRepositoryPort(ABC):
 
+class NamedEntityRepositoryPort(ABC):
     @abstractmethod
     async def create(self, data: dict[str, Any]) -> Any:
         raise NotImplementedError
@@ -13,7 +14,7 @@ class NamedEntityRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> list[Any]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Any]:
         raise NotImplementedError
 
     @abstractmethod

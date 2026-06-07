@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.evento_juvenil_repository_port import EventoJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEvento, TipoEvento
+
+from apps.backend.app.modules.society.juventude.application.ports.evento_juvenil_repository_port import (
+    EventoJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusEvento,
+    TipoEvento,
+)
 from apps.backend.app.modules.society.juventude.domain.models.evento_juvenil import EventoJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.evento_juvenil_model import EventoJuvenilModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.evento_juvenil_model import (
+    EventoJuvenilModel,
+)
+
 
 class SQLAlchemyEventoJuvenilRepository(EventoJuvenilRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,7 +52,9 @@ class SQLAlchemyEventoJuvenilRepository(EventoJuvenilRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_evento: str) -> EventoJuvenil | None:
-        stmt = select(EventoJuvenilModel).where(EventoJuvenilModel.codigo_evento == codigo_evento.strip())
+        stmt = select(EventoJuvenilModel).where(
+            EventoJuvenilModel.codigo_evento == codigo_evento.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -51,7 +64,11 @@ class SQLAlchemyEventoJuvenilRepository(EventoJuvenilRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusEvento) -> list[EventoJuvenil]:
-        stmt = select(EventoJuvenilModel).where(EventoJuvenilModel.status == status.value).order_by(EventoJuvenilModel.data_evento.desc())
+        stmt = (
+            select(EventoJuvenilModel)
+            .where(EventoJuvenilModel.status == status.value)
+            .order_by(EventoJuvenilModel.data_evento.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -65,10 +82,30 @@ class SQLAlchemyEventoJuvenilRepository(EventoJuvenilRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EventoJuvenilModel).where(EventoJuvenilModel.codigo_evento.like(f'EVT/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EventoJuvenilModel)
+            .where(EventoJuvenilModel.codigo_evento.like(f"EVT/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'EVT/{ano}/{count + 1:05d}'
+        return f"EVT/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: EventoJuvenilModel) -> EventoJuvenil:
-        return EventoJuvenil(id=model.id, codigo_evento=model.codigo_evento, titulo=model.titulo, tipo_evento=TipoEvento(model.tipo_evento), area_interesse=AreaInteresse(model.area_interesse), data_evento=model.data_evento, local=model.local, municipio=model.municipio, provincia=model.provincia, vagas=model.vagas, participantes=model.participantes, status=StatusEvento(model.status), data_cadastro=model.data_cadastro or date.today(), observacoes=model.observacoes, ativo=model.ativo)
+        return EventoJuvenil(
+            id=model.id,
+            codigo_evento=model.codigo_evento,
+            titulo=model.titulo,
+            tipo_evento=TipoEvento(model.tipo_evento),
+            area_interesse=AreaInteresse(model.area_interesse),
+            data_evento=model.data_evento,
+            local=model.local,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            vagas=model.vagas,
+            participantes=model.participantes,
+            status=StatusEvento(model.status),
+            data_cadastro=model.data_cadastro or date.today(),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

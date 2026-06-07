@@ -3,11 +3,19 @@ import logging
 import sys
 from datetime import datetime
 
-class SilaJSONFormatter(logging.Formatter):
 
+class SilaJSONFormatter(logging.Formatter):
     def format(self, record):
-        log_obj = {'timestamp': datetime.utcnow().isoformat(), 'level': record.levelname, 'domain': record.name, 'message': record.getMessage(), 'module': record.module, 'function': record.funcName}
+        log_obj = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "level": record.levelname,
+            "domain": record.name,
+            "message": record.getMessage(),
+            "module": record.module,
+            "function": record.funcName,
+        }
         return json.dumps(log_obj)
+
 
 def get_sila_logger(domain: str):
     logger = logging.getLogger(domain.lower())

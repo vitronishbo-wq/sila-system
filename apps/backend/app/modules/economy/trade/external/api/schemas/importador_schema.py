@@ -1,9 +1,18 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeImportacao, StatusHabilitacao, TipoOperador, TipoPessoa
+
+from apps.backend.app.modules.economy.trade.external.domain.enums import (
+    RegimeImportacao,
+    StatusHabilitacao,
+    TipoOperador,
+    TipoPessoa,
+)
+
 
 class ImportadorCreate(BaseModel):
     razao_social: str
@@ -17,24 +26,30 @@ class ImportadorCreate(BaseModel):
     cep: str
     regimes_autorizados: list[RegimeImportacao]
 
+
 class HabilitacaoImportadorInput(BaseModel):
     numero_radar: str
     data_habilitacao: date
     data_validade: date
 
+
 class SuspensaoImportadorInput(BaseModel):
     data_suspensao: date
     motivo: str
+
 
 class CancelamentoImportadorInput(BaseModel):
     data_cancelamento: date
     motivo: str
 
+
 class ProdutoImportadorInput(BaseModel):
     produto: str
 
+
 class PaisOrigemInput(BaseModel):
     pais: str
+
 
 class ImportadorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

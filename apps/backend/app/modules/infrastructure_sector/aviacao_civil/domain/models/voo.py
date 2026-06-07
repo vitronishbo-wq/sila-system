@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from uuid import UUID, uuid4
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import NaturezaVoo, RegrasVoo, StatusVoo, TipoVoo
+
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import (
+    NaturezaVoo,
+    RegrasVoo,
+    StatusVoo,
+    TipoVoo,
+)
+
 
 @dataclass
 class Voo:
@@ -27,19 +35,25 @@ class Voo:
     def __post_init__(self) -> None:
         self.numero_voo = self.numero_voo.strip().upper()
         if self.passageiros < 0:
-            raise ValueError('Passageiros nao pode ser negativo')
+            raise ValueError("Passageiros nao pode ser negativo")
         if self.data_hora_chegada_programada <= self.data_hora_partida_programada:
-            raise ValueError('Chegada programada deve ser maior que partida programada')
+            raise ValueError("Chegada programada deve ser maior que partida programada")
 
-    def atualizar_status(self, novo_status: StatusVoo, motivo: str | None=None) -> None:
+    def atualizar_status(self, novo_status: StatusVoo, motivo: str | None = None) -> None:
         self.status = novo_status
-        self.historico_status.append({'timestamp': datetime.utcnow().isoformat(), 'status': novo_status.value, 'motivo': motivo})
+        self.historico_status.append(
+            {
+                "timestamp": datetime.utcnow().isoformat(),
+                "status": novo_status.value,
+                "motivo": motivo,
+            }
+        )
 
     def registrar_partida(self, data_hora: datetime) -> int:
         self.data_hora_partida_real = data_hora
         atraso = int((data_hora - self.data_hora_partida_programada).total_seconds() // 60)
         if atraso > 15:
-            self.atualizar_status(StatusVoo.ATRASADO, f'Atraso de {atraso} minutos')
+            self.atualizar_status(StatusVoo.ATRASADO, f"Atraso de {atraso} minutos")
         self.atualizar_status(StatusVoo.DECOLADO)
         self.atualizar_status(StatusVoo.EM_VOO)
         return max(0, atraso)

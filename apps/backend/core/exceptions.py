@@ -8,9 +8,7 @@ class BusinessRuleError(HTTPException):
     """Exception for business rule violations."""
 
     def __init__(self, detail: str):
-        super().__init__(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=detail
-        )
+        super().__init__(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=detail)
 
 
 class ResourceNotFound(HTTPException):
@@ -52,6 +50,4 @@ class DatabaseError(HTTPException):
     """Exception for database operation failures."""
 
     def __init__(self, detail: str = "Database operation failed"):
-        super().__init__(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=detail
-        )
+        super().__init__(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=detail)

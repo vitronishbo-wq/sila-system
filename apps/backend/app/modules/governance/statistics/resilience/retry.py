@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 import time
 from collections.abc import Callable
 
-def retry(call: Callable, attempts: int=3, wait_seconds: float=0.1):
+
+def retry(call: Callable, attempts: int = 3, wait_seconds: float = 0.1):
     last_error = None
     for _ in range(attempts):
         try:

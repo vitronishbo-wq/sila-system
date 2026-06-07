@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
 from apps.backend.app.modules.resources.ambiente.domain.models.fiscalizacao import Fiscalizacao
 
-class FiscalizacaoRepositoryPort(ABC):
 
+class FiscalizacaoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Fiscalizacao) -> Fiscalizacao:
         pass
@@ -14,7 +16,9 @@ class FiscalizacaoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, numero_licenca: str | None=None, status: StatusFiscalizacao | None=None) -> list[Fiscalizacao]:
+    async def list(
+        self, *, numero_licenca: str | None = None, status: StatusFiscalizacao | None = None
+    ) -> list[Fiscalizacao]:
         pass
 
     @abstractmethod

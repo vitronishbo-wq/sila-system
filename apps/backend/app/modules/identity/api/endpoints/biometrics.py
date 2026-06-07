@@ -1,7 +1,9 @@
 """
 Biometric enrollment endpoint for Identity module.
 """
+
 from datetime import datetime
+
 from fastapi import APIRouter, HTTPException, status
 
 from apps.backend.app.modules.identity.api.schemas.biometrics import (
@@ -13,7 +15,9 @@ router = APIRouter(prefix="/citizens/{citizen_id}/biometric", tags=["identity-bi
 
 
 @router.post("/enroll", response_model=BiometricEnrollResponse, status_code=status.HTTP_201_CREATED)
-async def enroll_biometric(citizen_id: str, request: BiometricEnrollRequest) -> BiometricEnrollResponse:
+async def enroll_biometric(
+    citizen_id: str, request: BiometricEnrollRequest
+) -> BiometricEnrollResponse:
     """
     Recebe o template biométrico do frontend e valida a qualidade mínima.
     """

@@ -1,64 +1,108 @@
 from __future__ import annotations
+
+from apps.backend.app.api.deps import get_db
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.api.deps import get_db
+
+db_dep = Depends(get_db)
+
 from apps.backend.app.core.bridges import CitizenRepository
 from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.core.events import DomainEvent, EventBusAdapter
 from apps.backend.app.modules.society.familia.application.events.bus import event_bus
-from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import FamilyAggregateService
-from apps.backend.app.modules.society.familia.application.services.family_projection_handler import FamilyProjectionHandler
-from apps.backend.app.modules.society.familia.application.services.family_query_service import FamilyQueryService
-from apps.backend.app.modules.society.familia.domain.events import FamilyCreatedEvent, FamilyDissolvedEvent, FamilyHeadTransferredEvent, FamilyMemberAddedEvent, FamilyMemberRemovedEvent
-from apps.backend.app.core.events import DomainEvent
-from apps.backend.app.modules.society.familia.infrastructure.adapters.citizen_service_adapter import CitizenServiceAdapter
-from apps.backend.app.modules.society.familia.infrastructure.adapters.civil_registry_adapter import CivilRegistryAdapter
-from apps.backend.app.modules.society.familia.infrastructure.repositories.outbox_repository import OutboxRepository
-from apps.backend.app.modules.society.familia.infrastructure.repositories.redis_projection_repository import RedisProjectionRepository
-from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import SQLAlchemyFamilyAggregateRepository
-from apps.backend.app.modules.society.familia.infrastructure.event_handlers.on_citizen_deceased import on_citizen_deceased
-from apps.backend.app.core.events import EventBusAdapter
+from apps.backend.app.modules.society.familia.application.services.family_aggregate_service import (
+    FamilyAggregateService,
+)
+from apps.backend.app.modules.society.familia.application.services.family_projection_handler import (
+    FamilyProjectionHandler,
+)
+from apps.backend.app.modules.society.familia.application.services.family_query_service import (
+    FamilyQueryService,
+)
+from apps.backend.app.modules.society.familia.domain.events import (
+    FamilyCreatedEvent,
+    FamilyDissolvedEvent,
+    FamilyHeadTransferredEvent,
+    FamilyMemberAddedEvent,
+    FamilyMemberRemovedEvent,
+)
+from apps.backend.app.modules.society.familia.infrastructure.adapters.citizen_service_adapter import (
+    CitizenServiceAdapter,
+)
+from apps.backend.app.modules.society.familia.infrastructure.adapters.civil_registry_adapter import (
+    CivilRegistryAdapter,
+)
+from apps.backend.app.modules.society.familia.infrastructure.event_handlers.on_citizen_deceased import (
+    on_citizen_deceased,
+)
+from apps.backend.app.modules.society.familia.infrastructure.repositories.outbox_repository import (
+    OutboxRepository,
+)
+from apps.backend.app.modules.society.familia.infrastructure.repositories.redis_projection_repository import (
+    RedisProjectionRepository,
+)
+from apps.backend.app.modules.society.familia.infrastructure.repositories.sqlalchemy_family_aggregate_repository import (
+    SQLAlchemyFamilyAggregateRepository,
+)
+
 _subscriptions_configured = False
 _core_subscriptions_configured = False
+
 
 async def _project_family_created(event: DomainEvent) -> None:
     async with AsyncSessionLocal() as session:
         repo = SQLAlchemyFamilyAggregateRepository(session)
         projection_repo = RedisProjectionRepository(session)
-        handler = FamilyProjectionHandler(projection_repository=projection_repo, family_repository=repo)
+        handler = FamilyProjectionHandler(
+            projection_repository=projection_repo, family_repository=repo
+        )
         await handler.on_family_created(event)
         await session.commit()
+
 
 async def _project_family_member_added(event: DomainEvent) -> None:
     async with AsyncSessionLocal() as session:
         repo = SQLAlchemyFamilyAggregateRepository(session)
         projection_repo = RedisProjectionRepository(session)
-        handler = FamilyProjectionHandler(projection_repository=projection_repo, family_repository=repo)
+        handler = FamilyProjectionHandler(
+            projection_repository=projection_repo, family_repository=repo
+        )
         await handler.on_family_member_added(event)
         await session.commit()
+
 
 async def _project_family_head_transferred(event: DomainEvent) -> None:
     async with AsyncSessionLocal() as session:
         repo = SQLAlchemyFamilyAggregateRepository(session)
         projection_repo = RedisProjectionRepository(session)
-        handler = FamilyProjectionHandler(projection_repository=projection_repo, family_repository=repo)
+        handler = FamilyProjectionHandler(
+            projection_repository=projection_repo, family_repository=repo
+        )
         await handler.on_family_member_added(event)
         await session.commit()
+
 
 async def _project_family_dissolved(event: DomainEvent) -> None:
     async with AsyncSessionLocal() as session:
         repo = SQLAlchemyFamilyAggregateRepository(session)
         projection_repo = RedisProjectionRepository(session)
-        handler = FamilyProjectionHandler(projection_repository=projection_repo, family_repository=repo)
+        handler = FamilyProjectionHandler(
+            projection_repository=projection_repo, family_repository=repo
+        )
         await handler.on_family_member_added(event)
         await session.commit()
+
 
 async def _project_family_member_removed(event: DomainEvent) -> None:
     async with AsyncSessionLocal() as session:
         repo = SQLAlchemyFamilyAggregateRepository(session)
         projection_repo = RedisProjectionRepository(session)
-        handler = FamilyProjectionHandler(projection_repository=projection_repo, family_repository=repo)
+        handler = FamilyProjectionHandler(
+            projection_repository=projection_repo, family_repository=repo
+        )
         await handler.on_family_member_added(event)
         await session.commit()
+
 
 def _configure_subscriptions() -> None:
     global _subscriptions_configured
@@ -71,25 +115,40 @@ def _configure_subscriptions() -> None:
     event_bus.subscribe(FamilyMemberRemovedEvent.event_name, _project_family_member_removed)
     _subscriptions_configured = True
 
+
 def _configure_core_event_subscriptions() -> None:
     global _core_subscriptions_configured
     if _core_subscriptions_configured:
         return
     core_bus = EventBusAdapter()
-    core_bus.subscribe('registo_civil.death_registered', on_citizen_deceased)
+    core_bus.subscribe("registo_civil.death_registered", on_citizen_deceased)
     _core_subscriptions_configured = True
+
+
 _configure_subscriptions()
 _configure_core_event_subscriptions()
 
-async def get_family_aggregate_service(session: AsyncSession=Depends(get_db)) -> FamilyAggregateService:
+
+async def get_family_aggregate_service(
+    session: AsyncSession = db_dep,
+) -> FamilyAggregateService:
     repo = SQLAlchemyFamilyAggregateRepository(session)
     outbox = OutboxRepository(session)
     citizen_adapter = CitizenServiceAdapter(CitizenRepository(session))
     civil_registry_adapter = CivilRegistryAdapter(session)
-    return FamilyAggregateService(repository=repo, outbox_repository=outbox, event_bus=event_bus, citizen_service=citizen_adapter, civil_registry_service=civil_registry_adapter)
+    return FamilyAggregateService(
+        repository=repo,
+        outbox_repository=outbox,
+        event_bus=event_bus,
+        citizen_service=citizen_adapter,
+        civil_registry_service=civil_registry_adapter,
+    )
 
-async def get_family_query_service(session: AsyncSession=Depends(get_db)) -> FamilyQueryService:
+
+async def get_family_query_service(session: AsyncSession = db_dep) -> FamilyQueryService:
     projection_repo = RedisProjectionRepository(session)
     repo = SQLAlchemyFamilyAggregateRepository(session)
     citizen_adapter = CitizenServiceAdapter(CitizenRepository(session))
-    return FamilyQueryService(repository=repo, projection_repository=projection_repo, citizen_service=citizen_adapter)
+    return FamilyQueryService(
+        repository=repo, projection_repository=projection_repo, citizen_service=citizen_adapter
+    )

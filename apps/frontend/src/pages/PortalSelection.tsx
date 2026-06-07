@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { APP_IMAGES } from "../constants/images";
+import { APP_IMAGES } from "@/constants/images";
 import { LayoutGrid, Building2, Users } from "lucide-react";
 
 export default function PortalSelection() {

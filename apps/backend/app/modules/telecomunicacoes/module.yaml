@@ -1,0 +1,22 @@
+code: telecomunicacoes
+module: telecomunicacoes
+name: Telecomunicacoes
+description: Licenciamento e regulacao de telecomunicacoes.
+type: "sub_domain"
+version: '1.0'
+last_updated: '2026-03-19'
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+ui:
+  icon: telecomunicacoes
+  color: '#2563eb'
+  order: null
+services: []

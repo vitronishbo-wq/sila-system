@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-class CircuitBreaker:
 
-    def __init__(self, threshold: int=5) -> None:
+class CircuitBreaker:
+    def __init__(self, threshold: int = 5) -> None:
         self.threshold = threshold
         self.failures = 0
         self.open = False

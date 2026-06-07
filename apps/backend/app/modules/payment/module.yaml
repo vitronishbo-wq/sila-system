@@ -1,278 +1,235 @@
-# Module: payment
-# Gerado: 2026-03-17 (Consolidação Completa)
-# Status: CONSOLIDADO - Arquitetura Hexagonal Implementada
-
-module: "payment"
-name: "payment"
-version: "1.0.0"
-type: "macro_domain"
+module: payment
+name: payment
+version: 1.0.0
+type: macro_domain
 normalized: true
-
-# ========== EXPOSTOS (Public API) ==========
 exposes:
   api_routers:
-    - prefix: "/payment"
-      endpoints:
-        - POST /payment/register (Create payment)
-        - GET /payment/citizen/{citizen_id}/history (Payment history)
-        - GET /payment/reference/{gateway_reference} (Get by reference)
-        - GET /payment/invoice/{invoice_id}/payments (List by invoice)
-        - GET /health (Health check)
-        - GET /health/ready (Readiness check)
-  
+  - prefix: /payment
+    endpoints:
+    - POST /payment/register (Create payment)
+    - GET /payment/citizen/{citizen_id}/history (Payment history)
+    - GET /payment/reference/{gateway_reference} (Get by reference)
+    - GET /payment/invoice/{invoice_id}/payments (List by invoice)
+    - GET /health (Health check)
+    - GET /health/ready (Readiness check)
   public_models:
-    - Payment (Entidade de Domínio)
-    - Invoice (Entidade de Domínio)
-    - PaymentStatus (Enumerador)
-    - InvoiceStatus (Enumerador)
-  
+  - "Payment (Entidade de Dom\xEDnio)"
+  - "Invoice (Entidade de Dom\xEDnio)"
+  - PaymentStatus (Enumerador)
+  - InvoiceStatus (Enumerador)
   events_published:
-    - PaymentCompleted
-    - PaymentFailed
-    - InvoiceStatusChanged
-
-# ========== DEPENDÊNCIAS ==========
+  - PaymentTransactionInitiated
+  - PaymentProcessed
+  - PaymentStatusChanged
+  - InvoiceIssued
+  - PaymentReconciled
+  event_catalog: domain/events/__init__.py
 requires:
   domains:
-    - educacao
-    - juventude
-    - emprego
-    - saude
-    - assistencia_social
-    - service_requests
-  
+  - educacao
+  - juventude
+  - emprego
+  - saude
+  - assistencia_social
+  - service_requests
   core_services:
-    - database_session
-    - observability.trace
-
-# ========== SUBDOMÍNIOS ==========
+  - database_session
+  - observability.trace
 subdomains:
-  - reconciliation (Reconciliação Bancária)
-  - idempotency (Garantia de Idempotência)
-  - multi_module_integration (Integração Multi-Módulo)
-
-# ========== ESTATÍSTICAS ATUALIZADAS ==========
+- "reconciliation (Reconcilia\xE7\xE3o Banc\xE1ria)"
+- "idempotency (Garantia de Idempot\xEAncia)"
+- "multi_module_integration (Integra\xE7\xE3o Multi-M\xF3dulo)"
 statistics:
   api_files: 3
   application_files: 8
   domain_files: 8
   infrastructure_files: 4
   total: 23
-
-# ========== CAMADA API ==========
 api_layer:
   health:
-    file: "api/health.py"
+    file: api/health.py
     endpoints:
-      - GET /health
-      - GET /health/ready
-  
+    - GET /health
+    - GET /health/ready
   routers:
-    file: "api/router.py"
+    file: api/router.py
     endpoints:
-      - POST /payment/register
-      - GET /payment/citizen/{citizen_id}/history
-      - GET /payment/reference/{gateway_reference}
-      - GET /payment/invoice/{invoice_id}/payments
-  
+    - POST /payment/register
+    - GET /payment/citizen/{citizen_id}/history
+    - GET /payment/reference/{gateway_reference}
+    - GET /payment/invoice/{invoice_id}/payments
   routers_consolidated:
-    file: "api/routers.py"
-    description: "Consolidação de todos os routers"
-
-# ========== CAMADA APPLICATION ==========
+    file: api/routers.py
+    description: "Consolida\xE7\xE3o de todos os routers"
 application_layer:
   services:
-    location: "application/services/"
+    location: application/services/
     files:
-      - payment_service.py (PaymentService - Orquestração)
-      - webhook_service.py (Webhook handlers)
+    - "payment_service.py (PaymentService - Orquestra\xE7\xE3o)"
+    - webhook_service.py (Webhook handlers)
     count: 2
-  
   ports:
-    location: "application/ports/"
-    description: "Interfaces de contrato com infraestrutura"
+    location: application/ports/
+    description: Interfaces de contrato com infraestrutura
     files:
-      - PaymentRepositoryPort
-      - InvoiceRepositoryPort
-      - EducacaoServicePort
-      - JuventudeServicePort
-      - EmpregoServicePort
-      - SaudeServicePort
-      - AssistenciaSocialServicePort
-      - ServiceRequestsServicePort
+    - PaymentRepositoryPort
+    - InvoiceRepositoryPort
+    - EducacaoServicePort
+    - JuventudeServicePort
+    - EmpregoServicePort
+    - SaudeServicePort
+    - AssistenciaSocialServicePort
+    - ServiceRequestsServicePort
     count: 8
-  
   dto:
-    location: "application/dto/"
+    location: application/dto/
     schemas:
-      - CreatePaymentSchema
-      - PaymentResponse
-      - PaymentHistoryResponse
-      - PaymentCreate (legacy)
-      - RefundCreate
-      - RefundResponse
-  
+    - CreatePaymentSchema
+    - PaymentResponse
+    - PaymentHistoryResponse
+    - PaymentCreate (legacy)
+    - RefundCreate
+    - RefundResponse
   commands:
-    location: "application/commands/"
+    location: application/commands/
     count: 0 (Usar DTOs)
-  
   queries:
-    location: "application/queries/"
+    location: application/queries/
     count: 0 (Usar PaymentService)
-
-# ========== CAMADA DOMAIN ==========
 domain_layer:
   models:
-    location: "domain/models/"
+    location: domain/models/
     entities:
-      - Payment (Entidade, livre de ORM)
-      - Invoice (Entidade, livre de ORM)
+    - Payment (Entidade, livre de ORM)
+    - Invoice (Entidade, livre de ORM)
     count: 2
-  
   enums:
-    location: "domain/enums/"
+    location: domain/enums/
     files:
-      - PaymentStatus (pending, processing, completed, reconciled, failed, cancelled, refunded, disputed)
-      - PaymentMethod (cash, bank_transfer, cheque, debit_card, credit_card, installment_plan, multicaixa)
-      - InvoiceStatus (draft, issued, pending, paid, overdue, cancelled, disputed)
-      - TransactionType (payment, refund, reversal, adjustment)
-      - TransactionStatus (pending, authorized, settled, failed, cancelled, refunded)
+    - PaymentStatus (pending, processing, completed, reconciled, failed, cancelled,
+      refunded, disputed)
+    - PaymentMethod (cash, bank_transfer, cheque, debit_card, credit_card, installment_plan,
+      multicaixa)
+    - InvoiceStatus (draft, issued, pending, paid, overdue, cancelled, disputed)
+    - TransactionType (payment, refund, reversal, adjustment)
+    - TransactionStatus (pending, authorized, settled, failed, cancelled, refunded)
     count: 5
-  
   exceptions:
-    location: "domain/exceptions.py"
+    location: domain/exceptions.py
     exceptions:
-      - PaymentDomainException (Base)
-      - DuplicatePaymentError (gateway_reference duplicado)
-      - InvoiceNotFoundError (Fatura não encontrada)
-      - InvalidInvoiceStateError (Estado inválido para pagamento)
-      - DomainValidationError (Violação de regra de negócio)
-      - PaymentReconciliationError (Falha na reconciliação)
+    - PaymentDomainException (Base)
+    - DuplicatePaymentError (gateway_reference duplicado)
+    - "InvoiceNotFoundError (Fatura n\xE3o encontrada)"
+    - "InvalidInvoiceStateError (Estado inv\xE1lido para pagamento)"
+    - "DomainValidationError (Viola\xE7\xE3o de regra de neg\xF3cio)"
+    - "PaymentReconciliationError (Falha na reconcilia\xE7\xE3o)"
     count: 6
-  
   ports:
-    location: "domain/ports/"
+    location: domain/ports/
     interfaces:
-      - PaymentRepositoryPort (CRUD Payment)
-      - InvoiceRepositoryPort (CRUD Invoice)
+    - PaymentRepositoryPort (CRUD Payment)
+    - InvoiceRepositoryPort (CRUD Invoice)
     count: 2
-
-# ========== CAMADA INFRASTRUCTURE ==========
 infrastructure_layer:
   repositories:
-    location: "infrastructure/repositories.py"
+    location: infrastructure/repositories.py
     implementations:
-      - SqlAlchemyPaymentRepository (Implementação concreta)
-      - SqlAlchemyInvoiceRepository (Implementação concreta)
+    - "SqlAlchemyPaymentRepository (Implementa\xE7\xE3o concreta)"
+    - "SqlAlchemyInvoiceRepository (Implementa\xE7\xE3o concreta)"
     count: 2
-  
   base_repository:
-    location: "infrastructure/base_repository.py"
-    description: "Template abstrato para padrão de implementação"
-  
+    location: infrastructure/base_repository.py
+    description: "Template abstrato para padr\xE3o de implementa\xE7\xE3o"
   adapters:
-    location: "infrastructure/adapters/"
-    description: "Adaptadores para sistemas externos"
-    count: 0 # TODO: Implementar
-  
+    location: infrastructure/adapters/
+    description: Adaptadores para sistemas externos
+    count: 0
   orm:
-    location: "infrastructure/orm/"
-    description: "Modelos SQLAlchemy"
-    count: 0 # TODO: Implementar
-
-# ========== REGRAS DE DOMÍNIO CRÍTICAS ==========
+    location: infrastructure/orm/
+    description: Modelos SQLAlchemy
+    count: 0
 business_rules:
-  - name: "IDEMPOTÊNCIA"
-    rule: "gateway_reference garante que não há pagamentos duplicados"
-    enforcement: "DuplicatePaymentError se já existe"
-  
-  - name: "INTEGRIDADE"
-    rule: "Fatura deve existir e estar em PENDING/OVERDUE para pagamento"
-    enforcement: "InvoiceNotFoundError, InvalidInvoiceStateError"
-  
-  - name: "ATOMICIDADE"
-    rule: "Pagamento + Invoice update são atômicos (transação única)"
-    enforcement: "DB-level transaction ou compensating transactions"
-  
-  - name: "AUDITORIA"
-    rule: "Todos os estados capturados para compliance (rastreabilidade)"
-    enforcement: "Logs estruturados + event sourcing"
-  
-  - name: "NOTIFICAÇÃO"
-    rule: "Módulo de origem é notificado sobre pagamento (callback)"
-    enforcement: "PaymentService._notify_origin_module()"
-
-# ========== INTEGRAÇÃO MULTI-MÓDULO ==========
+- name: "IDEMPOT\xCANCIA"
+  rule: "gateway_reference garante que n\xE3o h\xE1 pagamentos duplicados"
+  enforcement: "DuplicatePaymentError se j\xE1 existe"
+- name: INTEGRIDADE
+  rule: Fatura deve existir e estar em PENDING/OVERDUE para pagamento
+  enforcement: InvoiceNotFoundError, InvalidInvoiceStateError
+- name: ATOMICIDADE
+  rule: "Pagamento + Invoice update s\xE3o at\xF4micos (transa\xE7\xE3o \xFAnica)"
+  enforcement: DB-level transaction ou compensating transactions
+- name: AUDITORIA
+  rule: Todos os estados capturados para compliance (rastreabilidade)
+  enforcement: Logs estruturados + event sourcing
+- name: "NOTIFICA\xC7\xC3O"
+  rule: "M\xF3dulo de origem \xE9 notificado sobre pagamento (callback)"
+  enforcement: PaymentService._notify_origin_module()
 multi_module_integration:
   educacao:
-    callback: "registrar_pagamento_propina"
-    trigger: "Pagamento com service_code EDU_*"
-  
+    callback: registrar_pagamento_propina
+    trigger: Pagamento com service_code EDU_*
   juventude:
-    callback: "registrar_pagamento_bolsa"
-    trigger: "Pagamento com service_code JUV_*"
-  
+    callback: registrar_pagamento_bolsa
+    trigger: Pagamento com service_code JUV_*
   emprego:
-    callback: "registrar_pagamento_salario"
-    trigger: "Pagamento com service_code EMP_*"
-  
+    callback: registrar_pagamento_salario
+    trigger: Pagamento com service_code EMP_*
   saude:
-    callback: "registrar_pagamento_servico"
-    trigger: "Pagamento com service_code SAU_*"
-  
+    callback: registrar_pagamento_servico
+    trigger: Pagamento com service_code SAU_*
   assistencia_social:
-    callback: "registrar_pagamento_beneficio"
-    trigger: "Pagamento com service_code ASS_*"
-  
+    callback: registrar_pagamento_beneficio
+    trigger: Pagamento com service_code ASS_*
   service_requests:
-    callback: "registrar_pagamento_taxa"
-    trigger: "Pagamento com service_code SRV_* ou REQ_*"
-
-# ========== ROADMAP ==========
+    callback: registrar_pagamento_taxa
+    trigger: Pagamento com service_code SRV_* ou REQ_*
 roadmap:
-  - phase: "CONSOLIDADO ✓"
-    items:
-      - "Domain models + enums + exceptions"
-      - "Application service + DTOs + ports"
-      - "API routers + health checks"
-      - "Base repository pattern"
-      - "Infrastructure skeleton com TODO"
-  
-  - phase: "EM IMPLEMENTAÇÃO"
-    items:
-      - "SQLAlchemy ORM models"
-      - "Concrete repository implementations"
-      - "Database migrations (Alembic)"
-      - "Integration tests"
-  
-  - phase: "PRÓXIMO"
-    items:
-      - "Webhook handlers para gateways de pagamento"
-      - "Reconciliation engine"
-      - "Audit log persistence"
-      - "Error recovery strategies"
-      - "Performance optimization"
-
-    description: "Encontrar endpoint"
-    action: "Navegue em api_endpoints/files"
-  
-  - step: 2
-    description: "Encontrar serviço de orquestração"
-    action: "Procure em application_layer/services/"
-  
-  - step: 3
-    description: "Encontrar lógica de domínio"
-    action: "Procure em domain_layer/services/"
-  
-  - step: 4
-    description: "Encontrar persistência"
-    action: "Procure em infrastructure_layer/repositories/"
-
-# ========== CONFORMIDADE ==========
+- phase: "CONSOLIDADO \u2713"
+  items:
+  - Domain models + enums + exceptions
+  - Application service + DTOs + ports
+  - API routers + health checks
+  - Base repository pattern
+  - Infrastructure skeleton com TODO
+- phase: "EM IMPLEMENTA\xC7\xC3O"
+  items:
+  - SQLAlchemy ORM models
+  - Concrete repository implementations
+  - Database migrations (Alembic)
+  - Integration tests
+- phase: "PR\xD3XIMO"
+  items:
+  - Webhook handlers para gateways de pagamento
+  - Reconciliation engine
+  - Audit log persistence
+  - Error recovery strategies
+  - Performance optimization
+  description: Encontrar endpoint
+  action: Navegue em api_endpoints/files
+- step: 2
+  description: "Encontrar servi\xE7o de orquestra\xE7\xE3o"
+  action: Procure em application_layer/services/
+- step: 3
+  description: "Encontrar l\xF3gica de dom\xEDnio"
+  action: Procure em domain_layer/services/
+- step: 4
+  description: "Encontrar persist\xEAncia"
+  action: Procure em infrastructure_layer/repositories/
 conformance:
   has_api_layer: true
   has_application_layer: true
   has_domain_layer: true
   has_infrastructure_layer: true
   has_tests: true
-  ddd_compliant: "✓"
+  ddd_compliant: "\u2713"
+code: payment
+description: null
+last_updated: '2026-03-19'
+ui:
+  icon: fa-layer-group
+  color: '#2563eb'
+  order: null
+services: []
+status: alpha
+owner: sila-core

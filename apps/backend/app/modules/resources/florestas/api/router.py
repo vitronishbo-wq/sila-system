@@ -1,6 +1,52 @@
 from fastapi import APIRouter
-from apps.backend.app.modules.resources.florestas.api.endpoints import alertas_desmatamento_router, apreensoes_madeira_router, autorizacoes_supressao_router, autos_infracao_florestais_router, car_florestal_router, certificacoes_florestais_router, combates_incendio_router, comercializacao_florestal_router, comunidades_router, concessoes_florestais_router, cras_router, creditos_carbono_router, desmatamentos_ilegais_router, dofs_router, embargos_florestais_router, empresas_florestais_router, especies_florestais_router, estatisticas_florestais_router, exploracoes_router, exportacoes_madeira_router, fiscalizacoes_florestais_router, focos_calor_router, incendios_florestais_router, inventarios_router, licencas_manejo_router, madeiras_router, monitoramentos_satelite_router, multas_florestais_router, ocorrencias_incendio_router, operadores_florestais_router, outorgas_florestais_router, planos_manejo_router, pnfms_router, produtos_florestais_router, projetos_carbono_router, recuperacoes_area_router, redds_router, reflorestamentos_router, reposicoes_florestais_router, reservas_legais_router, talhoes_router, unidades_manejo_router, viveiros_router
-router = APIRouter(prefix='/florestas', tags=['Florestas'])
+
+from apps.backend.app.modules.resources.florestas.api.endpoints import (
+    alertas_desmatamento_router,
+    apreensoes_madeira_router,
+    autorizacoes_supressao_router,
+    autos_infracao_florestais_router,
+    car_florestal_router,
+    certificacoes_florestais_router,
+    combates_incendio_router,
+    comercializacao_florestal_router,
+    comunidades_router,
+    concessoes_florestais_router,
+    cras_router,
+    creditos_carbono_router,
+    desmatamentos_ilegais_router,
+    dofs_router,
+    embargos_florestais_router,
+    empresas_florestais_router,
+    especies_florestais_router,
+    estatisticas_florestais_router,
+    exploracoes_router,
+    exportacoes_madeira_router,
+    fiscalizacoes_florestais_router,
+    focos_calor_router,
+    incendios_florestais_router,
+    inventarios_router,
+    licencas_manejo_router,
+    madeiras_router,
+    monitoramentos_satelite_router,
+    multas_florestais_router,
+    ocorrencias_incendio_router,
+    operadores_florestais_router,
+    outorgas_florestais_router,
+    planos_manejo_router,
+    pnfms_router,
+    produtos_florestais_router,
+    projetos_carbono_router,
+    recuperacoes_area_router,
+    redds_router,
+    reflorestamentos_router,
+    reposicoes_florestais_router,
+    reservas_legais_router,
+    talhoes_router,
+    unidades_manejo_router,
+    viveiros_router,
+)
+
+router = APIRouter(prefix="/florestas", tags=["Florestas"])
 router.include_router(alertas_desmatamento_router)
 router.include_router(apreensoes_madeira_router)
 router.include_router(autorizacoes_supressao_router)

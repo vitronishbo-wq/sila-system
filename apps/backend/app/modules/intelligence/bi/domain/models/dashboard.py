@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Any
+from typing import Any
+
 
 @dataclass
 class Dashboard:
-    id: Optional[int]
+    id: int | None
     name: str
-    description: Optional[str]
-    owner_id: Optional[int]
-    layout: Optional[Any]
+    description: str | None
+    owner_id: int | None
+    layout: Any | None
     created_at: datetime

@@ -8,10 +8,9 @@ Uso:
     python tools/test_separation_system.py
 """
 
-import sys
 import subprocess
+import sys
 from pathlib import Path
-from typing import Tuple, List
 
 
 class SeparationSystemTester:
@@ -29,7 +28,7 @@ class SeparationSystemTester:
         self.passed = 0
         self.failed = 0
 
-    def run_command(self, cmd: List[str], timeout: int = 10) -> Tuple[bool, str]:
+    def run_command(self, cmd: list[str], timeout: int = 10) -> tuple[bool, str]:
         """Executa comando e retorna resultado."""
         try:
             result = subprocess.run(

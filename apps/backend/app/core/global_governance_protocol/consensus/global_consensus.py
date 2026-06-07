@@ -1,5 +1,4 @@
 class GlobalConsensus:
-
     def __init__(self):
         self.votes = {}
 

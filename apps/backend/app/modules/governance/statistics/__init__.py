@@ -1,3 +1,4 @@
 """Statistics module package"""
-'Package initialization (consolidated).'
+
+"Package initialization (consolidated)."
 __all__ = []

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_041_energia_outbox_events"
 down_revision = "20260304_040_aguas_saneamento_outbox_events"
 branch_labels = None

@@ -1,4 +1,29 @@
 from apps.backend.app.modules.society.emprego.api.deps import get_formacao_service
-from apps.backend.app.modules.society.emprego.api.endpoints._workflow_endpoints import build_workflow_router
-from apps.backend.app.modules.society.emprego.api.schemas.formacao_schema import FormacaoAction, FormacaoCancel, FormacaoCreate, FormacaoResponse
-router = build_workflow_router(tag='Emprego - Formacoes', get_service=get_formacao_service, create_schema=FormacaoCreate, action_schema=FormacaoAction, cancel_schema=FormacaoCancel, response_schema=FormacaoResponse, routes=[('/inscricoes/tecnico', 'inscricao_tecnica'), ('/formacoes/profissional', 'formacao_profissional'), ('/programas/alfabetizacao', 'alfabetizacao'), ('/credenciamentos', 'credenciamento'), ('/formacoes/certificadas', 'formacao_certificada'), ('/formacoes/reconversao', 'reconversao'), ('/estagios/publicos', 'estagio_publico'), ('/formacoes/avancadas', 'formacao_avancada')])
+from apps.backend.app.modules.society.emprego.api.endpoints._workflow_endpoints import (
+    build_workflow_router,
+)
+from apps.backend.app.modules.society.emprego.api.schemas.formacao_schema import (
+    FormacaoAction,
+    FormacaoCancel,
+    FormacaoCreate,
+    FormacaoResponse,
+)
+
+router = build_workflow_router(
+    tag="Emprego - Formacoes",
+    get_service=get_formacao_service,
+    create_schema=FormacaoCreate,
+    action_schema=FormacaoAction,
+    cancel_schema=FormacaoCancel,
+    response_schema=FormacaoResponse,
+    routes=[
+        ("/inscricoes/tecnico", "inscricao_tecnica"),
+        ("/formacoes/profissional", "formacao_profissional"),
+        ("/programas/alfabetizacao", "alfabetizacao"),
+        ("/credenciamentos", "credenciamento"),
+        ("/formacoes/certificadas", "formacao_certificada"),
+        ("/formacoes/reconversao", "reconversao"),
+        ("/estagios/publicos", "estagio_publico"),
+        ("/formacoes/avancadas", "formacao_avancada"),
+    ],
+)

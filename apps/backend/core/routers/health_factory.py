@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from typing import Iterable, Optional, Tuple
 from fastapi import APIRouter
 
 
@@ -10,7 +9,7 @@ class HealthRouterFactory:
     @staticmethod
     def infer_module_name(
         module_path: str,
-        infer_indices: Tuple[int, int] = (3, 4),
+        infer_indices: tuple[int, int] = (3, 4),
         separator: str = ".",
     ) -> str:
         parts = module_path.split(".")
@@ -24,9 +23,9 @@ class HealthRouterFactory:
     def create_health_router(
         *,
         status_value: str = "ok",
-        module_name: Optional[str] = None,
+        module_name: str | None = None,
         include_module: bool = True,
-        tags: Optional[list[str]] = None,
+        tags: list[str] | None = None,
         path: str = "/health",
     ) -> APIRouter:
         router = APIRouter()
@@ -45,9 +44,9 @@ class HealthRouterFactory:
         cls,
         *,
         module_path: str,
-        infer_indices: Tuple[int, int] = (3, 4),
+        infer_indices: tuple[int, int] = (3, 4),
         status_value: str = "ok",
-        tags: Optional[list[str]] = None,
+        tags: list[str] | None = None,
         path: str = "/health",
     ) -> APIRouter:
         module_name = cls.infer_module_name(module_path, infer_indices=infer_indices)

@@ -85,7 +85,9 @@ def _repository_tokens(scan: ModuleScan) -> set[str]:
     return out
 
 
-def compute_similarity_candidates(scans: dict[str, ModuleScan], min_score: float = 0.60) -> list[dict]:
+def compute_similarity_candidates(
+    scans: dict[str, ModuleScan], min_score: float = 0.60
+) -> list[dict]:
     module_names = sorted(scans.keys())
     results: list[dict] = []
 
@@ -138,4 +140,6 @@ def compute_similarity_candidates(scans: dict[str, ModuleScan], min_score: float
             }
         )
 
-    return sorted(results, key=lambda item: (-item["similarity_score"], item["left"], item["right"]))
+    return sorted(
+        results, key=lambda item: (-item["similarity_score"], item["left"], item["right"])
+    )

@@ -1,0 +1,25 @@
+module: nif
+name: Numero de Identificacao Fiscal
+code: nif
+description: Validacao e consulta de NIF (Numero de Identificacao Fiscal)
+type: sub_domain
+version: 1.0.0
+status: alpha
+owner: sila-core
+parent: integracao-nacional
+exposes:
+  api_routers:
+  - prefix: /integracao-nacional/nif
+    endpoints:
+    - POST /integracao-nacional/nif/validar (Validar NIF)
+    - POST /integracao-nacional/nif/consultar (Consultar dados do NIF)
+  public_models:
+  - NifVerificationResult
+  events_published:
+  - NifVerificado
+requires:
+  domains:
+  - identity
+  core_services:
+  - database_session
+subdomains: []

@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import FamilyAggregate
+
+from apps.backend.app.modules.society.familia.domain.aggregates.family_aggregate_root import (
+    FamilyAggregate,
+)
+
 
 class FamilyAggregateRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, aggregate: FamilyAggregate) -> None:
         raise NotImplementedError
@@ -14,7 +18,9 @@ class FamilyAggregateRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def find_active_family_for_citizen(self, citizen_id: UUID, exclude_family_id: UUID | None=None) -> UUID | None:
+    async def find_active_family_for_citizen(
+        self, citizen_id: UUID, exclude_family_id: UUID | None = None
+    ) -> UUID | None:
         raise NotImplementedError
 
     @abstractmethod
@@ -22,7 +28,9 @@ class FamilyAggregateRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_family_ids_for_citizen(self, citizen_id: UUID, *, limit: int=100, offset: int=0) -> list[UUID]:
+    async def list_family_ids_for_citizen(
+        self, citizen_id: UUID, *, limit: int = 100, offset: int = 0
+    ) -> list[UUID]:
         raise NotImplementedError
 
     @abstractmethod

@@ -1,0 +1,22 @@
+code: arquivo-nacional
+module: arquivo-nacional
+name: Arquivo Nacional
+description: Conservacao, consulta e certificacao documental.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: arquivo-nacional
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []

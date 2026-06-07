@@ -7,14 +7,14 @@ import pytest
 
 pytest.importorskip("backend.main")
 
-from apps.backend.main import app
 from httpx import AsyncClient
+
+from apps.backend.main import app
 
 
 @pytest.mark.external
 @pytest.mark.asyncio
 class TestServices:
-
     @pytest.fixture(scope="module")
     async def async_client(self):
         async with AsyncClient(app=app, base_url="http://testserver") as client:

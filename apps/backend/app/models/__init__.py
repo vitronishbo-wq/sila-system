@@ -1,3 +1,3 @@
-from app.models.iam_user import IamUser as User
-from app.models.iam_user import IamUser
-__all__ = ['User', 'IamUser']
+from apps.backend.app.models.iam_user import IamUser, IamUser as User
+
+__all__ = ["User", "IamUser"]

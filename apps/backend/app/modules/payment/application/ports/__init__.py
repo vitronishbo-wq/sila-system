@@ -1,8 +1,10 @@
 """Ports (Interface Contracts) para a camada de Aplicação."""
+
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from ...domain.models import Payment, Invoice
+
 from ...domain.enums import PaymentStatus
+from ...domain.models import Invoice, Payment
 
 
 class PaymentRepositoryPort(ABC):
@@ -19,22 +21,22 @@ class PaymentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, payment_id: str) -> Optional[Payment]:
+    async def get_by_id(self, payment_id: str) -> Payment | None:
         """Recupera pagamento por ID."""
         pass
 
     @abstractmethod
-    async def get_by_citizen(self, citizen_id: str) -> List[Payment]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Payment]:
         """Lista pagamentos de um cidadão."""
         pass
 
     @abstractmethod
-    async def list_by_invoice(self, invoice_id: str) -> List[Payment]:
+    async def list_by_invoice(self, invoice_id: str) -> list[Payment]:
         """Lista pagamentos associados a uma fatura."""
         pass
 
     @abstractmethod
-    async def get_by_gateway_ref(self, gateway_reference: str) -> Optional[Payment]:
+    async def get_by_gateway_ref(self, gateway_reference: str) -> Payment | None:
         """Recupera pagamento por referência de gateway (idempotência)."""
         pass
 
@@ -44,7 +46,7 @@ class PaymentRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int = 100, offset: int = 0) -> List[Payment]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Payment]:
         """Lista todos os pagamentos com paginação."""
         pass
 
@@ -58,7 +60,7 @@ class InvoiceRepositoryPort(ABC):
     """Port: Contrato de persistência para Invoice (Fatura)."""
 
     @abstractmethod
-    async def get_by_id(self, invoice_id: str) -> Optional[Invoice]:
+    async def get_by_id(self, invoice_id: str) -> Invoice | None:
         """Recupera fatura por ID."""
         pass
 
@@ -68,77 +70,89 @@ class InvoiceRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_citizen(self, citizen_id: str) -> List[Invoice]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Invoice]:
         """Lista faturas de um cidadão."""
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: str) -> List[Invoice]:
+    async def list_by_status(self, status: str) -> list[Invoice]:
         """Lista faturas por status."""
         pass
 
 
 class EducacaoServicePort(ABC):
     """Port: Contrato de integração com módulo Educacao."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_propina(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_propina(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de propina na educacao."""
         pass
 
 
 class JuventudeServicePort(ABC):
     """Port: Contrato de integração com módulo Juventude."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_bolsa(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_bolsa(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de bolsa na juventude."""
         pass
 
 
 class EmpregoServicePort(ABC):
     """Port: Contrato de integração com módulo Emprego."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_salario(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_salario(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de salário no emprego."""
         pass
 
 
 class SaudeServicePort(ABC):
     """Port: Contrato de integração com módulo Saude."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_servico(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_servico(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de serviço na saude."""
         pass
 
 
 class AssistenciaSocialServicePort(ABC):
     """Port: Contrato de integração com módulo Assistencia Social."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_beneficio(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_beneficio(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de benefício na assistencia social."""
         pass
 
 
 class ServiceRequestsServicePort(ABC):
     """Port: Contrato de integração com módulo Service Requests."""
-    
+
     @abstractmethod
-    async def registrar_pagamento_taxa(self, reference_id: str, payment_id: str, amount: float) -> None:
+    async def registrar_pagamento_taxa(
+        self, reference_id: str, payment_id: str, amount: float
+    ) -> None:
         """Registra pagamento de taxa nos pedidos de serviço."""
         pass
 
 
 __all__ = [
-    'PaymentRepositoryPort',
-    'InvoiceRepositoryPort',
-    'EducacaoServicePort',
-    'JuventudeServicePort',
-    'EmpregoServicePort',
-    'SaudeServicePort',
-    'AssistenciaSocialServicePort',
-    'ServiceRequestsServicePort',
+    "PaymentRepositoryPort",
+    "InvoiceRepositoryPort",
+    "EducacaoServicePort",
+    "JuventudeServicePort",
+    "EmpregoServicePort",
+    "SaudeServicePort",
+    "AssistenciaSocialServicePort",
+    "ServiceRequestsServicePort",
 ]

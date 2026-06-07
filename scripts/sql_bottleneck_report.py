@@ -2,12 +2,13 @@
 """
 Generates a simple SQL bottleneck report for energy_invoices and toll_passages.
 """
+
 from __future__ import annotations
 
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlalchemy import text
@@ -27,7 +28,7 @@ async def run() -> dict:
     session_factory = connector.get_session_factory()
 
     payload: dict = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "tables": {},
         "indexes": [],
         "notes": [],
@@ -103,7 +104,13 @@ def render_md(payload: dict) -> str:
             f"{stats.get('idx_scan')} | {stats.get('idx_tup_fetch')} | {sizes.get(table, 0)} |"
         )
 
-    lines += ["", "## Indices", "", "| Tabela | Index | Idx Scan | Idx Tup Read | Idx Tup Fetch |", "|---|---|---|---|---|"]
+    lines += [
+        "",
+        "## Indices",
+        "",
+        "| Tabela | Index | Idx Scan | Idx Tup Read | Idx Tup Fetch |",
+        "|---|---|---|---|---|",
+    ]
     for row in indexes:
         lines.append(
             f"| {row['table_name']} | {row['indexrelname']} | {row['idx_scan']} | "

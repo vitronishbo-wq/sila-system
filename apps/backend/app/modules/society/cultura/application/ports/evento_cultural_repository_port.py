@@ -1,12 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.society.cultura.domain.enums import StatusEventoCultural, TipoEventoCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    StatusEventoCultural,
+    TipoEventoCultural,
+)
 from apps.backend.app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
 
-class EventoCulturalRepositoryPort(ABC):
 
+class EventoCulturalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, evento: EventoCultural) -> EventoCultural:
         pass

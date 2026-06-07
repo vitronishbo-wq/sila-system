@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_035_gestao_fundiaria_orm_core"
 down_revision = "3261f0e24605"
 branch_labels = None
@@ -158,13 +157,27 @@ def upgrade() -> None:
         "CREATE INDEX IF NOT EXISTS ix_gf_imovel_inscricao ON gestao_fundiaria_imoveis (inscricao_imobiliaria)"
     )
     op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_tipo ON gestao_fundiaria_imoveis (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_natureza ON gestao_fundiaria_imoveis (natureza)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_regime ON gestao_fundiaria_imoveis (regime)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_situacao ON gestao_fundiaria_imoveis (situacao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_bairro ON gestao_fundiaria_imoveis (bairro)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_municipio ON gestao_fundiaria_imoveis (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_provincia ON gestao_fundiaria_imoveis (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_imovel_matricula_id ON gestao_fundiaria_imoveis (matricula_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_natureza ON gestao_fundiaria_imoveis (natureza)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_regime ON gestao_fundiaria_imoveis (regime)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_situacao ON gestao_fundiaria_imoveis (situacao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_bairro ON gestao_fundiaria_imoveis (bairro)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_municipio ON gestao_fundiaria_imoveis (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_provincia ON gestao_fundiaria_imoveis (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_imovel_matricula_id ON gestao_fundiaria_imoveis (matricula_id)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_gf_imovel_proprietario_id ON gestao_fundiaria_imoveis (proprietario_atual_id)"
     )
@@ -182,12 +195,18 @@ def upgrade() -> None:
         "CREATE INDEX IF NOT EXISTS ix_gf_proprietario_titularidade ON gestao_fundiaria_proprietarios (tipo_titularidade)"
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_oneracao_numero ON gestao_fundiaria_oneracoes (numero_oneracao)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_oneracao_numero ON gestao_fundiaria_oneracoes (numero_oneracao)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_gf_oneracao_imovel_inscricao ON gestao_fundiaria_oneracoes (imovel_inscricao)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_oneracao_tipo ON gestao_fundiaria_oneracoes (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_gf_oneracao_status ON gestao_fundiaria_oneracoes (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_oneracao_tipo ON gestao_fundiaria_oneracoes (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_gf_oneracao_status ON gestao_fundiaria_oneracoes (status)"
+    )
 
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_gf_desapropriacao_numero ON gestao_fundiaria_desapropriacoes (numero_processo)"

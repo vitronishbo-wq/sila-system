@@ -1,6 +1,5 @@
-from typing import Protocol, Any
+from typing import Any, Protocol
+
 
 class AggregationServicePort(Protocol):
-
-    def aggregate(self, *args, **kwargs) -> Any:
-        ...
+    def aggregate(self, *args, **kwargs) -> Any: ...

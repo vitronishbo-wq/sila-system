@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class BehavioralModel:
     """Behavioral AI for user/system anomaly detection"""
 

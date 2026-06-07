@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
 
-class EstadioRepositoryPort(ABC):
 
+class EstadioRepositoryPort(ABC):
     @abstractmethod
     async def save(self, estadio: Estadio) -> Estadio:
         raise NotImplementedError

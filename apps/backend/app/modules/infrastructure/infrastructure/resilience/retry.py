@@ -1,11 +1,17 @@
 from __future__ import annotations
-import asyncio
-from typing import Awaitable, Callable, TypeVar
-T = TypeVar('T')
 
-async def retry(operation: Callable[[], Awaitable[T]], *, attempts: int=3, base_delay_seconds: float=0.5) -> T:
+import asyncio
+from collections.abc import Awaitable, Callable
+from typing import TypeVar
+
+T = TypeVar("T")
+
+
+async def retry(
+    operation: Callable[[], Awaitable[T]], *, attempts: int = 3, base_delay_seconds: float = 0.5
+) -> T:
     if attempts < 1:
-        raise ValueError('attempts deve ser >= 1')
+        raise ValueError("attempts deve ser >= 1")
     last_error: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:

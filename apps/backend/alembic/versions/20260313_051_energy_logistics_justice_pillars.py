@@ -11,7 +11,6 @@ import sqlalchemy as sa
 from alembic import op
 from sqlalchemy.dialects.postgresql import UUID
 
-
 revision = "20260313_051_energy_logistics_justice_pillars"
 down_revision = "20260306_050_defesa_consumidor_reclamacoes"
 branch_labels = None
@@ -26,8 +25,12 @@ def upgrade() -> None:
         sa.Column("load_kw", sa.Float(), nullable=False),
         sa.Column("timestamp", sa.DateTime(timezone=True), nullable=False),
     )
-    op.create_index("ix_energy_telemetry_sensor_id", "energy_telemetry", ["sensor_id"], unique=False)
-    op.create_index("ix_energy_telemetry_timestamp", "energy_telemetry", ["timestamp"], unique=False)
+    op.create_index(
+        "ix_energy_telemetry_sensor_id", "energy_telemetry", ["sensor_id"], unique=False
+    )
+    op.create_index(
+        "ix_energy_telemetry_timestamp", "energy_telemetry", ["timestamp"], unique=False
+    )
 
     op.create_table(
         "energy_invoices",
@@ -50,14 +53,27 @@ def upgrade() -> None:
         sa.Column("data_pagamento", sa.Date(), nullable=True),
         sa.Column("valor_pago", sa.Numeric(14, 2), nullable=True),
         sa.Column("metodo_pagamento", sa.String(length=64), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()
+        ),
         sa.UniqueConstraint("numero_fatura", name="uq_energy_invoices_numero_fatura"),
     )
-    op.create_index("ix_energy_invoices_cpf_titular", "energy_invoices", ["cpf_titular"], unique=False)
-    op.create_index("ix_energy_invoices_consumo_id", "energy_invoices", ["consumo_id"], unique=False)
-    op.create_index("ix_energy_invoices_unidade_consumidora_id", "energy_invoices", ["unidade_consumidora_id"], unique=False)
+    op.create_index(
+        "ix_energy_invoices_cpf_titular", "energy_invoices", ["cpf_titular"], unique=False
+    )
+    op.create_index(
+        "ix_energy_invoices_consumo_id", "energy_invoices", ["consumo_id"], unique=False
+    )
+    op.create_index(
+        "ix_energy_invoices_unidade_consumidora_id",
+        "energy_invoices",
+        ["unidade_consumidora_id"],
+        unique=False,
+    )
     op.create_index("ix_energy_invoices_status", "energy_invoices", ["status"], unique=False)
-    op.create_index("ix_energy_invoices_mes_referencia", "energy_invoices", ["mes_referencia"], unique=False)
+    op.create_index(
+        "ix_energy_invoices_mes_referencia", "energy_invoices", ["mes_referencia"], unique=False
+    )
 
     op.create_table(
         "toll_passages",
@@ -66,9 +82,15 @@ def upgrade() -> None:
         sa.Column("gantry_id", sa.String(length=64), nullable=False),
         sa.Column("amount", sa.Numeric(14, 2), nullable=False),
         sa.Column("currency", sa.String(length=8), nullable=False, server_default="Kz"),
-        sa.Column("category", sa.String(length=64), nullable=False, server_default="TRANSPORT_TOLL"),
-        sa.Column("occurred_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
-        sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "category", sa.String(length=64), nullable=False, server_default="TRANSPORT_TOLL"
+        ),
+        sa.Column(
+            "occurred_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()
+        ),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()
+        ),
     )
     op.create_index("ix_toll_passages_vehicle_did", "toll_passages", ["vehicle_did"], unique=False)
     op.create_index("ix_toll_passages_gantry_id", "toll_passages", ["gantry_id"], unique=False)
@@ -88,13 +110,26 @@ def upgrade() -> None:
         sa.Column("status", sa.String(length=32), nullable=False, server_default="PENDING"),
         sa.Column("issued_by", sa.String(length=100), nullable=True),
         sa.Column("source_service", sa.String(length=64), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()
+        ),
     )
-    op.create_index("ix_traffic_violations_citizen_id", "traffic_violations", ["citizen_id"], unique=False)
-    op.create_index("ix_traffic_violations_vehicle_plate", "traffic_violations", ["vehicle_plate"], unique=False)
-    op.create_index("ix_traffic_violations_violation_code", "traffic_violations", ["violation_code"], unique=False)
+    op.create_index(
+        "ix_traffic_violations_citizen_id", "traffic_violations", ["citizen_id"], unique=False
+    )
+    op.create_index(
+        "ix_traffic_violations_vehicle_plate", "traffic_violations", ["vehicle_plate"], unique=False
+    )
+    op.create_index(
+        "ix_traffic_violations_violation_code",
+        "traffic_violations",
+        ["violation_code"],
+        unique=False,
+    )
     op.create_index("ix_traffic_violations_status", "traffic_violations", ["status"], unique=False)
-    op.create_index("ix_traffic_violations_occurred_at", "traffic_violations", ["occurred_at"], unique=False)
+    op.create_index(
+        "ix_traffic_violations_occurred_at", "traffic_violations", ["occurred_at"], unique=False
+    )
 
 
 def downgrade() -> None:

@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.desembarque import Desembarque
 
-class DesembarqueRepositoryPort(ABC):
 
+class DesembarqueRepositoryPort(ABC):
     @abstractmethod
     async def save(self, desembarque: Desembarque) -> Desembarque:
         pass

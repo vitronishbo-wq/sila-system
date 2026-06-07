@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.beneficio_repository_port import BeneficioRepositoryPort
-from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusBeneficio, TipoBeneficio
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.beneficio_repository_port import (
+    BeneficioRepositoryPort,
+)
+from apps.backend.app.modules.society.assistencia_social.domain.enums import (
+    StatusBeneficio,
+    TipoBeneficio,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.models import Beneficio
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficio_model import BeneficioModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.beneficio_model import (
+    BeneficioModel,
+)
+
 
 class SQLAlchemyBeneficioRepository(BeneficioRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -36,7 +46,11 @@ class SQLAlchemyBeneficioRepository(BeneficioRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[Beneficio]:
-        stmt = select(BeneficioModel).where(BeneficioModel.beneficiario_id == beneficiario_id).order_by(BeneficioModel.data_solicitacao.desc())
+        stmt = (
+            select(BeneficioModel)
+            .where(BeneficioModel.beneficiario_id == beneficiario_id)
+            .order_by(BeneficioModel.data_solicitacao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -55,4 +69,16 @@ class SQLAlchemyBeneficioRepository(BeneficioRepositoryPort):
 
     @staticmethod
     def _to_domain(model: BeneficioModel) -> Beneficio:
-        return Beneficio(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, programa_social_id=model.programa_social_id, tipo=TipoBeneficio(model.tipo), valor=model.valor, status=StatusBeneficio(model.status), data_solicitacao=model.data_solicitacao, data_concessao=model.data_concessao, data_fim=model.data_fim, motivo_status=model.motivo_status)
+        return Beneficio(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            programa_social_id=model.programa_social_id,
+            tipo=TipoBeneficio(model.tipo),
+            valor=model.valor,
+            status=StatusBeneficio(model.status),
+            data_solicitacao=model.data_solicitacao,
+            data_concessao=model.data_concessao,
+            data_fim=model.data_fim,
+            motivo_status=model.motivo_status,
+        )

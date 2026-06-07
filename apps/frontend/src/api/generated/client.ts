@@ -1,11 +1,13 @@
 import createClient from 'openapi-fetch';
-import type { paths } from './schema';
+import type { paths } from '@/api/generated/schema';
+import { API_ORIGIN } from '@/utils/runtime';
 
-const rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-const API_BASE_URL = rawBaseUrl.replace(/\/api(?:\/v1)?\/?$/, '');
+const API_BASE_URL = API_ORIGIN || '';
 
 const authFetch: typeof fetch = async (input, init) => {
-  const token = localStorage.getItem('access_token') || localStorage.getItem('token');
+  const token = localStorage.getItem('access_token')
+    || localStorage.getItem('token')
+    || localStorage.getItem('citizen_token');
   const headers = new Headers(init?.headers);
 
   if (token) {

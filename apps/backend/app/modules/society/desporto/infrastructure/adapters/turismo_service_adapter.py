@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
+
+from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import (
+    TurismoServicePort,
+)
+
 
 class TurismoServiceAdapter(TurismoServicePort):
-
     def __init__(self, atracao_service):
         self._atracao_service = atracao_service
 

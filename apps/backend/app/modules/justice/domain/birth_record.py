@@ -1,3 +1,5 @@
 class BirthRecord:
     pass
-__all__ = ['BirthRecord']
+
+
+__all__ = ["BirthRecord"]

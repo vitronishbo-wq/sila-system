@@ -1,15 +1,24 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import IntercambioJuvenilRepositoryPort
+
+from apps.backend.app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import (
+    IntercambioJuvenilRepositoryPort,
+)
 from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusIntercambio
-from apps.backend.app.modules.society.juventude.domain.models.intercambio_juvenil import IntercambioJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.intercambio_juvenil_model import IntercambioJuvenilModel
+from apps.backend.app.modules.society.juventude.domain.models.intercambio_juvenil import (
+    IntercambioJuvenil,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.models.intercambio_juvenil_model import (
+    IntercambioJuvenilModel,
+)
+
 
 class SQLAlchemyIntercambioJuvenilRepository(IntercambioJuvenilRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -38,22 +47,34 @@ class SQLAlchemyIntercambioJuvenilRepository(IntercambioJuvenilRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_intercambio: str) -> IntercambioJuvenil | None:
-        stmt = select(IntercambioJuvenilModel).where(IntercambioJuvenilModel.codigo_intercambio == codigo_intercambio.strip())
+        stmt = select(IntercambioJuvenilModel).where(
+            IntercambioJuvenilModel.codigo_intercambio == codigo_intercambio.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_all(self) -> list[IntercambioJuvenil]:
-        stmt = select(IntercambioJuvenilModel).order_by(IntercambioJuvenilModel.data_cadastro.desc())
+        stmt = select(IntercambioJuvenilModel).order_by(
+            IntercambioJuvenilModel.data_cadastro.desc()
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[IntercambioJuvenil]:
-        stmt = select(IntercambioJuvenilModel).where(IntercambioJuvenilModel.jovem_id == jovem_id).order_by(IntercambioJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(IntercambioJuvenilModel)
+            .where(IntercambioJuvenilModel.jovem_id == jovem_id)
+            .order_by(IntercambioJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusIntercambio) -> list[IntercambioJuvenil]:
-        stmt = select(IntercambioJuvenilModel).where(IntercambioJuvenilModel.status == status.value).order_by(IntercambioJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(IntercambioJuvenilModel)
+            .where(IntercambioJuvenilModel.status == status.value)
+            .order_by(IntercambioJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -67,10 +88,27 @@ class SQLAlchemyIntercambioJuvenilRepository(IntercambioJuvenilRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(IntercambioJuvenilModel).where(IntercambioJuvenilModel.codigo_intercambio.like(f'INT/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(IntercambioJuvenilModel)
+            .where(IntercambioJuvenilModel.codigo_intercambio.like(f"INT/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'INT/{ano}/{count + 1:05d}'
+        return f"INT/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: IntercambioJuvenilModel) -> IntercambioJuvenil:
-        return IntercambioJuvenil(id=model.id, codigo_intercambio=model.codigo_intercambio, jovem_id=model.jovem_id, pais_destino=model.pais_destino, instituicao_destino=model.instituicao_destino, area_interesse=AreaInteresse(model.area_interesse), data_inicio=model.data_inicio, data_fim=model.data_fim, status=StatusIntercambio(model.status), data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativo=model.ativo)
+        return IntercambioJuvenil(
+            id=model.id,
+            codigo_intercambio=model.codigo_intercambio,
+            jovem_id=model.jovem_id,
+            pais_destino=model.pais_destino,
+            instituicao_destino=model.instituicao_destino,
+            area_interesse=AreaInteresse(model.area_interesse),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            status=StatusIntercambio(model.status),
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

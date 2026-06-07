@@ -1,9 +1,19 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, StatusVeiculoOperacional, TipoVeiculo, TipoViagem
+
+from apps.backend.app.modules.logistics.domain.enums import (
+    ModalTransporte,
+    StatusLinha,
+    StatusVeiculoOperacional,
+    TipoVeiculo,
+    TipoViagem,
+)
+
 
 class LinhaCreate(BaseModel):
     nome: str
@@ -24,17 +34,21 @@ class LinhaCreate(BaseModel):
     codigo_corredor: str | None = None
     observacoes: str | None = None
 
+
 class LinhaVincularVeiculoInput(BaseModel):
     placa: str
 
+
 class LinhaTarifaInput(BaseModel):
     valor: Decimal
+
 
 class LinhaIndicadoresInput(BaseModel):
     demanda_media_diaria: int | None = None
     ocupacao_media: Decimal | None = None
     regularidade: Decimal | None = None
     pontualidade: Decimal | None = None
+
 
 class LinhaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -65,6 +79,7 @@ class LinhaResponse(BaseModel):
     veiculos_ativos: list[dict] = Field(default_factory=list)
     trilha_auditoria: list[dict] = Field(default_factory=list)
 
+
 class VeiculoCreate(BaseModel):
     placa: str
     tipo: TipoVeiculo
@@ -78,6 +93,7 @@ class VeiculoCreate(BaseModel):
     capacidade_passageiros: int | None = None
     operadora_id: UUID | None = None
     observacoes: str | None = None
+
 
 class VeiculoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

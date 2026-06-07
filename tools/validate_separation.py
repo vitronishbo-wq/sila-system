@@ -15,13 +15,11 @@ Uso:
     python tools/validate_separation.py --all
 """
 
-import os
+import argparse
 import re
 import sys
-import argparse
-from pathlib import Path
-from typing import List, Dict, Set, Tuple
 from collections import defaultdict
+from pathlib import Path
 
 
 class SeparationValidator:
@@ -32,11 +30,11 @@ class SeparationValidator:
         self.check_all = check_all
         self.root_path = Path("backend")
 
-        self.errors: List[Dict] = []
-        self.warnings: List[Dict] = []
-        self.stats: Dict = defaultdict(int)
+        self.errors: list[dict] = []
+        self.warnings: list[dict] = []
+        self.stats: dict = defaultdict(int)
 
-    def get_modules_to_check(self) -> List[Path]:
+    def get_modules_to_check(self) -> list[Path]:
         """Retorna lista de módulos para verificar."""
         if self.module_path:
             return [self.module_path]
@@ -48,7 +46,7 @@ class SeparationValidator:
 
         return []
 
-    def extract_classes(self, content: str, class_type: str) -> Set[str]:
+    def extract_classes(self, content: str, class_type: str) -> set[str]:
         """
         Extrai nomes de classes de um tipo específico.
 
@@ -71,7 +69,7 @@ class SeparationValidator:
 
         return classes
 
-    def check_models_file(self, models_path: Path) -> Dict:
+    def check_models_file(self, models_path: Path) -> dict:
         """Verifica models.py."""
         result = {
             "path": str(models_path),
@@ -84,13 +82,11 @@ class SeparationValidator:
         if not models_path.exists():
             return result
 
-        with open(models_path, "r", encoding="utf-8") as f:
+        with open(models_path, encoding="utf-8") as f:
             content = f.read()
 
         # Verifica imports
-        result["has_pydantic_import"] = bool(
-            re.search(r"from pydantic import", content)
-        )
+        result["has_pydantic_import"] = bool(re.search(r"from pydantic import", content))
         result["has_sqlalchemy_import"] = bool(re.search(r"from sqlalchemy", content))
 
         # Extrai classes
@@ -99,7 +95,7 @@ class SeparationValidator:
 
         return result
 
-    def check_schemas_file(self, schemas_path: Path) -> Dict:
+    def check_schemas_file(self, schemas_path: Path) -> dict:
         """Verifica schemas.py."""
         result = {
             "path": str(schemas_path),
@@ -112,13 +108,11 @@ class SeparationValidator:
         if not schemas_path.exists():
             return result
 
-        with open(schemas_path, "r", encoding="utf-8") as f:
+        with open(schemas_path, encoding="utf-8") as f:
             content = f.read()
 
         # Verifica imports
-        result["has_pydantic_import"] = bool(
-            re.search(r"from pydantic import", content)
-        )
+        result["has_pydantic_import"] = bool(re.search(r"from pydantic import", content))
         result["has_sqlalchemy_import"] = bool(re.search(r"from sqlalchemy", content))
 
         # Extrai classes
@@ -127,7 +121,7 @@ class SeparationValidator:
 
         return result
 
-    def validate_module(self, module_path: Path) -> Tuple[List[Dict], List[Dict]]:
+    def validate_module(self, module_path: Path) -> tuple[list[dict], list[dict]]:
         """
         Valida um módulo específico.
 
@@ -230,7 +224,7 @@ class SeparationValidator:
 
         # Relatório do módulo
         if not errors and not warnings:
-            print(f"   ✅ Separação correta!")
+            print("   ✅ Separação correta!")
 
         if models_info["orm_classes"]:
             print(f"   📊 {len(models_info['orm_classes'])} modelos ORM")
@@ -265,7 +259,7 @@ class SeparationValidator:
         print("📊 RELATÓRIO FINAL")
         print("=" * 60)
 
-        print(f"\n✅ Estatísticas:")
+        print("\n✅ Estatísticas:")
         print(f"   • Modelos ORM: {self.stats['total_orm_classes']}")
         print(f"   • Schemas Pydantic: {self.stats['total_pydantic_classes']}")
 

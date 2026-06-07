@@ -1,8 +1,9 @@
-from enum import Enum
+from enum import StrEnum
 
-class TenderStatus(str, Enum):
-    DRAFT = 'draft'
-    OPEN = 'open'
-    EVALUATION = 'evaluation'
-    AWARDED = 'awarded'
-    CANCELLED = 'cancelled'
+
+class TenderStatus(StrEnum):
+    DRAFT = "draft"
+    OPEN = "open"
+    EVALUATION = "evaluation"
+    AWARDED = "awarded"
+    CANCELLED = "cancelled"

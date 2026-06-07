@@ -1,8 +1,11 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCadastroAmbiental
+
 
 @dataclass
 class CadastroAmbiental:
@@ -20,18 +23,39 @@ class CadastroAmbiental:
     pendencias: list[str] | None = None
 
     @classmethod
-    def registrar(cls, *, codigo_zoneamento: str, codigo_propriedade: str, reserva_legal_percentual: float, app_percentual: float, area_protecao_ha: float, numero_processo: str | None=None) -> 'CadastroAmbiental':
+    def registrar(
+        cls,
+        *,
+        codigo_zoneamento: str,
+        codigo_propriedade: str,
+        reserva_legal_percentual: float,
+        app_percentual: float,
+        area_protecao_ha: float,
+        numero_processo: str | None = None,
+    ) -> CadastroAmbiental:
         if not 0 <= reserva_legal_percentual <= 100:
-            raise ValueError('Reserva legal percentual deve estar entre 0 e 100')
+            raise ValueError("Reserva legal percentual deve estar entre 0 e 100")
         if not 0 <= app_percentual <= 100:
-            raise ValueError('APP percentual deve estar entre 0 e 100')
+            raise ValueError("APP percentual deve estar entre 0 e 100")
         if area_protecao_ha < 0:
-            raise ValueError('Area de protecao nao pode ser negativa')
-        return cls(id=uuid4(), codigo_cadastro_ambiental='', codigo_zoneamento=codigo_zoneamento, codigo_propriedade=codigo_propriedade, reserva_legal_percentual=round(reserva_legal_percentual, 2), app_percentual=round(app_percentual, 2), area_protecao_ha=round(area_protecao_ha, 2), status=StatusCadastroAmbiental.PENDENTE, data_registro=date.today(), numero_processo=numero_processo, pendencias=[])
+            raise ValueError("Area de protecao nao pode ser negativa")
+        return cls(
+            id=uuid4(),
+            codigo_cadastro_ambiental="",
+            codigo_zoneamento=codigo_zoneamento,
+            codigo_propriedade=codigo_propriedade,
+            reserva_legal_percentual=round(reserva_legal_percentual, 2),
+            app_percentual=round(app_percentual, 2),
+            area_protecao_ha=round(area_protecao_ha, 2),
+            status=StatusCadastroAmbiental.PENDENTE,
+            data_registro=date.today(),
+            numero_processo=numero_processo,
+            pendencias=[],
+        )
 
     def validar(self, numero_processo: str) -> None:
         if self.pendencias:
-            raise ValueError('Nao e possivel validar cadastro com pendencias')
+            raise ValueError("Nao e possivel validar cadastro com pendencias")
         self.status = StatusCadastroAmbiental.VALIDADO
         self.numero_processo = numero_processo
         self.data_validacao = date.today()

@@ -1,16 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import (
+    ProjetoCulturalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    NaturezaProjetoCultural,
+    StatusProjetoCultural,
+    TipoProjetoCultural,
+)
 from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
-from apps.backend.app.modules.society.cultura.infrastructure.models.projeto_cultural_model import ProjetoCulturalModel
+from apps.backend.app.modules.society.cultura.infrastructure.models.projeto_cultural_model import (
+    ProjetoCulturalModel,
+)
+
 
 class SQLAlchemyProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -46,7 +57,9 @@ class SQLAlchemyProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_projeto: str) -> ProjetoCultural | None:
-        stmt = select(ProjetoCulturalModel).where(ProjetoCulturalModel.codigo_projeto == codigo_projeto.strip())
+        stmt = select(ProjetoCulturalModel).where(
+            ProjetoCulturalModel.codigo_projeto == codigo_projeto.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -56,17 +69,30 @@ class SQLAlchemyProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoProjetoCultural) -> list[ProjetoCultural]:
-        stmt = select(ProjetoCulturalModel).where(ProjetoCulturalModel.tipo == tipo.value).order_by(ProjetoCulturalModel.data_submissao.desc())
+        stmt = (
+            select(ProjetoCulturalModel)
+            .where(ProjetoCulturalModel.tipo == tipo.value)
+            .order_by(ProjetoCulturalModel.data_submissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusProjetoCultural) -> list[ProjetoCultural]:
-        stmt = select(ProjetoCulturalModel).where(ProjetoCulturalModel.status == status.value).order_by(ProjetoCulturalModel.data_submissao.desc())
+        stmt = (
+            select(ProjetoCulturalModel)
+            .where(ProjetoCulturalModel.status == status.value)
+            .order_by(ProjetoCulturalModel.data_submissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[ProjetoCultural]:
-        stmt = select(ProjetoCulturalModel).where(ProjetoCulturalModel.data_submissao >= data_inicio).where(ProjetoCulturalModel.data_submissao <= data_fim).order_by(ProjetoCulturalModel.data_submissao.desc())
+        stmt = (
+            select(ProjetoCulturalModel)
+            .where(ProjetoCulturalModel.data_submissao >= data_inicio)
+            .where(ProjetoCulturalModel.data_submissao <= data_fim)
+            .order_by(ProjetoCulturalModel.data_submissao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -80,10 +106,36 @@ class SQLAlchemyProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(ProjetoCulturalModel).where(ProjetoCulturalModel.codigo_projeto.like(f'PROJ/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(ProjetoCulturalModel)
+            .where(ProjetoCulturalModel.codigo_projeto.like(f"PROJ/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'PROJ/{ano}/{count + 1:05d}'
+        return f"PROJ/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: ProjetoCulturalModel) -> ProjetoCultural:
-        return ProjetoCultural(id=model.id, codigo_projeto=model.codigo_projeto, titulo=model.titulo, tipo=TipoProjetoCultural(model.tipo), natureza=NaturezaProjetoCultural(model.natureza), proponente_cpf_cnpj=model.proponente_cpf_cnpj, proponente_nome=model.proponente_nome, resumo=model.resumo, valor_solicitado=Decimal(model.valor_solicitado), data_submissao=model.data_submissao, status=StatusProjetoCultural(model.status), justificativa=model.justificativa, edital_id=model.edital_id, valor_aprovado=Decimal(model.valor_aprovado) if model.valor_aprovado is not None else None, data_inicio=model.data_inicio, data_fim=model.data_fim, ativo=model.ativo, objetivos=list(model.objetivos or []), observacoes=model.observacoes)
+        return ProjetoCultural(
+            id=model.id,
+            codigo_projeto=model.codigo_projeto,
+            titulo=model.titulo,
+            tipo=TipoProjetoCultural(model.tipo),
+            natureza=NaturezaProjetoCultural(model.natureza),
+            proponente_cpf_cnpj=model.proponente_cpf_cnpj,
+            proponente_nome=model.proponente_nome,
+            resumo=model.resumo,
+            valor_solicitado=Decimal(model.valor_solicitado),
+            data_submissao=model.data_submissao,
+            status=StatusProjetoCultural(model.status),
+            justificativa=model.justificativa,
+            edital_id=model.edital_id,
+            valor_aprovado=Decimal(model.valor_aprovado)
+            if model.valor_aprovado is not None
+            else None,
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            ativo=model.ativo,
+            objetivos=list(model.objetivos or []),
+            observacoes=model.observacoes,
+        )

@@ -1,10 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.resources.florestas.domain.enums import TipoCicloCorte, TipoManejo
+
 
 class UnidadeManejoCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -13,6 +16,7 @@ class UnidadeManejoCreate(BaseModel):
     ciclo_corte: TipoCicloCorte
     operador_id: UUID
     imovel_id: UUID
+
 
 class UnidadeManejoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -27,5 +31,5 @@ class UnidadeManejoResponse(BaseModel):
     operador_id: UUID
     imovel_id: UUID
     data_criacao: date
-    plano_manejo_id: Optional[UUID] = None
-    licenca_id: Optional[UUID] = None
+    plano_manejo_id: UUID | None = None
+    licenca_id: UUID | None = None

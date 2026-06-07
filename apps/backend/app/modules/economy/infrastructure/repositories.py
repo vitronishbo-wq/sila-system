@@ -1,14 +1,16 @@
 """
 Repository pattern for economy module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class EconomyRepository(ABC):
     """Abstract repository for economy."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get economy by ID."""
         pass
 
@@ -23,9 +25,10 @@ class EconomyRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all economy."""
         pass
+
 
 class EconomyMemoryRepository(EconomyRepository):
     """In-memory repository for economy."""
@@ -33,7 +36,7 @@ class EconomyMemoryRepository(EconomyRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class EconomyMemoryRepository(EconomyRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

@@ -1,2 +1,3 @@
-from app.core.celery import app as celery_app
-__all__ = ('celery_app',)
+from apps.backend.app.core.celery import app as celery_app
+
+__all__ = ("celery_app",)

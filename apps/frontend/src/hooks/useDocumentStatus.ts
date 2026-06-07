@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
+import { API_V1_BASE_URL } from "@/utils/runtime";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "/api/v1";
+const API_BASE_URL = API_V1_BASE_URL;
 
 export interface StatusUpdate {
     id: string;

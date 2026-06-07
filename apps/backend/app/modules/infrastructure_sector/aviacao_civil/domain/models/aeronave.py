@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from uuid import UUID, uuid4
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import CategoriaAeronave, StatusAeronavegabilidade, TipoAeronave
+
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import (
+    CategoriaAeronave,
+    StatusAeronavegabilidade,
+    TipoAeronave,
+)
+
 
 @dataclass
 class Aeronave:
@@ -30,15 +37,15 @@ class Aeronave:
         self.matricula = self.matricula.strip().upper()
         self.numero_serie = self.numero_serie.strip().upper()
         if self.ano_fabricacao < 1903:
-            raise ValueError('Ano de fabricacao invalido')
+            raise ValueError("Ano de fabricacao invalido")
         if not self.matricula:
-            raise ValueError('Matricula obrigatoria')
+            raise ValueError("Matricula obrigatoria")
 
-    def registrar_voo(self, horas: float, ciclos: int=1) -> None:
+    def registrar_voo(self, horas: float, ciclos: int = 1) -> None:
         if horas <= 0:
-            raise ValueError('Horas de voo devem ser positivas')
+            raise ValueError("Horas de voo devem ser positivas")
         if ciclos <= 0:
-            raise ValueError('Ciclos devem ser positivos')
+            raise ValueError("Ciclos devem ser positivos")
         self.horas_voadas_total += horas
         self.ciclos_total += ciclos
         self._avaliar_aeronavegabilidade()

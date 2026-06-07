@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260228_007_edu_f2_f7"
 down_revision = "20260228_006_saude_status_ck"
 branch_labels = None
@@ -92,7 +91,9 @@ def _create_workflow_table(table: str) -> None:
         """
     )
 
-    op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table}_numero_processo ON {table} (numero_processo)")
+    op.execute(
+        f"CREATE INDEX IF NOT EXISTS ix_{table}_numero_processo ON {table} (numero_processo)"
+    )
     op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table}_service_type ON {table} (service_type)")
     op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table}_citizen_id ON {table} (citizen_id)")
     op.execute(f"CREATE INDEX IF NOT EXISTS ix_{table}_instituicao_id ON {table} (instituicao_id)")

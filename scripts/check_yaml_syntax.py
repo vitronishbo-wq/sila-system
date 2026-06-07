@@ -3,15 +3,16 @@
 Script para verificar sintaxe YAML dos arquivos principais
 """
 
-import yaml
 import sys
 from pathlib import Path
+
+import yaml
 
 
 def check_yaml_file(file_path):
     """Verifica sintaxe de um arquivo YAML"""
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             yaml.safe_load(f)
         print(f"✅ {file_path} - YAML válido")
         return True

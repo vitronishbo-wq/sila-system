@@ -1,6 +1,9 @@
-from typing import List, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.identity.domain.ports.aggregate_repository_port import AggregateRepositoryPort
+
+from apps.backend.app.modules.identity.domain.ports.aggregate_repository_port import (
+    AggregateRepositoryPort,
+)
+
 
 class SQLAlchemyAggregateRepository(AggregateRepositoryPort):
     """Adapter: Generic SQLAlchemy repository for identity aggregates."""
@@ -19,11 +22,11 @@ class SQLAlchemyAggregateRepository(AggregateRepositoryPort):
         await self.session.merge(aggregate)
         await self.session.flush()
 
-    async def get_by_id(self, id: str) -> Optional[object]:
+    async def get_by_id(self, id: str) -> object | None:
         """Get aggregate by ID."""
         return await self.session.get(self.model_class, id)
 
-    async def list_all(self, limit: int=100, offset: int=0) -> List[object]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[object]:
         """List all aggregates."""
         return []
 

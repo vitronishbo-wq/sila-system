@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusVestigio
 from apps.backend.app.modules.public_security.domain.models.vestigio import Vestigio
 
-class VestigioRepositoryPort(ABC):
 
+class VestigioRepositoryPort(ABC):
     @abstractmethod
     async def save(self, vestigio: Vestigio) -> Vestigio:
         raise NotImplementedError

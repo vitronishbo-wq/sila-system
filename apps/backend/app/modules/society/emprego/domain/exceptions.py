@@ -1,8 +1,15 @@
-"""Domain exceptions for Emprego module"""
-from apps.backend.core.exceptions.factory import ExceptionFactory
-exc = ExceptionFactory.create_module_exceptions('Emprego')
-EmpregoException = exc.Base
-EmpregoNotFound = exc.NotFound
-EmpregoValidationError = exc.ValidationError
-EmpregoInvalidStateError = exc.InvalidStateError
-__all__ = ['EmpregoException', 'EmpregoNotFound', 'EmpregoValidationError', 'EmpregoInvalidStateError']
+from __future__ import annotations
+
+
+class EmpregoError(Exception):
+    pass
+
+
+class CandidatoAlreadyExistsError(EmpregoError):
+    pass
+
+class CandidatoNotFoundError(EmpregoError):
+    pass
+
+class CitizenNotFoundError(EmpregoError):
+    pass

@@ -1,10 +1,11 @@
-from typing import List, Optional
-from sqlalchemy import select, delete
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ...domain.models.invoice import Invoice
+
 from ...domain.models.enums import InvoiceStatus
+from ...domain.models.invoice import Invoice
 from ...domain.ports.invoice_repository_port import InvoiceRepositoryPort
 from ..models import EconomyInvoiceModel
+
 
 class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
     """Adapter: SQLAlchemy implementation of InvoiceRepositoryPort for Economy module."""
@@ -26,7 +27,7 @@ class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
         await self.session.flush()
         return self._to_domain(model)
 
-    async def get_by_id(self, invoice_id: str) -> Optional[Invoice]:
+    async def get_by_id(self, invoice_id: str) -> Invoice | None:
         """Get invoice by ID."""
         result = await self.session.execute(
             select(EconomyInvoiceModel).where(EconomyInvoiceModel.id == invoice_id)
@@ -34,7 +35,7 @@ class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
         model = result.scalars().first()
         return self._to_domain(model) if model else None
 
-    async def get_by_citizen(self, citizen_id: str) -> List[Invoice]:
+    async def get_by_citizen(self, citizen_id: str) -> list[Invoice]:
         """List invoices for citizen."""
         result = await self.session.execute(
             select(EconomyInvoiceModel)
@@ -43,7 +44,7 @@ class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
         )
         return [self._to_domain(item) for item in result.scalars().all()]
 
-    async def get_pending(self, citizen_id: str) -> List[Invoice]:
+    async def get_pending(self, citizen_id: str) -> list[Invoice]:
         """List pending/overdue invoices for citizen."""
         result = await self.session.execute(
             select(EconomyInvoiceModel)
@@ -57,7 +58,7 @@ class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
         )
         return [self._to_domain(item) for item in result.scalars().all()]
 
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Invoice]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Invoice]:
         """List all invoices."""
         result = await self.session.execute(
             select(EconomyInvoiceModel)
@@ -87,7 +88,9 @@ class SQLAlchemyInvoiceRepository(InvoiceRepositoryPort):
             service_name=invoice.service_name,
             amount=invoice.amount,
             currency=invoice.currency,
-            status=invoice.status.value if hasattr(invoice.status, 'value') else str(invoice.status),
+            status=invoice.status.value
+            if hasattr(invoice.status, "value")
+            else str(invoice.status),
             due_date=invoice.due_date,
             request_id=invoice.request_id,
             paid_at=invoice.paid_at,

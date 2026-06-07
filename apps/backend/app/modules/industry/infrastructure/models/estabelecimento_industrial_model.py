@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from uuid import UUID
-from apps.backend.app.modules.industry.domain.enums import PorteIndustrial, RamoIndustrial, StatusEstabelecimento, TipoEstabelecimento
+
+from apps.backend.app.modules.industry.domain.enums import (
+    PorteIndustrial,
+    RamoIndustrial,
+    StatusEstabelecimento,
+    TipoEstabelecimento,
+)
+
 
 @dataclass
 class EstabelecimentoIndustrialModel:

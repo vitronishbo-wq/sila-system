@@ -14,15 +14,14 @@ Variáveis de ambiente:
 """
 
 import asyncio
-import httpx
-import json
 import os
 from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
+from enum import StrEnum
+
+import httpx
 
 
-class TestLevel(str, Enum):
+class TestLevel(StrEnum):
     SUPERUSER = "superuser"
     CENTRAL = "central"
     PROVINCIAL = "provincial"
@@ -33,6 +32,7 @@ class TestLevel(str, Enum):
 @dataclass
 class TestUser:
     """Representa um usuário de teste."""
+
     email: str
     password: str
     level: TestLevel
@@ -48,10 +48,25 @@ TEST_SCENARIOS = {
         password="TestPassword@123",
         level=TestLevel.SUPERUSER,
         expected_menu_items=[
-            "Dashboard", "Identidade", "Cidadania", "Documentos", "Justiça",
-            "Registo Civil", "Saúde", "Localização", "Urbanismo", "Saneamento",
-            "Educação", "Governança", "Reclamações", "Comercial", "Marcacoes",
-            "Notificações", "Relatórios", "Estatísticas", "Configurações"
+            "Dashboard",
+            "Identidade",
+            "Cidadania",
+            "Documentos",
+            "Justiça",
+            "Registo Civil",
+            "Saúde",
+            "Localização",
+            "Urbanismo",
+            "Saneamento",
+            "Educação",
+            "Governança",
+            "Reclamações",
+            "Comercial",
+            "Marcacoes",
+            "Notificações",
+            "Relatórios",
+            "Estatísticas",
+            "Configurações",
         ],
         forbidden_routes=[],
         allowed_routes=["/dashboard", "/admin/users", "/settings/system", "/reports/national"],
@@ -60,9 +75,7 @@ TEST_SCENARIOS = {
         email="central@sila.test",
         password="TestPassword@123",
         level=TestLevel.CENTRAL,
-        expected_menu_items=[
-            "Dashboard", "Cidadania", "Governança", "Relatórios", "Estatísticas"
-        ],
+        expected_menu_items=["Dashboard", "Cidadania", "Governança", "Relatórios", "Estatísticas"],
         forbidden_routes=["/admin/users", "/settings"],
         allowed_routes=["/dashboard", "/reports/national"],
     ),
@@ -70,9 +83,7 @@ TEST_SCENARIOS = {
         email="provincial@sila.test",
         password="TestPassword@123",
         level=TestLevel.PROVINCIAL,
-        expected_menu_items=[
-            "Dashboard", "Governança", "Relatórios", "Justiça"
-        ],
+        expected_menu_items=["Dashboard", "Governança", "Relatórios", "Justiça"],
         forbidden_routes=["/admin/users", "/settings/system", "/statistics"],
         allowed_routes=["/dashboard", "/reports/national"],
     ),
@@ -81,9 +92,18 @@ TEST_SCENARIOS = {
         password="TestPassword@123",
         level=TestLevel.MUNICIPAL,
         expected_menu_items=[
-            "Dashboard", "Identidade", "Documentos", "Registo Civil", "Saúde",
-            "Localização", "Urbanismo", "Saneamento", "Educação", "Reclamações",
-            "Comercial", "Marcacoes"
+            "Dashboard",
+            "Identidade",
+            "Documentos",
+            "Registo Civil",
+            "Saúde",
+            "Localização",
+            "Urbanismo",
+            "Saneamento",
+            "Educação",
+            "Reclamações",
+            "Comercial",
+            "Marcacoes",
         ],
         forbidden_routes=["/admin/users", "/settings/system", "/statistics", "/cidadania"],
         allowed_routes=["/dashboard", "/identity"],
@@ -94,8 +114,13 @@ TEST_SCENARIOS = {
         level=TestLevel.OPERADOR,
         expected_menu_items=["Dashboard", "Notificações"],
         forbidden_routes=[
-            "/admin/users", "/settings", "/statistics", "/reports",
-            "/identity", "/documents", "/citizenship"
+            "/admin/users",
+            "/settings",
+            "/statistics",
+            "/reports",
+            "/identity",
+            "/documents",
+            "/citizenship",
         ],
         allowed_routes=["/dashboard"],
     ),
@@ -112,11 +137,11 @@ class PermissionTester:
         self.results = []
         self.verbose = False
 
-        print(f"\n⚙️  Configuração de URLs:")
+        print("\n⚙️  Configuração de URLs:")
         print(f"    API:      {self.api_url}")
         print(f"    Frontend: {self.base_url}")
 
-    async def login(self, user: TestUser) -> Optional[str]:
+    async def login(self, user: TestUser) -> str | None:
         """Faz login e retorna o token de acesso."""
         async with httpx.AsyncClient() as client:
             try:
@@ -135,7 +160,9 @@ class PermissionTester:
                 print(f"  ❌ Erro de conexão: {e}")
                 return None
 
-    async def test_route_access(self, user: TestUser, token: str, route: str, should_allow: bool) -> bool:
+    async def test_route_access(
+        self, user: TestUser, token: str, route: str, should_allow: bool
+    ) -> bool:
         """Testa se uma rota é acessível."""
         async with httpx.AsyncClient() as client:
             try:
@@ -145,16 +172,16 @@ class PermissionTester:
                     follow_redirects=True,
                     timeout=5,
                 )
-                
+
                 if should_allow:
                     success = response.status_code != 401 and response.status_code != 403
                 else:
                     success = response.status_code in [401, 403]
-                
+
                 if self.verbose:
                     status = "✅" if success else "❌"
                     print(f"    {status} {route}: {response.status_code}")
-                
+
                 return success
             except Exception as e:
                 if self.verbose:
@@ -177,17 +204,19 @@ class PermissionTester:
         }
 
         # Teste 1: Login
-        print(f"  📝 Testando login...")
+        print("  📝 Testando login...")
         token = await self.login(user)
         if token:
             results["login"] = True
-            print(f"    ✅ Login bem-sucedido")
+            print("    ✅ Login bem-sucedido")
         else:
-            print(f"    ❌ Login falhou")
+            print("    ❌ Login falhou")
             return results
 
         # Teste 2: Simular menu items (baseado em JSON armazenado)
-        print(f"  📋 Testando visibilidade de menu ({len(user.expected_menu_items)} itens esperados)")
+        print(
+            f"  📋 Testando visibilidade de menu ({len(user.expected_menu_items)} itens esperados)"
+        )
         results["menu_items"] = len(user.expected_menu_items)
         results["passed_tests"] += len(user.expected_menu_items)
         print(f"    ✅ {len(user.expected_menu_items)} itens esperados na tela")
@@ -219,7 +248,7 @@ class PermissionTester:
         print("=" * 60)
 
         results = []
-        for level, user in TEST_SCENARIOS.items():
+        for _level, user in TEST_SCENARIOS.items():
             try:
                 result = await self.test_user_level(user)
                 results.append(result)
@@ -243,7 +272,7 @@ class PermissionTester:
             print(f"\n{status} {result['level'].upper():<15} ({result['email']})")
             print(f"   Login: {'✅' if result['login'] else '❌'}")
             print(f"   Menu items: {result['menu_items']}")
-            if result['total_tests'] > 0:
+            if result["total_tests"] > 0:
                 print(f"   Testes: {passed}/{result['total_tests']} ({percentage:.0f}%)")
 
         print("\n" + "=" * 60)
@@ -254,6 +283,7 @@ class PermissionTester:
 async def main():
     """Função principal."""
     import sys
+
     verbose = "--verbose" in sys.argv or "-v" in sys.argv
 
     # Lê URLs de variáveis de ambiente

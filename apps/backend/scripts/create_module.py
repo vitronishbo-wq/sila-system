@@ -5,9 +5,8 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
@@ -88,9 +87,7 @@ def scaffold_module(name: str, force: bool = False) -> dict[str, int]:
     created += int(
         _write_file(
             module_root / "infrastructure" / "repository.py",
-            "class Repository:\n"
-            '    """Infrastructure adapter placeholder."""\n\n'
-            "    pass\n",
+            'class Repository:\n    """Infrastructure adapter placeholder."""\n\n    pass\n',
             force,
         )
     )
@@ -141,16 +138,17 @@ def scaffold_module(name: str, force: bool = False) -> dict[str, int]:
 
 
 async def register_module_catalog(name: str, order: int | None) -> None:
+    from apps.backend.app.core.catalog.models.module import Module
+    from apps.backend.app.core.db import AsyncSessionLocal
     from sqlalchemy import select
-
-    from app.core.catalog.models.module import Module
-    from app.core.db import AsyncSessionLocal
 
     slug = slugify(name)
     title = " ".join(part.capitalize() for part in slug.split("-"))
 
     async with AsyncSessionLocal() as session:
-        existing = (await session.execute(select(Module).where(Module.slug == slug))).scalars().first()
+        existing = (
+            (await session.execute(select(Module).where(Module.slug == slug))).scalars().first()
+        )
         if existing:
             existing.title = title
             existing.description = f"Modulo {title} criado por scaffolder."
@@ -175,13 +173,17 @@ async def register_module_catalog(name: str, order: int | None) -> None:
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Create standardized backend module scaffold.")
     parser.add_argument("name", help="Module name or slug.")
-    parser.add_argument("--force", action="store_true", help="Overwrite scaffold files if they exist.")
+    parser.add_argument(
+        "--force", action="store_true", help="Overwrite scaffold files if they exist."
+    )
     parser.add_argument(
         "--register-db",
         action="store_true",
         help="Also upsert module metadata in catalog table.",
     )
-    parser.add_argument("--order", type=int, default=None, help="Catalog order when --register-db is used.")
+    parser.add_argument(
+        "--order", type=int, default=None, help="Catalog order when --register-db is used."
+    )
     return parser.parse_args()
 
 

@@ -1,12 +1,20 @@
-"""Core exceptions module - shared across all domains"""
-from .domain_exception import DomainException
-from .domain_exception_factory import DomainExceptionFactory
-from .module_exception_factory import ModuleExceptionFactory
-from .factory import ExceptionFactory
+"""Unified exception module"""
+
+from apps.backend.app.core.exceptions.conflict_exception import ConflictException
+from apps.backend.app.core.exceptions.domain_exception import DomainException, DomainExceptionFactory
+from apps.backend.app.core.exceptions.not_found_exception import (
+    AggregateNotFoundException,
+    EntityNotFoundException,
+    NotFoundException,
+)
+from apps.backend.app.core.exceptions.validation_exception import ValidationException
 
 __all__ = [
     "DomainException",
     "DomainExceptionFactory",
-    "ModuleExceptionFactory",
-    "ExceptionFactory",
+    "NotFoundException",
+    "EntityNotFoundException",
+    "AggregateNotFoundException",
+    "ValidationException",
+    "ConflictException",
 ]

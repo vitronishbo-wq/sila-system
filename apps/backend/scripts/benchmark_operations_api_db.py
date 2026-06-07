@@ -8,26 +8,28 @@ import asyncio
 import json
 import math
 import os
+import sys
 import time
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from uuid import UUID, uuid4
-import sys
 
 import httpx
-from fastapi import FastAPI
-from fastapi import Request
+from fastapi import FastAPI, Request
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.api.deps import get_identity_context
-from apps.backend.app.core.identity import IdentityContext
-from apps.backend.app.modules.intelligence.operations.api.router import router as operations_router
+from apps.backend.app.api.deps import get_identity_context  # noqa: E402
+
+from apps.backend.app.core.identity import IdentityContext  # noqa: E402
+from apps.backend.app.modules.intelligence.operations.api.router import (  # noqa: E402
+    router as operations_router,
+)
 
 
 @dataclass
@@ -200,13 +202,15 @@ async def run_benchmark(
     benchmark_app.include_router(operations_router, prefix="/api/v1")
     benchmark_app.dependency_overrides[get_identity_context] = _benchmark_identity_context
     metrics = BenchmarkMetrics()
-    started = datetime.now(timezone.utc)
+    started = datetime.now(UTC)
     successful_orders = 0
     reference_for_contention: str | None = None
 
     try:
         transport = httpx.ASGITransport(app=benchmark_app)
-        async with httpx.AsyncClient(transport=transport, base_url="http://benchmark.local") as client:
+        async with httpx.AsyncClient(
+            transport=transport, base_url="http://benchmark.local"
+        ) as client:
             services_response = await _request(
                 client=client,
                 metrics=metrics,
@@ -215,7 +219,9 @@ async def run_benchmark(
                 path="/api/v1/services",
             )
             if services_response.status_code >= 300:
-                raise RuntimeError(f"Unable to load service catalog: {services_response.status_code}")
+                raise RuntimeError(
+                    f"Unable to load service catalog: {services_response.status_code}"
+                )
 
             services = services_response.json()
             if not services:
@@ -245,6 +251,7 @@ async def run_benchmark(
                         reference_for_contention = ref
 
             if reference_for_contention:
+
                 async def _worker() -> int:
                     worker_errors = 0
                     async with httpx.AsyncClient(
@@ -271,7 +278,7 @@ async def run_benchmark(
     finally:
         benchmark_app.dependency_overrides.pop(get_identity_context, None)
 
-    completed = datetime.now(timezone.utc)
+    completed = datetime.now(UTC)
     report = {
         "started_at": started.isoformat(),
         "completed_at": completed.isoformat(),
@@ -307,14 +314,20 @@ async def run_benchmark(
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Benchmark operational flow API+DB.")
     parser.add_argument("--orders", type=int, default=int(os.getenv("LOAD_ORDERS", "1000")))
-    parser.add_argument("--concurrency", type=int, default=int(os.getenv("LOAD_CONCURRENCY", "120")))
-    parser.add_argument("--confirm-workers", type=int, default=int(os.getenv("LOAD_CONFIRM_WORKERS", "16")))
+    parser.add_argument(
+        "--concurrency", type=int, default=int(os.getenv("LOAD_CONCURRENCY", "120"))
+    )
+    parser.add_argument(
+        "--confirm-workers", type=int, default=int(os.getenv("LOAD_CONFIRM_WORKERS", "16"))
+    )
     parser.add_argument(
         "--confirm-requests-per-worker",
         type=int,
         default=int(os.getenv("LOAD_CONFIRM_REQUESTS_PER_WORKER", "25")),
     )
-    parser.add_argument("--strict", action="store_true", help="Exit with code 1 on failed requests.")
+    parser.add_argument(
+        "--strict", action="store_true", help="Exit with code 1 on failed requests."
+    )
     parser.add_argument(
         "--output",
         type=Path,
@@ -322,7 +335,7 @@ def _parse_args() -> argparse.Namespace:
         / "apps"
         / "backend"
         / "report"
-        / f"operations_api_db_benchmark_{datetime.now(timezone.utc):%Y%m%d_%H%M%S}.json",
+        / f"operations_api_db_benchmark_{datetime.now(UTC):%Y%m%d_%H%M%S}.json",
     )
     return parser.parse_args()
 

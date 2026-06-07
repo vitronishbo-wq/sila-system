@@ -9,6 +9,7 @@ from apps.backend.app.core.db import Base
 # Optional session imports - only import when needed
 try:
     from .session import (
+        SQLALCHEMY_DATABASE_URL,
         AsyncSessionLocal,
         SessionLocal,
         async_engine,
@@ -16,7 +17,6 @@ try:
         engine,
         get_async_db,
         get_db,
-        SQLALCHEMY_DATABASE_URL,
     )
 
     _SESSION_AVAILABLE = True

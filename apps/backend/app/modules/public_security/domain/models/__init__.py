@@ -8,4 +8,16 @@ from apps.backend.app.modules.public_security.domain.models.policial import Poli
 from apps.backend.app.modules.public_security.domain.models.prova_pericial import ProvaPericial
 from apps.backend.app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
 from apps.backend.app.modules.public_security.domain.models.vestigio import Vestigio
-__all__ = ['UnidadePolicial', 'Policial', 'Ocorrencia', 'Mandado', 'Investigacao', 'ProvaPericial', 'CadeiaCustodia', 'LaudoPericial', 'Vestigio', 'Evidencia']
+
+__all__ = [
+    "UnidadePolicial",
+    "Policial",
+    "Ocorrencia",
+    "Mandado",
+    "Investigacao",
+    "ProvaPericial",
+    "CadeiaCustodia",
+    "LaudoPericial",
+    "Vestigio",
+    "Evidencia",
+]

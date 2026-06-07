@@ -13,4 +13,4 @@ export {
   formatAuditEvent,
   formatCitizenDataForExport,
   generateVerificationCertificateData,
-} from './index';
+} from '@/modules/identity/utils';

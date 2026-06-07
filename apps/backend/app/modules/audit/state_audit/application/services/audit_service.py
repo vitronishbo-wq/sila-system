@@ -1,5 +1,4 @@
 class AuditService:
-
     def __init__(self, audit_engine, log_repo, case_repo):
         self.engine = audit_engine
         self.logs = log_repo

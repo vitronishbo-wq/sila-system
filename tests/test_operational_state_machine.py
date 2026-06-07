@@ -15,4 +15,3 @@ def test_operational_flow_happy_path_transitions():
 def test_operational_flow_blocks_invalid_transition():
     with pytest.raises(ValueError):
         assert_order_transition(OrderStatus.DRAFT, OrderStatus.PAID)
-

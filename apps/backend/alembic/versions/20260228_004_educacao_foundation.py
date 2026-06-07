@@ -7,7 +7,6 @@ Create Date: 2026-02-28 04:00:00.000000
 
 from alembic import op
 
-
 revision = "20260228_004_educacao_foundation"
 down_revision = "20260228_003_operational_flow"
 branch_labels = None
@@ -133,17 +132,37 @@ def upgrade():
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_escolas_codigo_med ON educacao_escolas (codigo_med)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_escolas_provincia ON educacao_escolas (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_escolas_municipio ON educacao_escolas (municipio)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_escolas_codigo_med ON educacao_escolas (codigo_med)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_escolas_provincia ON educacao_escolas (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_escolas_municipio ON educacao_escolas (municipio)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_escolas_ativa ON educacao_escolas (ativa)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_turmas_escola_id ON educacao_turmas (escola_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_turmas_ano_letivo_id ON educacao_turmas (ano_letivo_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_numero_processo ON educacao_matriculas (numero_processo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_citizen_id ON educacao_matriculas (citizen_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_escola_id ON educacao_matriculas (escola_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_ano_letivo_id ON educacao_matriculas (ano_letivo_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_status ON educacao_matriculas (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_turmas_escola_id ON educacao_turmas (escola_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_turmas_ano_letivo_id ON educacao_turmas (ano_letivo_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_numero_processo ON educacao_matriculas (numero_processo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_citizen_id ON educacao_matriculas (citizen_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_escola_id ON educacao_matriculas (escola_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_ano_letivo_id ON educacao_matriculas (ano_letivo_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_educacao_matriculas_status ON educacao_matriculas (status)"
+    )
 
     # Seed institucional (Angola) - idempotente
     op.execute(

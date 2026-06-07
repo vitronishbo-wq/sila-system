@@ -27,7 +27,6 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict
 
 # Adiciona o diretório backend ao path
 script_dir = Path(__file__).parent
@@ -45,18 +44,16 @@ except ImportError as e:
 class HealthCheckRunner:
     """Executor do health check com configurações avançadas."""
 
-    def __init__(self, config: Dict):
+    def __init__(self, config: dict):
         self.config = config
-        self.checker = ModuleHealthChecker(
-            base_url=config["url"], timeout=config["timeout"]
-        )
+        self.checker = ModuleHealthChecker(base_url=config["url"], timeout=config["timeout"])
 
         # Configura credenciais se fornecidas
         if settings.get("username") and settings.get("password"):
             settings.TEST_USERNAME = config["username"]
             settings.TEST_PASSWORD = config["password"]
 
-    async def run(self) -> Dict[str, ModuleHealthResult]:
+    async def run(self) -> dict[str, ModuleHealthResult]:
         """Executa o health check completo."""
         print("🛡️ SILA SYSTEM - Health Check de Módulos")
         print("=" * 50)
@@ -83,9 +80,7 @@ class HealthCheckRunner:
         """Fecha o verificador."""
         await self.checker.close()
 
-    def save_report(
-        self, results: Dict[str, ModuleHealthResult], format_type: str = "txt"
-    ):
+    def save_report(self, results: dict[str, ModuleHealthResult], format_type: str = "txt"):
         """Salva relatório no formato especificado."""
         output_file = self.settings.get("output", "health_report.txt")
 
@@ -98,14 +93,14 @@ class HealthCheckRunner:
 
         return output_file
 
-    def _save_text_report(self, results: Dict[str, ModuleHealthResult], filename: str):
+    def _save_text_report(self, results: dict[str, ModuleHealthResult], filename: str):
         """Salva relatório em formato texto."""
         report = self.checker.generate_report(results)
 
         with open(filename, "w", encoding="utf-8") as f:
             f.write(report)
 
-    def _save_json_report(self, results: Dict[str, ModuleHealthResult], filename: str):
+    def _save_json_report(self, results: dict[str, ModuleHealthResult], filename: str):
         """Salva relatório em formato JSON."""
         json_data = {
             "timestamp": datetime.now().isoformat(),
@@ -138,13 +133,11 @@ class HealthCheckRunner:
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(json_data, f, indent=2, ensure_ascii=False)
 
-    def _save_html_report(self, results: Dict[str, ModuleHealthResult], filename: str):
+    def _save_html_report(self, results: dict[str, ModuleHealthResult], filename: str):
         """Salva relatório em formato HTML."""
         healthy_count = sum(1 for r in results.values() if r.is_healthy)
         total_count = len(results)
-        health_percentage = (
-            (healthy_count / total_count) * 100 if total_count > 0 else 0
-        )
+        health_percentage = (healthy_count / total_count) * 100 if total_count > 0 else 0
 
         html = f"""
 <!DOCTYPE html>
@@ -177,7 +170,7 @@ class HealthCheckRunner:
         </div>
 
         <div class="summary">
-            <div class="metric {'healthy' if health_percentage >= 80 else 'unhealthy'}">
+            <div class="metric {"healthy" if health_percentage >= 80 else "unhealthy"}">
                 <h3>{health_percentage:.1f}%</h3>
                 <p>Saúde Geral</p>
             </div>
@@ -186,7 +179,7 @@ class HealthCheckRunner:
                 <p>Módulos Saudáveis</p>
             </div>
             <div class="metric">
-                <h3>{self.config['url']}</h3>
+                <h3>{self.config["url"]}</h3>
                 <p>Base URL</p>
             </div>
         </div>
@@ -203,9 +196,9 @@ class HealthCheckRunner:
         <div class="module {status_class}">
             <div class="module-header">{status_icon} {module_name.upper()}: {status_text}</div>
             <div class="module-details">
-                <strong>Status:</strong> {result.status_code or 'N/A'} |
+                <strong>Status:</strong> {result.status_code or "N/A"} |
                 <strong>Tempo:</strong> {result.response_time:.2f}s |
-                <strong>Endpoint:</strong> {result.endpoint_tested or 'N/A'}
+                <strong>Endpoint:</strong> {result.endpoint_tested or "N/A"}
 """
 
             if result.error_message:
@@ -221,7 +214,7 @@ class HealthCheckRunner:
 
         html += f"""
         <div class="timestamp">
-            Relatório gerado em: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+            Relatório gerado em: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
         </div>
     </div>
 </body>
@@ -276,13 +269,9 @@ def parse_arguments():
         help="Formato do relatório (padrão: txt)",
     )
 
-    parser.add_argument(
-        "--modules", help="Lista de módulos para testar (separados por vírgula)"
-    )
+    parser.add_argument("--modules", help="Lista de módulos para testar (separados por vírgula)")
 
-    parser.add_argument(
-        "--verbose", action="store_true", help="Modo verboso com mais detalhes"
-    )
+    parser.add_argument("--verbose", action="store_true", help="Modo verboso com mais detalhes")
 
     return parser.parse_args()
 
@@ -315,15 +304,11 @@ async def main():
         # Estatísticas finais
         healthy_count = sum(1 for r in results.values() if r.is_healthy)
         total_count = len(results)
-        health_percentage = (
-            (healthy_count / total_count) * 100 if total_count > 0 else 0
-        )
+        health_percentage = (healthy_count / total_count) * 100 if total_count > 0 else 0
 
         print("\n" + "=" * 50)
         print("📊 RESULTADOS FINAIS:")
-        print(
-            f"   • Módulos saudáveis: {healthy_count}/{total_count} ({health_percentage:.1f}%)"
-        )
+        print(f"   • Módulos saudáveis: {healthy_count}/{total_count} ({health_percentage:.1f}%)")
         print(f"   • Relatório salvo: {output_file}")
 
         if health_percentage >= 80:

@@ -1,0 +1,49 @@
+system:
+  name: sila-system
+generated_at: '2026-03-07T21:49:57Z'
+backend:
+  path: apps/backend/app
+  domains:
+    economy:
+      path: apps/backend/app/modules
+      modules:
+        - economy
+    educacao:
+      path: apps/backend/app/modules
+      modules:
+        - educacao
+    governance:
+      path: apps/backend/app/modules
+      modules:
+        - governance
+    infrastructure_sector:
+      path: apps/backend/app/modules
+      modules:
+        - infrastructure_sector
+    intelligence:
+      path: apps/backend/app/modules
+      modules:
+        - intelligence
+    justice:
+      path: apps/backend/app/modules
+      modules:
+        - justice
+    resources:
+      path: apps/backend/app/modules
+      modules:
+        - resources
+    society:
+      path: apps/backend/app/modules
+      modules:
+        - society
+platform:
+  api:
+    path: apps/backend/app/api
+  core:
+    path: apps/backend/app/core
+  module_registry:
+    file: apps/backend/app/core/module_registry.py
+  scripts_architecture:
+    path: scripts/architecture
+  scripts_guardrails:
+    path: scripts/guardrails

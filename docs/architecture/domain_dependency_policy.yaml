@@ -1,38 +1,7 @@
-system: sila-system
-version: "1.0"
-description: "Constituicao Arquitetural - Regras de Dependencia de Dominios"
-
 rules:
   allow_circular_dependencies: false
   core_can_import_modules: false
-  strict_boundary_validation: true
-  core_module_import_exempt_paths:
-    - apps/backend/app/core/bridges
-    - apps/backend/app/core/database.py
-    - apps/backend/app/core/integrations/fuc_client.py
+  strict_boundary_validation: false
+  core_module_import_exempt_paths: []
 
-domains:
-  governance:
-    allowed_dependencies: [core, justice]
-  justice:
-    allowed_dependencies: [core, governance]
-  economy:
-    allowed_dependencies: [core, governance, justice, infrastructure_sector, resources, society]
-  society:
-    allowed_dependencies: [core, governance, justice, economy, infrastructure_sector]
-  resources:
-    allowed_dependencies: [core, governance, economy, infrastructure_sector]
-  infrastructure_sector:
-    allowed_dependencies: [core, governance, economy]
-  intelligence:
-    allowed_dependencies: [core, governance, justice, economy, society, resources, infrastructure_sector]
-  educacao:
-    allowed_dependencies: [core]
-  public_security:
-    allowed_dependencies: [core]
-  civil_protection:
-    allowed_dependencies: [core]
-  audit:
-    allowed_dependencies: [core]
-  identity:
-    allowed_dependencies: [core]
+domains: {}

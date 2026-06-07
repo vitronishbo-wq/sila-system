@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.agricultura.domain.enums import SeveridadeOcorrencia, StatusOcorrencia
+
+from apps.backend.app.modules.resources.agricultura.domain.enums import (
+    SeveridadeOcorrencia,
+    StatusOcorrencia,
+)
+
 
 class OcorrenciaCreate(BaseModel):
     codigo_propriedade: str
@@ -11,6 +18,7 @@ class OcorrenciaCreate(BaseModel):
     severidade: SeveridadeOcorrencia
     cultura_afetada: str | None = None
     acao_recomendada: str | None = None
+
 
 class OcorrenciaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

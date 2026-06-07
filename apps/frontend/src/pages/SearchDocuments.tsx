@@ -174,3 +174,5 @@ export const SearchDocuments = () => {
         </div>
     );
 };
+
+export default SearchDocuments;

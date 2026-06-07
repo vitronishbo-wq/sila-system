@@ -10,7 +10,6 @@ from sqlalchemy import select
 from apps.backend.app.core.catalog.models.service import Service
 from apps.backend.app.core.db import AsyncSessionLocal
 
-
 SEED_SERVICES = [
     {
         "code": "CERTIDAO_NASCIMENTO",
@@ -40,8 +39,10 @@ async def seed_services() -> None:
     async with AsyncSessionLocal() as session:
         for item in SEED_SERVICES:
             existing = (
-                await session.execute(select(Service).where(Service.code == item["code"]))
-            ).scalars().first()
+                (await session.execute(select(Service).where(Service.code == item["code"])))
+                .scalars()
+                .first()
+            )
             if existing:
                 existing.name = item["name"]
                 existing.price = item["price"]
@@ -73,4 +74,3 @@ async def seed_services() -> None:
 
 if __name__ == "__main__":
     asyncio.run(seed_services())
-

@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.resources.pecuaria.application.ports.agricultura_service_port import AgriculturaServicePort
+
+from apps.backend.app.modules.resources.pecuaria.application.ports.agricultura_service_port import (
+    AgriculturaServicePort,
+)
+
 
 class AgriculturaServiceAdapter(AgriculturaServicePort):
-
     def __init__(self, service: AgriculturaServicePort):
         self._service = service
 

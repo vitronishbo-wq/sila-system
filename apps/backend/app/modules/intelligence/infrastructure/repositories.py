@@ -1,14 +1,16 @@
 """
 Repository pattern for intelligence module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class IntelligenceRepository(ABC):
     """Abstract repository for intelligence."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get intelligence by ID."""
         pass
 
@@ -23,9 +25,10 @@ class IntelligenceRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all intelligence."""
         pass
+
 
 class IntelligenceMemoryRepository(IntelligenceRepository):
     """In-memory repository for intelligence."""
@@ -33,7 +36,7 @@ class IntelligenceMemoryRepository(IntelligenceRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class IntelligenceMemoryRepository(IntelligenceRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+
 
 @dataclass
 class Metric:
-    id: Optional[int]
+    id: int | None
     name: str
     code: str
     value: float

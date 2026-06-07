@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from typing import Any
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-class SQLAlchemyNamedRepository:
 
+class SQLAlchemyNamedRepository:
     def __init__(self, session: AsyncSession, model_cls: type):
         self.session = session
         self.model_cls = model_cls
@@ -19,7 +21,7 @@ class SQLAlchemyNamedRepository:
     async def get_by_id(self, entity_id: int) -> Any | None:
         return await self.session.get(self.model_cls, entity_id)
 
-    async def list_all(self, limit: int=100, offset: int=0) -> list[Any]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Any]:
         stmt = select(self.model_cls).order_by(self.model_cls.id.asc()).offset(offset).limit(limit)
         return list((await self.session.execute(stmt)).scalars().all())
 

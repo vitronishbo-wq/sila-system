@@ -1,14 +1,28 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, NivelFormacao, StatusVinculoPesquisador, TipoVinculoPesquisador
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.pesquisador_model import PesquisadorModel
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import (
+    PesquisadorRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    AreaConhecimento,
+    NivelFormacao,
+    StatusVinculoPesquisador,
+    TipoVinculoPesquisador,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import (
+    Pesquisador,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.pesquisador_model import (
+    PesquisadorModel,
+)
+
 
 class SQLAlchemyPesquisadorRepository(PesquisadorRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -43,13 +57,17 @@ class SQLAlchemyPesquisadorRepository(PesquisadorRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_documento(self, documento_identificacao: str) -> Pesquisador | None:
-        stmt = select(PesquisadorModel).where(PesquisadorModel.documento_identificacao == documento_identificacao.strip())
+        stmt = select(PesquisadorModel).where(
+            PesquisadorModel.documento_identificacao == documento_identificacao.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def get_by_email(self, email_institucional: str) -> Pesquisador | None:
         normalized = email_institucional.strip().lower()
-        stmt = select(PesquisadorModel).where(func.lower(PesquisadorModel.email_institucional) == normalized)
+        stmt = select(PesquisadorModel).where(
+            func.lower(PesquisadorModel.email_institucional) == normalized
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -59,11 +77,17 @@ class SQLAlchemyPesquisadorRepository(PesquisadorRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_instituicao(self, instituicao_id: UUID) -> list[Pesquisador]:
-        stmt = select(PesquisadorModel).where(PesquisadorModel.instituicao_id == instituicao_id).order_by(PesquisadorModel.nome_completo.asc())
+        stmt = (
+            select(PesquisadorModel)
+            .where(PesquisadorModel.instituicao_id == instituicao_id)
+            .order_by(PesquisadorModel.nome_completo.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
-    async def vincular_instituicao(self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None=None) -> Pesquisador | None:
+    async def vincular_instituicao(
+        self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None = None
+    ) -> Pesquisador | None:
         model = await self.session.get(PesquisadorModel, pesquisador_id)
         if not model:
             return None
@@ -85,4 +109,23 @@ class SQLAlchemyPesquisadorRepository(PesquisadorRepositoryPort):
 
     @staticmethod
     def _to_domain(model: PesquisadorModel) -> Pesquisador:
-        return Pesquisador(id=model.id, nome_completo=model.nome_completo, documento_identificacao=model.documento_identificacao, email_institucional=model.email_institucional, instituicao_id=model.instituicao_id, unidade_pesquisa_id=model.unidade_pesquisa_id, area_conhecimento=AreaConhecimento(model.area_conhecimento), nivel_formacao=NivelFormacao(model.nivel_formacao), tipo_vinculo=TipoVinculoPesquisador(model.tipo_vinculo), status_vinculo=StatusVinculoPesquisador(model.status_vinculo), data_inicio_vinculo=model.data_inicio_vinculo, data_fim_vinculo=model.data_fim_vinculo, telefone=model.telefone, orcid=model.orcid, lattes_url=model.lattes_url, researcher_id=model.researcher_id, scopus_id=model.scopus_id, ativo=model.ativo)
+        return Pesquisador(
+            id=model.id,
+            nome_completo=model.nome_completo,
+            documento_identificacao=model.documento_identificacao,
+            email_institucional=model.email_institucional,
+            instituicao_id=model.instituicao_id,
+            unidade_pesquisa_id=model.unidade_pesquisa_id,
+            area_conhecimento=AreaConhecimento(model.area_conhecimento),
+            nivel_formacao=NivelFormacao(model.nivel_formacao),
+            tipo_vinculo=TipoVinculoPesquisador(model.tipo_vinculo),
+            status_vinculo=StatusVinculoPesquisador(model.status_vinculo),
+            data_inicio_vinculo=model.data_inicio_vinculo,
+            data_fim_vinculo=model.data_fim_vinculo,
+            telefone=model.telefone,
+            orcid=model.orcid,
+            lattes_url=model.lattes_url,
+            researcher_id=model.researcher_id,
+            scopus_id=model.scopus_id,
+            ativo=model.ativo,
+        )

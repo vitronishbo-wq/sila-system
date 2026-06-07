@@ -1,12 +1,17 @@
 from fastapi import APIRouter
-from apps.backend.app.modules.procurement.api.router import router as procurement_router
-from apps.backend.app.modules.economy.public_budget.api.router import router as public_budget_router
-from apps.backend.app.modules.economy.api.transactions import router as transactions_router
-router = APIRouter(prefix='/economy', tags=['economy'])
 
-@router.get('/ping')
+from apps.backend.app.modules.economy.api.transactions import router as transactions_router
+from apps.backend.app.modules.economy.public_budget.api.router import router as public_budget_router
+from apps.backend.app.modules.procurement.api.router import router as procurement_router
+
+router = APIRouter(prefix="/economy", tags=["economy"])
+
+
+@router.get("/ping")
 async def ping() -> dict[str, str]:
-    return {'module': 'economy', 'status': 'ok'}
+    return {"module": "economy", "status": "ok"}
+
+
 router.include_router(public_budget_router)
 router.include_router(procurement_router)
 router.include_router(transactions_router)

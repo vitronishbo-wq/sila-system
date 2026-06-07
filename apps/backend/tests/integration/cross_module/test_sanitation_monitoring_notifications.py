@@ -10,7 +10,7 @@ Fluxo de Negócio:
 - Registro de problema de saneamento → Monitoramento automático → Notificação stakeholders
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -43,7 +43,7 @@ class MockSanitationService:
         record = {
             "id": len(self.records) + 1,
             **record_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "PENDENTE",
         }
         self.records.append(record)
@@ -68,7 +68,7 @@ class MockSanitationService:
             "severity": "CRITICAL",
             "message": f"Problema crítico de saneamento: {record['service_type']}",
             "location": record["location"],
-            "timestamp": datetime.now(timezone.utc),
+            "timestamp": datetime.now(UTC),
         }
         self.alerts_generated.append(alert)
         return alert
@@ -87,7 +87,7 @@ class MockMonitoringService:
         alert = {
             "id": len(self.alerts) + 1,
             **alert_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "ACTIVE",
         }
         self.alerts.append(alert)
@@ -103,7 +103,7 @@ class MockMonitoringService:
         metric = {
             "id": len(self.metrics) + 1,
             **metric_data,
-            "timestamp": datetime.now(timezone.utc),
+            "timestamp": datetime.now(UTC),
         }
         self.metrics.append(metric)
         return metric
@@ -115,7 +115,7 @@ class MockMonitoringService:
             "type": "ALERT_NOTIFICATION",
             "message": alert["message"],
             "severity": alert["severity"],
-            "timestamp": datetime.now(timezone.utc),
+            "timestamp": datetime.now(UTC),
         }
         self.notifications_sent.append(notification)
         return notification
@@ -153,7 +153,7 @@ class MockNotificationService:
         notification = {
             "id": len(self.notifications) + 1,
             **notification_data,
-            "sent_at": datetime.now(timezone.utc),
+            "sent_at": datetime.now(UTC),
             "status": "SENT",
         }
         self.notifications.append(notification)
@@ -176,7 +176,7 @@ class MockNotificationService:
             "notification_id": notification["id"],
             "channel": notification.get("channel", "EMAIL"),
             "status": "DELIVERED",
-            "delivered_at": datetime.now(timezone.utc),
+            "delivered_at": datetime.now(UTC),
         }
         self.delivery_queue.append(delivery)
         return delivery
@@ -282,7 +282,7 @@ class TestSanitationMonitoringNotificationFlow:
 
         # 4. Verificar disparo automático de notificação
         assert len(monitoring_service.notifications_sent) == 1
-        monitoring_notification = monitoring_service.notifications_sent[0]
+        monitoring_service.notifications_sent[0]
 
         # 5. Enviar notificações formais para stakeholders
         stakeholder_notifications = []
@@ -402,7 +402,7 @@ class TestSanitationMonitoringNotificationFlow:
                 "body": f"EMERGÊNCIA: {critical_alert['message']} em {critical_alert['location']}",
                 "priority": "URGENT",
                 "requires_acknowledgment": True,
-                "response_deadline": datetime.now(timezone.utc) + timedelta(minutes=30),
+                "response_deadline": datetime.now(UTC) + timedelta(minutes=30),
             }
         )
 

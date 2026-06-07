@@ -1,8 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
-from apps.backend.app.modules.resources.ambiente.application.ports.embargo_repository_port import EmbargoRepositoryPort
+
+from apps.backend.app.modules.resources.ambiente.application.ports.embargo_repository_port import (
+    EmbargoRepositoryPort,
+)
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEmbargo
 from apps.backend.app.modules.resources.ambiente.domain.models.embargo import Embargo
+
 
 class SQLAlchemyEmbargoRepository(EmbargoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -18,7 +23,9 @@ class SQLAlchemyEmbargoRepository(EmbargoRepositoryPort):
     async def get_by_numero(self, numero_embargo: str) -> Embargo | None:
         return self._items.get(numero_embargo)
 
-    async def list(self, *, numero_auto_infracao: str | None=None, status: StatusEmbargo | None=None) -> list[Embargo]:
+    async def list(
+        self, *, numero_auto_infracao: str | None = None, status: StatusEmbargo | None = None
+    ) -> list[Embargo]:
         values = list(self._items.values())
         if numero_auto_infracao:
             values = [item for item in values if item.numero_auto_infracao == numero_auto_infracao]
@@ -28,4 +35,4 @@ class SQLAlchemyEmbargoRepository(EmbargoRepositoryPort):
 
     async def next_numero(self) -> str:
         self._seq += 1
-        return f'EMB/{date.today().year}/{self._seq:06d}'
+        return f"EMB/{date.today().year}/{self._seq:06d}"

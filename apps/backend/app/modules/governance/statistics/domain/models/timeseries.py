@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+
 
 @dataclass(slots=True)
 class TimeSeries:
@@ -16,10 +18,10 @@ class TimeSeries:
 
     @classmethod
     def get_periodo(cls, data: datetime, periodicidade: str) -> datetime:
-        if periodicidade == 'diaria':
+        if periodicidade == "diaria":
             return data.replace(hour=0, minute=0, second=0, microsecond=0)
-        if periodicidade == 'mensal':
+        if periodicidade == "mensal":
             return data.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        if periodicidade == 'anual':
+        if periodicidade == "anual":
             return data.replace(month=1, day=1, hour=0, minute=0, second=0, microsecond=0)
         return data

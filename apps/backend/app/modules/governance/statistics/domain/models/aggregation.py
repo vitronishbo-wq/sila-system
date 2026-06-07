@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Dict
+
 
 @dataclass
 class Aggregation:
-    id: Optional[int]
+    id: int | None
     statistic_id: int
     method: str
-    parameters: Optional[Dict]
+    parameters: dict | None
     created_at: datetime

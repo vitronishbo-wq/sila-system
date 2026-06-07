@@ -1,14 +1,15 @@
-from typing import Optional
-from uuid import UUID
 from datetime import date, datetime
-from pydantic import BaseModel, EmailStr, ConfigDict
-from app.domain.enums import Gender, MaritalStatus, CitizenStatus
+from uuid import UUID
+
+from apps.backend.app.domain.enums import CitizenStatus, Gender, MaritalStatus
+from pydantic import BaseModel, ConfigDict, EmailStr
+
 
 class CitizenBase(BaseModel):
     national_id_number: str
     nif: str
-    passport_number: Optional[str] = None
-    social_security_number: Optional[str] = None
+    passport_number: str | None = None
+    social_security_number: str | None = None
     first_name: str
     last_name: str
     full_name: str
@@ -20,7 +21,7 @@ class CitizenBase(BaseModel):
     father_name: str
     mother_name: str
     phone: str
-    alternative_phone: Optional[str] = None
+    alternative_phone: str | None = None
     email: EmailStr
     province: str
     municipality: str
@@ -28,44 +29,47 @@ class CitizenBase(BaseModel):
     neighborhood: str
     street: str
     house_number: str
-    geo_coordinates: Optional[str] = None
+    geo_coordinates: str | None = None
     status: CitizenStatus = CitizenStatus.ACTIVE
     is_verified: bool = False
-    verification_level: str = 'basic'
+    verification_level: str = "basic"
+
 
 class CitizenCreate(CitizenBase):
     created_by: str
     updated_by: str
 
+
 class CitizenUpdate(BaseModel):
-    national_id_number: Optional[str] = None
-    nif: Optional[str] = None
-    passport_number: Optional[str] = None
-    social_security_number: Optional[str] = None
-    first_name: Optional[str] = None
-    last_name: Optional[str] = None
-    full_name: Optional[str] = None
-    gender: Optional[Gender] = None
-    birth_date: Optional[date] = None
-    marital_status: Optional[MaritalStatus] = None
-    nationality: Optional[str] = None
-    place_of_birth: Optional[str] = None
-    father_name: Optional[str] = None
-    mother_name: Optional[str] = None
-    phone: Optional[str] = None
-    alternative_phone: Optional[str] = None
-    email: Optional[EmailStr] = None
-    province: Optional[str] = None
-    municipality: Optional[str] = None
-    commune: Optional[str] = None
-    neighborhood: Optional[str] = None
-    street: Optional[str] = None
-    house_number: Optional[str] = None
-    geo_coordinates: Optional[str] = None
-    status: Optional[CitizenStatus] = None
-    is_verified: Optional[bool] = None
-    verification_level: Optional[str] = None
-    updated_by: Optional[str] = None
+    national_id_number: str | None = None
+    nif: str | None = None
+    passport_number: str | None = None
+    social_security_number: str | None = None
+    first_name: str | None = None
+    last_name: str | None = None
+    full_name: str | None = None
+    gender: Gender | None = None
+    birth_date: date | None = None
+    marital_status: MaritalStatus | None = None
+    nationality: str | None = None
+    place_of_birth: str | None = None
+    father_name: str | None = None
+    mother_name: str | None = None
+    phone: str | None = None
+    alternative_phone: str | None = None
+    email: EmailStr | None = None
+    province: str | None = None
+    municipality: str | None = None
+    commune: str | None = None
+    neighborhood: str | None = None
+    street: str | None = None
+    house_number: str | None = None
+    geo_coordinates: str | None = None
+    status: CitizenStatus | None = None
+    is_verified: bool | None = None
+    verification_level: str | None = None
+    updated_by: str | None = None
+
 
 class CitizenInDB(CitizenBase):
     model_config = ConfigDict(from_attributes=True)
@@ -74,6 +78,7 @@ class CitizenInDB(CitizenBase):
     updated_at: datetime
     created_by: str
     updated_by: str
+
 
 class CitizenOut(CitizenInDB):
     pass

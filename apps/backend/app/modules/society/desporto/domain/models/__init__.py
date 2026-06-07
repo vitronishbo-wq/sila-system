@@ -5,4 +5,5 @@ from apps.backend.app.modules.society.desporto.domain.models.contrato import Con
 from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
 from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
 from apps.backend.app.modules.society.desporto.domain.models.transferencia import Transferencia
-__all__ = ['Atleta', 'Competicao', 'Clube', 'Jogo', 'Estadio', 'Transferencia', 'Contrato']
+
+__all__ = ["Atleta", "Competicao", "Clube", "Jogo", "Estadio", "Transferencia", "Contrato"]

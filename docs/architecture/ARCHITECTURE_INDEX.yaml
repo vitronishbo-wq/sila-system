@@ -1,0 +1,160 @@
+system: sila-system
+generated_at: '2026-05-27T11:25:19Z'
+backend:
+  path: apps/backend/app
+  module_registry: apps/backend/app/core/module_registry.py
+  modules:
+    economy:
+      domain_group: economy
+      bounded_context: economy
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/economy/domain
+      services: apps/backend/app/modules/economy/application
+      api: apps/backend/app/modules/economy/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    educacao:
+      domain_group: educacao
+      bounded_context: education
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/educacao/domain
+      services: apps/backend/app/modules/educacao/application/services
+      api: apps/backend/app/modules/educacao/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    governance:
+      domain_group: governance
+      bounded_context: governance
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/governance/domain
+      services: apps/backend/app/modules/governance/application/services
+      api: apps/backend/app/modules/governance/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    infrastructure_sector:
+      domain_group: infrastructure_sector
+      bounded_context: infrastructure_sector
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/infrastructure_sector/domain
+      services: apps/backend/app/modules/infrastructure_sector/application/services
+      api: apps/backend/app/modules/infrastructure_sector/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    intelligence:
+      domain_group: intelligence
+      bounded_context: intelligence
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/intelligence/domain
+      services: apps/backend/app/modules/intelligence/application/services
+      api: apps/backend/app/modules/intelligence/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    justice:
+      domain_group: justice
+      bounded_context: justice
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/justice/domain
+      services: apps/backend/app/modules/justice/application/services
+      api: apps/backend/app/modules/justice/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    resources:
+      domain_group: resources
+      bounded_context: resources
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/resources/domain
+      services: apps/backend/app/modules/resources/application/services
+      api: apps/backend/app/modules/resources/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    society:
+      domain_group: society
+      bounded_context: society
+      layer: domain
+      enabled: true
+      bootstrap_scope: api
+      domain: apps/backend/app/modules/society/domain
+      services: apps/backend/app/modules/society/application/services
+      api: apps/backend/app/modules/society/api/router.py
+      mount_prefix: /v1
+      mount_tags: []
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+architecture_health:
+  most_unstable_modules:
+    -
+      module: society
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: resources
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: justice
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: intelligence
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: infrastructure_sector
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: governance
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: educacao
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0
+    -
+      module: economy
+      fan_in: 0
+      fan_out: 0
+      instability: 0.0

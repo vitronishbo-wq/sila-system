@@ -1,21 +1,20 @@
-import pytest
-import pytest_asyncio
 from datetime import datetime, timedelta
 
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-
-from app.core.sla_engine.calculator import SLACalculator
-from app.core.sla_engine.governance import SLAGovernance, approve_version
-from app.core.sla_engine.models import (
+import pytest
+import pytest_asyncio
+from apps.backend.app.core.sla_engine.calculator import SLACalculator
+from apps.backend.app.core.sla_engine.governance import SLAGovernance, approve_version
+from apps.backend.app.core.sla_engine.models import (
     Base,
     CitizenType,
     Province,
-    SLAContext,
     SLABaseDB,
+    SLAContext,
     SLAOverrideDB,
     SLAPolicyDB,
     SLAVersionDB,
 )
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 
 @pytest_asyncio.fixture
@@ -136,7 +135,7 @@ async def test_predict_breach(db_session: AsyncSession, sample_sla_base: SLABase
 @pytest.mark.asyncio
 async def test_create_policy(db_session: AsyncSession, sample_sla_base: SLABaseDB):
     governance = SLAGovernance(db_session)
-    from app.core.sla_engine.models import SLAPolicyCreate
+    from apps.backend.app.core.sla_engine.models import SLAPolicyCreate
 
     policy_data = SLAPolicyCreate(
         scope="province",

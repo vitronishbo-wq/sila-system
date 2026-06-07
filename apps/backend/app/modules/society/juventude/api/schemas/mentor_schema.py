@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusMentoria, TipoMentoria
+
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusMentoria,
+    TipoMentoria,
+)
+
 
 class MentorCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -12,11 +20,14 @@ class MentorCreate(BaseModel):
     telefone: str | None = None
     observacoes: str | None = None
 
+
 class MentorStatusUpdate(BaseModel):
     status: StatusMentoria
 
+
 class MentorAtribuirJovem(BaseModel):
     jovem_id: UUID
+
 
 class MentorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

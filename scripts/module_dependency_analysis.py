@@ -8,9 +8,8 @@ import ast
 import json
 import re
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 FROM_IMPORT_RE = re.compile(r"^\s*from\s+app\.(modules|core)\.([A-Za-z0-9_]+)\b")
 PLAIN_IMPORT_RE = re.compile(r"^\s*import\s+app\.(modules|core)\.([A-Za-z0-9_]+)\b")
@@ -32,12 +31,12 @@ def _module_parts_from_path(modules_root: Path, py_file: Path) -> list[str]:
 
 
 def _extract_target_module(module_path: str, modules: set[str]) -> str | None:
-    if module_path.startswith("app.modules."):
+    if module_path.startswith("apps.backend.app.modules."):
         parts = module_path.split(".")
         if len(parts) >= 3 and parts[2] in modules:
             return parts[2]
         return None
-    if module_path.startswith("app.core"):
+    if module_path.startswith("apps.backend.app.core"):
         return "core"
     return None
 
@@ -101,7 +100,9 @@ def scan_dependencies(
                             record_edge(target, node.lineno)
                 elif isinstance(node, ast.ImportFrom):
                     if node.level > 0:
-                        base_parts = module_parts[:-node.level] if node.level <= len(module_parts) else []
+                        base_parts = (
+                            module_parts[: -node.level] if node.level <= len(module_parts) else []
+                        )
                         if node.module:
                             base_parts = base_parts + node.module.split(".")
                         if node.module is None:
@@ -175,8 +176,8 @@ def render_report(
     files_scanned: int,
     modules_scanned: int,
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
-    modules = sorted(edges.keys())
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
+    sorted(edges.keys())
     inbound = Counter()
     edge_rows: list[tuple[str, str, int]] = []
 
@@ -271,15 +272,17 @@ def render_report(
     return "\n".join(lines)
 
 
-def to_json_payload(edges: dict[str, Counter[str]], files_scanned: int, modules_scanned: int) -> dict:
-    modules = sorted(edges.keys())
+def to_json_payload(
+    edges: dict[str, Counter[str]], files_scanned: int, modules_scanned: int
+) -> dict:
+    sorted(edges.keys())
     edge_list = []
     for source, targets in edges.items():
         for target, weight in targets.items():
             edge_list.append({"source": source, "target": target, "weight": weight})
     edge_list.sort(key=lambda item: item["weight"], reverse=True)
     return {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "modules_scanned": modules_scanned,
         "files_scanned": files_scanned,
         "edges": edge_list,

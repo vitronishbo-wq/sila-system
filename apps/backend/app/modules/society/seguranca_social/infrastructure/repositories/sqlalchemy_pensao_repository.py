@@ -1,13 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
+
 from sqlalchemy import func, select
+
 from apps.backend.app.modules.society.seguranca_social.application.ports import PensaoRepositoryPort
-from apps.backend.app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
+from apps.backend.app.modules.society.seguranca_social.domain.enums import (
+    Periodicidade,
+    StatusPensao,
+    TipoPensao,
+)
 from apps.backend.app.modules.society.seguranca_social.domain.models.pensao import Pensao
-from apps.backend.app.modules.society.seguranca_social.infrastructure.models.pensao_model import PensaoModel
+from apps.backend.app.modules.society.seguranca_social.infrastructure.models.pensao_model import (
+    PensaoModel,
+)
+
 
 class SQLAlchemyPensaoRepository(PensaoRepositoryPort):
-
     def __init__(self, session):
         self.session = session
 
@@ -52,10 +61,27 @@ class SQLAlchemyPensaoRepository(PensaoRepositoryPort):
         return [self._to_domain(row) for row in rows]
 
     async def next_numero_processo(self, ano: int) -> str:
-        stmt = select(func.count()).select_from(PensaoModel).where(PensaoModel.numero_processo.like(f'PEN/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(PensaoModel)
+            .where(PensaoModel.numero_processo.like(f"PEN/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'PEN/{ano}/{count + 1:04d}'
+        return f"PEN/{ano}/{count + 1:04d}"
 
     @staticmethod
     def _to_domain(model: PensaoModel) -> Pensao:
-        return Pensao(id=model.id, numero_processo=model.numero_processo, beneficiario_id=model.beneficiario_id, tipo=TipoPensao(model.tipo), data_inicio=model.data_inicio or date.today(), valor_mensal=model.valor_mensal, periodicidade=Periodicidade(model.periodicidade), status=StatusPensao(model.status), data_fim=model.data_fim, conta_bancaria=model.conta_bancaria, iban=model.iban, observacoes=model.observacoes)
+        return Pensao(
+            id=model.id,
+            numero_processo=model.numero_processo,
+            beneficiario_id=model.beneficiario_id,
+            tipo=TipoPensao(model.tipo),
+            data_inicio=model.data_inicio or date.today(),
+            valor_mensal=model.valor_mensal,
+            periodicidade=Periodicidade(model.periodicidade),
+            status=StatusPensao(model.status),
+            data_fim=model.data_fim,
+            conta_bancaria=model.conta_bancaria,
+            iban=model.iban,
+            observacoes=model.observacoes,
+        )

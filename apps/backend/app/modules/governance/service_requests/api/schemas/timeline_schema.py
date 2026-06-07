@@ -1,21 +1,27 @@
 """Timeline schema"""
-from pydantic import BaseModel, ConfigDict
-from uuid import UUID
+
 from datetime import datetime
-from typing import Optional, Dict, Any, List
+from typing import Any
+from uuid import UUID
+
+from pydantic import BaseModel, ConfigDict
+
 
 class TimelineEventResponse(BaseModel):
     """Schema for timeline event"""
+
     type: str
     timestamp: datetime
     actor_id: UUID
-    event_type: Optional[str] = None
-    payload: Optional[Dict[str, Any]] = None
-    filename: Optional[str] = None
-    size_bytes: Optional[int] = None
+    event_type: str | None = None
+    payload: dict[str, Any] | None = None
+    filename: str | None = None
+    size_bytes: int | None = None
+
 
 class TimelineSummaryResponse(BaseModel):
     """Schema for timeline summary"""
+
     id: UUID
     status: str
     citizen_id: UUID
@@ -23,14 +29,16 @@ class TimelineSummaryResponse(BaseModel):
     channel: str
     priority: str
     created_at: datetime
-    updated_at: Optional[datetime]
-    recent_events: List[Dict[str, Any]]
+    updated_at: datetime | None
+    recent_events: list[dict[str, Any]]
     attachments_count: int
-    workflow_instance_id: Optional[str]
+    workflow_instance_id: str | None
     model_config = ConfigDict(from_attributes=True)
+
 
 class TimelineResponse(BaseModel):
     """Schema for full timeline"""
+
     request_id: UUID
-    events: List[TimelineEventResponse]
+    events: list[TimelineEventResponse]
     total: int

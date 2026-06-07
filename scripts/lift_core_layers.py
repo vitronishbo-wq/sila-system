@@ -3,10 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULES_DIR = ROOT / "apps" / "backend" / "app" / "modules"

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-class ComercioExternoServiceAdapter:
 
+class ComercioExternoServiceAdapter:
     def __init__(self, service):
         self.service = service

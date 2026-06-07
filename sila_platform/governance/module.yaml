@@ -1,0 +1,17 @@
+module: governance
+name: Governança de Estado
+description: Camada transversal de governança — RBAC, território, delegação, workflows, auditoria, organização, tenancy e registo.
+version: 1.0.0
+status: active
+owner: SILA Platform
+capabilities:
+  - rbac
+  - territory
+  - delegation
+  - workflows
+  - audit
+  - approval_chain
+  - digital_signature
+  - organization
+  - tenancy
+  - registry

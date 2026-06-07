@@ -5,13 +5,22 @@ Consolidation contract:
 - ``app.modules.justice.civil_registry`` remains focused on BI/document domain and
   acts as compatibility fallback for citizen reads when needed.
 """
+
 from __future__ import annotations
+
 import logging
-from typing import Any, Optional
-from apps.backend.app.modules.justice.application.citizen_service import CitizenService as CanonicalCitizenService
-from apps.backend.app.modules.justice.application.citizen_service import CitizenService as LegacyCitizenService
-from apps.backend.app.modules.justice._deprecated.bounded_contexts.infrastructure.models.document import Document
+from typing import Any
+
+from apps.backend.app.modules.justice._deprecated.bounded_contexts.infrastructure.models.document import (
+    Document,
+)
+from apps.backend.app.modules.justice.application.citizen_service import (
+    CitizenService as CanonicalCitizenService,
+    CitizenService as LegacyCitizenService,
+)
+
 logger = logging.getLogger(__name__)
+
 
 class CitizenService:
     """Unified citizen service facade.
@@ -30,7 +39,10 @@ class CitizenService:
             try:
                 return await self._primary.validate_citizen(citizen_id)
             except Exception as exc:
-                logger.warning('Primary citizen validation failed; falling back to legacy query path', extra={'citizen_id': citizen_id, 'error': str(exc)})
+                logger.warning(
+                    "Primary citizen validation failed; falling back to legacy query path",
+                    extra={"citizen_id": citizen_id, "error": str(exc)},
+                )
         return await self._fallback.validate_citizen(citizen_id)
 
     async def get_citizen_data(self, citizen_id: str) -> dict:
@@ -38,15 +50,20 @@ class CitizenService:
             try:
                 return await self._primary.get_citizen_data(citizen_id)
             except Exception as exc:
-                logger.warning('Primary citizen lookup failed; falling back to legacy query path', extra={'citizen_id': citizen_id, 'error': str(exc)})
+                logger.warning(
+                    "Primary citizen lookup failed; falling back to legacy query path",
+                    extra={"citizen_id": citizen_id, "error": str(exc)},
+                )
         return await self._fallback.get_citizen_data(citizen_id)
 
-    async def get_citizen(self, citizen_id: str) -> Optional[Any]:
+    async def get_citizen(self, citizen_id: str) -> Any | None:
         return await self._fallback.get_citizen(citizen_id)
 
-    async def find_all(self, name_filter: Optional[str]=None) -> list[Any]:
+    async def find_all(self, name_filter: str | None = None) -> list[Any]:
         return await self._fallback.find_all(name_filter=name_filter)
 
     def clear_cache(self) -> None:
         self._primary.clear_cache()
-__all__ = ['CitizenService', 'Document']
+
+
+__all__ = ["CitizenService", "Document"]

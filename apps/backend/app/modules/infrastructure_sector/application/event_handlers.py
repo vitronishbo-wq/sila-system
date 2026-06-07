@@ -1,13 +1,16 @@
 """
 Event handlers for infrastructure_sector module.
 """
-from typing import Dict, Callable, Any
+
+from collections.abc import Callable
+from typing import Any
+
 
 class InfrastructureSectorEventHandlers:
     """Handles all events for infrastructure_sector module."""
 
     def __init__(self):
-        self.handlers: Dict[str, Callable] = {}
+        self.handlers: dict[str, Callable] = {}
         self._register_handlers()
 
     def _register_handlers(self) -> None:
@@ -18,4 +21,6 @@ class InfrastructureSectorEventHandlers:
         """Handle an event if handler exists."""
         if event_type in self.handlers:
             self.handlers[event_type](event_data)
+
+
 handlers = InfrastructureSectorEventHandlers()

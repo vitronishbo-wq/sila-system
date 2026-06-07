@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import Bioma, StatusCAR, TipoImovel
+
 
 class ProprietarioCreate(BaseModel):
     nome: str
     documento: str
     telefone: str | None = None
     email: str | None = None
+
 
 class ProprietarioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -22,6 +27,7 @@ class ProprietarioResponse(BaseModel):
     data_cadastro: date
     ativo: bool
 
+
 class ImovelCreate(BaseModel):
     proprietario_id: UUID
     nome: str
@@ -31,6 +37,7 @@ class ImovelCreate(BaseModel):
     bioma: Bioma
     tipo_imovel: TipoImovel
     coordenadas: str | None = None
+
 
 class ImovelResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -47,6 +54,7 @@ class ImovelResponse(BaseModel):
     data_cadastro: date
     ativo: bool
 
+
 class CARCreate(BaseModel):
     imovel_id: UUID
     proprietario_id: UUID
@@ -54,18 +62,22 @@ class CARCreate(BaseModel):
     bioma: Bioma
     tipo_imovel: TipoImovel
 
+
 class CARAreasInput(BaseModel):
     area_preservacao_permanente: Decimal
     area_reserva_legal: Decimal
     area_uso_alternativo: Decimal
     area_consolidada: Decimal
 
+
 class CARAprovacaoInput(BaseModel):
     analista_id: UUID
+
 
 class CARPendenciaInput(BaseModel):
     analista_id: UUID
     motivo: str
+
 
 class CARResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

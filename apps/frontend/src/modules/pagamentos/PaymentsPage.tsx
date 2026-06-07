@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   IdCard, 
   FileText, 
@@ -13,9 +14,11 @@ import {
   Search,
   CreditCard as CreditCardIcon
 } from 'lucide-react';
-import PaymentModal from './components/PaymentModal';
+import PaymentModal from '@/modules/pagamentos/components/PaymentModal';
 import { apiClient } from '@/api/generated/client';
 import type { Service as ApiService } from '@/types/api';
+import CitizenAreaBanner from '@/components/Services/CitizenAreaBanner';
+import { API_URL } from '@/constants';
 
 interface DisplayService extends ApiService {
   icon: React.ReactNode;
@@ -63,12 +66,19 @@ const toDisplayService = (service: ApiService): DisplayService => {
 };
 
 const App: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedService, setSelectedService] = useState<DisplayService | null>(null);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [services, setServices] = useState<DisplayService[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [initialOrderId, setInitialOrderId] = useState<string | null>(searchParams.get('orderId'));
+  const serviceParam = searchParams.get('service');
+
+  useEffect(() => {
+    setInitialOrderId(searchParams.get('orderId'));
+  }, [searchParams]);
 
   useEffect(() => {
     let isMounted = true;
@@ -110,9 +120,65 @@ const App: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!serviceParam || services.length === 0) {
+      return;
+    }
+    const normalized = serviceParam.toLowerCase();
+    const match = services.find((service) => {
+      return (
+        service.id.toLowerCase() === normalized ||
+        service.code.toLowerCase() === normalized ||
+        service.name.toLowerCase().includes(normalized)
+      );
+    });
+    if (match) {
+      setSelectedService(match);
+      setIsPaymentModalOpen(true);
+      return;
+    }
+    const loadCatalogFallback = async () => {
+      try {
+        const token = localStorage.getItem('citizen_token')
+          || localStorage.getItem('access_token')
+          || localStorage.getItem('token');
+        const headers: Record<string, string> = {};
+        if (token) headers.Authorization = `Bearer ${token}`;
+        const response = await fetch(`${API_URL}service-catalog/${encodeURIComponent(serviceParam)}`, { headers });
+        if (!response.ok) {
+          return;
+        }
+        const data = await response.json();
+        const fallbackService: DisplayService = {
+          id: data.code,
+          code: data.code,
+          name: data.name,
+          price: typeof data.price === 'number' ? data.price : Number(data.price ?? 0),
+          icon: <CreditCardIcon className="w-8 h-8" />,
+          color: 'bg-slate-500'
+        };
+        setSelectedService(fallbackService);
+        setIsPaymentModalOpen(true);
+      } catch (err) {
+        console.error('Falha ao carregar catalogo para pagamento:', err);
+      }
+    };
+    loadCatalogFallback();
+  }, [serviceParam, services]);
+
   const handleServiceClick = (service: DisplayService) => {
     setSelectedService(service);
     setIsPaymentModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsPaymentModalOpen(false);
+    if (serviceParam) {
+      const next = new URLSearchParams(searchParams);
+      next.delete('service');
+      next.delete('orderId');
+      setSearchParams(next);
+    }
   };
 
   const filteredServices = services.filter(s =>
@@ -171,6 +237,9 @@ const App: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 p-6 md:p-12 overflow-y-auto">
+        <div className="mb-6">
+          <CitizenAreaBanner />
+        </div>
         <div className="max-w-6xl mx-auto">
           <header className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-2">
@@ -224,7 +293,8 @@ const App: React.FC = () => {
       {isPaymentModalOpen && selectedService && (
         <PaymentModal 
           service={selectedService} 
-          onClose={() => setIsPaymentModalOpen(false)} 
+          onClose={handleCloseModal}
+          initialOrderId={initialOrderId ?? undefined}
         />
       )}
     </div>

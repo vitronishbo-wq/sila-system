@@ -5,9 +5,8 @@ Phase 0-A Execution - SILA System Consolidation
 Date: March 16, 2026
 """
 
-import os
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 # List of 26 base_repository.py files to delete
 FILES_TO_DELETE = [
@@ -39,6 +38,7 @@ FILES_TO_DELETE = [
     "apps/backend/app/modules/economy/domain/repositories/base_repository.py",
 ]
 
+
 def delete_file(filepath: str) -> tuple[str, bool, str]:
     """Delete a single file and return status"""
     path = Path(filepath)
@@ -51,31 +51,32 @@ def delete_file(filepath: str) -> tuple[str, bool, str]:
     except Exception as e:
         return (filepath, False, f"❌ Error: {e}")
 
+
 def main():
     """Execute parallel batch deletion"""
     print("🔥 FASE 0-A: Batch Delete base_repository.py phantom files")
     print("=" * 80)
     print(f"📊 Target: {len(FILES_TO_DELETE)} files")
     print()
-    
+
     results = []
-    
+
     # Parallel execution with ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(delete_file, f): f for f in FILES_TO_DELETE}
-        
+
         for future in as_completed(futures):
             filepath, success, message = future.result()
             results.append((filepath, success, message))
             print(f"{message}: {filepath}")
-    
+
     # Summary statistics
     print()
     print("=" * 80)
     deleted = sum(1 for _, success, _ in results if success)
     failed = len(results) - deleted
-    
-    print(f"📊 RESULT:")
+
+    print("📊 RESULT:")
     print(f"   ✅ Deleted: {deleted} files")
     print(f"   ⚠️  Not found or failed: {failed} files")
     print(f"   📁 Total processed: {len(results)} files")
@@ -83,8 +84,9 @@ def main():
     print("🎉 P0-A COMPLETE: base_repository.py consolidation successful")
     print("   All 26 phantom files removed from codebase")
     print("   ✅ Core implementation remains in: apps/backend/core/repositories/")
-    
+
     return deleted == len(FILES_TO_DELETE)
+
 
 if __name__ == "__main__":
     success = main()

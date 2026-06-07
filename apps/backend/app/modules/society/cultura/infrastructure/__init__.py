@@ -1,3 +1,39 @@
-from apps.backend.app.modules.society.cultura.infrastructure.models import ArtistaModel, BemCulturalModel, EditalModel, EspacoCulturalModel, EventoCulturalModel, GrupoArtisticoModel, PatrimonioImaterialModel, ProjetoCulturalModel
-from apps.backend.app.modules.society.cultura.infrastructure.repositories import SQLAlchemyArtistaRepository, SQLAlchemyBemCulturalRepository, SQLAlchemyEditalRepository, SQLAlchemyEspacoCulturalRepository, SQLAlchemyEventoCulturalRepository, SQLAlchemyGrupoArtisticoRepository, SQLAlchemyPatrimonioImaterialRepository, SQLAlchemyProjetoCulturalRepository
-__all__ = ['ArtistaModel', 'BemCulturalModel', 'EspacoCulturalModel', 'ProjetoCulturalModel', 'EditalModel', 'EventoCulturalModel', 'GrupoArtisticoModel', 'PatrimonioImaterialModel', 'SQLAlchemyArtistaRepository', 'SQLAlchemyBemCulturalRepository', 'SQLAlchemyEspacoCulturalRepository', 'SQLAlchemyProjetoCulturalRepository', 'SQLAlchemyEditalRepository', 'SQLAlchemyEventoCulturalRepository', 'SQLAlchemyGrupoArtisticoRepository', 'SQLAlchemyPatrimonioImaterialRepository']
+from apps.backend.app.modules.society.cultura.infrastructure.models import (
+    ArtistaModel,
+    BemCulturalModel,
+    EditalModel,
+    EspacoCulturalModel,
+    EventoCulturalModel,
+    GrupoArtisticoModel,
+    PatrimonioImaterialModel,
+    ProjetoCulturalModel,
+)
+from apps.backend.app.modules.society.cultura.infrastructure.repositories import (
+    SQLAlchemyArtistaRepository,
+    SQLAlchemyBemCulturalRepository,
+    SQLAlchemyEditalRepository,
+    SQLAlchemyEspacoCulturalRepository,
+    SQLAlchemyEventoCulturalRepository,
+    SQLAlchemyGrupoArtisticoRepository,
+    SQLAlchemyPatrimonioImaterialRepository,
+    SQLAlchemyProjetoCulturalRepository,
+)
+
+__all__ = [
+    "ArtistaModel",
+    "BemCulturalModel",
+    "EspacoCulturalModel",
+    "ProjetoCulturalModel",
+    "EditalModel",
+    "EventoCulturalModel",
+    "GrupoArtisticoModel",
+    "PatrimonioImaterialModel",
+    "SQLAlchemyArtistaRepository",
+    "SQLAlchemyBemCulturalRepository",
+    "SQLAlchemyEspacoCulturalRepository",
+    "SQLAlchemyProjetoCulturalRepository",
+    "SQLAlchemyEditalRepository",
+    "SQLAlchemyEventoCulturalRepository",
+    "SQLAlchemyGrupoArtisticoRepository",
+    "SQLAlchemyPatrimonioImaterialRepository",
+]

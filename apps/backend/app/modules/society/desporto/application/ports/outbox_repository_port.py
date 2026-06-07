@@ -1,8 +1,10 @@
 from __future__ import annotations
+
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import datetime
-from abc import ABC, abstractmethod
 from uuid import UUID
+
 
 @dataclass(slots=True)
 class OutboxMessage:
@@ -14,14 +16,16 @@ class OutboxMessage:
     locked_by: str | None = None
     locked_at: datetime | None = None
 
-class OutboxRepositoryPort(ABC):
 
+class OutboxRepositoryPort(ABC):
     @abstractmethod
     async def append(self, event: object) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    async def pop_batch(self, batch_size: int=100, *, worker_id: str | None=None, lock_ttl_seconds: int=60) -> list[OutboxMessage]:
+    async def pop_batch(
+        self, batch_size: int = 100, *, worker_id: str | None = None, lock_ttl_seconds: int = 60
+    ) -> list[OutboxMessage]:
         raise NotImplementedError
 
     @abstractmethod
@@ -29,5 +33,7 @@ class OutboxRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def mark_failed(self, message: OutboxMessage, *, error: str | None=None, retry_delay_seconds: int=5) -> None:
+    async def mark_failed(
+        self, message: OutboxMessage, *, error: str | None = None, retry_delay_seconds: int = 5
+    ) -> None:
         raise NotImplementedError

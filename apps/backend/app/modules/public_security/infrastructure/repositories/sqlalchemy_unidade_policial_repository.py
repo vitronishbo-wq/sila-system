@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from apps.backend.app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
+
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import (
+    UnidadePolicialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.domain.enums import (
+    StatusUnidadePolicial,
+    TipoUnidadePolicial,
+)
 from apps.backend.app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
-from apps.backend.app.modules.public_security.infrastructure.models.unidade_policial_model import UnidadePolicialModel
+from apps.backend.app.modules.public_security.infrastructure.models.unidade_policial_model import (
+    UnidadePolicialModel,
+)
+
 
 class SQLAlchemyUnidadePolicialRepository(UnidadePolicialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -40,7 +50,9 @@ class SQLAlchemyUnidadePolicialRepository(UnidadePolicialRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_unidade: str) -> UnidadePolicial | None:
-        stmt = select(UnidadePolicialModel).where(UnidadePolicialModel.codigo_unidade == codigo_unidade.strip())
+        stmt = select(UnidadePolicialModel).where(
+            UnidadePolicialModel.codigo_unidade == codigo_unidade.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -51,12 +63,20 @@ class SQLAlchemyUnidadePolicialRepository(UnidadePolicialRepositoryPort):
 
     async def list_by_municipio(self, municipio: str) -> list[UnidadePolicial]:
         normalized = municipio.strip().lower()
-        stmt = select(UnidadePolicialModel).where(func.lower(UnidadePolicialModel.municipio) == normalized).order_by(UnidadePolicialModel.nome.asc())
+        stmt = (
+            select(UnidadePolicialModel)
+            .where(func.lower(UnidadePolicialModel.municipio) == normalized)
+            .order_by(UnidadePolicialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusUnidadePolicial) -> list[UnidadePolicial]:
-        stmt = select(UnidadePolicialModel).where(UnidadePolicialModel.status == status.value).order_by(UnidadePolicialModel.nome.asc())
+        stmt = (
+            select(UnidadePolicialModel)
+            .where(UnidadePolicialModel.status == status.value)
+            .order_by(UnidadePolicialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -70,11 +90,30 @@ class SQLAlchemyUnidadePolicialRepository(UnidadePolicialRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'UND/{year}/'
-        stmt = select(func.count()).select_from(UnidadePolicialModel).where(UnidadePolicialModel.codigo_unidade.like(f'{prefix}%'))
+        prefix = f"UND/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(UnidadePolicialModel)
+            .where(UnidadePolicialModel.codigo_unidade.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:05d}'
+        return f"{prefix}{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: UnidadePolicialModel) -> UnidadePolicial:
-        return UnidadePolicial(id=model.id, codigo_unidade=model.codigo_unidade, nome=model.nome, tipo=TipoUnidadePolicial(model.tipo), municipio=model.municipio, provincia=model.provincia, endereco=model.endereco, comandante=model.comandante, data_ativacao=model.data_ativacao, status=StatusUnidadePolicial(model.status), telefone=model.telefone, email=model.email, observacoes=model.observacoes, ativo=model.ativo)
+        return UnidadePolicial(
+            id=model.id,
+            codigo_unidade=model.codigo_unidade,
+            nome=model.nome,
+            tipo=TipoUnidadePolicial(model.tipo),
+            municipio=model.municipio,
+            provincia=model.provincia,
+            endereco=model.endereco,
+            comandante=model.comandante,
+            data_ativacao=model.data_ativacao,
+            status=StatusUnidadePolicial(model.status),
+            telefone=model.telefone,
+            email=model.email,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

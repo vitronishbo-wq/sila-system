@@ -9,7 +9,7 @@ implementado, garantindo consistência na camada de acesso a dados.
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 
 class CRUDValidationResult:
@@ -21,9 +21,7 @@ class CRUDValidationResult:
         self.modules_failed = 0
         self.results = {}
 
-    def add_module_result(
-        self, module_name: str, passed: bool, details: Dict[str, Any]
-    ):
+    def add_module_result(self, module_name: str, passed: bool, details: dict[str, Any]):
         """Adiciona resultado de módulo."""
         self.results[module_name] = {"passed": passed, "details": details}
         self.modules_validated += 1
@@ -38,10 +36,12 @@ class CRUDValidationResult:
             return "Nenhum módulo validado"
 
         success_rate = (self.modules_passed / self.modules_validated) * 100
-        return f"{self.modules_passed}/{self.modules_validated} módulos passaram ({success_rate:.1f}%)"
+        return (
+            f"{self.modules_passed}/{self.modules_validated} módulos passaram ({success_rate:.1f}%)"
+        )
 
 
-def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
+def validate_crud_structure(module_path: Path) -> dict[str, Any]:
     """Valida estrutura CRUD de um módulo."""
     details = {
         "has_crud_file": False,
@@ -62,7 +62,7 @@ def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
 
         try:
             # Tentar ler o arquivo para validar estrutura
-            with open(crud_file, "r", encoding="utf-8") as f:
+            with open(crud_file, encoding="utf-8") as f:
                 content = f.read()
 
             # Verificar padrões básicos
@@ -84,9 +84,7 @@ def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
                     missing_methods.append(method)
 
             if missing_methods:
-                details["errors"].append(
-                    f"Métodos CRUD padrão ausentes: {missing_methods}"
-                )
+                details["errors"].append(f"Métodos CRUD padrão ausentes: {missing_methods}")
 
             # Verificar factory functions
             if "def get_" not in content:
@@ -117,7 +115,7 @@ def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
         details["has_crud_schemas"] = True
 
         try:
-            with open(schema_file, "r", encoding="utf-8") as f:
+            with open(schema_file, encoding="utf-8") as f:
                 content = f.read()
 
             # Verificar schemas básicos - ser mais flexível com nomes
@@ -128,7 +126,7 @@ def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
             update_classes = re.findall(r"class (\w+Update)\(", content)
             indb_classes = re.findall(r"class (\w+InDB)\(", content)
             out_classes = re.findall(r"class (\w+Out)\(", content)
-            filter_classes = re.findall(r"class (\w+Filter)\(", content)
+            re.findall(r"class (\w+Filter)\(", content)
 
             if not create_classes:
                 details["errors"].append("Nenhuma classe Create encontrada")
@@ -141,9 +139,7 @@ def validate_crud_structure(module_path: Path) -> Dict[str, Any]:
             # Filter é opcional, então não vamos exigir
 
             # Extrair nomes das classes de schema
-            schema_classes = re.findall(
-                r"class (\w+(?:Create|Update|InDB|Out|Filter))\(", content
-            )
+            schema_classes = re.findall(r"class (\w+(?:Create|Update|InDB|Out|Filter))\(", content)
             details["schema_classes"] = schema_classes[:10]  # Limitar para não poluir
 
         except Exception as e:
@@ -190,9 +186,7 @@ def validate_existing_cruds() -> CRUDValidationResult:
 
         # Determinar se passou na validação
         passed = (
-            details["has_crud_file"]
-            and details["has_crud_schemas"]
-            and len(details["errors"]) == 0
+            details["has_crud_file"] and details["has_crud_schemas"] and len(details["errors"]) == 0
         )
 
         result.add_module_result(module_name, passed, details)
@@ -203,9 +197,7 @@ def validate_existing_cruds() -> CRUDValidationResult:
             if details["crud_classes"]:
                 print(f"   Classes CRUD: {', '.join(details['crud_classes'][:3])}")
             if details["schema_classes"]:
-                print(
-                    f"   Schemas: {len(details['schema_classes'])} classes encontradas"
-                )
+                print(f"   Schemas: {len(details['schema_classes'])} classes encontradas")
         else:
             print(f"❌ {module_name}: Problemas na implementação CRUD")
             for error in details["errors"]:
@@ -214,7 +206,7 @@ def validate_existing_cruds() -> CRUDValidationResult:
     return result
 
 
-def validate_crud_consistency() -> Dict[str, Any]:
+def validate_crud_consistency() -> dict[str, Any]:
     """Valida consistência entre implementações CRUD."""
     print("\n🔍 Validando consistência entre CRUDs")
     print("-" * 40)
@@ -238,7 +230,7 @@ def validate_crud_consistency() -> Dict[str, Any]:
 
     for crud_file in crud_files:
         try:
-            with open(crud_file, "r", encoding="utf-8") as f:
+            with open(crud_file, encoding="utf-8") as f:
                 content = f.read()
 
             module_name = crud_file.parent.name
@@ -275,32 +267,28 @@ def validate_crud_consistency() -> Dict[str, Any]:
                 consistency_report["factory_pattern_consistent"] = False
 
         except Exception as e:
-            consistency_report["issues"].append(
-                f"Erro ao validar {crud_file}: {str(e)}"
-            )
+            consistency_report["issues"].append(f"Erro ao validar {crud_file}: {str(e)}")
 
     return consistency_report
 
 
-def generate_crud_summary_report(
-    result: CRUDValidationResult, consistency: Dict[str, Any]
-) -> str:
+def generate_crud_summary_report(result: CRUDValidationResult, consistency: dict[str, Any]) -> str:
     """Gera relatório resumido da validação CRUD."""
 
     report = f"""
 # Relatório de Validação CRUD/Data Access
 
 ## 📊 Resumo da Validação
-- **Data/Hora**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+- **Data/Hora**: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 - **Módulos Validados**: {result.modules_validated}
 - **Módulos Aprovados**: {result.modules_passed}
 - **Módulos Reprovados**: {result.modules_failed}
 - **Taxa de Sucesso**: {(result.modules_passed / result.modules_validated * 100) if result.modules_validated > 0 else 0:.1f}%
 
 ## 🏗️ Consistência da Implementação
-- **Métodos Padrão**: {'✅' if consistency['standard_methods_found'] else '❌'}
-- **Factory Pattern**: {'✅' if consistency['factory_pattern_consistent'] else '❌'}
-- **Convenção de Nomes**: {'✅' if consistency['naming_convention_consistent'] else '❌'}
+- **Métodos Padrão**: {"✅" if consistency["standard_methods_found"] else "❌"}
+- **Factory Pattern**: {"✅" if consistency["factory_pattern_consistent"] else "❌"}
+- **Convenção de Nomes**: {"✅" if consistency["naming_convention_consistent"] else "❌"}
 
 ## 📋 Detalhes por Módulo
 """
@@ -311,13 +299,9 @@ def generate_crud_summary_report(
 
         if details["passed"]:
             if details["details"]["crud_classes"]:
-                report += (
-                    f"- Classes CRUD: {', '.join(details['details']['crud_classes'])}\n"
-                )
+                report += f"- Classes CRUD: {', '.join(details['details']['crud_classes'])}\n"
             if details["details"]["schema_classes"]:
-                report += (
-                    f"- Schemas: {len(details['details']['schema_classes'])} classes\n"
-                )
+                report += f"- Schemas: {len(details['details']['schema_classes'])} classes\n"
         else:
             for error in details["details"]["errors"]:
                 report += f"- ❌ {error}\n"
@@ -327,7 +311,7 @@ def generate_crud_summary_report(
         for issue in consistency["issues"]:
             report += f"- {issue}\n"
 
-    report += f"""
+    report += """
 
 ## 🎯 Próximos Passos
 1. **Implementar CRUDs Faltantes**: Completar módulos sem CRUD
@@ -367,19 +351,13 @@ def main():
 
     print(f"\n📈 Resumo Geral: {result.get_summary()}")
 
-    print(f"\n🏗️ Consistência da Implementação:")
-    print(
-        f"   Métodos Padrão: {'✅' if consistency['standard_methods_found'] else '❌'}"
-    )
-    print(
-        f"   Factory Pattern: {'✅' if consistency['factory_pattern_consistent'] else '❌'}"
-    )
-    print(
-        f"   Convenção de Nomes: {'✅' if consistency['naming_convention_consistent'] else '❌'}"
-    )
+    print("\n🏗️ Consistência da Implementação:")
+    print(f"   Métodos Padrão: {'✅' if consistency['standard_methods_found'] else '❌'}")
+    print(f"   Factory Pattern: {'✅' if consistency['factory_pattern_consistent'] else '❌'}")
+    print(f"   Convenção de Nomes: {'✅' if consistency['naming_convention_consistent'] else '❌'}")
 
     if consistency["issues"]:
-        print(f"\n⚠️ Issues de Consistência:")
+        print("\n⚠️ Issues de Consistência:")
         for issue in consistency["issues"][:5]:  # Mostrar apenas 5 primeiros
             print(f"   • {issue}")
 

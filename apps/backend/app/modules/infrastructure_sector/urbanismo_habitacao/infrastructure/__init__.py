@@ -1,2 +1,21 @@
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import SQLAlchemyAlvaraRepository, SQLAlchemyHabiteSeRepository, SQLAlchemyLicencaUrbanisticaRepository, SQLAlchemyLoteamentoRepository, SQLAlchemyOperacaoUrbanaRepository, SQLAlchemyParcelamentoRepository, SQLAlchemyPlanoDiretorRepository, SQLAlchemyZoneamentoRepository
-__all__ = ['SQLAlchemyPlanoDiretorRepository', 'SQLAlchemyZoneamentoRepository', 'SQLAlchemyOperacaoUrbanaRepository', 'SQLAlchemyParcelamentoRepository', 'SQLAlchemyLoteamentoRepository', 'SQLAlchemyLicencaUrbanisticaRepository', 'SQLAlchemyAlvaraRepository', 'SQLAlchemyHabiteSeRepository']
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.infrastructure.repositories import (
+    SQLAlchemyAlvaraRepository,
+    SQLAlchemyHabiteSeRepository,
+    SQLAlchemyLicencaUrbanisticaRepository,
+    SQLAlchemyLoteamentoRepository,
+    SQLAlchemyOperacaoUrbanaRepository,
+    SQLAlchemyParcelamentoRepository,
+    SQLAlchemyPlanoDiretorRepository,
+    SQLAlchemyZoneamentoRepository,
+)
+
+__all__ = [
+    "SQLAlchemyPlanoDiretorRepository",
+    "SQLAlchemyZoneamentoRepository",
+    "SQLAlchemyOperacaoUrbanaRepository",
+    "SQLAlchemyParcelamentoRepository",
+    "SQLAlchemyLoteamentoRepository",
+    "SQLAlchemyLicencaUrbanisticaRepository",
+    "SQLAlchemyAlvaraRepository",
+    "SQLAlchemyHabiteSeRepository",
+]

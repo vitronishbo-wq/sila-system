@@ -5,18 +5,18 @@ Revises: 6ce98d034292
 Create Date: 2026-03-16 06:51:17.670631
 
 """
-from typing import Sequence, Union
 
-from alembic import op
+from collections.abc import Sequence
+
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects import postgresql
 
-
 # revision identifiers, used by Alembic.
-revision: str = '181c15049e80'
-down_revision: Union[str, Sequence[str], None] = '6ce98d034292'
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+revision: str = "181c15049e80"
+down_revision: str | Sequence[str] | None = "6ce98d034292"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -44,9 +44,7 @@ def upgrade() -> None:
     location_fk_type = (
         postgresql.UUID(as_uuid=True) if _is_uuid(locations_id_type) else sa.Integer()
     )
-    user_fk_type = (
-        postgresql.UUID(as_uuid=True) if _is_uuid(users_id_type) else sa.Integer()
-    )
+    user_fk_type = postgresql.UUID(as_uuid=True) if _is_uuid(users_id_type) else sa.Integer()
 
     if "citizenship_citizens" not in tables:
         residence_nullable = _is_uuid(locations_id_type)
@@ -86,14 +84,10 @@ def upgrade() -> None:
             sa.UniqueConstraint(
                 "bi_number",
                 name=op.f("citizenship_citizens_bi_number_key"),
-                postgresql_include=[],
-                postgresql_nulls_not_distinct=False,
             ),
             sa.UniqueConstraint(
                 "user_id",
                 name=op.f("citizenship_citizens_user_id_key"),
-                postgresql_include=[],
-                postgresql_nulls_not_distinct=False,
             ),
         )
 

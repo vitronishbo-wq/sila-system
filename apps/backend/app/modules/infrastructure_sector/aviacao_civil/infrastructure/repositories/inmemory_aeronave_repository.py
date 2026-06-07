@@ -1,10 +1,16 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import AeronaveRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import Aeronave
+
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.application.ports.aeronave_repository_port import (
+    AeronaveRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.models.aeronave import (
+    Aeronave,
+)
+
 
 class InMemoryAeronaveRepository(AeronaveRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Aeronave] = {}
 

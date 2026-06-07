@@ -16,7 +16,7 @@ import argparse
 import os
 import pathlib
 from datetime import datetime
-from typing import Dict, Any, List
+from typing import Any
 
 
 # Ensure directory utility (idempotent)
@@ -40,9 +40,7 @@ class FileManager:
             return True
 
         if os.path.exists(filepath) and not force:
-            print(
-                f"[WARN] Arquivo já existe: {filepath}. Use --force para sobrescrever."
-            )
+            print(f"[WARN] Arquivo já existe: {filepath}. Use --force para sobrescrever.")
             return False
 
         os.makedirs(os.path.dirname(filepath) or ".", exist_ok=True)
@@ -58,7 +56,7 @@ class FileManager:
 
 # --- Definição dos Templates ---
 
-PHASE2_DOC_TEMPLATES: Dict[str, Dict[str, Any]] = {
+PHASE2_DOC_TEMPLATES: dict[str, dict[str, Any]] = {
     "FASE_2_TODO_OFICIAL": {
         "output_path": "FASE_2_TODO_OFICIAL.md",
         "title": "Documento de Planejamento e TODO Oficial da Fase 2",
@@ -344,7 +342,7 @@ pode ser criada de fato.
 # --- Lógica Principal de Execução ---
 
 
-def generate_docs(doc_names: List[str], force: bool, file_manager: FileManager):
+def generate_docs(doc_names: list[str], force: bool, file_manager: FileManager):
     """Gera os documentos com base nos templates."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -381,18 +379,14 @@ def main():
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # Comando 'list'
-    list_parser = subparsers.add_parser(
-        "list", help="Lista os templates de documentos disponíveis."
-    )
+    subparsers.add_parser("list", help="Lista os templates de documentos disponíveis.")
 
     # Comando 'generate'
     generate_parser = subparsers.add_parser(
         "generate", help="Gera documentos a partir dos templates."
     )
     generate_group = generate_parser.add_mutually_exclusive_group(required=True)
-    generate_group.add_argument(
-        "--all", action="store_true", help="Gera todos os documentos."
-    )
+    generate_group.add_argument("--all", action="store_true", help="Gera todos os documentos.")
     generate_group.add_argument(
         "--name",
         type=str,
@@ -428,10 +422,8 @@ def main():
             doc_names_to_generate = [args.name]
 
         if args.dry_run:
-            print(f"[DRY-RUN MODE] Nenhum arquivo será escrito.")
-            print(
-                f"[DRY-RUN] Documentos a processar: {', '.join(doc_names_to_generate)}"
-            )
+            print("[DRY-RUN MODE] Nenhum arquivo será escrito.")
+            print(f"[DRY-RUN] Documentos a processar: {', '.join(doc_names_to_generate)}")
 
         generate_docs(doc_names_to_generate, args.force, file_manager)
 

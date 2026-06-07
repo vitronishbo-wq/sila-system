@@ -1,8 +1,33 @@
-"""Domain exceptions for SegurancaSocial module"""
-from apps.backend.core.exceptions.factory import ExceptionFactory
-exc = ExceptionFactory.create_module_exceptions('SegurancaSocial')
-SegurancaSocialException = exc.Base
-SegurancaSocialNotFound = exc.NotFound
-SegurancaSocialValidationError = exc.ValidationError
-SegurancaSocialInvalidStateError = exc.InvalidStateError
-__all__ = ['SegurancaSocialException', 'SegurancaSocialNotFound', 'SegurancaSocialValidationError', 'SegurancaSocialInvalidStateError']
+from __future__ import annotations
+
+
+class SegurancaSocialError(Exception):
+    pass
+
+
+class BeneficiarioAlreadyExistsError(SegurancaSocialError):
+    pass
+
+
+class BeneficiarioNotFoundError(SegurancaSocialError):
+    pass
+
+
+class BeneficiarioNotEligibleError(SegurancaSocialError):
+    pass
+
+
+class CandidatoEmpregoRequiredError(SegurancaSocialError):
+    pass
+
+
+class CitizenNotFoundError(SegurancaSocialError):
+    pass
+
+
+class PensaoAlreadyExistsError(SegurancaSocialError):
+    pass
+
+
+class PensaoNotFoundError(SegurancaSocialError):
+    pass

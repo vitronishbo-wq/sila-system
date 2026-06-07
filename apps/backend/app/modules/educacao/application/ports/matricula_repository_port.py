@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Optional
 from uuid import UUID
+
 from apps.backend.app.modules.educacao.domain.models import Matricula
+
 
 class MatriculaRepositoryPort(ABC):
     """Porta para persistencia de matriculas."""
@@ -12,11 +14,13 @@ class MatriculaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, id: UUID) -> Optional[Matricula]:
+    async def get_by_id(self, id: UUID) -> Matricula | None:
         pass
 
     @abstractmethod
-    async def get_by_citizen(self, citizen_id: UUID, ano_letivo_id: Optional[UUID]=None) -> list[Matricula]:
+    async def get_by_citizen(
+        self, citizen_id: UUID, ano_letivo_id: UUID | None = None
+    ) -> list[Matricula]:
         pass
 
     @abstractmethod

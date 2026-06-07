@@ -7,7 +7,6 @@ Create Date: 2026-02-28 05:15:00.000000
 
 from alembic import op
 
-
 revision = "20260228_005_saude_fases_4_7"
 down_revision = "20260228_004_educacao_foundation"
 branch_labels = None
@@ -477,36 +476,90 @@ def upgrade():
     )
 
     # Indices
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_epi_health_unit ON health_vigilancia_epidemiologica (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_notif_health_unit ON health_notificacoes_surto (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_notif_vigilancia ON health_notificacoes_surto (vigilancia_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_vetor_health_unit ON health_controle_vetores (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_zoonose_health_unit ON health_controle_zoonoses (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_hidrica_health_unit ON health_monitorizacao_hidrica (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hvig_alerta_health_unit ON health_alertas_saude (health_unit_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_epi_health_unit ON health_vigilancia_epidemiologica (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_notif_health_unit ON health_notificacoes_surto (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_notif_vigilancia ON health_notificacoes_surto (vigilancia_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_vetor_health_unit ON health_controle_vetores (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_zoonose_health_unit ON health_controle_zoonoses (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_hidrica_health_unit ON health_monitorizacao_hidrica (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hvig_alerta_health_unit ON health_alertas_saude (health_unit_id)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hinsp_san_health_unit ON health_inspecoes_sanitarias (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hlic_san_health_unit ON health_licencas_sanitarias (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hlic_tmp_health_unit ON health_licencas_temporarias (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hfisc_alim_health_unit ON health_fiscalizacoes_alimentos (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hqual_alim_health_unit ON health_controle_qualidade_alimentos (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hcadeia_frio_health_unit ON health_fiscalizacoes_cadeia_frio (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_habate_health_unit ON health_controles_abate_publico (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_htransp_alim_health_unit ON health_inspecoes_transporte_alimentar (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hapre_prod_health_unit ON health_apreensoes_produto (health_unit_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hinsp_san_health_unit ON health_inspecoes_sanitarias (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hlic_san_health_unit ON health_licencas_sanitarias (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hlic_tmp_health_unit ON health_licencas_temporarias (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hfisc_alim_health_unit ON health_fiscalizacoes_alimentos (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hqual_alim_health_unit ON health_controle_qualidade_alimentos (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hcadeia_frio_health_unit ON health_fiscalizacoes_cadeia_frio (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_habate_health_unit ON health_controles_abate_publico (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_htransp_alim_health_unit ON health_inspecoes_transporte_alimentar (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hapre_prod_health_unit ON health_apreensoes_produto (health_unit_id)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hprog_mal_health_unit ON health_programas_malaria (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hprog_hiv_health_unit ON health_programas_hiv (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hprog_prev_health_unit ON health_programas_preventivos (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hrast_tb_citizen ON health_rastreios_tuberculose (citizen_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hrast_tb_health_unit ON health_rastreios_tuberculose (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_htriag_diab_citizen ON health_triagens_diabetes (citizen_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_htriag_diab_health_unit ON health_triagens_diabetes (health_unit_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hprog_mal_health_unit ON health_programas_malaria (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hprog_hiv_health_unit ON health_programas_hiv (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hprog_prev_health_unit ON health_programas_preventivos (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hrast_tb_citizen ON health_rastreios_tuberculose (citizen_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hrast_tb_health_unit ON health_rastreios_tuberculose (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_htriag_diab_citizen ON health_triagens_diabetes (citizen_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_htriag_diab_health_unit ON health_triagens_diabetes (health_unit_id)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hrel_seg_alim_health_unit ON health_relatorios_seguranca_alimentar (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_haval_risco_health_unit ON health_avaliacoes_risco_sanitario (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_hemerg_san_health_unit ON health_emergencias_sanitarias (health_unit_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_heduc_san_health_unit ON health_educacao_sanitaria (health_unit_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hrel_seg_alim_health_unit ON health_relatorios_seguranca_alimentar (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_haval_risco_health_unit ON health_avaliacoes_risco_sanitario (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_hemerg_san_health_unit ON health_emergencias_sanitarias (health_unit_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_heduc_san_health_unit ON health_educacao_sanitaria (health_unit_id)"
+    )
 
 
 def downgrade():
@@ -537,4 +590,3 @@ def downgrade():
     op.execute("DROP TABLE IF EXISTS health_controle_vetores")
     op.execute("DROP TABLE IF EXISTS health_notificacoes_surto")
     op.execute("DROP TABLE IF EXISTS health_vigilancia_epidemiologica")
-

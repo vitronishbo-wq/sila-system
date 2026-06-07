@@ -1,0 +1,17 @@
+code: marketplace
+module: marketplace
+name: marketplace
+description: Capacidades de marketplace e servicos digitais compartilhados.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

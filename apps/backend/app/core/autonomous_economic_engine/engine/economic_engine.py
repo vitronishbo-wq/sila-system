@@ -1,5 +1,4 @@
 class EconomicEngine:
-
     def __init__(self):
         self.markets = []
 

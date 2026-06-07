@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import meteorologiaService from '../services/meteorologiaService';
+import meteorologiaService from '@/modules/meteorologia/services/meteorologiaService';
 import type {
   MeteorologiaEstacao,
   ObservacaoMeteorologica,
@@ -14,7 +14,7 @@ import type {
   MeteorologiaStats,
   TrendData,
   EstacaoListResponse,
-} from '../types';
+} from '@/modules/meteorologia/types';
 
 // ============= DASHBOARD HOOK =============
 /**

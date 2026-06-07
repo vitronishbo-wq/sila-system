@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from sqlalchemy import select, func
+
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusSLA, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import (
+    SLARepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusSLA,
+    TipoServico,
+)
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import SLAModel
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.sla_model import (
+    SLAModel,
+)
+
 
 class SQLAlchemySLARepository(SLARepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -46,8 +56,20 @@ class SQLAlchemySLARepository(SLARepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def find_ativo_por_operadora_servico(self, operadora_id: UUID, servico: TipoServico) -> SLA | None:
-        stmt = select(SLAModel).where(SLAModel.operadora_id == operadora_id, SLAModel.servico == servico.value, SLAModel.status == StatusSLA.ATIVO.value, SLAModel.ativo.is_(True)).order_by(SLAModel.data_inicio.desc()).limit(1)
+    async def find_ativo_por_operadora_servico(
+        self, operadora_id: UUID, servico: TipoServico
+    ) -> SLA | None:
+        stmt = (
+            select(SLAModel)
+            .where(
+                SLAModel.operadora_id == operadora_id,
+                SLAModel.servico == servico.value,
+                SLAModel.status == StatusSLA.ATIVO.value,
+                SLAModel.ativo.is_(True),
+            )
+            .order_by(SLAModel.data_inicio.desc())
+            .limit(1)
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -57,12 +79,20 @@ class SQLAlchemySLARepository(SLARepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_operadora(self, operadora_id: UUID) -> list[SLA]:
-        stmt = select(SLAModel).where(SLAModel.operadora_id == operadora_id).order_by(SLAModel.data_inicio.desc())
+        stmt = (
+            select(SLAModel)
+            .where(SLAModel.operadora_id == operadora_id)
+            .order_by(SLAModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusSLA) -> list[SLA]:
-        stmt = select(SLAModel).where(SLAModel.status == status.value).order_by(SLAModel.data_inicio.desc())
+        stmt = (
+            select(SLAModel)
+            .where(SLAModel.status == status.value)
+            .order_by(SLAModel.data_inicio.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -76,10 +106,31 @@ class SQLAlchemySLARepository(SLARepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(SLAModel).where(SLAModel.codigo_sla.like(f'SLA/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(SLAModel)
+            .where(SLAModel.codigo_sla.like(f"SLA/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'SLA/{ano}/{count + 1:05d}'
+        return f"SLA/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: SLAModel) -> SLA:
-        return SLA(id=model.id, codigo_sla=model.codigo_sla, operadora_id=model.operadora_id, nome=model.nome, servico=TipoServico(model.servico), disponibilidade_min_percentual=float(model.disponibilidade_min_percentual), latencia_max_ms=float(model.latencia_max_ms), jitter_max_ms=float(model.jitter_max_ms), perda_pacotes_max_percentual=float(model.perda_pacotes_max_percentual), velocidade_download_min_mbps=float(model.velocidade_download_min_mbps), velocidade_upload_min_mbps=float(model.velocidade_upload_min_mbps), data_inicio=model.data_inicio, data_fim=model.data_fim, status=StatusSLA(model.status), observacoes=model.observacoes, ativo=model.ativo)
+        return SLA(
+            id=model.id,
+            codigo_sla=model.codigo_sla,
+            operadora_id=model.operadora_id,
+            nome=model.nome,
+            servico=TipoServico(model.servico),
+            disponibilidade_min_percentual=float(model.disponibilidade_min_percentual),
+            latencia_max_ms=float(model.latencia_max_ms),
+            jitter_max_ms=float(model.jitter_max_ms),
+            perda_pacotes_max_percentual=float(model.perda_pacotes_max_percentual),
+            velocidade_download_min_mbps=float(model.velocidade_download_min_mbps),
+            velocidade_upload_min_mbps=float(model.velocidade_upload_min_mbps),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            status=StatusSLA(model.status),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

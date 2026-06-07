@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FileText, Download, Loader2, Eye, AlertCircle } from "lucide-react";
 import api from "@/services/api";
+import { API_V1_BASE_URL } from "@/utils/runtime";
 
 interface Document {
     id: string; // UUID
@@ -58,7 +59,7 @@ export const DocumentCard = ({ document }: { document: Document }) => {
             <div className="relative h-72 bg-gray-50 flex items-center justify-center">
                 {document.status === "completed" ? (
                     <img
-                        src={`${import.meta.env.VITE_API_URL}/documents/${document.id}/thumbnail`}
+                        src={`${API_V1_BASE_URL}/documents/${document.id}/thumbnail`}
                         alt="Preview"
                         className="max-h-full max-w-full object-contain"
                         loading="lazy"

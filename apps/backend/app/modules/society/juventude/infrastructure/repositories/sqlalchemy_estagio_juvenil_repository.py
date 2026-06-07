@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
+
+from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import (
+    EstagioJuvenilRepositoryPort,
+)
 from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEstagio
 from apps.backend.app.modules.society.juventude.domain.models.estagio_juvenil import EstagioJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.estagio_juvenil_model import EstagioJuvenilModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.estagio_juvenil_model import (
+    EstagioJuvenilModel,
+)
+
 
 class SQLAlchemyEstagioJuvenilRepository(EstagioJuvenilRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -40,7 +47,9 @@ class SQLAlchemyEstagioJuvenilRepository(EstagioJuvenilRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_estagio: str) -> EstagioJuvenil | None:
-        stmt = select(EstagioJuvenilModel).where(EstagioJuvenilModel.codigo_estagio == codigo_estagio.strip())
+        stmt = select(EstagioJuvenilModel).where(
+            EstagioJuvenilModel.codigo_estagio == codigo_estagio.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -50,12 +59,20 @@ class SQLAlchemyEstagioJuvenilRepository(EstagioJuvenilRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[EstagioJuvenil]:
-        stmt = select(EstagioJuvenilModel).where(EstagioJuvenilModel.jovem_id == jovem_id).order_by(EstagioJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(EstagioJuvenilModel)
+            .where(EstagioJuvenilModel.jovem_id == jovem_id)
+            .order_by(EstagioJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusEstagio) -> list[EstagioJuvenil]:
-        stmt = select(EstagioJuvenilModel).where(EstagioJuvenilModel.status == status.value).order_by(EstagioJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(EstagioJuvenilModel)
+            .where(EstagioJuvenilModel.status == status.value)
+            .order_by(EstagioJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -69,10 +86,29 @@ class SQLAlchemyEstagioJuvenilRepository(EstagioJuvenilRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EstagioJuvenilModel).where(EstagioJuvenilModel.codigo_estagio.like(f'EST/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EstagioJuvenilModel)
+            .where(EstagioJuvenilModel.codigo_estagio.like(f"EST/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'EST/{ano}/{count + 1:05d}'
+        return f"EST/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: EstagioJuvenilModel) -> EstagioJuvenil:
-        return EstagioJuvenil(id=model.id, codigo_estagio=model.codigo_estagio, jovem_id=model.jovem_id, instituicao=model.instituicao, area_interesse=AreaInteresse(model.area_interesse), cargo=model.cargo, carga_horaria_semanal=model.carga_horaria_semanal, data_inicio=model.data_inicio, data_fim=model.data_fim, status=StatusEstagio(model.status), bolsa_auxilio=model.bolsa_auxilio, data_cadastro=model.data_cadastro, observacoes=model.observacoes, ativo=model.ativo)
+        return EstagioJuvenil(
+            id=model.id,
+            codigo_estagio=model.codigo_estagio,
+            jovem_id=model.jovem_id,
+            instituicao=model.instituicao,
+            area_interesse=AreaInteresse(model.area_interesse),
+            cargo=model.cargo,
+            carga_horaria_semanal=model.carga_horaria_semanal,
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            status=StatusEstagio(model.status),
+            bolsa_auxilio=model.bolsa_auxilio,
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

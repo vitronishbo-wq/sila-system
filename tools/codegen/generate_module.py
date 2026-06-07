@@ -1,5 +1,4 @@
 # \!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Universal SILA Module and Service Generator
 
@@ -24,36 +23,31 @@ Features:
 - Automatic service registration and routing
 """
 
-import os
-import sys
 import argparse
-import json
+import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Any
 
 # Add the current directory to Python path for imports
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils import (
     CodeGenError,
-    TemplateManager,
-    NamingConvention,
-    FileManager,
-    Validation,
-    ServiceRegistry,
     CSVProcessor,
+    FileManager,
+    NamingConvention,
     ProgressTracker,
+    ServiceRegistry,
+    TemplateManager,
+    Validation,
     get_base_paths,
-    get_timestamp,
     validate_environment,
 )
 
 from templates import MODULE_TEMPLATES, SERVICE_TEMPLATES
 
 
-def generate_module(
-    name: str, title: str, description: str, options: Dict[str, Any]
-) -> None:
+def generate_module(name: str, title: str, description: str, options: dict[str, Any]) -> None:
     """Generate a complete FastAPI module."""
     print(f"🔧 Generating module: {name}")
 
@@ -124,7 +118,7 @@ def generate_service(
     name_pt: str,
     name_en: str,
     service_type: str,
-    options: Dict[str, Any],
+    options: dict[str, Any],
 ) -> None:
     """Generate a single service within a module."""
     print(f"🔧 Generating service: {service_key} in module: {module_name}")
@@ -174,21 +168,15 @@ def generate_service(
     FileManager.create_file(service_model_path, model_content, "model file")
 
     # Generate schema file
-    schema_content = template_manager.format_template(
-        SERVICE_TEMPLATES["schema"], names
-    )
+    schema_content = template_manager.format_template(SERVICE_TEMPLATES["schema"], names)
     FileManager.create_file(
         schemas_dir / f"{names['service_slug']}.py", schema_content, "schema file"
     )
 
     # Generate route file based on service type
     route_template = "route_citizen" if service_type == "citizen" else "route_internal"
-    route_content = template_manager.format_template(
-        SERVICE_TEMPLATES[route_template], names
-    )
-    FileManager.create_file(
-        routes_dir / f"{names['service_slug']}.py", route_content, "route file"
-    )
+    route_content = template_manager.format_template(SERVICE_TEMPLATES[route_template], names)
+    FileManager.create_file(routes_dir / f"{names['service_slug']}.py", route_content, "route file")
 
     # Register service in services.py
     ServiceRegistry.register_in_services(module_path, names, service_type)
@@ -198,9 +186,7 @@ def generate_service(
 
     # Generate test file if requested
     if options.get("include_tests", True):
-        test_content = template_manager.format_template(
-            SERVICE_TEMPLATES["test"], names
-        )
+        test_content = template_manager.format_template(SERVICE_TEMPLATES["test"], names)
         FileManager.create_file(
             tests_dir / f"test_{names['service_slug']}.py", test_content, "test file"
         )
@@ -208,7 +194,7 @@ def generate_service(
     print(f"✅ Service '{name_pt}' generated successfully\!")
 
 
-def generate_batch(services: List[Dict[str, str]], options: Dict[str, Any]) -> None:
+def generate_batch(services: list[dict[str, str]], options: dict[str, Any]) -> None:
     """Generate multiple services in batch."""
     if not services:
         print("❌ No services to generate")
@@ -248,7 +234,7 @@ def generate_batch(services: List[Dict[str, str]], options: Dict[str, Any]) -> N
     tracker.print_summary()
 
 
-def get_default_services() -> List[Dict[str, str]]:
+def get_default_services() -> list[dict[str, str]]:
     """Get default list of services for batch generation."""
     return [
         {
@@ -330,38 +316,20 @@ Examples:
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # Module generation
-    module_parser = subparsers.add_parser(
-        "module", help="Generate a complete FastAPI module"
-    )
+    module_parser = subparsers.add_parser("module", help="Generate a complete FastAPI module")
     module_parser.add_argument("name", help="Module name (e.g., Health, Education)")
     module_parser.add_argument("--title", help="Module title (defaults to module name)")
     module_parser.add_argument("--description", help="Module description")
-    module_parser.add_argument(
-        "--no-init", action="store_true", help="Skip __init__.py"
-    )
-    module_parser.add_argument(
-        "--no-models", action="store_true", help="Skip models.py"
-    )
-    module_parser.add_argument(
-        "--no-schemas", action="store_true", help="Skip schemas.py"
-    )
+    module_parser.add_argument("--no-init", action="store_true", help="Skip __init__.py")
+    module_parser.add_argument("--no-models", action="store_true", help="Skip models.py")
+    module_parser.add_argument("--no-schemas", action="store_true", help="Skip schemas.py")
     module_parser.add_argument("--no-crud", action="store_true", help="Skip crud.py")
-    module_parser.add_argument(
-        "--no-services", action="store_true", help="Skip services.py"
-    )
-    module_parser.add_argument(
-        "--no-endpoints", action="store_true", help="Skip endpoints.py"
-    )
-    module_parser.add_argument(
-        "--no-readme", action="store_true", help="Skip README.md"
-    )
+    module_parser.add_argument("--no-services", action="store_true", help="Skip services.py")
+    module_parser.add_argument("--no-endpoints", action="store_true", help="Skip endpoints.py")
+    module_parser.add_argument("--no-readme", action="store_true", help="Skip README.md")
     module_parser.add_argument("--no-tests", action="store_true", help="Skip tests.py")
-    module_parser.add_argument(
-        "--no-routes", action="store_true", help="Skip routes directory"
-    )
-    module_parser.add_argument(
-        "--no-tests-dir", action="store_true", help="Skip tests directory"
-    )
+    module_parser.add_argument("--no-routes", action="store_true", help="Skip routes directory")
+    module_parser.add_argument("--no-tests-dir", action="store_true", help="Skip tests directory")
 
     # Service generation
     service_parser = subparsers.add_parser("service", help="Generate a single service")
@@ -377,9 +345,7 @@ Examples:
         default="citizen",
         help="Service type",
     )
-    service_parser.add_argument(
-        "--no-tests", action="store_true", help="Skip test file generation"
-    )
+    service_parser.add_argument("--no-tests", action="store_true", help="Skip test file generation")
     service_parser.add_argument(
         "--no-registration", action="store_true", help="Skip service registration"
     )
@@ -387,12 +353,8 @@ Examples:
     # Batch generation
     batch_parser = subparsers.add_parser("batch", help="Generate multiple services")
     batch_group = batch_parser.add_mutually_exclusive_group(required=True)
-    batch_group.add_argument(
-        "--csv", type=str, help="CSV file with services to generate"
-    )
-    batch_group.add_argument(
-        "--default", action="store_true", help="Use default services list"
-    )
+    batch_group.add_argument("--csv", type=str, help="CSV file with services to generate")
+    batch_group.add_argument("--default", action="store_true", help="Use default services list")
     batch_group.add_argument("--create-csv", type=str, help="Create sample CSV file")
     batch_parser.add_argument(
         "--type",
@@ -441,8 +403,7 @@ Examples:
         if args.command == "module":
             title = args.title or args.name
             description = (
-                args.description
-                or f"gerenciar funcionalidades relacionadas a {title.lower()}"
+                args.description or f"gerenciar funcionalidades relacionadas a {title.lower()}"
             )
             generate_module(args.name, title, description, options)
 

@@ -1,0 +1,322 @@
+# ──────────────────────────────────────────────────────────
+# Organograma MINED — Ministry of Education, Angola
+# Estrutura: MINED → Direção Nacional → DPE → DME → Escola
+# Fase 1: Luanda, Huambo, Benguela
+# ──────────────────────────────────────────────────────────
+
+mined:
+  id: mined
+  name: "Ministério da Educação"
+  code: MINED
+  type: ministry
+  module: educacao
+
+direcao_nacional:
+  id: dn-educacao
+  name: "Direção Nacional da Educação"
+  code: DN-ED
+  type: national_directorate
+  module: educacao
+  parent_id: mined
+
+# ─── LUANDA ──────────────────────────────────────────────
+dpe-luanda:
+  id: dpe-luanda
+  name: "Direção Provincial da Educação — Luanda"
+  code: DPE-LUANDA
+  type: provincial_directorate
+  module: educacao
+  parent_id: dn-educacao
+  province_id: luanda
+  province_name: Luanda
+
+dme-luanda-belas:
+  id: dme-luanda-belas
+  name: "Direção Municipal da Educação — Belas"
+  code: DME-BELAS
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: belas
+  municipality_name: Belas
+
+dme-luanda-cacuaco:
+  id: dme-luanda-cacuaco
+  name: "Direção Municipal da Educação — Cacuaco"
+  code: DME-CACUACO
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: cacuaco
+  municipality_name: Cacuaco
+
+dme-luanda-cazenga:
+  id: dme-luanda-cazenga
+  name: "Direção Municipal da Educação — Cazenga"
+  code: DME-CAZENGA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: cazenga
+  municipality_name: Cazenga
+
+dme-luanda-icolo:
+  id: dme-luanda-icolo
+  name: "Direção Municipal da Educação — Icolo e Bengo"
+  code: DME-ICOLO
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: icolo-bengo
+  municipality_name: Icolo e Bengo
+
+dme-luanda-kilamba:
+  id: dme-luanda-kilamba
+  name: "Direção Municipal da Educação — Kilamba Kiaxi"
+  code: DME-KILAMBA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: kilamba-kiaxi
+  municipality_name: Kilamba Kiaxi
+
+dme-luanda-luanda:
+  id: dme-luanda-luanda
+  name: "Direção Municipal da Educação — Luanda"
+  code: DME-LUANDA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: luanda
+  municipality_name: Luanda
+
+dme-luanda-talatona:
+  id: dme-luanda-talatona
+  name: "Direção Municipal da Educação — Talatona"
+  code: DME-TALATONA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: talatona
+  municipality_name: Talatona
+
+dme-luanda-viana:
+  id: dme-luanda-viana
+  name: "Direção Municipal da Educação — Viana"
+  code: DME-VIANA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: viana
+  municipality_name: Viana
+
+# Escolas — Luanda (3 pilot)
+escola-4-fevereiro:
+  id: escola-4-fevereiro
+  name: "Escola 4 de Fevereiro"
+  code: ESC-001
+  type: school
+  module: educacao
+  parent_id: dme-luanda-luanda
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: luanda
+  municipality_name: Luanda
+  unit_id: escola-4-fevereiro
+  unit_name: "Escola 4 de Fevereiro"
+
+escola-kimamuenho:
+  id: escola-kimamuenho
+  name: "Escola Kimamuenho"
+  code: ESC-002
+  type: school
+  module: educacao
+  parent_id: dme-luanda-belas
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: belas
+  municipality_name: Belas
+  unit_id: escola-kimamuenho
+  unit_name: "Escola Kimamuenho"
+
+escola-sao-paulo:
+  id: escola-sao-paulo
+  name: "Escola São Paulo"
+  code: ESC-003
+  type: school
+  module: educacao
+  parent_id: dme-luanda-viana
+  province_id: luanda
+  province_name: Luanda
+  municipality_id: viana
+  municipality_name: Viana
+  unit_id: escola-sao-paulo
+  unit_name: "Escola São Paulo"
+
+# ─── HUAMBO ─────────────────────────────────────────────
+dpe-huambo:
+  id: dpe-huambo
+  name: "Direção Provincial da Educação — Huambo"
+  code: DPE-HUAMBO
+  type: provincial_directorate
+  module: educacao
+  parent_id: dn-educacao
+  province_id: huambo
+  province_name: Huambo
+
+dme-huambo-huambo:
+  id: dme-huambo-huambo
+  name: "Direção Municipal da Educação — Huambo"
+  code: DME-HUAMBO
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-huambo
+  province_id: huambo
+  province_name: Huambo
+  municipality_id: huambo
+  municipality_name: Huambo
+
+dme-huambo-caala:
+  id: dme-huambo-caala
+  name: "Direção Municipal da Educação — Caála"
+  code: DME-CAALA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-huambo
+  province_id: huambo
+  province_name: Huambo
+  municipality_id: caala
+  municipality_name: Caála
+
+dme-huambo-bailundo:
+  id: dme-huambo-bailundo
+  name: "Direção Municipal da Educação — Bailundo"
+  code: DME-BAILUNDO
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-huambo
+  province_id: huambo
+  province_name: Huambo
+  municipality_id: bailundo
+  municipality_name: Bailundo
+
+# Escolas — Huambo (2 pilot)
+escola-alto-alvara:
+  id: escola-alto-alvara
+  name: "Escola do Alto Alvará"
+  code: ESC-004
+  type: school
+  module: educacao
+  parent_id: dme-huambo-huambo
+  province_id: huambo
+  province_name: Huambo
+  municipality_id: huambo
+  municipality_name: Huambo
+  unit_id: escola-alto-alvara
+  unit_name: "Escola do Alto Alvará"
+
+escola-caala-centro:
+  id: escola-caala-centro
+  name: "Escola da Caála Centro"
+  code: ESC-005
+  type: school
+  module: educacao
+  parent_id: dme-huambo-caala
+  province_id: huambo
+  province_name: Huambo
+  municipality_id: caala
+  municipality_name: Caála
+  unit_id: escola-caala-centro
+  unit_name: "Escola da Caála Centro"
+
+# ─── BENGUELA ───────────────────────────────────────────
+dpe-benguela:
+  id: dpe-benguela
+  name: "Direção Provincial da Educação — Benguela"
+  code: DPE-BENGUELA
+  type: provincial_directorate
+  module: educacao
+  parent_id: dn-educacao
+  province_id: benguela
+  province_name: Benguela
+
+dme-benguela-benguela:
+  id: dme-benguela-benguela
+  name: "Direção Municipal da Educação — Benguela"
+  code: DME-BENGUELA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-benguela
+  province_id: benguela
+  province_name: Benguela
+  municipality_id: benguela
+  municipality_name: Benguela
+
+dme-benguela-lobito:
+  id: dme-benguela-lobito
+  name: "Direção Municipal da Educação — Lobito"
+  code: DME-LOBITO
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-benguela
+  province_id: benguela
+  province_name: Benguela
+  municipality_id: lobito
+  municipality_name: Lobito
+
+dme-benguela-catumbela:
+  id: dme-benguela-catumbela
+  name: "Direção Municipal da Educação — Catumbela"
+  code: DME-CATUMBELA
+  type: municipal_directorate
+  module: educacao
+  parent_id: dpe-benguela
+  province_id: benguela
+  province_name: Benguela
+  municipality_id: catumbela
+  municipality_name: Catumbela
+
+# Escolas — Benguela (2 pilot)
+escola-benguela-centro:
+  id: escola-benguela-centro
+  name: "Escola de Benguela Centro"
+  code: ESC-006
+  type: school
+  module: educacao
+  parent_id: dme-benguela-benguela
+  province_id: benguela
+  province_name: Benguela
+  municipality_id: benguela
+  municipality_name: Benguela
+  unit_id: escola-benguela-centro
+  unit_name: "Escola de Benguela Centro"
+
+escola-lobito-norte:
+  id: escola-lobito-norte
+  name: "Escola do Lobito Norte"
+  code: ESC-007
+  type: school
+  module: educacao
+  parent_id: dme-benguela-lobito
+  province_id: benguela
+  province_name: Benguela
+  municipality_id: lobito
+  municipality_name: Lobito
+  unit_id: escola-lobito-norte
+  unit_name: "Escola do Lobito Norte"

@@ -10,7 +10,6 @@ Modo de uso:
     2. Execute o auto-healer: `python tools/autoheal_imports.py logs/errors.txt`
 """
 
-import os
 import re
 import sys
 from pathlib import Path

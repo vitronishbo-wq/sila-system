@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pescas.application.ports import LicencaPescaRepositoryPort
 from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
 from apps.backend.app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
-from apps.backend.app.modules.resources.pescas.infrastructure.models.licenca_pesca_model import LicencaPescaModel
+from apps.backend.app.modules.resources.pescas.infrastructure.models.licenca_pesca_model import (
+    LicencaPescaModel,
+)
+
 
 class SQLAlchemyLicencaPescaRepository(LicencaPescaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -52,10 +57,25 @@ class SQLAlchemyLicencaPescaRepository(LicencaPescaRepositoryPort):
 
     async def next_numero(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(LicencaPescaModel).where(LicencaPescaModel.numero_licenca.like(f'LIC/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(LicencaPescaModel)
+            .where(LicencaPescaModel.numero_licenca.like(f"LIC/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'LIC/{ano}/{count + 1:06d}'
+        return f"LIC/{ano}/{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: LicencaPescaModel) -> LicencaPesca:
-        return LicencaPesca(id=model.id, numero_licenca=model.numero_licenca, embarcacao_id=model.embarcacao_id, titular_id=model.titular_id, data_emissao=model.data_emissao, data_validade=model.data_validade, status=StatusLicenca(model.status), modalidade_autorizada=model.modalidade_autorizada, zona_pesca_id=model.zona_pesca_id, observacoes=model.observacoes)
+        return LicencaPesca(
+            id=model.id,
+            numero_licenca=model.numero_licenca,
+            embarcacao_id=model.embarcacao_id,
+            titular_id=model.titular_id,
+            data_emissao=model.data_emissao,
+            data_validade=model.data_validade,
+            status=StatusLicenca(model.status),
+            modalidade_autorizada=model.modalidade_autorizada,
+            zona_pesca_id=model.zona_pesca_id,
+            observacoes=model.observacoes,
+        )

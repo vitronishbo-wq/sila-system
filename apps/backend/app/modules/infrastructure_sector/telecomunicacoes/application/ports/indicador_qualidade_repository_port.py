@@ -1,11 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusIndicadorQualidade,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import (
+    IndicadorQualidade,
+)
+
 
 class IndicadorQualidadeRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, indicador: IndicadorQualidade) -> IndicadorQualidade:
         raise NotImplementedError
@@ -19,7 +25,9 @@ class IndicadorQualidadeRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_by_operadora_periodo(self, operadora_id: UUID, referencia_ano: int, referencia_mes: int) -> IndicadorQualidade | None:
+    async def get_by_operadora_periodo(
+        self, operadora_id: UUID, referencia_ano: int, referencia_mes: int
+    ) -> IndicadorQualidade | None:
         raise NotImplementedError
 
     @abstractmethod

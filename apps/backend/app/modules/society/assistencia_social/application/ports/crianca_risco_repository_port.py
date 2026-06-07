@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.assistencia_social.domain.models import CriancaRisco
 
-class CriancaRiscoRepositoryPort(ABC):
 
+class CriancaRiscoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, entity: CriancaRisco) -> CriancaRisco:
         raise NotImplementedError

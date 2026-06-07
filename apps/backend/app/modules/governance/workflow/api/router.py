@@ -1,77 +1,139 @@
-from apps.backend.app.modules.governance.workflow.api.deps import can_view_instance, get_workflow_engine
-from apps.backend.app.modules.governance.workflow.api.schemas.workflow_schema import WorkflowStartRequest, WorkflowTransitionRequest, WorkflowInstanceResponse, WorkflowHistoryResponse
-from apps.backend.app.modules.governance.workflow.api.schemas.task_schema import TaskResponse, TaskAssignRequest, TaskCompleteRequest, TaskListResponse
-from fastapi import APIRouter, Depends, HTTPException, status, Query
-from typing import List, Optional
 from uuid import UUID
+
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+
 from apps.backend.app.api.deps import get_identity_context
 from apps.backend.app.core.identity import IdentityContext
-from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import WorkflowEngine
-router = APIRouter(prefix='/workflow', tags=['Workflow'])
+from apps.backend.app.modules.governance.workflow.api.deps import (
+    can_view_instance,
+    get_workflow_engine,
+)
+from apps.backend.app.modules.governance.workflow.api.schemas.task_schema import (
+    TaskAssignRequest,
+    TaskCompleteRequest,
+    TaskListResponse,
+    TaskResponse,
+)
+from apps.backend.app.modules.governance.workflow.api.schemas.workflow_schema import (
+    WorkflowHistoryResponse,
+    WorkflowInstanceResponse,
+    WorkflowStartRequest,
+    WorkflowTransitionRequest,
+)
+from apps.backend.app.modules.governance.workflow.application.services.workflow_engine import (
+    WorkflowEngine,
+)
 
-@router.post('/start', response_model=WorkflowInstanceResponse)
-async def start_workflow(request: WorkflowStartRequest, engine: WorkflowEngine=Depends(get_workflow_engine), identity: IdentityContext=Depends(get_identity_context)):
+router = APIRouter(prefix="/workflow", tags=["Workflow"])
+
+
+@router.post("/start", response_model=WorkflowInstanceResponse)
+async def start_workflow(
+    request: WorkflowStartRequest,
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+    identity: IdentityContext = Depends(get_identity_context),
+):
     """
     Inicia um novo workflow
     """
     try:
         citizen_id = identity.citizen_id()
         user_id = identity.user_id()
-        instance = await engine.start_workflow(workflow_code=request.workflow_code, entity_type=request.entity_type, entity_id=request.entity_id, citizen_id=citizen_id, created_by=user_id, variables=request.variables)
+        instance = await engine.start_workflow(
+            workflow_code=request.workflow_code,
+            entity_type=request.entity_type,
+            entity_id=request.entity_id,
+            citizen_id=citizen_id,
+            created_by=user_id,
+            variables=request.variables,
+        )
         return instance
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e)) from e
 
-@router.get('/instances/{instance_id}', response_model=WorkflowInstanceResponse)
+
+@router.get("/instances/{instance_id}", response_model=WorkflowInstanceResponse)
 async def get_instance(instance=Depends(can_view_instance)):
     """
     Obtém detalhes de uma instância
     """
     return instance
 
-@router.post('/instances/{instance_id}/transitions', response_model=WorkflowInstanceResponse)
-async def execute_transition(instance_id: UUID, request: WorkflowTransitionRequest, engine: WorkflowEngine=Depends(get_workflow_engine), identity: IdentityContext=Depends(get_identity_context)):
+
+@router.post("/instances/{instance_id}/transitions", response_model=WorkflowInstanceResponse)
+async def execute_transition(
+    instance_id: UUID,
+    request: WorkflowTransitionRequest,
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+    identity: IdentityContext = Depends(get_identity_context),
+):
     """
     Executa uma transição no workflow
     """
     try:
         user_id = identity.user_id()
-        instance = await engine.execute_transition(instance_id=instance_id, transition_code=request.transition_code, actor_id=user_id, form_data=request.form_data)
+        instance = await engine.execute_transition(
+            instance_id=instance_id,
+            transition_code=request.transition_code,
+            actor_id=user_id,
+            form_data=request.form_data,
+        )
         return instance
     except PermissionError as e:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
-@router.get('/instances/{instance_id}/timeline', response_model=List[WorkflowHistoryResponse])
-async def get_instance_timeline(instance=Depends(can_view_instance), engine: WorkflowEngine=Depends(get_workflow_engine)):
+
+@router.get("/instances/{instance_id}/timeline", response_model=list[WorkflowHistoryResponse])
+async def get_instance_timeline(
+    instance=Depends(can_view_instance), engine: WorkflowEngine = Depends(get_workflow_engine)
+):
     """
     Obtém linha do tempo da instância
     """
     return await engine.get_instance_timeline(instance.id)
 
-@router.get('/tasks/my', response_model=TaskListResponse)
-async def get_my_tasks(skip: int=Query(0, ge=0), limit: int=Query(20, ge=1, le=100), engine: WorkflowEngine=Depends(get_workflow_engine), identity: IdentityContext=Depends(get_identity_context)):
+
+@router.get("/tasks/my", response_model=TaskListResponse)
+async def get_my_tasks(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+    identity: IdentityContext = Depends(get_identity_context),
+):
     """
     Lista tarefas atribuídas ao usuário atual
     """
     user_id = identity.user_id()
     tasks = await engine.get_tasks_for_user(user_id, skip, limit)
-    return {'total': len(tasks), 'items': tasks}
+    return {"total": len(tasks), "items": tasks}
 
-@router.get('/tasks/pending', response_model=TaskListResponse)
-async def get_pending_tasks(role: Optional[str]=Query(None), skip: int=Query(0, ge=0), limit: int=Query(20, ge=1, le=100), engine: WorkflowEngine=Depends(get_workflow_engine)):
+
+@router.get("/tasks/pending", response_model=TaskListResponse)
+async def get_pending_tasks(
+    role: str | None = Query(None),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+):
     """
     Lista tarefas pendentes (para gestores)
     """
     if role:
         tasks = await engine.get_tasks_for_role(role, skip, limit)
     else:
-        tasks = await engine.get_tasks_for_role('OPERATOR', skip, limit)
-    return {'total': len(tasks), 'items': tasks}
+        tasks = await engine.get_tasks_for_role("OPERATOR", skip, limit)
+    return {"total": len(tasks), "items": tasks}
 
-@router.post('/tasks/{task_id}/assign', response_model=TaskResponse)
-async def assign_task(task_id: UUID, request: TaskAssignRequest, engine: WorkflowEngine=Depends(get_workflow_engine), identity: IdentityContext=Depends(get_identity_context)):
+
+@router.post("/tasks/{task_id}/assign", response_model=TaskResponse)
+async def assign_task(
+    task_id: UUID,
+    request: TaskAssignRequest,
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+    identity: IdentityContext = Depends(get_identity_context),
+):
     """
     Atribui uma tarefa a um usuário
     """
@@ -80,10 +142,16 @@ async def assign_task(task_id: UUID, request: TaskAssignRequest, engine: Workflo
         task = await engine.assign_task(task_id=task_id, user_id=request.user_id, actor_id=actor_id)
         return task
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e)) from e
 
-@router.post('/tasks/{task_id}/complete', response_model=TaskResponse)
-async def complete_task(task_id: UUID, request: TaskCompleteRequest, engine: WorkflowEngine=Depends(get_workflow_engine), identity: IdentityContext=Depends(get_identity_context)):
+
+@router.post("/tasks/{task_id}/complete", response_model=TaskResponse)
+async def complete_task(
+    task_id: UUID,
+    request: TaskCompleteRequest,
+    engine: WorkflowEngine = Depends(get_workflow_engine),
+    identity: IdentityContext = Depends(get_identity_context),
+):
     """
     Completa uma tarefa
     """

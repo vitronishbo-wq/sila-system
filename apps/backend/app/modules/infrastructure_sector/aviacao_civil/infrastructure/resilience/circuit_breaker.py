@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -6,17 +7,22 @@ from datetime import datetime, timedelta
 from functools import wraps
 from typing import Any
 
+
 @dataclass
 class _State:
     failures: int = 0
     opened_until: datetime | None = None
 
+
 class CircuitOpenError(RuntimeError):
     pass
+
+
 _STATES: dict[str, _State] = {}
 _LOCK = asyncio.Lock()
 
-def circuit_breaker(name: str, failure_threshold: int=3, recovery_timeout: int=60) -> Callable:
+
+def circuit_breaker(name: str, failure_threshold: int = 3, recovery_timeout: int = 60) -> Callable:
 
     def decorator(fn: Callable) -> Callable:
 
@@ -25,7 +31,7 @@ def circuit_breaker(name: str, failure_threshold: int=3, recovery_timeout: int=6
             async with _LOCK:
                 state = _STATES.setdefault(name, _State())
                 if state.opened_until and datetime.utcnow() < state.opened_until:
-                    raise CircuitOpenError(f'Circuito {name} aberto')
+                    raise CircuitOpenError(f"Circuito {name} aberto")
             try:
                 result = await fn(*args, **kwargs)
             except Exception:
@@ -40,5 +46,7 @@ def circuit_breaker(name: str, failure_threshold: int=3, recovery_timeout: int=6
                 state.failures = 0
                 state.opened_until = None
             return result
+
         return wrapper
+
     return decorator

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_025_telecomunicacoes_qualidade_sla_indicadores"
 down_revision = "20260302_024_telecomunicacoes_infra_espectro_outorgas"
 branch_labels = None
@@ -97,7 +96,9 @@ def _create_slas_table() -> None:
     )
 
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_slas_codigo_sla ON telecom_slas (codigo_sla)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_slas_operadora_id ON telecom_slas (operadora_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_slas_operadora_id ON telecom_slas (operadora_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_slas_servico ON telecom_slas (servico)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_slas_status ON telecom_slas (status)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_slas_ativo ON telecom_slas (ativo)")
@@ -181,14 +182,30 @@ def _create_qualidade_servico_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_codigo_medicao ON telecom_qualidade_servico (codigo_medicao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_operadora_id ON telecom_qualidade_servico (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_assinante_id ON telecom_qualidade_servico (assinante_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_sla_id ON telecom_qualidade_servico (sla_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_servico ON telecom_qualidade_servico (servico)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_data_medicao ON telecom_qualidade_servico (data_medicao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_status ON telecom_qualidade_servico (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_ativo ON telecom_qualidade_servico (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_codigo_medicao ON telecom_qualidade_servico (codigo_medicao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_operadora_id ON telecom_qualidade_servico (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_assinante_id ON telecom_qualidade_servico (assinante_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_sla_id ON telecom_qualidade_servico (sla_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_servico ON telecom_qualidade_servico (servico)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_data_medicao ON telecom_qualidade_servico (data_medicao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_status ON telecom_qualidade_servico (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_qualidade_servico_ativo ON telecom_qualidade_servico (ativo)"
+    )
 
 
 def _create_indicadores_qualidade_table() -> None:
@@ -257,12 +274,24 @@ def _create_indicadores_qualidade_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_codigo_indicador ON telecom_indicadores_qualidade (codigo_indicador)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_operadora_id ON telecom_indicadores_qualidade (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_referencia_ano ON telecom_indicadores_qualidade (referencia_ano)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_referencia_mes ON telecom_indicadores_qualidade (referencia_mes)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_status ON telecom_indicadores_qualidade (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_ativo ON telecom_indicadores_qualidade (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_codigo_indicador ON telecom_indicadores_qualidade (codigo_indicador)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_operadora_id ON telecom_indicadores_qualidade (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_referencia_ano ON telecom_indicadores_qualidade (referencia_ano)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_referencia_mes ON telecom_indicadores_qualidade (referencia_mes)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_status ON telecom_indicadores_qualidade (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_indicadores_qualidade_ativo ON telecom_indicadores_qualidade (ativo)"
+    )
     op.execute(
         """
         CREATE UNIQUE INDEX IF NOT EXISTS uq_telecom_indicadores_operadora_periodo

@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusBeneficio, TipoBeneficio
+
+from apps.backend.app.modules.society.assistencia_social.domain.enums import (
+    StatusBeneficio,
+    TipoBeneficio,
+)
+
 
 class BeneficioCreate(BaseModel):
     beneficiario_id: UUID
@@ -11,13 +18,16 @@ class BeneficioCreate(BaseModel):
     valor: Decimal
     programa_social_id: UUID | None = None
 
+
 class BeneficioBpcPcdCreate(BaseModel):
     beneficiario_id: UUID
     pcd_id: UUID
     valor: Decimal
 
+
 class BeneficioMotivo(BaseModel):
     motivo: str
+
 
 class BeneficioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

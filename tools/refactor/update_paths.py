@@ -13,9 +13,10 @@ import argparse
 import json
 import re
 import sys
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List, Dict, Any
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
 MIGRATION_FILE = ROOT / "migration" / "refactor_paths_v1.json"
@@ -29,18 +30,18 @@ class Rule:
     enabled: bool
     from_: str
     to: str
-    scope: List[str]
+    scope: list[str]
 
 
-def load_config() -> Dict[str, Any]:
+def load_config() -> dict[str, Any]:
     if not MIGRATION_FILE.exists():
         raise SystemExit(f"❌ Arquivo de migração não encontrado: {MIGRATION_FILE}")
     with MIGRATION_FILE.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def build_rules(cfg: Dict[str, Any]) -> List[Rule]:
-    rules: List[Rule] = []
+def build_rules(cfg: dict[str, Any]) -> list[Rule]:
+    rules: list[Rule] = []
     for raw in cfg.get("rules", []):
         if not raw.get("enabled", True):
             continue
@@ -57,9 +58,7 @@ def build_rules(cfg: Dict[str, Any]) -> List[Rule]:
     return rules
 
 
-def iter_files(
-    include_globs: Iterable[str], exclude_globs: Iterable[str]
-) -> Iterable[Path]:
+def iter_files(include_globs: Iterable[str], exclude_globs: Iterable[str]) -> Iterable[Path]:
     all_files = ROOT.rglob("*")
     include_patterns = list(include_globs)
     exclude_patterns = list(exclude_globs)
@@ -76,19 +75,15 @@ def iter_files(
 
         # Incluir apenas se bater com algum include
         for pattern in include_patterns:
-            if rel.match(pattern.replace("**/", "")) or rel_str.endswith(
-                pattern.lstrip("*")
-            ):
+            if rel.match(pattern.replace("**/", "")) or rel_str.endswith(pattern.lstrip("*")):
                 yield path
                 break
 
 
-def apply_text_rules(
-    path: Path, rules: List[Rule], dry_run: bool, report: Dict[str, Any]
-) -> None:
+def apply_text_rules(path: Path, rules: list[Rule], dry_run: bool, report: dict[str, Any]) -> None:
     original = path.read_text(encoding="utf-8", errors="ignore")
     content = original
-    file_changes: List[Dict[str, Any]] = []
+    file_changes: list[dict[str, Any]] = []
 
     for rule in rules:
         if "text" not in rule.scope:
@@ -124,7 +119,7 @@ def run(dry_run: bool) -> int:
     exclude_globs = cfg.get("exclude_globs", [])
 
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    summary: Dict[str, Any] = {
+    summary: dict[str, Any] = {
         "dry_run": dry_run,
         "rules_applied": [r.id for r in rules],
         "files": {},
@@ -168,7 +163,7 @@ def run(dry_run: bool) -> int:
     return 0
 
 
-def main(argv: List[str] | None = None) -> None:
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
         description="🔁 Aplica regras de refactor de paths definidas em migration/refactor_paths_v1.json",
     )

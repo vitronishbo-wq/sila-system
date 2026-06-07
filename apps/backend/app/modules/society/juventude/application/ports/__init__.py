@@ -1,22 +1,87 @@
-from apps.backend.app.modules.society.juventude.application.ports.acompanhamento_juvenil_repository_port import AcompanhamentoJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import BolsaEstudoRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
-from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
-from apps.backend.app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import EmpreendedorismoJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
-from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import EstagioJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.evento_juvenil_repository_port import EventoJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.inscricao_programa_repository_port import InscricaoProgramaRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import IntercambioJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.mentor_repository_port import MentorRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.politica_juventude_repository_port import PoliticaJuventudeRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.saude_juvenil_repository_port import SaudeJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import VoluntariadoRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.workflow_repository_port import WorkflowRepositoryPort
-__all__ = ['JovemRepositoryPort', 'AcompanhamentoJuvenilRepositoryPort', 'AuxilioRepositoryPort', 'BolsaEstudoRepositoryPort', 'EmpreendedorismoJuvenilRepositoryPort', 'EstagioJuvenilRepositoryPort', 'EventoJuvenilRepositoryPort', 'ProgramaRepositoryPort', 'FormacaoRepositoryPort', 'InscricaoProgramaRepositoryPort', 'IntercambioJuvenilRepositoryPort', 'MentorRepositoryPort', 'PoliticaJuventudeRepositoryPort', 'RiscoEvasaoRepositoryPort', 'SaudeJuvenilRepositoryPort', 'VoluntariadoRepositoryPort', 'WorkflowRepositoryPort', 'CitizenServicePort', 'EducacaoServicePort', 'EmpregoServicePort', 'RequestServicePort']
+from apps.backend.app.modules.society.juventude.application.ports.acompanhamento_juvenil_repository_port import (
+    AcompanhamentoJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import (
+    AuxilioRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.bolsa_estudo_repository_port import (
+    BolsaEstudoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import (
+    CitizenServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import (
+    EducacaoServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import (
+    EmpreendedorismoJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import (
+    EmpregoServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.estagio_juvenil_repository_port import (
+    EstagioJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.evento_juvenil_repository_port import (
+    EventoJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import (
+    FormacaoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.inscricao_programa_repository_port import (
+    InscricaoProgramaRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.intercambio_juvenil_repository_port import (
+    IntercambioJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import (
+    JovemRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.mentor_repository_port import (
+    MentorRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.politica_juventude_repository_port import (
+    PoliticaJuventudeRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import (
+    ProgramaRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import (
+    RiscoEvasaoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.saude_juvenil_repository_port import (
+    SaudeJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.voluntariado_repository_port import (
+    VoluntariadoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.workflow_repository_port import (
+    WorkflowRepositoryPort,
+)
+
+__all__ = [
+    "JovemRepositoryPort",
+    "AcompanhamentoJuvenilRepositoryPort",
+    "AuxilioRepositoryPort",
+    "BolsaEstudoRepositoryPort",
+    "EmpreendedorismoJuvenilRepositoryPort",
+    "EstagioJuvenilRepositoryPort",
+    "EventoJuvenilRepositoryPort",
+    "ProgramaRepositoryPort",
+    "FormacaoRepositoryPort",
+    "InscricaoProgramaRepositoryPort",
+    "IntercambioJuvenilRepositoryPort",
+    "MentorRepositoryPort",
+    "PoliticaJuventudeRepositoryPort",
+    "RiscoEvasaoRepositoryPort",
+    "SaudeJuvenilRepositoryPort",
+    "VoluntariadoRepositoryPort",
+    "WorkflowRepositoryPort",
+    "CitizenServicePort",
+    "EducacaoServicePort",
+    "EmpregoServicePort",
+    "RequestServicePort",
+]

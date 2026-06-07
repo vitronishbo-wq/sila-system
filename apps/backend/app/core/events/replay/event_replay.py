@@ -1,9 +1,10 @@
 from __future__ import annotations
-from app.core.events.store.event_store import EventStore
-from app.core.events.projection.projection_manager import ProjectionManager
+
+from apps.backend.app.core.events.projection.projection_manager import ProjectionManager
+from apps.backend.app.core.events.store.event_store import EventStore
+
 
 class EventReplay:
-
     def __init__(self, store: EventStore):
         self.store = store
 

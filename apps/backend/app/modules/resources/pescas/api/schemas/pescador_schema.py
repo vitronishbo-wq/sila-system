@@ -1,14 +1,18 @@
 from __future__ import annotations
-from typing import Optional
+
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.resources.pescas.domain.enums import TipoPescador
+
 
 class PescadorCreate(BaseModel):
     nome: str = Field(..., min_length=3)
     tipo: TipoPescador
     citizen_id: UUID
-    numero_registro: Optional[str] = None
+    numero_registro: str | None = None
+
 
 class PescadorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -19,5 +23,6 @@ class PescadorResponse(BaseModel):
     citizen_id: UUID
     ativo: bool
 
+
 class PescadorFilter(BaseModel):
-    tipo: Optional[TipoPescador] = None
+    tipo: TipoPescador | None = None

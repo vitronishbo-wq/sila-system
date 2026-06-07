@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
+
 
 class AuxilioCreate(BaseModel):
     jovem_id: UUID
@@ -13,9 +17,11 @@ class AuxilioCreate(BaseModel):
     data_fim: date | None = None
     observacoes: str | None = None
 
+
 class AuxilioStatusUpdate(BaseModel):
     status: StatusBeneficio
     observacoes: str | None = None
+
 
 class AuxilioResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

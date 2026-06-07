@@ -16,20 +16,15 @@ NAO ALTERAR SEM RFC
 NAO USAR EM PRODUCAO (sem credential rotation)
 """
 
-import logging
 import asyncio
+import logging
 import os
-from uuid import UUID
 from datetime import date
-from pathlib import Path
+from uuid import UUID
 
-# Setup: Adiciona o root do backend ao path para imports de 'app.*'
-backend_root = Path(__file__).resolve().parent.parent.parent
-# PYTHONPATH should be configured via setup_dev_env.sh; do not mutate sys.path here.
-
+from apps.backend.app.core.bridges.identity_bridge import CitizenFUC, IdentityCitizenRepository
+from apps.backend.app.core.db import db
 from sqlalchemy import select
-from app.core.db import db
-from app.core.bridges.identity_bridge import CitizenFUC, IdentityCitizenRepository
 
 # ════════════════════════════════════════════════════════════════════
 # IDENTIDADE FIXA (CANONICA) — O UNICO HARDCODE PERMITIDO
@@ -81,6 +76,7 @@ logger = logging.getLogger(__name__)
 
 CRITICAL_FIELDS = {"full_name", "birth_date", "document_number"}
 
+
 def _collect_differences(existing: CitizenFUC) -> list[tuple[str, object, object]]:
     """Collect field-level differences between existing record and golden seed."""
     expected = {
@@ -101,6 +97,7 @@ def _collect_differences(existing: CitizenFUC) -> list[tuple[str, object, object
             differences.append((field, current_value, expected_value))
     return differences
 
+
 def _log_field_differences(differences: list[tuple[str, object, object]]) -> None:
     if not differences:
         return
@@ -112,6 +109,7 @@ def _log_field_differences(differences: list[tuple[str, object, object]]) -> Non
             current_value,
             expected_value,
         )
+
 
 def _has_critical_differences(differences: list[tuple[str, object, object]]) -> bool:
     return any(field in CRITICAL_FIELDS for field, _, _ in differences)
@@ -158,10 +156,10 @@ async def seed_golden_citizen():
                 action = "criado"
 
             # Output humano
-            print("\n" + "="*70)
+            print("\n" + "=" * 70)
             print(f"GOLDEN DEV CITIZEN {action.upper()} COM SUCESSO")
-            print("="*70)
-            print(f"\nIDENTIDADE:")
+            print("=" * 70)
+            print("\nIDENTIDADE:")
             print(f"   Nome: {FULL_NAME}")
             print(f"   Data Nasc: {BIRTH_DATE.strftime('%d/%m/%Y')}")
             print(f"   Género: {GENDER}")
@@ -169,27 +167,27 @@ async def seed_golden_citizen():
             print(f"   BI: {BI_NUMBER}")
             print(f"   Pai: {FATHER_NAME}")
             print(f"   Mãe: {MOTHER_NAME}")
-            
-            print(f"\nMORADA:")
+
+            print("\nMORADA:")
             print(f"   Residência: {ADDRESS['residence']}")
             print(f"   Localização: {ADDRESS['quadra']}/{ADDRESS['predio']}")
             print(f"   Comuna: {ADDRESS['comuna']}, {ADDRESS['municipio']}")
             print(f"   Província: {ADDRESS['provincia']}")
             print("   Nota: morada e dados detalhados são informativos no seed.")
-            
-            print(f"\nCREDENCIAIS DE LOGIN:")
+
+            print("\nCREDENCIAIS DE LOGIN:")
             print(f"   Email: {EMAIL}")
             print(f"   Senha: {PASSWORD}")
-            
-            print(f"\nIDENTIFICADORES:")
+
+            print("\nIDENTIFICADORES:")
             print(f"   Citizen ID: {GOLDEN_CITIZEN_ID}")
-            
-            print("\n" + "="*70)
+
+            print("\n" + "=" * 70)
             print("Este e o GOLDEN RECORD do SILA")
             print("   -> Todos os modulos podem usar este cidadao")
             print("   -> Qualquer bug e reproduzivel")
             print("   -> Seed alinhado aos modulos reais (FUC)")
-            print("="*70 + "\n")
+            print("=" * 70 + "\n")
 
             return {
                 "citizen_id": str(GOLDEN_CITIZEN_ID),
@@ -204,9 +202,6 @@ async def seed_golden_citizen():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(message)s"
-    )
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     result = asyncio.run(seed_golden_citizen())
     print("GOLDEN CITIZEN seed completado!")

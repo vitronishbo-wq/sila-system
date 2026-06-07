@@ -7,5 +7,33 @@ from .inscricoes import router as inscricoes_router
 from .matricula_routes import router as matricula_router
 from .propinas import router as propinas_router
 from .transferencias import router as transferencias_router
+from .transferencias_automacao import router as transferencias_automacao_router
 from .universidade import router as universidade_router
-__all__ = ['matricula_router', 'inscricoes_router', 'boletins_router', 'certificados_router', 'transferencias_router', 'propinas_router', 'emprego_router', 'concursos_router', 'formacoes_router', 'universidade_router']
+from .marketplace_endpoints import router as marketplace_router
+from .transfer_wizard import router as transfer_wizard_router
+from .metrics_endpoints import router as metrics_router
+from .wizard_matricula import router as wizard_matricula_router
+from ...emis.api.endpoints import router as emis_router
+from .academic_identity import router as academic_identity_router
+from .academic_wallet import router as academic_wallet_router
+
+__all__ = [
+    "marketplace_router",
+    "metrics_router",
+    "transfer_wizard_router",
+    "matricula_router",
+    "inscricoes_router",
+    "boletins_router",
+    "certificados_router",
+    "transferencias_router",
+    "transferencias_automacao_router",
+    "propinas_router",
+    "emprego_router",
+    "concursos_router",
+    "formacoes_router",
+    "universidade_router",
+    "wizard_matricula_router",
+    "emis_router",
+    "academic_identity_router",
+    "academic_wallet_router",
+]

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusCAR
 from apps.backend.app.modules.resources.ambiente.domain.models.car import CAR
 
-class CARRepositoryPort(ABC):
 
+class CARRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: CAR) -> CAR:
         pass
@@ -23,7 +25,7 @@ class CARRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: StatusCAR | None=None) -> list[CAR]:
+    async def list_by_status(self, status: StatusCAR | None = None) -> list[CAR]:
         pass
 
     @abstractmethod

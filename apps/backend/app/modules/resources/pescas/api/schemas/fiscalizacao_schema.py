@@ -1,15 +1,18 @@
 from __future__ import annotations
+
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 
 class FiscalizacaoCreate(BaseModel):
     embarcacao_id: UUID
     local: str
     agente: str
     regular: bool
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
+
 
 class FiscalizacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -19,4 +22,4 @@ class FiscalizacaoResponse(BaseModel):
     local: str
     agente: str
     regular: bool
-    observacoes: Optional[str] = None
+    observacoes: str | None = None

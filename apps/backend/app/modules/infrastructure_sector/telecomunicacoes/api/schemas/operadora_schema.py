@@ -1,11 +1,19 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusOutorga, TipoOperadora, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusOutorga,
+    TipoOperadora,
+    TipoServico,
+)
+
 
 class OperadoraCreate(BaseModel):
-    cnpj: str = Field(..., pattern='^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$')
+    cnpj: str = Field(..., pattern="^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$")
     razao_social: str = Field(..., min_length=3)
     tipo: TipoOperadora
     servicos_autorizados: list[TipoServico] = Field(..., min_length=1)
@@ -20,10 +28,12 @@ class OperadoraCreate(BaseModel):
     nome_fantasia: str | None = None
     observacoes: str | None = None
 
+
 class OperadoraAuthorize(BaseModel):
     outorga_id: UUID
     data_autorizacao: date
     data_validade: date
+
 
 class OperadoraResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

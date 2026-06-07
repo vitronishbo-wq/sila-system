@@ -194,3 +194,11 @@ task3: copy infrastructure/models/* → core/infrastructure/
 - [consolidate-module.sh](./scripts/consolidate-module.sh) — Main extraction script
 - [audit-consolidation.sh](./scripts/audit-consolidation.sh) — Compliance & reporting
 - [conformance_report.py](./scripts/conformance_report.py) — Visual compliance generation
+
+## Mandatory Safety Constraints
+
+- Never delete modules before audit passes
+- Never overwrite domain entities without backup
+- Always preserve git traceability
+- Always generate migration summary before purge
+- All destructive operations require verification checkpoint

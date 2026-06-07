@@ -1,10 +1,13 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from typing import Any
 from uuid import UUID
+
 from apps.backend.app.modules.logistics.domain.enums import ClassificacaoVia, TipoPavimento
+
 
 @dataclass
 class Rodovia:

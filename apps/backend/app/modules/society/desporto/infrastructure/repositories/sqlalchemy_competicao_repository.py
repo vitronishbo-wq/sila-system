@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
-from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+
+from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import (
+    CompeticaoRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.domain.enums import (
+    ModalidadeDesportiva,
+    StatusCompeticao,
+    TipoCompeticao,
+)
 from apps.backend.app.modules.society.desporto.domain.models.competicao import Competicao
-from apps.backend.app.modules.society.desporto.infrastructure.models.competicao_model import CompeticaoModel
+from apps.backend.app.modules.society.desporto.infrastructure.models.competicao_model import (
+    CompeticaoModel,
+)
+
 
 class SQLAlchemyCompeticaoRepository(CompeticaoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -45,32 +56,53 @@ class SQLAlchemyCompeticaoRepository(CompeticaoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_competicao: str) -> Competicao | None:
-        stmt = select(CompeticaoModel).where(CompeticaoModel.codigo_competicao == codigo_competicao.strip())
+        stmt = select(CompeticaoModel).where(
+            CompeticaoModel.codigo_competicao == codigo_competicao.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_all(self) -> list[Competicao]:
-        stmt = select(CompeticaoModel).order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        stmt = select(CompeticaoModel).order_by(
+            CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc()
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoCompeticao) -> list[Competicao]:
-        stmt = select(CompeticaoModel).where(CompeticaoModel.tipo == tipo.value).order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        stmt = (
+            select(CompeticaoModel)
+            .where(CompeticaoModel.tipo == tipo.value)
+            .order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_modalidade(self, modalidade: ModalidadeDesportiva) -> list[Competicao]:
-        stmt = select(CompeticaoModel).where(CompeticaoModel.modalidade == modalidade.value).order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        stmt = (
+            select(CompeticaoModel)
+            .where(CompeticaoModel.modalidade == modalidade.value)
+            .order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusCompeticao) -> list[Competicao]:
-        stmt = select(CompeticaoModel).where(CompeticaoModel.status == status.value).order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        stmt = (
+            select(CompeticaoModel)
+            .where(CompeticaoModel.status == status.value)
+            .order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[Competicao]:
-        stmt = select(CompeticaoModel).where(CompeticaoModel.data_inicio >= data_inicio).where(CompeticaoModel.data_fim <= data_fim).order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        stmt = (
+            select(CompeticaoModel)
+            .where(CompeticaoModel.data_inicio >= data_inicio)
+            .where(CompeticaoModel.data_fim <= data_fim)
+            .order_by(CompeticaoModel.data_inicio.asc(), CompeticaoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -84,10 +116,34 @@ class SQLAlchemyCompeticaoRepository(CompeticaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(CompeticaoModel).where(CompeticaoModel.codigo_competicao.like(f'CMP/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(CompeticaoModel)
+            .where(CompeticaoModel.codigo_competicao.like(f"CMP/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'CMP/{ano}/{count + 1:05d}'
+        return f"CMP/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: CompeticaoModel) -> Competicao:
-        return Competicao(id=model.id, codigo_competicao=model.codigo_competicao, nome=model.nome, tipo=TipoCompeticao(model.tipo), modalidade=ModalidadeDesportiva(model.modalidade), data_inicio=model.data_inicio, data_fim=model.data_fim, municipio=model.municipio, provincia=model.provincia, organizador_id=model.organizador_id, data_cadastro=model.data_cadastro, status=StatusCompeticao(model.status), codigo_obra_instalacao=model.codigo_obra_instalacao, atracao_turistica_id=model.atracao_turistica_id, instituicao_educacional_id=model.instituicao_educacional_id, premiacao_total=model.premiacao_total, inscricoes_abertas=model.inscricoes_abertas, ativo=model.ativo, observacoes=model.observacoes)
+        return Competicao(
+            id=model.id,
+            codigo_competicao=model.codigo_competicao,
+            nome=model.nome,
+            tipo=TipoCompeticao(model.tipo),
+            modalidade=ModalidadeDesportiva(model.modalidade),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            organizador_id=model.organizador_id,
+            data_cadastro=model.data_cadastro,
+            status=StatusCompeticao(model.status),
+            codigo_obra_instalacao=model.codigo_obra_instalacao,
+            atracao_turistica_id=model.atracao_turistica_id,
+            instituicao_educacional_id=model.instituicao_educacional_id,
+            premiacao_total=model.premiacao_total,
+            inscricoes_abertas=model.inscricoes_abertas,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

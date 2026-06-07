@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List
+
 
 class WalletEventHandler(ABC):
-
     @abstractmethod
     async def handle_wallet_created(self, wallet_id: str) -> None:
         pass

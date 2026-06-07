@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.civil_protection.domain.ports.atendimento_repository_port import AtendimentoRepositoryPort
+
 from apps.backend.app.modules.civil_protection.domain.enums import StatusAtendimento
 from apps.backend.app.modules.civil_protection.domain.models.atendimento import Atendimento
-from apps.backend.app.modules.civil_protection.infrastructure.models.atendimento_model import AtendimentoModel
+from apps.backend.app.modules.civil_protection.domain.ports.atendimento_repository_port import (
+    AtendimentoRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.infrastructure.models.atendimento_model import (
+    AtendimentoModel,
+)
+
 
 class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,7 +48,9 @@ class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_atendimento: str) -> Atendimento | None:
-        stmt = select(AtendimentoModel).where(AtendimentoModel.codigo_atendimento == codigo_atendimento.strip())
+        stmt = select(AtendimentoModel).where(
+            AtendimentoModel.codigo_atendimento == codigo_atendimento.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -51,17 +60,29 @@ class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_ocorrencia(self, ocorrencia_id: UUID) -> list[Atendimento]:
-        stmt = select(AtendimentoModel).where(AtendimentoModel.ocorrencia_id == ocorrencia_id).order_by(AtendimentoModel.inicio_atendimento.desc())
+        stmt = (
+            select(AtendimentoModel)
+            .where(AtendimentoModel.ocorrencia_id == ocorrencia_id)
+            .order_by(AtendimentoModel.inicio_atendimento.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_despacho(self, despacho_id: UUID) -> list[Atendimento]:
-        stmt = select(AtendimentoModel).where(AtendimentoModel.despacho_id == despacho_id).order_by(AtendimentoModel.inicio_atendimento.desc())
+        stmt = (
+            select(AtendimentoModel)
+            .where(AtendimentoModel.despacho_id == despacho_id)
+            .order_by(AtendimentoModel.inicio_atendimento.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusAtendimento) -> list[Atendimento]:
-        stmt = select(AtendimentoModel).where(AtendimentoModel.status == status.value).order_by(AtendimentoModel.inicio_atendimento.desc())
+        stmt = (
+            select(AtendimentoModel)
+            .where(AtendimentoModel.status == status.value)
+            .order_by(AtendimentoModel.inicio_atendimento.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -75,11 +96,31 @@ class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'ATE/{year}/'
-        stmt = select(func.count()).select_from(AtendimentoModel).where(AtendimentoModel.codigo_atendimento.like(f'{prefix}%'))
+        prefix = f"ATE/{year}/"
+        stmt = (
+            select(func.count())
+            .select_from(AtendimentoModel)
+            .where(AtendimentoModel.codigo_atendimento.like(f"{prefix}%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'{prefix}{count + 1:06d}'
+        return f"{prefix}{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: AtendimentoModel) -> Atendimento:
-        return Atendimento(id=model.id, codigo_atendimento=model.codigo_atendimento, despacho_id=model.despacho_id, ocorrencia_id=model.ocorrencia_id, status=StatusAtendimento(model.status), inicio_atendimento=model.inicio_atendimento, fim_atendimento=model.fim_atendimento, local_atendimento=model.local_atendimento, resumo=model.resumo, vitimas_atendidas=model.vitimas_atendidas, desalojados_atendidos=model.desalojados_atendidos, obitos_confirmados=model.obitos_confirmados, equipe_responsavel_id=model.equipe_responsavel_id, observacoes=model.observacoes, ativo=model.ativo)
+        return Atendimento(
+            id=model.id,
+            codigo_atendimento=model.codigo_atendimento,
+            despacho_id=model.despacho_id,
+            ocorrencia_id=model.ocorrencia_id,
+            status=StatusAtendimento(model.status),
+            inicio_atendimento=model.inicio_atendimento,
+            fim_atendimento=model.fim_atendimento,
+            local_atendimento=model.local_atendimento,
+            resumo=model.resumo,
+            vitimas_atendidas=model.vitimas_atendidas,
+            desalojados_atendidos=model.desalojados_atendidos,
+            obitos_confirmados=model.obitos_confirmados,
+            equipe_responsavel_id=model.equipe_responsavel_id,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

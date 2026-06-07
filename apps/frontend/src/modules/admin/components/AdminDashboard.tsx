@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useAdminDashboard } from '../hooks/useDashboard';
-import { MeteorologyWidget } from '../../meteorologia/components';
+import { useAdminDashboard } from '@/modules/admin/hooks/useDashboard';
+import { MeteorologyWidget } from '@/modules/meteorologia/components';
 
 export const AdminDashboard: React.FC = () => {
   const { stats, requests, loading } = useAdminDashboard();

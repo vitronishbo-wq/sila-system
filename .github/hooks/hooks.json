@@ -1,0 +1,119 @@
+# SILA Generate Hooks
+
+## After Any File Modification
+
+Automatically:
+
+1. Detect impacted module
+2. Validate imports
+3. Validate architecture boundaries
+4. Run targeted lint/type checks
+5. Detect circular dependencies
+6. Generate concise mutation summary
+
+---
+
+## After Python Changes
+
+Run:
+
+pytest -q --tb=short
+
+If module-specific:
+
+pytest apps/backend/app/modules/<MODULE>/tests -q
+
+---
+
+## After Router Changes
+
+Validate:
+- route registration
+- OpenAPI integrity
+- dependency injection consistency
+- middleware compatibility
+
+---
+
+## After Repository Changes
+
+Validate:
+- BaseRepository contracts
+- async session integrity
+- transaction safety
+- SQLAlchemy compatibility
+
+---
+
+## After Infrastructure Changes
+
+Validate:
+- Docker compatibility
+- Redis connectivity
+- Celery startup
+- PostgreSQL connectivity
+
+---
+
+## After Consolidation Operations
+
+Mandatory sequence:
+
+make clean-audit
+make daily-audit
+cat reports/daily_audit.md
+
+Generate:
+- compliance summary
+- circular dependency report
+- module integrity report
+
+---
+
+## Architecture Enforcement
+
+Never allow:
+- circular imports
+- infrastructure leaking into domain
+- direct sibling module imports
+- duplicated repositories
+- duplicated services
+- duplicated adapters
+
+All cross-module communication must occur through:
+- ports
+- adapters
+- X-Road interoperability
+
+---
+
+## Context Preservation Rule
+
+Never recursively scan full repository.
+
+Always:
+1. search via docs/tree.md
+2. locate via grep/find
+3. read only relevant files
+
+---
+
+## Safe Refactor Rule
+
+Before destructive operations:
+- verify extraction success
+- verify tests
+- verify imports
+- generate migration summary
+
+Never purge before successful audit.
+
+---
+
+## Mutation Safety
+
+For every mutation:
+- explain root cause
+- explain affected layers
+- explain risk level
+- explain rollback path

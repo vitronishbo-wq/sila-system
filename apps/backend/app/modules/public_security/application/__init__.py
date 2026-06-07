@@ -1,2 +1,25 @@
-from apps.backend.app.modules.public_security.application.services import CadeiaCustodiaService, EvidenciaService, InvestigacaoService, LaudoPericialService, MandadoService, OcorrenciaService, PolicialService, ProvaPericialService, UnidadePolicialService, VestigioService
-__all__ = ['UnidadePolicialService', 'PolicialService', 'OcorrenciaService', 'MandadoService', 'InvestigacaoService', 'ProvaPericialService', 'CadeiaCustodiaService', 'LaudoPericialService', 'VestigioService', 'EvidenciaService']
+from apps.backend.app.modules.public_security.application.services import (
+    CadeiaCustodiaService,
+    EvidenciaService,
+    InvestigacaoService,
+    LaudoPericialService,
+    MandadoService,
+    OcorrenciaService,
+    PolicialService,
+    ProvaPericialService,
+    UnidadePolicialService,
+    VestigioService,
+)
+
+__all__ = [
+    "UnidadePolicialService",
+    "PolicialService",
+    "OcorrenciaService",
+    "MandadoService",
+    "InvestigacaoService",
+    "ProvaPericialService",
+    "CadeiaCustodiaService",
+    "LaudoPericialService",
+    "VestigioService",
+    "EvidenciaService",
+]

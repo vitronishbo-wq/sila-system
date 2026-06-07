@@ -1,47 +1,127 @@
-from apps.backend.app.modules.resources.pescas.domain.models.apreensao_embarcacao import ApreensaoEmbarcacao
+from apps.backend.app.modules.resources.pescas.domain.models.apreensao_embarcacao import (
+    ApreensaoEmbarcacao,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.area_pesca import AreaPesca
 from apps.backend.app.modules.resources.pescas.domain.models.armador import Armador
 from apps.backend.app.modules.resources.pescas.domain.models.arte_pesca import ArtePesca
-from apps.backend.app.modules.resources.pescas.domain.models.auto_infracao_pesca import AutoInfracaoPesca
-from apps.backend.app.modules.resources.pescas.domain.models.autorizacao_pesca import AutorizacaoPesca
+from apps.backend.app.modules.resources.pescas.domain.models.auto_infracao_pesca import (
+    AutoInfracaoPesca,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.autorizacao_pesca import (
+    AutorizacaoPesca,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.beneficiamento import Beneficiamento
 from apps.backend.app.modules.resources.pescas.domain.models.bitola_minima import BitolaMinima
 from apps.backend.app.modules.resources.pescas.domain.models.cadeia_frio import CadeiaFrio
 from apps.backend.app.modules.resources.pescas.domain.models.captura import Captura
-from apps.backend.app.modules.resources.pescas.domain.models.certificado_origem_pesca import CertificadoOrigemPesca
-from apps.backend.app.modules.resources.pescas.domain.models.comercializacao_pesca import ComercializacaoPesca
-from apps.backend.app.modules.resources.pescas.domain.models.cooperativa_pesca import CooperativaPesca
+from apps.backend.app.modules.resources.pescas.domain.models.certificado_origem_pesca import (
+    CertificadoOrigemPesca,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.comercializacao_pesca import (
+    ComercializacaoPesca,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.cooperativa_pesca import (
+    CooperativaPesca,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.defeso import Defeso
 from apps.backend.app.modules.resources.pescas.domain.models.desembarque import Desembarque
 from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
 from apps.backend.app.modules.resources.pescas.domain.models.embargo_pesca import EmbargoPesca
 from apps.backend.app.modules.resources.pescas.domain.models.empresa_pesca import EmpresaPesca
 from apps.backend.app.modules.resources.pescas.domain.models.especie import Especie
-from apps.backend.app.modules.resources.pescas.domain.models.estatistica_pesca import EstatisticaPesca
+from apps.backend.app.modules.resources.pescas.domain.models.estatistica_pesca import (
+    EstatisticaPesca,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.exportacao_pesca import ExportacaoPesca
-from apps.backend.app.modules.resources.pescas.domain.models.fiscalizacao_pesca import FiscalizacaoPesca
+from apps.backend.app.modules.resources.pescas.domain.models.fiscalizacao_pesca import (
+    FiscalizacaoPesca,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.frigorifico import Frigorifico
 from apps.backend.app.modules.resources.pescas.domain.models.importacao_pesca import ImportacaoPesca
 from apps.backend.app.modules.resources.pescas.domain.models.industria_pesca import IndustriaPesca
-from apps.backend.app.modules.resources.pescas.domain.models.inspecao_sanitaria_pesca import InspecaoSanitariaPesca
-from apps.backend.app.modules.resources.pescas.domain.models.laboratorio_qualidade import LaboratorioQualidade
+from apps.backend.app.modules.resources.pescas.domain.models.inspecao_sanitaria_pesca import (
+    InspecaoSanitariaPesca,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.laboratorio_qualidade import (
+    LaboratorioQualidade,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.licenca_pesca import LicencaPesca
-from apps.backend.app.modules.resources.pescas.domain.models.monitoramento_satelite import MonitoramentoSatelite
+from apps.backend.app.modules.resources.pescas.domain.models.monitoramento_satelite import (
+    MonitoramentoSatelite,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.multa_pesca import MultaPesca
 from apps.backend.app.modules.resources.pescas.domain.models.observador_bordo import ObservadorBordo
-from apps.backend.app.modules.resources.pescas.domain.models.permissao_pesca import PermissaoPesca
 from apps.backend.app.modules.resources.pescas.domain.models.periodo_defeso import PeriodoDefeso
+from apps.backend.app.modules.resources.pescas.domain.models.permissao_pesca import PermissaoPesca
 from apps.backend.app.modules.resources.pescas.domain.models.pescador import Pescador
-from apps.backend.app.modules.resources.pescas.domain.models.pesquisa_pesqueira import PesquisaPesqueira
+from apps.backend.app.modules.resources.pescas.domain.models.pesquisa_pesqueira import (
+    PesquisaPesqueira,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.petrecho import Petrecho
 from apps.backend.app.modules.resources.pescas.domain.models.producao_pesca import ProducaoPesca
 from apps.backend.app.modules.resources.pescas.domain.models.quota import Quota
-from apps.backend.app.modules.resources.pescas.domain.models.rastreabilidade_pesca import RastreabilidadePesca
-from apps.backend.app.modules.resources.pescas.domain.models.recurso_pesqueiro import RecursoPesqueiro
+from apps.backend.app.modules.resources.pescas.domain.models.rastreabilidade_pesca import (
+    RastreabilidadePesca,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.recurso_pesqueiro import (
+    RecursoPesqueiro,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.safra import Safra
-from apps.backend.app.modules.resources.pescas.domain.models.sistema_rastreamento import SistemaRastreamento
-from apps.backend.app.modules.resources.pescas.domain.models.tamanho_minimo_captura import TamanhoMinimoCaptura
+from apps.backend.app.modules.resources.pescas.domain.models.sistema_rastreamento import (
+    SistemaRastreamento,
+)
+from apps.backend.app.modules.resources.pescas.domain.models.tamanho_minimo_captura import (
+    TamanhoMinimoCaptura,
+)
 from apps.backend.app.modules.resources.pescas.domain.models.tipo_embarcacao import TipoEmbarcacao
 from apps.backend.app.modules.resources.pescas.domain.models.vms import Vms
 from apps.backend.app.modules.resources.pescas.domain.models.zona_pesca import ZonaPesca
-__all__ = ['Pescador', 'Armador', 'EmpresaPesca', 'CooperativaPesca', 'Embarcacao', 'TipoEmbarcacao', 'ArtePesca', 'Petrecho', 'ZonaPesca', 'AreaPesca', 'RecursoPesqueiro', 'Especie', 'Safra', 'Quota', 'LicencaPesca', 'AutorizacaoPesca', 'PermissaoPesca', 'Defeso', 'PeriodoDefeso', 'Captura', 'Desembarque', 'ProducaoPesca', 'Beneficiamento', 'IndustriaPesca', 'Frigorifico', 'CadeiaFrio', 'ComercializacaoPesca', 'ExportacaoPesca', 'ImportacaoPesca', 'FiscalizacaoPesca', 'AutoInfracaoPesca', 'MultaPesca', 'EmbargoPesca', 'ApreensaoEmbarcacao', 'RastreabilidadePesca', 'CertificadoOrigemPesca', 'InspecaoSanitariaPesca', 'LaboratorioQualidade', 'MonitoramentoSatelite', 'SistemaRastreamento', 'Vms', 'ObservadorBordo', 'BitolaMinima', 'TamanhoMinimoCaptura', 'EstatisticaPesca', 'PesquisaPesqueira']
+
+__all__ = [
+    "Pescador",
+    "Armador",
+    "EmpresaPesca",
+    "CooperativaPesca",
+    "Embarcacao",
+    "TipoEmbarcacao",
+    "ArtePesca",
+    "Petrecho",
+    "ZonaPesca",
+    "AreaPesca",
+    "RecursoPesqueiro",
+    "Especie",
+    "Safra",
+    "Quota",
+    "LicencaPesca",
+    "AutorizacaoPesca",
+    "PermissaoPesca",
+    "Defeso",
+    "PeriodoDefeso",
+    "Captura",
+    "Desembarque",
+    "ProducaoPesca",
+    "Beneficiamento",
+    "IndustriaPesca",
+    "Frigorifico",
+    "CadeiaFrio",
+    "ComercializacaoPesca",
+    "ExportacaoPesca",
+    "ImportacaoPesca",
+    "FiscalizacaoPesca",
+    "AutoInfracaoPesca",
+    "MultaPesca",
+    "EmbargoPesca",
+    "ApreensaoEmbarcacao",
+    "RastreabilidadePesca",
+    "CertificadoOrigemPesca",
+    "InspecaoSanitariaPesca",
+    "LaboratorioQualidade",
+    "MonitoramentoSatelite",
+    "SistemaRastreamento",
+    "Vms",
+    "ObservadorBordo",
+    "BitolaMinima",
+    "TamanhoMinimoCaptura",
+    "EstatisticaPesca",
+    "PesquisaPesqueira",
+]

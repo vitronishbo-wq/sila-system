@@ -1,5 +1,4 @@
 class GovernmentServicePortal:
-
     def __init__(self):
         self.services = {}
 

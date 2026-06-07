@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
 from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
 
-class GrupoArtisticoRepositoryPort(ABC):
 
+class GrupoArtisticoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, grupo: GrupoArtistico) -> GrupoArtistico:
         pass

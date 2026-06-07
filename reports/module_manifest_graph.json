@@ -1,0 +1,250 @@
+{
+  "nodes": [
+    "Administracao Local",
+    "Agricultura",
+    "Aguas e Saneamento",
+    "Ambiente",
+    "Apoio Empresarial",
+    "Arquivo Nacional",
+    "Assistencia Social",
+    "Aviacao Civil",
+    "Bilhete de Identidade",
+    "Ciencia e Pesquisa",
+    "Comercio",
+    "Comercio Externo",
+    "Cooperacao Internacional",
+    "Cultura",
+    "Defesa do Consumidor",
+    "Desporto",
+    "Educacao",
+    "Emprego",
+    "Emprego e Assistencia Social",
+    "Energia",
+    "Estatistica",
+    "Familia",
+    "Financas e Impostos",
+    "Florestas",
+    "Gestao Fundiaria",
+    "Habitacao",
+    "Identificacao Civil",
+    "Igualdade",
+    "Industria",
+    "Integracao Nacional",
+    "Justica",
+    "Justica e Registo",
+    "Juventude",
+    "Meteorologia",
+    "Migracao",
+    "Normalizacao de Moradas",
+    "Numero de Identificacao Fiscal",
+    "Obras Publicas",
+    "Patrimonio Cultural",
+    "Pecuaria",
+    "Pescas",
+    "Pescas Industriais",
+    "Petroleo e Gas",
+    "Planeamento",
+    "Portos e Logistica",
+    "Protecao Civil",
+    "Protecao de Dados",
+    "Recursos Minerais",
+    "Registo Civil",
+    "Saude",
+    "Seguranca Alimentar",
+    "Seguranca Publica",
+    "Seguranca Social",
+    "Tecnologia e Inovacao",
+    "Telecomunicacoes",
+    "Trabalho e Inspecao",
+    "Transportes",
+    "Turismo",
+    "Urbanismo",
+    "Verificacao Documental",
+    "_deprecated",
+    "_scaffold",
+    "administracao_local",
+    "agricultura",
+    "aguas_saneamento",
+    "ambiente",
+    "api",
+    "apoio_empresarial",
+    "arquivo_nacional",
+    "assistencia_social",
+    "audit",
+    "aviacao_civil",
+    "bi",
+    "ciencia_pesquisa",
+    "civil_protection",
+    "civil_registry",
+    "comercio_externo",
+    "comercio_servicos",
+    "compliance",
+    "cooperacao_internacional",
+    "core",
+    "cultura",
+    "defesa_consumidor",
+    "delegation",
+    "desporto",
+    "documents",
+    "economy",
+    "economy.domain",
+    "educacao.domain",
+    "emis",
+    "emprego",
+    "energy",
+    "events",
+    "familia",
+    "financas",
+    "florestas",
+    "foundation",
+    "gestao_fundiaria",
+    "governance",
+    "igualdade",
+    "industria",
+    "industry",
+    "industry.domain",
+    "infrastructure",
+    "infrastructure_sector",
+    "infrastructure_sector.obras_publicas",
+    "intelligence",
+    "justice.domain",
+    "juventude",
+    "logistica",
+    "marketplace",
+    "meteorologia",
+    "migration_service",
+    "notifications",
+    "obras_publicas",
+    "operations",
+    "organization",
+    "patrimonio_cultural",
+    "payment",
+    "pecuaria",
+    "pescas",
+    "pescas_industriais",
+    "petroleo_gas",
+    "planeamento",
+    "portos_logistica",
+    "procurement",
+    "public_budget",
+    "public_security",
+    "rbac",
+    "recursos_minerais",
+    "resources",
+    "seguranca_alimentar",
+    "seguranca_social",
+    "service_requests",
+    "state_audit",
+    "statistics",
+    "taxpayer",
+    "tecnologia_inovacao",
+    "telecomunicacoes",
+    "territory",
+    "tests",
+    "tourism",
+    "trabalho_inspecao",
+    "trade",
+    "transportes",
+    "transportes_logistica",
+    "turismo",
+    "urbanismo_habitacao",
+    "wallet",
+    "workflow",
+    "workflows",
+    "xroad"
+  ],
+  "edges": [
+    {
+      "from": "Bilhete de Identidade",
+      "to": "identity"
+    },
+    {
+      "from": "Bilhete de Identidade",
+      "to": "xroad"
+    },
+    {
+      "from": "Educacao",
+      "to": "administracao-local"
+    },
+    {
+      "from": "Educacao",
+      "to": "identity"
+    },
+    {
+      "from": "Educacao",
+      "to": "payment"
+    },
+    {
+      "from": "Integracao Nacional",
+      "to": "educacao"
+    },
+    {
+      "from": "Integracao Nacional",
+      "to": "identity"
+    },
+    {
+      "from": "Integracao Nacional",
+      "to": "payment"
+    },
+    {
+      "from": "Integracao Nacional",
+      "to": "registo-civil"
+    },
+    {
+      "from": "Integracao Nacional",
+      "to": "xroad"
+    },
+    {
+      "from": "Numero de Identificacao Fiscal",
+      "to": "identity"
+    },
+    {
+      "from": "Registo Civil",
+      "to": "identity"
+    },
+    {
+      "from": "Registo Civil",
+      "to": "xroad"
+    },
+    {
+      "from": "Verificacao Documental",
+      "to": "educacao"
+    },
+    {
+      "from": "Verificacao Documental",
+      "to": "identity"
+    },
+    {
+      "from": "payment",
+      "to": "assistencia_social"
+    },
+    {
+      "from": "payment",
+      "to": "educacao"
+    },
+    {
+      "from": "payment",
+      "to": "emprego"
+    },
+    {
+      "from": "payment",
+      "to": "juventude"
+    },
+    {
+      "from": "payment",
+      "to": "saude"
+    },
+    {
+      "from": "payment",
+      "to": "service_requests"
+    },
+    {
+      "from": "state_audit",
+      "to": "economy.public_budget"
+    },
+    {
+      "from": "state_audit",
+      "to": "procurement"
+    }
+  ]
+}

@@ -1,8 +1,11 @@
 from __future__ import annotations
-from typing import Optional
+
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.educacao.domain.models import CicloEnsino, TipoEscola
+
 
 class EscolaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -16,6 +19,6 @@ class EscolaResponse(BaseModel):
     comuna: str
     bairro: str
     endereco: str
-    contacto: Optional[str] = None
-    email: Optional[str] = None
+    contacto: str | None = None
+    email: str | None = None
     ativa: bool

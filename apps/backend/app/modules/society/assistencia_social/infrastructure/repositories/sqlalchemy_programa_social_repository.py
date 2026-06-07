@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.programa_social_repository_port import ProgramaSocialRepositoryPort
-from apps.backend.app.modules.society.assistencia_social.domain.enums import PublicoAlvo, StatusProgramaSocial
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.programa_social_repository_port import (
+    ProgramaSocialRepositoryPort,
+)
+from apps.backend.app.modules.society.assistencia_social.domain.enums import (
+    PublicoAlvo,
+    StatusProgramaSocial,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.models import ProgramaSocial
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.programa_social_model import ProgramaSocialModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.programa_social_model import (
+    ProgramaSocialModel,
+)
+
 
 class SQLAlchemyProgramaSocialRepository(ProgramaSocialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -55,4 +65,16 @@ class SQLAlchemyProgramaSocialRepository(ProgramaSocialRepositoryPort):
 
     @staticmethod
     def _to_domain(model: ProgramaSocialModel) -> ProgramaSocial:
-        return ProgramaSocial(id=model.id, codigo=model.codigo, nome=model.nome, publico_alvo=PublicoAlvo(model.publico_alvo), criterio_renda_max=model.criterio_renda_max, valor_base=model.valor_base, vagas=model.vagas, status=StatusProgramaSocial(model.status), data_inicio=model.data_inicio, data_fim=model.data_fim, observacoes=model.observacoes)
+        return ProgramaSocial(
+            id=model.id,
+            codigo=model.codigo,
+            nome=model.nome,
+            publico_alvo=PublicoAlvo(model.publico_alvo),
+            criterio_renda_max=model.criterio_renda_max,
+            valor_base=model.valor_base,
+            vagas=model.vagas,
+            status=StatusProgramaSocial(model.status),
+            data_inicio=model.data_inicio,
+            data_fim=model.data_fim,
+            observacoes=model.observacoes,
+        )

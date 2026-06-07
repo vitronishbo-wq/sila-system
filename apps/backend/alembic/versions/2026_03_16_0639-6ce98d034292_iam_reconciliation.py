@@ -5,18 +5,18 @@ Revises: 47abb2f40d12
 Create Date: 2026-03-16 06:39:50.454112
 
 """
-from typing import Sequence, Union
 
-from alembic import op
+from collections.abc import Sequence
+
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects import postgresql
 
-
 # revision identifiers, used by Alembic.
-revision: str = '6ce98d034292'
-down_revision: Union[str, Sequence[str], None] = '47abb2f40d12'
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+revision: str = "6ce98d034292"
+down_revision: str | Sequence[str] | None = "47abb2f40d12"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -73,6 +73,98 @@ def upgrade() -> None:
         op.create_index(op.f("ix_users_id"), "users", ["id"], unique=False)
         op.create_index(op.f("ix_users_email"), "users", ["email"], unique=True)
         op.create_index(op.f("ix_users_bi_number"), "users", ["bi_number"], unique=True)
+        tables.add("users")
+
+    if "iam_users" not in tables:
+        op.create_table(
+            "iam_users",
+            sa.Column("id", sa.String(length=36), nullable=False),
+            sa.Column("username", sa.String(length=100), nullable=False),
+            sa.Column("email", sa.String(length=255), nullable=False),
+            sa.Column("password_hash", sa.String(length=255), nullable=False),
+            sa.Column("citizen_id", postgresql.UUID(as_uuid=True), nullable=True),
+            sa.Column(
+                "status",
+                sa.String(length=50),
+                server_default="PENDING_VERIFICATION",
+                nullable=False,
+            ),
+            sa.Column("is_superuser", sa.Boolean(), server_default="false", nullable=False),
+            sa.Column("full_name", sa.String(length=255), nullable=True),
+            sa.Column("phone", sa.String(length=50), nullable=True),
+            sa.Column("department", sa.String(length=255), nullable=True),
+            sa.Column("position", sa.String(length=255), nullable=True),
+            sa.Column("failed_login_attempts", sa.Integer(), server_default="0", nullable=False),
+            sa.Column("last_login_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column("last_login_ip", sa.String(length=50), nullable=True),
+            sa.Column("password_changed_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column("password_expires_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column("mfa_enabled", sa.Boolean(), server_default="false", nullable=False),
+            sa.Column("mfa_secret", sa.String(length=255), nullable=True),
+            sa.Column("mfa_type", sa.String(length=50), server_default="NONE", nullable=False),
+            sa.Column("custom_metadata", sa.JSON(), nullable=True),
+            sa.Column("deleted_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column(
+                "created_at",
+                sa.DateTime(timezone=True),
+                server_default=sa.func.now(),
+                nullable=False,
+            ),
+            sa.Column("updated_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column("created_by", sa.String(length=36), nullable=True),
+            sa.Column("updated_by", sa.String(length=36), nullable=True),
+            sa.Column("is_active", sa.Boolean(), server_default="true", nullable=False),
+            sa.PrimaryKeyConstraint("id"),
+            sa.UniqueConstraint("username", name="uq_iam_users_username"),
+            sa.UniqueConstraint("email", name="uq_iam_users_email"),
+            sa.UniqueConstraint("citizen_id", name="uq_iam_users_citizen_id"),
+        )
+        op.create_index(
+            "ix_iam_users_status_created",
+            "iam_users",
+            ["status", "created_at"],
+            unique=False,
+        )
+        op.create_index(
+            "ix_iam_users_username_lower",
+            "iam_users",
+            [sa.func.lower(sa.column("username"))],
+            unique=False,
+        )
+        op.create_index(
+            "ix_iam_users_email_lower",
+            "iam_users",
+            [sa.func.lower(sa.column("email"))],
+            unique=False,
+        )
+        op.create_index("ix_iam_users_citizen_id", "iam_users", ["citizen_id"], unique=False)
+        op.create_index("ix_iam_users_status", "iam_users", ["status"], unique=False)
+        tables.add("iam_users")
+
+    if "iam_roles" not in tables:
+        op.create_table(
+            "iam_roles",
+            sa.Column("id", sa.String(length=36), nullable=False),
+            sa.Column("name", sa.String(length=100), nullable=False, unique=True),
+            sa.Column("description", sa.Text(), nullable=True),
+            sa.Column("role_type", sa.String(length=50), server_default="CUSTOM", nullable=False),
+            sa.Column("is_system", sa.Boolean(), server_default="false", nullable=False),
+            sa.Column(
+                "created_at",
+                sa.DateTime(timezone=True),
+                server_default=sa.func.now(),
+                nullable=False,
+            ),
+            sa.Column("updated_at", sa.DateTime(timezone=True), nullable=True),
+            sa.Column("created_by", sa.String(length=36), nullable=True),
+            sa.Column("updated_by", sa.String(length=36), nullable=True),
+            sa.Column("is_active", sa.Boolean(), server_default="true", nullable=False),
+            sa.PrimaryKeyConstraint("id"),
+            sa.UniqueConstraint("name", name="uq_iam_roles_name"),
+        )
+        op.create_index("ix_iam_roles_name", "iam_roles", ["name"], unique=False)
+        op.create_index("ix_iam_roles_type", "iam_roles", ["role_type"], unique=False)
+        tables.add("iam_roles")
 
     if "iam_permissions" not in tables:
         op.create_table(
@@ -97,15 +189,14 @@ def upgrade() -> None:
             sa.UniqueConstraint("name", name="uq_iam_permissions_name"),
             sa.UniqueConstraint("resource", "action", name="uq_iam_permissions_resource_action"),
         )
-        op.create_index(
-            "ix_iam_permissions_name", "iam_permissions", ["name"], unique=False
-        )
+        op.create_index("ix_iam_permissions_name", "iam_permissions", ["name"], unique=False)
         op.create_index(
             "ix_iam_permissions_resource_action",
             "iam_permissions",
             ["resource", "action"],
             unique=False,
         )
+        tables.add("iam_permissions")
 
     if "iam_role_permissions" not in tables:
         op.create_table(
@@ -125,12 +216,8 @@ def upgrade() -> None:
             sa.Column("is_active", sa.Boolean(), server_default="true", nullable=False),
             sa.PrimaryKeyConstraint("id"),
             sa.UniqueConstraint("role_id", "permission_id", name="uq_role_permission"),
-            sa.ForeignKeyConstraint(
-                ["role_id"], ["iam_roles.id"], ondelete="CASCADE"
-            ),
-            sa.ForeignKeyConstraint(
-                ["permission_id"], ["iam_permissions.id"], ondelete="CASCADE"
-            ),
+            sa.ForeignKeyConstraint(["role_id"], ["iam_roles.id"], ondelete="CASCADE"),
+            sa.ForeignKeyConstraint(["permission_id"], ["iam_permissions.id"], ondelete="CASCADE"),
         )
         op.create_index(
             "ix_iam_role_permissions_role_id",
@@ -144,6 +231,7 @@ def upgrade() -> None:
             ["permission_id"],
             unique=False,
         )
+        tables.add("iam_role_permissions")
 
     if "iam_user_permissions" not in tables:
         op.create_table(
@@ -171,12 +259,8 @@ def upgrade() -> None:
             sa.PrimaryKeyConstraint("id"),
             sa.UniqueConstraint("user_id", "permission_id", name="uq_user_permission"),
             sa.ForeignKeyConstraint(["user_id"], ["iam_users.id"], ondelete="CASCADE"),
-            sa.ForeignKeyConstraint(
-                ["permission_id"], ["iam_permissions.id"], ondelete="CASCADE"
-            ),
-            sa.ForeignKeyConstraint(
-                ["granted_by"], ["iam_users.id"], ondelete="SET NULL"
-            ),
+            sa.ForeignKeyConstraint(["permission_id"], ["iam_permissions.id"], ondelete="CASCADE"),
+            sa.ForeignKeyConstraint(["granted_by"], ["iam_users.id"], ondelete="SET NULL"),
         )
         op.create_index(
             "ix_iam_user_permissions_user_id",
@@ -190,6 +274,7 @@ def upgrade() -> None:
             ["permission_id"],
             unique=False,
         )
+        tables.add("iam_user_permissions")
 
     if "iam_users" in tables and "citizenship_citizens" in tables:
         fks = inspector.get_foreign_keys("iam_users", schema="public")
@@ -241,6 +326,19 @@ def downgrade() -> None:
         op.drop_index("ix_iam_permissions_resource_action", table_name="iam_permissions")
         op.drop_index("ix_iam_permissions_name", table_name="iam_permissions")
         op.drop_table("iam_permissions")
+
+    if "iam_roles" in tables:
+        op.drop_index("ix_iam_roles_type", table_name="iam_roles")
+        op.drop_index("ix_iam_roles_name", table_name="iam_roles")
+        op.drop_table("iam_roles")
+
+    if "iam_users" in tables:
+        op.drop_index("ix_iam_users_status", table_name="iam_users")
+        op.drop_index("ix_iam_users_citizen_id", table_name="iam_users")
+        op.drop_index("ix_iam_users_email_lower", table_name="iam_users")
+        op.drop_index("ix_iam_users_username_lower", table_name="iam_users")
+        op.drop_index("ix_iam_users_status_created", table_name="iam_users")
+        op.drop_table("iam_users")
 
     if "users" in tables:
         op.drop_index(op.f("ix_users_bi_number"), table_name="users")

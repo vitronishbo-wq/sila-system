@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusQualidadeServico, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusQualidadeServico,
+    TipoServico,
+)
+
 
 class QualidadeServicoCreate(BaseModel):
     operadora_id: UUID
@@ -18,8 +25,10 @@ class QualidadeServicoCreate(BaseModel):
     sla_id: UUID | None = None
     observacoes: str | None = None
 
+
 class QualidadeServicoStatusUpdate(BaseModel):
     status: StatusQualidadeServico
+
 
 class QualidadeServicoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

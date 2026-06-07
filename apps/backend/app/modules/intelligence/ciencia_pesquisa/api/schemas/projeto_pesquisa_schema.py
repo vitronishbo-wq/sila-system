@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import AreaConhecimento, StatusProjetoPesquisa
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    AreaConhecimento,
+    StatusProjetoPesquisa,
+)
+
 
 class ProjetoPesquisaCreate(BaseModel):
     titulo: str = Field(..., min_length=5)
@@ -17,11 +24,14 @@ class ProjetoPesquisaCreate(BaseModel):
     orcamento_previsto: float | None = None
     codigo_projeto: str | None = None
 
+
 class ProjetoPesquisaVincularPesquisadoresInput(BaseModel):
     pesquisador_ids: list[UUID] = Field(..., min_length=1)
 
+
 class ProjetoPesquisaEncerrarInput(BaseModel):
     data_fim_real: date | None = None
+
 
 class ProjetoPesquisaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

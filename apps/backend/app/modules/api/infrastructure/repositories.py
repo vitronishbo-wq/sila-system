@@ -1,14 +1,16 @@
 """
 Repository pattern for api module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class ApiRepository(ABC):
     """Abstract repository for api."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get api by ID."""
         pass
 
@@ -23,9 +25,10 @@ class ApiRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all api."""
         pass
+
 
 class ApiMemoryRepository(ApiRepository):
     """In-memory repository for api."""
@@ -33,7 +36,7 @@ class ApiMemoryRepository(ApiRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class ApiMemoryRepository(ApiRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

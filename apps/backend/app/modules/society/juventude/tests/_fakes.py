@@ -1,24 +1,58 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import AuxilioRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import CitizenServicePort
-from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import EducacaoServicePort
-from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import EmpregoServicePort
-from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import FormacaoRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import JovemRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import ProgramaRepositoryPort
-from apps.backend.app.modules.society.juventude.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import RiscoEvasaoRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, RiscoSocial, SituacaoOcupacional, StatusBeneficio, StatusFormacao, StatusPrograma, TipoAuxilio, TipoPrograma
+
+from apps.backend.app.modules.society.juventude.application.ports.auxilio_repository_port import (
+    AuxilioRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.citizen_service_port import (
+    CitizenServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.educacao_service_port import (
+    EducacaoServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.emprego_service_port import (
+    EmpregoServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.formacao_repository_port import (
+    FormacaoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.jovem_repository_port import (
+    JovemRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.programa_repository_port import (
+    ProgramaRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.society.juventude.application.ports.risco_evasao_repository_port import (
+    RiscoEvasaoRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    Escolaridade,
+    FaixaEtaria,
+    RiscoSocial,
+    SituacaoOcupacional,
+    StatusBeneficio,
+    StatusFormacao,
+    StatusPrograma,
+    TipoAuxilio,
+    TipoPrograma,
+)
 from apps.backend.app.modules.society.juventude.domain.models.auxilio import Auxilio
-from apps.backend.app.modules.society.juventude.domain.models.formacao_juvenil import FormacaoJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.formacao_juvenil import (
+    FormacaoJuvenil,
+)
 from apps.backend.app.modules.society.juventude.domain.models.jovem import Jovem
-from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import ProgramaJuvenil
+from apps.backend.app.modules.society.juventude.domain.models.programa_juvenil import (
+    ProgramaJuvenil,
+)
 from apps.backend.app.modules.society.juventude.domain.models.risco_evasao import RiscoEvasao
 
-class InMemoryJovemRepository(JovemRepositoryPort):
 
+class InMemoryJovemRepository(JovemRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Jovem] = {}
 
@@ -71,12 +105,12 @@ class InMemoryJovemRepository(JovemRepositoryPort):
 
     async def next_registro(self) -> str:
         year = date.today().year
-        prefix = f'JOV/{year}/'
-        count = sum((1 for item in self._items.values() if item.numero_registro.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"JOV/{year}/"
+        count = sum(1 for item in self._items.values() if item.numero_registro.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryAuxilioRepository(AuxilioRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Auxilio] = {}
 
@@ -114,12 +148,12 @@ class InMemoryAuxilioRepository(AuxilioRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'AUX/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_auxilio.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"AUX/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_auxilio.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryProgramaRepository(ProgramaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, ProgramaJuvenil] = {}
 
@@ -153,12 +187,12 @@ class InMemoryProgramaRepository(ProgramaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PRG/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_programa.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"PRG/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_programa.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryFormacaoRepository(FormacaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, FormacaoJuvenil] = {}
 
@@ -196,12 +230,12 @@ class InMemoryFormacaoRepository(FormacaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'FRM/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_formacao.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"FRM/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_formacao.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryRiscoEvasaoRepository(RiscoEvasaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, RiscoEvasao] = {}
 
@@ -228,35 +262,43 @@ class InMemoryRiscoEvasaoRepository(RiscoEvasaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'RISK/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_risco.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"RISK/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_risco.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class FakeCitizenService(CitizenServicePort):
-
-    def __init__(self, *, active: bool=True) -> None:
+    def __init__(self, *, active: bool = True) -> None:
         self.active = active
 
     async def is_citizen_active(self, citizen_id: UUID) -> bool:
         return self.active
 
-class FakeEducacaoService(EducacaoServicePort):
 
-    def __init__(self, *, matricula_ativa: bool=True) -> None:
+class FakeEducacaoService(EducacaoServicePort):
+    def __init__(self, *, matricula_ativa: bool = True) -> None:
         self.matricula_ativa = matricula_ativa
 
     async def has_matricula_ativa(self, citizen_id: UUID) -> bool:
         return self.matricula_ativa
 
-class FakeEmpregoService(EmpregoServicePort):
 
-    def __init__(self, *, candidatura_ativa: bool=True) -> None:
+class FakeEmpregoService(EmpregoServicePort):
+    def __init__(self, *, candidatura_ativa: bool = True) -> None:
         self.candidatura_ativa = candidatura_ativa
 
     async def has_candidatura_ativa(self, citizen_id: UUID) -> bool:
         return self.candidatura_ativa
 
-class FakeRequestService(RequestServicePort):
 
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None):
+class FakeRequestService(RequestServicePort):
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ):
         return None

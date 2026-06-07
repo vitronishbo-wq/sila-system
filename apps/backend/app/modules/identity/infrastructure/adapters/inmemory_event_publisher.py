@@ -1,13 +1,16 @@
-from typing import Any, Callable, Dict, List
+from collections.abc import Callable
+from typing import Any
+
 from apps.backend.app.modules.identity.domain.ports.event_publisher_port import EventPublisherPort
+
 
 class InMemoryEventPublisher(EventPublisherPort):
     """Adapter: In-memory event publisher for testing and development."""
 
     def __init__(self):
-        self.handlers: Dict[str, List[Callable]] = {}
+        self.handlers: dict[str, list[Callable]] = {}
 
-    async def publish(self, event_name: str, event_data: Dict[str, Any]) -> None:
+    async def publish(self, event_name: str, event_data: dict[str, Any]) -> None:
         """Publish an event to all subscribers."""
         if event_name in self.handlers:
             for handler in self.handlers[event_name]:

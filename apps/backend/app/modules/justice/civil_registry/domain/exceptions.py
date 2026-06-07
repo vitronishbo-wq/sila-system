@@ -1,0 +1,1 @@
+class CivilRegistryError(Exception): pass

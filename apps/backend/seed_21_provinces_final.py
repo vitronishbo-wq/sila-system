@@ -1,26 +1,48 @@
 import asyncio
+
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
+
 
 async def seed():
     url = "postgresql+asyncpg://sila_user:Trumanmarcelo_1983@localhost:5432/sila_db"
     engine = create_async_engine(url)
 
     provinces = [
-        'Cabinda', 'Zaire', 'Uíge', 'Bengo', 'Cuanza-Norte',
-        'Cuanza-Sul', 'Huambo', 'Benguela', 'Huíla', 'Namibe',
-        'Cunene', 'Cubango', 'Cuando', 'Moxico', 'Moxico Leste',
-        'Malanje', 'Lunda-Norte', 'Lunda-Sul', 'Bié', 'Icolo e Bengo', 'Luanda'
+        "Cabinda",
+        "Zaire",
+        "Uíge",
+        "Bengo",
+        "Cuanza-Norte",
+        "Cuanza-Sul",
+        "Huambo",
+        "Benguela",
+        "Huíla",
+        "Namibe",
+        "Cunene",
+        "Cubango",
+        "Cuando",
+        "Moxico",
+        "Moxico Leste",
+        "Malanje",
+        "Lunda-Norte",
+        "Lunda-Sul",
+        "Bié",
+        "Icolo e Bengo",
+        "Luanda",
     ]
 
     async with engine.begin() as conn:
         print("🌍 Inserindo 21 Províncias...")
         for name in provinces:
-            await conn.execute(text("""
+            await conn.execute(
+                text("""
                 INSERT INTO locations (name, type)
                 VALUES (:name, 'province')
                 ON CONFLICT (name) DO NOTHING;
-            """), {"name": name})
+            """),
+                {"name": name},
+            )
 
         print("🏙️ Criando Município do Huambo...")
         # Busca o ID serial (inteiro) do Huambo
@@ -28,14 +50,18 @@ async def seed():
         huambo_id = res.scalar()
 
         if huambo_id:
-            await conn.execute(text("""
+            await conn.execute(
+                text("""
                 INSERT INTO locations (name, type, parent_id)
                 VALUES ('Huambo (Município)', 'municipality', :pid)
                 ON CONFLICT (name) DO NOTHING;
-            """), {"pid": huambo_id})
+            """),
+                {"pid": huambo_id},
+            )
 
     print("✅ Seed concluído!")
     await engine.dispose()
+
 
 if __name__ == "__main__":
     asyncio.run(seed())

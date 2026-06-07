@@ -5,12 +5,12 @@
 
 import React, { useState, useCallback } from 'react';
 import { Cloud, AlertTriangle, MapPin, RefreshCw } from 'lucide-react';
-import { useMeteorologia, useAlertas, useEstacoes } from '../hooks';
-import { StationCard } from './StationCard';
-import { AlertsPanel } from './AlertsPanel';
-import { TrendsChart } from './TrendsChart';
-import { RegionFilter } from './RegionFilter';
-import type { MeteorologyFilter } from '../types';
+import { useMeteorologia, useAlertas, useEstacoes } from '@/modules/meteorologia/hooks';
+import { StationCard } from '@/modules/meteorologia/components/StationCard';
+import { AlertsPanel } from '@/modules/meteorologia/components/AlertsPanel';
+import { TrendsChart } from '@/modules/meteorologia/components/TrendsChart';
+import { RegionFilter } from '@/modules/meteorologia/components/RegionFilter';
+import type { MeteorologyFilter } from '@/modules/meteorologia/types';
 
 interface MeteorologyWidgetProps {
   standalone?: boolean;

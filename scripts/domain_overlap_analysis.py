@@ -16,9 +16,8 @@ import itertools
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 TOKEN_RE = re.compile(r"[a-zA-Z0-9]+")
 CAMEL_RE = re.compile(r"[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)|\d+")
@@ -186,9 +185,7 @@ class ModuleScan:
     entity_names: set[str] = field(default_factory=set)
     repository_names: set[str] = field(default_factory=set)
     imports_out: Counter[str] = field(default_factory=Counter)
-    import_evidence: defaultdict[str, list[str]] = field(
-        default_factory=lambda: defaultdict(list)
-    )
+    import_evidence: defaultdict[str, list[str]] = field(default_factory=lambda: defaultdict(list))
     files_scanned: int = 0
 
 
@@ -396,14 +393,17 @@ def infer_conflicts(scans: dict[str, ModuleScan]) -> dict[str, list]:
                 continue
             seen_pairs.add(pair)
             bidirectional.append(
-                {"left": pair[0], "right": pair[1], "left_to_right": count, "right_to_left": reverse}
+                {
+                    "left": pair[0],
+                    "right": pair[1],
+                    "left_to_right": count,
+                    "right_to_left": reverse,
+                }
             )
 
     outbound_hotspots.sort(key=lambda item: item["total_imports"], reverse=True)
     inbound_hotspots = inbound_counter.most_common(20)
-    bidirectional.sort(
-        key=lambda item: item["left_to_right"] + item["right_to_left"], reverse=True
-    )
+    bidirectional.sort(key=lambda item: item["left_to_right"] + item["right_to_left"], reverse=True)
 
     return {
         "outbound_hotspots": outbound_hotspots[:20],
@@ -419,7 +419,7 @@ def build_report(
     shared_repositories: list[tuple[str, list[str]]],
     conflicts: dict[str, list],
 ) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     modules = sorted(scans.keys())
     groups, unknown_modules = build_group_map(set(modules))
 
@@ -446,7 +446,9 @@ def build_report(
     lines.append("## Candidate Module Merges")
     lines.append("")
     if overlap_pairs:
-        lines.append("| Pair | Score | Name overlap | Concept overlap | Direct cross-imports | Shared entities | Shared repositories |")
+        lines.append(
+            "| Pair | Score | Name overlap | Concept overlap | Direct cross-imports | Shared entities | Shared repositories |"
+        )
         lines.append("| --- | ---: | ---: | ---: | ---: | --- | --- |")
         for pair in overlap_pairs[:25]:
             shared_entities_preview = ", ".join(pair["shared_entities"][:3]) or "-"
@@ -492,7 +494,9 @@ def build_report(
         lines.append("| Entity/Class | Modules |")
         lines.append("| --- | --- |")
         for entity_name, modules_with_entity in shared_entities[:80]:
-            lines.append(f"| `{entity_name}` | {', '.join(f'`{mod}`' for mod in modules_with_entity)} |")
+            lines.append(
+                f"| `{entity_name}` | {', '.join(f'`{mod}`' for mod in modules_with_entity)} |"
+            )
     else:
         lines.append("- No shared entity class names detected.")
     lines.append("")
@@ -502,13 +506,23 @@ def build_report(
         lines.append("| Repository/Class | Modules |")
         lines.append("| --- | --- |")
         for repo_name, modules_with_repo in shared_repositories[:80]:
-            lines.append(f"| `{repo_name}` | {', '.join(f'`{mod}`' for mod in modules_with_repo)} |")
+            lines.append(
+                f"| `{repo_name}` | {', '.join(f'`{mod}`' for mod in modules_with_repo)} |"
+            )
     else:
         lines.append("- No shared repository class names detected.")
     lines.append("")
     lines.append("## Recommended Domain Groups")
     lines.append("")
-    for group in ("governance", "economy", "social", "infrastructure", "environment", "security", "platform"):
+    for group in (
+        "governance",
+        "economy",
+        "social",
+        "infrastructure",
+        "environment",
+        "security",
+        "platform",
+    ):
         members = groups[group]
         lines.append(f"### {group}")
         lines.append("")
@@ -527,8 +541,12 @@ def build_report(
     lines.append("## Notes")
     lines.append("")
     lines.append("- This report is static analysis only (naming, imports, class signatures).")
-    lines.append("- Merge recommendations should be validated with business ownership and API contracts.")
-    lines.append("- Suggested next step: create a staged migration map (`domains/<group>/modules/<module>`).")
+    lines.append(
+        "- Merge recommendations should be validated with business ownership and API contracts."
+    )
+    lines.append(
+        "- Suggested next step: create a staged migration map (`domains/<group>/modules/<module>`)."
+    )
     lines.append("")
 
     return "\n".join(lines)
@@ -559,7 +577,9 @@ def main() -> int:
     module_dirs = sorted(
         [d for d in modules_root.iterdir() if d.is_dir() and not d.name.startswith("__")]
     )
-    scans: dict[str, ModuleScan] = {module_dir.name: scan_module(module_dir) for module_dir in module_dirs}
+    scans: dict[str, ModuleScan] = {
+        module_dir.name: scan_module(module_dir) for module_dir in module_dirs
+    }
 
     entity_index: defaultdict[str, set[str]] = defaultdict(set)
     repo_index: defaultdict[str, set[str]] = defaultdict(set)
@@ -570,20 +590,12 @@ def main() -> int:
             repo_index[repo].add(module_name)
 
     shared_entities = sorted(
-        (
-            (name, sorted(modules))
-            for name, modules in entity_index.items()
-            if len(modules) > 1
-        ),
+        ((name, sorted(modules)) for name, modules in entity_index.items() if len(modules) > 1),
         key=lambda item: (len(item[1]), item[0]),
         reverse=True,
     )
     shared_repositories = sorted(
-        (
-            (name, sorted(modules))
-            for name, modules in repo_index.items()
-            if len(modules) > 1
-        ),
+        ((name, sorted(modules)) for name, modules in repo_index.items() if len(modules) > 1),
         key=lambda item: (len(item[1]), item[0]),
         reverse=True,
     )

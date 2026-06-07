@@ -1,12 +1,17 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEstoque
+
 
 class EstoqueCreate(BaseModel):
     codigo_insumo: str
     quantidade_minima: float
+
 
 class EstoqueResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

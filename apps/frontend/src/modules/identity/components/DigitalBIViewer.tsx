@@ -5,15 +5,15 @@
 
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { useDigitalBI, useBITemplates } from '../hooks';
+import { useDigitalBI, useBITemplates } from '@/modules/identity/hooks';
 import {
   isDigitalBIValid,
   getDaysUntilExpiry,
   isBIExpiringSoon,
   generateBIQRCodeData,
-} from '../utils';
-import type { DigitalBIDocument, DigitalBIIssueRequest } from '../types';
-import { identityService } from '../services';
+} from '@/modules/identity/utils';
+import type { DigitalBIDocument, DigitalBIIssueRequest } from '@/modules/identity/types';
+import { identityService } from '@/modules/identity/services';
 
 interface DigitalBIViewerProps {
   citizenId: string;

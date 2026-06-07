@@ -1,10 +1,15 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from apps.backend.app.modules.resources.ambiente.domain.enums import StatusEstudoAmbiental, TipoEstudoAmbiental
+
+from apps.backend.app.modules.resources.ambiente.domain.enums import (
+    StatusEstudoAmbiental,
+    TipoEstudoAmbiental,
+)
 from apps.backend.app.modules.resources.ambiente.domain.models.estudo_impacto import EstudoImpacto
 
-class EstudoRepositoryPort(ABC):
 
+class EstudoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: EstudoImpacto) -> EstudoImpacto:
         pass
@@ -14,7 +19,13 @@ class EstudoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, numero_licenca: str | None=None, tipo: TipoEstudoAmbiental | None=None, status: StatusEstudoAmbiental | None=None) -> list[EstudoImpacto]:
+    async def list(
+        self,
+        *,
+        numero_licenca: str | None = None,
+        tipo: TipoEstudoAmbiental | None = None,
+        status: StatusEstudoAmbiental | None = None,
+    ) -> list[EstudoImpacto]:
         pass
 
     @abstractmethod

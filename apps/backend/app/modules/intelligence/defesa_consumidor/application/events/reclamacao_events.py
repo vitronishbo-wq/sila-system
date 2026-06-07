@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional
+
 
 @dataclass(frozen=True)
 class ReclamacaoCriadaEvent:
@@ -9,9 +9,10 @@ class ReclamacaoCriadaEvent:
     consumidor_id: int
     estabelecimento_id: int
     categoria: str
-    valor_reclamado: Optional[float]
+    valor_reclamado: float | None
     data_abertura: str
     timestamp: datetime = field(default_factory=datetime.utcnow)
+
 
 @dataclass(frozen=True)
 class ReclamacaoStatusAtualizadoEvent:
@@ -22,6 +23,7 @@ class ReclamacaoStatusAtualizadoEvent:
     data_atualizacao: str
     timestamp: datetime = field(default_factory=datetime.utcnow)
 
+
 @dataclass(frozen=True)
 class ReclamacaoFinalizadaEvent:
     id: int
@@ -29,8 +31,9 @@ class ReclamacaoFinalizadaEvent:
     resolvido: bool
     data_resolucao: str
     tempo_resolucao_dias: int
-    descricao_resposta: Optional[str] = None
+    descricao_resposta: str | None = None
     timestamp: datetime = field(default_factory=datetime.utcnow)
+
 
 @dataclass(frozen=True)
 class ReclamacaoPrioridadeEscaladaEvent:
@@ -38,6 +41,13 @@ class ReclamacaoPrioridadeEscaladaEvent:
     protocolo: str
     prioridade_anterior: str
     prioridade_nova: str
-    motivo_escalonamento: Optional[str] = None
+    motivo_escalonamento: str | None = None
     timestamp: datetime = field(default_factory=datetime.utcnow)
-DEFESA_CONSUMIDOR_EVENTS = [ReclamacaoCriadaEvent, ReclamacaoStatusAtualizadoEvent, ReclamacaoFinalizadaEvent, ReclamacaoPrioridadeEscaladaEvent]
+
+
+DEFESA_CONSUMIDOR_EVENTS = [
+    ReclamacaoCriadaEvent,
+    ReclamacaoStatusAtualizadoEvent,
+    ReclamacaoFinalizadaEvent,
+    ReclamacaoPrioridadeEscaladaEvent,
+]

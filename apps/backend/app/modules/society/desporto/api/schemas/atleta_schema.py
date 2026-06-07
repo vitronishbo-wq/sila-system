@@ -1,15 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, PePreferencial, PosicaoAtleta, StatusAtleta, TipoAtleta
+
+from apps.backend.app.modules.society.desporto.domain.enums import (
+    ModalidadeDesportiva,
+    PePreferencial,
+    PosicaoAtleta,
+    StatusAtleta,
+    TipoAtleta,
+)
+
 
 class AtletaCreate(BaseModel):
     nome: str = Field(..., min_length=3)
     data_nascimento: date
     naturalidade: str
-    nacionalidade: str = 'Angolana'
+    nacionalidade: str = "Angolana"
     tipo: TipoAtleta
     modalidades: list[ModalidadeDesportiva] = Field(..., min_length=1)
     citizen_id: UUID | None = None
@@ -21,6 +31,7 @@ class AtletaCreate(BaseModel):
     numero_camisola: int | None = None
     ultimo_exame_id: UUID | None = None
     observacoes: str | None = None
+
 
 class AtletaUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
@@ -36,6 +47,7 @@ class AtletaUpdate(BaseModel):
     ultimo_exame_id: UUID | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class AtletaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

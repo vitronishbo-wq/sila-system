@@ -38,9 +38,7 @@ def test_import_all_modules():
     base_package = "app"
     base_path = [APP_DIR]
 
-    print(
-        f"\n{Color.CYAN}{Color.BOLD}🔍 Iniciando varredura global de módulos...{Color.RESET}"
-    )
+    print(f"\n{Color.CYAN}{Color.BOLD}🔍 Iniciando varredura global de módulos...{Color.RESET}")
     print(f"{Color.GRAY}Diretório alvo: {APP_DIR}{Color.RESET}\n")
 
     start_time = time.time()
@@ -63,13 +61,9 @@ def test_import_all_modules():
     print(f"{Color.YELLOW}⏱️ Tempo total:{Color.RESET} {duration:.2f}s\n")
 
     if errors:
-        print(
-            f"{Color.RED}{Color.BOLD}❌ {len(errors)} módulos falharam ao importar:{Color.RESET}"
-        )
+        print(f"{Color.RED}{Color.BOLD}❌ {len(errors)} módulos falharam ao importar:{Color.RESET}")
         for i, (name, err, tb) in enumerate(errors, start=1):
-            print(
-                f"\n{Color.YELLOW}#{i} Falha ao importar: {Color.BOLD}{name}{Color.RESET}"
-            )
+            print(f"\n{Color.YELLOW}#{i} Falha ao importar: {Color.BOLD}{name}{Color.RESET}")
             print(f"{Color.RED}{err}{Color.RESET}")
             traceback_lines = tb.strip().split("\n")[-5:]
             print(f"{Color.GRAY}{''.join(traceback_lines)}{Color.RESET}")

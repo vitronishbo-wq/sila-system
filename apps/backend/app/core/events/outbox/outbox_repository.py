@@ -1,10 +1,13 @@
 """Outbox Repository - Phase 19"""
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update
-from datetime import datetime, timezone
+
+from datetime import UTC, datetime
 from inspect import isawaitable
-from typing import List
+
+from sqlalchemy import select, update
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from .outbox_model import OutboxEvent
+
 
 class OutboxRepository:
     """Repository for outbox event persistence"""
@@ -21,23 +24,35 @@ class OutboxRepository:
         await self.db.flush()
         return record
 
-    async def get_unprocessed(self, limit: int=100) -> List[OutboxEvent]:
+    async def get_unprocessed(self, limit: int = 100) -> list[OutboxEvent]:
         """Get unprocessed events"""
-        stmt = select(OutboxEvent).where(OutboxEvent.processed == False).limit(limit).order_by(OutboxEvent.created_at)
+        stmt = (
+            select(OutboxEvent)
+            .where(not OutboxEvent.processed)
+            .limit(limit)
+            .order_by(OutboxEvent.created_at)
+        )
         result = await self.db.execute(stmt)
         return result.scalars().all()
 
     async def mark_processed(self, event_id: str):
         """Mark event as processed"""
-        stmt = update(OutboxEvent).where(OutboxEvent.id == event_id).values(processed=True, processed_at=datetime.now(timezone.utc))
+        stmt = (
+            update(OutboxEvent)
+            .where(OutboxEvent.id == event_id)
+            .values(processed=True, processed_at=datetime.now(UTC))
+        )
         await self.db.execute(stmt)
         await self.db.commit()
 
-    async def delete_processed(self, days_retention: int=7):
+    async def delete_processed(self, days_retention: int = 7):
         """Delete processed events older than retention period"""
         from datetime import timedelta
-        cutoff = datetime.now(timezone.utc) - timedelta(days=days_retention)
-        stmt = select(OutboxEvent).where((OutboxEvent.processed == True) & (OutboxEvent.processed_at < cutoff))
+
+        cutoff = datetime.now(UTC) - timedelta(days=days_retention)
+        stmt = select(OutboxEvent).where(
+            (OutboxEvent.processed) & (OutboxEvent.processed_at < cutoff)
+        )
         result = await self.db.execute(stmt)
         events = result.scalars().all()
         for event in events:

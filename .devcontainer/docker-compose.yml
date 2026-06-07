@@ -1,0 +1,110 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        USER_UID: 1000
+        USER_GID: 1000
+    container_name: sila-dev-agent
+    restart: unless-stopped
+    user: vscode
+    volumes:
+      - ..:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/vscode/.ssh:/home/vscode/.ssh:ro
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-sila_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-Trumanmarcelo_1983}
+      - POSTGRES_DB=${POSTGRES_DB:-sila_db}
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - ASYNC_DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-sila_user}:${POSTGRES_PASSWORD:-Trumanmarcelo_1983}@db:5432/${POSTGRES_DB:-sila_db}
+      - GMX_ENV_LOADED=1
+      - GMX_ENV_SOURCE=.devcontainer/docker-compose.yml
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379/0
+      - WATCHFILES_FORCE_POLLING=false
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    command: sleep infinity
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - devnet
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "test -d /workspace && command -v python >/dev/null 2>&1 && command -v alembic >/dev/null 2>&1"
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  db:
+    image: postgres:15-alpine
+    container_name: sila-dev-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sila_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Trumanmarcelo_1983}
+      POSTGRES_DB: ${POSTGRES_DB:-sila_db}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=pt_BR.UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-sila_user} -d ${POSTGRES_DB:-sila_db}"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - devnet
+    security_opt:
+      - no-new-privileges:true
+
+  redis:
+    image: redis:7-alpine
+    container_name: sila-dev-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - devnet
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  devnet:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

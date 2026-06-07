@@ -1,12 +1,16 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import date
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.industrial.domain.enums import StatusInspecao
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import InspecaoSanitariaIndustrial
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.inspecao_sanitaria_industrial import (
+    InspecaoSanitariaIndustrial,
+)
+
 
 class InspecaoSanitariaIndustrialRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, inspecao: InspecaoSanitariaIndustrial) -> InspecaoSanitariaIndustrial:
         pass
@@ -24,7 +28,9 @@ class InspecaoSanitariaIndustrialRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_unidade(self, unidade_processamento_id: UUID) -> list[InspecaoSanitariaIndustrial]:
+    async def list_by_unidade(
+        self, unidade_processamento_id: UUID
+    ) -> list[InspecaoSanitariaIndustrial]:
         pass
 
     @abstractmethod
@@ -36,7 +42,9 @@ class InspecaoSanitariaIndustrialRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[InspecaoSanitariaIndustrial]:
+    async def list_by_periodo(
+        self, data_inicio: date, data_fim: date
+    ) -> list[InspecaoSanitariaIndustrial]:
         pass
 
     @abstractmethod

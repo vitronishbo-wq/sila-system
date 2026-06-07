@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
+
 
 @dataclass
 class CircuitBreaker:
@@ -12,7 +14,7 @@ class CircuitBreaker:
     def is_open(self) -> bool:
         if self._opened_at is None:
             return False
-        if datetime.now(timezone.utc) - self._opened_at >= timedelta(seconds=self.reset_timeout_seconds):
+        if datetime.now(UTC) - self._opened_at >= timedelta(seconds=self.reset_timeout_seconds):
             self._opened_at = None
             self._failures = 0
             return False
@@ -25,4 +27,4 @@ class CircuitBreaker:
     def record_failure(self) -> None:
         self._failures += 1
         if self._failures >= self.failure_threshold:
-            self._opened_at = datetime.now(timezone.utc)
+            self._opened_at = datetime.now(UTC)

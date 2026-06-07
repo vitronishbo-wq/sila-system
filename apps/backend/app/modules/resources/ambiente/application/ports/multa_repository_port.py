@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusMulta
 from apps.backend.app.modules.resources.ambiente.domain.models.multa import Multa
 
-class MultaRepositoryPort(ABC):
 
+class MultaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Multa) -> Multa:
         pass
@@ -14,7 +16,9 @@ class MultaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, numero_auto_infracao: str | None=None, status: StatusMulta | None=None) -> list[Multa]:
+    async def list(
+        self, *, numero_auto_infracao: str | None = None, status: StatusMulta | None = None
+    ) -> list[Multa]:
         pass
 
     @abstractmethod

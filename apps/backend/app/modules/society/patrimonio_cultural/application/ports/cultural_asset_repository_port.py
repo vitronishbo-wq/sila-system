@@ -1,11 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import AssetStatus, AssetType, ClassificationLevel
+
+from apps.backend.app.modules.society.patrimonio_cultural.domain.enums import (
+    AssetStatus,
+    AssetType,
+    ClassificationLevel,
+)
 from apps.backend.app.modules.society.patrimonio_cultural.domain.models import CulturalAsset
 
-class CulturalAssetRepositoryPort(ABC):
 
+class CulturalAssetRepositoryPort(ABC):
     @abstractmethod
     async def save(self, asset: CulturalAsset) -> CulturalAsset:
         pass
@@ -19,11 +25,20 @@ class CulturalAssetRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_filters(self, *, asset_type: AssetType | None=None, province: str | None=None, classification_level: ClassificationLevel | None=None, status: AssetStatus | None=None, limit: int=100, offset: int=0) -> list[CulturalAsset]:
+    async def list_by_filters(
+        self,
+        *,
+        asset_type: AssetType | None = None,
+        province: str | None = None,
+        classification_level: ClassificationLevel | None = None,
+        status: AssetStatus | None = None,
+        limit: int = 100,
+        offset: int = 0,
+    ) -> list[CulturalAsset]:
         pass
 
     @abstractmethod
-    async def list_protected_assets(self, *, province: str | None=None) -> list[CulturalAsset]:
+    async def list_protected_assets(self, *, province: str | None = None) -> list[CulturalAsset]:
         pass
 
     @abstractmethod

@@ -1,11 +1,15 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.society.familia.domain.enums import MemberRole, RelationshipType
 
+
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
+
 
 @dataclass
 class FamilyMember:
@@ -15,6 +19,7 @@ class FamilyMember:
     joined_at: datetime = field(default_factory=_utcnow)
     left_at: datetime | None = None
     id: UUID = field(default_factory=uuid4)
+
 
 @dataclass
 class FamilyRelationship:

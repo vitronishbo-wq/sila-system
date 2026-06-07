@@ -4,15 +4,11 @@ Utility functions for testing the SILA backend.
 
 import random
 import string
-from typing import Dict, Optional
 
-from fastapi.testclient import TestClient
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from apps.backend.app.core.schemas.user import UserCreate
 from config import settings
 from core.db.models.postgres.user import User
-from core.security import create_access_token, get_password_hash
+from fastapi.testclient import TestClient
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 def random_lower_string(length: int = 32) -> str:
@@ -36,7 +32,9 @@ def random_email() -> str:
     return f"{random_lower_string(10)}@{random_lower_string(5)}.com"
 
 
-def get_user_authentication_headers(client: TestClient, email: str, password: str) -> Dict[str, str]:
+def get_user_authentication_headers(
+    client: TestClient, email: str, password: str
+) -> dict[str, str]:
     """Get authentication headers for a user.
 
     Args:
@@ -57,14 +55,15 @@ def get_user_authentication_headers(client: TestClient, email: str, password: st
 
 async def create_random_user(db: AsyncSession) -> dict:
     """Create a random user for testing."""
-    from uuid import uuid4
 
     email = random_email()
     password = "test_password_123"
     return {"email": email, "password": password, "id": user.id}
 
 
-async def authentication_token_from_email(client: TestClient, email: str, db: AsyncSession) -> Dict[str, str]:
+async def authentication_token_from_email(
+    client: TestClient, email: str, db: AsyncSession
+) -> dict[str, str]:
     """Return a valid token for the postgres with given email.
 
     If the postgres doesn't exist, it is created first.
@@ -79,16 +78,24 @@ async def authentication_token_from_email(client: TestClient, email: str, db: As
     return get_user_authentication_headers(client, email, password)
 
 
-async def get_superuser_authorization_header(client: TestClient, db: AsyncSession) -> Dict[str, str]:
+async def get_superuser_authorization_header(
+    client: TestClient, db: AsyncSession
+) -> dict[str, str]:
     """Get authentication headers for the default superuser."""
     # Create superuser if it doesn't exist
-    superuser = await db.execute(User.select().where(User.c.email == settings.FIRST_SUPERUSER)).scalars().first()
+    superuser = (
+        await db.execute(User.select().where(User.c.email == settings.FIRST_SUPERUSER))
+        .scalars()
+        .first()
+    )
     if not superuser:
-        user = User(email=settings.FIRST_SUPERUSER,
-            hashed_password = admin",
+        user = User(
+            email=settings.FIRST_SUPERUSER,
+            hashed_password="admin",
             full_name="Super User",
             is_active=True,
-            is_superuser=True,)
+            is_superuser=True,
+        )
         db.add(user)
         await db.commit()
         await db.refresh(user)
@@ -98,8 +105,10 @@ async def get_superuser_authorization_header(client: TestClient, db: AsyncSessio
         "username": settings.FIRST_SUPERUSER,
         "password": settings.FIRST_SUPERUSER_PASSWORD,
     }
-    r = client.post(f"{settings.API_V1_STR}/auth/login",
+    r = client.post(
+        f"{settings.API_V1_STR}/auth/login",
         data=login_data,
-        headers={"Content-Type": "application/x-www-form-urlencoded"},)
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+    )
     tokens = r.json()
     return {"Authorization": f"Bearer {tokens['access_token']}"}

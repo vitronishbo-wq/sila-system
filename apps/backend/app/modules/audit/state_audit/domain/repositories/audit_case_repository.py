@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 
-class AuditCaseRepository(ABC):
 
+class AuditCaseRepository(ABC):
     @abstractmethod
     def open_case(self, alert):
         raise NotImplementedError

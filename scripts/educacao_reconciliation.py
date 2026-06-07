@@ -3,13 +3,14 @@
 Education data reconciliation report for matriculas and ano_letivo integrity.
 Generates JSON + MD summary in reports/.
 """
+
 from __future__ import annotations
 
 import asyncio
 import json
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
 
 from sqlalchemy import text
 
@@ -136,35 +137,35 @@ def _render_markdown(report: dict) -> str:
     notes = report.get("notes", [])
     return f"""# Educacao - Relatorio de Reconciliacao
 
-**Timestamp:** {report.get('timestamp', 'N/A')}
-**Status:** {report.get('status', 'UNKNOWN')}
+**Timestamp:** {report.get("timestamp", "N/A")}
+**Status:** {report.get("status", "UNKNOWN")}
 
 ## Resumo
 
 | Metrica | Valor |
 |---|---|
-| Total Matriculas | {metrics.get('total_matriculas', 'N/A')} |
-| Total Anos Letivos | {metrics.get('total_anos_letivos', 'N/A')} |
-| Total Turmas | {metrics.get('total_turmas', 'N/A')} |
-| Matriculas Orfas (ano_letivo) | {metrics.get('orphan_matriculas', 'N/A')} |
-| Matriculas Turma/Ano mismatch | {metrics.get('matriculas_turma_ano_mismatch', 'N/A')} |
-| Matriculas sem Turma | {metrics.get('matriculas_sem_turma', 'N/A')} |
+| Total Matriculas | {metrics.get("total_matriculas", "N/A")} |
+| Total Anos Letivos | {metrics.get("total_anos_letivos", "N/A")} |
+| Total Turmas | {metrics.get("total_turmas", "N/A")} |
+| Matriculas Orfas (ano_letivo) | {metrics.get("orphan_matriculas", "N/A")} |
+| Matriculas Turma/Ano mismatch | {metrics.get("matriculas_turma_ano_mismatch", "N/A")} |
+| Matriculas sem Turma | {metrics.get("matriculas_sem_turma", "N/A")} |
 
 ## Amostras (max 25)
 
 ### Orfas (ano_letivo)
 ```
-{json.dumps(samples.get('orphan_matriculas', []), indent=2, ensure_ascii=False)}
+{json.dumps(samples.get("orphan_matriculas", []), indent=2, ensure_ascii=False)}
 ```
 
 ### Mismatch Turma/Ano
 ```
-{json.dumps(samples.get('matriculas_turma_ano_mismatch', []), indent=2, ensure_ascii=False)}
+{json.dumps(samples.get("matriculas_turma_ano_mismatch", []), indent=2, ensure_ascii=False)}
 ```
 
 ### Sem Turma
 ```
-{json.dumps(samples.get('matriculas_sem_turma', []), indent=2, ensure_ascii=False)}
+{json.dumps(samples.get("matriculas_sem_turma", []), indent=2, ensure_ascii=False)}
 ```
 
 ## Notas

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
 from apps.backend.app.modules.economy.trade.external.domain.models import Exportador
 
-class ExportadorRepositoryPort(ABC):
 
+class ExportadorRepositoryPort(ABC):
     @abstractmethod
     async def save(self, exportador: Exportador) -> Exportador:
         pass
@@ -19,5 +21,7 @@ class ExportadorRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusHabilitacao | None=None, municipio: str | None=None) -> list[Exportador]:
+    async def list(
+        self, *, status: StatusHabilitacao | None = None, municipio: str | None = None
+    ) -> list[Exportador]:
         pass

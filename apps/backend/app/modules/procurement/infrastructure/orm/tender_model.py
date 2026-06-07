@@ -1,8 +1,10 @@
 from sqlalchemy import Column, Float, String
+
 from apps.backend.app.core.db import Base
 
+
 class TenderModel(Base):
-    __tablename__ = 'procurement_tenders'
+    __tablename__ = "procurement_tenders"
     id = Column(String, primary_key=True)
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)

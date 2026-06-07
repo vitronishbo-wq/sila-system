@@ -1,16 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCredito
+
 
 class CreditoCreate(BaseModel):
     codigo_produtor: str
     finalidade: str
     valor_solicitado: float
 
+
 class CreditoAprovacaoInput(BaseModel):
     valor_aprovado: float
+
 
 class CreditoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

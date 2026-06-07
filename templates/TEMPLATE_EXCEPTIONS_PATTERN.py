@@ -20,8 +20,7 @@ from apps.backend.core.exceptions.module_exception_factory import ModuleExceptio
 
 # Generate module-specific exceptions using factory
 _exceptions = ModuleExceptionFactory.create_exceptions_with_core_base(
-    module_name="Documents",
-    core_domain_exception=DomainException
+    module_name="Documents", core_domain_exception=DomainException
 )
 
 # Export exception classes
@@ -40,7 +39,7 @@ __all__ = [
 # ============================================================================
 # HOW IT WORKS:
 # ============================================================================
-# 
+#
 # 1. Factory generates 4 exception classes:
 #    - DocumentsException (base)
 #    - DocumentsNotFound (inherits from DocumentsException)
@@ -51,7 +50,7 @@ __all__ = [
 #
 # 3. Usage in module code:
 #    from apps.backend.app.modules.documents.domain.exceptions import DocumentsNotFound
-#    
+#
 #    if not document:
 #        raise DocumentsNotFound(
 #            message="Document with ID 123 not found",
@@ -61,4 +60,3 @@ __all__ = [
 # 4. Result: ONE factory replaces 181 identical hand-written exception files
 #
 # ============================================================================
-

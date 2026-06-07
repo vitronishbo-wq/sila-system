@@ -264,7 +264,7 @@ start_anomaly_detector() {
     
     cd apps/backend
     PYTHONPATH=".:$(pwd):$(pwd)/.." \
-    python3 -m app.core.observability.anomaly_detector \
+    python3 -m apps.backend.app.core.observability.anomaly_detector \
         > "$LOG_DIR/anomaly_detector.log" 2>&1 &
     
     local pid=$!

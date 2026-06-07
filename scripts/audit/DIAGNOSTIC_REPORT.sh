@@ -13,7 +13,7 @@ cat << 'EOF'
 
    File: apps/backend/app/core/database.py
    Line: 11
-   Error: ModuleNotFoundError: No module named 'app.modules.identity.core'
+   Error: ModuleNotFoundError: No module named 'apps.backend.app.modules.identity.core'
    Status: ❌ CRÍTICO - pytest não consegue carregar conftest.py
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -22,7 +22,7 @@ cat << 'EOF'
 
    IMPORT ATUAL:
    ┌─────────────────────────────────────────────────────────┐
-   │ from app.modules.identity.core import models            │
+   │ from apps.backend.app.modules.identity.core import models            │
    └─────────────────────────────────────────────────────────┘
 
    ANÁLISE:
@@ -44,7 +44,7 @@ cat << 'EOF'
    └─ permissions/policies.py (PermissionPolicyModel)
 
    POSSÍVEIS SOLUÇÕES:
-   1. Use: from app.modules.identity.events.models import CitizenEventModel
+   1. Use: from apps.backend.app.modules.identity.events.models import CitizenEventModel
    2. OU Criar: app/modules/identity/infrastructure/models/citizen_model.py
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -53,7 +53,7 @@ cat << 'EOF'
 
    IMPORT ATUAL:
    ┌─────────────────────────────────────────────────────────┐
-   │ from app.core.territory.models import territory         │
+   │ from apps.backend.app.core.territory.models import territory         │
    └─────────────────────────────────────────────────────────┘
 
    ANÁLISE:
@@ -70,7 +70,7 @@ cat << 'EOF'
       └─ territory.py (classe TerritoryModel)
 
    IMPORT ESPERADO:
-   ├─ from app.core.territory.models.territory import TerritoryModel
+   ├─ from apps.backend.app.core.territory.models.territory import TerritoryModel
    └─ OU verificar o que app/core/territory/models/__init__.py exporta
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -101,7 +101,7 @@ cat << 'EOF'
    COMANDOS COM FALHA:
    $ pytest apps/backend -q --disable-warnings
    > ImportError while loading conftest
-   > E   ModuleNotFoundError: No module named 'app.modules.identity.core'
+   > E   ModuleNotFoundError: No module named 'apps.backend.app.modules.identity.core'
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ✅ RECOMENDAÇÕES
@@ -112,7 +112,7 @@ cat << 'EOF'
    └─ OU se precisa criar infrastructure/models.py
 
    AÇÃO 2: Validar territory.models import
-   └─ Executar: python3 -c "from app.core.territory.models import territory"
+   └─ Executar: python3 -c "from apps.backend.app.core.territory.models import territory"
    └─ Ajustar conforme necessário
 
    AÇÃO 3: Restaurar models se ausentes

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from typing import List, Optional
-
 from sqlalchemy import select
 
 from apps.backend.app.core.database.repositories.base_repository import BaseRepository
-from apps.backend.app.modules.identity.infrastructure.models.biometric_model import IdentityBiometric
+from apps.backend.app.modules.identity.infrastructure.models.biometric_model import (
+    IdentityBiometric,
+)
 
 
 class BiometricRepository(BaseRepository):
@@ -16,7 +16,7 @@ class BiometricRepository(BaseRepository):
         await self.session.flush()
         return biometric
 
-    async def get_by_id(self, biometric_id: str) -> Optional[IdentityBiometric]:
+    async def get_by_id(self, biometric_id: str) -> IdentityBiometric | None:
         return await self.get(IdentityBiometric, biometric_id)
 
     async def list_by_citizen(
@@ -24,7 +24,7 @@ class BiometricRepository(BaseRepository):
         citizen_id: str,
         limit: int = 100,
         offset: int = 0,
-    ) -> List[IdentityBiometric]:
+    ) -> list[IdentityBiometric]:
         result = await self.session.execute(
             select(IdentityBiometric)
             .where(IdentityBiometric.citizen_id == citizen_id)
@@ -40,7 +40,7 @@ class BiometricRepository(BaseRepository):
         biometric_type: str,
         limit: int = 100,
         offset: int = 0,
-    ) -> List[IdentityBiometric]:
+    ) -> list[IdentityBiometric]:
         result = await self.session.execute(
             select(IdentityBiometric)
             .where(
@@ -53,7 +53,7 @@ class BiometricRepository(BaseRepository):
         )
         return list(result.scalars().all())
 
-    async def update_status(self, biometric_id: str, status: str) -> Optional[IdentityBiometric]:
+    async def update_status(self, biometric_id: str, status: str) -> IdentityBiometric | None:
         biometric = await self.get_by_id(biometric_id)
         if not biometric:
             return None
@@ -62,4 +62,4 @@ class BiometricRepository(BaseRepository):
         return biometric
 
 
-__all__ = ['BiometricRepository']
+__all__ = ["BiometricRepository"]

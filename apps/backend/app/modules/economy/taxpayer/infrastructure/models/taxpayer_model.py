@@ -1,13 +1,18 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import uuid4
-from sqlalchemy import Column, String, DateTime, Integer
+
+from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+
 from apps.backend.app.db.base import Base
+
 from ...domain.enums.taxpayer_status import TaxpayerStatus
 
+
 class TaxpayerModel(Base):
-    __tablename__ = 'taxpayers'
+    __tablename__ = "taxpayers"
     id = Column(PG_UUID(as_uuid=True), primary_key=True, default=uuid4)
     tenant_id = Column(PG_UUID(as_uuid=True), nullable=False)
     citizen_id = Column(PG_UUID(as_uuid=True), nullable=False)

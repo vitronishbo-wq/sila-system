@@ -5,7 +5,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
 BASE = Path("apps/backend/app/modules/defesa_consumidor")
 FILES = [
     "api/router.py",

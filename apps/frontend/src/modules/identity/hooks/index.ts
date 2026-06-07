@@ -4,7 +4,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
-import { identityService } from '../services/identityService';
+import { identityService } from '@/modules/identity/services/identityService';
 import type {
   CitizenProfile,
   CitizenListResponse,
@@ -15,7 +15,7 @@ import type {
   VerificationResult,
   BITemplate,
   IdentityStatistics,
-} from '../types';
+} from '@/modules/identity/types';
 
 // ============= USE CITIZEN =============
 export function useCitizen(citizenId: string | null) {

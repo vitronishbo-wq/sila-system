@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusIndicadorQualidade,
+)
+
 
 class IndicadorQualidadeGerar(BaseModel):
     operadora_id: UUID
     referencia_ano: int = Field(..., ge=2000)
     referencia_mes: int = Field(..., ge=1, le=12)
     observacoes: str | None = None
+
 
 class IndicadorQualidadeResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

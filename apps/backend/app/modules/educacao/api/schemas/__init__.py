@@ -1,13 +1,156 @@
 from .boletim_schema import BoletimCancelar, BoletimConcluir, BoletimCreate, BoletimResponse
-from .certificado_schema import CertificadoCancelar, CertificadoConcluir, CertificadoCreate, CertificadoResponse
+from .certificado_schema import (
+    CertificadoCancelar,
+    CertificadoConcluir,
+    CertificadoCreate,
+    CertificadoResponse,
+)
 from .concurso_schema import ConcursoCancelar, ConcursoConcluir, ConcursoCreate, ConcursoResponse
 from .emprego_schema import EmpregoCancelar, EmpregoConcluir, EmpregoCreate, EmpregoResponse
 from .escola_schema import EscolaResponse
 from .formacao_schema import FormacaoCancelar, FormacaoConcluir, FormacaoCreate, FormacaoResponse
-from .inscricao_schema import InscricaoCancelar, InscricaoConfirmar, InscricaoCreate, InscricaoResponse
-from .matricula_schema import MatriculaAtivar, MatriculaCreate, MatriculaListFilter, MatriculaResponse
+from .inscricao_schema import (
+    InscricaoCancelar,
+    InscricaoConfirmar,
+    InscricaoCreate,
+    InscricaoResponse,
+)
+from .matricula_schema import (
+    MatriculaAtivar,
+    MatriculaCreate,
+    MatriculaListFilter,
+    MatriculaResponse,
+)
 from .propina_schema import PropinaCancelar, PropinaConcluir, PropinaCreate, PropinaResponse
-from .transferencia_schema import TransferenciaAprovar, TransferenciaCreate, TransferenciaRejeitar, TransferenciaResponse
-from .universidade_schema import UniversidadeCancelar, UniversidadeConcluir, UniversidadeCreate, UniversidadeResponse
+from .transferencia_schema import (
+    TransferenciaAprovar,
+    TransferenciaCreate,
+    TransferenciaRejeitar,
+    TransferenciaResponse,
+)
+from .universidade_schema import (
+    UniversidadeCancelar,
+    UniversidadeConcluir,
+    UniversidadeCreate,
+    UniversidadeResponse,
+)
 from .workflow_schema import WorkflowCancelar, WorkflowConcluir, WorkflowCreate, WorkflowResponse
-__all__ = ['MatriculaCreate', 'MatriculaAtivar', 'MatriculaResponse', 'MatriculaListFilter', 'EscolaResponse', 'InscricaoCreate', 'InscricaoConfirmar', 'InscricaoCancelar', 'InscricaoResponse', 'WorkflowCreate', 'WorkflowConcluir', 'WorkflowCancelar', 'WorkflowResponse', 'BoletimCreate', 'BoletimConcluir', 'BoletimCancelar', 'BoletimResponse', 'CertificadoCreate', 'CertificadoConcluir', 'CertificadoCancelar', 'CertificadoResponse', 'TransferenciaCreate', 'TransferenciaAprovar', 'TransferenciaRejeitar', 'TransferenciaResponse', 'PropinaCreate', 'PropinaConcluir', 'PropinaCancelar', 'PropinaResponse', 'EmpregoCreate', 'EmpregoConcluir', 'EmpregoCancelar', 'EmpregoResponse', 'ConcursoCreate', 'ConcursoConcluir', 'ConcursoCancelar', 'ConcursoResponse', 'FormacaoCreate', 'FormacaoConcluir', 'FormacaoCancelar', 'FormacaoResponse', 'UniversidadeCreate', 'UniversidadeConcluir', 'UniversidadeCancelar', 'UniversidadeResponse']
+from .wizard_schema import (
+    EscolaFilterParams,
+    EscolaComVagas,
+    Passo1EstudanteCreate,
+    Passo1EstudanteResponse,
+    Passo2EncarregadoCreate,
+    Passo2EncarregadoResponse,
+    Passo3SelecaoCreate,
+    Passo3SelecaoResponse,
+    Passo4DocumentosResponse,
+    Passo5ElegibilidadeResponse,
+    Passo6PagamentoResponse,
+    Passo7ConfirmacaoResponse,
+    TurmaDisponivel,
+    WizardResumoResponse,
+)
+from .academic_identity_schema import (
+    AcademicIdentityCreate,
+    AcademicIdentityResponse,
+    AcademicIdentityUpdate,
+    GuardianCreate,
+    GuardianResponse,
+    GuardianLinkRequest,
+    DuplicateResponse,
+    MergeProposalCreate,
+    MergeCandidateResponse,
+    MergeResolveRequest,
+    IdentityMetricsResponse,
+)
+from .academic_wallet_schema import (
+    WalletIdentity,
+    WalletEnrollment,
+    WalletEnrollmentHistory,
+    WalletGuardian,
+    WalletRecord,
+    AcademicWalletResponse,
+)
+from .academic_record_schema import AcademicRecordResponse, EnrollmentRecordHistory
+
+__all__ = [
+    "MatriculaCreate",
+    "MatriculaAtivar",
+    "MatriculaResponse",
+    "MatriculaListFilter",
+    "EscolaResponse",
+    "InscricaoCreate",
+    "InscricaoConfirmar",
+    "InscricaoCancelar",
+    "InscricaoResponse",
+    "WorkflowCreate",
+    "WorkflowConcluir",
+    "WorkflowCancelar",
+    "WorkflowResponse",
+    "BoletimCreate",
+    "BoletimConcluir",
+    "BoletimCancelar",
+    "BoletimResponse",
+    "CertificadoCreate",
+    "CertificadoConcluir",
+    "CertificadoCancelar",
+    "CertificadoResponse",
+    "TransferenciaCreate",
+    "TransferenciaAprovar",
+    "TransferenciaRejeitar",
+    "TransferenciaResponse",
+    "PropinaCreate",
+    "PropinaConcluir",
+    "PropinaCancelar",
+    "PropinaResponse",
+    "EmpregoCreate",
+    "EmpregoConcluir",
+    "EmpregoCancelar",
+    "EmpregoResponse",
+    "ConcursoCreate",
+    "ConcursoConcluir",
+    "ConcursoCancelar",
+    "ConcursoResponse",
+    "FormacaoCreate",
+    "FormacaoConcluir",
+    "FormacaoCancelar",
+    "FormacaoResponse",
+    "UniversidadeCreate",
+    "UniversidadeConcluir",
+    "UniversidadeCancelar",
+    "UniversidadeResponse",
+    "EscolaFilterParams",
+    "EscolaComVagas",
+    "Passo1EstudanteCreate",
+    "Passo1EstudanteResponse",
+    "Passo2EncarregadoCreate",
+    "Passo2EncarregadoResponse",
+    "Passo3SelecaoCreate",
+    "Passo3SelecaoResponse",
+    "Passo4DocumentosResponse",
+    "Passo5ElegibilidadeResponse",
+    "Passo6PagamentoResponse",
+    "Passo7ConfirmacaoResponse",
+    "TurmaDisponivel",
+    "WizardResumoResponse",
+    "AcademicIdentityCreate",
+    "AcademicIdentityResponse",
+    "AcademicIdentityUpdate",
+    "GuardianCreate",
+    "GuardianResponse",
+    "GuardianLinkRequest",
+    "DuplicateResponse",
+    "MergeProposalCreate",
+    "MergeCandidateResponse",
+    "MergeResolveRequest",
+    "IdentityMetricsResponse",
+    "AcademicRecordResponse",
+    "EnrollmentRecordHistory",
+    "WalletIdentity",
+    "WalletEnrollment",
+    "WalletEnrollmentHistory",
+    "WalletGuardian",
+    "WalletRecord",
+    "AcademicWalletResponse",
+]

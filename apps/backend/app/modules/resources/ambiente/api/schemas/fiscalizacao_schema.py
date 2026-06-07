@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.ambiente.domain.enums import StatusFiscalizacao
+
 
 class FiscalizacaoCreate(BaseModel):
     numero_licenca: str
@@ -11,11 +15,14 @@ class FiscalizacaoCreate(BaseModel):
     fiscal_responsavel: str
     data_agendada: date
 
+
 class FiscalizacaoConclusaoInput(BaseModel):
     relatorio: str
 
+
 class FiscalizacaoCancelamentoInput(BaseModel):
     motivo: str
+
 
 class FiscalizacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass(frozen=True)
 class Pagination:
@@ -8,6 +10,6 @@ class Pagination:
 
     def __post_init__(self) -> None:
         if self.limit < 1:
-            raise ValueError('limit must be >= 1')
+            raise ValueError("limit must be >= 1")
         if self.offset < 0:
-            raise ValueError('offset must be >= 0')
+            raise ValueError("offset must be >= 0")

@@ -1,20 +1,30 @@
 """Base Aggregate Root - Phase 20: Domain-Driven Design"""
-from typing import List, Dict, Any, Optional
+
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
+from typing import Any
 from uuid import UUID, uuid4
-from datetime import datetime, timezone
+
 
 @dataclass
 class DomainEvent:
     """Marker interface for domain events."""
+
     aggregate_id: UUID
     event_type: str
     version: int
-    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(UTC))
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
-        return {'aggregate_id': str(self.aggregate_id), 'event_type': self.event_type, 'version': self.version, 'timestamp': self.timestamp.isoformat(), 'metadata': self.metadata}
+        return {
+            "aggregate_id": str(self.aggregate_id),
+            "event_type": self.event_type,
+            "version": self.version,
+            "timestamp": self.timestamp.isoformat(),
+            "metadata": self.metadata,
+        }
+
 
 class BaseAggregate:
     """
@@ -22,11 +32,11 @@ class BaseAggregate:
     Aggregates enforce business rules and generate domain events.
     """
 
-    def __init__(self, aggregate_id: Optional[UUID]=None):
+    def __init__(self, aggregate_id: UUID | None = None):
         self.id = aggregate_id or uuid4()
         self._version = 0
-        self._uncommitted_events: List[DomainEvent] = []
-        self._changes: Dict[str, Any] = {}
+        self._uncommitted_events: list[DomainEvent] = []
+        self._changes: dict[str, Any] = {}
 
     @property
     def version(self) -> int:
@@ -34,7 +44,7 @@ class BaseAggregate:
         return self._version
 
     @property
-    def uncommitted_events(self) -> List[DomainEvent]:
+    def uncommitted_events(self) -> list[DomainEvent]:
         """Events generated but not yet persisted."""
         return self._uncommitted_events.copy()
 
@@ -60,10 +70,10 @@ class BaseAggregate:
 
     def _get_event_handler_name(self, event_type: str) -> str:
         """Convert event type to handler method name."""
-        return f'_on_{event_type.lower()}'
+        return f"_on_{event_type.lower()}"
 
     @classmethod
-    def from_events(cls, aggregate_id: UUID, events: List[DomainEvent]) -> 'BaseAggregate':
+    def from_events(cls, aggregate_id: UUID, events: list[DomainEvent]) -> "BaseAggregate":
         """Reconstruct an aggregate from its event history."""
         aggregate = cls(aggregate_id)
         for event in events:
@@ -71,7 +81,7 @@ class BaseAggregate:
         aggregate.mark_saved()
         return aggregate
 
-    def get_changes(self) -> Dict[str, Any]:
+    def get_changes(self) -> dict[str, Any]:
         """Get pending changes."""
         return self._changes.copy()
 

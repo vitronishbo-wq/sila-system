@@ -1,26 +1,58 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import AtletaRepositoryPort
-from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import ClubeRepositoryPort
-from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import CompeticaoRepositoryPort
-from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
-from apps.backend.app.modules.society.desporto.application.ports.estadio_repository_port import EstadioRepositoryPort
-from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import ObrasPublicasServicePort
-from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import OutboxRepositoryPort
-from apps.backend.app.modules.society.desporto.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
-from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import TurismoServicePort
-from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusJogo, StatusAtleta, StatusCompeticao, TipoClube, TipoAtleta, TipoCompeticao
+
+from apps.backend.app.modules.society.desporto.application.ports.atleta_repository_port import (
+    AtletaRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.clube_repository_port import (
+    ClubeRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.competicao_repository_port import (
+    CompeticaoRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import (
+    EducacaoServicePort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.estadio_repository_port import (
+    EstadioRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.jogo_repository_port import (
+    JogoRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.obras_publicas_service_port import (
+    ObrasPublicasServicePort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.outbox_repository_port import (
+    OutboxRepositoryPort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import (
+    SaudeServicePort,
+)
+from apps.backend.app.modules.society.desporto.application.ports.turismo_service_port import (
+    TurismoServicePort,
+)
+from apps.backend.app.modules.society.desporto.domain.enums import (
+    ModalidadeDesportiva,
+    StatusAtleta,
+    StatusCompeticao,
+    StatusJogo,
+    TipoAtleta,
+    TipoClube,
+    TipoCompeticao,
+)
 from apps.backend.app.modules.society.desporto.domain.models.atleta import Atleta
 from apps.backend.app.modules.society.desporto.domain.models.clube import Clube
 from apps.backend.app.modules.society.desporto.domain.models.competicao import Competicao
 from apps.backend.app.modules.society.desporto.domain.models.estadio import Estadio
 from apps.backend.app.modules.society.desporto.domain.models.jogo import Jogo
-from apps.backend.app.modules.society.desporto.application.ports.jogo_repository_port import JogoRepositoryPort
+
 
 class InMemoryAtletaRepository(AtletaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Atleta] = {}
 
@@ -68,12 +100,12 @@ class InMemoryAtletaRepository(AtletaRepositoryPort):
 
     async def next_registro(self) -> str:
         year = date.today().year
-        prefix = f'ATL/{year}/'
-        count = sum((1 for item in self._items.values() if item.numero_registro.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"ATL/{year}/"
+        count = sum(1 for item in self._items.values() if item.numero_registro.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryCompeticaoRepository(CompeticaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Competicao] = {}
 
@@ -107,7 +139,11 @@ class InMemoryCompeticaoRepository(CompeticaoRepositoryPort):
         return sorted(values, key=lambda item: (item.data_inicio, item.nome))
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[Competicao]:
-        values = [item for item in self._items.values() if item.data_inicio >= data_inicio and item.data_fim <= data_fim]
+        values = [
+            item
+            for item in self._items.values()
+            if item.data_inicio >= data_inicio and item.data_fim <= data_fim
+        ]
         return sorted(values, key=lambda item: (item.data_inicio, item.nome))
 
     async def delete(self, competicao_id: UUID) -> bool:
@@ -115,12 +151,12 @@ class InMemoryCompeticaoRepository(CompeticaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'CMP/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_competicao.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"CMP/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_competicao.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryClubeRepository(ClubeRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Clube] = {}
 
@@ -159,12 +195,12 @@ class InMemoryClubeRepository(ClubeRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'CLB/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_clube.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"CLB/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_clube.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryJogoRepository(JogoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Jogo] = {}
 
@@ -190,7 +226,11 @@ class InMemoryJogoRepository(JogoRepositoryPort):
         return sorted(values, key=lambda item: (item.data_jogo, item.codigo_jogo))
 
     async def list_by_clube(self, clube_id: UUID) -> list[Jogo]:
-        values = [item for item in self._items.values() if item.clube_casa_id == clube_id or item.clube_fora_id == clube_id]
+        values = [
+            item
+            for item in self._items.values()
+            if item.clube_casa_id == clube_id or item.clube_fora_id == clube_id
+        ]
         return sorted(values, key=lambda item: (item.data_jogo, item.codigo_jogo))
 
     async def list_by_status(self, status: StatusJogo) -> list[Jogo]:
@@ -198,7 +238,11 @@ class InMemoryJogoRepository(JogoRepositoryPort):
         return sorted(values, key=lambda item: (item.data_jogo, item.codigo_jogo))
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[Jogo]:
-        values = [item for item in self._items.values() if item.data_jogo >= data_inicio and item.data_jogo <= data_fim]
+        values = [
+            item
+            for item in self._items.values()
+            if item.data_jogo >= data_inicio and item.data_jogo <= data_fim
+        ]
         return sorted(values, key=lambda item: (item.data_jogo, item.codigo_jogo))
 
     async def delete(self, jogo_id: UUID) -> bool:
@@ -206,12 +250,12 @@ class InMemoryJogoRepository(JogoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'JOG/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_jogo.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"JOG/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_jogo.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryEstadioRepository(EstadioRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Estadio] = {}
 
@@ -242,74 +286,82 @@ class InMemoryEstadioRepository(EstadioRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'EST/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_estadio.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"EST/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_estadio.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryOutboxRepository(OutboxRepositoryPort):
-
     def __init__(self) -> None:
         self.events: list[object] = []
 
     async def append(self, event: object) -> None:
         self.events.append(event)
 
-    async def pop_batch(self, batch_size: int=100) -> list[object]:
+    async def pop_batch(self, batch_size: int = 100) -> list[object]:
         if batch_size <= 0:
             return []
         batch = self.events[:batch_size]
         self.events = self.events[batch_size:]
         return batch
 
-class FakeEventBus:
 
+class FakeEventBus:
     def __init__(self) -> None:
         self.events: list[object] = []
 
     async def publish(self, event: object) -> None:
         self.events.append(event)
 
-class FakeCitizenService:
 
-    def __init__(self, *, active: bool=True) -> None:
+class FakeCitizenService:
+    def __init__(self, *, active: bool = True) -> None:
         self.active = active
 
     async def is_citizen_active(self, citizen_id: UUID) -> bool:
         return self.active
 
-class FakeSaudeService(SaudeServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeSaudeService(SaudeServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def exame_exists(self, exame_id: UUID) -> bool:
         return self.exists
 
-class FakeTurismoService(TurismoServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeTurismoService(TurismoServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def atracao_exists(self, atracao_id: UUID) -> bool:
         return self.exists
 
-class FakeEducacaoService(EducacaoServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeEducacaoService(EducacaoServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def instituicao_exists(self, instituicao_id: UUID) -> bool:
         return self.exists
 
-class FakeObrasPublicasService(ObrasPublicasServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeObrasPublicasService(ObrasPublicasServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def obra_exists(self, codigo_obra: str) -> bool:
         return self.exists
 
-class FakeRequestService(RequestServicePort):
 
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None) -> UUID | None:
+class FakeRequestService(RequestServicePort):
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ) -> UUID | None:
         return None

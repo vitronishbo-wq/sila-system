@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.energy.domain.enums import FonteEnergia, StatusUsina, TipoUsina
+
 
 @dataclass
 class Usina:
@@ -50,40 +53,64 @@ class Usina:
     observacoes: str | None = None
 
     @classmethod
-    def cadastrar(cls, *, codigo_aneel: str, nome: str, fonte: FonteEnergia, tipo: TipoUsina, potencia_instalada_mw: Decimal, proprietario_id: UUID, proprietario_tipo: str, municipio: str, provincia: str) -> 'Usina':
+    def cadastrar(
+        cls,
+        *,
+        codigo_aneel: str,
+        nome: str,
+        fonte: FonteEnergia,
+        tipo: TipoUsina,
+        potencia_instalada_mw: Decimal,
+        proprietario_id: UUID,
+        proprietario_tipo: str,
+        municipio: str,
+        provincia: str,
+    ) -> Usina:
         if not codigo_aneel.strip():
-            raise ValueError('Codigo ANEEL e obrigatorio')
-        if potencia_instalada_mw <= Decimal('0'):
-            raise ValueError('Potencia instalada deve ser maior que zero')
+            raise ValueError("Codigo ANEEL e obrigatorio")
+        if potencia_instalada_mw <= Decimal("0"):
+            raise ValueError("Potencia instalada deve ser maior que zero")
         if not nome.strip():
-            raise ValueError('Nome da usina e obrigatorio')
-        return cls(id=uuid4(), codigo_aneel=codigo_aneel.strip().upper(), nome=nome.strip(), fonte=fonte, tipo=tipo, status=StatusUsina.PROJETO, potencia_instalada_mw=potencia_instalada_mw, proprietario_id=proprietario_id, proprietario_tipo=proprietario_tipo.strip(), municipio=municipio.strip(), provincia=provincia.strip())
+            raise ValueError("Nome da usina e obrigatorio")
+        return cls(
+            id=uuid4(),
+            codigo_aneel=codigo_aneel.strip().upper(),
+            nome=nome.strip(),
+            fonte=fonte,
+            tipo=tipo,
+            status=StatusUsina.PROJETO,
+            potencia_instalada_mw=potencia_instalada_mw,
+            proprietario_id=proprietario_id,
+            proprietario_tipo=proprietario_tipo.strip(),
+            municipio=municipio.strip(),
+            provincia=provincia.strip(),
+        )
 
     def iniciar_construcao(self, data_inicio: date) -> None:
         if self.status != StatusUsina.PROJETO:
-            raise ValueError('Usina precisa estar em fase de projeto')
+            raise ValueError("Usina precisa estar em fase de projeto")
         self.status = StatusUsina.CONSTRUCAO
         self.data_inicio_construcao = data_inicio
 
     def iniciar_operacao(self, data_operacao: date) -> None:
         if self.status != StatusUsina.CONSTRUCAO:
-            raise ValueError('Usina precisa estar em construcao')
+            raise ValueError("Usina precisa estar em construcao")
         self.status = StatusUsina.OPERACAO
         self.data_entrada_operacao = data_operacao
 
     def paralisar(self, motivo: str) -> None:
         if self.status != StatusUsina.OPERACAO:
-            raise ValueError('Apenas usinas em operacao podem ser paralisadas')
+            raise ValueError("Apenas usinas em operacao podem ser paralisadas")
         if not motivo.strip():
-            raise ValueError('Motivo da paralisacao e obrigatorio')
+            raise ValueError("Motivo da paralisacao e obrigatorio")
         self.status = StatusUsina.PARALISADA
         self.observacoes = motivo.strip()
 
     def desativar(self, motivo: str) -> None:
         if self.status == StatusUsina.DESATIVADA:
-            raise ValueError('Usina ja esta desativada')
+            raise ValueError("Usina ja esta desativada")
         if not motivo.strip():
-            raise ValueError('Motivo da desativacao e obrigatorio')
+            raise ValueError("Motivo da desativacao e obrigatorio")
         self.status = StatusUsina.DESATIVADA
         self.observacoes = motivo.strip()
 
@@ -92,11 +119,11 @@ class Usina:
         self.data_validade_outorga = data_validade
 
     def atualizar_potencia_fiscalizada(self, potencia: Decimal) -> None:
-        if potencia <= Decimal('0'):
-            raise ValueError('Potencia fiscalizada deve ser maior que zero')
+        if potencia <= Decimal("0"):
+            raise ValueError("Potencia fiscalizada deve ser maior que zero")
         self.potencia_fiscalizada_mw = potencia
 
     def atualizar_garantia_fisica(self, garantia: Decimal) -> None:
-        if garantia <= Decimal('0'):
-            raise ValueError('Garantia fisica deve ser maior que zero')
+        if garantia <= Decimal("0"):
+            raise ValueError("Garantia fisica deve ser maior que zero")
         self.garantia_fisica_mw = garantia

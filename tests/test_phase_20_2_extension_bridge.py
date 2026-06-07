@@ -1,7 +1,7 @@
 """Phase 20.2 Extension Bridge - Audit tests."""
 
-from app.core.events.bridge.event_bus_bridge import EventBusBridge, EventBusEnhanced
-from app.core.events.workers.projection_worker import ProjectionWorker
+from apps.backend.app.core.events.bridge.event_bus_bridge import EventBusBridge, EventBusEnhanced
+from apps.backend.app.core.events.workers.projection_worker import ProjectionWorker
 
 
 def test_event_bus_bridge_init():

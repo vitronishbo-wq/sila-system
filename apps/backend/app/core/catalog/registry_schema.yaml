@@ -1,0 +1,37 @@
+code: identity
+name: Identificacao Civil
+description: Servicos de identificacao do cidadao
+version: "1.0"
+last_updated: "2026-03-19"
+ui:
+  icon: id-card
+  color: "#2563eb"
+  order: 1
+services:
+  - id: bi_emissao
+    name: Emissao de Bilhete de Identidade
+    description: Solicitar primeira emissao
+    category: identity
+    tags:
+      - documento
+      - cidadao
+    sla:
+      days: 7
+      type: business_days
+    pricing:
+      amount: 1000
+      currency: AOA
+    requirements:
+      requires_auth: true
+      requires_biometrics: false
+    workflow:
+      type: standard
+      steps:
+        - request
+        - validation
+        - approval
+        - issuance
+    form:
+      schema: bi_emissao_v1
+    status: active
+    version: v1

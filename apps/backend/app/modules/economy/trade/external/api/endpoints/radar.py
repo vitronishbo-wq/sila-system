@@ -1,5 +1,30 @@
-from apps.backend.app.modules.economy.trade.external.api.deps import get_radar_service, get_radar_service_protected
-from apps.backend.app.modules.economy.trade.external.api.endpoints._operador_logistico_router import build_operador_logistico_router
-from apps.backend.app.modules.economy.trade.external.api.schemas.radar_schema import CancelamentoRadarInput, HabilitacaoRadarInput, RadarCreate, RadarResponse, SuspensaoRadarInput
-from apps.backend.app.modules.economy.trade.external.exceptions import InvalidRadarStateError, RadarAlreadyExistsError, RadarNotFoundError
-router = build_operador_logistico_router(prefix='/radar', tag='Comercio Externo - Radar', get_service=get_radar_service_protected, create_schema=RadarCreate, habilitacao_schema=HabilitacaoRadarInput, suspensao_schema=SuspensaoRadarInput, cancelamento_schema=CancelamentoRadarInput, response_schema=RadarResponse, already_exists_error_cls=RadarAlreadyExistsError, not_found_error_cls=RadarNotFoundError, invalid_state_error_cls=InvalidRadarStateError)
+from apps.backend.app.modules.economy.trade.external.api.deps import get_radar_service_protected
+from apps.backend.app.modules.economy.trade.external.api.endpoints._operador_logistico_router import (
+    build_operador_logistico_router,
+)
+from apps.backend.app.modules.economy.trade.external.api.schemas.radar_schema import (
+    CancelamentoRadarInput,
+    HabilitacaoRadarInput,
+    RadarCreate,
+    RadarResponse,
+    SuspensaoRadarInput,
+)
+from apps.backend.app.modules.economy.trade.external.exceptions import (
+    InvalidRadarStateError,
+    RadarAlreadyExistsError,
+    RadarNotFoundError,
+)
+
+router = build_operador_logistico_router(
+    prefix="/radar",
+    tag="Comercio Externo - Radar",
+    get_service=get_radar_service_protected,
+    create_schema=RadarCreate,
+    habilitacao_schema=HabilitacaoRadarInput,
+    suspensao_schema=SuspensaoRadarInput,
+    cancelamento_schema=CancelamentoRadarInput,
+    response_schema=RadarResponse,
+    already_exists_error_cls=RadarAlreadyExistsError,
+    not_found_error_cls=RadarNotFoundError,
+    invalid_state_error_cls=InvalidRadarStateError,
+)

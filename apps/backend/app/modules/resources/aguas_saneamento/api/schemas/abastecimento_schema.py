@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
+
 
 class AbastecimentoCreate(BaseModel):
     infraestrutura_id: UUID
@@ -10,11 +14,14 @@ class AbastecimentoCreate(BaseModel):
     provincia: str
     municipio: str
 
+
 class AbastecimentoOperacaoInput(BaseModel):
     data_inicio_operacao: date | None = None
 
+
 class AbastecimentoMotivoInput(BaseModel):
     motivo: str
+
 
 class AbastecimentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

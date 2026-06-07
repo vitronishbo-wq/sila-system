@@ -2,13 +2,13 @@ import pytest
 
 pytest.importorskip("backend.main")
 
-from apps.backend.main import app
 from httpx import AsyncClient
+
+from apps.backend.main import app
 
 
 @pytest.mark.asyncio
 class TestIntegration:
-
     @pytest.fixture(scope="module")
     async def async_client(self):
         async with AsyncClient(app=app, base_url="http://testserver") as client:
@@ -42,7 +42,5 @@ class TestIntegration:
         assert update_response.json().get("username") == "updateduser"
 
         # Step 5: Delete the user
-        delete_response = await async_client.delete(
-            f"/users/{user_id}", headers=headers
-        )
+        delete_response = await async_client.delete(f"/users/{user_id}", headers=headers)
         assert delete_response.status_code == 204

@@ -1,6 +1,7 @@
-
 import redis
+from apps.backend.app.core.settings import settings
 from fastapi import APIRouter
+from sqlalchemy import text
 
 router = APIRouter()
 
@@ -14,9 +15,9 @@ async def health_check():
     try:
         from sqlalchemy.ext.asyncio import create_async_engine
 
-        engine = create_async_engine(settings.ASYNC_DATABASE_URL)
+        engine = create_async_engine(settings.DATABASE_URL)
         async with engine.connect() as conn:
-            await conn.execute("SELECT 1")
+            await conn.execute(text("SELECT 1"))
         status["services"]["database"] = "ok"
     except Exception as e:
         status["services"]["database"] = f"error: {str(e)}"

@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
+
 from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira
 from apps.backend.app.modules.logistics.domain.models import BilhetagemEletronica
 
-class BilhetagemRepositoryPort(ABC):
 
+class BilhetagemRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: BilhetagemEletronica) -> BilhetagemEletronica:
         pass
@@ -20,5 +22,13 @@ class BilhetagemRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, viagem_id: UUID | None=None, codigo_bilhete: str | None=None, status_reconciliacao: StatusReconciliacaoFinanceira | None=None, data_inicio: datetime | None=None, data_fim: datetime | None=None) -> list[BilhetagemEletronica]:
+    async def list(
+        self,
+        *,
+        viagem_id: UUID | None = None,
+        codigo_bilhete: str | None = None,
+        status_reconciliacao: StatusReconciliacaoFinanceira | None = None,
+        data_inicio: datetime | None = None,
+        data_fim: datetime | None = None,
+    ) -> list[BilhetagemEletronica]:
         pass

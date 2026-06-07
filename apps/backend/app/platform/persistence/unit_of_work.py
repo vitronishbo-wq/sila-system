@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-class UnitOfWork:
 
+class UnitOfWork:
     def __init__(self, db):
         self.db = db
 

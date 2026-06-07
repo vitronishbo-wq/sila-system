@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-class SaudeServicePort(ABC):
 
+class SaudeServicePort(ABC):
     @abstractmethod
     async def validar_laudo_pcd(self, *, citizen_id: UUID, laudo_id: UUID, cid: str) -> bool:
         raise NotImplementedError

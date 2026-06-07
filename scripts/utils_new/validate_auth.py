@@ -4,11 +4,9 @@ Authentication Flow Validation Tool
 Confirms that login works, token is issued, and requests to protected modules succeed.
 """
 
+
 import requests
-import json
-import time
-from pathlib import Path
-from typing import Optional, Dict, List
+
 
 class AuthValidator:
     """Validates the complete authentication flow."""
@@ -38,7 +36,7 @@ class AuthValidator:
             print(f"❌ Server health check error: {e}")
             return False
 
-    def test_login_endpoint(self, email: str, password: str) -> Optional[str]:
+    def test_login_endpoint(self, email: str, password: str) -> str | None:
         """Test login endpoint and extract token."""
         print("🔐 Testing login endpoint...")
 
@@ -123,7 +121,7 @@ class AuthValidator:
                 elif response.status_code == 404:
                     continue  # Try next endpoint
                 elif response.status_code == 401:
-                    print(f"❌ Token validation failed: Unauthorized")
+                    print("❌ Token validation failed: Unauthorized")
                     return False
                 else:
                     print(f"⚠️ Unexpected response from {endpoint}: {response.status_code}")
@@ -135,7 +133,7 @@ class AuthValidator:
         print("⚠️ No protected endpoint found for token validation")
         return False
 
-    def test_module_access(self, module_names: List[str]) -> Dict[str, bool]:
+    def test_module_access(self, module_names: list[str]) -> dict[str, bool]:
         """Test access to specific modules with authentication."""
         if not self.token:
             print("❌ No token available for module testing")
@@ -223,7 +221,7 @@ class AuthValidator:
             return False
 
     def run_full_validation(self, email: str, password: str,
-                            test_modules: List[str] = None) -> Dict:
+                            test_modules: list[str] = None) -> dict:
         """Run complete authentication validation."""
         if test_modules is None:
             test_modules = ["citizenship", "health", "education", "finance"]
@@ -269,11 +267,11 @@ class AuthValidator:
 
         return results
 
-    def print_summary(self, results: Dict):
+    def print_summary(self, results: dict):
         """Print validation summary."""
-        print(f"\n" + "="*50)
-        print(f"📋 AUTHENTICATION VALIDATION SUMMARY")
-        print(f"="*50)
+        print("\n" + "="*50)
+        print("📋 AUTHENTICATION VALIDATION SUMMARY")
+        print("="*50)
 
         print(f"🏥 Server Health: {'✅' if results['server_healthy'] else '❌'}")
         print(f"🔐 Login: {'✅' if results['login_successful'] else '❌'}")
@@ -293,23 +291,22 @@ class AuthValidator:
         print(f"\n🎯 Overall Status: {overall_status}")
 
         if not results["overall_success"]:
-            print(f"\n💡 Recommendations:")
+            print("\n💡 Recommendations:")
             if not results["server_healthy"]:
-                print(f"   • Start the backend server")
+                print("   • Start the backend server")
             if not results["login_successful"]:
-                print(f"   • Check login credentials and endpoint")
+                print("   • Check login credentials and endpoint")
             if not results["token_valid"]:
-                print(f"   • Verify JWT token configuration")
+                print("   • Verify JWT token configuration")
             if not any(results["module_access"].values()):
-                print(f"   • Run 'python scripts/main.py auto-register-modules'")
+                print("   • Run 'python scripts/main.py auto-register-modules'")
 
 def main():
     """Main validation function."""
-    import sys
 
     # Get credentials from environment or prompt
     email = input("Email: ").strip() or "admin@sila.com"
-    Truman1*Marcelo1*Password: ").strip() or "Truman1*Marcelo1*"
+    password = input("Password: ").strip() or "Truman1*Marcelo1*"
 
     validator = AuthValidator()
     results = validator.run_full_validation(email, password)

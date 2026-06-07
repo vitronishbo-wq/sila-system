@@ -6,20 +6,19 @@
 # Suporte a múltiplos ambientes, templates, validação e criptografia
 # =============================================================================
 
-import os
-import sys
-import json
-import yaml
 import argparse
-import secrets
-import hashlib
+import json
+import logging
+import os
+import re
+import sys
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any, Union
-import logging
+from typing import Any
+
+import yaml
 from cryptography.fernet import Fernet
-from dataclasses import dataclass, asdict
-import re
 
 
 @dataclass
@@ -31,8 +30,8 @@ class ConfigItem:
     environment: str
     encrypted: bool = False
     description: str = ""
-    validation_rules: Optional[Dict] = None
-    last_modified: Optional[datetime] = None
+    validation_rules: dict | None = None
+    last_modified: datetime | None = None
 
 
 class ConfigManager:
@@ -40,11 +39,9 @@ class ConfigManager:
 
     def __init__(self, config_dir: str = None, environment: str = "development"):
         self.project_root = Path(__file__).parent.parent
-        self.config_dir = (
-            Path(config_dir) if config_dir else self.project_root / "config"
-        )
+        self.config_dir = Path(config_dir) if config_dir else self.project_root / "config"
         self.environment = environment
-        self.configs: Dict[str, ConfigItem] = {}
+        self.configs: dict[str, ConfigItem] = {}
         self.encryption_key = None
 
         # Setup logging
@@ -213,7 +210,7 @@ class ConfigManager:
     def load_config_file(self, file_path: Path, environment: str):
         """Carrega configurações de um arquivo"""
         try:
-            with open(file_path, "r") as f:
+            with open(file_path) as f:
                 config_data = yaml.safe_load(f)
 
             self._parse_config_dict(config_data, environment, "")
@@ -221,7 +218,7 @@ class ConfigManager:
         except Exception as e:
             self.logger.error(f"Erro ao carregar {file_path}: {e}")
 
-    def _parse_config_dict(self, config_dict: Dict, environment: str, prefix: str):
+    def _parse_config_dict(self, config_dict: dict, environment: str, prefix: str):
         """Parse recursivo de dicionário de configuração"""
         for key, value in config_dict.items():
             full_key = f"{prefix}.{key}" if prefix else key
@@ -321,7 +318,7 @@ class ConfigManager:
 
         self.logger.info(f"Configurações salvas: {self.environment}")
 
-    def _set_nested_value(self, config_dict: Dict, key: str, value: Any):
+    def _set_nested_value(self, config_dict: dict, key: str, value: Any):
         """Define valor aninhado em dicionário"""
         keys = key.split(".")
         current = config_dict
@@ -393,11 +390,11 @@ class ConfigManager:
 
         self.logger.info(f"Arquivo .env gerado: {output_file}")
 
-    def list_configs(self, environment: str = None) -> List[Dict]:
+    def list_configs(self, environment: str = None) -> list[dict]:
         """Lista configurações"""
         configs = []
 
-        for key, config_item in self.configs.items():
+        for _key, config_item in self.configs.items():
             if environment is None or config_item.environment == environment:
                 config_dict = asdict(config_item)
                 if config_item.last_modified:
@@ -406,7 +403,7 @@ class ConfigManager:
 
         return configs
 
-    def search_configs(self, pattern: str) -> List[Dict]:
+    def search_configs(self, pattern: str) -> list[dict]:
         """Busca configurações por padrão"""
         results = []
         regex = re.compile(pattern, re.IGNORECASE)
@@ -434,13 +431,11 @@ class ConfigManager:
                         config_item.encrypted = True
                         self.logger.info(f"Valor criptografado: {key}")
 
-    def generate_config_schema(self) -> Dict:
+    def generate_config_schema(self) -> dict:
         """Gera schema de validação das configurações"""
         schema = {
             "version": "1.0",
-            "environments": list(
-                set(item.environment for item in self.configs.values())
-            ),
+            "environments": list(set(item.environment for item in self.configs.values())),
             "properties": {},
         }
 
@@ -457,9 +452,7 @@ class ConfigManager:
 
         return schema
 
-    def export_configs(
-        self, format: str = "yaml", include_encrypted: bool = False
-    ) -> str:
+    def export_configs(self, format: str = "yaml", include_encrypted: bool = False) -> str:
         """Exporta configurações em formato específico"""
         export_data = {}
 
@@ -501,18 +494,12 @@ def main():
         help="Definir valor de configuração",
     )
     parser.add_argument("--encrypt", action="store_true", help="Criptografar valor")
-    parser.add_argument(
-        "--list", "-l", action="store_true", help="Listar configurações"
-    )
+    parser.add_argument("--list", "-l", action="store_true", help="Listar configurações")
     parser.add_argument("--search", help="Buscar configurações")
     parser.add_argument("--backup", "-b", action="store_true", help="Criar backup")
     parser.add_argument("--restore", help="Restaurar do backup")
-    parser.add_argument(
-        "--generate-env", action="store_true", help="Gerar arquivo .env"
-    )
-    parser.add_argument(
-        "--export", choices=["yaml", "json"], help="Exportar configurações"
-    )
+    parser.add_argument("--generate-env", action="store_true", help="Gerar arquivo .env")
+    parser.add_argument("--export", choices=["yaml", "json"], help="Exportar configurações")
     parser.add_argument(
         "--include-encrypted",
         action="store_true",
@@ -571,9 +558,7 @@ def main():
             print("Arquivo .env gerado")
 
         elif args.export:
-            exported = config_manager.export_configs(
-                args.export, args.include_encrypted
-            )
+            exported = config_manager.export_configs(args.export, args.include_encrypted)
             print(exported)
 
         else:

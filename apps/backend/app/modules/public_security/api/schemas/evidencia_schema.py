@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.public_security.domain.enums import StatusEvidencia, TipoEvidencia
+
 
 class EvidenciaCreate(BaseModel):
     vestigio_id: UUID
@@ -14,9 +18,11 @@ class EvidenciaCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class EvidenciaStatusUpdate(BaseModel):
     status: StatusEvidencia
     observacoes: str | None = None
+
 
 class EvidenciaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

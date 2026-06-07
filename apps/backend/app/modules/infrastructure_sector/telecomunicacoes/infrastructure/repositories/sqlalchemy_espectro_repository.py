@@ -1,15 +1,28 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro, TipoServico
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import EspectroModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import (
+    EspectroRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusEspectro,
+    TipoEspectro,
+    TipoServico,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import (
+    Espectro,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.espectro_model import (
+    EspectroModel,
+)
+
 
 class SQLAlchemyEspectroRepository(EspectroRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -49,18 +62,30 @@ class SQLAlchemyEspectroRepository(EspectroRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoEspectro) -> list[Espectro]:
-        stmt = select(EspectroModel).where(EspectroModel.tipo == tipo.value).order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        stmt = (
+            select(EspectroModel)
+            .where(EspectroModel.tipo == tipo.value)
+            .order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[Espectro]:
         normalized = municipio.strip().lower()
-        stmt = select(EspectroModel).where(func.lower(EspectroModel.municipio) == normalized).order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        stmt = (
+            select(EspectroModel)
+            .where(func.lower(EspectroModel.municipio) == normalized)
+            .order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusEspectro) -> list[Espectro]:
-        stmt = select(EspectroModel).where(EspectroModel.status == status.value).order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        stmt = (
+            select(EspectroModel)
+            .where(EspectroModel.status == status.value)
+            .order_by(EspectroModel.frequencia_inicial_mhz.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -74,10 +99,28 @@ class SQLAlchemyEspectroRepository(EspectroRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EspectroModel).where(EspectroModel.codigo_espectro.like(f'ESP/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EspectroModel)
+            .where(EspectroModel.codigo_espectro.like(f"ESP/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'ESP/{ano}/{count + 1:05d}'
+        return f"ESP/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: EspectroModel) -> Espectro:
-        return Espectro(id=model.id, codigo_espectro=model.codigo_espectro, tipo=TipoEspectro(model.tipo), frequencia_inicial_mhz=float(model.frequencia_inicial_mhz), frequencia_final_mhz=float(model.frequencia_final_mhz), largura_banda_mhz=float(model.largura_banda_mhz), servico_principal=TipoServico(model.servico_principal), municipio=model.municipio, provincia=model.provincia, status=StatusEspectro(model.status), outorga_id=model.outorga_id, observacoes=model.observacoes, ativo=model.ativo)
+        return Espectro(
+            id=model.id,
+            codigo_espectro=model.codigo_espectro,
+            tipo=TipoEspectro(model.tipo),
+            frequencia_inicial_mhz=float(model.frequencia_inicial_mhz),
+            frequencia_final_mhz=float(model.frequencia_final_mhz),
+            largura_banda_mhz=float(model.largura_banda_mhz),
+            servico_principal=TipoServico(model.servico_principal),
+            municipio=model.municipio,
+            provincia=model.provincia,
+            status=StatusEspectro(model.status),
+            outorga_id=model.outorga_id,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

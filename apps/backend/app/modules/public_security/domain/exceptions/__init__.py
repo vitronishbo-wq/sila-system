@@ -1,2 +1,0 @@
-class SegurancaPublicaError(Exception):
-    pass

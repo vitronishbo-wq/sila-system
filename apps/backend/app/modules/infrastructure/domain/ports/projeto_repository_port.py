@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.infrastructure.domain.enums import StatusProjeto, TipoProjeto
 from apps.backend.app.modules.infrastructure.domain.models.projeto_obra import ProjetoObra
 
-class ProjetoRepositoryPort(ABC):
 
+class ProjetoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: ProjetoObra) -> ProjetoObra:
         pass
@@ -15,7 +17,14 @@ class ProjetoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusProjeto | None=None, tipo: TipoProjeto | None=None, orgao_responsavel_id: UUID | None=None, obra_id: UUID | None=None) -> list[ProjetoObra]:
+    async def list(
+        self,
+        *,
+        status: StatusProjeto | None = None,
+        tipo: TipoProjeto | None = None,
+        orgao_responsavel_id: UUID | None = None,
+        obra_id: UUID | None = None,
+    ) -> list[ProjetoObra]:
         pass
 
     @abstractmethod

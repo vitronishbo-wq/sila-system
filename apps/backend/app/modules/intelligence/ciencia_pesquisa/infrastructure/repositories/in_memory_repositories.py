@@ -1,15 +1,29 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import PesquisadorRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import ProjetoPesquisaRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import Pesquisador
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import ProjetoPesquisa
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import (
+    InstituicaoPesquisaRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.pesquisador_repository_port import (
+    PesquisadorRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.projeto_pesquisa_repository_port import (
+    ProjetoPesquisaRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import (
+    InstituicaoPesquisa,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.pesquisador import (
+    Pesquisador,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.projeto_pesquisa import (
+    ProjetoPesquisa,
+)
+
 
 class InMemoryPesquisadorRepository(PesquisadorRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Pesquisador] = {}
 
@@ -41,7 +55,9 @@ class InMemoryPesquisadorRepository(PesquisadorRepositoryPort):
         items = [item for item in self._items.values() if item.instituicao_id == instituicao_id]
         return sorted(items, key=lambda item: item.nome_completo)
 
-    async def vincular_instituicao(self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None=None) -> Pesquisador | None:
+    async def vincular_instituicao(
+        self, *, pesquisador_id: UUID, instituicao_id: UUID, unidade_pesquisa_id: UUID | None = None
+    ) -> Pesquisador | None:
         pesquisador = self._items.get(pesquisador_id)
         if pesquisador is None:
             return None
@@ -52,8 +68,8 @@ class InMemoryPesquisadorRepository(PesquisadorRepositoryPort):
     async def delete(self, pesquisador_id: UUID) -> bool:
         return self._items.pop(pesquisador_id, None) is not None
 
-class InMemoryInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort):
 
+class InMemoryInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, InstituicaoPesquisa] = {}
 
@@ -88,8 +104,8 @@ class InMemoryInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort):
     async def delete(self, instituicao_id: UUID) -> bool:
         return self._items.pop(instituicao_id, None) is not None
 
-class InMemoryProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
 
+class InMemoryProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, ProjetoPesquisa] = {}
 
@@ -115,10 +131,14 @@ class InMemoryProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
         return sorted(items, key=lambda item: item.codigo_projeto)
 
     async def list_by_pesquisador(self, pesquisador_id: UUID) -> list[ProjetoPesquisa]:
-        items = [item for item in self._items.values() if pesquisador_id in item.equipe_pesquisadores_ids]
+        items = [
+            item for item in self._items.values() if pesquisador_id in item.equipe_pesquisadores_ids
+        ]
         return sorted(items, key=lambda item: item.codigo_projeto)
 
-    async def vincular_pesquisadores(self, *, projeto_id: UUID, pesquisador_ids: list[UUID]) -> ProjetoPesquisa | None:
+    async def vincular_pesquisadores(
+        self, *, projeto_id: UUID, pesquisador_ids: list[UUID]
+    ) -> ProjetoPesquisa | None:
         projeto = self._items.get(projeto_id)
         if projeto is None:
             return None
@@ -130,6 +150,6 @@ class InMemoryProjetoPesquisaRepository(ProjetoPesquisaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PROJ/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_projeto.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"PROJ/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_projeto.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"

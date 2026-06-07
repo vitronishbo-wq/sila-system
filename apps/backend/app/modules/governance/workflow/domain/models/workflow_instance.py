@@ -1,12 +1,15 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from typing import Optional, Dict, Any
+from typing import Any
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.governance.workflow.domain.enums import WorkflowStatus
+
 
 @dataclass
 class WorkflowInstance:
     """Instância em execução do workflow"""
+
     workflow_id: UUID
     current_state_id: UUID
     entity_type: str
@@ -14,16 +17,16 @@ class WorkflowInstance:
     citizen_id: UUID
     created_by: UUID
     id: UUID = field(default_factory=uuid4)
-    assigned_to: Optional[UUID] = None
+    assigned_to: UUID | None = None
     status: WorkflowStatus = WorkflowStatus.ACTIVE
-    variables: Dict[str, Any] = field(default_factory=dict)
-    context: Dict[str, Any] = field(default_factory=dict)
+    variables: dict[str, Any] = field(default_factory=dict)
+    context: dict[str, Any] = field(default_factory=dict)
     started_at: datetime = field(default_factory=datetime.now)
-    completed_at: Optional[datetime] = None
-    deadline: Optional[datetime] = None
-    timeout_hours: Optional[int] = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
-    updated_at: Optional[datetime] = None
+    completed_at: datetime | None = None
+    deadline: datetime | None = None
+    timeout_hours: int | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+    updated_at: datetime | None = None
 
     @property
     def is_active(self) -> bool:
@@ -34,7 +37,7 @@ class WorkflowInstance:
         return self.status == WorkflowStatus.COMPLETED
 
     @property
-    def time_in_state(self) -> Optional[timedelta]:
+    def time_in_state(self) -> timedelta | None:
         """Tempo no estado atual"""
         if self.updated_at:
             return datetime.now() - self.updated_at
@@ -53,13 +56,13 @@ class WorkflowInstance:
         self.completed_at = datetime.now()
         self.updated_at = datetime.now()
 
-    def terminate(self, reason: str=None):
+    def terminate(self, reason: str = None):
         """Termina a instância"""
         self.status = WorkflowStatus.TERMINATED
         self.completed_at = datetime.now()
         self.updated_at = datetime.now()
         if reason:
-            self.metadata['termination_reason'] = reason
+            self.metadata["termination_reason"] = reason
 
     def suspend(self):
         """Suspende a instância"""
@@ -76,9 +79,31 @@ class WorkflowInstance:
         self.variables[key] = value
         self.updated_at = datetime.now()
 
-    def get_variable(self, key: str, default: Any=None) -> Any:
+    def get_variable(self, key: str, default: Any = None) -> Any:
         """Obtém variável do processo"""
         return self.variables.get(key, default)
 
     def to_dict(self) -> dict:
-        return {'id': str(self.id), 'workflow_id': str(self.workflow_id), 'current_state_id': str(self.current_state_id), 'entity_type': self.entity_type, 'entity_id': str(self.entity_id), 'citizen_id': str(self.citizen_id), 'created_by': str(self.created_by), 'assigned_to': str(self.assigned_to) if self.assigned_to else None, 'status': self.status.value, 'variables': self.variables, 'context': self.context, 'started_at': self.started_at.isoformat(), 'completed_at': self.completed_at.isoformat() if self.completed_at else None, 'deadline': self.deadline.isoformat() if self.deadline else None, 'timeout_hours': self.timeout_hours, 'metadata': self.metadata, 'is_active': self.is_active, 'is_overdue': self.is_overdue, 'time_in_state_seconds': self.time_in_state.total_seconds() if self.time_in_state else 0}
+        return {
+            "id": str(self.id),
+            "workflow_id": str(self.workflow_id),
+            "current_state_id": str(self.current_state_id),
+            "entity_type": self.entity_type,
+            "entity_id": str(self.entity_id),
+            "citizen_id": str(self.citizen_id),
+            "created_by": str(self.created_by),
+            "assigned_to": str(self.assigned_to) if self.assigned_to else None,
+            "status": self.status.value,
+            "variables": self.variables,
+            "context": self.context,
+            "started_at": self.started_at.isoformat(),
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None,
+            "deadline": self.deadline.isoformat() if self.deadline else None,
+            "timeout_hours": self.timeout_hours,
+            "metadata": self.metadata,
+            "is_active": self.is_active,
+            "is_overdue": self.is_overdue,
+            "time_in_state_seconds": self.time_in_state.total_seconds()
+            if self.time_in_state
+            else 0,
+        }

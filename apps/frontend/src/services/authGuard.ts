@@ -3,7 +3,7 @@
  * Redireciona automaticamente para o dashboard correto
  */
 
-import { authService } from './authService';
+import { authService } from '@/services/authService';
 
 export interface RouteGuardResult {
     allowed: boolean;

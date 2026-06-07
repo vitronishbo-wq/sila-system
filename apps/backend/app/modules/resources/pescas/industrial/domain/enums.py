@@ -1,54 +1,61 @@
-from enum import Enum
+from enum import StrEnum
 
-class TipoProcessamento(str, Enum):
-    FILETAGEM = 'filetagem'
-    CONSERVA = 'conserva'
-    ENLATADO = 'enlatado'
-    CONGELADO = 'congelado'
-    SECO = 'seco'
-    SALGADO = 'salgado'
-    DEFUMADO = 'defumado'
-    FARINHA = 'farinha'
-    OLEO = 'oleo'
 
-class TipoProdutoProcessado(str, Enum):
-    FILETE = 'filete'
-    POSTA = 'posta'
-    CONSERVA = 'conserva'
-    ENLATADO = 'enlatado'
-    CONGELADO = 'congelado'
-    SECO = 'seco'
-    SALGADO = 'salgado'
-    DEFUMADO = 'defumado'
-    FARINHA = 'farinha'
-    OLEO = 'oleo'
-    SUBPRODUTO = 'subproduto'
+class TipoProcessamento(StrEnum):
+    FILETAGEM = "filetagem"
+    CONSERVA = "conserva"
+    ENLATADO = "enlatado"
+    CONGELADO = "congelado"
+    SECO = "seco"
+    SALGADO = "salgado"
+    DEFUMADO = "defumado"
+    FARINHA = "farinha"
+    OLEO = "oleo"
 
-class ClassificacaoIndustrial(str, Enum):
-    TIPO_A = 'tipo_a'
-    TIPO_B = 'tipo_b'
-    TIPO_C = 'tipo_c'
 
-class StatusInspecao(str, Enum):
-    AGENDADA = 'agendada'
-    EM_ANDAMENTO = 'em_andamento'
-    APROVADA = 'aprovada'
-    REPROVADA = 'reprovada'
-    PENDENCIA = 'pendencia'
-    INTERDITADA = 'interditada'
+class TipoProdutoProcessado(StrEnum):
+    FILETE = "filete"
+    POSTA = "posta"
+    CONSERVA = "conserva"
+    ENLATADO = "enlatado"
+    CONGELADO = "congelado"
+    SECO = "seco"
+    SALGADO = "salgado"
+    DEFUMADO = "defumado"
+    FARINHA = "farinha"
+    OLEO = "oleo"
+    SUBPRODUTO = "subproduto"
 
-class TipoSeloInspecao(str, Enum):
-    SIF = 'sif'
-    SIE = 'sie'
-    SIM = 'sim'
 
-class StatusLoteProducao(str, Enum):
-    ABERTO = 'aberto'
-    EM_PROCESSAMENTO = 'em_processamento'
-    CONCLUIDO = 'concluido'
-    BLOQUEADO = 'bloqueado'
-    DESCARTADO = 'descartado'
+class ClassificacaoIndustrial(StrEnum):
+    TIPO_A = "tipo_a"
+    TIPO_B = "tipo_b"
+    TIPO_C = "tipo_c"
 
-class MercadoDestino(str, Enum):
-    INTERNO = 'interno'
-    EXPORTACAO = 'exportacao'
+
+class StatusInspecao(StrEnum):
+    AGENDADA = "agendada"
+    EM_ANDAMENTO = "em_andamento"
+    APROVADA = "aprovada"
+    REPROVADA = "reprovada"
+    PENDENCIA = "pendencia"
+    INTERDITADA = "interditada"
+
+
+class TipoSeloInspecao(StrEnum):
+    SIF = "sif"
+    SIE = "sie"
+    SIM = "sim"
+
+
+class StatusLoteProducao(StrEnum):
+    ABERTO = "aberto"
+    EM_PROCESSAMENTO = "em_processamento"
+    CONCLUIDO = "concluido"
+    BLOQUEADO = "bloqueado"
+    DESCARTADO = "descartado"
+
+
+class MercadoDestino(StrEnum):
+    INTERNO = "interno"
+    EXPORTACAO = "exportacao"

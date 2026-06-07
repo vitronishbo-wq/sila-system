@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import SaudeServicePort
+
+from apps.backend.app.modules.society.desporto.application.ports.saude_service_port import (
+    SaudeServicePort,
+)
+
 
 class SaudeServiceAdapter(SaudeServicePort):
-
     def __init__(self, exame_service):
         self._exame_service = exame_service
 

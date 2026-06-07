@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
+
 
 class EmbarcacaoCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -12,6 +15,7 @@ class EmbarcacaoCreate(BaseModel):
     arqueacao_bruta: Decimal
     porto_registro: str
     proprietario_id: UUID
+
 
 class EmbarcacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -23,5 +27,5 @@ class EmbarcacaoResponse(BaseModel):
     arqueacao_bruta: Decimal
     porto_registro: str
     proprietario_id: UUID
-    armador_id: Optional[UUID] = None
-    licenca_id: Optional[UUID] = None
+    armador_id: UUID | None = None
+    licenca_id: UUID | None = None

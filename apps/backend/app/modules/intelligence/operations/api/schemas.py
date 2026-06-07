@@ -1,6 +1,8 @@
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 
 class ServiceCatalogItemResponse(BaseModel):
     id: UUID
@@ -19,8 +21,10 @@ class ServiceCatalogItemResponse(BaseModel):
     icon_slug: str | None
     active: bool
 
+
 class OrderCreateRequest(BaseModel):
     service_id: UUID
+
 
 class OrderDocumentInput(BaseModel):
     filename: str = Field(..., min_length=1, max_length=255)
@@ -28,8 +32,10 @@ class OrderDocumentInput(BaseModel):
     size_bytes: int = Field(..., gt=0)
     uri: str | None = Field(default=None, max_length=500)
 
+
 class OrderAttachDocumentsRequest(BaseModel):
     documents: list[OrderDocumentInput]
+
 
 class OrderDocumentResponse(BaseModel):
     id: UUID
@@ -39,6 +45,7 @@ class OrderDocumentResponse(BaseModel):
     uri: str | None
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
+
 
 class PaymentResponse(BaseModel):
     id: UUID
@@ -50,6 +57,7 @@ class PaymentResponse(BaseModel):
     created_at: datetime
     confirmed_at: datetime | None
     model_config = ConfigDict(from_attributes=True)
+
 
 class OrderResponse(BaseModel):
     id: UUID
@@ -67,6 +75,7 @@ class OrderResponse(BaseModel):
     documents: list[OrderDocumentResponse]
     payments: list[PaymentResponse]
     model_config = ConfigDict(from_attributes=True)
+
 
 class ReceiptResponse(BaseModel):
     receipt_number: str

@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import CadastroUnicoRepositoryPort
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.cadastro_unico_repository_port import (
+    CadastroUnicoRepositoryPort,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusCadastroUnico
 from apps.backend.app.modules.society.assistencia_social.domain.models import CadastroUnico
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import CadastroUnicoModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.cadastro_unico_model import (
+    CadastroUnicoModel,
+)
+
 
 class SQLAlchemyCadastroUnicoRepository(CadastroUnicoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -36,7 +43,9 @@ class SQLAlchemyCadastroUnicoRepository(CadastroUnicoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_citizen(self, citizen_id: UUID) -> CadastroUnico | None:
-        stmt = select(CadastroUnicoModel).where(CadastroUnicoModel.citizen_id_responsavel == citizen_id)
+        stmt = select(CadastroUnicoModel).where(
+            CadastroUnicoModel.citizen_id_responsavel == citizen_id
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -55,4 +64,16 @@ class SQLAlchemyCadastroUnicoRepository(CadastroUnicoRepositoryPort):
 
     @staticmethod
     def _to_domain(model: CadastroUnicoModel) -> CadastroUnico:
-        return CadastroUnico(id=model.id, codigo=model.codigo, citizen_id_responsavel=model.citizen_id_responsavel, renda_per_capita=model.renda_per_capita, composicao_familiar=model.composicao_familiar or [], condicoes_moradia=model.condicoes_moradia, acesso_agua=model.acesso_agua, acesso_energia=model.acesso_energia, status=StatusCadastroUnico(model.status), data_cadastro=model.data_cadastro, observacoes=model.observacoes)
+        return CadastroUnico(
+            id=model.id,
+            codigo=model.codigo,
+            citizen_id_responsavel=model.citizen_id_responsavel,
+            renda_per_capita=model.renda_per_capita,
+            composicao_familiar=model.composicao_familiar or [],
+            condicoes_moradia=model.condicoes_moradia,
+            acesso_agua=model.acesso_agua,
+            acesso_energia=model.acesso_energia,
+            status=StatusCadastroUnico(model.status),
+            data_cadastro=model.data_cadastro,
+            observacoes=model.observacoes,
+        )

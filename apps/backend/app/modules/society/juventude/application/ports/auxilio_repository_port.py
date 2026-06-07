@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusBeneficio, TipoAuxilio
 from apps.backend.app.modules.society.juventude.domain.models.auxilio import Auxilio
 
-class AuxilioRepositoryPort(ABC):
 
+class AuxilioRepositoryPort(ABC):
     @abstractmethod
     async def save(self, auxilio: Auxilio) -> Auxilio:
         raise NotImplementedError

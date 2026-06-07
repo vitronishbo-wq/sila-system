@@ -1,0 +1,17 @@
+code: wallet
+module: wallet
+name: wallet
+description: Carteira digital e operacoes financeiras associadas.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

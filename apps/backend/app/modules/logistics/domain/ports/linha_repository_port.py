@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha
 from apps.backend.app.modules.logistics.domain.models import Linha
 
-class LinhaRepositoryPort(ABC):
 
+class LinhaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Linha) -> Linha:
         pass
@@ -19,7 +21,15 @@ class LinhaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusLinha | None=None, modal: ModalTransporte | None=None, operadora_id: UUID | None=None, origem: str | None=None, destino: str | None=None) -> list[Linha]:
+    async def list(
+        self,
+        *,
+        status: StatusLinha | None = None,
+        modal: ModalTransporte | None = None,
+        operadora_id: UUID | None = None,
+        origem: str | None = None,
+        destino: str | None = None,
+    ) -> list[Linha]:
         pass
 
     @abstractmethod

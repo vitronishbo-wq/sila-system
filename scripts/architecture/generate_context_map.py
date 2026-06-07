@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -16,7 +16,7 @@ def load_graph(path: Path) -> dict:
 
 
 def render_context_map(graph: dict) -> str:
-    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    generated_at = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     edges = [
         (item.get("source"), item.get("target"), int(item.get("weight", 1)))
         for item in graph.get("edges", [])
@@ -51,7 +51,7 @@ def render_context_map(graph: dict) -> str:
     lines.append("```mermaid")
     lines.append("graph LR")
     if not edges:
-        lines.append("  A[\"No edges\"]")
+        lines.append('  A["No edges"]')
     else:
         for source, target, weight in edges:
             lines.append(f"  {source} -->|{weight}| {target}")

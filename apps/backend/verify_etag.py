@@ -1,11 +1,14 @@
 import asyncio
-from uuid import uuid4
-from pathlib import Path
-from sqlalchemy import select
-from apps.backend.app.core.db import get_async_db
-from apps.backend.app.modules.identity.models.user import User
-from apps.backend.app.modules.documents.models.documents import Document, DocumentStatus
 from datetime import datetime
+from pathlib import Path
+from uuid import uuid4
+
+from sqlalchemy import select
+
+from apps.backend.app.core.db import get_async_db
+from apps.backend.app.modules.documents.models.documents import Document, DocumentStatus
+from apps.backend.app.modules.identity.models.user import User
+
 
 async def verify():
     async for db in get_async_db():
@@ -19,23 +22,23 @@ async def verify():
                 full_name="Test User",
                 hashed_password="...",
                 is_active=True,
-                administrative_level="CENTRAL"
+                administrative_level="CENTRAL",
             )
             db.add(user)
             await db.flush()
-        
+
         # 2. Create a test document
         doc_id = uuid4()
         thumb_path = f"media/test_thumb_{doc_id}.png"
         ocr_path = f"media/test_ocr_{doc_id}.txt"
-        
+
         # Ensure media dir exists
         Path("media").mkdir(exist_ok=True)
         with open(thumb_path, "wb") as f:
             f.write(b"fake image data")
         with open(ocr_path, "w") as f:
             f.write("fake ocr text")
-            
+
         doc = Document(
             id=doc_id,
             title="Test ETag",
@@ -48,12 +51,13 @@ async def verify():
             thumbnail_path=thumb_path,
             ocr_text_path=ocr_path,
             created_at=datetime.utcnow(),
-            updated_at=datetime.utcnow()
+            updated_at=datetime.utcnow(),
         )
         db.add(doc)
         await db.commit()
         print(f"CREATED_DOC_ID={doc_id}")
         break
+
 
 if __name__ == "__main__":
     asyncio.run(verify())

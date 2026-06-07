@@ -16,9 +16,10 @@ import type {
   MeteorologiaStats,
   RegionWeatherSummary,
   SSEWeatherUpdate,
-} from '../types';
+} from '@/modules/meteorologia/types';
+import { API_ORIGIN } from '@/utils/runtime';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_BASE = API_ORIGIN || '';
 
 class MeteorologiaService {
   private client = axios.create({

@@ -1,17 +1,21 @@
 from __future__ import annotations
+
 import uuid
 from datetime import date, datetime
 from decimal import Decimal
+
 from sqlalchemy import Date, DateTime, Numeric, String, Text
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.sql import func
+
 from apps.backend.app.core.db import Base
 
+
 class ImportadorModel(Base):
-    __tablename__ = 'comercio_externo_importadores'
+    __tablename__ = "comercio_externo_importadores"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    cadastro_radar: Mapped[str] = mapped_column(String(64), nullable=False, default='')
+    cadastro_radar: Mapped[str] = mapped_column(String(64), nullable=False, default="")
     tipo_operador: Mapped[str] = mapped_column(String(32), nullable=False)
     tipo_pessoa: Mapped[str] = mapped_column(String(16), nullable=False)
     status: Mapped[str] = mapped_column(String(24), nullable=False, index=True)
@@ -27,7 +31,7 @@ class ImportadorModel(Base):
     municipio: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
     provincia: Mapped[str] = mapped_column(String(128), nullable=False)
     cep: Mapped[str] = mapped_column(String(16), nullable=False)
-    pais: Mapped[str] = mapped_column(String(2), nullable=False, default='AO')
+    pais: Mapped[str] = mapped_column(String(2), nullable=False, default="AO")
     telefone: Mapped[str | None] = mapped_column(String(32), nullable=True)
     email: Mapped[str | None] = mapped_column(String(255), nullable=True)
     site: Mapped[str | None] = mapped_column(String(255), nullable=True)
@@ -50,5 +54,9 @@ class ImportadorModel(Base):
     swift_code: Mapped[str | None] = mapped_column(String(32), nullable=True)
     limite_credito: Mapped[Decimal | None] = mapped_column(Numeric(18, 2), nullable=True)
     observacoes: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
-    updated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), onupdate=func.now(), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+    updated_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), onupdate=func.now(), nullable=True
+    )

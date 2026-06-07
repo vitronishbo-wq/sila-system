@@ -1,7 +1,11 @@
 from __future__ import annotations
-from typing import Any, Iterable
+
+from collections.abc import Iterable
+from typing import Any
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 
 class BaseRepository:
     """Async base repository with simple CRUD helpers (no implicit commits)."""
@@ -21,6 +25,6 @@ class BaseRepository:
     async def delete(self, entity: Any) -> None:
         await self.session.delete(entity)
 
-    async def list(self, model: Any, limit: int=100, offset: int=0) -> list[Any]:
+    async def list(self, model: Any, limit: int = 100, offset: int = 0) -> list[Any]:
         result = await self.session.execute(select(model).limit(limit).offset(offset))
         return list(result.scalars().all())

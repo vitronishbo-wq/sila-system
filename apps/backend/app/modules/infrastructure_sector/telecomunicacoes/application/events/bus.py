@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 from collections.abc import Awaitable, Callable
 from typing import Any
+
 EventHandler = Callable[[Any], Awaitable[None]]
 
-class EventBus:
 
+class EventBus:
     def __init__(self) -> None:
         self._handlers: dict[type, list[EventHandler]] = defaultdict(list)
 
@@ -20,4 +22,6 @@ class EventBus:
         if not handlers:
             return
         await asyncio.gather(*(handler(event) for handler in handlers))
+
+
 event_bus = EventBus()

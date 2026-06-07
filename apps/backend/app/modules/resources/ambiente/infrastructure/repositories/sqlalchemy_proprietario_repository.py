@@ -1,8 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.resources.ambiente.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
+
+from apps.backend.app.modules.resources.ambiente.application.ports.proprietario_repository_port import (
+    ProprietarioRepositoryPort,
+)
 from apps.backend.app.modules.resources.ambiente.domain.models.proprietario import Proprietario
+
 
 class SQLAlchemyProprietarioRepository(ProprietarioRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -26,4 +31,4 @@ class SQLAlchemyProprietarioRepository(ProprietarioRepositoryPort):
 
     async def next_codigo(self) -> str:
         self._seq += 1
-        return f'PRP/{date.today().year}/{self._seq:06d}'
+        return f"PRP/{date.today().year}/{self._seq:06d}"

@@ -1,14 +1,16 @@
 """
 Repository pattern for society module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class SocietyRepository(ABC):
     """Abstract repository for society."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get society by ID."""
         pass
 
@@ -23,9 +25,10 @@ class SocietyRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all society."""
         pass
+
 
 class SocietyMemoryRepository(SocietyRepository):
     """In-memory repository for society."""
@@ -33,7 +36,7 @@ class SocietyMemoryRepository(SocietyRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class SocietyMemoryRepository(SocietyRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

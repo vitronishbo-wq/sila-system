@@ -16,7 +16,7 @@ sys.path.insert(0, str(backend_path))
 # NEW WAY (After migration)
 # =========================
 
-from config import settings, get_config_manager
+from config import get_config_manager, settings
 
 
 def basic_configuration_usage():
@@ -55,7 +55,7 @@ def advanced_configuration_usage():
     print(f"Current Environment: {summary['environment']}")
     print(f"Project: {summary['project']['name']}")
 
-    features = summary['features']
+    features = summary["features"]
     enabled_features = [name for name, enabled in features.items() if enabled]
     print(f"Enabled Features: {enabled_features}")
 

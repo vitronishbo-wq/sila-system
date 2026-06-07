@@ -12,9 +12,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 # Adiciona o diretório backend ao sys.path para que `app.main` possa ser encontrado
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../backend"))
-)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../backend")))
 
 
 def test_app_bootstrap():
@@ -24,7 +22,7 @@ def test_app_bootstrap():
     dependências ausentes, erros de sintaxe ou problemas na configuração de rotas.
     """
     try:
-        from app.main import (  # Importação tardia para capturar erros de inicialização
+        from apps.backend.app.main import (  # Importação tardia para capturar erros de inicialização
             app,
         )
 
@@ -35,9 +33,7 @@ def test_app_bootstrap():
         # Opcional: Fazer uma requisição a um endpoint básico para garantir que está respondendo
         # A maioria das apps FastAPI tem /docs (Swagger UI)
         response = client.get("/docs")
-        assert (
-            response.status_code == 200
-        ), f"Endpoint /docs retornou {response.status_code}"
+        assert response.status_code == 200, f"Endpoint /docs retornou {response.status_code}"
         print("✅ Endpoint /docs acessível e respondendo corretamente.")
 
     except ImportError as e:
@@ -46,6 +42,4 @@ def test_app_bootstrap():
             pytrace=True,
         )
     except Exception as e:
-        pytest.fail(
-            f"❌ Falha geral ao inicializar a aplicação FastAPI: {e}", pytrace=True
-        )
+        pytest.fail(f"❌ Falha geral ao inicializar a aplicação FastAPI: {e}", pytrace=True)

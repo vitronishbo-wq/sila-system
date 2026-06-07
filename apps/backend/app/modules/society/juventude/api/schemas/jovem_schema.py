@@ -1,15 +1,24 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.juventude.domain.enums import Escolaridade, FaixaEtaria, SituacaoOcupacional, TipoVulnerabilidade
+
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    Escolaridade,
+    FaixaEtaria,
+    SituacaoOcupacional,
+    TipoVulnerabilidade,
+)
+
 
 class JovemCreate(BaseModel):
     nome: str = Field(..., min_length=3)
     data_nascimento: date
     genero: str
     naturalidade: str
-    nacionalidade: str = 'Angolana'
+    nacionalidade: str = "Angolana"
     escolaridade: Escolaridade
     situacao_ocupacional: SituacaoOcupacional
     endereco: str
@@ -19,6 +28,7 @@ class JovemCreate(BaseModel):
     email: str | None = None
     citizen_id: UUID | None = None
     observacoes: str | None = None
+
 
 class JovemUpdate(BaseModel):
     escolaridade: Escolaridade | None = None
@@ -31,8 +41,10 @@ class JovemUpdate(BaseModel):
     observacoes: str | None = None
     ativo: bool | None = None
 
+
 class VulnerabilidadeAdd(BaseModel):
     vulnerabilidade: TipoVulnerabilidade
+
 
 class JovemResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

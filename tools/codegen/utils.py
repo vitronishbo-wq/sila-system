@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Shared utilities for the SILA code generation system.
 
@@ -7,12 +6,10 @@ This module provides common functionality used across all scaffolding scripts,
 including file operations, template management, naming conventions, and validation.
 """
 
-import os
 import re
-import json
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 
 class CodeGenError(Exception):
@@ -24,10 +21,10 @@ class CodeGenError(Exception):
 class TemplateManager:
     """Manages code templates and their formatting."""
 
-    def __init__(self, template_dir: Optional[Path] = None):
+    def __init__(self, template_dir: Path | None = None):
         self.template_dir = template_dir or Path(__file__).parent / "templates"
 
-    def format_template(self, template: str, variables: Dict[str, Any]) -> str:
+    def format_template(self, template: str, variables: dict[str, Any]) -> str:
         """Format a template string with given variables."""
         try:
             return template.format(**variables)
@@ -65,7 +62,7 @@ class NamingConvention:
         return pascal[0].lower() + pascal[1:] if pascal else ""
 
     @staticmethod
-    def generate_names(service_key: str, module_name: str = "") -> Dict[str, str]:
+    def generate_names(service_key: str, module_name: str = "") -> dict[str, str]:
         """Generate all naming variations from a service key."""
         service_slug = NamingConvention.to_snake_case(service_key)
         api_slug = NamingConvention.to_kebab_case(service_key)
@@ -116,7 +113,7 @@ class FileManager:
     def read_file(path: Path) -> str:
         """Read file content."""
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 return f.read()
         except Exception as e:
             raise CodeGenError(f"Failed to read file {path}: {e}")
@@ -131,9 +128,7 @@ class FileManager:
         # Find section boundaries
         start_idx = content.find(section_start)
         if start_idx == -1:
-            raise CodeGenError(
-                f"Section start '{section_start}' not found in {file_path}"
-            )
+            raise CodeGenError(f"Section start '{section_start}' not found in {file_path}")
 
         end_idx = content.find(section_end, start_idx)
         if end_idx == -1:
@@ -158,9 +153,7 @@ class Validation:
     def validate_module_exists(module_path: Path) -> None:
         """Validate that a module exists."""
         if not module_path.exists():
-            raise CodeGenError(
-                f"Module '{module_path.name}' not found at {module_path}"
-            )
+            raise CodeGenError(f"Module '{module_path.name}' not found at {module_path}")
 
         if not module_path.is_dir():
             raise CodeGenError(f"Path {module_path} is not a directory")
@@ -202,9 +195,7 @@ class ServiceRegistry:
     """Handles service registration in the system."""
 
     @staticmethod
-    def register_in_services(
-        module_path: Path, names: Dict[str, str], service_type: str
-    ) -> None:
+    def register_in_services(module_path: Path, names: dict[str, str], service_type: str) -> None:
         """Register service in the module's services.py file."""
         services_path = module_path / "services.py"
 
@@ -234,27 +225,27 @@ class ServiceRegistry:
         template = f'''
 
 @register_service(
-    slug="{names['service_slug']}",
-    nome="{names['display_name']}",
-    nome_en="{names['display_name']}",
-    descricao="Serviço para {names['display_name_lower']}",
-    descricao_en="Service for {names['display_name_lower']}",
-    departamento="{names['module_name']}",
-    categoria="{names['module_name']}",
+    slug="{names["service_slug"]}",
+    nome="{names["display_name"]}",
+    nome_en="{names["display_name"]}",
+    descricao="Serviço para {names["display_name_lower"]}",
+    descricao_en="Service for {names["display_name_lower"]}",
+    departamento="{names["module_name"]}",
+    categoria="{names["module_name"]}",
     tipo_servico="{service_type}"
 )
-def {names['service_slug']}_handler(data):
+def {names["service_slug"]}_handler(data):
     """
-    Handler for {names['display_name']} / Manipulador para {names['display_name']}
+    Handler for {names["display_name"]} / Manipulador para {names["display_name"]}
     """
-    return {{"status": "success", "service": "{names['service_slug']}"}}'''
+    return {{"status": "success", "service": "{names["service_slug"]}"}}'''
 
         content += template
 
         FileManager.create_file(services_path, content, "service registration")
 
     @staticmethod
-    def register_in_init(module_path: Path, names: Dict[str, str]) -> None:
+    def register_in_init(module_path: Path, names: dict[str, str]) -> None:
         """Register service in the module's __init__.py file."""
         init_path = module_path / "__init__.py"
 
@@ -290,12 +281,12 @@ class CSVProcessor:
     """Handles CSV file processing for batch operations."""
 
     @staticmethod
-    def read_services_csv(csv_path: Path) -> List[Dict[str, str]]:
+    def read_services_csv(csv_path: Path) -> list[dict[str, str]]:
         """Read services from CSV file."""
         services = []
 
         try:
-            with open(csv_path, "r", encoding="utf-8") as f:
+            with open(csv_path, encoding="utf-8") as f:
                 # Try to detect if there's a header
                 first_line = f.readline().strip()
 
@@ -305,11 +296,7 @@ class CSVProcessor:
                     import csv
 
                     reader = csv.DictReader(f)
-                    services = [
-                        row
-                        for row in reader
-                        if not row.get("module", "").startswith("#")
-                    ]
+                    services = [row for row in reader if not row.get("module", "").startswith("#")]
                 else:
                     # No header, assume format: module,service_key,name_pt,name_en,service_type
                     f.seek(0)
@@ -324,9 +311,7 @@ class CSVProcessor:
                                     "service_key": row[1].strip(),
                                     "service_name_pt": row[2].strip(),
                                     "service_name_en": row[3].strip(),
-                                    "service_type": (
-                                        row[4].strip() if len(row) > 4 else "citizen"
-                                    ),
+                                    "service_type": (row[4].strip() if len(row) > 4 else "citizen"),
                                 }
                             )
 
@@ -409,7 +394,7 @@ class ProgressTracker:
         self.current = 0
         self.success = 0
         self.failed = 0
-        self.failed_services: List[Tuple[str, str, str]] = []
+        self.failed_services: list[tuple[str, str, str]] = []
 
     def start_service(self, module: str, service_key: str, name: str) -> None:
         """Start processing a service."""
@@ -421,9 +406,7 @@ class ProgressTracker:
         self.success += 1
         print(f"✅ {name} generated successfully!")
 
-    def fail_service(
-        self, module: str, service_key: str, name: str, error: str
-    ) -> None:
+    def fail_service(self, module: str, service_key: str, name: str, error: str) -> None:
         """Mark service as failed."""
         self.failed += 1
         self.failed_services.append((module, service_key, name))
@@ -431,17 +414,17 @@ class ProgressTracker:
 
     def print_summary(self) -> None:
         """Print operation summary."""
-        print(f"\n📊 Batch Generation Summary:")
+        print("\n📊 Batch Generation Summary:")
         print(f"   ✅ Successful: {self.success}")
         print(f"   ❌ Failed: {self.failed}")
 
         if self.failed_services:
-            print(f"\n❌ Failed Services:")
+            print("\n❌ Failed Services:")
             for module, service_key, name in self.failed_services:
                 print(f"   - {module}/{service_key}: {name}")
 
 
-def get_base_paths() -> Dict[str, Path]:
+def get_base_paths() -> dict[str, Path]:
     """Get base paths for the project."""
     script_dir = Path(__file__).resolve().parent.parent.parent
     backend_dir = script_dir / "backend"

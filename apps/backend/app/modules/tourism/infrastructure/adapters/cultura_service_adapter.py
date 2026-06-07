@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-class CulturaServiceAdapter:
 
+class CulturaServiceAdapter:
     def __init__(self, service):
         self.service = service

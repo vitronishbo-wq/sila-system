@@ -1,11 +1,15 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.industrial.domain.enums import TipoProcessamento
-from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import UnidadeProcessamento
+from apps.backend.app.modules.resources.pescas.industrial.domain.models.unidade_processamento import (
+    UnidadeProcessamento,
+)
+
 
 class UnidadeProcessamentoRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, unidade: UnidadeProcessamento) -> UnidadeProcessamento:
         pass

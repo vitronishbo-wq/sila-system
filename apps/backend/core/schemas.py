@@ -3,7 +3,6 @@ Schemas básicas para o sistema de autenticação
 """
 
 from datetime import datetime
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
@@ -14,8 +13,8 @@ from apps.backend.app.modules.identity.models.user import AdministrativeLevel
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
-    refresh_token: Optional[str] = None
-    expires_in: Optional[int] = None
+    refresh_token: str | None = None
+    expires_in: int | None = None
 
 
 class RefreshTokenRequest(BaseModel):
@@ -25,13 +24,13 @@ class RefreshTokenRequest(BaseModel):
 class RefreshTokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
-    expires_in: Optional[int] = None
+    expires_in: int | None = None
 
 
 class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8)
-    full_name: Optional[str] = None
+    full_name: str | None = None
     is_active: bool = True
     is_superuser: bool = False
     level: AdministrativeLevel | None = None
@@ -41,7 +40,7 @@ class UserCreate(BaseModel):
 class UserRead(BaseModel):
     id: UUID
     email: EmailStr
-    full_name: Optional[str] = None
+    full_name: str | None = None
     is_active: bool
     is_superuser: bool
     is_verified: bool

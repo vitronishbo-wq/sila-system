@@ -4,9 +4,9 @@ This module reduces duplication across seed_*.py scripts.
 """
 
 import logging
-from typing import Optional, List, Dict, Any
-from datetime import datetime, timezone
+from typing import Any
 from uuid import uuid4
+
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -30,7 +30,7 @@ class BaseSeeder:
         result = await self.session.execute(text(query))
         return result
     
-    async def fetch_one(self, query: str) -> Optional[Any]:
+    async def fetch_one(self, query: str) -> Any | None:
         """Fetch single row."""
         result = await self.execute_raw(query)
         return result.scalar()
@@ -41,8 +41,8 @@ class LocationSeeder(BaseSeeder):
     
     async def seed_province(self, 
                           name: str,
-                          code: Optional[str] = None,
-                          parent_id: Optional[int] = None,
+                          code: str | None = None,
+                          parent_id: int | None = None,
                           type: str = "province") -> int:
         """
         Seed a province/location with upsert logic.
@@ -58,8 +58,8 @@ class LocationSeeder(BaseSeeder):
         """
         query = f"""
             INSERT INTO locations (name, code, type, parent_id, created_at)
-            VALUES ('{name}', {'NULL' if not code else f''{code}''}, '{type}', 
-                    {'NULL' if not parent_id else parent_id}, NOW())
+            VALUES ('{name}', {"NULL" if not code else f"'{code}'"}, '{type}', 
+                    {"NULL" if not parent_id else parent_id}, NOW())
             ON CONFLICT (name, type, parent_id) DO UPDATE SET updated_at = NOW()
             RETURNING id;
         """
@@ -67,7 +67,7 @@ class LocationSeeder(BaseSeeder):
         logger.info(f"✅ Seeded {type}: {name} (id={location_id})")
         return location_id
     
-    async def seed_provinces_law_14_24(self) -> Dict[str, int]:
+    async def seed_provinces_law_14_24(self) -> dict[str, int]:
         """
         Seed all 21 provinces according to Lei 14/24 (Angola).
         
@@ -98,11 +98,11 @@ class UserSeeder(BaseSeeder):
                        email: str,
                        full_name: str,
                        password_hash: str,
-                       roles: List[str],
-                       administrative_level: Optional[str] = None,
-                       region_id: Optional[int] = None,
-                       bi_number: Optional[str] = None,
-                       phone: Optional[str] = None) -> str:
+                       roles: list[str],
+                       administrative_level: str | None = None,
+                       region_id: int | None = None,
+                       bi_number: str | None = None,
+                       phone: str | None = None) -> str:
         """
         Seed a user with upsert logic.
         
@@ -122,16 +122,21 @@ class UserSeeder(BaseSeeder):
         user_id = str(uuid4())
         roles_json = str(roles).replace("'", '"')  # Convert to JSON format
         
+        admin_level_val = 'NULL' if not administrative_level else f"'{administrative_level}'"
+        region_val = 'NULL' if not region_id else region_id
+        bi_val = 'NULL' if not bi_number else f"'{bi_number}'"
+        phone_val = 'NULL' if not phone else f"'{phone}'"
+        
         query = f"""
             INSERT INTO users 
             (id, email, full_name, password_hash, roles, administrative_level, 
              region_id, bi_number, phone, created_at)
             VALUES 
             ('{user_id}', '{email}', '{full_name}', '{password_hash}', 
-             '{roles_json}'::jsonb, {'NULL' if not administrative_level else f''{administrative_level}''}, 
-             {'NULL' if not region_id else region_id}, 
-             {'NULL' if not bi_number else f''{bi_number}''}, 
-             {'NULL' if not phone else f''{phone}''}, 
+             '{roles_json}'::jsonb, {admin_level_val}, 
+             {region_val}, 
+             {bi_val}, 
+             {phone_val}, 
              NOW())
             ON CONFLICT (email) DO UPDATE 
             SET password_hash = EXCLUDED.password_hash,
@@ -176,7 +181,7 @@ class UserSeeder(BaseSeeder):
                                email: str,
                                full_name: str,
                                password_hash: str,
-                               bi_number: Optional[str] = None) -> str:
+                               bi_number: str | None = None) -> str:
         """Convenience method to seed CITIZEN user."""
         return await self.seed_user(
             email=email,

@@ -2,7 +2,7 @@
 
 import logging
 import os
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
 import pytest
 import pytest_asyncio
@@ -13,13 +13,11 @@ logger = logging.getLogger(__name__)
 
 _DB_IMPORT_ERROR = None
 
-try:
-    from apps.backend.app.core.db import AsyncSessionLocal, Base, db
-except Exception as exc:  # pragma: no cover - only hit in broken env setups
-    AsyncSessionLocal = None
-    Base = None
-    db = None
-    _DB_IMPORT_ERROR = exc
+# Delay importing the DB objects until fixtures run so engine/session
+# creation happens on the pytest-asyncio event loop rather than at import time.
+Base = None
+db = None
+AsyncSessionLocal = None
 
 
 @pytest_asyncio.fixture(scope="session")
@@ -30,8 +28,15 @@ async def setup_db() -> AsyncGenerator[None, None]:
     To avoid destructive behavior on shared databases, schema creation/drop is
     opt-in with `PYTEST_MANAGE_SCHEMA=1`.
     """
-    if db is None or Base is None:
-        pytest.skip(f"Database fixtures unavailable: {_DB_IMPORT_ERROR}")
+    # Import lazily inside the fixture to ensure the async engine is
+    # created on the active event loop used by pytest-asyncio.
+    try:
+        from apps.backend.app.core import db as _db_module
+
+        Base = _db_module.Base
+        db = _db_module.db
+    except Exception as exc:  # pragma: no cover - only hit in broken env setups
+        pytest.skip(f"Database fixtures unavailable: {exc}")
 
     manage_schema = os.getenv("PYTEST_MANAGE_SCHEMA", "0") == "1"
 
@@ -44,15 +49,28 @@ async def setup_db() -> AsyncGenerator[None, None]:
     if manage_schema:
         async with db.engine.begin() as conn:
             await conn.run_sync(Base.metadata.drop_all)
+    # Ensure engine/connection pool is cleanly disposed on the same event loop
+    try:
+        await db.close()
+    except Exception:
+        # Best-effort dispose; ignore errors during cleanup to let pytest
+        # surface primary test failures.
+        logger.exception("Error while closing DB engine during test teardown")
 
 
 @pytest_asyncio.fixture
 async def db_session(setup_db) -> AsyncGenerator[AsyncSession, None]:
     """Yield an async SQLAlchemy session when DB fixtures are available."""
-    if AsyncSessionLocal is None:
-        pytest.skip(f"AsyncSessionLocal unavailable: {_DB_IMPORT_ERROR}")
+    # Lazily resolve the session factory from the core db module so the
+    # async_sessionmaker is created on the current event loop.
+    try:
+        from apps.backend.app.core import db as _db_module
 
-    async with AsyncSessionLocal() as session:
+        session_factory = _db_module.db.session_factory
+    except Exception as exc:  # pragma: no cover - only hit in broken env setups
+        pytest.skip(f"Async session factory unavailable: {exc}")
+
+    async with session_factory() as session:
         try:
             yield session
         finally:

@@ -4,11 +4,13 @@ conftest.py para testes de HierarchyService
 Configurações e fixtures específicas para os testes de endpoints
 """
 
-import pytest
 import asyncio
 
+import pytest
+
 # Configurar pytest-asyncio
-pytest_plugins = ('pytest_asyncio',)
+pytest_plugins = ("pytest_asyncio",)
+
 
 @pytest.fixture(scope="session")
 def event_loop():

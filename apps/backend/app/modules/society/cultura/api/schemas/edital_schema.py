@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    FaseEditalCultural,
+    TipoEditalCultural,
+)
+
 
 class EditalCreate(BaseModel):
     numero: str = Field(..., min_length=3)
@@ -19,11 +26,14 @@ class EditalCreate(BaseModel):
     criterios: list[str] = Field(default_factory=list)
     documentos_necessarios: list[str] = Field(default_factory=list)
 
+
 class EditalSelecaoRequest(BaseModel):
     projetos_ids: list[UUID]
 
+
 class EditalInscricaoRequest(BaseModel):
     projeto_id: UUID
+
 
 class EditalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

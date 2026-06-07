@@ -1,8 +1,12 @@
-from enum import Enum
+from enum import StrEnum
 
-class NationalityMode(str, Enum):
+
+class NationalityMode(StrEnum):
     """Nationality mode for citizen registration."""
-    ANGOLAN = 'angolan'
-    FOREIGN = 'foreign'
-    UNKNOWN = 'unknown'
-__all__ = ['NationalityMode']
+
+    ANGOLAN = "angolan"
+    FOREIGN = "foreign"
+    UNKNOWN = "unknown"
+
+
+__all__ = ["NationalityMode"]

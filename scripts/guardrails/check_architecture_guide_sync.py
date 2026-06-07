@@ -25,17 +25,17 @@ DEFAULT_RECTOR_PATHS = (
     "scripts/ai/generate_module_architecture_docs.py",
     "scripts/ai/generate_architecture_graph.py",
     "scripts/ai/generate_ai_domain_kernel.py",
-    "AI_FILE_SCOPE.yaml",
+    ".ai/AI_FILE_SCOPE.yaml",
     "docs/AI_CONTEXT.md",
     "docs/AI_BOOTSTRAP_PROMPT.md",
     "docs/AI_DOMAIN_KERNEL.md",
     "docs/architecture/REPOSITORY_MAP.yaml",
     "docs/architecture/entrypoints/",
     "docs/architecture/domains/",
-    "ARCHITECTURE_INDEX.yaml",
-    "ARCHITECTURE_DEPENDENCIES.yaml",
-    "API_MAP.yaml",
-    "AI_ENTRYPOINTS.yaml",
+    "docs/architecture/ARCHITECTURE_INDEX.yaml",
+    "docs/architecture/ARCHITECTURE_DEPENDENCIES.yaml",
+    "docs/architecture/API_MAP.yaml",
+    ".ai/AI_ENTRYPOINTS.yaml",
     "docs/AI_ARCHITECTURE_GRAPH.yaml",
     "reports/ai_domain_kernel_visual_report.md",
     "scripts/domain_overlap_analysis.py",
@@ -96,16 +96,10 @@ def resolve_base_ref(explicit_base_ref: str | None) -> str | None:
 
 
 def changed_files_from_base(base_ref: str) -> set[str]:
-    result = run_git(
-        ["diff", "--name-only", "--diff-filter=ACMRD", f"{base_ref}...HEAD"]
-    )
+    result = run_git(["diff", "--name-only", "--diff-filter=ACMRD", f"{base_ref}...HEAD"])
     if result.returncode != 0:
         return set()
-    return {
-        line.strip().replace("\\", "/")
-        for line in result.stdout.splitlines()
-        if line.strip()
-    }
+    return {line.strip().replace("\\", "/") for line in result.stdout.splitlines() if line.strip()}
 
 
 def is_rector_path(path: str, rector_paths: tuple[str, ...]) -> bool:

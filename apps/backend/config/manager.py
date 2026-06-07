@@ -6,15 +6,14 @@ and dynamic configuration updates.
 """
 
 import json
-import os
 import logging
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+import os
 from contextlib import contextmanager
+from pathlib import Path
+from typing import Any
 
 from .settings import Settings, get_settings
-from .validator import validate_configuration, ConfigurationError
-
+from .validator import ConfigurationError, validate_configuration
 
 logger = logging.getLogger(__name__)
 
@@ -27,12 +26,12 @@ class ConfigManager:
     across different environments and deployment scenarios.
     """
 
-    def __init__(self, settings_instance: Optional[Settings] = None):
+    def __init__(self, settings_instance: Settings | None = None):
         """Initialize configuration manager."""
         self.settings = settings_instance or get_settings()
-        self._config_history: List[Dict[str, Any]] = []
+        self._config_history: list[dict[str, Any]] = []
 
-    def load_from_file(self, config_path: Union[str, Path]) -> Settings:
+    def load_from_file(self, config_path: str | Path) -> Settings:
         """
         Load configuration from JSON file.
 
@@ -50,7 +49,7 @@ class ConfigManager:
             if not config_path.exists():
                 raise ConfigurationError(f"Configuration file not found: {config_path}")
 
-            with open(config_path, "r", encoding="utf-8") as f:
+            with open(config_path, encoding="utf-8") as f:
                 config_data = json.load(f)
 
             # Create new settings instance with loaded data
@@ -74,13 +73,11 @@ class ConfigManager:
             return loaded_settings
 
         except json.JSONDecodeError as e:
-            raise ConfigurationError(f"Invalid JSON in configuration file: {e}")
+            raise ConfigurationError(f"Invalid JSON in configuration file: {e}") from e
         except Exception as e:
-            raise ConfigurationError(f"Failed to load configuration: {e}")
+            raise ConfigurationError(f"Failed to load configuration: {e}") from e
 
-    def save_to_file(
-        self, config_path: Union[str, Path], include_secrets: bool = False
-    ) -> None:
+    def save_to_file(self, config_path: str | Path, include_secrets: bool = False) -> None:
         """
         Save current configuration to JSON file.
 
@@ -116,7 +113,7 @@ class ConfigManager:
             logger.info(f"Configuration saved to {config_path}")
 
         except Exception as e:
-            raise ConfigurationError(f"Failed to save configuration: {e}")
+            raise ConfigurationError(f"Failed to save configuration: {e}") from e
 
     def update_setting(self, key: str, value: Any) -> None:
         """
@@ -150,9 +147,9 @@ class ConfigManager:
             logger.info(f"Setting updated: {key} = {value}")
 
         except Exception as e:
-            raise ConfigurationError(f"Failed to update setting {key}: {e}")
+            raise ConfigurationError(f"Failed to update setting {key}: {e}") from e
 
-    def get_environment_config(self, environment: str) -> Dict[str, Any]:
+    def get_environment_config(self, environment: str) -> dict[str, Any]:
         """
         Get configuration for specific environment.
 
@@ -175,7 +172,7 @@ class ConfigManager:
 
         config = {}
         if os.path.exists(env_file):
-            with open(env_file, "r") as f:
+            with open(env_file) as f:
                 for line in f:
                     line = line.strip()
                     if line and not line.startswith("#") and "=" in line:
@@ -208,9 +205,7 @@ class ConfigManager:
             # Validate new settings
             is_valid, errors, warnings = validate_configuration(new_settings)
             if not is_valid:
-                raise ConfigurationError(
-                    f"Invalid configuration for {new_environment}: {errors}"
-                )
+                raise ConfigurationError(f"Invalid configuration for {new_environment}: {errors}")
 
             # Update current settings
             self.settings = new_settings
@@ -219,9 +214,9 @@ class ConfigManager:
             return new_settings
 
         except Exception as e:
-            raise ConfigurationError(f"Failed to switch environment: {e}")
+            raise ConfigurationError(f"Failed to switch environment: {e}") from e
 
-    def get_config_summary(self, include_secrets: bool = False) -> Dict[str, Any]:
+    def get_config_summary(self, include_secrets: bool = False) -> dict[str, Any]:
         """
         Get configuration summary.
 
@@ -237,7 +232,7 @@ class ConfigManager:
             # Mask sensitive values
             sensitive_patterns = ["SECRET", "PASSWORD", "KEY", "TOKEN"]
 
-            for key, value in config.items():
+            for key, _value in config.items():
                 if any(pattern in key.upper() for pattern in sensitive_patterns):
                     config[key] = "***"
 
@@ -265,7 +260,7 @@ class ConfigManager:
             "full_config": config,
         }
 
-    def export_config_template(self, output_path: Union[str, Path]) -> None:
+    def export_config_template(self, output_path: str | Path) -> None:
         """
         Export configuration template with descriptions.
 
@@ -318,7 +313,7 @@ class ConfigManager:
             logger.info(f"Configuration template exported to {output_path}")
 
         except Exception as e:
-            raise ConfigurationError(f"Failed to export template: {e}")
+            raise ConfigurationError(f"Failed to export template: {e}") from e
 
     @contextmanager
     def temporary_settings(self, **kwargs):
@@ -341,7 +336,7 @@ class ConfigManager:
             # Restore original settings
             self.settings = Settings(**original_settings)
 
-    def get_config_history(self) -> List[Dict[str, Any]]:
+    def get_config_history(self) -> list[dict[str, Any]]:
         """
         Get configuration change history.
 
@@ -360,7 +355,7 @@ def get_config_manager() -> ConfigManager:
     return config_manager
 
 
-def load_config_from_file(config_path: Union[str, Path]) -> Settings:
+def load_config_from_file(config_path: str | Path) -> Settings:
     """
     Load configuration from file using global manager.
 
@@ -387,7 +382,7 @@ def switch_environment(environment: str) -> Settings:
 
 
 def export_config_template(
-    output_path: Union[str, Path] = "config_template.json",
+    output_path: str | Path = "config_template.json",
 ) -> None:
     """
     Export configuration template using global manager.

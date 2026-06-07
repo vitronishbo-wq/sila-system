@@ -2,7 +2,6 @@ import unittest
 
 
 class TestDeduplication(unittest.TestCase):
-
     def setUp(self):
         """Set up test environment."""
         # Create temporary files or mock data if needed

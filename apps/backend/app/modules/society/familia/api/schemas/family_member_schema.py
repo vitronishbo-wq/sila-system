@@ -1,7 +1,10 @@
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel
+
 from apps.backend.app.modules.society.familia.domain.enums import MemberRole
+
 
 class FamilyMemberSchema(BaseModel):
     id: UUID

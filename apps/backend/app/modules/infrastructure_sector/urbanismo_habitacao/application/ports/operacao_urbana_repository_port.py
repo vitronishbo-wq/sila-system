@@ -1,10 +1,17 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusOperacaoUrbana, TipoOperacaoUrbana
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import OperacaoUrbana
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusOperacaoUrbana,
+    TipoOperacaoUrbana,
+)
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.models.operacao_urbana import (
+    OperacaoUrbana,
+)
+
 
 class OperacaoUrbanaRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, item: OperacaoUrbana) -> OperacaoUrbana:
         pass
@@ -14,7 +21,13 @@ class OperacaoUrbanaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusOperacaoUrbana | None=None, tipo: TipoOperacaoUrbana | None=None, provincia: str | None=None) -> list[OperacaoUrbana]:
+    async def list(
+        self,
+        *,
+        status: StatusOperacaoUrbana | None = None,
+        tipo: TipoOperacaoUrbana | None = None,
+        provincia: str | None = None,
+    ) -> list[OperacaoUrbana]:
         pass
 
     @abstractmethod

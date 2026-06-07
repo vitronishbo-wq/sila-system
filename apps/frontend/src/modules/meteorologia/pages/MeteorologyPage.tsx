@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { MeteorologyWidget } from '../components';
+import { MeteorologyWidget } from '@/modules/meteorologia/components';
 
 export const MeteorologyPage: React.FC = () => {
   return (

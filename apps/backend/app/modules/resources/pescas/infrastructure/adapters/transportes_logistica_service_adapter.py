@@ -1,8 +1,11 @@
 from __future__ import annotations
-from apps.backend.app.modules.resources.pescas.application.ports import TransportesLogisticaServicePort
+
+from apps.backend.app.modules.resources.pescas.application.ports import (
+    TransportesLogisticaServicePort,
+)
+
 
 class TransportesLogisticaServiceAdapter(TransportesLogisticaServicePort):
-
     def __init__(self, service: TransportesLogisticaServicePort):
         self._service = service
 

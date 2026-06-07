@@ -1,0 +1,1 @@
+class WorkflowsError(Exception): pass

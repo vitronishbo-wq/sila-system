@@ -1,24 +1,29 @@
 from __future__ import annotations
+
 from datetime import date
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
+
 
 class ProdutorCreate(BaseModel):
     nome: str
     documento: str
     documento_tipo: str
     tipo: TipoProdutor
-    telefone: Optional[str] = None
-    email: Optional[str] = None
-    endereco: Optional[str] = None
-    citizen_id: Optional[UUID] = None
-    empresa_id: Optional[UUID] = None
-    observacoes: Optional[str] = None
+    telefone: str | None = None
+    email: str | None = None
+    endereco: str | None = None
+    citizen_id: UUID | None = None
+    empresa_id: UUID | None = None
+    observacoes: str | None = None
+
 
 class ProdutorAtivarInput(BaseModel):
-    actor_id: Optional[UUID] = None
+    actor_id: UUID | None = None
+
 
 class ProdutorResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -30,13 +35,14 @@ class ProdutorResponse(BaseModel):
     documento: str
     documento_tipo: str
     data_cadastro: date
-    telefone: Optional[str] = None
-    email: Optional[str] = None
-    endereco: Optional[str] = None
-    citizen_id: Optional[UUID] = None
-    empresa_id: Optional[UUID] = None
+    telefone: str | None = None
+    email: str | None = None
+    endereco: str | None = None
+    citizen_id: UUID | None = None
+    empresa_id: UUID | None = None
     familiar: bool
-    observacoes: Optional[str] = None
+    observacoes: str | None = None
+
 
 class ProdutorFilter(BaseModel):
-    status: Optional[StatusProdutor] = None
+    status: StatusProdutor | None = None

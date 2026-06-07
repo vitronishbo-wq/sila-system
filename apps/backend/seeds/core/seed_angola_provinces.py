@@ -15,10 +15,10 @@ Estrutura de código territorial:
 import asyncio
 import logging
 from uuid import uuid4
-from sqlalchemy import select
 
-from app.core.db import AsyncSessionLocal
-from app.core.territory.models.territory import Territory
+from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.core.territory.models.territory import Territory
+from sqlalchemy import select
 
 logger = logging.getLogger(__name__)
 
@@ -30,34 +30,18 @@ ANGOLA_PROVINCES = [
         "name": "Luanda",
         "type": "province",
         "municipalities": [
-            {
-                "code": "LUA-IC",
-                "name": "Icolo e Bengo",
-                "communes": ["Icolo Campus", "Bengo"]
-            },
-            {
-                "code": "LUA-MAT",
-                "name": "Mato Grosso",
-                "communes": ["Mato Grosso"]
-            },
-        ]
+            {"code": "LUA-IC", "name": "Icolo e Bengo", "communes": ["Icolo Campus", "Bengo"]},
+            {"code": "LUA-MAT", "name": "Mato Grosso", "communes": ["Mato Grosso"]},
+        ],
     },
     {
         "code": "BEN",
         "name": "Benguela",
         "type": "province",
         "municipalities": [
-            {
-                "code": "BEN-BAI",
-                "name": "Baía Farta",
-                "communes": ["Baía Farta"]
-            },
-            {
-                "code": "BEN-BOL",
-                "name": "Bolan0s",
-                "communes": ["Bolanos"]
-            },
-        ]
+            {"code": "BEN-BAI", "name": "Baía Farta", "communes": ["Baía Farta"]},
+            {"code": "BEN-BOL", "name": "Bolan0s", "communes": ["Bolanos"]},
+        ],
     },
     {
         "code": "HUA",
@@ -67,239 +51,159 @@ ANGOLA_PROVINCES = [
             {
                 "code": "HUA-HUA",
                 "name": "Huambo",
-                "communes": ["Huambo Centro", "Bailundo", "Ekunha"]
+                "communes": ["Huambo Centro", "Bailundo", "Ekunha"],
             },
-            {
-                "code": "HUA-ECU",
-                "name": "Ecunha",
-                "communes": ["Ecunha Sede"]
-            },
-        ]
+            {"code": "HUA-ECU", "name": "Ecunha", "communes": ["Ecunha Sede"]},
+        ],
     },
     {
         "code": "HUI",
         "name": "Huíla",
         "type": "province",
         "municipalities": [
-            {
-                "code": "HUI-MO",
-                "name": "Moçamedes",
-                "communes": ["Moçamedes"]
-            },
-            {
-                "code": "HUI-LU",
-                "name": "Lubango",
-                "communes": ["Lubango"]
-            },
-        ]
+            {"code": "HUI-MO", "name": "Moçamedes", "communes": ["Moçamedes"]},
+            {"code": "HUI-LU", "name": "Lubango", "communes": ["Lubango"]},
+        ],
     },
     {
         "code": "NAM",
         "name": "Namibe",
         "type": "province",
         "municipalities": [
-            {
-                "code": "NAM-NAM",
-                "name": "Namibe",
-                "communes": ["Namibe Sede"]
-            },
-        ]
+            {"code": "NAM-NAM", "name": "Namibe", "communes": ["Namibe Sede"]},
+        ],
     },
     {
         "code": "ZAI",
         "name": "Zaire",
         "type": "province",
         "municipalities": [
-            {
-                "code": "ZAI-ZAI",
-                "name": "Zaire",
-                "communes": ["Zaire Sede"]
-            },
-        ]
+            {"code": "ZAI-ZAI", "name": "Zaire", "communes": ["Zaire Sede"]},
+        ],
     },
     {
         "code": "UIG",
         "name": "Uíge",
         "type": "province",
         "municipalities": [
-            {
-                "code": "UIG-UIG",
-                "name": "Uíge",
-                "communes": ["Uíge Sede"]
-            },
-            {
-                "code": "UIG-BUI",
-                "name": "Buila",
-                "communes": ["Buila Sede"]
-            },
-        ]
+            {"code": "UIG-UIG", "name": "Uíge", "communes": ["Uíge Sede"]},
+            {"code": "UIG-BUI", "name": "Buila", "communes": ["Buila Sede"]},
+        ],
     },
     {
         "code": "KAS",
         "name": "Kasai",
         "type": "province",
         "municipalities": [
-            {
-                "code": "KAS-KAS",
-                "name": "Kasai",
-                "communes": ["Kasai Sede"]
-            },
-        ]
+            {"code": "KAS-KAS", "name": "Kasai", "communes": ["Kasai Sede"]},
+        ],
     },
     {
         "code": "KUW",
         "name": "Kuanza Sul",
         "type": "province",
         "municipalities": [
-            {
-                "code": "KUW-SUL",
-                "name": "Sumbe",
-                "communes": ["Sumbe"]
-            },
-        ]
+            {"code": "KUW-SUL", "name": "Sumbe", "communes": ["Sumbe"]},
+        ],
     },
     {
         "code": "KUN",
         "name": "Kuanza Norte",
         "type": "province",
         "municipalities": [
-            {
-                "code": "KUN-NOR",
-                "name": "N'dalatando",
-                "communes": ["N'dalatando"]
-            },
-        ]
+            {"code": "KUN-NOR", "name": "N'dalatando", "communes": ["N'dalatando"]},
+        ],
     },
     {
         "code": "MAL",
         "name": "Malange",
         "type": "province",
         "municipalities": [
-            {
-                "code": "MAL-MAL",
-                "name": "Malange",
-                "communes": ["Malange Sede"]
-            },
-        ]
+            {"code": "MAL-MAL", "name": "Malange", "communes": ["Malange Sede"]},
+        ],
     },
     {
         "code": "MOX",
         "name": "Moxico",
         "type": "province",
         "municipalities": [
-            {
-                "code": "MOX-MOX",
-                "name": "Moxico",
-                "communes": ["Moxico Sede"]
-            },
-        ]
+            {"code": "MOX-MOX", "name": "Moxico", "communes": ["Moxico Sede"]},
+        ],
     },
     {
         "code": "NAK",
         "name": "Nakonde",
         "type": "province",
         "municipalities": [
-            {
-                "code": "NAK-NAK",
-                "name": "Nakonde",
-                "communes": ["Nakonde Sede"]
-            },
-        ]
+            {"code": "NAK-NAK", "name": "Nakonde", "communes": ["Nakonde Sede"]},
+        ],
     },
     {
         "code": "BIE",
         "name": "Bié",
         "type": "province",
         "municipalities": [
-            {
-                "code": "BIE-BIE",
-                "name": "Kuito",
-                "communes": ["Kuito"]
-            },
-        ]
+            {"code": "BIE-BIE", "name": "Kuito", "communes": ["Kuito"]},
+        ],
     },
     {
         "code": "CAB",
         "name": "Cabinda",
         "type": "province",
         "municipalities": [
-            {
-                "code": "CAB-CAB",
-                "name": "Cabinda",
-                "communes": ["Cabinda Sede"]
-            },
-        ]
+            {"code": "CAB-CAB", "name": "Cabinda", "communes": ["Cabinda Sede"]},
+        ],
     },
     {
         "code": "CUE",
         "name": "Cuene",
         "type": "province",
         "municipalities": [
-            {
-                "code": "CUE-CUE",
-                "name": "Cuene",
-                "communes": ["Cuene Sede"]
-            },
-        ]
+            {"code": "CUE-CUE", "name": "Cuene", "communes": ["Cuene Sede"]},
+        ],
     },
     {
         "code": "LUN",
         "name": "Lunda Norte",
         "type": "province",
         "municipalities": [
-            {
-                "code": "LUN-LUN",
-                "name": "Dundo",
-                "communes": ["Dundo"]
-            },
-        ]
+            {"code": "LUN-LUN", "name": "Dundo", "communes": ["Dundo"]},
+        ],
     },
     {
         "code": "LUS",
         "name": "Lunda Sul",
         "type": "province",
         "municipalities": [
-            {
-                "code": "LUS-LUS",
-                "name": "Saurimo",
-                "communes": ["Saurimo"]
-            },
-        ]
+            {"code": "LUS-LUS", "name": "Saurimo", "communes": ["Saurimo"]},
+        ],
     },
     {
         "code": "CUA",
         "name": "Cuanza",
         "type": "province",
         "municipalities": [
-            {
-                "code": "CUA-CUA",
-                "name": "Cuanza",
-                "communes": ["Cuanza Sede"]
-            },
-        ]
+            {"code": "CUA-CUA", "name": "Cuanza", "communes": ["Cuanza Sede"]},
+        ],
     },
     {
         "code": "CON",
         "name": "Congo",
         "type": "province",
         "municipalities": [
-            {
-                "code": "CON-CON",
-                "name": "Congo",
-                "communes": ["Congo Sede"]
-            },
-        ]
+            {"code": "CON-CON", "name": "Congo", "communes": ["Congo Sede"]},
+        ],
     },
 ]
 
 
 async def seed_angola_provinces():
     """Seed da hierarquia territorial de Angola"""
-    
+
     async with AsyncSessionLocal() as db:
         logger.info("🌱 Iniciando seed das províncias de Angola...")
         logger.info(f"📊 {len(ANGOLA_PROVINCES)} províncias a inserir")
-        
+
         for prov_data in ANGOLA_PROVINCES:
             try:
                 # Verificar se província já existe
@@ -308,7 +212,7 @@ async def seed_angola_provinces():
                 if existing.scalar():
                     logger.info(f"⏭️  Província {prov_data['name']} ({prov_data['code']}) já existe")
                     continue
-                
+
                 # Criar província
                 province = Territory(
                     id=uuid4(),
@@ -319,9 +223,9 @@ async def seed_angola_provinces():
                 )
                 db.add(province)
                 await db.flush()  # Garantir ID gerado
-                
+
                 logger.info(f"✅ Província {prov_data['name']} criada")
-                
+
                 # Criar municípios
                 for mun_data in prov_data.get("municipalities", []):
                     municipality = Territory(
@@ -333,9 +237,9 @@ async def seed_angola_provinces():
                     )
                     db.add(municipality)
                     await db.flush()
-                    
+
                     logger.debug(f"  └─ Município {mun_data['name']} criado")
-                    
+
                     # Criar comunas
                     for commune_name in mun_data.get("communes", []):
                         commune_code = f"{mun_data['code']}-{commune_name[:3].upper()}"
@@ -347,17 +251,19 @@ async def seed_angola_provinces():
                             parent_id=municipality.id,  # Filho do município
                         )
                         db.add(commune)
-                        
+
                         logger.debug(f"      └─ Comuna {commune_name} criada")
-            
+
             except Exception as e:
                 logger.error(f"❌ Erro ao processar {prov_data['name']}: {e}")
                 await db.rollback()
                 return False
-        
+
         try:
             await db.commit()
-            logger.info("✅ Seed Angola completo! Todas as províncias, municípios e comunas criados.")
+            logger.info(
+                "✅ Seed Angola completo! Todas as províncias, municípios e comunas criados."
+            )
             return True
         except Exception as e:
             await db.rollback()
@@ -367,10 +273,7 @@ async def seed_angola_provinces():
 
 async def main():
     """Entry point"""
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(message)s'
-    )
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     success = await seed_angola_provinces()
     return 0 if success else 1
 

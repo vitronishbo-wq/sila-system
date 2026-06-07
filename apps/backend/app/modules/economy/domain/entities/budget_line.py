@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class BudgetLine:
     id: str
@@ -10,5 +11,5 @@ class BudgetLine:
 
     def commit(self, amount: float) -> None:
         if self.spent_amount + amount > self.allocated_amount:
-            raise ValueError('Budget exceeded')
+            raise ValueError("Budget exceeded")
         self.spent_amount += amount

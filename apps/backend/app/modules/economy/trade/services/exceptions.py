@@ -1,13 +1,17 @@
-"""Excecoes do modulo comercio_servicos."""
+from __future__ import annotations
 
-class ComercioServicosError(Exception):
-    """Erro base do modulo."""
 
-class EstabelecimentoComercialNotFoundError(ComercioServicosError):
-    """Estabelecimento comercial nao encontrado."""
+class EstabelecimentoComercialError(Exception):
+    pass
 
-class EstabelecimentoComercialAlreadyExistsError(ComercioServicosError):
-    """Estabelecimento comercial ja cadastrado."""
 
-class InvalidEstabelecimentoComercialStateError(ComercioServicosError):
-    """Transicao de estado invalida para estabelecimento comercial."""
+class EstabelecimentoComercialAlreadyExistsError(EstabelecimentoComercialError):
+    pass
+
+
+class EstabelecimentoComercialNotFoundError(EstabelecimentoComercialError):
+    pass
+
+
+class InvalidEstabelecimentoComercialStateError(EstabelecimentoComercialError):
+    pass

@@ -7,12 +7,12 @@ Produces JSON report at ./reports/integrity_report.json
 Usage:
     python3 scripts/scan_integrity.py --modules apps/backend/modules --out reports/integrity_report.json
 """
+
 import argparse
 import ast
 import json
-import os
+from collections import Counter, defaultdict
 from pathlib import Path
-from collections import defaultdict, Counter
 
 TAB_RE = "__tablename__"
 IMPORT_STAR = "import *"
@@ -146,7 +146,7 @@ def build_import_graph(files, modules_root: Path):
 def orphan_modules(files, graph, modules_root: Path):
     # modules with low indegree (heuristic)
     indeg = Counter()
-    for k, targets in graph.items():
+    for _k, targets in graph.items():
         for t in targets:
             indeg[t] += 1
     orphans = []

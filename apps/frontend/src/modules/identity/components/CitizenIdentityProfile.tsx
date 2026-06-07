@@ -10,19 +10,19 @@ import {
   useDigitalBI,
   useBiometricTemplates,
   useVerificationResults,
-} from '../hooks';
+} from '@/modules/identity/hooks';
 import {
   isDigitalBIValid,
   getDaysUntilExpiry,
   isBIExpiringSoon,
   formatAuditEvent,
-} from '../utils';
+} from '@/modules/identity/utils';
 import type {
   CitizenProfile,
   DigitalBIDocument,
   BiometricTemplate,
   VerificationResult,
-} from '../types';
+} from '@/modules/identity/types';
 
 interface CitizenIdentityProfileProps {
   citizenId: string;

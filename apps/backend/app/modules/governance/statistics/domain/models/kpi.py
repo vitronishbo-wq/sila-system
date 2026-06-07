@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+
 from apps.backend.app.modules.governance.statistics.domain.enums import StatusKPI
+
 
 @dataclass(slots=True)
 class KPI:
@@ -38,10 +41,10 @@ class KPI:
     def status_cor(self) -> str:
         performance = self.calcular_performance()
         if performance >= 100:
-            return 'verde'
+            return "verde"
         if performance >= 80:
-            return 'amarelo'
-        return 'vermelho'
+            return "amarelo"
+        return "vermelho"
 
     @property
     def performance(self) -> float:

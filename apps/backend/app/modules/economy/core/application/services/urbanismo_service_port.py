@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 
-class UrbanismoServicePort(ABC):
 
+class UrbanismoServicePort(ABC):
     @abstractmethod
     async def ping(self) -> bool:
         pass

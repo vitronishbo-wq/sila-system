@@ -1,11 +1,43 @@
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_assinante_repository import SQLAlchemyAssinanteRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_espectro_repository import SQLAlchemyEspectroRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_fatura_repository import SQLAlchemyFaturaRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_indicador_qualidade_repository import SQLAlchemyIndicadorQualidadeRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_infraestrutura_repository import SQLAlchemyInfraestruturaRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_operadora_repository import SQLAlchemyOperadoraRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_outorga_espectro_repository import SQLAlchemyOutorgaEspectroRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_qualidade_servico_repository import SQLAlchemyQualidadeServicoRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_reclamacao_repository import SQLAlchemyReclamacaoRepository
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_sla_repository import SQLAlchemySLARepository
-__all__ = ['SQLAlchemyOperadoraRepository', 'SQLAlchemyAssinanteRepository', 'SQLAlchemyInfraestruturaRepository', 'SQLAlchemyOutorgaEspectroRepository', 'SQLAlchemyEspectroRepository', 'SQLAlchemyFaturaRepository', 'SQLAlchemyReclamacaoRepository', 'SQLAlchemySLARepository', 'SQLAlchemyQualidadeServicoRepository', 'SQLAlchemyIndicadorQualidadeRepository']
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_assinante_repository import (
+    SQLAlchemyAssinanteRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_espectro_repository import (
+    SQLAlchemyEspectroRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_fatura_repository import (
+    SQLAlchemyFaturaRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_indicador_qualidade_repository import (
+    SQLAlchemyIndicadorQualidadeRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_infraestrutura_repository import (
+    SQLAlchemyInfraestruturaRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_operadora_repository import (
+    SQLAlchemyOperadoraRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_outorga_espectro_repository import (
+    SQLAlchemyOutorgaEspectroRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_qualidade_servico_repository import (
+    SQLAlchemyQualidadeServicoRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_reclamacao_repository import (
+    SQLAlchemyReclamacaoRepository,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.repositories.sqlalchemy_sla_repository import (
+    SQLAlchemySLARepository,
+)
+
+__all__ = [
+    "SQLAlchemyOperadoraRepository",
+    "SQLAlchemyAssinanteRepository",
+    "SQLAlchemyInfraestruturaRepository",
+    "SQLAlchemyOutorgaEspectroRepository",
+    "SQLAlchemyEspectroRepository",
+    "SQLAlchemyFaturaRepository",
+    "SQLAlchemyReclamacaoRepository",
+    "SQLAlchemySLARepository",
+    "SQLAlchemyQualidadeServicoRepository",
+    "SQLAlchemyIndicadorQualidadeRepository",
+]

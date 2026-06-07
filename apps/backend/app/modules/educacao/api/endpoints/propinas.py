@@ -1,4 +1,27 @@
 from apps.backend.app.modules.educacao.api.deps import get_propina_service
-from apps.backend.app.modules.educacao.api.endpoints._workflow_endpoints import build_workflow_router
-from apps.backend.app.modules.educacao.api.schemas.propina_schema import PropinaCancelar, PropinaConcluir, PropinaCreate, PropinaResponse
-router = build_workflow_router(tag='Educacao - Propinas e Apoios', get_service=get_propina_service, create_schema=PropinaCreate, response_schema=PropinaResponse, concluir_schema=PropinaConcluir, cancelar_schema=PropinaCancelar, routes=[('/propinas', 'propina'), ('/apoios/alimentar', 'apoio_alimentar'), ('/apoios/alimentar-escolar', 'apoio_alimentar_escolar'), ('/cantinas', 'cantina'), ('/bolsas/candidaturas', 'bolsa_candidatura'), ('/bolsas/investigacao', 'bolsa_investigacao')])
+from apps.backend.app.modules.educacao.api.endpoints._workflow_endpoints import (
+    build_workflow_router,
+)
+from apps.backend.app.modules.educacao.api.schemas.propina_schema import (
+    PropinaCancelar,
+    PropinaConcluir,
+    PropinaCreate,
+    PropinaResponse,
+)
+
+router = build_workflow_router(
+    tag="Educacao - Propinas e Apoios",
+    get_service=get_propina_service,
+    create_schema=PropinaCreate,
+    response_schema=PropinaResponse,
+    concluir_schema=PropinaConcluir,
+    cancelar_schema=PropinaCancelar,
+    routes=[
+        ("/propinas", "propina"),
+        ("/apoios/alimentar", "apoio_alimentar"),
+        ("/apoios/alimentar-escolar", "apoio_alimentar_escolar"),
+        ("/cantinas", "cantina"),
+        ("/bolsas/candidaturas", "bolsa_candidatura"),
+        ("/bolsas/investigacao", "bolsa_investigacao"),
+    ],
+)

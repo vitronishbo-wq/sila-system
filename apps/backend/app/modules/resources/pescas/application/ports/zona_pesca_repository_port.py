@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.zona_pesca import ZonaPesca
 
-class ZonaPescaRepositoryPort(ABC):
 
+class ZonaPescaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, zona: ZonaPesca) -> ZonaPesca:
         pass

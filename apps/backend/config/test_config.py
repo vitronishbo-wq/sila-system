@@ -20,11 +20,11 @@ def test_basic_imports():
     print("Testing basic imports...")
 
     try:
-        from config import settings, get_settings, Settings
+        from config import Settings, get_settings, settings
 
         print("  ✅ Core settings imported")
 
-        from config import validate_configuration, ConfigurationError
+        from config import ConfigurationError, validate_configuration
 
         print("  ✅ Validation modules imported")
 
@@ -82,7 +82,7 @@ def test_validation():
     print("Testing configuration validation...")
 
     try:
-        from config import validate_configuration, Settings
+        from config import Settings, validate_configuration
 
         # Test current settings
         is_valid, errors, warnings = validate_configuration()
@@ -102,7 +102,7 @@ def test_validation():
 
         # Test with invalid settings
         try:
-            invalid_settings = Settings(
+            Settings(
                 SECRET_KEY="short",
                 ENVIRONMENT="invalid_env",
                 DATABASE_URL="invalid_url",
@@ -151,7 +151,7 @@ def test_config_manager():
 
         # Test temporary settings context manager
         with manager.temporary_settings(DEBUG=True):
-            assert manager.settings.DEBUG == True
+            assert manager.settings.DEBUG
         assert manager.settings.DEBUG == original_debug
         print("  ✅ Temporary settings context manager works")
 
@@ -167,7 +167,7 @@ def test_file_operations():
     print("Testing file operations...")
 
     try:
-        from config import get_config_manager, Settings
+        from config import Settings, get_config_manager
 
         manager = get_config_manager()
 
@@ -185,7 +185,7 @@ def test_file_operations():
             # Load and verify template content
             import json
 
-            with open(template_path, "r") as f:
+            with open(template_path) as f:
                 template = json.load(f)
 
             assert "_description" in template
@@ -307,19 +307,20 @@ def test_performance():
 
     try:
         import time
+
         from config import get_settings
 
         # Test settings loading time
         start_time = time.time()
         for _ in range(100):
-            settings = get_settings()
+            get_settings()
         end_time = time.time()
 
         avg_time = (end_time - start_time) / 100
         print(f"  ✅ Average settings load time: {avg_time:.6f}s")
 
         if avg_time > 0.01:  # 10ms threshold
-            print(f"  ⚠️  Performance could be improved")
+            print("  ⚠️  Performance could be improved")
 
         return True
 

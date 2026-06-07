@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.armador import Armador
 
-class ArmadorRepositoryPort(ABC):
 
+class ArmadorRepositoryPort(ABC):
     @abstractmethod
     async def save(self, armador: Armador) -> Armador:
         pass
@@ -18,5 +20,5 @@ class ArmadorRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self, ativo: bool | None=None) -> list[Armador]:
+    async def list_all(self, ativo: bool | None = None) -> list[Armador]:
         pass

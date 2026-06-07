@@ -4,11 +4,8 @@ from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-
 @pytest.mark.asyncio
-async def test_create_appointment(
-    async_client: AsyncClient, db_session: AsyncSession, test_user
-):
+async def test_create_appointment(async_client: AsyncClient, db_session: AsyncSession, test_user):
     payload = {
         "title": "Consulta médica",
         "description": "Consulta de rotina",
@@ -54,9 +51,7 @@ async def test_update_appointment(
         "title": "Consulta atualizada",
         "description": "Descrição atualizada",
     }
-    response = await async_client.put(
-        f"/appointments/{test_appointment.id}", json=update_payload
-    )
+    response = await async_client.put(f"/appointments/{test_appointment.id}", json=update_payload)
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["title"] == update_payload["title"]

@@ -48,9 +48,7 @@ async def test_payment_flow_complete(async_http_client: AsyncClient, mock_user):
     )
     assert documents_response.status_code == 200
 
-    submit_response = await async_http_client.post(
-        f"/api/v1/orders/{order_id}/submit"
-    )
+    submit_response = await async_http_client.post(f"/api/v1/orders/{order_id}/submit")
     assert submit_response.status_code == 200
 
     generate_payment_response = await async_http_client.post(
@@ -65,15 +63,11 @@ async def test_payment_flow_complete(async_http_client: AsyncClient, mock_user):
     assert confirm_payment_response.status_code == 200
     assert confirm_payment_response.json()["status"] in {"CONFIRMED", "PENDING", "FAILED"}
 
-    complete_response = await async_http_client.post(
-        f"/api/v1/orders/{order_id}/complete"
-    )
+    complete_response = await async_http_client.post(f"/api/v1/orders/{order_id}/complete")
     assert complete_response.status_code in {200, 400}
 
     if complete_response.status_code == 200:
-        receipt_response = await async_http_client.get(
-            f"/api/v1/orders/{order_id}/receipt"
-        )
+        receipt_response = await async_http_client.get(f"/api/v1/orders/{order_id}/receipt")
         assert receipt_response.status_code == 200
 
 
@@ -87,9 +81,7 @@ async def test_payment_validation_errors(async_http_client: AsyncClient, mock_us
     unauth_response = await async_http_client.get("/api/v1/services")
     assert unauth_response.status_code in {200, 401}
 
-    invalid_order_payload_response = await async_http_client.post(
-        "/api/v1/orders", json={}
-    )
+    invalid_order_payload_response = await async_http_client.post("/api/v1/orders", json={})
     assert invalid_order_payload_response.status_code == 422
 
 
@@ -99,7 +91,5 @@ async def test_payment_refund_flow(async_http_client: AsyncClient, mock_user):
     E2E: fallback de referência inválida no endpoint de confirmação.
     """
     _ = mock_user
-    response = await async_http_client.post(
-        "/api/v1/payments/INVALID-REFERENCE/confirm"
-    )
+    response = await async_http_client.post("/api/v1/payments/INVALID-REFERENCE/confirm")
     assert response.status_code == 400

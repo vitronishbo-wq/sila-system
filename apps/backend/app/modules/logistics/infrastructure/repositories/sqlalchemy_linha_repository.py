@@ -1,25 +1,30 @@
 from __future__ import annotations
+
 from copy import deepcopy
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.logistics.domain.ports import LinhaRepositoryPort
+
 from apps.backend.app.modules.logistics.domain.enums import ModalTransporte, StatusLinha, TipoViagem
 from apps.backend.app.modules.logistics.domain.models import Linha
+from apps.backend.app.modules.logistics.domain.ports import LinhaRepositoryPort
 from apps.backend.app.modules.logistics.infrastructure.orm import LinhaModel
 
-class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
 
-    def __init__(self, session: AsyncSession | None=None) -> None:
+class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
+    def __init__(self, session: AsyncSession | None = None) -> None:
         self._session = session
         self._items: dict[str, Linha] = {}
         self._seq = 0
 
     async def save(self, item: Linha) -> Linha:
         if self._session:
-            existing = await self._session.execute(select(LinhaModel).where(LinhaModel.codigo == item.codigo))
+            existing = await self._session.execute(
+                select(LinhaModel).where(LinhaModel.codigo == item.codigo)
+            )
             model = existing.scalars().first()
             if model is None:
                 model = self._to_model(item)
@@ -33,14 +38,18 @@ class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
 
     async def get_by_codigo(self, codigo: str) -> Linha | None:
         if self._session:
-            result = await self._session.execute(select(LinhaModel).where(LinhaModel.codigo == codigo))
+            result = await self._session.execute(
+                select(LinhaModel).where(LinhaModel.codigo == codigo)
+            )
             model = result.scalars().first()
             return self._to_domain(model) if model else None
         return self._items.get(codigo)
 
     async def get_by_id(self, linha_id: UUID) -> Linha | None:
         if self._session:
-            result = await self._session.execute(select(LinhaModel).where(LinhaModel.id == linha_id))
+            result = await self._session.execute(
+                select(LinhaModel).where(LinhaModel.id == linha_id)
+            )
             model = result.scalars().first()
             return self._to_domain(model) if model else None
         for item in self._items.values():
@@ -48,7 +57,15 @@ class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
                 return item
         return None
 
-    async def list(self, *, status: StatusLinha | None=None, modal: ModalTransporte | None=None, operadora_id: UUID | None=None, origem: str | None=None, destino: str | None=None) -> list[Linha]:
+    async def list(
+        self,
+        *,
+        status: StatusLinha | None = None,
+        modal: ModalTransporte | None = None,
+        operadora_id: UUID | None = None,
+        origem: str | None = None,
+        destino: str | None = None,
+    ) -> list[Linha]:
         if self._session:
             statement = select(LinhaModel)
             if status:
@@ -60,7 +77,9 @@ class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
             if origem:
                 statement = statement.where(func.lower(LinhaModel.origem) == origem.strip().lower())
             if destino:
-                statement = statement.where(func.lower(LinhaModel.destino) == destino.strip().lower())
+                statement = statement.where(
+                    func.lower(LinhaModel.destino) == destino.strip().lower()
+                )
             result = await self._session.execute(statement.order_by(LinhaModel.codigo.asc()))
             return [self._to_domain(model) for model in result.scalars().all()]
         values = list(self._items.values())
@@ -81,12 +100,16 @@ class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
     async def next_codigo(self) -> str:
         if self._session:
             year = date.today().year
-            prefix = f'LIN/{year}/'
-            result = await self._session.execute(select(func.count()).select_from(LinhaModel).where(LinhaModel.codigo.like(f'{prefix}%')))
+            prefix = f"LIN/{year}/"
+            result = await self._session.execute(
+                select(func.count())
+                .select_from(LinhaModel)
+                .where(LinhaModel.codigo.like(f"{prefix}%"))
+            )
             seq = int(result.scalar() or 0) + 1
-            return f'{prefix}{seq:06d}'
+            return f"{prefix}{seq:06d}"
         self._seq += 1
-        return f'LIN/{date.today().year}/{self._seq:06d}'
+        return f"LIN/{date.today().year}/{self._seq:06d}"
 
     @staticmethod
     def _update_model(model: LinhaModel, item: Linha) -> None:
@@ -129,8 +152,88 @@ class SQLAlchemyLinhaRepository(LinhaRepositoryPort):
 
     @staticmethod
     def _to_model(item: Linha) -> LinhaModel:
-        return LinhaModel(id=item.id, codigo=item.codigo, nome=item.nome, modal=item.modal.value, tipo_viagem=item.tipo_viagem.value, origem=item.origem, destino=item.destino, itinerario=deepcopy(item.itinerario), extensao_km=item.extensao_km, tempo_estimado_minutos=item.tempo_estimado_minutos, dias_operacao=list(item.dias_operacao), horario_inicio=item.horario_inicio, horario_fim=item.horario_fim, tarifa_base=item.tarifa_base, operadora_id=item.operadora_id, status=item.status.value, data_cadastro=item.data_cadastro, frequencia_media_minutos=item.frequencia_media_minutos, concessionaria_id=item.concessionaria_id, outorga_id=item.outorga_id, data_inicio_operacao=item.data_inicio_operacao, data_autorizacao=item.data_autorizacao, data_validade_autorizacao=item.data_validade_autorizacao, frota_necessaria=item.frota_necessaria, frota_operante=item.frota_operante, demanda_media_diaria=item.demanda_media_diaria, oferta_media_diaria=item.oferta_media_diaria, ocupacao_media=item.ocupacao_media, regularidade=item.regularidade, pontualidade=item.pontualidade, acessivel=item.acessivel, ar_condicionado=item.ar_condicionado, wifi=item.wifi, sanitario=item.sanitario, observacoes=item.observacoes, data_atualizacao=item.data_atualizacao, veiculos_ativos=deepcopy(item.veiculos_ativos), trilha_auditoria=deepcopy(item.trilha_auditoria))
+        return LinhaModel(
+            id=item.id,
+            codigo=item.codigo,
+            nome=item.nome,
+            modal=item.modal.value,
+            tipo_viagem=item.tipo_viagem.value,
+            origem=item.origem,
+            destino=item.destino,
+            itinerario=deepcopy(item.itinerario),
+            extensao_km=item.extensao_km,
+            tempo_estimado_minutos=item.tempo_estimado_minutos,
+            dias_operacao=list(item.dias_operacao),
+            horario_inicio=item.horario_inicio,
+            horario_fim=item.horario_fim,
+            tarifa_base=item.tarifa_base,
+            operadora_id=item.operadora_id,
+            status=item.status.value,
+            data_cadastro=item.data_cadastro,
+            frequencia_media_minutos=item.frequencia_media_minutos,
+            concessionaria_id=item.concessionaria_id,
+            outorga_id=item.outorga_id,
+            data_inicio_operacao=item.data_inicio_operacao,
+            data_autorizacao=item.data_autorizacao,
+            data_validade_autorizacao=item.data_validade_autorizacao,
+            frota_necessaria=item.frota_necessaria,
+            frota_operante=item.frota_operante,
+            demanda_media_diaria=item.demanda_media_diaria,
+            oferta_media_diaria=item.oferta_media_diaria,
+            ocupacao_media=item.ocupacao_media,
+            regularidade=item.regularidade,
+            pontualidade=item.pontualidade,
+            acessivel=item.acessivel,
+            ar_condicionado=item.ar_condicionado,
+            wifi=item.wifi,
+            sanitario=item.sanitario,
+            observacoes=item.observacoes,
+            data_atualizacao=item.data_atualizacao,
+            veiculos_ativos=deepcopy(item.veiculos_ativos),
+            trilha_auditoria=deepcopy(item.trilha_auditoria),
+        )
 
     @staticmethod
     def _to_domain(model: LinhaModel) -> Linha:
-        return Linha(id=model.id, codigo=model.codigo, nome=model.nome, modal=ModalTransporte(model.modal), tipo_viagem=TipoViagem(model.tipo_viagem), origem=model.origem, destino=model.destino, itinerario=deepcopy(model.itinerario or []), extensao_km=Decimal(model.extensao_km), tempo_estimado_minutos=model.tempo_estimado_minutos, dias_operacao=list(model.dias_operacao or []), horario_inicio=model.horario_inicio, horario_fim=model.horario_fim, tarifa_base=Decimal(model.tarifa_base), operadora_id=model.operadora_id, status=StatusLinha(model.status), data_cadastro=model.data_cadastro, frequencia_media_minutos=model.frequencia_media_minutos, concessionaria_id=model.concessionaria_id, outorga_id=model.outorga_id, data_inicio_operacao=model.data_inicio_operacao, data_autorizacao=model.data_autorizacao, data_validade_autorizacao=model.data_validade_autorizacao, frota_necessaria=model.frota_necessaria, frota_operante=model.frota_operante, demanda_media_diaria=model.demanda_media_diaria, oferta_media_diaria=model.oferta_media_diaria, ocupacao_media=Decimal(model.ocupacao_media) if model.ocupacao_media is not None else None, regularidade=Decimal(model.regularidade) if model.regularidade is not None else None, pontualidade=Decimal(model.pontualidade) if model.pontualidade is not None else None, acessivel=model.acessivel, ar_condicionado=model.ar_condicionado, wifi=model.wifi, sanitario=model.sanitario, observacoes=model.observacoes, data_atualizacao=model.data_atualizacao, veiculos_ativos=deepcopy(model.veiculos_ativos or []), trilha_auditoria=deepcopy(model.trilha_auditoria or []))
+        return Linha(
+            id=model.id,
+            codigo=model.codigo,
+            nome=model.nome,
+            modal=ModalTransporte(model.modal),
+            tipo_viagem=TipoViagem(model.tipo_viagem),
+            origem=model.origem,
+            destino=model.destino,
+            itinerario=deepcopy(model.itinerario or []),
+            extensao_km=Decimal(model.extensao_km),
+            tempo_estimado_minutos=model.tempo_estimado_minutos,
+            dias_operacao=list(model.dias_operacao or []),
+            horario_inicio=model.horario_inicio,
+            horario_fim=model.horario_fim,
+            tarifa_base=Decimal(model.tarifa_base),
+            operadora_id=model.operadora_id,
+            status=StatusLinha(model.status),
+            data_cadastro=model.data_cadastro,
+            frequencia_media_minutos=model.frequencia_media_minutos,
+            concessionaria_id=model.concessionaria_id,
+            outorga_id=model.outorga_id,
+            data_inicio_operacao=model.data_inicio_operacao,
+            data_autorizacao=model.data_autorizacao,
+            data_validade_autorizacao=model.data_validade_autorizacao,
+            frota_necessaria=model.frota_necessaria,
+            frota_operante=model.frota_operante,
+            demanda_media_diaria=model.demanda_media_diaria,
+            oferta_media_diaria=model.oferta_media_diaria,
+            ocupacao_media=Decimal(model.ocupacao_media)
+            if model.ocupacao_media is not None
+            else None,
+            regularidade=Decimal(model.regularidade) if model.regularidade is not None else None,
+            pontualidade=Decimal(model.pontualidade) if model.pontualidade is not None else None,
+            acessivel=model.acessivel,
+            ar_condicionado=model.ar_condicionado,
+            wifi=model.wifi,
+            sanitario=model.sanitario,
+            observacoes=model.observacoes,
+            data_atualizacao=model.data_atualizacao,
+            veiculos_ativos=deepcopy(model.veiculos_ativos or []),
+            trilha_auditoria=deepcopy(model.trilha_auditoria or []),
+        )

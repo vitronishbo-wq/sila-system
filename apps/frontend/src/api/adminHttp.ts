@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { showGlobalToast } from '../utils/globalToast';
+import { showGlobalToast } from '@/utils/globalToast';
+import { API_V1_BASE_URL } from '@/utils/runtime';
 
 export const adminHttp = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: API_V1_BASE_URL,
 });
 
 adminHttp.interceptors.request.use((config) => {
@@ -24,4 +25,3 @@ adminHttp.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-

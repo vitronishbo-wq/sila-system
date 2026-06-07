@@ -8,9 +8,7 @@ Uso:
     python tools/consistency/check_paths.py
 """
 
-import sys
 from pathlib import Path
-from typing import List
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 
@@ -61,7 +59,7 @@ def should_scan(path: Path) -> bool:
 
 
 def main() -> None:
-    violations: List[str] = []
+    violations: list[str] = []
 
     for path in ROOT.rglob("*"):
         if not should_scan(path):

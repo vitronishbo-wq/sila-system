@@ -1,5 +1,19 @@
-from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_edital_repository import SQLAlchemyEditalRepository
-from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_licitacao_repository import SQLAlchemyLicitacaoRepository
-from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_obra_repository import SQLAlchemyObraRepository
-from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_projeto_repository import SQLAlchemyProjetoRepository
-__all__ = ['SQLAlchemyObraRepository', 'SQLAlchemyProjetoRepository', 'SQLAlchemyLicitacaoRepository', 'SQLAlchemyEditalRepository']
+from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_edital_repository import (
+    SQLAlchemyEditalRepository,
+)
+from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_licitacao_repository import (
+    SQLAlchemyLicitacaoRepository,
+)
+from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_obra_repository import (
+    SQLAlchemyObraRepository,
+)
+from apps.backend.app.modules.infrastructure.infrastructure.repositories.sqlalchemy_projeto_repository import (
+    SQLAlchemyProjetoRepository,
+)
+
+__all__ = [
+    "SQLAlchemyObraRepository",
+    "SQLAlchemyProjetoRepository",
+    "SQLAlchemyLicitacaoRepository",
+    "SQLAlchemyEditalRepository",
+]

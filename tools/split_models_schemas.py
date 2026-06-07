@@ -9,12 +9,10 @@ Uso:
     python tools/split_models_schemas.py backend/modules/payment --dry-run
 """
 
-import os
+import argparse
 import re
 import sys
-import argparse
 from pathlib import Path
-from typing import List, Tuple, Dict
 
 
 class ModelSchemaSeparator:
@@ -26,7 +24,7 @@ class ModelSchemaSeparator:
         self.schemas_file = self.module_path / "schemas.py"
         self.dry_run = dry_run
 
-        self.pydantic_classes: List[str] = []
+        self.pydantic_classes: list[str] = []
         self.pydantic_imports: set = set()
         self.orm_content: str = ""
 
@@ -42,7 +40,7 @@ class ModelSchemaSeparator:
 
         return True
 
-    def extract_pydantic_classes(self, content: str) -> Tuple[List[str], set]:
+    def extract_pydantic_classes(self, content: str) -> tuple[list[str], set]:
         """
         Extrai classes Pydantic do conteúdo.
 
@@ -80,7 +78,7 @@ class ModelSchemaSeparator:
 
         return classes, imports
 
-    def build_schemas_content(self, classes: List[str], imports: set) -> str:
+    def build_schemas_content(self, classes: list[str], imports: set) -> str:
         """Constrói o conteúdo do arquivo schemas.py."""
         header = '"""\nLocation Schemas - Auto-generated\n\nPydantic schemas for API validation and serialization.\n"""\n\n'
 
@@ -117,7 +115,7 @@ class ModelSchemaSeparator:
 
         return header + imports_block + classes_block + "\n"
 
-    def remove_pydantic_from_models(self, content: str, classes: List[str]) -> str:
+    def remove_pydantic_from_models(self, content: str, classes: list[str]) -> str:
         """Remove classes Pydantic do models.py."""
         cleaned = content
 
@@ -144,13 +142,11 @@ class ModelSchemaSeparator:
             return False
 
         # Lê o arquivo models.py
-        with open(self.models_file, "r", encoding="utf-8") as f:
+        with open(self.models_file, encoding="utf-8") as f:
             models_content = f.read()
 
         # Extrai classes Pydantic
-        self.pydantic_classes, self.pydantic_imports = self.extract_pydantic_classes(
-            models_content
-        )
+        self.pydantic_classes, self.pydantic_imports = self.extract_pydantic_classes(models_content)
 
         if not self.pydantic_classes:
             print("✅ Nenhum schema Pydantic encontrado em models.py")
@@ -163,32 +159,22 @@ class ModelSchemaSeparator:
             print(f"   • {class_name}")
 
         # Constrói novo schemas.py
-        schemas_content = self.build_schemas_content(
-            self.pydantic_classes, self.pydantic_imports
-        )
+        schemas_content = self.build_schemas_content(self.pydantic_classes, self.pydantic_imports)
 
         # Remove Pydantic de models.py
-        self.orm_content = self.remove_pydantic_from_models(
-            models_content, self.pydantic_classes
-        )
+        self.orm_content = self.remove_pydantic_from_models(models_content, self.pydantic_classes)
 
         if self.dry_run:
             print("\n🔍 DRY RUN - Nenhum arquivo será modificado")
             print("\n" + "=" * 60)
             print("PREVIEW: schemas.py")
             print("=" * 60)
-            print(
-                schemas_content[:500] + "..."
-                if len(schemas_content) > 500
-                else schemas_content
-            )
+            print(schemas_content[:500] + "..." if len(schemas_content) > 500 else schemas_content)
             print("\n" + "=" * 60)
             print("PREVIEW: models.py (limpo)")
             print("=" * 60)
             print(
-                self.orm_content[:500] + "..."
-                if len(self.orm_content) > 500
-                else self.orm_content
+                self.orm_content[:500] + "..." if len(self.orm_content) > 500 else self.orm_content
             )
             return True
 
@@ -202,7 +188,7 @@ class ModelSchemaSeparator:
         # Se já existe, faz backup também
         if self.schemas_file.exists():
             schemas_backup = self.schemas_file.with_suffix(".py.bak")
-            with open(self.schemas_file, "r", encoding="utf-8") as f:
+            with open(self.schemas_file, encoding="utf-8") as f:
                 with open(schemas_backup, "w", encoding="utf-8") as fb:
                     fb.write(f.read())
             print(f"💾 Backup do schemas.py existente: {schemas_backup}")
@@ -235,9 +221,7 @@ Exemplos:
         """,
     )
 
-    parser.add_argument(
-        "module_path", help="Caminho do módulo (ex: backend/modules/location)"
-    )
+    parser.add_argument("module_path", help="Caminho do módulo (ex: backend/modules/location)")
 
     parser.add_argument(
         "--dry-run",

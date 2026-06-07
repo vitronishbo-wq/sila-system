@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import Any
+
 
 class EventPublisherPort(ABC):
     """Port: Domain event publishing interface."""
 
     @abstractmethod
-    async def publish(self, event_name: str, event_data: Dict[str, Any]) -> None:
+    async def publish(self, event_name: str, event_data: dict[str, Any]) -> None:
         pass
 
     @abstractmethod

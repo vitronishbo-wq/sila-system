@@ -6,9 +6,9 @@
 import React, { useState } from 'react';
 import {
   useVerificationResults,
-} from '../hooks';
-import type { VerificationResult, VerificationRequest } from '../types';
-import { identityService } from '../services';
+} from '@/modules/identity/hooks';
+import type { VerificationResult, VerificationRequest } from '@/modules/identity/types';
+import { identityService } from '@/modules/identity/services';
 
 interface VerificationStatusProps {
   citizenId: string;

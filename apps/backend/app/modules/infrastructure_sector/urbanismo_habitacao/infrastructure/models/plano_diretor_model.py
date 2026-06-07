@@ -1,14 +1,18 @@
 from __future__ import annotations
+
 import uuid
 from datetime import date, datetime
 from decimal import Decimal
+
 from sqlalchemy import JSON, Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from apps.backend.app.core.db import Base
 
+
 class PlanoDiretorModel(Base):
-    __tablename__ = 'urbanismo_habitacao_planos_diretores'
+    __tablename__ = "urbanismo_habitacao_planos_diretores"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     codigo_plano: Mapped[str] = mapped_column(String(40), unique=True, nullable=False, index=True)
     nome: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -16,7 +20,9 @@ class PlanoDiretorModel(Base):
     status: Mapped[str] = mapped_column(String(40), nullable=False, index=True)
     provincia: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
     ano_elaboracao: Mapped[int] = mapped_column(Integer, nullable=False)
-    orgao_responsavel_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), nullable=False, index=True)
+    orgao_responsavel_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), nullable=False, index=True
+    )
     municipio: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
     ano_aprovacao: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ano_publicacao: Mapped[int | None] = mapped_column(Integer, nullable=True)
@@ -36,4 +42,6 @@ class PlanoDiretorModel(Base):
     objetivos_estrategicos: Mapped[str | None] = mapped_column(Text, nullable=True)
     observacoes: Mapped[str | None] = mapped_column(Text, nullable=True)
     data_publicacao: Mapped[date | None] = mapped_column(Date, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )

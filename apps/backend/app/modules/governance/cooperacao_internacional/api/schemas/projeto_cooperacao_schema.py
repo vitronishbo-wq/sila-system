@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import ModalidadeCooperacao, StatusProjeto, TipoProjeto
+
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.enums import (
+    ModalidadeCooperacao,
+    StatusProjeto,
+    TipoProjeto,
+)
+
 
 class ProjetoCooperacaoCreate(BaseModel):
     titulo: str = Field(min_length=5, max_length=300)
@@ -18,6 +26,7 @@ class ProjetoCooperacaoCreate(BaseModel):
     objetivos_especificos: list[str] = Field(default_factory=list)
     orcamento_total: float = Field(gt=0)
     fonte_recursos: str = Field(min_length=2, max_length=200)
+
 
 class ProjetoCooperacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

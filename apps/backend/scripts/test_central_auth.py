@@ -5,7 +5,7 @@ BASE_URL = "http://localhost:8000/api/v1"
 payloads = [
     {"username": "admin@sila.gov.ao", "password": "admin123"},
     {"username": "admin@sila.gov.ao", "password": "sila123"},
-    {"username": "admin.central.angola.1@sila.gov.ao", "password": "sila123"}
+    {"username": "admin.central.angola.1@sila.gov.ao", "password": "sila123"},
 ]
 
 
@@ -19,7 +19,7 @@ def test_login():
             response = requests.post(f"{BASE_URL}/auth/login", data=payload)
             if response.status_code == 200:
                 token = response.json().get("access_token")
-                user_email = payload['username']
+                user_email = payload["username"]
                 print(f"✅ Token obtido para {user_email}: {token[:20]}...")
                 break
             else:
@@ -44,13 +44,14 @@ def test_login():
 
         if me_response.status_code == 200:
             user_data = me_response.json()
-            print(f"\n👤 Dados do Usuário:")
+            print("\n👤 Dados do Usuário:")
             print(f"   Email: {user_data.get('email')}")
             # The field might be 'level' as per model or 'admin_level' as per user request
-            level = user_data.get('level') or user_data.get('admin_level')
+            level = user_data.get("level") or user_data.get("admin_level")
             print(f"   Nível: {level}")
             print(
-                f"   Região: {user_data.get('region_name') or user_data.get('region', {}).get('name')}")
+                f"   Região: {user_data.get('region_name') or user_data.get('region', {}).get('name')}"
+            )
 
             if level == "CENTRAL":
                 print("\n✨ VERIFICAÇÃO BEM-SUCEDIDA: Nível CENTRAL confirmado.")

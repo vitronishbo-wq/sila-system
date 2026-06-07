@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_024_telecomunicacoes_infra_espectro_outorgas"
 down_revision = "20260302_023_telecomunicacoes_foundation"
 branch_labels = None
@@ -93,14 +92,30 @@ def _create_infraestruturas_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_codigo_infra ON telecom_infraestruturas (codigo_infra)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_operadora_id ON telecom_infraestruturas (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_tipo ON telecom_infraestruturas (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_identificador ON telecom_infraestruturas (identificador)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_municipio ON telecom_infraestruturas (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_provincia ON telecom_infraestruturas (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_status ON telecom_infraestruturas (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_ativo ON telecom_infraestruturas (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_codigo_infra ON telecom_infraestruturas (codigo_infra)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_operadora_id ON telecom_infraestruturas (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_tipo ON telecom_infraestruturas (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_identificador ON telecom_infraestruturas (identificador)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_municipio ON telecom_infraestruturas (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_provincia ON telecom_infraestruturas (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_status ON telecom_infraestruturas (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_infraestruturas_ativo ON telecom_infraestruturas (ativo)"
+    )
 
 
 def _create_outorgas_table() -> None:
@@ -165,11 +180,21 @@ def _create_outorgas_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_numero_outorga ON telecom_outorgas_espectro (numero_outorga)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_operadora_id ON telecom_outorgas_espectro (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_tipo_outorga ON telecom_outorgas_espectro (tipo_outorga)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_status ON telecom_outorgas_espectro (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_ativo ON telecom_outorgas_espectro (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_numero_outorga ON telecom_outorgas_espectro (numero_outorga)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_operadora_id ON telecom_outorgas_espectro (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_tipo_outorga ON telecom_outorgas_espectro (tipo_outorga)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_status ON telecom_outorgas_espectro (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_outorgas_ativo ON telecom_outorgas_espectro (ativo)"
+    )
 
 
 def _create_espectro_table() -> None:
@@ -245,13 +270,23 @@ def _create_espectro_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_codigo_espectro ON telecom_espectro (codigo_espectro)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_espectro_codigo_espectro ON telecom_espectro (codigo_espectro)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_tipo ON telecom_espectro (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_servico_principal ON telecom_espectro (servico_principal)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_municipio ON telecom_espectro (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_provincia ON telecom_espectro (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_espectro_servico_principal ON telecom_espectro (servico_principal)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_espectro_municipio ON telecom_espectro (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_espectro_provincia ON telecom_espectro (provincia)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_status ON telecom_espectro (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_outorga_id ON telecom_espectro (outorga_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_espectro_outorga_id ON telecom_espectro (outorga_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_espectro_ativo ON telecom_espectro (ativo)")
 
 

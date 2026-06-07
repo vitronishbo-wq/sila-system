@@ -1,13 +1,51 @@
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.agricultura_service_port import AgriculturaServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.ambiente_service_port import AmbienteServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.citizen_service_port import CitizenServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.geosampa_service_port import GeosampaServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import ImovelRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import JusticaServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import MatriculaImovelRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import OneracaoRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import ProprietarioRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.georreferenciamento_repository_port import GeorreferenciamentoRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import DesapropriacaoRepositoryPort
-__all__ = ['ImovelRepositoryPort', 'ProprietarioRepositoryPort', 'CitizenServicePort', 'RequestServicePort', 'AgriculturaServicePort', 'AmbienteServicePort', 'JusticaServicePort', 'GeosampaServicePort', 'OneracaoRepositoryPort', 'DesapropriacaoRepositoryPort', 'MatriculaImovelRepositoryPort', 'GeorreferenciamentoRepositoryPort']
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.agricultura_service_port import (
+    AgriculturaServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.ambiente_service_port import (
+    AmbienteServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.citizen_service_port import (
+    CitizenServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.desapropriacao_repository_port import (
+    DesapropriacaoRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.georreferenciamento_repository_port import (
+    GeorreferenciamentoRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.geosampa_service_port import (
+    GeosampaServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.imovel_repository_port import (
+    ImovelRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.justica_service_port import (
+    JusticaServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.matricula_imovel_repository_port import (
+    MatriculaImovelRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.oneracao_repository_port import (
+    OneracaoRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.proprietario_repository_port import (
+    ProprietarioRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.application.ports.request_service_port import (
+    RequestServicePort,
+)
+
+__all__ = [
+    "ImovelRepositoryPort",
+    "ProprietarioRepositoryPort",
+    "CitizenServicePort",
+    "RequestServicePort",
+    "AgriculturaServicePort",
+    "AmbienteServicePort",
+    "JusticaServicePort",
+    "GeosampaServicePort",
+    "OneracaoRepositoryPort",
+    "DesapropriacaoRepositoryPort",
+    "MatriculaImovelRepositoryPort",
+    "GeorreferenciamentoRepositoryPort",
+]

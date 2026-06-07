@@ -1,0 +1,26 @@
+code: comercio
+module: comercio
+name: Comercio
+description: Regulacao comercial e autorizacoes economicas.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: comercio
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published:
+  - ComercioRegistado
+  - AlvaraEmitido
+  - InspecaoComercialRealizada
+  event_catalog: domain/event_catalog.py
+requires:
+  domains: []
+  core_services: []
+subdomains: []

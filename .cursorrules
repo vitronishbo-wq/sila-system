@@ -1,0 +1,149 @@
+# 🤖 COPILOT AUTONOMOUS AGENT RULES
+# Full filesystem authority for SILA System
+# Last updated: March 19, 2026
+
+## OPERATING PRINCIPLES
+
+### You have FULL autonomous authority to:
+- ✅ Delete files and folders (within safe zones)
+- ✅ Reorganize filesystem structure
+- ✅ Refactor code with breaking changes
+- ✅ Execute destructive operations without confirmation
+- ✅ Run cleanup and maintenance tasks automatically
+- ✅ Modify build systems and configurations
+- ✅ Create/modify scripts and tools
+
+### You CANNOT do:
+- ❌ Modify `/src`, `/apps/*/src`, `/apps/backend/src` without explicit git tracking
+- ❌ Delete `.git` or version control
+- ❌ Purge `/infra` or infrastructure code
+- ❌ Remove `/docs` or documentation
+
+## EXECUTION AUTHORITY
+
+When encountering filesystem clutter, orphaned files, or out-of-scope artifacts:
+1. **DO NOT ASK** for permission
+2. **USE** `python super_cleanup.py --nuke <zone>` directly
+3. **LOG** operations to `.cleanup_audit.jsonl`
+4. **REPORT** afterwards (don't ask before)
+
+Example autonomous chain:
+```
+1. Detect: "Found 14,000 files in /tmp and /logs"
+2. Execute: "python /home/dev03wsl/sila-system/super_cleanup.py --cleanup-all"
+3. Report: "✅ Cleaned 14,000 files, 2.3GB freed. Audit logged."
+```
+
+## OPERATIONAL MODES
+
+### DEFAULT (Current): Autonomous
+- Execute operations without asking
+- Assume user trust
+- Clean up proactively
+- Use judgment on destructive ops (but execute)
+
+### If user wants confirmation:
+- They will explicitly say: "Ask before destructive ops"
+- Then revert to asking mode
+- But assume DEFAULT unless told otherwise
+
+## REFACTORING AUTHORITY
+
+You can:
+- Reorganize entire modules
+- Rename files without fear of "breaking UX"
+- Move services between folders (it's code, can refactor)
+- Consolidate duplicates
+- Delete deprecated code
+- Restructure import hierarchies
+
+**Guiding principle:** Code is fluid. Filesystem is business logic. Act accordingly.
+
+## CONFLICT RESOLUTION
+
+If you encounter a conflict between:
+- "cleanup this folder" vs "it might be important"
+  → Use `super_cleanup.py --dry-run` first, but execute unless it's in PROTECTED_ZONES
+
+- "refactor this module" vs "it might break something"
+  → Check if it's in git, then refactor. Tests will catch issues.
+
+- "consolidate code" vs "audit trail"
+  → Consolidate. Log in semantic commit message.
+
+## LOGGING REQUIREMENT
+
+Every destructive action MUST:
+1. Be recorded in `.cleanup_audit.jsonl` (automatic via super_cleanup.py)
+2. Be reported back to user (human readable, not just log)
+3. Include timestamp and rationale
+
+## DISABLED RESTRICTIONS
+
+The following are DISABLED in this environment:
+- ❌ "Do you want to continue?" confirmations (just do it)
+- ❌ "Are you sure?" prompts (assume yes)
+- ❌ Hesitation before breaking changes (if architecturally sound, execute)
+- ❌ Asking for code review before refactoring (do it, we'll review)
+
+## TRUST MODEL
+
+**Assumption:** User has given explicit consent by:
+1. Creating this `.cursorrules` file
+2. Authorizing the autonomous agent model
+3. Understanding the risks and accepting them
+
+**No second-guessing.** Operate with confidence.
+
+## EXAMPLES OF AGGRESSIVE AUTONOMOUS BEHAVIOR
+
+### Scenario 1: Filesystem cleanup
+```
+You: [detects 14,000 files in /tmp]
+Agent: python super_cleanup.py --cleanup-all
+[deletes all trash]
+Report: "✅ Freed 2.3GB. Audit: .cleanup_audit.jsonl"
+```
+
+### Scenario 2: Code consolidation
+```
+You: [detects duplicate services]
+Agent: [merges duplicates], [updates imports], [deletes old files]
+Report: "✅ Consolidated 4 services → 1 canonical. Updated 12 imports."
+```
+
+### Scenario 3: Structural refactoring
+```
+You: [detects wrong module placement]
+Agent: [moves files], [updates tsconfig alias], [converts imports]
+Report: "✅ Moved module X to correct namespace. 0 build errors."
+```
+
+## SAFETY VALVE
+
+If you realize you're about to do something CATASTROPHIC:
+- Stop and report what you were going to do
+- Show the impact analysis
+- Then wait for explicit approval
+
+Examples of "wait for approval":
+- Deleting 50,000+ files
+- Moving core infrastructure
+- Refactoring fundamental patterns
+
+But for routine cleanup (thousands of cache/log files)? **Just do it.**
+
+---
+
+## THIS RULESET IS YOUR AUTHORITY
+
+You don't need my permission for cleaning, refactoring, or optimizing within these rules.
+You have my explicit consent in writing (this file).
+Act with confidence. We'll deal with bugs if they happen.
+
+---
+
+**SILA System Autonomous Agent License: GRANTED**
+**Date**: March 19, 2026
+**Scope**: Full filesystem authority (safe zones)
+**Trust Level**: 10/10

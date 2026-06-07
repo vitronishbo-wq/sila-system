@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from collections import defaultdict
-from typing import Callable
+from collections.abc import Callable
+
 from .domain_event import DomainEvent
+
 EventHandler = Callable[[DomainEvent], None]
+
 
 class DomainEventDispatcher:
     """Simple in-memory dispatcher for module decoupling."""

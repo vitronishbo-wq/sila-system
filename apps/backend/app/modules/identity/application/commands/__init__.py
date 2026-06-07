@@ -1,4 +1,21 @@
 """Identity commands and handlers."""
-from .identity_commands import CreateIdentityCommand, UpdateTrustScoreCommand, PublishIdentityEventCommand
-from .command_handlers import CreateIdentityHandler, UpdateTrustScoreHandler, PublishIdentityEventHandler
-__all__ = ['CreateIdentityCommand', 'UpdateTrustScoreCommand', 'PublishIdentityEventCommand', 'CreateIdentityHandler', 'UpdateTrustScoreHandler', 'PublishIdentityEventHandler']
+
+from .command_handlers import (
+    CreateIdentityHandler,
+    PublishIdentityEventHandler,
+    UpdateTrustScoreHandler,
+)
+from .identity_commands import (
+    CreateIdentityCommand,
+    PublishIdentityEventCommand,
+    UpdateTrustScoreCommand,
+)
+
+__all__ = [
+    "CreateIdentityCommand",
+    "UpdateTrustScoreCommand",
+    "PublishIdentityEventCommand",
+    "CreateIdentityHandler",
+    "UpdateTrustScoreHandler",
+    "PublishIdentityEventHandler",
+]

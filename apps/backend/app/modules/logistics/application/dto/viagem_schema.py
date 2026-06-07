@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.logistics.domain.enums import StatusViagem
+
 
 class ViagemCreate(BaseModel):
     linha_id: UUID
@@ -15,11 +19,14 @@ class ViagemCreate(BaseModel):
     itinerario: list[dict] | None = None
     observacoes: str | None = None
 
+
 class ViagemConcluirInput(BaseModel):
     data_hora_chegada: datetime
 
+
 class ViagemCancelarInput(BaseModel):
     motivo: str
+
 
 class ViagemResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

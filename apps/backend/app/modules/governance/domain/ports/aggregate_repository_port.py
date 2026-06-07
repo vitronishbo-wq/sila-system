@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 
 class AggregateRepositoryPort(ABC):
     """Port: Generic aggregate repository pattern for domain persistence (Governance)."""
@@ -13,11 +13,11 @@ class AggregateRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[object]:
+    async def get_by_id(self, id: str) -> object | None:
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> List[object]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[object]:
         pass
 
     @abstractmethod

@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import ConcessionarioFlorestal
+
+from apps.backend.app.modules.resources.florestas.domain.models.concessionario_florestal import (
+    ConcessionarioFlorestal,
+)
+
 
 class ConcessionarioFlorestalRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, operador: ConcessionarioFlorestal) -> ConcessionarioFlorestal:
         pass
@@ -18,5 +22,5 @@ class ConcessionarioFlorestalRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self, ativo: bool | None=None) -> list[ConcessionarioFlorestal]:
+    async def list_all(self, ativo: bool | None = None) -> list[ConcessionarioFlorestal]:
         pass

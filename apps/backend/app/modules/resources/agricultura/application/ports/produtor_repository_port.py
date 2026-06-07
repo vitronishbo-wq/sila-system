@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor
 from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
 
-class ProdutorRepositoryPort(ABC):
 
+class ProdutorRepositoryPort(ABC):
     @abstractmethod
     async def save(self, produtor: Produtor) -> Produtor:
         pass
@@ -23,7 +25,7 @@ class ProdutorRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: StatusProdutor | None=None) -> list[Produtor]:
+    async def list_by_status(self, status: StatusProdutor | None = None) -> list[Produtor]:
         pass
 
     @abstractmethod

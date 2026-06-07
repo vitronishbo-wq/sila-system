@@ -10,17 +10,15 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.module_registry import MODULE_INDEX, iter_modules  # noqa: E402
-
+from apps.backend.app.core.module_registry import MODULE_INDEX, iter_modules  # noqa: E402
 
 DECORATOR_RE = re.compile(
     r"""@\s*(?P<router>[A-Za-z_][A-Za-z0-9_]*)\.
@@ -216,9 +214,7 @@ def collect_dependencies(module_name: str, graph: dict) -> list[str]:
 
 
 def purpose_for_module(module_name: str, domain: str) -> str:
-    return (
-        f"Gerir capacidades do dominio governamental `{module_name}` no contexto federado `{domain}`."
-    )
+    return f"Gerir capacidades do dominio governamental `{module_name}` no contexto federado `{domain}`."
 
 
 def build_module_doc(module_dir: Path, stats: ModuleDocStats) -> str:
@@ -268,7 +264,9 @@ def build_module_doc(module_dir: Path, stats: ModuleDocStats) -> str:
     lines.append("## Public API")
     lines.append("")
     if stats.endpoints:
-        lines.append("Routers encontrados em `api/router.py` e arquivos `api/*router*.py`/`api/*routes*.py`:")
+        lines.append(
+            "Routers encontrados em `api/router.py` e arquivos `api/*router*.py`/`api/*routes*.py`:"
+        )
         lines.append("")
         for endpoint in stats.endpoints[:120]:
             lines.append(f"- {endpoint}")
@@ -300,7 +298,7 @@ def build_module_doc(module_dir: Path, stats: ModuleDocStats) -> str:
 
 
 def render_visual_report(stats: list[ModuleDocStats], output_path: Path) -> str:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     total_modules = len(stats)
     with_entities = sum(1 for item in stats if item.entities)
     with_use_cases = sum(1 for item in stats if item.use_cases)
@@ -322,7 +320,9 @@ def render_visual_report(stats: list[ModuleDocStats], output_path: Path) -> str:
     lines.append("")
     lines.append("## Coverage Matrix")
     lines.append("")
-    lines.append("| Module | Domain Group | Layers | Entities | Use Cases | API Endpoints | Dependencies |")
+    lines.append(
+        "| Module | Domain Group | Layers | Entities | Use Cases | API Endpoints | Dependencies |"
+    )
     lines.append("| --- | --- | ---: | ---: | ---: | ---: | ---: |")
     for item in sorted(stats, key=lambda x: x.name):
         lines.append(
@@ -345,7 +345,7 @@ def render_visual_report(stats: list[ModuleDocStats], output_path: Path) -> str:
         if edge_count >= 30:
             break
     if edge_count == 0:
-        lines.append("  A[\"No cross-module dependencies detected\"]")
+        lines.append('  A["No cross-module dependencies detected"]')
     lines.append("```")
     lines.append("")
     return "\n".join(lines)

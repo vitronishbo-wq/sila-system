@@ -2,11 +2,13 @@ import asyncio
 import json
 from typing import Any
 
-from sqlalchemy import text
-
+from apps.backend.app.core.db import AsyncSessionLocal
+from apps.backend.app.platform.runtime.compat_router import (
+    _build_citizens_export_bytes,
+    _build_documents_export_bytes,
+)
 from core.celery import app as celery_app
-from app.core.db import AsyncSessionLocal
-from app.platform.runtime.compat_router import _build_citizens_export_bytes, _build_documents_export_bytes
+from sqlalchemy import text
 
 
 async def _fetch_job(session, job_id: str) -> dict[str, Any] | None:
@@ -17,7 +19,7 @@ async def _fetch_job(session, job_id: str) -> dict[str, Any] | None:
             WHERE id = :job_id
             LIMIT 1
         """),
-        {'job_id': job_id},
+        {"job_id": job_id},
     )
     row = result.mappings().first()
     return dict(row) if row else None
@@ -36,14 +38,15 @@ async def _update_job(session, job_id: str, status_value: str, **fields: Any) ->
             WHERE id = :job_id
         """),
         {
-            'status': status_value,
-            'result_data': fields.get('result_data'),
-            'result_content_type': fields.get('result_content_type'),
-            'result_filename': fields.get('result_filename'),
-            'error': fields.get('error'),
-            'job_id': job_id,
+            "status": status_value,
+            "result_data": fields.get("result_data"),
+            "result_content_type": fields.get("result_content_type"),
+            "result_filename": fields.get("result_filename"),
+            "error": fields.get("error"),
+            "job_id": job_id,
         },
     )
+
 
 async def _log_job(session, job_id: str, level: str, message: str) -> None:
     await session.execute(
@@ -51,7 +54,7 @@ async def _log_job(session, job_id: str, level: str, message: str) -> None:
             INSERT INTO export_job_logs (id, job_id, level, message, created_at)
             VALUES (gen_random_uuid(), :job_id, :level, :message, now())
         """),
-        {'job_id': job_id, 'level': level, 'message': message},
+        {"job_id": job_id, "level": level, "message": message},
     )
 
 
@@ -60,20 +63,20 @@ async def _run_export(job_id: str) -> None:
         job = await _fetch_job(session, job_id)
         if not job:
             return
-        await _log_job(session, job_id, 'info', 'Job started')
-        await _update_job(session, job_id, 'running')
+        await _log_job(session, job_id, "info", "Job started")
+        await _update_job(session, job_id, "running")
         await session.commit()
-        payload = job.get('request_payload') or {}
+        payload = job.get("request_payload") or {}
         if isinstance(payload, str):
             try:
                 payload = json.loads(payload)
             except Exception:
                 payload = {}
-        params = payload.get('params', {})
-        columns = payload.get('columns')
-        export_format = payload.get('format', 'csv')
+        params = payload.get("params", {})
+        columns = payload.get("columns")
+        export_format = payload.get("format", "csv")
         try:
-            if job.get('module') == 'citizens':
+            if job.get("module") == "citizens":
                 data, content_type, filename = await _build_citizens_export_bytes(
                     session,
                     params,
@@ -90,19 +93,19 @@ async def _run_export(job_id: str) -> None:
             await _update_job(
                 session,
                 job_id,
-                'done',
+                "done",
                 result_data=data,
                 result_content_type=content_type,
                 result_filename=filename,
             )
-            await _log_job(session, job_id, 'info', f'Job completed ({filename})')
+            await _log_job(session, job_id, "info", f"Job completed ({filename})")
             await session.commit()
         except Exception as exc:
-            await _update_job(session, job_id, 'failed', error=str(exc))
-            await _log_job(session, job_id, 'error', f'Job failed: {exc}')
+            await _update_job(session, job_id, "failed", error=str(exc))
+            await _log_job(session, job_id, "error", f"Job failed: {exc}")
             await session.commit()
 
 
-@celery_app.task(name='core.exports.run_export_job')
+@celery_app.task(name="core.exports.run_export_job")
 def run_export_job(job_id: str) -> None:
     asyncio.run(_run_export(job_id))

@@ -1,28 +1,72 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.citizen_service_port import CitizenServicePort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import EspectroRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import IndicadorQualidadeRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import InfraestruturaRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import OperadoraRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import OutorgaEspectroRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import QualidadeServicoRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import SLARepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusIndicadorQualidade, StatusEspectro, StatusOutorga, StatusQualidadeServico, StatusSLA, TipoEspectro, TipoServico
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import Assinante
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import IndicadorQualidade
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import InfraestruturaTelco
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import Operadora
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import OutorgaEspectro
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import QualidadeServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import (
+    AssinanteRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.citizen_service_port import (
+    CitizenServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.espectro_repository_port import (
+    EspectroRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.indicador_qualidade_repository_port import (
+    IndicadorQualidadeRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.infraestrutura_repository_port import (
+    InfraestruturaRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.operadora_repository_port import (
+    OperadoraRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.outorga_espectro_repository_port import (
+    OutorgaEspectroRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.qualidade_servico_repository_port import (
+    QualidadeServicoRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.sla_repository_port import (
+    SLARepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusEspectro,
+    StatusIndicadorQualidade,
+    StatusOutorga,
+    StatusQualidadeServico,
+    StatusSLA,
+    TipoEspectro,
+    TipoServico,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import (
+    Assinante,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import (
+    Espectro,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.indicador_qualidade import (
+    IndicadorQualidade,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.infraestrutura_telco import (
+    InfraestruturaTelco,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.operadora import (
+    Operadora,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.outorga_espectro import (
+    OutorgaEspectro,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.qualidade_servico import (
+    QualidadeServico,
+)
 from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.sla import SLA
 
-class InMemoryOperadoraRepository(OperadoraRepositoryPort):
 
+class InMemoryOperadoraRepository(OperadoraRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Operadora] = {}
 
@@ -59,8 +103,8 @@ class InMemoryOperadoraRepository(OperadoraRepositoryPort):
     async def delete(self, operadora_id: UUID) -> bool:
         return self._items.pop(operadora_id, None) is not None
 
-class InMemoryAssinanteRepository(AssinanteRepositoryPort):
 
+class InMemoryAssinanteRepository(AssinanteRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Assinante] = {}
 
@@ -105,12 +149,12 @@ class InMemoryAssinanteRepository(AssinanteRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'ASS/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_assinante.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"ASS/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_assinante.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryInfraestruturaRepository(InfraestruturaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, InfraestruturaTelco] = {}
 
@@ -149,12 +193,12 @@ class InMemoryInfraestruturaRepository(InfraestruturaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'INF/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_infra.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"INF/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_infra.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, OutorgaEspectro] = {}
 
@@ -188,12 +232,12 @@ class InMemoryOutorgaEspectroRepository(OutorgaEspectroRepositoryPort):
 
     async def next_numero(self) -> str:
         year = date.today().year
-        prefix = f'OUT/{year}/'
-        count = sum((1 for item in self._items.values() if item.numero_outorga.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"OUT/{year}/"
+        count = sum(1 for item in self._items.values() if item.numero_outorga.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryEspectroRepository(EspectroRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Espectro] = {}
 
@@ -232,12 +276,12 @@ class InMemoryEspectroRepository(EspectroRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'ESP/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_espectro.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"ESP/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_espectro.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemorySLARepository(SLARepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, SLA] = {}
 
@@ -255,9 +299,15 @@ class InMemorySLARepository(SLARepositoryPort):
                 return item
         return None
 
-    async def find_ativo_por_operadora_servico(self, operadora_id: UUID, servico: TipoServico) -> SLA | None:
+    async def find_ativo_por_operadora_servico(
+        self, operadora_id: UUID, servico: TipoServico
+    ) -> SLA | None:
         for item in sorted(self._items.values(), key=lambda row: row.data_inicio, reverse=True):
-            if item.operadora_id == operadora_id and item.servico == servico and (item.status == StatusSLA.ATIVO):
+            if (
+                item.operadora_id == operadora_id
+                and item.servico == servico
+                and (item.status == StatusSLA.ATIVO)
+            ):
                 return item
         return None
 
@@ -277,12 +327,12 @@ class InMemorySLARepository(SLARepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'SLA/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_sla.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"SLA/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_sla.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryQualidadeServicoRepository(QualidadeServicoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, QualidadeServico] = {}
 
@@ -307,8 +357,16 @@ class InMemoryQualidadeServicoRepository(QualidadeServicoRepositoryPort):
         items = [item for item in self._items.values() if item.operadora_id == operadora_id]
         return sorted(items, key=lambda item: item.codigo_medicao)
 
-    async def list_by_operadora_periodo(self, operadora_id: UUID, referencia_ano: int, referencia_mes: int) -> list[QualidadeServico]:
-        items = [item for item in self._items.values() if item.operadora_id == operadora_id and item.data_medicao.year == referencia_ano and (item.data_medicao.month == referencia_mes)]
+    async def list_by_operadora_periodo(
+        self, operadora_id: UUID, referencia_ano: int, referencia_mes: int
+    ) -> list[QualidadeServico]:
+        items = [
+            item
+            for item in self._items.values()
+            if item.operadora_id == operadora_id
+            and item.data_medicao.year == referencia_ano
+            and (item.data_medicao.month == referencia_mes)
+        ]
         return sorted(items, key=lambda item: item.codigo_medicao)
 
     async def list_by_assinante(self, assinante_id: UUID) -> list[QualidadeServico]:
@@ -324,12 +382,12 @@ class InMemoryQualidadeServicoRepository(QualidadeServicoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'QLT/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_medicao.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"QLT/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_medicao.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, IndicadorQualidade] = {}
 
@@ -347,9 +405,15 @@ class InMemoryIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
                 return item
         return None
 
-    async def get_by_operadora_periodo(self, operadora_id: UUID, referencia_ano: int, referencia_mes: int) -> IndicadorQualidade | None:
+    async def get_by_operadora_periodo(
+        self, operadora_id: UUID, referencia_ano: int, referencia_mes: int
+    ) -> IndicadorQualidade | None:
         for item in self._items.values():
-            if item.operadora_id == operadora_id and item.referencia_ano == referencia_ano and (item.referencia_mes == referencia_mes):
+            if (
+                item.operadora_id == operadora_id
+                and item.referencia_ano == referencia_ano
+                and (item.referencia_mes == referencia_mes)
+            ):
                 return item
         return None
 
@@ -369,19 +433,27 @@ class InMemoryIndicadorQualidadeRepository(IndicadorQualidadeRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'IND/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_indicador.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"IND/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_indicador.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class FakeCitizenService(CitizenServicePort):
-
-    def __init__(self, *, active: bool=True) -> None:
+    def __init__(self, *, active: bool = True) -> None:
         self.active = active
 
     async def is_citizen_active(self, citizen_id: UUID) -> bool:
         return self.active
 
-class FakeRequestService(RequestServicePort):
 
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None) -> UUID | None:
+class FakeRequestService(RequestServicePort):
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ) -> UUID | None:
         return None

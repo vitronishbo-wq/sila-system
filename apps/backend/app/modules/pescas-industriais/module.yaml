@@ -1,0 +1,22 @@
+code: pescas-industriais
+module: pescas-industriais
+name: Pescas Industriais
+description: Regulacao de atividade pesqueira industrial.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: pescas-industriais
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusAnimal, TipoAnimal
 from apps.backend.app.modules.resources.pecuaria.domain.models.animal import Animal
 
-class AnimalRepositoryPort(ABC):
 
+class AnimalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, animal: Animal) -> Animal:
         pass
@@ -27,7 +29,9 @@ class AnimalRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_filtros(self, *, tipo: TipoAnimal | None=None, status: StatusAnimal | None=None) -> list[Animal]:
+    async def list_by_filtros(
+        self, *, tipo: TipoAnimal | None = None, status: StatusAnimal | None = None
+    ) -> list[Animal]:
         pass
 
     @abstractmethod

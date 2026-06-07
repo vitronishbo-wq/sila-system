@@ -1,6 +1,79 @@
 """Schemas Pydantic para API do módulo arquivo_nacional."""
-from .documento_schema import DocumentoCreateSchema, DocumentoResponseSchema, DocumentoDigitalizacaoSchema, DocumentoRestricaoSchema, DocumentoConservacaoSchema, DocumentoFaseSchema, DocumentoEliminacaoSchema
-from .processo_schema import ProcessoCreateSchema, ProcessoResponseSchema, ProcessoTramitacaoSchema, ProcessoRecebimentoSchema, ProcessoEncerramentoSchema, ProcessoArquivamentoSchema, ProcessoAutuarDocumentoSchema, HistoricoTramitacaoSchema
-from .plano_classificacao_schema import PlanoClassificacaoCreateSchema, PlanoClassificacaoResponseSchema, ClasseCreateSchema, ClasseResponseSchema, SubclasseCreateSchema, SubclasseResponseSchema, PlanoClassificacaoUpdateSchema, ClasseUpdateSchema, SubclasseUpdateSchema
-from .tabela_temporalidade_schema import TabelaTemporalidadeCreateSchema, TabelaTemporalidadeResponseSchema, RegraTemporalidadeCreateSchema, RegraTemporalidadeResponseSchema, EventoTemporalidadeCreateSchema, EventoTemporalidadeResponseSchema, TabelaTemporalidadeUpdateSchema, RegraTemporalidadeUpdateSchema, AplicarTemporalidadeSchema
-__all__ = ['DocumentoCreateSchema', 'DocumentoResponseSchema', 'DocumentoDigitalizacaoSchema', 'DocumentoRestricaoSchema', 'DocumentoConservacaoSchema', 'DocumentoFaseSchema', 'DocumentoEliminacaoSchema', 'ProcessoCreateSchema', 'ProcessoResponseSchema', 'ProcessoTramitacaoSchema', 'ProcessoRecebimentoSchema', 'ProcessoEncerramentoSchema', 'ProcessoArquivamentoSchema', 'ProcessoAutuarDocumentoSchema', 'HistoricoTramitacaoSchema', 'PlanoClassificacaoCreateSchema', 'PlanoClassificacaoResponseSchema', 'ClasseCreateSchema', 'ClasseResponseSchema', 'SubclasseCreateSchema', 'SubclasseResponseSchema', 'PlanoClassificacaoUpdateSchema', 'ClasseUpdateSchema', 'SubclasseUpdateSchema', 'TabelaTemporalidadeCreateSchema', 'TabelaTemporalidadeResponseSchema', 'RegraTemporalidadeCreateSchema', 'RegraTemporalidadeResponseSchema', 'EventoTemporalidadeCreateSchema', 'EventoTemporalidadeResponseSchema', 'TabelaTemporalidadeUpdateSchema', 'RegraTemporalidadeUpdateSchema', 'AplicarTemporalidadeSchema']
+
+from .documento_schema import (
+    DocumentoConservacaoSchema,
+    DocumentoCreateSchema,
+    DocumentoDigitalizacaoSchema,
+    DocumentoEliminacaoSchema,
+    DocumentoFaseSchema,
+    DocumentoResponseSchema,
+    DocumentoRestricaoSchema,
+)
+from .plano_classificacao_schema import (
+    ClasseCreateSchema,
+    ClasseResponseSchema,
+    ClasseUpdateSchema,
+    PlanoClassificacaoCreateSchema,
+    PlanoClassificacaoResponseSchema,
+    PlanoClassificacaoUpdateSchema,
+    SubclasseCreateSchema,
+    SubclasseResponseSchema,
+    SubclasseUpdateSchema,
+)
+from .processo_schema import (
+    HistoricoTramitacaoSchema,
+    ProcessoArquivamentoSchema,
+    ProcessoAutuarDocumentoSchema,
+    ProcessoCreateSchema,
+    ProcessoEncerramentoSchema,
+    ProcessoRecebimentoSchema,
+    ProcessoResponseSchema,
+    ProcessoTramitacaoSchema,
+)
+from .tabela_temporalidade_schema import (
+    AplicarTemporalidadeSchema,
+    EventoTemporalidadeCreateSchema,
+    EventoTemporalidadeResponseSchema,
+    RegraTemporalidadeCreateSchema,
+    RegraTemporalidadeResponseSchema,
+    RegraTemporalidadeUpdateSchema,
+    TabelaTemporalidadeCreateSchema,
+    TabelaTemporalidadeResponseSchema,
+    TabelaTemporalidadeUpdateSchema,
+)
+
+__all__ = [
+    "DocumentoCreateSchema",
+    "DocumentoResponseSchema",
+    "DocumentoDigitalizacaoSchema",
+    "DocumentoRestricaoSchema",
+    "DocumentoConservacaoSchema",
+    "DocumentoFaseSchema",
+    "DocumentoEliminacaoSchema",
+    "ProcessoCreateSchema",
+    "ProcessoResponseSchema",
+    "ProcessoTramitacaoSchema",
+    "ProcessoRecebimentoSchema",
+    "ProcessoEncerramentoSchema",
+    "ProcessoArquivamentoSchema",
+    "ProcessoAutuarDocumentoSchema",
+    "HistoricoTramitacaoSchema",
+    "PlanoClassificacaoCreateSchema",
+    "PlanoClassificacaoResponseSchema",
+    "ClasseCreateSchema",
+    "ClasseResponseSchema",
+    "SubclasseCreateSchema",
+    "SubclasseResponseSchema",
+    "PlanoClassificacaoUpdateSchema",
+    "ClasseUpdateSchema",
+    "SubclasseUpdateSchema",
+    "TabelaTemporalidadeCreateSchema",
+    "TabelaTemporalidadeResponseSchema",
+    "RegraTemporalidadeCreateSchema",
+    "RegraTemporalidadeResponseSchema",
+    "EventoTemporalidadeCreateSchema",
+    "EventoTemporalidadeResponseSchema",
+    "TabelaTemporalidadeUpdateSchema",
+    "RegraTemporalidadeUpdateSchema",
+    "AplicarTemporalidadeSchema",
+]

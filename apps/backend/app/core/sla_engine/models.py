@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from datetime import datetime
 import unicodedata
-from enum import Enum
-from typing import Any, Dict, List, Optional
+from datetime import datetime
+from enum import StrEnum
+from typing import Any
 from uuid import uuid4
 
 from pydantic import BaseModel, Field, validator
-from sqlalchemy import Boolean, Column, DateTime, Float, Integer, JSON, String
+from sqlalchemy import JSON, Boolean, Column, DateTime, Float, Integer, String
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -17,7 +17,7 @@ Base = declarative_base()
 # ============================================================================
 
 
-class SLAPriority(str, Enum):
+class SLAPriority(StrEnum):
     CRITICAL = "critical"
     HIGH = "high"
     MEDIUM = "medium"
@@ -25,14 +25,14 @@ class SLAPriority(str, Enum):
     BULK = "bulk"
 
 
-class SLATier(str, Enum):
+class SLATier(StrEnum):
     PLATINUM = "platinum"
     GOLD = "gold"
     SILVER = "silver"
     BRONZE = "bronze"
 
 
-class CitizenType(str, Enum):
+class CitizenType(StrEnum):
     NORMAL = "normal"
     PRIORITARIO = "prioritario"
     EMPRESA = "empresa"
@@ -40,7 +40,7 @@ class CitizenType(str, Enum):
     DIPLOMATA = "diplomata"
 
 
-class ChannelType(str, Enum):
+class ChannelType(StrEnum):
     ONLINE = "online"
     PRESENCIAL = "presencial"
     TELEFONE = "telefone"
@@ -48,7 +48,7 @@ class ChannelType(str, Enum):
     USSD = "ussd"
 
 
-class Province(str, Enum):
+class Province(StrEnum):
     CABINDA = "cabinda"
     ZAIRE = "zaire"
     UIGE = "uige"
@@ -72,14 +72,14 @@ class Province(str, Enum):
     CUANDO = "cuando"
 
 
-class LoadLevel(str, Enum):
+class LoadLevel(StrEnum):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
     CRITICAL = "critical"
 
 
-class SLAStatus(str, Enum):
+class SLAStatus(StrEnum):
     DRAFT = "draft"
     PENDING_APPROVAL = "pending_approval"
     APPROVED = "approved"
@@ -188,7 +188,7 @@ class SLAContext(BaseModel):
     load_level: LoadLevel = LoadLevel.MEDIUM
     is_holiday: bool = False
     business_hours: bool = True
-    custom_factors: Dict[str, float] = Field(default_factory=dict)
+    custom_factors: dict[str, float] = Field(default_factory=dict)
 
     @validator("province", pre=True)
     def normalize_province(cls, v):
@@ -229,29 +229,29 @@ class SLAResponse(BaseModel):
     service_name: str
     base_hours: float
     calculated_hours: float
-    applied_policies: List[Dict[str, Any]]
-    applied_overrides: List[Dict[str, Any]]
-    breakdown: Dict[str, float]
-    warnings: List[str] = []
+    applied_policies: list[dict[str, Any]]
+    applied_overrides: list[dict[str, Any]]
+    breakdown: dict[str, float]
+    warnings: list[str] = []
     expires_at: datetime
 
 
 class SLAPolicyCreate(BaseModel):
     scope: str
     scope_id: str
-    service_id: Optional[str] = None
+    service_id: str | None = None
     multiplier: float = 1.0
-    max_hours: Optional[float] = None
-    min_hours: Optional[float] = None
+    max_hours: float | None = None
+    min_hours: float | None = None
     reason: str
     effective_from: datetime
-    effective_to: Optional[datetime] = None
+    effective_to: datetime | None = None
 
 
 class SLAOverrideCreate(BaseModel):
     name: str
     description: str
-    conditions: Dict[str, Any]
+    conditions: dict[str, Any]
     multiplier: float = 1.0
     priority: int = 0
 
@@ -266,8 +266,8 @@ class SLAViolationResponse(BaseModel):
     delta_hours: float
     breach_percentage: float
     severity: str
-    province: Optional[str]
-    citizen_type: Optional[str]
+    province: str | None
+    citizen_type: str | None
     escalated: bool
     created_at: datetime
 

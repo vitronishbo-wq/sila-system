@@ -1,43 +1,74 @@
 from __future__ import annotations
+
 from fastapi import APIRouter, Depends, HTTPException, status
+
 from apps.backend.app.modules.resources.agricultura.api.deps import get_credito_service
-from apps.backend.app.modules.resources.agricultura.api.schemas.credito_schema import CreditoAprovacaoInput, CreditoCreate, CreditoResponse
-from apps.backend.app.modules.resources.agricultura.application.services.credito_service import CreditoService
+from apps.backend.app.modules.resources.agricultura.api.schemas.credito_schema import (
+    CreditoAprovacaoInput,
+    CreditoCreate,
+    CreditoResponse,
+)
+from apps.backend.app.modules.resources.agricultura.application.services.credito_service import (
+    CreditoService,
+)
 from apps.backend.app.modules.resources.agricultura.exceptions import CreditoNotFoundError
-router = APIRouter(prefix='/creditos', tags=['Agricultura - creditos'])
 
-@router.post('/', response_model=CreditoResponse, status_code=status.HTTP_201_CREATED)
-async def solicitar_credito(data: CreditoCreate, service: CreditoService=Depends(get_credito_service)):
+router = APIRouter(prefix="/creditos", tags=["Agricultura - creditos"])
+credito_service_dep = Depends(get_credito_service)
+
+
+@router.post("/", response_model=CreditoResponse, status_code=status.HTTP_201_CREATED)
+async def solicitar_credito(
+    data: CreditoCreate, service: CreditoService = credito_service_dep
+):
     try:
-        return await service.solicitar(codigo_produtor=data.codigo_produtor, finalidade=data.finalidade, valor_solicitado=data.valor_solicitado)
+        return await service.solicitar(
+            codigo_produtor=data.codigo_produtor,
+            finalidade=data.finalidade,
+            valor_solicitado=data.valor_solicitado,
+        )
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.post('/{codigo_credito:path}/aprovar', response_model=CreditoResponse)
-async def aprovar_credito(codigo_credito: str, data: CreditoAprovacaoInput, service: CreditoService=Depends(get_credito_service)):
+
+@router.post("/{codigo_credito:path}/aprovar", response_model=CreditoResponse)
+async def aprovar_credito(
+    codigo_credito: str,
+    data: CreditoAprovacaoInput,
+    service: CreditoService = credito_service_dep,
+):
     try:
         return await service.aprovar(codigo_credito, valor_aprovado=data.valor_aprovado)
     except CreditoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.post('/{codigo_credito:path}/desembolsar', response_model=CreditoResponse)
-async def desembolsar_credito(codigo_credito: str, service: CreditoService=Depends(get_credito_service)):
+
+@router.post("/{codigo_credito:path}/desembolsar", response_model=CreditoResponse)
+async def desembolsar_credito(
+    codigo_credito: str, service: CreditoService = credito_service_dep
+):
     try:
         return await service.desembolsar(codigo_credito)
     except CreditoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.get('/{codigo_credito:path}', response_model=CreditoResponse)
-async def obter_credito(codigo_credito: str, service: CreditoService=Depends(get_credito_service)):
+
+@router.get("/{codigo_credito:path}", response_model=CreditoResponse)
+async def obter_credito(
+    codigo_credito: str, service: CreditoService = credito_service_dep
+):
     try:
         return await service.obter(codigo_credito)
     except CreditoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
-@router.get('/', response_model=list[CreditoResponse])
-async def listar_creditos(codigo_produtor: str | None=None, service: CreditoService=Depends(get_credito_service)):
+
+@router.get("/", response_model=list[CreditoResponse])
+async def listar_creditos(
+    codigo_produtor: str | None = None, service: CreditoService = credito_service_dep
+):
     return await service.listar(codigo_produtor=codigo_produtor)

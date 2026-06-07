@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_023_telecomunicacoes_foundation"
 down_revision = "20260302_022_juventude_programas_formacoes"
 branch_labels = None
@@ -89,12 +88,22 @@ def _create_operadoras_table() -> None:
     )
 
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_cnpj ON telecom_operadoras (cnpj)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_razao_social ON telecom_operadoras (razao_social)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_razao_social ON telecom_operadoras (razao_social)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_tipo ON telecom_operadoras (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_municipio ON telecom_operadoras (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_provincia ON telecom_operadoras (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_status ON telecom_operadoras (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_ativo ON telecom_operadoras (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_municipio ON telecom_operadoras (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_provincia ON telecom_operadoras (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_status ON telecom_operadoras (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_operadoras_ativo ON telecom_operadoras (ativo)"
+    )
 
 
 def _create_assinantes_table() -> None:
@@ -174,15 +183,33 @@ def _create_assinantes_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_codigo_assinante ON telecom_assinantes (codigo_assinante)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_operadora_id ON telecom_assinantes (operadora_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_tipo_plano ON telecom_assinantes (tipo_plano)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_servico_principal ON telecom_assinantes (servico_principal)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_status ON telecom_assinantes (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_municipio ON telecom_assinantes (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_provincia ON telecom_assinantes (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_citizen_id ON telecom_assinantes (citizen_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_ativo ON telecom_assinantes (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_codigo_assinante ON telecom_assinantes (codigo_assinante)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_operadora_id ON telecom_assinantes (operadora_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_tipo_plano ON telecom_assinantes (tipo_plano)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_servico_principal ON telecom_assinantes (servico_principal)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_status ON telecom_assinantes (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_municipio ON telecom_assinantes (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_provincia ON telecom_assinantes (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_citizen_id ON telecom_assinantes (citizen_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_telecom_assinantes_ativo ON telecom_assinantes (ativo)"
+    )
 
 
 def upgrade() -> None:

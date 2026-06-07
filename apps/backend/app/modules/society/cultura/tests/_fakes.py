@@ -1,30 +1,69 @@
 from __future__ import annotations
+
 from datetime import date, datetime
-from decimal import Decimal
 from uuid import UUID
-from apps.backend.app.modules.society.cultura.application.ports.artista_repository_port import ArtistaRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import BemCulturalRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.edital_repository_port import EditalRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import EspacoCulturalRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.educacao_service_port import EducacaoServicePort
-from apps.backend.app.modules.society.cultura.application.ports.evento_cultural_repository_port import EventoCulturalRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import ProjetoCulturalRepositoryPort
-from apps.backend.app.modules.society.cultura.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.society.cultura.application.ports.turismo_service_port import TurismoServicePort
-from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, FaseEditalCultural, NaturezaProjetoCultural, StatusEventoCultural, StatusPatrimonioImaterial, StatusProjetoCultural, StatusTombamento, TipoArtista, TipoEditalCultural, TipoEspacoCultural, TipoEventoCultural, TipoGrupoArtistico, TipoPatrimonio, TipoProjetoCultural
+
+from apps.backend.app.modules.society.cultura.application.ports.artista_repository_port import (
+    ArtistaRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.bem_cultural_repository_port import (
+    BemCulturalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.edital_repository_port import (
+    EditalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.educacao_service_port import (
+    EducacaoServicePort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.espaco_cultural_repository_port import (
+    EspacoCulturalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.evento_cultural_repository_port import (
+    EventoCulturalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import (
+    GrupoArtisticoRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import (
+    PatrimonioImaterialRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.projeto_cultural_repository_port import (
+    ProjetoCulturalRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.society.cultura.application.ports.turismo_service_port import (
+    TurismoServicePort,
+)
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    CategoriaPatrimonioImaterial,
+    FaseEditalCultural,
+    StatusEventoCultural,
+    StatusPatrimonioImaterial,
+    StatusProjetoCultural,
+    StatusTombamento,
+    TipoArtista,
+    TipoEditalCultural,
+    TipoEspacoCultural,
+    TipoEventoCultural,
+    TipoGrupoArtistico,
+    TipoPatrimonio,
+    TipoProjetoCultural,
+)
 from apps.backend.app.modules.society.cultura.domain.models.artista import Artista
 from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
 from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
 from apps.backend.app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
 from apps.backend.app.modules.society.cultura.domain.models.evento_cultural import EventoCultural
 from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
-from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import (
+    PatrimonioImaterial,
+)
 from apps.backend.app.modules.society.cultura.domain.models.projeto_cultural import ProjetoCultural
 
-class InMemoryArtistaRepository(ArtistaRepositoryPort):
 
+class InMemoryArtistaRepository(ArtistaRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Artista] = {}
 
@@ -54,12 +93,12 @@ class InMemoryArtistaRepository(ArtistaRepositoryPort):
 
     async def next_registro(self) -> str:
         year = date.today().year
-        prefix = f'ART/{year}/'
-        count = sum((1 for item in self._items.values() if item.registro_cultural.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"ART/{year}/"
+        count = sum(1 for item in self._items.values() if item.registro_cultural.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryBemCulturalRepository(BemCulturalRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, BemCultural] = {}
 
@@ -98,12 +137,12 @@ class InMemoryBemCulturalRepository(BemCulturalRepositoryPort):
 
     async def next_registro(self) -> str:
         year = date.today().year
-        prefix = f'IPAT/{year}/'
-        count = sum((1 for item in self._items.values() if item.registro_ipat.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"IPAT/{year}/"
+        count = sum(1 for item in self._items.values() if item.registro_ipat.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryEventoCulturalRepository(EventoCulturalRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, EventoCultural] = {}
 
@@ -138,7 +177,11 @@ class InMemoryEventoCulturalRepository(EventoCulturalRepositoryPort):
         return sorted(values, key=lambda item: (item.data_inicio, item.nome))
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[EventoCultural]:
-        values = [item for item in self._items.values() if item.data_inicio >= data_inicio and item.data_fim <= data_fim]
+        values = [
+            item
+            for item in self._items.values()
+            if item.data_inicio >= data_inicio and item.data_fim <= data_fim
+        ]
         return sorted(values, key=lambda item: (item.data_inicio, item.nome))
 
     async def delete(self, evento_id: UUID) -> bool:
@@ -146,12 +189,12 @@ class InMemoryEventoCulturalRepository(EventoCulturalRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'EVT/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_evento.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"EVT/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_evento.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, GrupoArtistico] = {}
 
@@ -178,7 +221,9 @@ class InMemoryGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
 
     async def list_by_municipio(self, municipio: str) -> list[GrupoArtistico]:
         normalized = municipio.strip().lower()
-        values = [item for item in self._items.values() if (item.municipio or '').lower() == normalized]
+        values = [
+            item for item in self._items.values() if (item.municipio or "").lower() == normalized
+        ]
         return sorted(values, key=lambda item: item.nome)
 
     async def delete(self, grupo_id: UUID) -> bool:
@@ -186,12 +231,12 @@ class InMemoryGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'GRP/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_grupo.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"GRP/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_grupo.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, PatrimonioImaterial] = {}
 
@@ -212,7 +257,9 @@ class InMemoryPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort):
     async def list_all(self) -> list[PatrimonioImaterial]:
         return sorted(self._items.values(), key=lambda item: item.nome)
 
-    async def list_by_categoria(self, categoria: CategoriaPatrimonioImaterial) -> list[PatrimonioImaterial]:
+    async def list_by_categoria(
+        self, categoria: CategoriaPatrimonioImaterial
+    ) -> list[PatrimonioImaterial]:
         values = [item for item in self._items.values() if item.categoria == categoria]
         return sorted(values, key=lambda item: item.nome)
 
@@ -230,12 +277,12 @@ class InMemoryPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort):
 
     async def next_registro(self) -> str:
         year = date.today().year
-        prefix = f'PIM/{year}/'
-        count = sum((1 for item in self._items.values() if item.registro_pni.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"PIM/{year}/"
+        count = sum(1 for item in self._items.values() if item.registro_pni.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryEspacoCulturalRepository(EspacoCulturalRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, EspacoCultural] = {}
 
@@ -270,12 +317,12 @@ class InMemoryEspacoCulturalRepository(EspacoCulturalRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'ESP/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_espaco.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"ESP/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_espaco.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, ProjetoCultural] = {}
 
@@ -305,7 +352,9 @@ class InMemoryProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
         return sorted(values, key=lambda item: item.data_submissao, reverse=True)
 
     async def list_by_periodo(self, data_inicio: date, data_fim: date) -> list[ProjetoCultural]:
-        values = [item for item in self._items.values() if data_inicio <= item.data_submissao <= data_fim]
+        values = [
+            item for item in self._items.values() if data_inicio <= item.data_submissao <= data_fim
+        ]
         return sorted(values, key=lambda item: item.data_submissao, reverse=True)
 
     async def delete(self, projeto_id: UUID) -> bool:
@@ -313,12 +362,12 @@ class InMemoryProjetoCulturalRepository(ProjetoCulturalRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PROJ/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_projeto.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"PROJ/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_projeto.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryEditalRepository(EditalRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Edital] = {}
 
@@ -348,7 +397,9 @@ class InMemoryEditalRepository(EditalRepositoryPort):
         return sorted(values, key=lambda item: item.data_publicacao, reverse=True)
 
     async def list_by_periodo(self, data_inicio: datetime, data_fim: datetime) -> list[Edital]:
-        values = [item for item in self._items.values() if data_inicio <= item.data_publicacao <= data_fim]
+        values = [
+            item for item in self._items.values() if data_inicio <= item.data_publicacao <= data_fim
+        ]
         return sorted(values, key=lambda item: item.data_publicacao, reverse=True)
 
     async def find_ativos(self) -> list[Edital]:
@@ -358,31 +409,39 @@ class InMemoryEditalRepository(EditalRepositoryPort):
     async def delete(self, edital_id: UUID) -> bool:
         return self._items.pop(edital_id, None) is not None
 
-class FakeCitizenService:
 
-    def __init__(self, *, active: bool=True) -> None:
+class FakeCitizenService:
+    def __init__(self, *, active: bool = True) -> None:
         self.active = active
 
     async def is_citizen_active(self, citizen_id: UUID) -> bool:
         return self.active
 
-class FakeTurismoService(TurismoServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeTurismoService(TurismoServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def atracao_exists(self, atracao_id: UUID) -> bool:
         return self.exists
 
-class FakeEducacaoService(EducacaoServicePort):
 
-    def __init__(self, *, exists: bool=True) -> None:
+class FakeEducacaoService(EducacaoServicePort):
+    def __init__(self, *, exists: bool = True) -> None:
         self.exists = exists
 
     async def instituicao_exists(self, instituicao_id: UUID) -> bool:
         return self.exists
 
-class FakeRequestService(RequestServicePort):
 
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None):
+class FakeRequestService(RequestServicePort):
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ):
         return None

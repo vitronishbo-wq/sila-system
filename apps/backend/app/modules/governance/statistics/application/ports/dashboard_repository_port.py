@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.governance.statistics.domain.models.dashboard import Dashboard
 
-class DashboardRepositoryPort(ABC):
 
+class DashboardRepositoryPort(ABC):
     @abstractmethod
     async def create(self, dashboard: Dashboard) -> Dashboard:
         raise NotImplementedError
@@ -13,7 +15,7 @@ class DashboardRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> list[Dashboard]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Dashboard]:
         raise NotImplementedError
 
     @abstractmethod

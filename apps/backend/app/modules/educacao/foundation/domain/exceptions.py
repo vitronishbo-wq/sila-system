@@ -1,0 +1,1 @@
+class FoundationError(Exception): pass

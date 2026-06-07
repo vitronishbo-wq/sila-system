@@ -1,15 +1,19 @@
-from typing import Any, Optional
+from typing import Any
+
 from pydantic import BaseModel
+
 
 class DashboardCreateSchema(BaseModel):
     name: str
-    description: Optional[str]
-    owner_id: Optional[int]
-    layout: Optional[Any]
+    description: str | None
+    owner_id: int | None
+    layout: Any | None
+
 
 class DashboardSchema(DashboardCreateSchema):
     id: int
-    created_at: Optional[str]
+    created_at: str | None
+
 
 class DashboardDomainDataResponse(BaseModel):
     domain: str
@@ -17,6 +21,7 @@ class DashboardDomainDataResponse(BaseModel):
     generated_at: str
     metrics: dict[str, float | int]
     metric_count: int
+
 
 class DashboardExecutiveResponse(BaseModel):
     reference_date: str

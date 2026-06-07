@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.agricultura.domain.enums import StatusEquipamento, TipoEquipamento
+
+from apps.backend.app.modules.resources.agricultura.domain.enums import (
+    StatusEquipamento,
+    TipoEquipamento,
+)
+
 
 class EquipamentoCreate(BaseModel):
     nome: str
@@ -12,8 +19,10 @@ class EquipamentoCreate(BaseModel):
     ano_fabricacao: int | None = None
     data_aquisicao: date | None = None
 
+
 class UsoEquipamentoInput(BaseModel):
     horas: float
+
 
 class EquipamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

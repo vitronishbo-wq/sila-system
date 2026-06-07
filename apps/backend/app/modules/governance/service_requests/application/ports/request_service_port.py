@@ -1,29 +1,48 @@
 from abc import ABC, abstractmethod
-from typing import Optional, List, Dict, Any
+from typing import Any
 from uuid import UUID
+
+from ...domain.enums import RequestChannel, RequestPriority, ServiceType
 from ...domain.models.service_request import ServiceRequest
-from ...domain.enums import ServiceType, RequestChannel, RequestPriority
+
 
 class RequestServicePort(ABC):
     """Interface do serviço de pedidos"""
 
     @abstractmethod
-    def create_request(self, citizen_id: UUID, created_by: UUID, service_type: ServiceType, title: str, description: Optional[str]=None, channel: RequestChannel=RequestChannel.WEB, priority: RequestPriority=RequestPriority.MEDIUM, metadata: Dict[str, Any]=None, tags: List[str]=None) -> ServiceRequest:
+    def create_request(
+        self,
+        citizen_id: UUID,
+        created_by: UUID,
+        service_type: ServiceType,
+        title: str,
+        description: str | None = None,
+        channel: RequestChannel = RequestChannel.WEB,
+        priority: RequestPriority = RequestPriority.MEDIUM,
+        metadata: dict[str, Any] = None,
+        tags: list[str] = None,
+    ) -> ServiceRequest:
         """Cria um novo pedido"""
         pass
 
     @abstractmethod
-    def get_request(self, request_id: UUID, user_id: UUID, is_citizen: bool=False) -> Optional[ServiceRequest]:
+    def get_request(
+        self, request_id: UUID, user_id: UUID, is_citizen: bool = False
+    ) -> ServiceRequest | None:
         """Busca pedido por ID com verificação de permissão"""
         pass
 
     @abstractmethod
-    def list_citizen_requests(self, citizen_id: UUID, skip: int=0, limit: int=100) -> List[ServiceRequest]:
+    def list_citizen_requests(
+        self, citizen_id: UUID, skip: int = 0, limit: int = 100
+    ) -> list[ServiceRequest]:
         """Lista pedidos de um cidadão"""
         pass
 
     @abstractmethod
-    def list_operator_requests(self, user_id: UUID, status: Optional[str]=None, skip: int=0, limit: int=100) -> List[ServiceRequest]:
+    def list_operator_requests(
+        self, user_id: UUID, status: str | None = None, skip: int = 0, limit: int = 100
+    ) -> list[ServiceRequest]:
         """Lista pedidos atribuídos a um operador"""
         pass
 
@@ -33,12 +52,16 @@ class RequestServicePort(ABC):
         pass
 
     @abstractmethod
-    def assign_request(self, request_id: UUID, assigned_to: UUID, assigned_by: UUID) -> ServiceRequest:
+    def assign_request(
+        self, request_id: UUID, assigned_to: UUID, assigned_by: UUID
+    ) -> ServiceRequest:
         """Atribui um pedido a um operador"""
         pass
 
     @abstractmethod
-    def change_status(self, request_id: UUID, new_status: str, changed_by: UUID, reason: Optional[str]=None) -> ServiceRequest:
+    def change_status(
+        self, request_id: UUID, new_status: str, changed_by: UUID, reason: str | None = None
+    ) -> ServiceRequest:
         """Altera o status de um pedido"""
         pass
 

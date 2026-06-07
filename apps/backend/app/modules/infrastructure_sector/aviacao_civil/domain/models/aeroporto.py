@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from uuid import UUID, uuid4
+
 from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import TipoAeroporto
+
 
 @dataclass
 class Aeroporto:
@@ -24,7 +27,7 @@ class Aeroporto:
 
     def registrar_movimento(self, passageiros: int) -> None:
         if passageiros < 0:
-            raise ValueError('Passageiros nao pode ser negativo')
+            raise ValueError("Passageiros nao pode ser negativo")
         self.movimento_anual += passageiros
 
     def ocupacao_percentual(self) -> float:

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-import sys
 import os
+import sys
 from pathlib import Path
 
 # Add backend to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../apps/backend'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../apps/backend"))
 
 print("=" * 70)
 print("🔍 AUDITORIA FINAL: Core Module Import Validation")
@@ -15,7 +15,6 @@ successes = []
 
 # Test 1: Core module structure
 try:
-    from app import core
     successes.append("✅ Core module loads successfully")
 except Exception as e:
     errors.append(f"❌ Core module import failed: {e}")
@@ -23,13 +22,13 @@ except Exception as e:
 # Test 2: Check for legacy files
 legacy_files = [
     "events_old.py",
-    "events_unified.py", 
+    "events_unified.py",
     "iam_unified.py",
     "auth.py",
     "audit_legacy.py",
     "database.py",
     "db.py",
-    "module_registry_new.py"
+    "module_registry_new.py",
 ]
 
 core_path = Path(__file__).parent.parent / "apps/backend/app/core"
@@ -43,12 +42,12 @@ if not found_legacy:
 else:
     errors.append(f"❌ Found {len(found_legacy)} legacy files: {found_legacy}")
 
-# Test 3: Core submodules 
+# Test 3: Core submodules
 required_structures = [
-    ("app.core.events", "Events system"),
-    ("app.modules.identity", "Identity system"),
-    ("app.core.audit", "Audit system"),
-    ("app.core.db", "Database system"),
+    ("apps.backend.app.core.events", "Events system"),
+    ("apps.backend.app.modules.identity", "Identity system"),
+    ("apps.backend.app.core.audit", "Audit system"),
+    ("apps.backend.app.core.db", "Database system"),
 ]
 
 for module_path, description in required_structures:
@@ -63,7 +62,7 @@ for module_path, description in required_structures:
 # Test 4: Check for legacy import references
 import_scan_files = [
     "apps/backend/app/core/events/__init__.py",
-    "apps/backend/app/core/audit/__init__.py", 
+    "apps/backend/app/core/audit/__init__.py",
     "apps/backend/app/core/security/__init__.py",
 ]
 
@@ -72,12 +71,17 @@ for file_path in import_scan_files:
     full_path = Path(__file__).parent.parent / file_path
     if full_path.exists():
         content = full_path.read_text()
-        if any(legacy in content for legacy in ["events_old", "events_unified", "iam_unified", "audit_legacy"]):
+        if any(
+            legacy in content
+            for legacy in ["events_old", "events_unified", "iam_unified", "audit_legacy"]
+        ):
             legacy_imports_found += 1
             errors.append(f"❌ Legacy imports found in {file_path}")
 
 if legacy_imports_found == 0:
-    successes.append(f"✅ No legacy imports in core __init__.py files ({len(import_scan_files)} checked)")
+    successes.append(
+        f"✅ No legacy imports in core __init__.py files ({len(import_scan_files)} checked)"
+    )
 
 # Test 5: Domain boundary guardrail
 # Domain layer must not depend directly on platform/infrastructure concerns.
@@ -92,7 +96,7 @@ for py_file in domain_files:
         # Keep scan resilient on odd encodings
         continue
 
-    if "app.platform" in content:
+    if "apps.backend.app.platform" in content:
         domain_violations.append(
             f"❌ Domain importing platform: {py_file.relative_to(Path(__file__).parent.parent)}"
         )

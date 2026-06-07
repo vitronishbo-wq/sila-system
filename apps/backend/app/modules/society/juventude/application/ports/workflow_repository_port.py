@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.juventude.domain.models._workflow_record import WorkflowRecord
 
-class WorkflowRepositoryPort(ABC):
 
+class WorkflowRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: WorkflowRecord) -> WorkflowRecord:
         raise NotImplementedError
@@ -14,7 +16,9 @@ class WorkflowRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None=None) -> list[WorkflowRecord]:
+    async def list_by_citizen(
+        self, citizen_id: UUID, service_type: str | None = None
+    ) -> list[WorkflowRecord]:
         raise NotImplementedError
 
     @abstractmethod

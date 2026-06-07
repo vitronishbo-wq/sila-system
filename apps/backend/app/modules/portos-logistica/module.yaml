@@ -1,0 +1,22 @@
+code: portos-logistica
+module: portos-logistica
+name: Portos e Logistica
+description: Gestao portuaria e autorizacoes logisticas.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: portos-logistica
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []

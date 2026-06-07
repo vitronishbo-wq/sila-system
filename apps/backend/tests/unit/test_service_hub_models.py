@@ -5,7 +5,6 @@ FASE 5: Unit Tests para módulo Service Hub
 from enum import Enum
 
 
-
 class ServiceStatus(Enum):
     """Enumeração de status de serviço"""
 

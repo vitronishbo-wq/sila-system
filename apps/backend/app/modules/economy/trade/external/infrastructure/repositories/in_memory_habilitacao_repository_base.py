@@ -1,13 +1,20 @@
 from __future__ import annotations
+
 from typing import Generic, TypeVar
 from uuid import UUID
-from apps.backend.app.modules.economy.trade.external.application.ports import HabilitacaoRepositoryPortBase
+
+from apps.backend.app.modules.economy.trade.external.application.ports import (
+    HabilitacaoRepositoryPortBase,
+)
 from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
 from apps.backend.app.modules.economy.trade.external.domain.models import HabilitacaoBase
-THabilitacao = TypeVar('THabilitacao', bound=HabilitacaoBase)
 
-class InMemoryHabilitacaoRepositoryBase(HabilitacaoRepositoryPortBase[THabilitacao], Generic[THabilitacao]):
+THabilitacao = TypeVar("THabilitacao", bound=HabilitacaoBase)
 
+
+class InMemoryHabilitacaoRepositoryBase(
+    HabilitacaoRepositoryPortBase[THabilitacao], Generic[THabilitacao]
+):
     def __init__(self) -> None:
         self._items: dict[UUID, THabilitacao] = {}
 
@@ -25,7 +32,7 @@ class InMemoryHabilitacaoRepositoryBase(HabilitacaoRepositoryPortBase[THabilitac
                 return item
         return None
 
-    async def list(self, *, status: StatusHabilitacao | None=None) -> list[THabilitacao]:
+    async def list(self, *, status: StatusHabilitacao | None = None) -> list[THabilitacao]:
         values = list(self._items.values())
         if status is not None:
             values = [item for item in values if item.status == status]

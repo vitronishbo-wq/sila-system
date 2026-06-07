@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusParcelamento, TipoParcelamento
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusParcelamento,
+    TipoParcelamento,
+)
+
 
 class ParcelamentoCreate(BaseModel):
     nome: str
@@ -18,11 +25,14 @@ class ParcelamentoCreate(BaseModel):
     area_sistema_viario_prevista: Decimal | None = None
     codigo_parcelamento: str | None = None
 
+
 class ParcelamentoConclusaoInput(BaseModel):
     quantidade_unidades_resultante: int
 
+
 class ParcelamentoMotivoInput(BaseModel):
     motivo: str
+
 
 class ParcelamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

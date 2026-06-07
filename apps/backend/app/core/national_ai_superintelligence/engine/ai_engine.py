@@ -1,5 +1,4 @@
 class AIEngine:
-
     def __init__(self):
         self.models = {}
 
@@ -9,5 +8,5 @@ class AIEngine:
     async def predict(self, model_name, data):
         model = self.models.get(model_name)
         if not model:
-            raise Exception('Model not found')
-        return {'prediction': len(data), 'confidence': 0.9}
+            raise Exception("Model not found")
+        return {"prediction": len(data), "confidence": 0.9}

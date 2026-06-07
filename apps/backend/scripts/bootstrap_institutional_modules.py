@@ -5,21 +5,24 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-from pathlib import Path
 import sys
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS
-from create_module import register_module_catalog, scaffold_module
+from create_module import register_module_catalog, scaffold_module  # noqa: E402
+
+from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Bootstrap all institutional modules.")
-    parser.add_argument("--force", action="store_true", help="Overwrite scaffold files when they already exist.")
+    parser.add_argument(
+        "--force", action="store_true", help="Overwrite scaffold files when they already exist."
+    )
     parser.add_argument(
         "--register-db",
         action="store_true",

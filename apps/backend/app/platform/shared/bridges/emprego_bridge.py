@@ -1,1 +1,1 @@
-from app.core.bridges.emprego_bridge import *
+from apps.backend.app.core.bridges.emprego_bridge import *

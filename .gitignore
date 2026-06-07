@@ -21,6 +21,7 @@ backend/.venv/
 .env.production
 .env.staging
 .env.test
+.env.devcontainer
 apps/backend/config/.env.development
 apps/backend/config/.env.production
 devops/.env.development
@@ -101,6 +102,9 @@ relatorios/
 # Logs
 *.log
 logs/
+
+# Dumps e snapshots locais de banco
+/backups/
 
 # Arquivos temporários
 *.backup.*

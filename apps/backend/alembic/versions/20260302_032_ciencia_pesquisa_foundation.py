@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_032_ciencia_pesquisa_foundation"
 down_revision = "20260302_031_protecao_civil_despachos_atendimentos"
 branch_labels = None
@@ -269,7 +268,9 @@ def _create_pesquisadores_table() -> None:
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_ciencia_pesquisadores_ativo ON ciencia_pesquisadores (ativo)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_ciencia_pesquisadores_orcid ON ciencia_pesquisadores (orcid)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_ciencia_pesquisadores_orcid ON ciencia_pesquisadores (orcid)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_ciencia_pesquisadores_researcher_id ON ciencia_pesquisadores (researcher_id)"
     )

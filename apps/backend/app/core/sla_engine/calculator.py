@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -15,10 +15,10 @@ from .models import (
     LOAD_FACTORS,
     PROVINCE_FACTORS,
     LoadLevel,
+    SLABaseDB,
     SLAContext,
     SLARequest,
     SLAResponse,
-    SLABaseDB,
 )
 from .policies import load_overrides, load_policies
 
@@ -27,9 +27,9 @@ logger = logging.getLogger(__name__)
 
 def apply_context_factors(
     base_hours: float, context: SLAContext
-) -> tuple[float, Dict[str, float], List[str]]:
-    breakdown: Dict[str, float] = {"base": base_hours}
-    warnings: List[str] = []
+) -> tuple[float, dict[str, float], list[str]]:
+    breakdown: dict[str, float] = {"base": base_hours}
+    warnings: list[str] = []
 
     breakdown["province"] = PROVINCE_FACTORS.get(context.province, 1.0)
     breakdown["citizen_type"] = CITIZEN_TYPE_FACTORS.get(context.citizen_type, 1.0)
@@ -37,10 +37,7 @@ def apply_context_factors(
     breakdown["load"] = LOAD_FACTORS.get(context.load_level, 1.0)
 
     total_factor = (
-        breakdown["province"]
-        * breakdown["citizen_type"]
-        * breakdown["channel"]
-        * breakdown["load"]
+        breakdown["province"] * breakdown["citizen_type"] * breakdown["channel"] * breakdown["load"]
     )
 
     if context.is_holiday:
@@ -67,7 +64,9 @@ class SLACalculator:
     Aplica hierarquia: Base > Políticas > Overrides > Contexto
     """
 
-    def __init__(self, db: AsyncSession, cache: Optional[SLACache] = None, metrics: Optional[SLAMetrics] = None):
+    def __init__(
+        self, db: AsyncSession, cache: SLACache | None = None, metrics: SLAMetrics | None = None
+    ):
         self.db = db
         self.cache = cache
         self.metrics = metrics or SLAMetrics()
@@ -75,7 +74,7 @@ class SLACalculator:
     async def calculate(
         self,
         service_id: str,
-        context: Optional[SLAContext] = None,
+        context: SLAContext | None = None,
         skip_cache: bool = False,
     ) -> SLAResponse:
         start_time = datetime.utcnow()
@@ -94,7 +93,7 @@ class SLACalculator:
         context = context or SLAContext()
 
         hours = sla_base.base_hours
-        applied_policies: List[Dict[str, Any]] = []
+        applied_policies: list[dict[str, Any]] = []
         policies = await self._get_applicable_policies(service_id, context)
         for policy in policies:
             if policy["multiplier"] != 1.0:
@@ -118,7 +117,7 @@ class SLACalculator:
                 applied_policies.append({"type": "min_hours", "value": policy["min_hours"]})
 
         breakdown = {"base": sla_base.base_hours}
-        applied_overrides: List[Dict[str, Any]] = []
+        applied_overrides: list[dict[str, Any]] = []
         overrides = await self._get_applicable_overrides(service_id, context)
         for override in overrides:
             if override["multiplier"] != 1.0:
@@ -167,10 +166,10 @@ class SLACalculator:
 
     async def calculate_batch(
         self,
-        requests: List[Tuple[str, Optional[SLAContext]]],
+        requests: list[tuple[str, SLAContext | None]],
         batch_size: int = 100,
-    ) -> List[Optional[SLAResponse]]:
-        results: List[Optional[SLAResponse]] = []
+    ) -> list[SLAResponse | None]:
+        results: list[SLAResponse | None] = []
         for i in range(0, len(requests), batch_size):
             batch = requests[i : i + batch_size]
             for service_id, context in batch:
@@ -186,8 +185,8 @@ class SLACalculator:
         self,
         service_id: str,
         elapsed_hours: float,
-        context: Optional[SLAContext] = None,
-    ) -> Dict[str, Any]:
+        context: SLAContext | None = None,
+    ) -> dict[str, Any]:
         sla = await self.calculate(service_id, context)
         target = sla.calculated_hours
         progress = elapsed_hours / target if target else 0
@@ -222,21 +221,21 @@ class SLACalculator:
             "status": "breached" if elapsed_hours > target else "active",
         }
 
-    async def _get_sla_base(self, service_id: str) -> Optional[SLABaseDB]:
-        result = await self.db.execute(
-            select(SLABaseDB).where(SLABaseDB.service_id == service_id)
-        )
+    async def _get_sla_base(self, service_id: str) -> SLABaseDB | None:
+        result = await self.db.execute(select(SLABaseDB).where(SLABaseDB.service_id == service_id))
         return result.scalar_one_or_none()
 
-    async def _get_applicable_policies(self, service_id: str, context: SLAContext) -> List[Dict[str, Any]]:
+    async def _get_applicable_policies(
+        self, service_id: str, context: SLAContext
+    ) -> list[dict[str, Any]]:
         return await load_policies(self.db, service_id, context)
 
     async def _get_applicable_overrides(
         self, service_id: str, context: SLAContext
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         return await load_overrides(self.db, service_id, context)
 
-    def _generate_warnings(self, calculated: float, base: float) -> List[str]:
+    def _generate_warnings(self, calculated: float, base: float) -> list[str]:
         warnings = []
         if calculated > base * 1.5:
             warnings.append("SLA muito superior à base (50%+)")

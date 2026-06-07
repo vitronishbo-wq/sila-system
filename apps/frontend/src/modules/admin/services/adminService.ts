@@ -1,4 +1,4 @@
-import { adminHttp } from "../../../api/adminHttp";
+import { adminHttp } from "@/api/adminHttp";
 
 export const adminService = {
   getDashboard: () => adminHttp.get("/admin/dashboard"),

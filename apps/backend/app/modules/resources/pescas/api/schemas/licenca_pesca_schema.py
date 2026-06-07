@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.resources.pescas.domain.enums import StatusLicenca
+
 
 class LicencaPescaCreate(BaseModel):
     embarcacao_id: UUID
@@ -11,6 +14,7 @@ class LicencaPescaCreate(BaseModel):
     modalidade_autorizada: str
     zona_pesca_id: UUID
     validade_dias: int = 365
+
 
 class LicencaPescaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -23,4 +27,4 @@ class LicencaPescaResponse(BaseModel):
     status: StatusLicenca
     modalidade_autorizada: str
     zona_pesca_id: UUID
-    observacoes: Optional[str] = None
+    observacoes: str | None = None

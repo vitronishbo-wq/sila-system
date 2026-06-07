@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusEvidencia
 from apps.backend.app.modules.public_security.domain.models.evidencia import Evidencia
 
-class EvidenciaRepositoryPort(ABC):
 
+class EvidenciaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, evidencia: Evidencia) -> Evidencia:
         raise NotImplementedError

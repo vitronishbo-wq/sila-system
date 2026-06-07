@@ -8,9 +8,7 @@ from httpx import AsyncClient
 
 
 @pytest.mark.asyncio
-async def test_citizenship_registration_flow(
-    async_http_client: AsyncClient, mock_user
-):
+async def test_citizenship_registration_flow(async_http_client: AsyncClient, mock_user):
     """
     E2E: fluxo de onboarding e validação de cidadania (rotas atuais)
     """
@@ -32,18 +30,15 @@ async def test_citizenship_registration_flow(
     assert response.status_code == 200
     assert response.json().get("alive") is True
 
+
 @pytest.mark.asyncio
-async def test_citizenship_cross_module_flow(
-    async_http_client: AsyncClient, mock_user
-):
+async def test_citizenship_cross_module_flow(async_http_client: AsyncClient, mock_user):
     """
     E2E: valida integração mínima entre auth, identidade e observabilidade.
     """
     _ = mock_user
 
-    identity_response = await async_http_client.get(
-        "/api/v1/identidade/bi/tipos-evento"
-    )
+    identity_response = await async_http_client.get("/api/v1/identidade/bi/tipos-evento")
     assert identity_response.status_code == 200
 
     me_response = await async_http_client.get("/api/auth/me")

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """
 Orphan Reference Cleaner
@@ -13,7 +12,6 @@ Data: 2025-11-18
 
 import re
 from pathlib import Path
-from typing import List, Dict, Tuple
 
 
 def c(text, color):
@@ -29,9 +27,7 @@ def c(text, color):
     return COLORS.get(color, "") + text + COLORS["reset"]
 
 
-def find_orphan_references(
-    project_dir: Path, orphan_names: List[str]
-) -> Dict[str, List[str]]:
+def find_orphan_references(project_dir: Path, orphan_names: list[str]) -> dict[str, list[str]]:
     """Find all Python files that reference orphan files."""
     references = {}
 
@@ -39,9 +35,7 @@ def find_orphan_references(
         references[orphan] = []
 
     for py_file in project_dir.rglob("*.py"):
-        if any(
-            skip in str(py_file) for skip in ["venv", "node_modules", "__pycache__"]
-        ):
+        if any(skip in str(py_file) for skip in ["venv", "node_modules", "__pycache__"]):
             continue
 
         try:
@@ -67,7 +61,7 @@ def find_orphan_references(
     return references
 
 
-def remove_orphan_mapping(file_path: Path, orphan_name: str) -> Tuple[bool, str]:
+def remove_orphan_mapping(file_path: Path, orphan_name: str) -> tuple[bool, str]:
     """Remove mapping entry for orphan file."""
     try:
         content = file_path.read_text(encoding="utf-8")
@@ -86,7 +80,7 @@ def remove_orphan_mapping(file_path: Path, orphan_name: str) -> Tuple[bool, str]
         return False, str(e)
 
 
-def create_symlink_mapping(tools_dir: Path, target_file: Path) -> Dict[str, Path]:
+def create_symlink_mapping(tools_dir: Path, target_file: Path) -> dict[str, Path]:
     """Map orphan names to actual target files."""
     mapping = {}
 
@@ -98,12 +92,10 @@ def create_symlink_mapping(tools_dir: Path, target_file: Path) -> Dict[str, Path
     return mapping
 
 
-def repair_symlinks(project_dir: Path) -> Dict:
+def repair_symlinks(project_dir: Path) -> dict:
     """Repair symlinks to point to correct targets."""
     tools_dir = project_dir / "tools"
-    target = (
-        project_dir / "automation" / "maintenance" / "quality_deprecation_wrapper.py"
-    )
+    target = project_dir / "automation" / "maintenance" / "quality_deprecation_wrapper.py"
 
     results = {"fixed": [], "failed": []}
 
@@ -141,9 +133,7 @@ def main():
     """Main cleanup routine."""
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Clean orphan references from the project"
-    )
+    parser = argparse.ArgumentParser(description="Clean orphan references from the project")
     parser.add_argument("project", nargs="?", default=".", help="Project directory")
     parser.add_argument(
         "--dry-run",
@@ -178,7 +168,7 @@ def main():
             for file in files[:3]:
                 print(f"      • {file}")
             if len(files) > 3:
-                print(f"      ... and {len(files)-3} more")
+                print(f"      ... and {len(files) - 3} more")
 
     if not found_any:
         print(c("  ✓ No orphan references found", "green"))
@@ -200,9 +190,7 @@ def main():
 
     # === STEP 3: Remove Mappings ===
     print(c("\n[3/3] Removing deprecated mappings...", "blue"))
-    quality_wrapper = (
-        project_dir / "automation" / "maintenance" / "quality_deprecation_wrapper.py"
-    )
+    quality_wrapper = project_dir / "automation" / "maintenance" / "quality_deprecation_wrapper.py"
 
     if quality_wrapper.exists() and found_any:
         cleaned = 0

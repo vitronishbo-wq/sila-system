@@ -1,11 +1,15 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.economy.trade.external.application.ports import ImportadorRepositoryPort
+
+from apps.backend.app.modules.economy.trade.external.application.ports import (
+    ImportadorRepositoryPort,
+)
 from apps.backend.app.modules.economy.trade.external.domain.enums import StatusHabilitacao
 from apps.backend.app.modules.economy.trade.external.domain.models import Importador
 
-class InMemoryImportadorRepository(ImportadorRepositoryPort):
 
+class InMemoryImportadorRepository(ImportadorRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, Importador] = {}
 
@@ -23,7 +27,9 @@ class InMemoryImportadorRepository(ImportadorRepositoryPort):
                 return item
         return None
 
-    async def list(self, *, status: StatusHabilitacao | None=None, municipio: str | None=None) -> list[Importador]:
+    async def list(
+        self, *, status: StatusHabilitacao | None = None, municipio: str | None = None
+    ) -> list[Importador]:
         values = list(self._items.values())
         if status is not None:
             values = [item for item in values if item.status == status]

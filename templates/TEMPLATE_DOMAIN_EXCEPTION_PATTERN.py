@@ -36,4 +36,3 @@ __all__ = ["DomainException"]
 # 4. Result: 26 files become 1 line each → easy to delete later
 #
 # ============================================================================
-

@@ -1,6 +1,8 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from uuid import UUID, uuid4
+
 
 @dataclass
 class Enlatado:
@@ -9,5 +11,5 @@ class Enlatado:
     ativo: bool = True
 
     @classmethod
-    def criar(cls, *, nome: str) -> 'Enlatado':
+    def criar(cls, *, nome: str) -> Enlatado:
         return cls(id=uuid4(), nome=nome.strip(), ativo=True)

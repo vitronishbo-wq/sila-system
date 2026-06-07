@@ -1,15 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import PatrimonioImaterialRepositoryPort
-from apps.backend.app.modules.society.cultura.domain.enums import CategoriaPatrimonioImaterial, StatusPatrimonioImaterial
-from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import PatrimonioImaterial
-from apps.backend.app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import PatrimonioImaterialModel
+
+from apps.backend.app.modules.society.cultura.application.ports.patrimonio_imaterial_repository_port import (
+    PatrimonioImaterialRepositoryPort,
+)
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    CategoriaPatrimonioImaterial,
+    StatusPatrimonioImaterial,
+)
+from apps.backend.app.modules.society.cultura.domain.models.patrimonio_imaterial import (
+    PatrimonioImaterial,
+)
+from apps.backend.app.modules.society.cultura.infrastructure.models.patrimonio_imaterial_model import (
+    PatrimonioImaterialModel,
+)
+
 
 class SQLAlchemyPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -41,7 +53,9 @@ class SQLAlchemyPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort)
         return self._to_domain(model) if model else None
 
     async def get_by_registro(self, registro_pni: str) -> PatrimonioImaterial | None:
-        stmt = select(PatrimonioImaterialModel).where(PatrimonioImaterialModel.registro_pni == registro_pni.strip())
+        stmt = select(PatrimonioImaterialModel).where(
+            PatrimonioImaterialModel.registro_pni == registro_pni.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -50,18 +64,32 @@ class SQLAlchemyPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort)
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
-    async def list_by_categoria(self, categoria: CategoriaPatrimonioImaterial) -> list[PatrimonioImaterial]:
-        stmt = select(PatrimonioImaterialModel).where(PatrimonioImaterialModel.categoria == categoria.value).order_by(PatrimonioImaterialModel.nome.asc())
+    async def list_by_categoria(
+        self, categoria: CategoriaPatrimonioImaterial
+    ) -> list[PatrimonioImaterial]:
+        stmt = (
+            select(PatrimonioImaterialModel)
+            .where(PatrimonioImaterialModel.categoria == categoria.value)
+            .order_by(PatrimonioImaterialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[PatrimonioImaterial]:
-        stmt = select(PatrimonioImaterialModel).where(func.lower(PatrimonioImaterialModel.municipio) == municipio.strip().lower()).order_by(PatrimonioImaterialModel.nome.asc())
+        stmt = (
+            select(PatrimonioImaterialModel)
+            .where(func.lower(PatrimonioImaterialModel.municipio) == municipio.strip().lower())
+            .order_by(PatrimonioImaterialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusPatrimonioImaterial) -> list[PatrimonioImaterial]:
-        stmt = select(PatrimonioImaterialModel).where(PatrimonioImaterialModel.status == status.value).order_by(PatrimonioImaterialModel.nome.asc())
+        stmt = (
+            select(PatrimonioImaterialModel)
+            .where(PatrimonioImaterialModel.status == status.value)
+            .order_by(PatrimonioImaterialModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -75,10 +103,30 @@ class SQLAlchemyPatrimonioImaterialRepository(PatrimonioImaterialRepositoryPort)
 
     async def next_registro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(PatrimonioImaterialModel).where(PatrimonioImaterialModel.registro_pni.like(f'PIM/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(PatrimonioImaterialModel)
+            .where(PatrimonioImaterialModel.registro_pni.like(f"PIM/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'PIM/{ano}/{count + 1:05d}'
+        return f"PIM/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: PatrimonioImaterialModel) -> PatrimonioImaterial:
-        return PatrimonioImaterial(id=model.id, registro_pni=model.registro_pni, nome=model.nome, categoria=CategoriaPatrimonioImaterial(model.categoria), descricao=model.descricao, comunidade=model.comunidade, municipio=model.municipio, provincia=model.provincia, data_registro=model.data_registro, status=StatusPatrimonioImaterial(model.status), atracao_turistica_id=model.atracao_turistica_id, instituicao_educacional_id=model.instituicao_educacional_id, plano_salvaguarda=model.plano_salvaguarda, ativo=model.ativo, observacoes=model.observacoes)
+        return PatrimonioImaterial(
+            id=model.id,
+            registro_pni=model.registro_pni,
+            nome=model.nome,
+            categoria=CategoriaPatrimonioImaterial(model.categoria),
+            descricao=model.descricao,
+            comunidade=model.comunidade,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            data_registro=model.data_registro,
+            status=StatusPatrimonioImaterial(model.status),
+            atracao_turistica_id=model.atracao_turistica_id,
+            instituicao_educacional_id=model.instituicao_educacional_id,
+            plano_salvaguarda=model.plano_salvaguarda,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
 from apps.backend.app.modules.society.cultura.domain.models.bem_cultural import BemCultural
 
-class BemCulturalRepositoryPort(ABC):
 
+class BemCulturalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, bem: BemCultural) -> BemCultural:
         pass

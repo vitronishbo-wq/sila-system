@@ -1,0 +1,17 @@
+code: _scaffold
+module: _scaffold
+name: _scaffold
+description: Template interno para scaffolding de novos modulos.
+type: macro_domain
+normalized: true
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published: []
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+services: []

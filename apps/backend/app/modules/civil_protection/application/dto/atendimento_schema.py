@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.civil_protection.domain.enums import StatusAtendimento
+
 
 class AtendimentoCreate(BaseModel):
     despacho_id: UUID
@@ -14,13 +18,16 @@ class AtendimentoCreate(BaseModel):
     observacoes: str | None = None
     citizen_id: UUID | None = None
 
+
 class AtendimentoStatusUpdate(BaseModel):
     status: StatusAtendimento
     observacoes: str | None = None
 
+
 class AtendimentoFinalizacao(BaseModel):
     resumo: str | None = None
     observacoes: str | None = None
+
 
 class AtendimentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

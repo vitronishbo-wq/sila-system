@@ -13,7 +13,6 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
-
 BACKEND_DIR = Path(__file__).resolve().parents[1]
 ALEMBIC_INI = BACKEND_DIR / "alembic.ini"
 ALEMBIC_VERSIONS = BACKEND_DIR / "alembic" / "versions"
@@ -50,7 +49,11 @@ def _expected_head_revision() -> str:
         file_revision = None
         file_down = None
         for node in module.body:
-            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            if (
+                isinstance(node, ast.Assign)
+                and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+            ):
                 name = node.targets[0].id
                 value = _literal_eval(node.value)
                 if name == "revision" and isinstance(value, str):
@@ -88,12 +91,18 @@ async def _read_alembic_state(db_url: str) -> tuple[list[str], dict[str, bool]]:
             versions = [
                 row[0]
                 for row in (
-                    await conn.execute(text("SELECT version_num FROM alembic_version ORDER BY version_num"))
+                    await conn.execute(
+                        text("SELECT version_num FROM alembic_version ORDER BY version_num")
+                    )
                 ).fetchall()
             ]
             sentinels = {}
             for table_name in MIGRATION_SENTINEL_TABLES:
-                exists = (await conn.execute(text("SELECT to_regclass(:table_name)"), {"table_name": table_name})).scalar()
+                exists = (
+                    await conn.execute(
+                        text("SELECT to_regclass(:table_name)"), {"table_name": table_name}
+                    )
+                ).scalar()
                 sentinels[table_name] = bool(exists)
             return versions, sentinels
     finally:
@@ -121,8 +130,7 @@ def test_alembic_upgrade_updates_version_table() -> None:
         f"expected={expected_head} output={current.stdout.strip()}"
     )
     assert versions == [expected_head], (
-        "alembic_version out of sync after upgrade. "
-        f"expected={[expected_head]} actual={versions}"
+        f"alembic_version out of sync after upgrade. expected={[expected_head]} actual={versions}"
     )
 
     any_sentinel_exists = any(sentinel_tables.values())

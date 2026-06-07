@@ -17,7 +17,6 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Optional
 
 import httpx
 import pytest
@@ -34,7 +33,7 @@ backend_path = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_path))
 
 try:
-    from app.main import app
+    from apps.backend.app.main import app
     from config import settings
 except ImportError as e:
     print(f"⚠️ Aviso: Não foi possível importar a aplicação FastAPI: {e}")
@@ -47,18 +46,18 @@ class ModuleHealthResult:
 
     module_name: str
     is_healthy: bool
-    status_code: Optional[int]
+    status_code: int | None
     response_time: float
-    error_message: Optional[str] = None
-    endpoint_tested: Optional[str] = None
-    integration_status: Optional[Dict[str, bool]] = None
+    error_message: str | None = None
+    endpoint_tested: str | None = None
+    integration_status: dict[str, bool] | None = None
 
 
 @dataclass
 class AuthCredentials:
     """Credenciais de autenticação para testes."""
 
-    access_token: Optional[str] = None
+    access_token: str | None = None
     token_type: str = "bearer"
     is_authenticated: bool = False
 
@@ -156,24 +155,20 @@ class ModuleHealthChecker:
                 self.auth.is_authenticated = True
                 return True
             else:
-                print(
-                    f"⚠️ Falha na autenticação: {response.status_code} - {response.text}"
-                )
+                print(f"⚠️ Falha na autenticação: {response.status_code} - {response.text}")
                 return False
 
         except Exception as e:
             print(f"❌ Erro na autenticação: {e}")
             return False
 
-    def get_auth_headers(self) -> Dict[str, str]:
+    def get_auth_headers(self) -> dict[str, str]:
         """Retorna headers de autenticação se disponível."""
         if self.auth.is_authenticated and self.auth.access_token:
             return {"Authorization": f"{self.auth.token_type} {self.auth.access_token}"}
         return {}
 
-    async def test_module_endpoint(
-        self, module_name: str, endpoint: str
-    ) -> ModuleHealthResult:
+    async def test_module_endpoint(self, module_name: str, endpoint: str) -> ModuleHealthResult:
         """
         Testa um endpoint específico de um módulo.
 
@@ -206,15 +201,13 @@ class ModuleHealthChecker:
 
             # Adiciona mensagem de erro se necessário
             if not is_healthy:
-                result.error_message = f"Módulo não encontrado (404) - Rota não existe"
+                result.error_message = "Módulo não encontrado (404) - Rota não existe"
             elif response.status_code == 401:
                 result.error_message = "Não autorizado - Verificar autenticação"
             elif response.status_code == 403:
                 result.error_message = "Proibido - Usuário sem permissão"
             elif response.status_code >= 500:
-                result.error_message = (
-                    f"Erro interno do servidor ({response.status_code})"
-                )
+                result.error_message = f"Erro interno do servidor ({response.status_code})"
 
             return result
 
@@ -238,9 +231,7 @@ class ModuleHealthChecker:
                 endpoint_tested=endpoint,
             )
 
-    async def test_module_integration(
-        self, module1: str, module2: str, endpoint: str
-    ) -> bool:
+    async def test_module_integration(self, module1: str, module2: str, endpoint: str) -> bool:
         """
         Testa integração entre dois módulos.
 
@@ -292,14 +283,14 @@ class ModuleHealthChecker:
             integration_status = {}
             for module1, module2, endpoint in self.critical_integrations:
                 if module1 == module_name or module2 == module_name:
-                    integration_status[f"{module1}-{module2}"] = (
-                        await self.test_module_integration(module1, module2, endpoint)
+                    integration_status[f"{module1}-{module2}"] = await self.test_module_integration(
+                        module1, module2, endpoint
                     )
             result.integration_status = integration_status
 
         return result
 
-    async def run_health_check(self) -> Dict[str, ModuleHealthResult]:
+    async def run_health_check(self) -> dict[str, ModuleHealthResult]:
         """
         Executa verificação de saúde para todos os módulos críticos.
 
@@ -311,7 +302,7 @@ class ModuleHealthChecker:
         if not auth_success:
             print("⚠️ Continuando sem autenticação (alguns testes podem falhar)")
 
-        print(f"🏥 Iniciando verificação de saúde dos módulos...")
+        print("🏥 Iniciando verificação de saúde dos módulos...")
         print(f"📊 Testando {len(self.critical_modules)} módulos críticos")
 
         results = {}
@@ -354,7 +345,7 @@ class ModuleHealthChecker:
         """Fecha o cliente HTTP."""
         await self.client.aclose()
 
-    def generate_report(self, results: Dict[str, ModuleHealthResult]) -> str:
+    def generate_report(self, results: dict[str, ModuleHealthResult]) -> str:
         """
         Gera relatório detalhado dos resultados.
 
@@ -366,17 +357,15 @@ class ModuleHealthChecker:
         """
         healthy_modules = sum(1 for r in results.values() if r.is_healthy)
         total_modules = len(results)
-        health_percentage = (
-            (healthy_modules / total_modules) * 100 if total_modules > 0 else 0
-        )
+        health_percentage = (healthy_modules / total_modules) * 100 if total_modules > 0 else 0
 
         report = f"""
 🛡️ RELATÓRIO DE SAÚDE DOS MÓDULOS - SILA SYSTEM
-{'='*60}
+{"=" * 60}
 
 📊 RESUMO GERAL:
    • Módulos saudáveis: {healthy_modules}/{total_modules} ({health_percentage:.1f}%)
-   • Data/Hora: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+   • Data/Hora: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
    • Base URL: {self.base_url}
 
 📋 DETALHES POR MÓDULO:
@@ -388,9 +377,9 @@ class ModuleHealthChecker:
 
             report += f"""
 {status_icon} {module_name.upper()}: {status_text}
-   • Status: {result.status_code or 'N/A'}
+   • Status: {result.status_code or "N/A"}
    • Tempo: {result.response_time:.2f}s
-   • Endpoint: {result.endpoint_tested or 'N/A'}"""
+   • Endpoint: {result.endpoint_tested or "N/A"}"""
 
             if result.error_message:
                 report += f"\n   • Erro: {result.error_message}"
@@ -401,25 +390,21 @@ class ModuleHealthChecker:
                     int_icon = "✅" if status else "❌"
                     report += f"\n     - {int_icon} {integration}"
 
-        report += f"""
+        report += """
 
 🎯 RECOMENDAÇÕES:
 """
 
-        unhealthy_modules = [
-            name for name, result in results.items() if not result.is_healthy
-        ]
+        unhealthy_modules = [name for name, result in results.items() if not result.is_healthy]
         if unhealthy_modules:
-            report += (
-                f"   • Verificar módulos com problemas: {', '.join(unhealthy_modules)}"
-            )
+            report += f"   • Verificar módulos com problemas: {', '.join(unhealthy_modules)}"
             report += f"\n   • Verificar se o servidor está rodando em {self.base_url}"
-            report += f"\n   • Verificar configuração de autenticação"
+            report += "\n   • Verificar configuração de autenticação"
         else:
-            report += f"   • ✅ Todos os módulos estão funcionando corretamente!"
-            report += f"\n   • Sistema pronto para uso em produção"
+            report += "   • ✅ Todos os módulos estão funcionando corretamente!"
+            report += "\n   • Sistema pronto para uso em produção"
 
-        report += f"\n\n{'='*60}"
+        report += f"\n\n{'=' * 60}"
         return report
 
 
@@ -468,9 +453,9 @@ async def test_module_health(module_name: str, health_checker: ModuleHealthCheck
     result = await health_checker.check_module_health(module_name)
 
     # Verificação principal: módulo deve estar "encaixado" (não 404)
-    assert (
-        result.status_code != 404
-    ), f"❌ Módulo '{module_name}' NÃO ENCAIXADO. Rota principal retornou 404."
+    assert result.status_code != 404, (
+        f"❌ Módulo '{module_name}' NÃO ENCAIXADO. Rota principal retornou 404."
+    )
 
     # Verificação de status esperado
     assert result.status_code in [
@@ -481,9 +466,9 @@ async def test_module_health(module_name: str, health_checker: ModuleHealthCheck
     ], f"⚠️ Módulo '{module_name}' retornou código inesperado {result.status_code}."
 
     # Verificação de tempo de resposta
-    assert (
-        result.response_time < health_checker.timeout
-    ), f"⚠️ Módulo '{module_name}' muito lento: {result.response_time:.2f}s"
+    assert result.response_time < health_checker.timeout, (
+        f"⚠️ Módulo '{module_name}' muito lento: {result.response_time:.2f}s"
+    )
 
 
 @pytest.mark.asyncio
@@ -498,9 +483,9 @@ async def test_critical_module_integration(health_checker: ModuleHealthChecker):
     )
 
     # Se retornar 404, um dos módulos não está encaixado ou a rota não existe
-    assert (
-        integration_works
-    ), "❌ Falha na integração reports-finance. Verificar se ambos os módulos estão funcionais."
+    assert integration_works, (
+        "❌ Falha na integração reports-finance. Verificar se ambos os módulos estão funcionais."
+    )
 
 
 @pytest.mark.asyncio

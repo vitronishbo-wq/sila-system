@@ -3,14 +3,14 @@
 Automated code fixes for common Python issues in the SILA system.
 Integrates with existing tools like isort, black, and autoflake.
 """
-import os
-import sys
-import re
-import ast
-import subprocess
+
 import logging
+import os
+import re
+import subprocess
+import sys
 from pathlib import Path
-from typing import List, Dict, Optional, Tuple, Set, Any
+from typing import Any
 
 # Configure logging
 logging.basicConfig(
@@ -45,7 +45,7 @@ class CodeAutoFixer:
             "pydantic": 0,
         }
 
-    def run_command(self, cmd: str, cwd: str = None) -> Tuple[bool, str]:
+    def run_command(self, cmd: str, cwd: str = None) -> tuple[bool, str]:
         """Run a shell command and return success status and output."""
         try:
             logger.debug(f"Running: {cmd}")
@@ -80,7 +80,6 @@ class CodeAutoFixer:
             return False
 
         logger.info(f"Fixing imports in {file_path.relative_to(self.root_dir)}")
-        modified = False
 
         # First run isort to organize imports
         success, _ = self.run_command(f"isort --profile black {file_path}")
@@ -173,16 +172,10 @@ class CodeAutoFixer:
                 if "->" not in line and ":" in line:
                     # Simple heuristic: if function name starts with 'get_', 'find_', 'list_', assume it returns a list
                     func_name = line.split("def ")[1].split("(")[0].strip()
-                    if any(
-                        func_name.startswith(prefix)
-                        for prefix in ["get_", "find_", "list_"]
-                    ):
+                    if any(func_name.startswith(prefix) for prefix in ["get_", "find_", "list_"]):
                         lines[i] = line.replace("):", ") -> List[Any]:")
                     # If function name starts with 'is_', 'has_', 'should_', assume it returns bool
-                    elif any(
-                        func_name.startswith(prefix)
-                        for prefix in ["is_", "has_", "should_"]
-                    ):
+                    elif any(func_name.startswith(prefix) for prefix in ["is_", "has_", "should_"]):
                         lines[i] = line.replace("):", ") -> bool:")
                     # Default to Any for other cases
                     else:
@@ -246,7 +239,7 @@ class CodeAutoFixer:
             return False
 
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
+            with open(file_path, encoding="utf-8") as f:
                 content = f.read()
 
             original_content = content
@@ -284,14 +277,12 @@ class CodeAutoFixer:
             return False
 
         relative_path = file_path.relative_to(self.root_dir)
-        logger.info(
-            f"\n{'Checking' if self.check_mode else 'Processing'} {relative_path}"
-        )
+        logger.info(f"\n{'Checking' if self.check_mode else 'Processing'} {relative_path}")
         self.files_processed += 1
         file_modified = False
 
         # Get file content for analysis
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             original_content = f.read()
 
         # Define fixers and their categories
@@ -328,7 +319,7 @@ class CodeAutoFixer:
                     if fixer(temp_file):
                         self.issues_found[category] += 1
                         if self.check_mode:
-                            with open(temp_file, "r", encoding="utf-8") as f:
+                            with open(temp_file, encoding="utf-8") as f:
                                 fixed_content = f.read()
                             self._show_diff(
                                 original_content,
@@ -377,7 +368,7 @@ class CodeAutoFixer:
         content = self.fix_pydantic_models(content)
         return content
 
-    def process_directory(self, directory: Path = None) -> Dict[str, Any]:
+    def process_directory(self, directory: Path = None) -> dict[str, Any]:
         """Process all Python files in a directory recursively."""
         directory = directory or self.root_dir
         modified_files = 0
@@ -403,7 +394,7 @@ class CodeAutoFixer:
 
         return result
 
-    def _print_summary(self, stats: Dict[str, Any]):
+    def _print_summary(self, stats: dict[str, Any]):
         """Print a summary of issues found."""
         print("\n" + "=" * 80)
         print("DRY RUN SUMMARY")
@@ -511,9 +502,7 @@ Examples:
                 logger.info("\n=== Fixing Complete ===")
                 logger.info(f"Files processed: {stats['files_processed']}")
                 logger.info(f"Files modified: {stats['files_with_issues']}")
-                logger.info(
-                    f"Total fixes applied: {sum(stats['issues_by_category'].values())}"
-                )
+                logger.info(f"Total fixes applied: {sum(stats['issues_by_category'].values())}")
     except KeyboardInterrupt:
         logger.info("\nOperation cancelled by user")
         sys.exit(1)

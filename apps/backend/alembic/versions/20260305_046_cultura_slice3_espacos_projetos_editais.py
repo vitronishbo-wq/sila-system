@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260305_046_cultura_slice3_espacos_projetos_editais"
 down_revision = "20260305_045_obras_publicas_event_sourcing_governance"
 branch_labels = None
@@ -99,14 +98,30 @@ def _create_espacos_culturais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_codigo ON cultura_espacos_culturais (codigo_espaco)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_nome ON cultura_espacos_culturais (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_tipo ON cultura_espacos_culturais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_municipio ON cultura_espacos_culturais (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_provincia ON cultura_espacos_culturais (provincia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_administracao ON cultura_espacos_culturais (administracao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_responsavel_cpf ON cultura_espacos_culturais (responsavel_cpf)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_espacos_ativo ON cultura_espacos_culturais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_codigo ON cultura_espacos_culturais (codigo_espaco)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_nome ON cultura_espacos_culturais (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_tipo ON cultura_espacos_culturais (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_municipio ON cultura_espacos_culturais (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_provincia ON cultura_espacos_culturais (provincia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_administracao ON cultura_espacos_culturais (administracao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_responsavel_cpf ON cultura_espacos_culturais (responsavel_cpf)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_espacos_ativo ON cultura_espacos_culturais (ativo)"
+    )
 
 
 def _create_projetos_culturais_table() -> None:
@@ -240,15 +255,33 @@ def _create_projetos_culturais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_codigo ON cultura_projetos_culturais (codigo_projeto)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_titulo ON cultura_projetos_culturais (titulo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_tipo ON cultura_projetos_culturais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_natureza ON cultura_projetos_culturais (natureza)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_status ON cultura_projetos_culturais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_proponente_cpf_cnpj ON cultura_projetos_culturais (proponente_cpf_cnpj)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_edital_id ON cultura_projetos_culturais (edital_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_data_submissao ON cultura_projetos_culturais (data_submissao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_projetos_ativo ON cultura_projetos_culturais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_codigo ON cultura_projetos_culturais (codigo_projeto)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_titulo ON cultura_projetos_culturais (titulo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_tipo ON cultura_projetos_culturais (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_natureza ON cultura_projetos_culturais (natureza)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_status ON cultura_projetos_culturais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_proponente_cpf_cnpj ON cultura_projetos_culturais (proponente_cpf_cnpj)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_edital_id ON cultura_projetos_culturais (edital_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_data_submissao ON cultura_projetos_culturais (data_submissao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_projetos_ativo ON cultura_projetos_culturais (ativo)"
+    )
 
 
 def _create_editais_table() -> None:
@@ -368,9 +401,13 @@ def _create_editais_table() -> None:
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_numero ON cultura_editais (numero)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_titulo ON cultura_editais (titulo)")
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_tipo ON cultura_editais (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_orgao_responsavel_id ON cultura_editais (orgao_responsavel_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_editais_orgao_responsavel_id ON cultura_editais (orgao_responsavel_id)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_fase ON cultura_editais (fase)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_data_publicacao ON cultura_editais (data_publicacao)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_editais_data_publicacao ON cultura_editais (data_publicacao)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_editais_ativo ON cultura_editais (ativo)")
 
 

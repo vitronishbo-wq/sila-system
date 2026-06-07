@@ -1,3 +1,17 @@
 """Compatibility adapters for civil registry endpoints."""
-from apps.backend.app.core.bridges.compat import AttestationServiceAdapter, CertificateServiceAdapter, FinancesServiceAdapter, NotificationServiceAdapter, RequestTrackingServiceAdapter
-__all__ = ['AttestationServiceAdapter', 'CertificateServiceAdapter', 'FinancesServiceAdapter', 'NotificationServiceAdapter', 'RequestTrackingServiceAdapter']
+
+from apps.backend.app.core.bridges.compat import (
+    AttestationServiceAdapter,
+    CertificateServiceAdapter,
+    FinancesServiceAdapter,
+    NotificationServiceAdapter,
+    RequestTrackingServiceAdapter,
+)
+
+__all__ = [
+    "AttestationServiceAdapter",
+    "CertificateServiceAdapter",
+    "FinancesServiceAdapter",
+    "NotificationServiceAdapter",
+    "RequestTrackingServiceAdapter",
+]

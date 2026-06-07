@@ -1,20 +1,26 @@
 from fastapi import APIRouter
+
 from .health import router as health_router
-router = APIRouter(prefix='/procurement', tags=['procurement'])
+
+router = APIRouter(prefix="/procurement", tags=["procurement"])
 router.include_router(health_router)
 
-@router.post('/tender')
+
+@router.post("/tender")
 def create_tender():
-    return {'status': 'accepted'}
+    return {"status": "accepted"}
 
-@router.post('/supplier')
+
+@router.post("/supplier")
 def register_supplier():
-    return {'status': 'accepted'}
+    return {"status": "accepted"}
 
-@router.post('/bid')
+
+@router.post("/bid")
 def submit_bid():
-    return {'status': 'accepted'}
+    return {"status": "accepted"}
 
-@router.post('/evaluate/{tender_id}')
+
+@router.post("/evaluate/{tender_id}")
 def evaluate_tender(tender_id: str):
-    return {'status': 'accepted', 'tender_id': tender_id}
+    return {"status": "accepted", "tender_id": tender_id}

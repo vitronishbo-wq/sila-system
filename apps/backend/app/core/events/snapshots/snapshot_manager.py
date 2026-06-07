@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-class SnapshotManager:
 
+class SnapshotManager:
     def __init__(self):
         self.snapshots = {}
 

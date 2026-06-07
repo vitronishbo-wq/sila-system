@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    NaturezaJuridicaInstituicao,
+    StatusCredenciamentoInstituicao,
+    TipoInstituicaoPesquisa,
+)
+
 
 class InstituicaoPesquisaCreate(BaseModel):
     sigla: str = Field(..., min_length=2)
@@ -18,9 +26,11 @@ class InstituicaoPesquisaCreate(BaseModel):
     telefone: str | None = None
     website: str | None = None
 
+
 class InstituicaoPesquisaCredenciarInput(BaseModel):
     data_credenciamento: date | None = None
     data_validade_credenciamento: date | None = None
+
 
 class InstituicaoPesquisaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

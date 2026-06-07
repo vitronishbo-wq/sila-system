@@ -1,13 +1,11 @@
-import http from '../api/http';
-import { UserRole } from '../types';
-import type { AuthResponse, User } from '../types';
+import http from '@/api/http';
+import { UserRole } from '@/types';
+import type { AuthResponse, User } from '@/types';
 import { apiClient } from '@/api/generated/client';
 
 export const authService = {
   async login(formData: FormData): Promise<AuthResponse & { navigation?: any }> {
-    const response = await http.post<AuthResponse & { navigation?: any }>('auth/login', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const response = await http.post<AuthResponse & { navigation?: any }>('auth/login', formData);
 
     // Auto-redirect if backend provides instruction
     if (response.data.navigation?.should_redirect) {

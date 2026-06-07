@@ -1,9 +1,10 @@
 from __future__ import annotations
+
+from apps.backend.app.core.events.store.event_repository import EventRepository
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.events.store.event_repository import EventRepository
+
 
 class EventStore:
-
     def __init__(self, db: AsyncSession):
         self.repo = EventRepository(db)
 

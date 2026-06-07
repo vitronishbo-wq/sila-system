@@ -1,0 +1,1 @@
+class RbacError(Exception): pass

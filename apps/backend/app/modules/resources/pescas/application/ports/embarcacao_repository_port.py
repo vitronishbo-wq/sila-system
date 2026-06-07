@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.enums import TipoEmbarcacao
 from apps.backend.app.modules.resources.pescas.domain.models.embarcacao import Embarcacao
 
-class EmbarcacaoRepositoryPort(ABC):
 
+class EmbarcacaoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, embarcacao: Embarcacao) -> Embarcacao:
         pass

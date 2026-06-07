@@ -1,14 +1,53 @@
 import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { UploadZone } from "@/components/Upload/UploadZone";
 import { DocumentsView } from "@/pages/DocumentsView";
 import { CheckoutCard } from "@/components/Payment/CheckoutCard";
+import { operationsService } from "@/modules/operations/services";
+import CitizenAreaBanner from "@/components/Services/CitizenAreaBanner";
 
 export const UploadDocuments = () => {
     const [refreshKey, setRefreshKey] = useState(0);
     const [pendingPayment, setPendingPayment] = useState<{ amount: number; reference: string; description: string } | null>(null);
+    const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const orderId = searchParams.get('orderId');
+    const serviceParam = searchParams.get('service') ?? '';
+    const uploadFields = searchParams.get('uploadFields');
+    const uploadFieldList = uploadFields ? uploadFields.split(',').filter(Boolean) : [];
+
+    const guessContentType = (fileName: string) => {
+        const ext = fileName.split('.').pop()?.toLowerCase();
+        if (ext === 'pdf') return 'application/pdf';
+        if (ext === 'png') return 'image/png';
+        if (ext === 'jpg' || ext === 'jpeg') return 'image/jpeg';
+        return 'application/octet-stream';
+    };
 
     const handleUploadSuccess = (backendResponse: any) => {
         setRefreshKey(prev => prev + 1);
+
+        if (orderId) {
+            const fileName = backendResponse?.fileName ?? 'documento.pdf';
+            const documentId = backendResponse?.documentId ?? `doc-${Date.now()}`;
+            const payload = {
+                documents: [
+                    {
+                        filename: fileName,
+                        content_type: guessContentType(fileName),
+                        size_bytes: backendResponse?.size_bytes ?? 0,
+                        uri: documentId
+                    }
+                ]
+            };
+
+            operationsService.attachDocuments(orderId, payload).then(() => {
+                navigate(`/citizen/payments?service=${serviceParam}&orderId=${orderId}`);
+            }).catch((err) => {
+                console.error('Falha ao anexar documentos ao pedido:', err);
+            });
+            return;
+        }
 
         // Em produção, capturamos os dados reais de faturação retornados pelo backend
         setPendingPayment({
@@ -20,7 +59,13 @@ export const UploadDocuments = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+            <CitizenAreaBanner />
             <div className="py-12 px-4">
+                {uploadFieldList.length > 0 && (
+                    <div className="max-w-4xl mx-auto mb-6 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-xl px-4 py-3">
+                        Anexos solicitados: {uploadFieldList.join(', ')}.
+                    </div>
+                )}
                 <h1 className="text-4xl font-black text-center text-gray-800 mb-12 uppercase tracking-tight">
                     Portal de <span className="text-red-600">Documentos</span>
                 </h1>
@@ -54,3 +99,5 @@ export const UploadDocuments = () => {
         </div>
     );
 };
+
+export default UploadDocuments;

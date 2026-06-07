@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.energy.domain.enums import TipoLeituraEnergia
+
 
 class ConsumoLeituraInput(BaseModel):
     unidade_consumidora_id: UUID
@@ -13,6 +17,7 @@ class ConsumoLeituraInput(BaseModel):
     classe_tarifaria: str
     cpf_titular: str
     medidor_id: UUID | None = None
+
 
 class ConsumoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

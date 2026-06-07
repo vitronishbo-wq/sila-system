@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_036_urbanismo_habitacao_orm_core"
 down_revision = "20260304_035_gestao_fundiaria_orm_core"
 branch_labels = None
@@ -232,30 +231,70 @@ def upgrade() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_pd_codigo ON urbanismo_habitacao_planos_diretores (codigo_plano)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_pd_tipo ON urbanismo_habitacao_planos_diretores (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_pd_status ON urbanismo_habitacao_planos_diretores (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_pd_provincia ON urbanismo_habitacao_planos_diretores (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_pd_codigo ON urbanismo_habitacao_planos_diretores (codigo_plano)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_pd_tipo ON urbanismo_habitacao_planos_diretores (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_pd_status ON urbanismo_habitacao_planos_diretores (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_pd_provincia ON urbanismo_habitacao_planos_diretores (provincia)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_zon_codigo ON urbanismo_habitacao_zoneamentos (codigo_zoneamento)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_zon_tipo ON urbanismo_habitacao_zoneamentos (tipo_zona)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_zon_status ON urbanismo_habitacao_zoneamentos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_zon_provincia ON urbanismo_habitacao_zoneamentos (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_zon_codigo ON urbanismo_habitacao_zoneamentos (codigo_zoneamento)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_zon_tipo ON urbanismo_habitacao_zoneamentos (tipo_zona)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_zon_status ON urbanismo_habitacao_zoneamentos (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_zon_provincia ON urbanismo_habitacao_zoneamentos (provincia)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_opu_codigo ON urbanismo_habitacao_operacoes_urbanas (codigo_operacao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_opu_tipo ON urbanismo_habitacao_operacoes_urbanas (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_opu_status ON urbanismo_habitacao_operacoes_urbanas (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_opu_provincia ON urbanismo_habitacao_operacoes_urbanas (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_opu_codigo ON urbanismo_habitacao_operacoes_urbanas (codigo_operacao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_opu_tipo ON urbanismo_habitacao_operacoes_urbanas (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_opu_status ON urbanismo_habitacao_operacoes_urbanas (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_opu_provincia ON urbanismo_habitacao_operacoes_urbanas (provincia)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_par_codigo ON urbanismo_habitacao_parcelamentos (codigo_parcelamento)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_par_tipo ON urbanismo_habitacao_parcelamentos (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_par_status ON urbanismo_habitacao_parcelamentos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_par_provincia ON urbanismo_habitacao_parcelamentos (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_par_codigo ON urbanismo_habitacao_parcelamentos (codigo_parcelamento)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_par_tipo ON urbanismo_habitacao_parcelamentos (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_par_status ON urbanismo_habitacao_parcelamentos (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_par_provincia ON urbanismo_habitacao_parcelamentos (provincia)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_lot_codigo ON urbanismo_habitacao_loteamentos (codigo_loteamento)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_lot_tipo ON urbanismo_habitacao_loteamentos (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_lot_status ON urbanismo_habitacao_loteamentos (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_lot_provincia ON urbanismo_habitacao_loteamentos (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_lot_codigo ON urbanismo_habitacao_loteamentos (codigo_loteamento)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_lot_tipo ON urbanismo_habitacao_loteamentos (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_lot_status ON urbanismo_habitacao_loteamentos (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_lot_provincia ON urbanismo_habitacao_loteamentos (provincia)"
+    )
 
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_uh_lic_codigo ON urbanismo_habitacao_licencas_urbanisticas (codigo_licenca)"
@@ -270,15 +309,27 @@ def upgrade() -> None:
         "CREATE INDEX IF NOT EXISTS ix_uh_lic_provincia ON urbanismo_habitacao_licencas_urbanisticas (provincia)"
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_alv_codigo ON urbanismo_habitacao_alvaras (codigo_alvara)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_alv_codigo ON urbanismo_habitacao_alvaras (codigo_alvara)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_uh_alv_tipo ON urbanismo_habitacao_alvaras (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_alv_status ON urbanismo_habitacao_alvaras (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_alv_provincia ON urbanismo_habitacao_alvaras (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_alv_status ON urbanismo_habitacao_alvaras (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_alv_provincia ON urbanismo_habitacao_alvaras (provincia)"
+    )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_hbt_codigo ON urbanismo_habitacao_habite_se (codigo_habite_se)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_hbt_codigo ON urbanismo_habitacao_habite_se (codigo_habite_se)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_uh_hbt_tipo ON urbanismo_habitacao_habite_se (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_hbt_status ON urbanismo_habitacao_habite_se (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_uh_hbt_provincia ON urbanismo_habitacao_habite_se (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_hbt_status ON urbanismo_habitacao_habite_se (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_uh_hbt_provincia ON urbanismo_habitacao_habite_se (provincia)"
+    )
 
 
 def downgrade() -> None:

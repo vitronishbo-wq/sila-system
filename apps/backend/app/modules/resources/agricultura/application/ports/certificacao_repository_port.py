@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusCertificacao
 from apps.backend.app.modules.resources.agricultura.domain.models.certificacao import Certificacao
 
-class CertificacaoRepositoryPort(ABC):
 
+class CertificacaoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Certificacao) -> Certificacao:
         pass
@@ -14,7 +16,9 @@ class CertificacaoRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, codigo_propriedade: str | None=None, status: StatusCertificacao | None=None) -> list[Certificacao]:
+    async def list(
+        self, *, codigo_propriedade: str | None = None, status: StatusCertificacao | None = None
+    ) -> list[Certificacao]:
         pass
 
     @abstractmethod

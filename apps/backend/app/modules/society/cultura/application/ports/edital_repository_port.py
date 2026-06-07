@@ -1,11 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
-from apps.backend.app.modules.society.cultura.domain.enums import FaseEditalCultural, TipoEditalCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    FaseEditalCultural,
+    TipoEditalCultural,
+)
 from apps.backend.app.modules.society.cultura.domain.models.edital import Edital
 
-class EditalRepositoryPort:
 
+class EditalRepositoryPort:
     async def save(self, edital: Edital) -> Edital:
         raise NotImplementedError
 

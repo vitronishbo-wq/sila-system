@@ -1,14 +1,27 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import InstituicaoPesquisaRepositoryPort
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import NaturezaJuridicaInstituicao, StatusCredenciamentoInstituicao, TipoInstituicaoPesquisa
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import InstituicaoPesquisa
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.instituicao_pesquisa_model import InstituicaoPesquisaModel
+
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.application.ports.instituicao_pesquisa_repository_port import (
+    InstituicaoPesquisaRepositoryPort,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.enums import (
+    NaturezaJuridicaInstituicao,
+    StatusCredenciamentoInstituicao,
+    TipoInstituicaoPesquisa,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.domain.models.instituicao_pesquisa import (
+    InstituicaoPesquisa,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.infrastructure.models.instituicao_pesquisa_model import (
+    InstituicaoPesquisaModel,
+)
+
 
 class SQLAlchemyInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -44,7 +57,9 @@ class SQLAlchemyInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort)
         return self._to_domain(model) if model else None
 
     async def get_by_sigla(self, sigla: str) -> InstituicaoPesquisa | None:
-        stmt = select(InstituicaoPesquisaModel).where(func.upper(InstituicaoPesquisaModel.sigla) == sigla.strip().upper())
+        stmt = select(InstituicaoPesquisaModel).where(
+            func.upper(InstituicaoPesquisaModel.sigla) == sigla.strip().upper()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -59,7 +74,11 @@ class SQLAlchemyInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort)
         return [self._to_domain(item) for item in rows]
 
     async def list_ativas(self) -> list[InstituicaoPesquisa]:
-        stmt = select(InstituicaoPesquisaModel).where(InstituicaoPesquisaModel.ativa.is_(True)).order_by(InstituicaoPesquisaModel.nome.asc())
+        stmt = (
+            select(InstituicaoPesquisaModel)
+            .where(InstituicaoPesquisaModel.ativa.is_(True))
+            .order_by(InstituicaoPesquisaModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -73,4 +92,24 @@ class SQLAlchemyInstituicaoPesquisaRepository(InstituicaoPesquisaRepositoryPort)
 
     @staticmethod
     def _to_domain(model: InstituicaoPesquisaModel) -> InstituicaoPesquisa:
-        return InstituicaoPesquisa(id=model.id, sigla=model.sigla, nome=model.nome, nif=model.nif, tipo=TipoInstituicaoPesquisa(model.tipo), natureza_juridica=NaturezaJuridicaInstituicao(model.natureza_juridica), pais=model.pais, provincia=model.provincia, municipio=model.municipio, endereco=model.endereco, email_institucional=model.email_institucional, telefone=model.telefone, website=model.website, status_credenciamento=StatusCredenciamentoInstituicao(model.status_credenciamento), data_credenciamento=model.data_credenciamento, data_validade_credenciamento=model.data_validade_credenciamento, comite_etica_ativo=model.comite_etica_ativo, nucleo_inovacao_ativo=model.nucleo_inovacao_ativo, ativa=model.ativa)
+        return InstituicaoPesquisa(
+            id=model.id,
+            sigla=model.sigla,
+            nome=model.nome,
+            nif=model.nif,
+            tipo=TipoInstituicaoPesquisa(model.tipo),
+            natureza_juridica=NaturezaJuridicaInstituicao(model.natureza_juridica),
+            pais=model.pais,
+            provincia=model.provincia,
+            municipio=model.municipio,
+            endereco=model.endereco,
+            email_institucional=model.email_institucional,
+            telefone=model.telefone,
+            website=model.website,
+            status_credenciamento=StatusCredenciamentoInstituicao(model.status_credenciamento),
+            data_credenciamento=model.data_credenciamento,
+            data_validade_credenciamento=model.data_validade_credenciamento,
+            comite_etica_ativo=model.comite_etica_ativo,
+            nucleo_inovacao_ativo=model.nucleo_inovacao_ativo,
+            ativa=model.ativa,
+        )

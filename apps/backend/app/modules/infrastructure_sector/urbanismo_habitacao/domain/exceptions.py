@@ -1,8 +1,54 @@
-"""Domain exceptions for UrbanismoHabitacao module"""
-from apps.backend.core.exceptions.factory import ExceptionFactory
-exc = ExceptionFactory.create_module_exceptions('UrbanismoHabitacao')
-UrbanismoHabitacaoException = exc.Base
-UrbanismoHabitacaoNotFound = exc.NotFound
-UrbanismoHabitacaoValidationError = exc.ValidationError
-UrbanismoHabitacaoInvalidStateError = exc.InvalidStateError
-__all__ = ['UrbanismoHabitacaoException', 'UrbanismoHabitacaoNotFound', 'UrbanismoHabitacaoValidationError', 'UrbanismoHabitacaoInvalidStateError']
+from __future__ import annotations
+
+
+class UrbanismoHabitacaoError(Exception):
+    pass
+
+
+class AlvaraAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class AlvaraNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class HabiteSeAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class HabiteSeNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class LicencaUrbanisticaAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class LicencaUrbanisticaNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class LoteamentoAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class LoteamentoNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class OperacaoUrbanaAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class OperacaoUrbanaNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class ParcelamentoAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class ParcelamentoNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class PlanoDiretorAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class PlanoDiretorNotFoundError(UrbanismoHabitacaoError):
+    pass
+
+class ZoneamentoAlreadyExistsError(UrbanismoHabitacaoError):
+    pass
+
+class ZoneamentoNotFoundError(UrbanismoHabitacaoError):
+    pass

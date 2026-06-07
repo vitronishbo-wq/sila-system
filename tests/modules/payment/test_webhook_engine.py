@@ -1,11 +1,13 @@
 """
 Tests for WebhookEngine.
 """
-import hmac
+
 import hashlib
+import hmac
 import json
-import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
 from fastapi import HTTPException
 
 from apps.backend.app.modules.payment.application.services.webhook_service import (
@@ -42,10 +44,7 @@ async def test_verify_signature_invalid(engine):
 async def test_process_event_success(engine, mock_db):
     """Test successful event processing with status update."""
     reference = "PAY-123"
-    payload = {
-        "reference": reference,
-        "event": "success"
-    }
+    payload = {"reference": reference, "event": "success"}
     raw_payload = json.dumps(payload).encode()
     signature = hmac.new(b"test_secret", raw_payload, hashlib.sha256).hexdigest()
 
@@ -56,9 +55,11 @@ async def test_process_event_success(engine, mock_db):
     mock_payment.status = PaymentStatus.PENDING
 
     # Patch PaymentService's get_by_reference (used by engine)
-    with patch.object(engine.payment_service, 'get_by_reference', return_value=mock_payment):
+    with patch.object(engine.payment_service, "get_by_reference", return_value=mock_payment):
         # Patch PaymentService's update_status
-        with patch.object(engine.payment_service, 'update_status', return_value=None) as mock_update:
+        with patch.object(
+            engine.payment_service, "update_status", return_value=None
+        ) as mock_update:
             result = await engine.process_event("generic", payload, signature, raw_payload)
 
             assert "updated to completed" in result["detail"]
@@ -77,8 +78,8 @@ async def test_process_event_idempotency(engine, mock_db):
     mock_payment = MagicMock(spec=Payment)
     mock_payment.status = PaymentStatus.COMPLETED
 
-    with patch.object(engine.payment_service, 'get_by_reference', return_value=mock_payment):
-        with patch.object(engine.payment_service, 'update_status') as mock_update:
+    with patch.object(engine.payment_service, "get_by_reference", return_value=mock_payment):
+        with patch.object(engine.payment_service, "update_status") as mock_update:
             result = await engine.process_event("generic", payload, signature, raw_payload)
 
             assert result["detail"] == "Event already processed"

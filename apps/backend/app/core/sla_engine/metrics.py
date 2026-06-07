@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Optional
-
 try:
     from prometheus_client import Counter, Gauge, Histogram
 except Exception:
@@ -60,7 +58,7 @@ class SLAMetrics:
             sla_calculation_duration.observe(duration)
 
     @staticmethod
-    def record_violation(service_id: str, province: Optional[str], severity: str) -> None:
+    def record_violation(service_id: str, province: str | None, severity: str) -> None:
         if sla_violations:
             sla_violations.labels(
                 service_id=service_id,
@@ -71,7 +69,9 @@ class SLAMetrics:
     @staticmethod
     def update_current_sla(service_id: str, hours: float, province: str, citizen_type: str) -> None:
         if sla_current:
-            sla_current.labels(service_id=service_id, province=province, citizen_type=citizen_type).set(hours)
+            sla_current.labels(
+                service_id=service_id, province=province, citizen_type=citizen_type
+            ).set(hours)
 
     @staticmethod
     def update_breach_probability(service_id: str, probability: float) -> None:

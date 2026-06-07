@@ -10,26 +10,25 @@ Uso:
     python tools/migrate_all_modules.py --exclude payment,billing  # Exclui módulos
 """
 
-import sys
 import argparse
-from pathlib import Path
-from typing import List, Dict
 import subprocess
+import sys
+from pathlib import Path
 
 
 class BatchMigrator:
     """Migrador em lote de módulos."""
 
-    def __init__(self, dry_run: bool = False, exclude: List[str] = None):
+    def __init__(self, dry_run: bool = False, exclude: list[str] = None):
         self.root = Path(__file__).parent.parent
         self.modules_dir = self.root / "backend" / "modules"
         self.dry_run = dry_run
         self.exclude = exclude or []
 
-        self.results: Dict[str, bool] = {}
-        self.skipped: List[str] = []
+        self.results: dict[str, bool] = {}
+        self.skipped: list[str] = []
 
-    def discover_modules(self) -> List[Path]:
+    def discover_modules(self) -> list[Path]:
         """Descobre todos os módulos disponíveis."""
         if not self.modules_dir.exists():
             print(f"❌ Diretório de módulos não encontrado: {self.modules_dir}")
@@ -54,7 +53,7 @@ class BatchMigrator:
         if not models_file.exists():
             return False
 
-        with open(models_file, "r", encoding="utf-8") as f:
+        with open(models_file, encoding="utf-8") as f:
             content = f.read()
 
         # Verifica se tem classes Pydantic
@@ -66,16 +65,16 @@ class BatchMigrator:
         """Migra um módulo específico."""
         module_name = module_path.name
 
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"📦 Migrando: {module_name}")
         print("=" * 60)
 
         if self.dry_run:
             needs_migration = self.check_module_needs_migration(module_path)
             if needs_migration:
-                print(f"   ✅ Módulo precisa de migração")
+                print("   ✅ Módulo precisa de migração")
             else:
-                print(f"   ⏭️  Módulo já está limpo")
+                print("   ⏭️  Módulo já está limpo")
             return needs_migration
 
         # Executa migração real
@@ -204,9 +203,7 @@ Exemplos:
         "--dry-run", action="store_true", help="Simula migração sem modificar arquivos"
     )
 
-    parser.add_argument(
-        "--exclude", help="Módulos para excluir (separados por vírgula)"
-    )
+    parser.add_argument("--exclude", help="Módulos para excluir (separados por vírgula)")
 
     args = parser.parse_args()
 

@@ -1,14 +1,16 @@
 """
 Repository pattern for infrastructure module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class InfrastructureRepository(ABC):
     """Abstract repository for infrastructure."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get infrastructure by ID."""
         pass
 
@@ -23,9 +25,10 @@ class InfrastructureRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all infrastructure."""
         pass
+
 
 class InfrastructureMemoryRepository(InfrastructureRepository):
     """In-memory repository for infrastructure."""
@@ -33,7 +36,7 @@ class InfrastructureMemoryRepository(InfrastructureRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class InfrastructureMemoryRepository(InfrastructureRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

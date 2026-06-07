@@ -1,6 +1,8 @@
-from cryptography.hazmat.primitives.asymmetric import ed25519
-from cryptography.exceptions import InvalidSignature
 import json
+
+from cryptography.exceptions import InvalidSignature
+from cryptography.hazmat.primitives.asymmetric import ed25519
+
 
 class QRVerificationService:
     @staticmethod
@@ -9,12 +11,10 @@ class QRVerificationService:
         Verifica se o payload do BI Digital foi assinado pela chave privada correspondente.
         """
         try:
-            public_key = ed25519.Ed25519PublicKey.from_public_bytes(
-                bytes.fromhex(public_key_hex)
-            )
+            public_key = ed25519.Ed25519PublicKey.from_public_bytes(bytes.fromhex(public_key_hex))
             signature = bytes.fromhex(signature_hex)
-            data = payload_json.encode('utf-8')
-            
+            data = payload_json.encode("utf-8")
+
             public_key.verify(signature, data)
             return True
         except (InvalidSignature, ValueError, TypeError):

@@ -1,14 +1,19 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
+
 from apps.backend.app.modules.resources.agricultura.application.ports import ProdutorRepositoryPort
 from apps.backend.app.modules.resources.agricultura.domain.enums import StatusProdutor, TipoProdutor
 from apps.backend.app.modules.resources.agricultura.domain.models.produtor import Produtor
-from apps.backend.app.modules.resources.agricultura.infrastructure.models.produtor_model import ProdutorModel
+from apps.backend.app.modules.resources.agricultura.infrastructure.models.produtor_model import (
+    ProdutorModel,
+)
+
 
 class SQLAlchemyProdutorRepository(ProdutorRepositoryPort):
-
     def __init__(self, session):
         self.session = session
 
@@ -49,19 +54,43 @@ class SQLAlchemyProdutorRepository(ProdutorRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_by_status(self, status: StatusProdutor | None=None) -> list[Produtor]:
+    async def list_by_status(self, status: StatusProdutor | None = None) -> list[Produtor]:
         stmt = select(ProdutorModel)
         if status:
             stmt = stmt.where(ProdutorModel.status == status.value)
-        rows = (await self.session.execute(stmt.order_by(ProdutorModel.created_at.desc()))).scalars().all()
+        rows = (
+            (await self.session.execute(stmt.order_by(ProdutorModel.created_at.desc())))
+            .scalars()
+            .all()
+        )
         return [self._to_domain(item) for item in rows]
 
     async def next_cadastro(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(ProdutorModel).where(ProdutorModel.cadastro_produtor.like(f'AGR/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(ProdutorModel)
+            .where(ProdutorModel.cadastro_produtor.like(f"AGR/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'AGR/{ano}/{count + 1:06d}'
+        return f"AGR/{ano}/{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: ProdutorModel) -> Produtor:
-        return Produtor(id=model.id, cadastro_produtor=model.cadastro_produtor, tipo=TipoProdutor(model.tipo), status=StatusProdutor(model.status), nome=model.nome, documento=model.documento, documento_tipo=model.documento_tipo, data_cadastro=model.data_cadastro, telefone=model.telefone, email=model.email, endereco=model.endereco, citizen_id=model.citizen_id, empresa_id=model.empresa_id, familiar=model.familiar, observacoes=model.observacoes)
+        return Produtor(
+            id=model.id,
+            cadastro_produtor=model.cadastro_produtor,
+            tipo=TipoProdutor(model.tipo),
+            status=StatusProdutor(model.status),
+            nome=model.nome,
+            documento=model.documento,
+            documento_tipo=model.documento_tipo,
+            data_cadastro=model.data_cadastro,
+            telefone=model.telefone,
+            email=model.email,
+            endereco=model.endereco,
+            citizen_id=model.citizen_id,
+            empresa_id=model.empresa_id,
+            familiar=model.familiar,
+            observacoes=model.observacoes,
+        )

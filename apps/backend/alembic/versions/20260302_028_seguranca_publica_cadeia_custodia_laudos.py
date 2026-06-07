@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_028_seguranca_publica_cadeia_custodia_laudos"
 down_revision = "20260302_027_seguranca_publica_mandados_investigacoes_provas"
 branch_labels = None
@@ -80,17 +79,33 @@ def _create_cadeia_custodia_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_codigo ON seguranca_cadeias_custodia (codigo_cadeia)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_prova_id ON seguranca_cadeias_custodia (prova_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_ocorrencia_id ON seguranca_cadeias_custodia (ocorrencia_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_status ON seguranca_cadeias_custodia (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_local_atual ON seguranca_cadeias_custodia (local_atual)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_responsavel_id ON seguranca_cadeias_custodia (responsavel_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_data_inicio ON seguranca_cadeias_custodia (data_inicio)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_codigo ON seguranca_cadeias_custodia (codigo_cadeia)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_prova_id ON seguranca_cadeias_custodia (prova_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_ocorrencia_id ON seguranca_cadeias_custodia (ocorrencia_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_status ON seguranca_cadeias_custodia (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_local_atual ON seguranca_cadeias_custodia (local_atual)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_responsavel_id ON seguranca_cadeias_custodia (responsavel_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_data_inicio ON seguranca_cadeias_custodia (data_inicio)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_data_ultima_mov ON seguranca_cadeias_custodia (data_ultima_movimentacao)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_ativo ON seguranca_cadeias_custodia (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_cadeias_ativo ON seguranca_cadeias_custodia (ativo)"
+    )
 
 
 def _create_laudos_periciais_table() -> None:
@@ -165,13 +180,27 @@ def _create_laudos_periciais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_numero ON seguranca_laudos_periciais (numero_laudo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_prova_id ON seguranca_laudos_periciais (prova_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_tipo ON seguranca_laudos_periciais (tipo_laudo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_perito_id ON seguranca_laudos_periciais (perito_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_data_emissao ON seguranca_laudos_periciais (data_emissao)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_status ON seguranca_laudos_periciais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_ativo ON seguranca_laudos_periciais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_numero ON seguranca_laudos_periciais (numero_laudo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_prova_id ON seguranca_laudos_periciais (prova_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_tipo ON seguranca_laudos_periciais (tipo_laudo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_perito_id ON seguranca_laudos_periciais (perito_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_data_emissao ON seguranca_laudos_periciais (data_emissao)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_status ON seguranca_laudos_periciais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_seguranca_laudos_ativo ON seguranca_laudos_periciais (ativo)"
+    )
 
 
 def upgrade() -> None:

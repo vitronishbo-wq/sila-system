@@ -1,7 +1,9 @@
 """Health check endpoints para módulo de Pagamentos."""
+
 import logging
 from datetime import datetime
-from fastapi import APIRouter, HTTPException
+
+from fastapi import APIRouter
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +14,7 @@ router = APIRouter(tags=["health"])
 async def payment_health():
     """
     Health check para o módulo de Pagamentos.
-    
+
     Verifica:
     - Disponibilidade do serviço
     - Status da conexão com banco de dados (quando aplicável)

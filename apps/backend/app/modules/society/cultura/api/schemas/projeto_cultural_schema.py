@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.cultura.domain.enums import NaturezaProjetoCultural, StatusProjetoCultural, TipoProjetoCultural
+
+from apps.backend.app.modules.society.cultura.domain.enums import (
+    NaturezaProjetoCultural,
+    StatusProjetoCultural,
+    TipoProjetoCultural,
+)
+
 
 class ProjetoCulturalCreate(BaseModel):
     titulo: str = Field(..., min_length=5)
@@ -19,6 +27,7 @@ class ProjetoCulturalCreate(BaseModel):
     observacoes: str | None = None
     submeter: bool = True
 
+
 class ProjetoCulturalUpdate(BaseModel):
     titulo: str | None = Field(default=None, min_length=5)
     tipo: TipoProjetoCultural | None = None
@@ -30,11 +39,14 @@ class ProjetoCulturalUpdate(BaseModel):
     ativo: bool | None = None
     observacoes: str | None = None
 
+
 class ProjetoAprovacaoRequest(BaseModel):
     valor_aprovado: Decimal = Field(..., gt=0)
 
+
 class ProjetoExecucaoRequest(BaseModel):
     data: date
+
 
 class ProjetoCulturalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

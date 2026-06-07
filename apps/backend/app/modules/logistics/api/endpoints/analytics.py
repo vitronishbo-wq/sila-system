@@ -1,16 +1,40 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from fastapi import APIRouter, Depends
+
 from apps.backend.app.modules.logistics.api.deps import get_operacao_analytics_service
-from apps.backend.app.modules.logistics.application.dto.analytics_schema import DemandaOperacionalResponse, QualidadeServicoResponse
+from apps.backend.app.modules.logistics.application.dto.analytics_schema import (
+    DemandaOperacionalResponse,
+    QualidadeServicoResponse,
+)
 from apps.backend.app.modules.logistics.application.services import OperacaoAnalyticsService
-router = APIRouter(prefix='/analytics', tags=['Transportes Logistica - Analytics'])
 
-@router.get('/demanda', response_model=DemandaOperacionalResponse)
-async def calcular_demanda(linha_id: UUID | None=None, data_inicio: datetime | None=None, data_fim: datetime | None=None, service: OperacaoAnalyticsService=Depends(get_operacao_analytics_service)):
-    return await service.calcular_demanda(linha_id=linha_id, data_inicio=data_inicio, data_fim=data_fim)
+router = APIRouter(prefix="/analytics", tags=["Transportes Logistica - Analytics"])
+operacao_analytics_service_dep = Depends(get_operacao_analytics_service)
 
-@router.get('/qualidade', response_model=QualidadeServicoResponse)
-async def calcular_qualidade(linha_id: UUID | None=None, data_inicio: datetime | None=None, data_fim: datetime | None=None, service: OperacaoAnalyticsService=Depends(get_operacao_analytics_service)):
-    return await service.calcular_qualidade(linha_id=linha_id, data_inicio=data_inicio, data_fim=data_fim)
+
+@router.get("/demanda", response_model=DemandaOperacionalResponse)
+async def calcular_demanda(
+    linha_id: UUID | None = None,
+    data_inicio: datetime | None = None,
+    data_fim: datetime | None = None,
+    service: OperacaoAnalyticsService = operacao_analytics_service_dep,
+):
+    return await service.calcular_demanda(
+        linha_id=linha_id, data_inicio=data_inicio, data_fim=data_fim
+    )
+
+
+@router.get("/qualidade", response_model=QualidadeServicoResponse)
+async def calcular_qualidade(
+    linha_id: UUID | None = None,
+    data_inicio: datetime | None = None,
+    data_fim: datetime | None = None,
+    service: OperacaoAnalyticsService = operacao_analytics_service_dep,
+):
+    return await service.calcular_qualidade(
+        linha_id=linha_id, data_inicio=data_inicio, data_fim=data_fim
+    )

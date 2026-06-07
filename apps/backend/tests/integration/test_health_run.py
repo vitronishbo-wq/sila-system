@@ -16,7 +16,5 @@ print("\n=== Running tests ===")
 
 if __name__ == "__main__":
     # Run the tests with detailed output when executed as a script.
-    exit_code = pytest.main(
-        ["tests/modules/health/test_endpoints.py", "-v", "--tb=short"]
-    )
+    exit_code = pytest.main(["tests/modules/health/test_endpoints.py", "-v", "--tb=short"])
     sys.exit(exit_code)

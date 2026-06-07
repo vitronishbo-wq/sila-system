@@ -1,7 +1,27 @@
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_central_geradora_repository import SQLAlchemyCentralGeradoraRepository
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_consumo_repository import SQLAlchemyConsumoRepository
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_fatura_repository import SQLAlchemyFaturaRepository
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_linha_transmissao_repository import SQLAlchemyLinhaTransmissaoRepository
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_subestacao_repository import SQLAlchemySubestacaoRepository
-from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_usina_repository import SQLAlchemyUsinaRepository
-__all__ = ['SQLAlchemyUsinaRepository', 'SQLAlchemyCentralGeradoraRepository', 'SQLAlchemySubestacaoRepository', 'SQLAlchemyLinhaTransmissaoRepository', 'SQLAlchemyConsumoRepository', 'SQLAlchemyFaturaRepository']
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_central_geradora_repository import (
+    SQLAlchemyCentralGeradoraRepository,
+)
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_consumo_repository import (
+    SQLAlchemyConsumoRepository,
+)
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_fatura_repository import (
+    SQLAlchemyFaturaRepository,
+)
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_linha_transmissao_repository import (
+    SQLAlchemyLinhaTransmissaoRepository,
+)
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_subestacao_repository import (
+    SQLAlchemySubestacaoRepository,
+)
+from apps.backend.app.modules.energy.infrastructure.repositories.sqlalchemy_usina_repository import (
+    SQLAlchemyUsinaRepository,
+)
+
+__all__ = [
+    "SQLAlchemyUsinaRepository",
+    "SQLAlchemyCentralGeradoraRepository",
+    "SQLAlchemySubestacaoRepository",
+    "SQLAlchemyLinhaTransmissaoRepository",
+    "SQLAlchemyConsumoRepository",
+    "SQLAlchemyFaturaRepository",
+]

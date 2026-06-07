@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.resources.pescas.domain.models.especie import Especie
 
-class EspecieRepositoryPort(ABC):
 
+class EspecieRepositoryPort(ABC):
     @abstractmethod
     async def save(self, especie: Especie) -> Especie:
         pass

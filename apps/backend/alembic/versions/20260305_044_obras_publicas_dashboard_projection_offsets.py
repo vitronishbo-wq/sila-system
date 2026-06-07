@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260305_044_obras_publicas_dashboard_projection_offsets"
 down_revision = "20260305_043_obras_publicas_saga_cqrs"
 branch_labels = None

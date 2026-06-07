@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import CategoriaConsumo, StatusConsumo
+
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import (
+    CategoriaConsumo,
+    StatusConsumo,
+)
+
 
 class ConsumoCreate(BaseModel):
     abastecimento_id: UUID
@@ -17,8 +24,10 @@ class ConsumoCreate(BaseModel):
     leitura_atual: Decimal | None = None
     data_leitura: date | None = None
 
+
 class ConsumoMotivoInput(BaseModel):
     motivo: str
+
 
 class ConsumoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

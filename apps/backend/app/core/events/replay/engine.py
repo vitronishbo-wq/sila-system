@@ -1,11 +1,13 @@
 """Replay Engine - Phase 20: Event Timeline Reconstruction"""
-from typing import Optional, Type, List
-from uuid import UUID
+
 from datetime import datetime
+from uuid import UUID
+
+from apps.backend.app.core.domain.base_aggregate import BaseAggregate
+from apps.backend.app.core.events.snapshots.snapshot_engine import SnapshotEngine
+from apps.backend.app.core.events.store.repositories import EventStoreRepository, SnapshotRepository
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.domain.base_aggregate import BaseAggregate
-from app.core.events.store.repositories import EventStoreRepository, SnapshotRepository
-from app.core.events.snapshots.snapshot_engine import SnapshotEngine
+
 
 class ReplayEngine:
     """
@@ -19,7 +21,12 @@ class ReplayEngine:
         self.snapshot_repo = SnapshotRepository(session)
         self.snapshot_engine = SnapshotEngine(session)
 
-    async def replay_aggregate(self, aggregate_class: Type[BaseAggregate], aggregate_id: UUID, up_to_version: Optional[int]=None) -> BaseAggregate:
+    async def replay_aggregate(
+        self,
+        aggregate_class: type[BaseAggregate],
+        aggregate_id: UUID,
+        up_to_version: int | None = None,
+    ) -> BaseAggregate:
         """
         Reconstruct an aggregate by replaying its entire event history.
         Optionally replay only up to a specific version (time travel).
@@ -37,13 +44,22 @@ class ReplayEngine:
         for event in events:
             if up_to_version and event.version > up_to_version:
                 break
-            from app.core.domain.base_aggregate import DomainEvent
-            domain_event = DomainEvent(aggregate_id=event.aggregate_id, event_type=event.event_type, version=event.version, timestamp=event.created_at, metadata=event.metadata)
+            from apps.backend.app.core.domain.base_aggregate import DomainEvent
+
+            domain_event = DomainEvent(
+                aggregate_id=event.aggregate_id,
+                event_type=event.event_type,
+                version=event.version,
+                timestamp=event.created_at,
+                metadata=event.metadata,
+            )
             aggregate.apply_event(domain_event)
         aggregate.mark_saved()
         return aggregate
 
-    async def replay_at_timestamp(self, aggregate_class: Type[BaseAggregate], aggregate_id: UUID, timestamp: datetime) -> Optional[BaseAggregate]:
+    async def replay_at_timestamp(
+        self, aggregate_class: type[BaseAggregate], aggregate_id: UUID, timestamp: datetime
+    ) -> BaseAggregate | None:
         """Reconstruct aggregate state as it was at a point in time."""
         events = await self.event_repo.get_events(aggregate_id)
         target_version = None
@@ -54,12 +70,23 @@ class ReplayEngine:
                 break
         if target_version is None:
             return None
-        return await self.replay_aggregate(aggregate_class, aggregate_id, up_to_version=target_version)
+        return await self.replay_aggregate(
+            aggregate_class, aggregate_id, up_to_version=target_version
+        )
 
-    async def get_audit_trail(self, aggregate_id: UUID) -> List[dict]:
+    async def get_audit_trail(self, aggregate_id: UUID) -> list[dict]:
         """Get complete audit trail for an aggregate (all state changes)."""
         events = await self.event_repo.get_events(aggregate_id)
-        return [{'version': e.version, 'event_type': e.event_type, 'timestamp': e.created_at.isoformat(), 'payload': e.payload, 'metadata': e.metadata} for e in events]
+        return [
+            {
+                "version": e.version,
+                "event_type": e.event_type,
+                "timestamp": e.created_at.isoformat(),
+                "payload": e.payload,
+                "metadata": e.metadata,
+            }
+            for e in events
+        ]
 
     async def get_event_count(self, aggregate_id: UUID) -> int:
         """Get total number of events for an aggregate."""

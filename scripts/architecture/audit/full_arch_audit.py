@@ -70,7 +70,9 @@ def run_audit(modules_root: Path) -> dict:
         if not has_health:
             violations["missing_health"].append(module.as_posix())
 
-        base_score = sum([has_domain, has_application, has_infrastructure, has_router, has_health]) * 20
+        base_score = (
+            sum([has_domain, has_application, has_infrastructure, has_router, has_health]) * 20
+        )
         per_module[name] = {
             "path": module.as_posix(),
             "has_domain": has_domain,
@@ -111,7 +113,7 @@ def run_audit(modules_root: Path) -> dict:
                 if dst_module and dst_module in module_names and dst_module != src_module:
                     edges[src_module].add(dst_module)
 
-                if in_domain_layer and imported.startswith("app.platform"):
+                if in_domain_layer and imported.startswith("apps.backend.app.platform"):
                     violations["domain_importing_infra"].append(py_file.as_posix())
                     per_module[src_module]["issues"].append("domain_importing_platform")
 
@@ -191,9 +193,13 @@ def write_report(audit: dict, report_output: Path) -> None:
         f.write("\n")
 
         f.write("## Compliance By Module\n")
-        f.write("| Module | Score | Domain | Application | Infrastructure | Router | Health | Issues |\n")
+        f.write(
+            "| Module | Score | Domain | Application | Infrastructure | Router | Health | Issues |\n"
+        )
         f.write("|---|---:|:---:|:---:|:---:|:---:|:---:|---|\n")
-        for name, data in sorted(audit["per_module"].items(), key=lambda item: (item[1]["score"], item[0])):
+        for name, data in sorted(
+            audit["per_module"].items(), key=lambda item: (item[1]["score"], item[0])
+        ):
             issues = ", ".join(data["issues"]) if data["issues"] else "none"
             f.write(
                 f"| {name} | {data['score']} | "

@@ -1,2 +1,5 @@
-from apps.backend.app.modules.intelligence.defesa_consumidor.infrastructure.repositories.sqlalchemy_reclamacao_repository import SQLAlchemyReclamacaoRepository
-__all__ = ['SQLAlchemyReclamacaoRepository']
+from apps.backend.app.modules.intelligence.defesa_consumidor.infrastructure.repositories.sqlalchemy_reclamacao_repository import (
+    SQLAlchemyReclamacaoRepository,
+)
+
+__all__ = ["SQLAlchemyReclamacaoRepository"]

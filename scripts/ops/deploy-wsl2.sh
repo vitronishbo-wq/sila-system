@@ -27,7 +27,7 @@ $PYTHON --version
 # 2. Test app import
 echo ""
 echo "🔍 Testing app import..."
-$PYTHON -c "import sys; sys.path.insert(0, '$BACKEND_DIR'); from app.main import app; print('✅ App imports successfully')" || {
+$PYTHON -c "import sys; sys.path.insert(0, '$BACKEND_DIR'); from apps.backend.app.main import app; print('✅ App imports successfully')" || {
     echo "❌ App import failed"
     exit 1
 }

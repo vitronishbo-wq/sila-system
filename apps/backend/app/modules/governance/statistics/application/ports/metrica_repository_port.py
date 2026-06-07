@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 from apps.backend.app.modules.governance.statistics.domain.enums import FonteDados, TipoMetrica
 from apps.backend.app.modules.governance.statistics.domain.models.metrica import Metrica
 
-class MetricaRepositoryPort(ABC):
 
+class MetricaRepositoryPort(ABC):
     @abstractmethod
     async def create(self, metrica: Metrica) -> Metrica:
         raise NotImplementedError
@@ -18,15 +20,15 @@ class MetricaRepositoryPort(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> list[Metrica]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Metrica]:
         raise NotImplementedError
 
     @abstractmethod
-    async def list_by_fonte(self, fonte: FonteDados, limit: int=100) -> list[Metrica]:
+    async def list_by_fonte(self, fonte: FonteDados, limit: int = 100) -> list[Metrica]:
         raise NotImplementedError
 
     @abstractmethod
-    async def list_by_tipo(self, tipo: TipoMetrica, limit: int=100) -> list[Metrica]:
+    async def list_by_tipo(self, tipo: TipoMetrica, limit: int = 100) -> list[Metrica]:
         raise NotImplementedError
 
     @abstractmethod

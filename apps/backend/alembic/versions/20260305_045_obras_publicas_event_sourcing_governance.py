@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260305_045_obras_publicas_event_sourcing_governance"
 down_revision = "20260305_044_obras_publicas_dashboard_projection_offsets"
 branch_labels = None
@@ -34,11 +33,21 @@ def upgrade() -> None:
         )
         """
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_event_store_aggregate_id ON op_event_store (aggregate_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_event_store_event_type ON op_event_store (event_type)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_event_store_tenant_id ON op_event_store (tenant_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_event_store_region_code ON op_event_store (region_code)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_event_store_created_at ON op_event_store (created_at)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_event_store_aggregate_id ON op_event_store (aggregate_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_event_store_event_type ON op_event_store (event_type)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_event_store_tenant_id ON op_event_store (tenant_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_event_store_region_code ON op_event_store (region_code)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_event_store_created_at ON op_event_store (created_at)"
+    )
 
     op.execute(
         """

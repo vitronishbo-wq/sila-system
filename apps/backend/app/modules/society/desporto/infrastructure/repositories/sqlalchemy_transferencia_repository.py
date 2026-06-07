@@ -1,16 +1,23 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.desporto.application.ports.transferencia_repository_port import TransferenciaRepositoryPort
+
+from apps.backend.app.modules.society.desporto.application.ports.transferencia_repository_port import (
+    TransferenciaRepositoryPort,
+)
 from apps.backend.app.modules.society.desporto.domain.enums import StatusTransferencia
 from apps.backend.app.modules.society.desporto.domain.models.transferencia import Transferencia
-from apps.backend.app.modules.society.desporto.infrastructure.models.transferencia_model import TransferenciaModel
+from apps.backend.app.modules.society.desporto.infrastructure.models.transferencia_model import (
+    TransferenciaModel,
+)
+
 
 class SQLAlchemyTransferenciaRepository(TransferenciaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -38,7 +45,9 @@ class SQLAlchemyTransferenciaRepository(TransferenciaRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_transferencia: str) -> Transferencia | None:
-        stmt = select(TransferenciaModel).where(TransferenciaModel.codigo_transferencia == codigo_transferencia.strip())
+        stmt = select(TransferenciaModel).where(
+            TransferenciaModel.codigo_transferencia == codigo_transferencia.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -48,12 +57,20 @@ class SQLAlchemyTransferenciaRepository(TransferenciaRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_atleta(self, atleta_id: UUID) -> list[Transferencia]:
-        stmt = select(TransferenciaModel).where(TransferenciaModel.atleta_id == atleta_id).order_by(TransferenciaModel.data_solicitacao.desc())
+        stmt = (
+            select(TransferenciaModel)
+            .where(TransferenciaModel.atleta_id == atleta_id)
+            .order_by(TransferenciaModel.data_solicitacao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_status(self, status: StatusTransferencia) -> list[Transferencia]:
-        stmt = select(TransferenciaModel).where(TransferenciaModel.status == status.value).order_by(TransferenciaModel.data_solicitacao.desc())
+        stmt = (
+            select(TransferenciaModel)
+            .where(TransferenciaModel.status == status.value)
+            .order_by(TransferenciaModel.data_solicitacao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -67,10 +84,28 @@ class SQLAlchemyTransferenciaRepository(TransferenciaRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(TransferenciaModel).where(TransferenciaModel.codigo_transferencia.like(f'TRF/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(TransferenciaModel)
+            .where(TransferenciaModel.codigo_transferencia.like(f"TRF/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'TRF/{ano}/{count + 1:05d}'
+        return f"TRF/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: TransferenciaModel) -> Transferencia:
-        return Transferencia(id=model.id, codigo_transferencia=model.codigo_transferencia, atleta_id=model.atleta_id, clube_origem_id=model.clube_origem_id, clube_destino_id=model.clube_destino_id, data_solicitacao=model.data_solicitacao, data_conclusao=model.data_conclusao, valor_transferencia=Decimal(model.valor_transferencia) if model.valor_transferencia is not None else None, status=StatusTransferencia(model.status), ativo=model.ativo, observacoes=model.observacoes)
+        return Transferencia(
+            id=model.id,
+            codigo_transferencia=model.codigo_transferencia,
+            atleta_id=model.atleta_id,
+            clube_origem_id=model.clube_origem_id,
+            clube_destino_id=model.clube_destino_id,
+            data_solicitacao=model.data_solicitacao,
+            data_conclusao=model.data_conclusao,
+            valor_transferencia=Decimal(model.valor_transferencia)
+            if model.valor_transferencia is not None
+            else None,
+            status=StatusTransferencia(model.status),
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.desporto.domain.enums import ModalidadeDesportiva, StatusCompeticao, TipoCompeticao
+
+from apps.backend.app.modules.society.desporto.domain.enums import (
+    ModalidadeDesportiva,
+    StatusCompeticao,
+    TipoCompeticao,
+)
+
 
 class CompeticaoCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -19,6 +27,7 @@ class CompeticaoCreate(BaseModel):
     instituicao_educacional_id: UUID | None = None
     premiacao_total: Decimal | None = Field(default=None, ge=0)
     observacoes: str | None = None
+
 
 class CompeticaoUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
@@ -36,6 +45,7 @@ class CompeticaoUpdate(BaseModel):
     status: StatusCompeticao | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class CompeticaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

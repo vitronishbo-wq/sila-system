@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime, timezone
 from decimal import Decimal
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock
@@ -6,7 +6,9 @@ from uuid import uuid4
 
 import pytest
 
-from apps.backend.app.modules.operations.application.services.operations_service import OperationsService
+from apps.backend.app.modules.operations.application.services.operations_service import (
+    OperationsService,
+)
 from apps.backend.app.modules.operations.domain.enums import OrderStatus, PaymentStatus
 
 
@@ -31,7 +33,7 @@ async def test_confirm_payment_is_idempotent_when_already_confirmed():
         reference="SIM-ABC",
         provider="FAKE_BANK",
         order=SimpleNamespace(status=OrderStatus.PAID.value),
-        confirmed_at=datetime.now(timezone.utc),
+        confirmed_at=datetime.now(UTC),
     )
     db = _session_with_scalar_first(payment)
     service = OperationsService(db)

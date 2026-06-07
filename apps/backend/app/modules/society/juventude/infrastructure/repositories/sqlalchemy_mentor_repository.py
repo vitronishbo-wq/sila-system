@@ -1,15 +1,26 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.mentor_repository_port import MentorRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusMentoria, TipoMentoria
+
+from apps.backend.app.modules.society.juventude.application.ports.mentor_repository_port import (
+    MentorRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusMentoria,
+    TipoMentoria,
+)
 from apps.backend.app.modules.society.juventude.domain.models.mentor import Mentor
-from apps.backend.app.modules.society.juventude.infrastructure.models.mentor_model import MentorModel
+from apps.backend.app.modules.society.juventude.infrastructure.models.mentor_model import (
+    MentorModel,
+)
+
 
 class SQLAlchemyMentorRepository(MentorRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -48,7 +59,11 @@ class SQLAlchemyMentorRepository(MentorRepositoryPort):
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusMentoria) -> list[Mentor]:
-        stmt = select(MentorModel).where(MentorModel.status == status.value).order_by(MentorModel.nome.asc())
+        stmt = (
+            select(MentorModel)
+            .where(MentorModel.status == status.value)
+            .order_by(MentorModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -62,10 +77,27 @@ class SQLAlchemyMentorRepository(MentorRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(MentorModel).where(MentorModel.codigo_mentor.like(f'MEN/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(MentorModel)
+            .where(MentorModel.codigo_mentor.like(f"MEN/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'MEN/{ano}/{count + 1:05d}'
+        return f"MEN/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: MentorModel) -> Mentor:
-        return Mentor(id=model.id, codigo_mentor=model.codigo_mentor, nome=model.nome, tipo_mentoria=TipoMentoria(model.tipo_mentoria), area_interesse=AreaInteresse(model.area_interesse), email=model.email, telefone=model.telefone, jovem_ids=model.jovem_ids, status=StatusMentoria(model.status), data_cadastro=model.data_cadastro or date.today(), observacoes=model.observacoes, ativo=model.ativo)
+        return Mentor(
+            id=model.id,
+            codigo_mentor=model.codigo_mentor,
+            nome=model.nome,
+            tipo_mentoria=TipoMentoria(model.tipo_mentoria),
+            area_interesse=AreaInteresse(model.area_interesse),
+            email=model.email,
+            telefone=model.telefone,
+            jovem_ids=model.jovem_ids,
+            status=StatusMentoria(model.status),
+            data_cadastro=model.data_cadastro or date.today(),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

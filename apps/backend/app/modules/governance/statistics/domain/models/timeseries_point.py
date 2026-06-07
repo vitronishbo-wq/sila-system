@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Dict
+
 
 @dataclass
 class TimeSeriesPoint:
-    id: Optional[int]
+    id: int | None
     statistic_id: int
     value: float
     period_start: datetime
-    period_end: Optional[datetime]
-    dimensions: Optional[Dict]
+    period_end: datetime | None
+    dimensions: dict | None
     created_at: datetime

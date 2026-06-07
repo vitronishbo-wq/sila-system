@@ -1,8 +1,10 @@
 """
 Infrastructure adapters for audit module.
 """
+
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any
+
 
 class AuditPort(ABC):
     """Port (interface) for audit operations."""
@@ -28,9 +30,10 @@ class AuditPort(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all audit."""
         pass
+
 
 class AuditAdapter(AuditPort):
     """Adapter (implementation) for audit operations."""
@@ -41,16 +44,16 @@ class AuditAdapter(AuditPort):
 
     async def create(self, data: dict) -> Any:
         """Create new audit."""
-        return {'id': id, **data}
+        return {"id": id, **data}
 
     async def update(self, id: str, data: dict) -> Any:
         """Update audit."""
-        return {'id': id, **data}
+        return {"id": id, **data}
 
     async def delete(self, id: str) -> bool:
         """Delete audit."""
         return True
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all audit."""
         return []

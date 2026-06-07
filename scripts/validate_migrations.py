@@ -4,12 +4,14 @@
 Usage: DATABASE_URL env var must be set. Exits with code 0 when up-to-date,
 1 otherwise.
 """
+
 import os
 import sys
-from sqlalchemy import create_engine
+
 from alembic.config import Config
-from alembic.script import ScriptDirectory
 from alembic.runtime.migration import MigrationContext
+from alembic.script import ScriptDirectory
+from sqlalchemy import create_engine
 
 
 def _get_db_url():
@@ -25,7 +27,9 @@ def _get_db_url():
 
 def main():
     # alembic_core lives under apps/backend in this repository layout
-    cfg_path = os.path.join(os.path.dirname(__file__), "..", "apps", "backend", "alembic_core", "alembic.ini")
+    cfg_path = os.path.join(
+        os.path.dirname(__file__), "..", "apps", "backend", "alembic_core", "alembic.ini"
+    )
     cfg_path = os.path.normpath(cfg_path)
     cfg = Config(cfg_path)
     script = ScriptDirectory.from_config(cfg)

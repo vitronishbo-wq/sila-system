@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_042_obras_publicas_outbox_events"
 down_revision = "20260304_041_energia_outbox_events"
 branch_labels = None
@@ -47,12 +46,24 @@ def upgrade() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_tenant_id ON op_outbox_events (tenant_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_event_type ON op_outbox_events (event_type)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_correlation_id ON op_outbox_events (correlation_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_created_at ON op_outbox_events (created_at)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_processed_at ON op_outbox_events (processed_at)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_outbox_events_failed_attempts ON op_outbox_events (failed_attempts)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_tenant_id ON op_outbox_events (tenant_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_event_type ON op_outbox_events (event_type)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_correlation_id ON op_outbox_events (correlation_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_created_at ON op_outbox_events (created_at)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_processed_at ON op_outbox_events (processed_at)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_outbox_events_failed_attempts ON op_outbox_events (failed_attempts)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_op_outbox_consumption_event_id ON op_outbox_event_consumption (event_id)"
     )
@@ -68,4 +79,3 @@ def downgrade() -> None:
     op.execute("DROP INDEX IF EXISTS ix_op_outbox_events_tenant_id")
     op.execute("DROP TABLE IF EXISTS op_outbox_event_consumption")
     op.execute("DROP TABLE IF EXISTS op_outbox_events")
-

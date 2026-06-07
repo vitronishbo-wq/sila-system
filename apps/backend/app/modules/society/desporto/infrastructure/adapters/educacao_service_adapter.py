@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import EducacaoServicePort
+
+from apps.backend.app.modules.society.desporto.application.ports.educacao_service_port import (
+    EducacaoServicePort,
+)
+
 
 class EducacaoServiceAdapter(EducacaoServicePort):
-
     def __init__(self, escola_repo):
         self._escola_repo = escola_repo
 

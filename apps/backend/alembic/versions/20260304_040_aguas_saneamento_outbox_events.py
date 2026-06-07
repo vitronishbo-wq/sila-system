@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260304_040_aguas_saneamento_outbox_events"
 down_revision = "20260304_039_transportes_logistica_linhas_bilhetagem"
 branch_labels = None
@@ -39,9 +38,15 @@ def upgrade() -> None:
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_as_outbox_event_name ON aguas_saneamento_outbox_events (event_name)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_as_outbox_topic ON aguas_saneamento_outbox_events (topic)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_as_outbox_processed ON aguas_saneamento_outbox_events (processed)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_as_outbox_created_at ON aguas_saneamento_outbox_events (created_at)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_as_outbox_topic ON aguas_saneamento_outbox_events (topic)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_as_outbox_processed ON aguas_saneamento_outbox_events (processed)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_as_outbox_created_at ON aguas_saneamento_outbox_events (created_at)"
+    )
 
 
 def downgrade() -> None:

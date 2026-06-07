@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class AmbienteAdapter:
     """Adapter para verificacao de impacto ambiental."""
 

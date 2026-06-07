@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 from apps.backend.app.modules.procurement.domain.models.bid import Bid
+
 
 class BidRepositoryPort(ABC):
     """Port: Bid persistence interface."""
@@ -14,23 +15,25 @@ class BidRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, bid_id: str) -> Optional[Bid]:
+    async def get_by_id(self, bid_id: str) -> Bid | None:
         pass
 
     @abstractmethod
-    async def list_by_tender(self, tender_id: str, limit: int=100, offset: int=0) -> List[Bid]:
+    async def list_by_tender(self, tender_id: str, limit: int = 100, offset: int = 0) -> list[Bid]:
         pass
 
     @abstractmethod
-    async def list_by_supplier(self, supplier_id: str, limit: int=100, offset: int=0) -> List[Bid]:
+    async def list_by_supplier(
+        self, supplier_id: str, limit: int = 100, offset: int = 0
+    ) -> list[Bid]:
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Bid]:
+    async def list_by_status(self, status: str, limit: int = 100, offset: int = 0) -> list[Bid]:
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Bid]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Bid]:
         pass
 
     @abstractmethod

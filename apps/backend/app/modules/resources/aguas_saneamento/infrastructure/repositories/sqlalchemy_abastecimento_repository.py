@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.resources.aguas_saneamento.application.ports.abastecimento_repository_port import AbastecimentoRepositoryPort
+
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.abastecimento_repository_port import (
+    AbastecimentoRepositoryPort,
+)
 from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusAbastecimento
-from apps.backend.app.modules.resources.aguas_saneamento.domain.models.abastecimento import AbastecimentoAgua
+from apps.backend.app.modules.resources.aguas_saneamento.domain.models.abastecimento import (
+    AbastecimentoAgua,
+)
+
 
 class SQLAlchemyAbastecimentoRepository(AbastecimentoRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -19,7 +26,14 @@ class SQLAlchemyAbastecimentoRepository(AbastecimentoRepositoryPort):
     async def get_by_codigo(self, codigo_abastecimento: str) -> AbastecimentoAgua | None:
         return self._items.get(codigo_abastecimento)
 
-    async def list(self, *, infraestrutura_id: UUID | None=None, status: StatusAbastecimento | None=None, provincia: str | None=None, municipio: str | None=None) -> list[AbastecimentoAgua]:
+    async def list(
+        self,
+        *,
+        infraestrutura_id: UUID | None = None,
+        status: StatusAbastecimento | None = None,
+        provincia: str | None = None,
+        municipio: str | None = None,
+    ) -> list[AbastecimentoAgua]:
         values = list(self._items.values())
         if infraestrutura_id:
             values = [item for item in values if item.infraestrutura_id == infraestrutura_id]
@@ -35,4 +49,4 @@ class SQLAlchemyAbastecimentoRepository(AbastecimentoRepositoryPort):
 
     async def next_codigo(self) -> str:
         self._seq += 1
-        return f'ABS/{date.today().year}/{self._seq:06d}'
+        return f"ABS/{date.today().year}/{self._seq:06d}"

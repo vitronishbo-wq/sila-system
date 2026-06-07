@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusPoliticaJuventude
+
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusPoliticaJuventude,
+)
+
 
 class PoliticaJuventudeCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -14,8 +21,10 @@ class PoliticaJuventudeCreate(BaseModel):
     data_fim: date | None = None
     observacoes: str | None = None
 
+
 class PoliticaJuventudeStatusUpdate(BaseModel):
     status: StatusPoliticaJuventude
+
 
 class PoliticaJuventudeResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

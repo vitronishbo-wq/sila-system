@@ -1,22 +1,45 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from typing import Any
 from uuid import UUID
-from apps.backend.app.modules.civil_protection.domain.ports.atendimento_repository_port import AtendimentoRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.ports.bombeiro_repository_port import BombeiroRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.ports.corporacao_repository_port import CorporacaoRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.ports.despacho_repository_port import DespachoRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.ports.ocorrencia_emergencial_repository_port import OcorrenciaEmergencialRepositoryPort
-from apps.backend.app.modules.civil_protection.domain.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.civil_protection.domain.enums import StatusAtendimento, StatusAgenteProtecao, StatusCorporacao, StatusDespacho, StatusOcorrenciaEmergencial, TipoOcorrenciaEmergencial
+
+from apps.backend.app.modules.civil_protection.domain.enums import (
+    StatusAgenteProtecao,
+    StatusAtendimento,
+    StatusCorporacao,
+    StatusDespacho,
+    StatusOcorrenciaEmergencial,
+    TipoOcorrenciaEmergencial,
+)
 from apps.backend.app.modules.civil_protection.domain.models.atendimento import Atendimento
 from apps.backend.app.modules.civil_protection.domain.models.bombeiro import Bombeiro
 from apps.backend.app.modules.civil_protection.domain.models.corporacao import Corporacao
 from apps.backend.app.modules.civil_protection.domain.models.despacho import Despacho
-from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import OcorrenciaEmergencial
+from apps.backend.app.modules.civil_protection.domain.models.ocorrencia_emergencial import (
+    OcorrenciaEmergencial,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.atendimento_repository_port import (
+    AtendimentoRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.bombeiro_repository_port import (
+    BombeiroRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.corporacao_repository_port import (
+    CorporacaoRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.despacho_repository_port import (
+    DespachoRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.ocorrencia_emergencial_repository_port import (
+    OcorrenciaEmergencialRepositoryPort,
+)
+from apps.backend.app.modules.civil_protection.domain.ports.request_service_port import (
+    RequestServicePort,
+)
+
 
 class InMemoryCorporacaoRepository(CorporacaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Corporacao] = {}
 
@@ -51,12 +74,12 @@ class InMemoryCorporacaoRepository(CorporacaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'COR/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_corporacao.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"COR/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_corporacao.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryBombeiroRepository(BombeiroRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Bombeiro] = {}
 
@@ -97,13 +120,13 @@ class InMemoryBombeiroRepository(BombeiroRepositoryPort):
 
     async def next_matricula(self, corporacao_id: UUID) -> str:
         year = date.today().year
-        fragment = str(corporacao_id).split('-')[0].upper()
-        prefix = f'BOM/{fragment}/{year}/'
-        count = sum((1 for item in self._items.values() if item.matricula.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        fragment = str(corporacao_id).split("-")[0].upper()
+        prefix = f"BOM/{fragment}/{year}/"
+        count = sum(1 for item in self._items.values() if item.matricula.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, OcorrenciaEmergencial] = {}
 
@@ -132,12 +155,18 @@ class InMemoryOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryPor
         items = [item for item in self._items.values() if item.tipo == tipo]
         return sorted(items, key=lambda item: item.data_ocorrencia, reverse=True)
 
-    async def list_by_status(self, status: StatusOcorrenciaEmergencial) -> list[OcorrenciaEmergencial]:
+    async def list_by_status(
+        self, status: StatusOcorrenciaEmergencial
+    ) -> list[OcorrenciaEmergencial]:
         items = [item for item in self._items.values() if item.status == status]
         return sorted(items, key=lambda item: item.data_ocorrencia, reverse=True)
 
     async def list_by_periodo(self, inicio: datetime, fim: datetime) -> list[OcorrenciaEmergencial]:
-        items = [item for item in self._items.values() if item.data_ocorrencia >= inicio and item.data_ocorrencia <= fim]
+        items = [
+            item
+            for item in self._items.values()
+            if item.data_ocorrencia >= inicio and item.data_ocorrencia <= fim
+        ]
         return sorted(items, key=lambda item: item.data_ocorrencia, reverse=True)
 
     async def delete(self, ocorrencia_id: UUID) -> bool:
@@ -145,12 +174,12 @@ class InMemoryOcorrenciaEmergencialRepository(OcorrenciaEmergencialRepositoryPor
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'OCE/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_ocorrencia.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"OCE/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_ocorrencia.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryDespachoRepository(DespachoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Despacho] = {}
 
@@ -184,12 +213,12 @@ class InMemoryDespachoRepository(DespachoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'DSP/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_despacho.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"DSP/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_despacho.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryAtendimentoRepository(AtendimentoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Atendimento] = {}
 
@@ -227,11 +256,21 @@ class InMemoryAtendimentoRepository(AtendimentoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'ATE/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_atendimento.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"ATE/{year}/"
+        count = sum(
+            1 for item in self._items.values() if item.codigo_atendimento.startswith(prefix)
+        )
+        return f"{prefix}{count + 1:06d}"
+
 
 class FakeRequestService(RequestServicePort):
-
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict[str, Any] | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None) -> UUID | None:
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict[str, Any] | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ) -> UUID | None:
         return None

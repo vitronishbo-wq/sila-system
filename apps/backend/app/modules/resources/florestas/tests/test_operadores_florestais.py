@@ -1,10 +1,15 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 import pytest
-from apps.backend.app.modules.resources.florestas.application.services.operador_florestal_service import OperadorFlorestalService
+
+from apps.backend.app.modules.resources.florestas.application.services.operador_florestal_service import (
+    OperadorFlorestalService,
+)
+
 
 class _Repo:
-
     def __init__(self):
         self._items = {}
 
@@ -24,9 +29,10 @@ class _Repo:
             return items
         return [i for i in items if i.ativo is ativo]
 
+
 @pytest.mark.asyncio
 async def test_cadastrar_operador_sucesso():
     service = OperadorFlorestalService(repository=_Repo())
-    result = await service.cadastrar_operador(nome='Empresa Verde', nif='500000001')
-    assert result.nome == 'Empresa Verde'
-    assert result.nif == '500000001'
+    result = await service.cadastrar_operador(nome="Empresa Verde", nif="500000001")
+    assert result.nome == "Empresa Verde"
+    assert result.nif == "500000001"

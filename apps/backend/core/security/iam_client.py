@@ -1,11 +1,11 @@
 """Unified IAM Client - Single source of truth for authentication/authorization."""
 
-from typing import Optional, Dict, Any
+from typing import Any
 
 
 class IAMClient:
     """Centralized IAM client for all modules.
-    
+
     Consolidates 4 duplicate implementations:
     - app/modules/bi/integrations/iam_client.py
     - app/modules/service_requests/integrations/iam_client.py
@@ -14,12 +14,12 @@ class IAMClient:
     """
 
     @staticmethod
-    def get_current_user(token: Optional[str] = None) -> Dict[str, Any]:
+    def get_current_user(token: str | None = None) -> dict[str, Any]:
         """Get current user from token.
-        
+
         Args:
             token: JWT or Bearer token
-            
+
         Returns:
             User object with id, username, permissions
         """
@@ -28,21 +28,26 @@ class IAMClient:
             "id": 1,
             "username": "dev",
             "permissions": [
-                "bi:view", "bi:admin", "bi:export",
-                "service_requests:view", "service_requests:manage",
-                "statistics:view", "statistics:export",
-                "workflow:view", "workflow:manage"
-            ]
+                "bi:view",
+                "bi:admin",
+                "bi:export",
+                "service_requests:view",
+                "service_requests:manage",
+                "statistics:view",
+                "statistics:export",
+                "workflow:view",
+                "workflow:manage",
+            ],
         }
 
     @staticmethod
-    def check_permission(user: Optional[Dict[str, Any]], perm: str) -> bool:
+    def check_permission(user: dict[str, Any] | None, perm: str) -> bool:
         """Check if user has permission.
-        
+
         Args:
             user: User object
             perm: Permission string
-            
+
         Returns:
             True if user has permission
         """
@@ -51,12 +56,12 @@ class IAMClient:
         return perm in user.get("permissions", [])
 
     @staticmethod
-    def get_user_permissions(user: Optional[Dict[str, Any]]) -> list:
+    def get_user_permissions(user: dict[str, Any] | None) -> list:
         """Get all user permissions.
-        
+
         Args:
             user: User object
-            
+
         Returns:
             List of permission strings
         """

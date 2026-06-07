@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.resources.pecuaria.application.ports.gestao_fundiaria_service_port import GestaoFundiariaServicePort
+
+from apps.backend.app.modules.resources.pecuaria.application.ports.gestao_fundiaria_service_port import (
+    GestaoFundiariaServicePort,
+)
+
 
 class GestaoFundiariaServiceAdapter(GestaoFundiariaServicePort):
-
     def __init__(self, service: GestaoFundiariaServicePort):
         self._service = service
 

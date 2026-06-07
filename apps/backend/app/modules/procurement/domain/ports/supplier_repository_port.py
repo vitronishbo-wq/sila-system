@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+
 from apps.backend.app.modules.procurement.domain.models.supplier import Supplier
+
 
 class SupplierRepositoryPort(ABC):
     """Port: Supplier persistence interface."""
@@ -14,19 +15,21 @@ class SupplierRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def get_by_id(self, supplier_id: str) -> Optional[Supplier]:
+    async def get_by_id(self, supplier_id: str) -> Supplier | None:
         pass
 
     @abstractmethod
-    async def get_by_tax_id(self, tax_id: str) -> Optional[Supplier]:
+    async def get_by_tax_id(self, tax_id: str) -> Supplier | None:
         pass
 
     @abstractmethod
-    async def list_by_status(self, status: str, limit: int=100, offset: int=0) -> List[Supplier]:
+    async def list_by_status(
+        self, status: str, limit: int = 100, offset: int = 0
+    ) -> list[Supplier]:
         pass
 
     @abstractmethod
-    async def list_all(self, limit: int=100, offset: int=0) -> List[Supplier]:
+    async def list_all(self, limit: int = 100, offset: int = 0) -> list[Supplier]:
         pass
 
     @abstractmethod

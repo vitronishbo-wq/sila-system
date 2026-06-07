@@ -1,5 +1,28 @@
 from apps.backend.app.modules.economy.trade.external.api.deps import get_habilitacao_radar_service
-from apps.backend.app.modules.economy.trade.external.api.endpoints._habilitacao_router import build_habilitacao_router
-from apps.backend.app.modules.economy.trade.external.api.schemas.habilitacao_radar_schema import HabilitacaoRadarAprovacaoInput, HabilitacaoRadarCreate, HabilitacaoRadarRejeicaoInput, HabilitacaoRadarResponse
-from apps.backend.app.modules.economy.trade.external.exceptions import HabilitacaoRadarAlreadyExistsError, HabilitacaoRadarNotFoundError, InvalidHabilitacaoRadarStateError
-router = build_habilitacao_router(prefix='/habilitacao_radar', tag='Comercio Externo - Habilitacao Radar', get_service=get_habilitacao_radar_service, create_schema=HabilitacaoRadarCreate, aprovacao_schema=HabilitacaoRadarAprovacaoInput, rejeicao_schema=HabilitacaoRadarRejeicaoInput, response_schema=HabilitacaoRadarResponse, already_exists_error_cls=HabilitacaoRadarAlreadyExistsError, not_found_error_cls=HabilitacaoRadarNotFoundError, invalid_state_error_cls=InvalidHabilitacaoRadarStateError)
+from apps.backend.app.modules.economy.trade.external.api.endpoints._habilitacao_router import (
+    build_habilitacao_router,
+)
+from apps.backend.app.modules.economy.trade.external.api.schemas.habilitacao_radar_schema import (
+    HabilitacaoRadarAprovacaoInput,
+    HabilitacaoRadarCreate,
+    HabilitacaoRadarRejeicaoInput,
+    HabilitacaoRadarResponse,
+)
+from apps.backend.app.modules.economy.trade.external.exceptions import (
+    HabilitacaoRadarAlreadyExistsError,
+    HabilitacaoRadarNotFoundError,
+    InvalidHabilitacaoRadarStateError,
+)
+
+router = build_habilitacao_router(
+    prefix="/habilitacao_radar",
+    tag="Comercio Externo - Habilitacao Radar",
+    get_service=get_habilitacao_radar_service,
+    create_schema=HabilitacaoRadarCreate,
+    aprovacao_schema=HabilitacaoRadarAprovacaoInput,
+    rejeicao_schema=HabilitacaoRadarRejeicaoInput,
+    response_schema=HabilitacaoRadarResponse,
+    already_exists_error_cls=HabilitacaoRadarAlreadyExistsError,
+    not_found_error_cls=HabilitacaoRadarNotFoundError,
+    invalid_state_error_cls=InvalidHabilitacaoRadarStateError,
+)

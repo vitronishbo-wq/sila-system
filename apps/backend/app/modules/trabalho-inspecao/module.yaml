@@ -1,0 +1,26 @@
+code: trabalho-inspecao
+module: trabalho-inspecao
+name: Trabalho e Inspecao
+description: Inspecao laboral, relacoes de trabalho e seguranca ocupacional.
+type: "sub_domain"
+version: '1.0'
+last_updated: '2026-03-19'
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published:
+  - InspecaoAgendada
+  - InspecaoRealizada
+  - AutoInfracaoEmitido
+  event_catalog: domain/event_catalog.py
+requires:
+  domains: []
+  core_services: []
+subdomains: []
+ui:
+  icon: trabalho-inspecao
+  color: '#2563eb'
+  order: null
+services: []

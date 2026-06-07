@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_018_cultura_slice2_grupos_patrimonio_imaterial"
 down_revision = "20260302_017_cultura_foundation"
 branch_labels = None
@@ -77,16 +76,30 @@ def _create_grupos_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_codigo ON cultura_grupos_artisticos (codigo_grupo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_nome ON cultura_grupos_artisticos (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_tipo ON cultura_grupos_artisticos (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_lider_artista_id ON cultura_grupos_artisticos (lider_artista_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_municipio ON cultura_grupos_artisticos (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_provincia ON cultura_grupos_artisticos (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_codigo ON cultura_grupos_artisticos (codigo_grupo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_nome ON cultura_grupos_artisticos (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_tipo ON cultura_grupos_artisticos (tipo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_lider_artista_id ON cultura_grupos_artisticos (lider_artista_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_municipio ON cultura_grupos_artisticos (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_provincia ON cultura_grupos_artisticos (provincia)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_instituicao_educacional_id ON cultura_grupos_artisticos (instituicao_educacional_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_grupos_ativo ON cultura_grupos_artisticos (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_grupos_ativo ON cultura_grupos_artisticos (ativo)"
+    )
 
 
 def _create_patrimonios_imateriais_table() -> None:
@@ -178,19 +191,33 @@ def _create_patrimonios_imateriais_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_registro ON cultura_patrimonios_imateriais (registro_pni)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_nome ON cultura_patrimonios_imateriais (nome)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_categoria ON cultura_patrimonios_imateriais (categoria)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_status ON cultura_patrimonios_imateriais (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_municipio ON cultura_patrimonios_imateriais (municipio)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_provincia ON cultura_patrimonios_imateriais (provincia)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_registro ON cultura_patrimonios_imateriais (registro_pni)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_nome ON cultura_patrimonios_imateriais (nome)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_categoria ON cultura_patrimonios_imateriais (categoria)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_status ON cultura_patrimonios_imateriais (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_municipio ON cultura_patrimonios_imateriais (municipio)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_provincia ON cultura_patrimonios_imateriais (provincia)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_cultura_pim_atracao_turistica_id ON cultura_patrimonios_imateriais (atracao_turistica_id)"
     )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_cultura_pim_instituicao_educacional_id ON cultura_patrimonios_imateriais (instituicao_educacional_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_cultura_pim_ativo ON cultura_patrimonios_imateriais (ativo)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_cultura_pim_ativo ON cultura_patrimonios_imateriais (ativo)"
+    )
 
 
 def upgrade() -> None:

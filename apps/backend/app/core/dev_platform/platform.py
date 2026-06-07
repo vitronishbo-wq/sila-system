@@ -1,5 +1,4 @@
 class SovereignDeveloperPlatform:
-
     def __init__(self, scaffolder, linter, guard, generator):
         self.scaffolder = scaffolder
         self.linter = linter

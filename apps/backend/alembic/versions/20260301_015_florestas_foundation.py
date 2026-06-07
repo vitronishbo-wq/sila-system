@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_015_florestas_foundation"
 down_revision = "20260301_014_pescas_foundation"
 branch_labels = None
@@ -50,8 +49,12 @@ def _create_operadores_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_operadores_nif ON florestas_operadores_florestais (nif)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_operadores_tipo ON florestas_operadores_florestais (tipo_operador)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_operadores_nif ON florestas_operadores_florestais (nif)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_operadores_tipo ON florestas_operadores_florestais (tipo_operador)"
+    )
 
 
 def _create_unidades_table() -> None:
@@ -116,10 +119,18 @@ def _create_unidades_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_unidades_codigo ON florestas_unidades_manejo (codigo_um)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_unidades_tipo ON florestas_unidades_manejo (tipo_manejo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_unidades_operador_id ON florestas_unidades_manejo (operador_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_unidades_imovel_id ON florestas_unidades_manejo (imovel_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_unidades_codigo ON florestas_unidades_manejo (codigo_um)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_unidades_tipo ON florestas_unidades_manejo (tipo_manejo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_unidades_operador_id ON florestas_unidades_manejo (operador_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_unidades_imovel_id ON florestas_unidades_manejo (imovel_id)"
+    )
 
 
 def _create_planos_table() -> None:
@@ -164,9 +175,15 @@ def _create_planos_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_planos_numero ON florestas_planos_manejo (numero_pmfs)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_planos_unidade_id ON florestas_planos_manejo (unidade_manejo_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_planos_status ON florestas_planos_manejo (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_planos_numero ON florestas_planos_manejo (numero_pmfs)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_planos_unidade_id ON florestas_planos_manejo (unidade_manejo_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_planos_status ON florestas_planos_manejo (status)"
+    )
 
 
 def _create_inventarios_table() -> None:
@@ -203,8 +220,12 @@ def _create_inventarios_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_inventarios_unidade_id ON florestas_inventarios (unidade_manejo_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_florestas_inventarios_data ON florestas_inventarios (data_inventario)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_inventarios_unidade_id ON florestas_inventarios (unidade_manejo_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_florestas_inventarios_data ON florestas_inventarios (data_inventario)"
+    )
 
 
 def upgrade():

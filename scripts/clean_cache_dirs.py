@@ -4,7 +4,6 @@ Script para limpar diretórios de cache que podem causar problemas de permissão
 """
 
 import shutil
-import os
 from pathlib import Path
 
 

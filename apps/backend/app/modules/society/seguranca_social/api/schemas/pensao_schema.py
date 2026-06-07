@@ -1,17 +1,25 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
-from typing import Optional
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.seguranca_social.domain.enums import Periodicidade, StatusPensao, TipoPensao
+
+from apps.backend.app.modules.society.seguranca_social.domain.enums import (
+    Periodicidade,
+    StatusPensao,
+    TipoPensao,
+)
+
 
 class PensaoCreate(BaseModel):
     beneficiario_id: UUID
     tipo: TipoPensao
     valor_mensal: Decimal = Field(..., gt=0)
-    conta_bancaria: Optional[str] = None
-    iban: Optional[str] = None
+    conta_bancaria: str | None = None
+    iban: str | None = None
+
 
 class PensaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -23,18 +31,21 @@ class PensaoResponse(BaseModel):
     valor_mensal: Decimal
     periodicidade: Periodicidade
     status: StatusPensao
-    data_fim: Optional[date] = None
-    conta_bancaria: Optional[str] = None
-    iban: Optional[str] = None
-    observacoes: Optional[str] = None
+    data_fim: date | None = None
+    conta_bancaria: str | None = None
+    iban: str | None = None
+    observacoes: str | None = None
+
 
 class PensaoFilter(BaseModel):
-    beneficiario_id: Optional[UUID] = None
-    tipo: Optional[TipoPensao] = None
-    status: Optional[StatusPensao] = None
+    beneficiario_id: UUID | None = None
+    tipo: TipoPensao | None = None
+    status: StatusPensao | None = None
+
 
 class PensaoAction(BaseModel):
     actor_id: UUID
+
 
 class PensaoMotivo(BaseModel):
     motivo: str = Field(..., min_length=3, max_length=500)

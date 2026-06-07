@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.atendimento_repository_port import AtendimentoRepositoryPort
-from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento, TipoAtendimento
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.atendimento_repository_port import (
+    AtendimentoRepositoryPort,
+)
+from apps.backend.app.modules.society.assistencia_social.domain.enums import (
+    StatusAcompanhamento,
+    TipoAtendimento,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.models import Atendimento
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.atendimento_model import AtendimentoModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.atendimento_model import (
+    AtendimentoModel,
+)
+
 
 class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -34,7 +44,11 @@ class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[Atendimento]:
-        stmt = select(AtendimentoModel).where(AtendimentoModel.beneficiario_id == beneficiario_id).order_by(AtendimentoModel.data_atendimento.desc())
+        stmt = (
+            select(AtendimentoModel)
+            .where(AtendimentoModel.beneficiario_id == beneficiario_id)
+            .order_by(AtendimentoModel.data_atendimento.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -53,4 +67,14 @@ class SQLAlchemyAtendimentoRepository(AtendimentoRepositoryPort):
 
     @staticmethod
     def _to_domain(model: AtendimentoModel) -> Atendimento:
-        return Atendimento(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, tipo=TipoAtendimento(model.tipo), descricao=model.descricao, responsavel_id=model.responsavel_id, data_atendimento=model.data_atendimento, status=StatusAcompanhamento(model.status), encaminhamentos=model.encaminhamentos or [])
+        return Atendimento(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            tipo=TipoAtendimento(model.tipo),
+            descricao=model.descricao,
+            responsavel_id=model.responsavel_id,
+            data_atendimento=model.data_atendimento,
+            status=StatusAcompanhamento(model.status),
+            encaminhamentos=model.encaminhamentos or [],
+        )

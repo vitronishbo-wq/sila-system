@@ -1,0 +1,125 @@
+{
+  "MAX_TRANSFER_DISTANCE": {
+    "value": 50,
+    "description": "Maximum distance in kilometers allowed for a transfer request."
+  },
+  "MAX_PENDING_DEBT": {
+    "value": 0,
+    "description": "Maximum amount of pending debt allowed for a transfer request."
+  },
+  "TRANSFER_WINDOWS": {
+    "value": {
+      "default": true,
+      "2026": {
+        "enabled": true,
+        "start_date": "2026-03-01",
+        "end_date": "2026-05-31",
+        "semesters": {
+          "1": {
+            "enabled": true,
+            "start_date": "2026-03-01",
+            "end_date": "2026-04-15"
+          },
+          "2": {
+            "enabled": true,
+            "start_date": "2026-09-01",
+            "end_date": "2026-10-15"
+          }
+        },
+        "regions": {
+          "north": {
+            "enabled": true,
+            "start_date": "2026-03-01",
+            "end_date": "2026-05-31",
+            "semesters": {
+              "1": {
+                "enabled": true,
+                "start_date": "2026-03-01",
+                "end_date": "2026-04-10"
+              }
+            }
+          },
+          "south": {
+            "enabled": false,
+            "start_date": "2026-03-01",
+            "end_date": "2026-05-31"
+          }
+        }
+      },
+      "2027": {
+        "enabled": true,
+        "start_date": "2027-03-01",
+        "end_date": "2027-05-31"
+      },
+      "2028": {
+        "enabled": true,
+        "start_date": "2028-03-01",
+        "end_date": "2028-05-31"
+      },
+      "2029": {
+        "enabled": true,
+        "start_date": "2029-03-01",
+        "end_date": "2029-05-31"
+      },
+      "2030": {
+        "enabled": true,
+        "start_date": "2030-03-01",
+        "end_date": "2030-05-31"
+      }
+    },
+    "description": ""
+  },
+  "GRADE_COMPATIBILITY": {
+    "value": {
+      "1": [
+        6,
+        7
+      ],
+      "2": [
+        7,
+        8
+      ],
+      "3": [
+        8,
+        9
+      ],
+      "4": [
+        9,
+        10
+      ],
+      "5": [
+        10,
+        11
+      ],
+      "6": [
+        11,
+        12
+      ],
+      "7": [
+        12,
+        13
+      ],
+      "8": [
+        13,
+        14
+      ],
+      "9": [
+        14,
+        14
+      ],
+      "10": [
+        15,
+        15
+      ],
+      "11": [
+        16,
+        16
+      ],
+      "12": [
+        17,
+        18
+      ]
+    },
+    "description": "Allowed age ranges per class for transfer eligibility."
+  }
+}

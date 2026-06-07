@@ -1,7 +1,7 @@
 import asyncio
-import sys
-import os
 import csv
+import os
+import sys
 
 # Add apps/backend to sys.path to allow importing modules
 # When running from project root:
@@ -10,10 +10,10 @@ sys.path.append(os.path.join(os.getcwd(), "apps", "backend"))
 sys.path.append(os.path.join(os.getcwd()))
 
 try:
-    from sqlalchemy import select
-    from config.database import AsyncSessionLocal
-    from apps.backend.app.modules.identity.models.user import User, AdministrativeLevel
+    from apps.backend.app.modules.identity.models.user import AdministrativeLevel, User
     from apps.backend.app.modules.location.models.region import Region
+    from config.database import AsyncSessionLocal
+    from sqlalchemy import select
 except ImportError as e:
     print(f"❌ Error importing modules: {e}")
     sys.exit(1)
@@ -28,12 +28,16 @@ async def list_administrative_users(export_path=None):
             stmt = (
                 select(User, Region.name.label("region_name"), Region.type.label("region_type"))
                 .outerjoin(Region, User.region_id == Region.id)
-                .where(User.level.in_([
-                    AdministrativeLevel.CENTRAL,
-                    AdministrativeLevel.PROVINCIAL,
-                    AdministrativeLevel.MUNICIPAL,
-                    AdministrativeLevel.COMMUNAL
-                ]))
+                .where(
+                    User.level.in_(
+                        [
+                            AdministrativeLevel.CENTRAL,
+                            AdministrativeLevel.PROVINCIAL,
+                            AdministrativeLevel.MUNICIPAL,
+                            AdministrativeLevel.COMMUNAL,
+                        ]
+                    )
+                )
                 .order_by(User.level, Region.name)
             )
 
@@ -55,21 +59,24 @@ async def list_administrative_users(export_path=None):
                 region_type = user_row.region_type or "N/A"
                 print(f"{user.level:<12} | {user.email:<45} | {region_name:<30} | {region_type}")
 
-                export_data.append({
-                    "level": user.level,
-                    "email": user.email,
-                    "region_name": region_name,
-                    "region_type": region_type
-                })
+                export_data.append(
+                    {
+                        "level": user.level,
+                        "email": user.email,
+                        "region_name": region_name,
+                        "region_type": region_type,
+                    }
+                )
 
             print(f"\n✅ Total administrative users listed: {len(users_with_regions)}")
 
             # Export to CSV if requested
             if export_path:
                 try:
-                    with open(export_path, mode='w', newline='', encoding='utf-8') as f:
+                    with open(export_path, mode="w", newline="", encoding="utf-8") as f:
                         writer = csv.DictWriter(
-                            f, fieldnames=["level", "email", "region_name", "region_type"])
+                            f, fieldnames=["level", "email", "region_name", "region_type"]
+                        )
                         writer.writeheader()
                         writer.writerows(export_data)
                     print(f"📂 Exported to: {export_path}")
@@ -78,6 +85,7 @@ async def list_administrative_users(export_path=None):
 
         except Exception as e:
             print(f"❌ Error executing query: {e}")
+
 
 if __name__ == "__main__":
     # If running inside Docker, /app is the root.

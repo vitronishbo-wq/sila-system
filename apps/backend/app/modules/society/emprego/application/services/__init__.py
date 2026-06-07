@@ -5,4 +5,13 @@ from .formacao_service import FormacaoService
 from .mediacao_service import MediacaoService
 from .oferta_service import OfertaService
 from .trabalho_service import TrabalhoService
-__all__ = ['CandidatoService', 'OfertaService', 'MediacaoService', 'FormacaoService', 'TrabalhoService', 'ConcursoService', 'CertificacaoService']
+
+__all__ = [
+    "CandidatoService",
+    "OfertaService",
+    "MediacaoService",
+    "FormacaoService",
+    "TrabalhoService",
+    "ConcursoService",
+    "CertificacaoService",
+]

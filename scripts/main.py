@@ -1,8 +1,9 @@
 # /opt/sila-system/backend/main.py
 
-from fastapi import FastAPI, Depends
 import sys
 from pathlib import Path
+
+from fastapi import FastAPI
 
 # Adiciona o diretório raiz do projeto ao path para importar a configuração
 # Assume que a configuração está em /opt/sila-system/core/config.py

@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.cultura.domain.enums import StatusTombamento, TipoPatrimonio
+
 
 class BemCulturalCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -16,6 +20,7 @@ class BemCulturalCreate(BaseModel):
     coordenadas_long: Decimal | None = None
     observacoes: str | None = None
 
+
 class BemCulturalUpdate(BaseModel):
     nome: str | None = Field(default=None, min_length=3)
     tipo: TipoPatrimonio | None = None
@@ -27,6 +32,7 @@ class BemCulturalUpdate(BaseModel):
     coordenadas_long: Decimal | None = None
     ativo: bool | None = None
     observacoes: str | None = None
+
 
 class BemCulturalResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

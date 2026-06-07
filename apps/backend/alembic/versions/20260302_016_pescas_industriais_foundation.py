@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260302_016_pescas_industriais_foundation"
 down_revision = "20260301_015_florestas_foundation"
 branch_labels = None
@@ -94,14 +93,18 @@ def _create_unidades_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_cnpj ON pescas_industriais_unidades (cnpj)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_cnpj ON pescas_industriais_unidades (cnpj)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_classificacao ON pescas_industriais_unidades (classificacao)"
     )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_municipio ON pescas_industriais_unidades (municipio)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_armador_id ON pescas_industriais_unidades (armador_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_unidades_armador_id ON pescas_industriais_unidades (armador_id)"
+    )
 
 
 def _create_produtos_table() -> None:
@@ -296,7 +299,9 @@ def _create_lotes_table() -> None:
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_lotes_data_producao ON pescas_industriais_lotes_producao (data_producao)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_industriais_lotes_status ON pescas_industriais_lotes_producao (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_lotes_status ON pescas_industriais_lotes_producao (status)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_lotes_destino_mercado ON pescas_industriais_lotes_producao (destino_mercado)"
     )
@@ -387,7 +392,9 @@ def _create_inspecoes_table() -> None:
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_inspecoes_selo ON pescas_industriais_inspecoes (selo_inspecao)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_industriais_inspecoes_status ON pescas_industriais_inspecoes (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_inspecoes_status ON pescas_industriais_inspecoes (status)"
+    )
     op.execute(
         "CREATE INDEX IF NOT EXISTS ix_pescas_industriais_inspecoes_lote_id ON pescas_industriais_inspecoes (lote_producao_id)"
     )

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260305_043_obras_publicas_saga_cqrs"
 down_revision = "20260304_042_obras_publicas_outbox_events"
 branch_labels = None
@@ -56,9 +55,15 @@ def upgrade() -> None:
         "CREATE UNIQUE INDEX IF NOT EXISTS uq_op_sagas_tenant_type_correlation "
         "ON op_sagas (tenant_id, saga_type, correlation_id)"
     )
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_tenant_id ON op_dashboard_read (tenant_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_codigo ON op_dashboard_read (codigo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_status ON op_dashboard_read (status)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_tenant_id ON op_dashboard_read (tenant_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_codigo ON op_dashboard_read (codigo)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_op_dashboard_read_status ON op_dashboard_read (status)"
+    )
 
 
 def downgrade() -> None:

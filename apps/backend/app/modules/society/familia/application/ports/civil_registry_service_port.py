@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-class CivilRegistryServicePort(ABC):
 
+class CivilRegistryServicePort(ABC):
     @abstractmethod
     async def has_active_marriage(self, citizen_id: UUID) -> bool:
         raise NotImplementedError

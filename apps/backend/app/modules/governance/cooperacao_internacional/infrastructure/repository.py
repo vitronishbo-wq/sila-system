@@ -1,2 +1,11 @@
-from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories import InMemoryAcordoRepository, InMemoryProjetoCooperacaoRepository, InMemoryVistoRepository
-__all__ = ['InMemoryAcordoRepository', 'InMemoryProjetoCooperacaoRepository', 'InMemoryVistoRepository']
+from apps.backend.app.modules.governance.cooperacao_internacional.infrastructure.repositories import (
+    InMemoryAcordoRepository,
+    InMemoryProjetoCooperacaoRepository,
+    InMemoryVistoRepository,
+)
+
+__all__ = [
+    "InMemoryAcordoRepository",
+    "InMemoryProjetoCooperacaoRepository",
+    "InMemoryVistoRepository",
+]

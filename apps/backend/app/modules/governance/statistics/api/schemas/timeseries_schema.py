@@ -1,24 +1,27 @@
-from pydantic import BaseModel
-from typing import Optional, Dict, Any
 from datetime import datetime
+from typing import Any
+
+from pydantic import BaseModel
+
 
 class TimeSeriesPointSchema(BaseModel):
     value: float
     period_start: datetime
-    period_end: Optional[datetime] = None
-    dimensions: Optional[Dict[str, Any]] = None
+    period_end: datetime | None = None
+    dimensions: dict[str, Any] | None = None
 
     class Config:
         from_attributes = True
 
+
 class TimeSeriesSchema(BaseModel):
     id: int
-    statistic_id: Optional[int] = None
+    statistic_id: int | None = None
     value: float
-    period_start: Optional[str]
-    period_end: Optional[str]
-    dimensions: Optional[Dict[str, Any]]
-    created_at: Optional[str] = None
+    period_start: str | None
+    period_end: str | None
+    dimensions: dict[str, Any] | None
+    created_at: str | None = None
 
     class Config:
         from_attributes = True

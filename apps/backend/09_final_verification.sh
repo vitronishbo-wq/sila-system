@@ -70,7 +70,7 @@ fi
 
 # 8. Verificar imports do core
 echo -n "8. Core Imports: "
-CORE_USAGE=$(grep -r "from app.core" app/modules --include="*.py" 2>/dev/null | grep -v backup | wc -l)
+CORE_USAGE=$(grep -r "from apps.backend.app.core" app/modules --include="*.py" 2>/dev/null | grep -v backup | wc -l)
 if [ "$CORE_USAGE" -gt 100 ]; then
     echo "✅ $CORE_USAGE usos"
 else

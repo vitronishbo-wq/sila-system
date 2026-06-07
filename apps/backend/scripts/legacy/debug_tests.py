@@ -1,6 +1,7 @@
-import pytest
-import sys
 import os
+import sys
+
+import pytest
 
 # Ensure we are in the right directory
 os.chdir("/app")

@@ -1,14 +1,16 @@
 """
 Repository pattern for identity module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class IdentityRepository(ABC):
     """Abstract repository for identity."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get identity by ID."""
         pass
 
@@ -23,9 +25,10 @@ class IdentityRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all identity."""
         pass
+
 
 class IdentityMemoryRepository(IdentityRepository):
     """In-memory repository for identity."""
@@ -33,7 +36,7 @@ class IdentityMemoryRepository(IdentityRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class IdentityMemoryRepository(IdentityRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

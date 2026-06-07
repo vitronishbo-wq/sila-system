@@ -10,9 +10,10 @@
 
 import axios, { AxiosError } from 'axios';
 import type { AxiosInstance } from 'axios';
+import { API_ROOT_URL } from '@/utils/runtime';
 
 // Configuração base
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = API_ROOT_URL;
 
 // Tipos
 export interface ApiResponse<T> {

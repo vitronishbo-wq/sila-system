@@ -1,15 +1,22 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import GrupoArtisticoRepositoryPort
+
+from apps.backend.app.modules.society.cultura.application.ports.grupo_artistico_repository_port import (
+    GrupoArtisticoRepositoryPort,
+)
 from apps.backend.app.modules.society.cultura.domain.enums import TipoGrupoArtistico
 from apps.backend.app.modules.society.cultura.domain.models.grupo_artistico import GrupoArtistico
-from apps.backend.app.modules.society.cultura.infrastructure.models.grupo_artistico_model import GrupoArtisticoModel
+from apps.backend.app.modules.society.cultura.infrastructure.models.grupo_artistico_model import (
+    GrupoArtisticoModel,
+)
+
 
 class SQLAlchemyGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -40,7 +47,9 @@ class SQLAlchemyGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_grupo: str) -> GrupoArtistico | None:
-        stmt = select(GrupoArtisticoModel).where(GrupoArtisticoModel.codigo_grupo == codigo_grupo.strip())
+        stmt = select(GrupoArtisticoModel).where(
+            GrupoArtisticoModel.codigo_grupo == codigo_grupo.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -50,12 +59,20 @@ class SQLAlchemyGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_tipo(self, tipo: TipoGrupoArtistico) -> list[GrupoArtistico]:
-        stmt = select(GrupoArtisticoModel).where(GrupoArtisticoModel.tipo == tipo.value).order_by(GrupoArtisticoModel.nome.asc())
+        stmt = (
+            select(GrupoArtisticoModel)
+            .where(GrupoArtisticoModel.tipo == tipo.value)
+            .order_by(GrupoArtisticoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[GrupoArtistico]:
-        stmt = select(GrupoArtisticoModel).where(func.lower(GrupoArtisticoModel.municipio) == municipio.strip().lower()).order_by(GrupoArtisticoModel.nome.asc())
+        stmt = (
+            select(GrupoArtisticoModel)
+            .where(func.lower(GrupoArtisticoModel.municipio) == municipio.strip().lower())
+            .order_by(GrupoArtisticoModel.nome.asc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -69,10 +86,29 @@ class SQLAlchemyGrupoArtisticoRepository(GrupoArtisticoRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(GrupoArtisticoModel).where(GrupoArtisticoModel.codigo_grupo.like(f'GRP/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(GrupoArtisticoModel)
+            .where(GrupoArtisticoModel.codigo_grupo.like(f"GRP/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'GRP/{ano}/{count + 1:05d}'
+        return f"GRP/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: GrupoArtisticoModel) -> GrupoArtistico:
-        return GrupoArtistico(id=model.id, codigo_grupo=model.codigo_grupo, nome=model.nome, tipo=TipoGrupoArtistico(model.tipo), lider_artista_id=model.lider_artista_id, data_cadastro=model.data_cadastro, descricao=model.descricao, data_fundacao=model.data_fundacao, municipio=model.municipio, provincia=model.provincia, instituicao_educacional_id=model.instituicao_educacional_id, membros_ids=[UUID(item) for item in model.membros_ids] if model.membros_ids else None, ativo=model.ativo, observacoes=model.observacoes)
+        return GrupoArtistico(
+            id=model.id,
+            codigo_grupo=model.codigo_grupo,
+            nome=model.nome,
+            tipo=TipoGrupoArtistico(model.tipo),
+            lider_artista_id=model.lider_artista_id,
+            data_cadastro=model.data_cadastro,
+            descricao=model.descricao,
+            data_fundacao=model.data_fundacao,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            instituicao_educacional_id=model.instituicao_educacional_id,
+            membros_ids=[UUID(item) for item in model.membros_ids] if model.membros_ids else None,
+            ativo=model.ativo,
+            observacoes=model.observacoes,
+        )

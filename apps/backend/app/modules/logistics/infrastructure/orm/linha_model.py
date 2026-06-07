@@ -1,14 +1,18 @@
 from __future__ import annotations
+
 import uuid
 from datetime import date, datetime
 from decimal import Decimal
-from sqlalchemy import Boolean, Date, DateTime, Integer, JSON, Numeric, String, Text, func
+
+from sqlalchemy import JSON, Boolean, Date, DateTime, Integer, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
+
 from apps.backend.app.core.db import Base
 
+
 class LinhaModel(Base):
-    __tablename__ = 'transportes_logistica_linhas'
+    __tablename__ = "transportes_logistica_linhas"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     codigo: Mapped[str] = mapped_column(String(40), unique=True, nullable=False, index=True)
     nome: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -47,4 +51,6 @@ class LinhaModel(Base):
     data_atualizacao: Mapped[date | None] = mapped_column(Date, nullable=True)
     veiculos_ativos: Mapped[list[dict]] = mapped_column(JSON, nullable=False, default=list)
     trilha_auditoria: Mapped[list[dict]] = mapped_column(JSON, nullable=False, default=list)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )

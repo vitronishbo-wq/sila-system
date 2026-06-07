@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.assistencia_social.domain.models import CadastroUnico
 
-class CadastroUnicoRepositoryPort(ABC):
 
+class CadastroUnicoRepositoryPort(ABC):
     @abstractmethod
     async def save(self, entity: CadastroUnico) -> CadastroUnico:
         raise NotImplementedError

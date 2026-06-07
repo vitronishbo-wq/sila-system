@@ -1,10 +1,11 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from typing import Any
 from uuid import UUID
 
-class JuventudeServicePort(ABC):
 
+class JuventudeServicePort(ABC):
     @abstractmethod
     async def get_bolsa(self, referencia_id: UUID) -> Any | None:
         pass
@@ -14,5 +15,7 @@ class JuventudeServicePort(ABC):
         pass
 
     @abstractmethod
-    async def registrar_pagamento_bolsa(self, referencia_id: UUID, pagamento_id: str, valor: float) -> None:
+    async def registrar_pagamento_bolsa(
+        self, referencia_id: UUID, pagamento_id: str, valor: float
+    ) -> None:
         pass

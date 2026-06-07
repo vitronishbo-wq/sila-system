@@ -1,15 +1,20 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.resources.pecuaria.application.ports import RebanhoRepositoryPort
 from apps.backend.app.modules.resources.pecuaria.domain.enums import StatusRebanho, TipoAnimal
 from apps.backend.app.modules.resources.pecuaria.domain.models.rebanho import Rebanho
-from apps.backend.app.modules.resources.pecuaria.infrastructure.models.rebanho_model import RebanhoModel
+from apps.backend.app.modules.resources.pecuaria.infrastructure.models.rebanho_model import (
+    RebanhoModel,
+)
+
 
 class SQLAlchemyRebanhoRepository(RebanhoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -38,19 +43,36 @@ class SQLAlchemyRebanhoRepository(RebanhoRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_by_propriedade(self, propriedade_id: UUID | None=None) -> list[Rebanho]:
+    async def list_by_propriedade(self, propriedade_id: UUID | None = None) -> list[Rebanho]:
         stmt = select(RebanhoModel)
         if propriedade_id:
             stmt = stmt.where(RebanhoModel.propriedade_id == propriedade_id)
-        rows = (await self.session.execute(stmt.order_by(RebanhoModel.created_at.desc()))).scalars().all()
+        rows = (
+            (await self.session.execute(stmt.order_by(RebanhoModel.created_at.desc())))
+            .scalars()
+            .all()
+        )
         return [self._to_domain(model) for model in rows]
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(RebanhoModel).where(RebanhoModel.codigo_rebanho.like(f'REB/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(RebanhoModel)
+            .where(RebanhoModel.codigo_rebanho.like(f"REB/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'REB/{ano}/{count + 1:06d}'
+        return f"REB/{ano}/{count + 1:06d}"
 
     @staticmethod
     def _to_domain(model: RebanhoModel) -> Rebanho:
-        return Rebanho(id=model.id, codigo_rebanho=model.codigo_rebanho, propriedade_id=model.propriedade_id, tipo_animal=TipoAnimal(model.tipo_animal), descricao=model.descricao, quantidade_animais=model.quantidade_animais, data_cadastro=model.data_cadastro, status=StatusRebanho(model.status))
+        return Rebanho(
+            id=model.id,
+            codigo_rebanho=model.codigo_rebanho,
+            propriedade_id=model.propriedade_id,
+            tipo_animal=TipoAnimal(model.tipo_animal),
+            descricao=model.descricao,
+            quantidade_animais=model.quantidade_animais,
+            data_cadastro=model.data_cadastro,
+            status=StatusRebanho(model.status),
+        )

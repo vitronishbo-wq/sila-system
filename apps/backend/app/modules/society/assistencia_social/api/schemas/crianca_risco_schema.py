@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
+
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
+
 
 class CriancaRiscoCreate(BaseModel):
     beneficiario_id: UUID
@@ -10,6 +14,7 @@ class CriancaRiscoCreate(BaseModel):
     idade: int
     motivo: str
     escolarizada: bool
+
 
 class CriancaRiscoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

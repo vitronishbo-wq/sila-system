@@ -1,14 +1,24 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.economy.trade.external.application.ports import ExportadorRepositoryPort
-from apps.backend.app.modules.economy.trade.external.domain.enums import RegimeExportacao, StatusHabilitacao, TipoOperador, TipoPessoa
+
+from apps.backend.app.modules.economy.trade.external.application.ports import (
+    ExportadorRepositoryPort,
+)
+from apps.backend.app.modules.economy.trade.external.domain.enums import (
+    RegimeExportacao,
+    StatusHabilitacao,
+    TipoOperador,
+    TipoPessoa,
+)
 from apps.backend.app.modules.economy.trade.external.domain.models import Exportador
 from apps.backend.app.modules.economy.trade.external.infrastructure.models import ExportadorModel
 
-class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
 
+class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -49,8 +59,14 @@ class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
         model.data_cancelamento = exportador.data_cancelamento
         model.motivo_cancelamento = exportador.motivo_cancelamento
         model.regimes_autorizados = [item.value for item in exportador.regimes_autorizados]
-        model.produtos_principais = list(exportador.produtos_principais) if exportador.produtos_principais is not None else None
-        model.paises_destino = list(exportador.paises_destino) if exportador.paises_destino is not None else None
+        model.produtos_principais = (
+            list(exportador.produtos_principais)
+            if exportador.produtos_principais is not None
+            else None
+        )
+        model.paises_destino = (
+            list(exportador.paises_destino) if exportador.paises_destino is not None else None
+        )
         model.banco_principal = exportador.banco_principal
         model.conta_corrente = exportador.conta_corrente
         model.swift_code = exportador.swift_code
@@ -69,7 +85,9 @@ class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list(self, *, status: StatusHabilitacao | None=None, municipio: str | None=None) -> list[Exportador]:
+    async def list(
+        self, *, status: StatusHabilitacao | None = None, municipio: str | None = None
+    ) -> list[Exportador]:
         stmt = select(ExportadorModel)
         if status is not None:
             stmt = stmt.where(ExportadorModel.status == status.value)
@@ -81,4 +99,49 @@ class SQLAlchemyExportadorRepository(ExportadorRepositoryPort):
 
     @staticmethod
     def _to_domain(model: ExportadorModel) -> Exportador:
-        return Exportador(id=model.id, cadastro_radar=model.cadastro_radar, tipo_operador=TipoOperador(model.tipo_operador), tipo_pessoa=TipoPessoa(model.tipo_pessoa), status=StatusHabilitacao(model.status), razao_social=model.razao_social, nome_fantasia=model.nome_fantasia, cnpj_cpf=model.cnpj_cpf, inscricao_estadual=model.inscricao_estadual, inscricao_municipal=model.inscricao_municipal, endereco=model.endereco, numero=model.numero, complemento=model.complemento, bairro=model.bairro, municipio=model.municipio, provincia=model.provincia, cep=model.cep, pais=model.pais, telefone=model.telefone, email=model.email, site=model.site, representante_nome=model.representante_nome, representante_cpf=model.representante_cpf, representante_cargo=model.representante_cargo, responsavel_nome=model.responsavel_nome, responsavel_cpf=model.responsavel_cpf, responsavel_registro=model.responsavel_registro, data_habilitacao=model.data_habilitacao, data_validade=model.data_validade, data_suspensao=model.data_suspensao, data_cancelamento=model.data_cancelamento, motivo_cancelamento=model.motivo_cancelamento, regimes_autorizados=[RegimeExportacao(item) for item in model.regimes_autorizados or []], produtos_principais=list(model.produtos_principais) if model.produtos_principais is not None else None, paises_destino=list(model.paises_destino) if model.paises_destino is not None else None, banco_principal=model.banco_principal, conta_corrente=model.conta_corrente, swift_code=model.swift_code, limite_credito=model.limite_credito, observacoes=model.observacoes)
+        return Exportador(
+            id=model.id,
+            cadastro_radar=model.cadastro_radar,
+            tipo_operador=TipoOperador(model.tipo_operador),
+            tipo_pessoa=TipoPessoa(model.tipo_pessoa),
+            status=StatusHabilitacao(model.status),
+            razao_social=model.razao_social,
+            nome_fantasia=model.nome_fantasia,
+            cnpj_cpf=model.cnpj_cpf,
+            inscricao_estadual=model.inscricao_estadual,
+            inscricao_municipal=model.inscricao_municipal,
+            endereco=model.endereco,
+            numero=model.numero,
+            complemento=model.complemento,
+            bairro=model.bairro,
+            municipio=model.municipio,
+            provincia=model.provincia,
+            cep=model.cep,
+            pais=model.pais,
+            telefone=model.telefone,
+            email=model.email,
+            site=model.site,
+            representante_nome=model.representante_nome,
+            representante_cpf=model.representante_cpf,
+            representante_cargo=model.representante_cargo,
+            responsavel_nome=model.responsavel_nome,
+            responsavel_cpf=model.responsavel_cpf,
+            responsavel_registro=model.responsavel_registro,
+            data_habilitacao=model.data_habilitacao,
+            data_validade=model.data_validade,
+            data_suspensao=model.data_suspensao,
+            data_cancelamento=model.data_cancelamento,
+            motivo_cancelamento=model.motivo_cancelamento,
+            regimes_autorizados=[
+                RegimeExportacao(item) for item in model.regimes_autorizados or []
+            ],
+            produtos_principais=list(model.produtos_principais)
+            if model.produtos_principais is not None
+            else None,
+            paises_destino=list(model.paises_destino) if model.paises_destino is not None else None,
+            banco_principal=model.banco_principal,
+            conta_corrente=model.conta_corrente,
+            swift_code=model.swift_code,
+            limite_credito=model.limite_credito,
+            observacoes=model.observacoes,
+        )

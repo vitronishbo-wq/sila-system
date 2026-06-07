@@ -1,10 +1,16 @@
 from __future__ import annotations
+
 from uuid import UUID
-from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.projeto_repository_port import ProjetoCooperacaoRepositoryPort
-from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.projeto_cooperacao import ProjetoCooperacao
+
+from apps.backend.app.modules.governance.cooperacao_internacional.application.ports.projeto_repository_port import (
+    ProjetoCooperacaoRepositoryPort,
+)
+from apps.backend.app.modules.governance.cooperacao_internacional.domain.models.projeto_cooperacao import (
+    ProjetoCooperacao,
+)
+
 
 class InMemoryProjetoCooperacaoRepository(ProjetoCooperacaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, ProjetoCooperacao] = {}
 

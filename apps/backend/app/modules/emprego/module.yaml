@@ -1,0 +1,26 @@
+code: emprego
+module: emprego
+name: Emprego
+description: Intermediacao laboral e programas de emprego.
+version: '1.0'
+last_updated: '2026-03-19'
+ui:
+  icon: emprego
+  color: '#2563eb'
+  order: null
+services: []
+type: sub_domain
+status: alpha
+owner: sila-core
+exposes:
+  api_routers: []
+  public_models: []
+  events_published:
+  - ContratoTrabalhoRegistado
+  - VagaEmpregoCriada
+  - ColocacaoRealizada
+  event_catalog: domain/event_catalog.py
+requires:
+  domains: []
+  core_services: []
+subdomains: []

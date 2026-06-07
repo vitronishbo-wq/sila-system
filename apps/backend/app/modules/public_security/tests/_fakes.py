@@ -1,19 +1,59 @@
 from __future__ import annotations
+
 from datetime import date, datetime
 from typing import Any
 from uuid import UUID
-from apps.backend.app.modules.public_security.application.ports.cadeia_custodia_repository_port import CadeiaCustodiaRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.evidencia_repository_port import EvidenciaRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.investigacao_repository_port import InvestigacaoRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import LaudoPericialRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.mandado_repository_port import MandadoRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import OcorrenciaRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.policial_repository_port import PolicialRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import ProvaPericialRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.request_service_port import RequestServicePort
-from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import UnidadePolicialRepositoryPort
-from apps.backend.app.modules.public_security.application.ports.vestigio_repository_port import VestigioRepositoryPort
-from apps.backend.app.modules.public_security.domain.enums import StatusAgente, StatusCadeiaCustodia, StatusEvidencia, StatusInvestigacao, StatusLaudo, StatusMandado, StatusOcorrencia, StatusProva, StatusUnidadePolicial, StatusVestigio, TipoAgente, TipoEvidencia, TipoLaudo, TipoMandado, TipoOcorrencia, TipoProva, TipoVestigio
+
+from apps.backend.app.modules.public_security.application.ports.cadeia_custodia_repository_port import (
+    CadeiaCustodiaRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.evidencia_repository_port import (
+    EvidenciaRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.investigacao_repository_port import (
+    InvestigacaoRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.laudo_pericial_repository_port import (
+    LaudoPericialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.mandado_repository_port import (
+    MandadoRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.ocorrencia_repository_port import (
+    OcorrenciaRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.policial_repository_port import (
+    PolicialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.prova_pericial_repository_port import (
+    ProvaPericialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.request_service_port import (
+    RequestServicePort,
+)
+from apps.backend.app.modules.public_security.application.ports.unidade_policial_repository_port import (
+    UnidadePolicialRepositoryPort,
+)
+from apps.backend.app.modules.public_security.application.ports.vestigio_repository_port import (
+    VestigioRepositoryPort,
+)
+from apps.backend.app.modules.public_security.domain.enums import (
+    StatusAgente,
+    StatusCadeiaCustodia,
+    StatusEvidencia,
+    StatusInvestigacao,
+    StatusLaudo,
+    StatusMandado,
+    StatusOcorrencia,
+    StatusProva,
+    StatusUnidadePolicial,
+    StatusVestigio,
+    TipoAgente,
+    TipoLaudo,
+    TipoMandado,
+    TipoOcorrencia,
+    TipoProva,
+)
 from apps.backend.app.modules.public_security.domain.models.cadeia_custodia import CadeiaCustodia
 from apps.backend.app.modules.public_security.domain.models.evidencia import Evidencia
 from apps.backend.app.modules.public_security.domain.models.investigacao import Investigacao
@@ -25,8 +65,8 @@ from apps.backend.app.modules.public_security.domain.models.prova_pericial impor
 from apps.backend.app.modules.public_security.domain.models.unidade_policial import UnidadePolicial
 from apps.backend.app.modules.public_security.domain.models.vestigio import Vestigio
 
-class InMemoryUnidadePolicialRepository(UnidadePolicialRepositoryPort):
 
+class InMemoryUnidadePolicialRepository(UnidadePolicialRepositoryPort):
     def __init__(self) -> None:
         self._items: dict[UUID, UnidadePolicial] = {}
 
@@ -61,12 +101,12 @@ class InMemoryUnidadePolicialRepository(UnidadePolicialRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'UND/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_unidade.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        prefix = f"UND/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_unidade.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryPolicialRepository(PolicialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Policial] = {}
 
@@ -111,13 +151,13 @@ class InMemoryPolicialRepository(PolicialRepositoryPort):
 
     async def next_matricula(self, unidade_id: UUID) -> str:
         year = date.today().year
-        unidade_fragmento = str(unidade_id).split('-')[0].upper()
-        prefix = f'POL/{unidade_fragmento}/{year}/'
-        count = sum((1 for item in self._items.values() if item.matricula.startswith(prefix)))
-        return f'{prefix}{count + 1:05d}'
+        unidade_fragmento = str(unidade_id).split("-")[0].upper()
+        prefix = f"POL/{unidade_fragmento}/{year}/"
+        count = sum(1 for item in self._items.values() if item.matricula.startswith(prefix))
+        return f"{prefix}{count + 1:05d}"
+
 
 class InMemoryOcorrenciaRepository(OcorrenciaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Ocorrencia] = {}
 
@@ -151,7 +191,11 @@ class InMemoryOcorrenciaRepository(OcorrenciaRepositoryPort):
         return sorted(items, key=lambda item: item.data_ocorrencia, reverse=True)
 
     async def list_by_periodo(self, inicio: datetime, fim: datetime) -> list[Ocorrencia]:
-        items = [item for item in self._items.values() if item.data_ocorrencia >= inicio and item.data_ocorrencia <= fim]
+        items = [
+            item
+            for item in self._items.values()
+            if item.data_ocorrencia >= inicio and item.data_ocorrencia <= fim
+        ]
         return sorted(items, key=lambda item: item.data_ocorrencia, reverse=True)
 
     async def delete(self, ocorrencia_id: UUID) -> bool:
@@ -159,12 +203,12 @@ class InMemoryOcorrenciaRepository(OcorrenciaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'OCO/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_ocorrencia.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"OCO/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_ocorrencia.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryMandadoRepository(MandadoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Mandado] = {}
 
@@ -202,12 +246,12 @@ class InMemoryMandadoRepository(MandadoRepositoryPort):
 
     async def next_numero(self) -> str:
         year = date.today().year
-        prefix = f'MD/{year}/'
-        count = sum((1 for item in self._items.values() if item.numero_mandado.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"MD/{year}/"
+        count = sum(1 for item in self._items.values() if item.numero_mandado.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryInvestigacaoRepository(InvestigacaoRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Investigacao] = {}
 
@@ -241,12 +285,14 @@ class InMemoryInvestigacaoRepository(InvestigacaoRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'INV/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_investigacao.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"INV/{year}/"
+        count = sum(
+            1 for item in self._items.values() if item.codigo_investigacao.startswith(prefix)
+        )
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryProvaPericialRepository(ProvaPericialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, ProvaPericial] = {}
 
@@ -284,12 +330,12 @@ class InMemoryProvaPericialRepository(ProvaPericialRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'PRV/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_prova.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"PRV/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_prova.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryCadeiaCustodiaRepository(CadeiaCustodiaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, CadeiaCustodia] = {}
 
@@ -325,12 +371,12 @@ class InMemoryCadeiaCustodiaRepository(CadeiaCustodiaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'CCD/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_cadeia.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"CCD/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_cadeia.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryLaudoPericialRepository(LaudoPericialRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, LaudoPericial] = {}
 
@@ -368,12 +414,12 @@ class InMemoryLaudoPericialRepository(LaudoPericialRepositoryPort):
 
     async def next_numero(self) -> str:
         year = date.today().year
-        prefix = f'LDP/{year}/'
-        count = sum((1 for item in self._items.values() if item.numero_laudo.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"LDP/{year}/"
+        count = sum(1 for item in self._items.values() if item.numero_laudo.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryVestigioRepository(VestigioRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Vestigio] = {}
 
@@ -395,7 +441,9 @@ class InMemoryVestigioRepository(VestigioRepositoryPort):
         return sorted(self._items.values(), key=lambda item: item.data_coleta, reverse=True)
 
     async def list_by_cadeia(self, cadeia_custodia_id: UUID) -> list[Vestigio]:
-        items = [item for item in self._items.values() if item.cadeia_custodia_id == cadeia_custodia_id]
+        items = [
+            item for item in self._items.values() if item.cadeia_custodia_id == cadeia_custodia_id
+        ]
         return sorted(items, key=lambda item: item.data_coleta, reverse=True)
 
     async def list_by_status(self, status: StatusVestigio) -> list[Vestigio]:
@@ -407,12 +455,12 @@ class InMemoryVestigioRepository(VestigioRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'VST/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_vestigio.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"VST/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_vestigio.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class InMemoryEvidenciaRepository(EvidenciaRepositoryPort):
-
     def __init__(self) -> None:
         self._items: dict[UUID, Evidencia] = {}
 
@@ -446,11 +494,19 @@ class InMemoryEvidenciaRepository(EvidenciaRepositoryPort):
 
     async def next_codigo(self) -> str:
         year = date.today().year
-        prefix = f'EVD/{year}/'
-        count = sum((1 for item in self._items.values() if item.codigo_evidencia.startswith(prefix)))
-        return f'{prefix}{count + 1:06d}'
+        prefix = f"EVD/{year}/"
+        count = sum(1 for item in self._items.values() if item.codigo_evidencia.startswith(prefix))
+        return f"{prefix}{count + 1:06d}"
+
 
 class FakeRequestService(RequestServicePort):
-
-    async def create_request(self, *, request_type: str, entity_id: UUID, metadata: dict[str, Any] | None=None, citizen_id: UUID | None=None, numero_processo: str | None=None) -> UUID | None:
+    async def create_request(
+        self,
+        *,
+        request_type: str,
+        entity_id: UUID,
+        metadata: dict[str, Any] | None = None,
+        citizen_id: UUID | None = None,
+        numero_processo: str | None = None,
+    ) -> UUID | None:
         return None

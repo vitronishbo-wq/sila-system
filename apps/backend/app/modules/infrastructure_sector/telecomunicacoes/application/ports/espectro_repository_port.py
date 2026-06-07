@@ -1,11 +1,18 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusEspectro, TipoEspectro
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import Espectro
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusEspectro,
+    TipoEspectro,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.espectro import (
+    Espectro,
+)
+
 
 class EspectroRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, espectro: Espectro) -> Espectro:
         raise NotImplementedError

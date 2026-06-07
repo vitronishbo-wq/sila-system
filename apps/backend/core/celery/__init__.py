@@ -14,8 +14,10 @@ app.conf.task_acks_late = True
 app.conf.worker_prefetch_multiplier = 1
 app.conf.task_default_rate_limit = "100/m"
 
-app.autodiscover_tasks([
-    "modules.notifications.tasks",
-    "modules.documents.tasks",
-    "core.exports.tasks",
-])
+app.autodiscover_tasks(
+    [
+        "modules.notifications.tasks",
+        "modules.documents.tasks",
+        "core.exports.tasks",
+    ]
+)

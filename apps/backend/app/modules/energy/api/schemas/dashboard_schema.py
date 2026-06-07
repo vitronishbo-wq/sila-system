@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from pydantic import BaseModel, Field
-from apps.backend.app.modules.energy.api.schemas.central_geradora_schema import CentralGeradoraResponse
-from apps.backend.app.modules.energy.api.schemas.linha_transmissao_schema import LinhaTransmissaoResponse
+
+from apps.backend.app.modules.energy.api.schemas.central_geradora_schema import (
+    CentralGeradoraResponse,
+)
+from apps.backend.app.modules.energy.api.schemas.linha_transmissao_schema import (
+    LinhaTransmissaoResponse,
+)
 from apps.backend.app.modules.energy.api.schemas.subestacao_schema import SubestacaoResponse
+
 
 class DashboardGeracaoResponse(BaseModel):
     centrais: list[CentralGeradoraResponse]

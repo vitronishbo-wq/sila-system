@@ -1,22 +1,24 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
-from apps.backend.app.modules.payment.domain.models.payment import Payment
+from typing import Any
+
+from ..models.payment import Payment
+
 
 class PaymentProviderPort(ABC):
     """Port: Contract for external payment provider integration."""
 
     @abstractmethod
-    async def authorize(self, payment: Payment) -> Dict[str, Any]:
+    async def authorize(self, payment: Payment) -> dict[str, Any]:
         """Authorize a payment with external provider."""
         pass
 
     @abstractmethod
-    async def capture(self, provider_reference: str) -> Dict[str, Any]:
+    async def capture(self, provider_reference: str) -> dict[str, Any]:
         """Capture an authorized payment."""
         pass
 
     @abstractmethod
-    async def refund(self, provider_reference: str, amount: Optional[float]=None) -> Dict[str, Any]:
+    async def refund(self, provider_reference: str, amount: float | None = None) -> dict[str, Any]:
         """Request refund from external provider."""
         pass
 
@@ -26,7 +28,7 @@ class PaymentProviderPort(ABC):
         pass
 
     @abstractmethod
-    async def parse_webhook(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+    async def parse_webhook(self, payload: dict[str, Any]) -> dict[str, Any]:
         """Parse webhook payload from payment provider."""
         pass
 

@@ -1,14 +1,17 @@
-from typing import Optional, Dict, Any
+from typing import Any
+
 from pydantic import BaseModel
+
 
 class RunReportSchema(BaseModel):
     report_id: int
-    parameters: Optional[Dict[str, Any]] = {}
+    parameters: dict[str, Any] | None = {}
+
 
 class ReportSchema(BaseModel):
     id: int
     name: str
     query: str
-    parameters: Optional[Dict[str, Any]]
-    created_by: Optional[int]
-    created_at: Optional[str]
+    parameters: dict[str, Any] | None
+    created_by: int | None
+    created_at: str | None

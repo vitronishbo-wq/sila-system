@@ -1,5 +1,6 @@
-from dataclasses import dataclass
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+
 
 @dataclass
 class SendNotificationCommand:
@@ -8,28 +9,30 @@ class SendNotificationCommand:
     message: str
     notification_type: str
 
-class SendNotificationCommandHandler(ABC):
 
+class SendNotificationCommandHandler(ABC):
     @abstractmethod
     async def execute(self, command: SendNotificationCommand) -> None:
         pass
+
 
 @dataclass
 class MarkNotificationAsReadCommand:
     notification_id: str
 
-class MarkNotificationAsReadCommandHandler(ABC):
 
+class MarkNotificationAsReadCommandHandler(ABC):
     @abstractmethod
     async def execute(self, command: MarkNotificationAsReadCommand) -> None:
         pass
+
 
 @dataclass
 class DeleteNotificationCommand:
     notification_id: str
 
-class DeleteNotificationCommandHandler(ABC):
 
+class DeleteNotificationCommandHandler(ABC):
     @abstractmethod
     async def execute(self, command: DeleteNotificationCommand) -> None:
         pass

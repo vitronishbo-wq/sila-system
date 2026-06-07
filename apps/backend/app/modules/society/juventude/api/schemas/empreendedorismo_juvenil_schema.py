@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
+
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusEmpreendimento,
+)
+
 
 class EmpreendedorismoJuvenilCreate(BaseModel):
     jovem_id: UUID
@@ -13,8 +20,10 @@ class EmpreendedorismoJuvenilCreate(BaseModel):
     valor_credito: Decimal | None = None
     observacoes: str | None = None
 
+
 class EmpreendedorismoJuvenilStatusUpdate(BaseModel):
     status: StatusEmpreendimento
+
 
 class EmpreendedorismoJuvenilResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

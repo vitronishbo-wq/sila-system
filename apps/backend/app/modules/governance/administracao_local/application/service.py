@@ -1,7 +1,9 @@
-from apps.backend.app.modules.governance.administracao_local.domain.entities import AdministradorLocal
+from apps.backend.app.modules.governance.administracao_local.domain.entities import (
+    AdministradorLocal,
+)
+
 
 class AdministracaoLocalService:
-
     def __init__(self, repository):
         self.repository = repository
 

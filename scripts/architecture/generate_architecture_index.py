@@ -9,18 +9,16 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
-
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.core.module_registry import iter_modules  # noqa: E402
-
+from apps.backend.app.core.module_registry import iter_modules  # noqa: E402
 
 DECORATOR_RE = re.compile(
     r"""@\s*(?P<router>[A-Za-z_][A-Za-z0-9_]*)\.
@@ -136,7 +134,7 @@ def service_hint(module_dir: Path) -> str | None:
 def resolve_router_path(router_import: str | None, module_dir: Path) -> Path | None:
     if router_import:
         module_path = router_import.split(":", maxsplit=1)[0]
-        if module_path.startswith("app."):
+        if module_path.startswith("apps.backend.app."):
             candidate = BACKEND_ROOT / (module_path.replace(".", "/") + ".py")
             if candidate.exists():
                 return candidate
@@ -146,7 +144,9 @@ def resolve_router_path(router_import: str | None, module_dir: Path) -> Path | N
     return None
 
 
-def parse_api_endpoints(router_file: Path, mount_prefix: str, bootstrap_scope: str) -> dict[str, set[str]]:
+def parse_api_endpoints(
+    router_file: Path, mount_prefix: str, bootstrap_scope: str
+) -> dict[str, set[str]]:
     try:
         text = router_file.read_text(encoding="utf-8")
     except OSError:
@@ -218,8 +218,10 @@ def compute_instability_metrics(
     return metrics, ranking
 
 
-def build_index_payload(system_name: str, modules_root: Path, dependency_graph: dict[str, Any]) -> dict[str, Any]:
-    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+def build_index_payload(
+    system_name: str, modules_root: Path, dependency_graph: dict[str, Any]
+) -> dict[str, Any]:
+    generated_at = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     modules_block: dict[str, Any] = {}
     specs = list(iter_modules(enabled_only=False))
     metrics_by_module, instability_ranking = compute_instability_metrics(
@@ -284,7 +286,7 @@ def build_dependencies_payload(
 
     return {
         "system": system_name,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": "reports/module_dependency_graph.json",
         "modules": modules_block,
     }
@@ -317,7 +319,7 @@ def build_api_map_payload(system_name: str, modules_root: Path) -> tuple[dict[st
 
     payload = {
         "system": system_name,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "modules": modules_block,
     }
     return payload, endpoint_count
@@ -330,7 +332,7 @@ def build_entrypoints_payload(system_name: str) -> dict[str, Any]:
 
     return {
         "system": system_name,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "backend_start": {
             "file": "apps/backend/app/main.py",
         },
@@ -383,7 +385,7 @@ def build_repository_map_payload(system_name: str, index_payload: dict[str, Any]
         "system": {
             "name": system_name,
         },
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "backend": {
             "path": "apps/backend/app",
             "domains": domains_block,
@@ -562,9 +564,9 @@ def build_ai_context_md() -> str:
         "10. `docs/architecture/entrypoints/API_ENTRYPOINTS.md`",
         "11. `docs/architecture/domains/<domain>/ARCHITECTURE.md` (quando houver dominio alvo).",
         "12. `apps/backend/app/modules/<module>/ARCHITECTURE.md` (quando houver modulo alvo).",
-        "13. `AI_ENTRYPOINTS.yaml`",
-        "14. `ARCHITECTURE_INDEX.yaml`",
-        "15. `ARCHITECTURE_DEPENDENCIES.yaml`",
+        "13. `/.ai/AI_ENTRYPOINTS.yaml`",
+        "14. `docs/architecture/ARCHITECTURE_INDEX.yaml`",
+        "15. `docs/architecture/ARCHITECTURE_DEPENDENCIES.yaml`",
         "",
         "## Rules",
         "",
@@ -573,7 +575,7 @@ def build_ai_context_md() -> str:
         "- Antes de alterar arquitetura, execute `make sovereign-ritual`.",
         "- Sempre iniciar por `docs/AI_DOMAIN_KERNEL.md` em tarefas estruturais.",
         "- Imports entre modulos devem respeitar `docs/AI_ARCHITECTURE_GRAPH.yaml` e `docs/architecture/domain_dependency_policy.yaml`.",
-        "- Escopo de leitura de IA deve respeitar `AI_FILE_SCOPE.yaml`.",
+        "- Escopo de leitura de IA deve respeitar `/.ai/AI_FILE_SCOPE.yaml`.",
         "- Use `bash scripts/ai/bootstrap_context.sh` para extrair contexto rapido.",
         "",
         "_Auto-generated by `scripts/architecture/generate_architecture_index.py`._",
@@ -700,7 +702,7 @@ def build_visual_report(
     architecture_entrypoints_dir: Path,
     domain_architecture_dir: Path,
 ) -> str:
-    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ")
+    generated_at = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%SZ")
     edges = dependency_graph.get("edges", [])
     cycles = dependency_graph.get("cycles", [])
 
@@ -770,14 +772,22 @@ def main() -> int:
         action="store_true",
         help="Regenerate dependency graph before generating index files.",
     )
-    parser.add_argument("--index-output", default="ARCHITECTURE_INDEX.yaml", help="Index output path.")
+    parser.add_argument(
+        "--index-output",
+        default="docs/architecture/ARCHITECTURE_INDEX.yaml",
+        help="Index output path.",
+    )
     parser.add_argument(
         "--dependencies-output",
-        default="ARCHITECTURE_DEPENDENCIES.yaml",
+        default="docs/architecture/ARCHITECTURE_DEPENDENCIES.yaml",
         help="Dependencies output path.",
     )
-    parser.add_argument("--api-map-output", default="API_MAP.yaml", help="API map output path.")
-    parser.add_argument("--entrypoints-output", default="AI_ENTRYPOINTS.yaml", help="Entrypoints output path.")
+    parser.add_argument(
+        "--api-map-output", default="docs/architecture/API_MAP.yaml", help="API map output path."
+    )
+    parser.add_argument(
+        "--entrypoints-output", default=".ai/AI_ENTRYPOINTS.yaml", help="Entrypoints output path."
+    )
     parser.add_argument(
         "--repository-map-output",
         default="docs/architecture/REPOSITORY_MAP.yaml",
@@ -850,7 +860,9 @@ def main() -> int:
     data_flow_md = build_data_flow_md(dependency_graph)
     ai_context_md = build_ai_context_md()
     ai_bootstrap_prompt_md = build_ai_bootstrap_prompt_md()
-    domain_docs = build_domain_architecture_docs(index_payload, dependencies_payload, api_map_payload)
+    domain_docs = build_domain_architecture_docs(
+        index_payload, dependencies_payload, api_map_payload
+    )
 
     for out in (
         index_output,

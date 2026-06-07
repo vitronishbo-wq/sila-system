@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusFormacao
+
 
 class FormacaoCreate(BaseModel):
     jovem_id: UUID
@@ -14,9 +18,11 @@ class FormacaoCreate(BaseModel):
     data_fim: date | None = None
     observacoes: str | None = None
 
+
 class FormacaoStatusUpdate(BaseModel):
     status: StatusFormacao
     certificado_emitido: bool | None = None
+
 
 class FormacaoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

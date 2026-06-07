@@ -1,21 +1,24 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Optional
 from uuid import UUID
+
 from apps.backend.app.modules.educacao.domain.models._workflow_record import WorkflowRecord
 
-class WorkflowRepositoryPort(ABC):
 
+class WorkflowRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: WorkflowRecord) -> WorkflowRecord:
         pass
 
     @abstractmethod
-    async def get_by_id(self, id: UUID) -> Optional[WorkflowRecord]:
+    async def get_by_id(self, id: UUID) -> WorkflowRecord | None:
         pass
 
     @abstractmethod
-    async def list_by_citizen(self, citizen_id: UUID, service_type: str | None=None) -> list[WorkflowRecord]:
+    async def list_by_citizen(
+        self, citizen_id: UUID, service_type: str | None = None
+    ) -> list[WorkflowRecord]:
         pass
 
     @abstractmethod

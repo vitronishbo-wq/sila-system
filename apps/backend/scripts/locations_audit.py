@@ -17,16 +17,17 @@ from pathlib import Path
 
 try:
     import psycopg
+
     _CONNECT = psycopg.connect
 except ImportError:  # pragma: no cover - fallback when psycopg isn't installed
     try:
         import psycopg2
+
         _CONNECT = psycopg2.connect
     except ImportError as exc:
         raise SystemExit(
             "Missing database driver. Install psycopg or psycopg2 to run this audit."
         ) from exc
-
 
 
 def _normalize_key(value: str) -> str:
@@ -71,9 +72,7 @@ def main() -> None:
             ).fetchall()
         else:
             with conn.cursor() as cur:
-                cur.execute(
-                    "SELECT id, name, type, parent_id FROM locations ORDER BY type, name"
-                )
+                cur.execute("SELECT id, name, type, parent_id FROM locations ORDER BY type, name")
                 rows = cur.fetchall()
 
     grouped = defaultdict(list)

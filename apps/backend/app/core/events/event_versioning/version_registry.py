@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class EventVersionRegistry:
     versions: dict[tuple[str, str], object] = {}
 

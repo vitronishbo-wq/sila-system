@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.society.juventude.domain.enums import StatusMentoria
 from apps.backend.app.modules.society.juventude.domain.models.mentor import Mentor
 
-class MentorRepositoryPort(ABC):
 
+class MentorRepositoryPort(ABC):
     @abstractmethod
     async def save(self, mentor: Mentor) -> Mentor:
         raise NotImplementedError

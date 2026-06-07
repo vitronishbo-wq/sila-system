@@ -1,3 +1,5 @@
 class JuventudeServiceAdapter:
     pass
-__all__ = ['JuventudeServiceAdapter']
+
+
+__all__ = ["JuventudeServiceAdapter"]

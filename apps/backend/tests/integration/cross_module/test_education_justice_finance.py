@@ -11,7 +11,7 @@ Fluxo de Negócio:
 """
 
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 from uuid import uuid4
 
@@ -31,7 +31,7 @@ class MockEducationService:
         enrollment = {
             "id": len(self.enrollments) + 1,
             **enrollment_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "ACTIVE",
         }
         self.enrollments.append(enrollment)
@@ -40,9 +40,7 @@ class MockEducationService:
     async def generate_academic_certificate(self, student_id, certificate_type):
         """Gera certificado acadêmico."""
         # Verificar se aluno tem registros
-        student_records = [
-            r for r in self.academic_records if r["student_id"] == student_id
-        ]
+        student_records = [r for r in self.academic_records if r["student_id"] == student_id]
         if not student_records:
             raise ValueError("Aluno não possui registros acadêmicos")
 
@@ -51,7 +49,7 @@ class MockEducationService:
             "student_id": student_id,
             "type": certificate_type,
             "status": "PENDING_JUDICIAL_VALIDATION",
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "requires_judicial_validation": True,
         }
         self.certificates.append(certificate)
@@ -62,7 +60,7 @@ class MockEducationService:
         record = {
             "id": len(self.academic_records) + 1,
             **record_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
         }
         self.academic_records.append(record)
         return record
@@ -100,7 +98,7 @@ class MockJusticeService:
             "type": "CERTIFICATE_REQUEST",
             "status": "REGISTERED",
             **request_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "process_number": self._generate_process_number(),
         }
         self.cases.append(case)
@@ -113,7 +111,7 @@ class MockJusticeService:
             "certificate_id": certificate_id,
             "academic_data": academic_data,
             "validation_status": "APPROVED",
-            "validated_at": datetime.now(timezone.utc),
+            "validated_at": datetime.now(UTC),
             "judicial_seal": True,
             "validity_period": timedelta(days=365),
         }
@@ -131,8 +129,8 @@ class MockJusticeService:
             "case_id": case_id,
             "type": certificate_type,
             "status": "ISSUED",
-            "issued_at": datetime.now(timezone.utc),
-            "expires_at": datetime.now(timezone.utc) + timedelta(days=365),
+            "issued_at": datetime.now(UTC),
+            "expires_at": datetime.now(UTC) + timedelta(days=365),
             "judicial_validity": True,
         }
         self.legal_processes.append(certificate)
@@ -169,8 +167,8 @@ class MockFinanceService:
             **invoice_data,
             "amount": amount,
             "status": "PENDING",
-            "created_at": datetime.now(timezone.utc),
-            "due_date": datetime.now(timezone.utc) + timedelta(days=15),
+            "created_at": datetime.now(UTC),
+            "due_date": datetime.now(UTC) + timedelta(days=15),
         }
         self.invoices.append(invoice)
         return invoice
@@ -200,14 +198,14 @@ class MockFinanceService:
             "amount": invoice["amount"],
             "method": method,
             "status": "COMPLETED",
-            "processed_at": datetime.now(timezone.utc),
+            "processed_at": datetime.now(UTC),
             "transaction_id": str(uuid4()),
         }
         self.payments.append(payment)
 
         # Atualizar status da fatura
         invoice["status"] = "PAID"
-        invoice["paid_at"] = datetime.now(timezone.utc)
+        invoice["paid_at"] = datetime.now(UTC)
 
         return payment
 
@@ -216,7 +214,7 @@ class MockFinanceService:
         transaction = {
             "id": len(self.transactions) + 1,
             **transaction_data,
-            "created_at": datetime.now(timezone.utc),
+            "created_at": datetime.now(UTC),
             "status": "PENDING",
         }
         self.transactions.append(transaction)
@@ -269,7 +267,7 @@ class TestEducationJusticeFinanceFlow:
             "student_id": str(uuid4()),
             "name": "Ana Silva",
             "course": "Direito",
-            "enrollment_date": datetime(2020, 1, 1, tzinfo=timezone.utc),
+            "enrollment_date": datetime(2020, 1, 1, tzinfo=UTC),
             "academic_level": "GRADUATE",
         }
 
@@ -405,10 +403,10 @@ class TestEducationJusticeFinanceFlow:
                 "student_id": str(uuid4()),
                 "name": f"Estudante {i}",
                 "course": "Administração",
-                "enrollment_date": datetime.now(timezone.utc),
+                "enrollment_date": datetime.now(UTC),
                 "academic_level": "GRADUATE",
             }
-            enrollment = await education_service.create_enrollment(student_data)
+            await education_service.create_enrollment(student_data)
 
             # Adicionar registros acadêmicos
             await education_service.add_academic_record(
@@ -433,12 +431,8 @@ class TestEducationJusticeFinanceFlow:
         # Processar validações judiciais em lote
         validations = []
         for cert in certificates:
-            transcript = await education_service.get_student_transcript(
-                cert["student_id"]
-            )
-            validation = await justice_service.validate_academic_certificate(
-                cert["id"], transcript
-            )
+            transcript = await education_service.get_student_transcript(cert["student_id"])
+            validation = await justice_service.validate_academic_certificate(cert["id"], transcript)
             validations.append(validation)
 
         # Criar fatura consolidada
@@ -489,9 +483,7 @@ class TestEducationJusticeFinanceFlow:
         assert invoice["status"] == "PAID"
 
     @pytest.mark.asyncio
-    async def test_certificate_expiration_handling(
-        self, justice_service, finance_service
-    ):
+    async def test_certificate_expiration_handling(self, justice_service, finance_service):
         """Testa tratamento de expiração de certificados."""
 
         # Criar certificado com data de expiração
@@ -504,14 +496,12 @@ class TestEducationJusticeFinanceFlow:
         )
 
         # Verificar data de expiração
-        assert certificate["expires_at"] > datetime.now(timezone.utc)
-        assert certificate["expires_at"] <= datetime.now(timezone.utc) + timedelta(
-            days=365
-        )
+        assert certificate["expires_at"] > datetime.now(UTC)
+        assert certificate["expires_at"] <= datetime.now(UTC) + timedelta(days=365)
 
         # Simular renovação próxima da expiração
         renewal_date = certificate["expires_at"] - timedelta(days=30)
-        if datetime.now(timezone.utc) >= renewal_date:
+        if datetime.now(UTC) >= renewal_date:
             renewal_invoice = await finance_service.create_invoice(
                 {
                     "customer_id": case["requester_id"],
@@ -538,14 +528,10 @@ class TestEducationJusticeFinanceFlow:
 
         # Tentar emitir certidão de processo inexistente
         with pytest.raises(ValueError, match="Processo não encontrado"):
-            await justice_service.issue_judicial_certificate(
-                999, "ACADEMIC_CERTIFICATE"
-            )
+            await justice_service.issue_judicial_certificate(999, "ACADEMIC_CERTIFICATE")
 
     @pytest.mark.asyncio
-    async def test_concurrent_processing(
-        self, education_service, justice_service, finance_service
-    ):
+    async def test_concurrent_processing(self, education_service, justice_service, finance_service):
         """Testa processamento concorrente de solicitações."""
 
         async def process_student_certificate(student_index):
@@ -553,7 +539,7 @@ class TestEducationJusticeFinanceFlow:
             student_id = str(uuid4())
 
             # Criar matrícula
-            enrollment = await education_service.create_enrollment(
+            await education_service.create_enrollment(
                 {
                     "student_id": student_id,
                     "name": f"Student {student_index}",

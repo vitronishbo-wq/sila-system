@@ -14,7 +14,6 @@ import json
 import re
 from pathlib import Path
 
-
 FROM_MODULE_RE = re.compile(r"^\s*from\s+app\.modules\.([a-zA-Z0-9_]+)\b")
 IMPORT_MODULE_RE = re.compile(r"^\s*import\s+app\.modules\.([a-zA-Z0-9_]+)\b")
 FROM_SHARED_RE = re.compile(r"^\s*from\s+app\.shared\b")
@@ -22,11 +21,7 @@ IMPORT_SHARED_RE = re.compile(r"^\s*import\s+app\.shared\b")
 
 
 def collect_modules(modules_root: Path) -> set[str]:
-    return {
-        p.name
-        for p in modules_root.iterdir()
-        if p.is_dir() and p.name != "__pycache__"
-    }
+    return {p.name for p in modules_root.iterdir() if p.is_dir() and p.name != "__pycache__"}
 
 
 def load_allowlist(path: Path | None) -> set[str]:
@@ -72,9 +67,7 @@ def scan_module_file(
             allow_key = f"{current_module}->{imported_module}"
             if allow_key in allowed_cross_imports:
                 continue
-            violations.append(
-                f"{py_file}:{i} imports app.modules.{imported_module}"
-            )
+            violations.append(f"{py_file}:{i} imports app.modules.{imported_module}")
     return violations
 
 

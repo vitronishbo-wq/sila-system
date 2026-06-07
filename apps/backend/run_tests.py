@@ -4,9 +4,9 @@ Script para executar suíte de testes do SILA Backend
 Opções configuradas para diferentes tipos de testes
 """
 
-import sys
-import subprocess
 import argparse
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -58,12 +58,8 @@ def main():
         default="smoke",
         help="Tipo de teste a ser executado",
     )
-    parser.add_argument(
-        "--port", type=int, default=8003, help="Porta do servidor a ser testada"
-    )
-    parser.add_argument(
-        "--verbose", "-v", action="store_true", help="Saída detalhada dos testes"
-    )
+    parser.add_argument("--port", type=int, default=8003, help="Porta do servidor a ser testada")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Saída detalhada dos testes")
     parser.add_argument(
         "--skip-server-check",
         action="store_true",
@@ -159,7 +155,7 @@ def main():
 
         # Exibir informações de cobertura se disponível
         if args.type in ["coverage", "full"] and Path("htmlcov/index.html").exists():
-            print(f"📊 Relatório de cobertura gerado: htmlcov/index.html")
+            print("📊 Relatório de cobertura gerado: htmlcov/index.html")
 
     else:
         print(f"❌ Alguns testes falharam (exit code: {exit_code})")

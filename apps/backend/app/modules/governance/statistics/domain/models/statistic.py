@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+
 
 @dataclass
 class Statistic:
-    id: Optional[int]
+    id: int | None
     name: str
     code: str
-    description: Optional[str]
-    unit: Optional[str]
-    source_module: Optional[str]
+    description: str | None
+    unit: str | None
+    source_module: str | None
     created_at: datetime

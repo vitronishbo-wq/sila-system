@@ -6,6 +6,7 @@ Uso:
   python tools/apply_extend_existing.py --apply   # aplica de fato
   python tools/apply_extend_existing.py           # dry-run (default)
 """
+
 import sys
 from pathlib import Path
 
@@ -39,9 +40,7 @@ def patch_alert_file(apply=False):
         print(f"Patch aplicado e backup salvo: {ALERT_FILE}.bak")
     else:
         print("--- DRY RUN ---")
-        preview = (
-            lines[: insert_at + 1] + ["..."] + lines[insert_at + 1 : insert_at + 4]
-        )
+        preview = lines[: insert_at + 1] + ["..."] + lines[insert_at + 1 : insert_at + 4]
         print("\n".join(preview))
         print("Patch seria aplicado acima (use --apply para modificar de fato)")
     return True

@@ -1,10 +1,12 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from apps.backend.app.modules.society.cultura.domain.enums import TipoEspacoCultural
 from apps.backend.app.modules.society.cultura.domain.models.espaco_cultural import EspacoCultural
 
-class EspacoCulturalRepositoryPort:
 
+class EspacoCulturalRepositoryPort:
     async def save(self, espaco: EspacoCultural) -> EspacoCultural:
         raise NotImplementedError
 

@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.situacao_rua_repository_port import SituacaoRuaRepositoryPort
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.situacao_rua_repository_port import (
+    SituacaoRuaRepositoryPort,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
 from apps.backend.app.modules.society.assistencia_social.domain.models import SituacaoRua
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.situacao_rua_model import SituacaoRuaModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.situacao_rua_model import (
+    SituacaoRuaModel,
+)
+
 
 class SQLAlchemySituacaoRuaRepository(SituacaoRuaRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -32,7 +39,11 @@ class SQLAlchemySituacaoRuaRepository(SituacaoRuaRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[SituacaoRua]:
-        stmt = select(SituacaoRuaModel).where(SituacaoRuaModel.beneficiario_id == beneficiario_id).order_by(SituacaoRuaModel.data_registro.desc())
+        stmt = (
+            select(SituacaoRuaModel)
+            .where(SituacaoRuaModel.beneficiario_id == beneficiario_id)
+            .order_by(SituacaoRuaModel.data_registro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -51,4 +62,12 @@ class SQLAlchemySituacaoRuaRepository(SituacaoRuaRepositoryPort):
 
     @staticmethod
     def _to_domain(model: SituacaoRuaModel) -> SituacaoRua:
-        return SituacaoRua(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, data_registro=model.data_registro, localizacao=model.localizacao, motivo=model.motivo, status=StatusAcompanhamento(model.status))
+        return SituacaoRua(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            data_registro=model.data_registro,
+            localizacao=model.localizacao,
+            motivo=model.motivo,
+            status=StatusAcompanhamento(model.status),
+        )

@@ -1,14 +1,16 @@
 """
 Repository pattern for migration_service module.
 """
+
 from abc import ABC, abstractmethod
-from typing import List, Optional, Any
+from typing import Any
+
 
 class MigrationServiceRepository(ABC):
     """Abstract repository for migration_service."""
 
     @abstractmethod
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         """Get migration_service by ID."""
         pass
 
@@ -23,9 +25,10 @@ class MigrationServiceRepository(ABC):
         pass
 
     @abstractmethod
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         """List all migration_service."""
         pass
+
 
 class MigrationServiceMemoryRepository(MigrationServiceRepository):
     """In-memory repository for migration_service."""
@@ -33,7 +36,7 @@ class MigrationServiceMemoryRepository(MigrationServiceRepository):
     def __init__(self):
         self.data = {}
 
-    async def get_by_id(self, id: str) -> Optional[Any]:
+    async def get_by_id(self, id: str) -> Any | None:
         return self.data.get(id)
 
     async def save(self, entity: Any) -> Any:
@@ -46,5 +49,5 @@ class MigrationServiceMemoryRepository(MigrationServiceRepository):
             return True
         return False
 
-    async def list_all(self) -> List[Any]:
+    async def list_all(self) -> list[Any]:
         return list(self.data.values())

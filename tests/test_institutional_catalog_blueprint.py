@@ -1,4 +1,4 @@
-from app.core.catalog.blueprint import (
+from apps.backend.app.core.catalog.blueprint import (
     ESSENTIAL_MODULE_SLUGS,
     MODULE_BLUEPRINTS,
     build_service_blueprints,
@@ -22,3 +22,25 @@ def test_services_are_unique_and_linked_to_modules():
 def test_essential_modules_are_present():
     module_slugs = {module.slug for module in MODULE_BLUEPRINTS}
     assert ESSENTIAL_MODULE_SLUGS.issubset(module_slugs)
+
+
+def test_educacao_uses_citizen_goal_services():
+    services = [
+        service for service in build_service_blueprints(900) if service.module_slug == "educacao"
+    ]
+    service_names = {service.name for service in services}
+
+    assert "Nova Matricula Escolar" in service_names
+    assert "Transferencia Escolar" in service_names
+    assert "Consultar Historico Escolar" in service_names
+    assert "Reconhecimento de Diploma" in service_names
+
+    forbidden_public_names = {
+        "Agendamento de matricula escolar",
+        "Atualizacao cadastral de matricula escolar",
+        "Certificacao de matricula escolar",
+        "Licenciamento de matricula escolar",
+        "Pagamento de matricula escolar",
+        "Revalidacao de matricula escolar",
+    }
+    assert service_names.isdisjoint(forbidden_public_names)

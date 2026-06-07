@@ -1,0 +1,10 @@
+docs/archive/alembic_root_legacy/versions/007_add_views_performance.py
+docs/archive/alembic_root_legacy/versions/001_create_taxpayer_tables.py
+docs/archive/frontend_legacy/src/services/citizenAuthService.ts
+docs/archive/frontend_legacy/src/pages/CitizenPortal.tsx
+docs/archive/frontend_legacy/src/pages/Register.tsx
+docs/archive/frontend_legacy/src/modules/identity/types/index.ts
+docs/archive/frontend_legacy/src/modules/identity/components/CitizenIdentityProfile.tsx
+docs/archive/frontend_legacy/src/modules/identity/utils/index.ts
+docs/archive/frontend_legacy/src/modules/identity/hooks/index.ts
+docs/archive/frontend_legacy/src/modules/identity/services/identityService.ts

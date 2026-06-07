@@ -1,13 +1,19 @@
-from datetime import datetime, timedelta, timezone
 import uuid
+from datetime import UTC, datetime, timedelta
+
 import pytest
-from app.modules.economy.domain.models.invoice import Invoice
-from app.modules.economy.domain.models.payment import Payment
-from app.modules.economy.domain.models.enums import InvoiceStatus, PaymentStatus
-from app.modules.economy.infrastructure.adapters.sqlalchemy_invoice_repository import SQLAlchemyInvoiceRepository
-from app.modules.economy.infrastructure.adapters.sqlalchemy_payment_repository import SQLAlchemyPaymentRepository
-from app.modules.economy.core.application.services.payment_service import PaymentService
-from app.modules.economy.application.dto.payment_schema import CreatePaymentSchema
+from apps.backend.app.modules.economy.application.dto.payment_schema import CreatePaymentSchema
+from apps.backend.app.modules.economy.core.application.services.payment_service import PaymentService
+from apps.backend.app.modules.economy.domain.models.enums import InvoiceStatus, PaymentStatus
+from apps.backend.app.modules.economy.domain.models.invoice import Invoice
+from apps.backend.app.modules.economy.domain.models.payment import Payment
+from apps.backend.app.modules.economy.infrastructure.adapters.sqlalchemy_invoice_repository import (
+    SQLAlchemyInvoiceRepository,
+)
+from apps.backend.app.modules.economy.infrastructure.adapters.sqlalchemy_payment_repository import (
+    SQLAlchemyPaymentRepository,
+)
+
 
 class TestRepositories:
     """Repository integration tests"""
@@ -15,17 +21,17 @@ class TestRepositories:
     @pytest.mark.asyncio
     async def test_invoice_repository_crud(self, db_session):
         repo = SQLAlchemyInvoiceRepository(db_session)
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         invoice = Invoice(
             id=str(uuid.uuid4()),
-            citizen_id='cit_123',
-            reference=f'SILA-TEST-{uuid.uuid4().hex[:6].upper()}',
-            revenue_code='4211.08.01',
-            cost_center='CC001',
-            service_code='SRV_TAXA',
-            service_name='Taxa de Serviço',
+            citizen_id="cit_123",
+            reference=f"SILA-TEST-{uuid.uuid4().hex[:6].upper()}",
+            revenue_code="4211.08.01",
+            cost_center="CC001",
+            service_code="SRV_TAXA",
+            service_name="Taxa de Serviço",
             amount=1500.0,
-            currency='AOA',
+            currency="AOA",
             due_date=now + timedelta(days=10),
             status=InvoiceStatus.PENDING,
             created_at=now,
@@ -38,7 +44,7 @@ class TestRepositories:
         assert fetched is not None
         assert fetched.reference == invoice.reference
 
-        by_citizen = await repo.get_by_citizen('cit_123')
+        by_citizen = await repo.get_by_citizen("cit_123")
         assert len(by_citizen) == 1
 
         all_items = await repo.list_all(limit=10, offset=0)
@@ -52,17 +58,17 @@ class TestRepositories:
     async def test_payment_repository_crud(self, db_session):
         invoice_repo = SQLAlchemyInvoiceRepository(db_session)
         payment_repo = SQLAlchemyPaymentRepository(db_session)
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         invoice = Invoice(
             id=str(uuid.uuid4()),
-            citizen_id='cit_123',
-            reference=f'SILA-TEST-{uuid.uuid4().hex[:6].upper()}',
-            revenue_code='4211.08.01',
-            cost_center='CC001',
-            service_code='SRV_TAXA',
-            service_name='Taxa de Serviço',
+            citizen_id="cit_123",
+            reference=f"SILA-TEST-{uuid.uuid4().hex[:6].upper()}",
+            revenue_code="4211.08.01",
+            cost_center="CC001",
+            service_code="SRV_TAXA",
+            service_name="Taxa de Serviço",
             amount=3000.0,
-            currency='AOA',
+            currency="AOA",
             due_date=now + timedelta(days=5),
             status=InvoiceStatus.PENDING,
             created_at=now,
@@ -77,8 +83,8 @@ class TestRepositories:
             citizen_id=invoice.citizen_id,
             amount=invoice.amount,
             currency=invoice.currency,
-            gateway_reference=f'GW-{uuid.uuid4().hex[:8].upper()}',
-            payment_method='multicaixa',
+            gateway_reference=f"GW-{uuid.uuid4().hex[:8].upper()}",
+            payment_method="multicaixa",
             status=PaymentStatus.COMPLETED,
             created_at=now,
             confirmed_at=now,
@@ -96,6 +102,7 @@ class TestRepositories:
         by_citizen = await payment_repo.get_by_citizen(invoice.citizen_id)
         assert len(by_citizen) == 1
 
+
 class TestApplicationServices:
     """Application service integration tests"""
 
@@ -103,17 +110,17 @@ class TestApplicationServices:
     async def test_payment_service_registers_and_updates_invoice(self, db_session):
         invoice_repo = SQLAlchemyInvoiceRepository(db_session)
         payment_repo = SQLAlchemyPaymentRepository(db_session)
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         invoice = Invoice(
             id=str(uuid.uuid4()),
-            citizen_id='cit_123',
-            reference=f'SILA-TEST-{uuid.uuid4().hex[:6].upper()}',
-            revenue_code='4211.08.01',
-            cost_center='CC001',
-            service_code='SRV_TAXA',
-            service_name='Taxa de Serviço',
+            citizen_id="cit_123",
+            reference=f"SILA-TEST-{uuid.uuid4().hex[:6].upper()}",
+            revenue_code="4211.08.01",
+            cost_center="CC001",
+            service_code="SRV_TAXA",
+            service_name="Taxa de Serviço",
             amount=5000.0,
-            currency='AOA',
+            currency="AOA",
             due_date=now + timedelta(days=10),
             status=InvoiceStatus.PENDING,
             created_at=now,
@@ -128,8 +135,8 @@ class TestApplicationServices:
             citizen_id=invoice.citizen_id,
             amount=invoice.amount,
             currency=invoice.currency,
-            gateway_reference=f'GW-{uuid.uuid4().hex[:8].upper()}',
-            payment_method='multicaixa',
+            gateway_reference=f"GW-{uuid.uuid4().hex[:8].upper()}",
+            payment_method="multicaixa",
         )
         payment = await service.register_payment(payload)
         await db_session.commit()

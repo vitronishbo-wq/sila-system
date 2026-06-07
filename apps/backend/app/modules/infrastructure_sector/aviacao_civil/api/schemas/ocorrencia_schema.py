@@ -1,8 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import FaseVoo, GravidadeOcorrencia, TipoOcorrencia
+
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import (
+    FaseVoo,
+    GravidadeOcorrencia,
+    TipoOcorrencia,
+)
+
 
 class OcorrenciaCreate(BaseModel):
     tipo: TipoOcorrencia
@@ -14,6 +22,7 @@ class OcorrenciaCreate(BaseModel):
     descricao: str = Field(min_length=5, max_length=4000)
     vitimas: dict[str, int] = Field(default_factory=dict)
     danos: str = Field(min_length=3, max_length=64)
+
 
 class OcorrenciaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

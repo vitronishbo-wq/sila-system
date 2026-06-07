@@ -1,8 +1,15 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.public_security.domain.enums import StatusUnidadePolicial, TipoUnidadePolicial
+
+from apps.backend.app.modules.public_security.domain.enums import (
+    StatusUnidadePolicial,
+    TipoUnidadePolicial,
+)
+
 
 class UnidadePolicialCreate(BaseModel):
     nome: str = Field(..., min_length=3)
@@ -15,9 +22,11 @@ class UnidadePolicialCreate(BaseModel):
     email: str | None = None
     observacoes: str | None = None
 
+
 class UnidadePolicialStatusUpdate(BaseModel):
     status: StatusUnidadePolicial
     motivo: str | None = None
+
 
 class UnidadePolicialResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

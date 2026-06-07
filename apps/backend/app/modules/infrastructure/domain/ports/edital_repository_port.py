@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.infrastructure.domain.enums import StatusEdital
 from apps.backend.app.modules.infrastructure.domain.models.edital import Edital
 
-class EditalRepositoryPort(ABC):
 
+class EditalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: Edital) -> Edital:
         pass
@@ -15,7 +17,9 @@ class EditalRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusEdital | None=None, licitacao_id: UUID | None=None) -> list[Edital]:
+    async def list(
+        self, *, status: StatusEdital | None = None, licitacao_id: UUID | None = None
+    ) -> list[Edital]:
         pass
 
     @abstractmethod

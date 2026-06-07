@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-class ReservaLegalRepositoryPort(ABC):
 
+class ReservaLegalRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: object) -> object:
         pass

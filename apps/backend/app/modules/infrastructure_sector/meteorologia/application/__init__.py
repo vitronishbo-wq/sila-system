@@ -1,2 +1,7 @@
-from apps.backend.app.modules.infrastructure_sector.meteorologia.application.services import AlertaMeteorologicoService, EstacaoService, ProcessamentoService
-__all__ = ['EstacaoService', 'ProcessamentoService', 'AlertaMeteorologicoService']
+from apps.backend.app.modules.infrastructure_sector.meteorologia.application.services import (
+    AlertaMeteorologicoService,
+    EstacaoService,
+    ProcessamentoService,
+)
+
+__all__ = ["EstacaoService", "ProcessamentoService", "AlertaMeteorologicoService"]

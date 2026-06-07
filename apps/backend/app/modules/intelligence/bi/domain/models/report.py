@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Dict
+
 
 @dataclass
 class Report:
-    id: Optional[int]
+    id: int | None
     name: str
     query: str
-    parameters: Optional[Dict]
-    created_by: Optional[int]
+    parameters: dict | None
+    created_by: int | None
     created_at: datetime

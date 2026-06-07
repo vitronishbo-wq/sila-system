@@ -5,11 +5,11 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import sys
 from collections.abc import Iterable
 from dataclasses import asdict
 from decimal import Decimal
 from pathlib import Path
-import sys
 
 from sqlalchemy import select
 from sqlalchemy.exc import ProgrammingError
@@ -19,11 +19,13 @@ BACKEND_ROOT = PROJECT_ROOT / "apps" / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from apps.backend.app.core.catalog.blueprint import MODULE_BLUEPRINTS, build_service_blueprints
-from apps.backend.app.core.catalog.models.module import Module
-from apps.backend.app.core.catalog.models.service import Service
-from apps.backend.app.core.db import AsyncSessionLocal
-
+from apps.backend.app.core.catalog.blueprint import (  # noqa: E402
+    MODULE_BLUEPRINTS,
+    build_service_blueprints,
+)
+from apps.backend.app.core.catalog.models.module import Module  # noqa: E402
+from apps.backend.app.core.catalog.models.service import Service  # noqa: E402
+from apps.backend.app.core.db import AsyncSessionLocal  # noqa: E402
 
 SERVICE_COLUMNS = set(Service.__table__.columns.keys())
 
@@ -98,7 +100,10 @@ async def seed_catalog(target_services: int, dry_run: bool) -> dict[str, int]:
             existing_modules = {item.slug: item for item in existing_modules_result.scalars().all()}
         except ProgrammingError as exc:
             message = str(exc).lower()
-            if 'relation "modules" does not exist' in message or 'relation "services" does not exist' in message:
+            if (
+                'relation "modules" does not exist' in message
+                or 'relation "services" does not exist' in message
+            ):
                 raise RuntimeError(
                     "Catalog tables not found. Run database migrations before seeding "
                     "(alembic upgrade head, including 20260228_002_catalog_schema)."

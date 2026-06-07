@@ -1,16 +1,17 @@
 """Centralized dependency injection - Single source for all dependencies."""
 
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
 
-from apps.backend.app.core.db import AsyncSessionLocal
 from core.security import IAMClient
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from apps.backend.app.core.db import AsyncSessionLocal
 
 
 # Database
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Get database session dependency.
-    
+
     Usage:
         @app.get("/users")
         async def list_users(db: AsyncSession = Depends(get_db)):
@@ -23,25 +24,26 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 # Event Bus
 def get_events():
     """Get event bus dependency.
-    
+
     Usage:
         @app.post("/payments")
         async def create_payment(
             data: PaymentCreate,
             events = Depends(get_events)
         ):
-            from app.core.events import get_event_bus
+            from apps.backend.app.core.events import get_event_bus
             bus = get_event_bus()
             await bus.publish("payment.created", {...})
     """
-    from app.core.events import get_event_bus
+    from apps.backend.app.core.events import get_event_bus
+
     return get_event_bus()
 
 
 # IAM
 def get_iam_client():
     """Get IAM client dependency.
-    
+
     Usage:
         @app.get("/protected")
         async def protected(iam = Depends(get_iam_client)):

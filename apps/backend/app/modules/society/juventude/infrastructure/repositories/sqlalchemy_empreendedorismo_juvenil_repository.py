@@ -1,15 +1,27 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import EmpreendedorismoJuvenilRepositoryPort
-from apps.backend.app.modules.society.juventude.domain.enums import AreaInteresse, StatusEmpreendimento
-from apps.backend.app.modules.society.juventude.domain.models.empreendedorismo_juvenil import EmpreendedorismoJuvenil
-from apps.backend.app.modules.society.juventude.infrastructure.models.empreendedorismo_juvenil_model import EmpreendedorismoJuvenilModel
+
+from apps.backend.app.modules.society.juventude.application.ports.empreendedorismo_juvenil_repository_port import (
+    EmpreendedorismoJuvenilRepositoryPort,
+)
+from apps.backend.app.modules.society.juventude.domain.enums import (
+    AreaInteresse,
+    StatusEmpreendimento,
+)
+from apps.backend.app.modules.society.juventude.domain.models.empreendedorismo_juvenil import (
+    EmpreendedorismoJuvenil,
+)
+from apps.backend.app.modules.society.juventude.infrastructure.models.empreendedorismo_juvenil_model import (
+    EmpreendedorismoJuvenilModel,
+)
+
 
 class SQLAlchemyEmpreendedorismoJuvenilRepository(EmpreendedorismoJuvenilRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -37,22 +49,34 @@ class SQLAlchemyEmpreendedorismoJuvenilRepository(EmpreendedorismoJuvenilReposit
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_empreendimento: str) -> EmpreendedorismoJuvenil | None:
-        stmt = select(EmpreendedorismoJuvenilModel).where(EmpreendedorismoJuvenilModel.codigo_empreendimento == codigo_empreendimento.strip())
+        stmt = select(EmpreendedorismoJuvenilModel).where(
+            EmpreendedorismoJuvenilModel.codigo_empreendimento == codigo_empreendimento.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def list_all(self) -> list[EmpreendedorismoJuvenil]:
-        stmt = select(EmpreendedorismoJuvenilModel).order_by(EmpreendedorismoJuvenilModel.data_cadastro.desc())
+        stmt = select(EmpreendedorismoJuvenilModel).order_by(
+            EmpreendedorismoJuvenilModel.data_cadastro.desc()
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_jovem(self, jovem_id: UUID) -> list[EmpreendedorismoJuvenil]:
-        stmt = select(EmpreendedorismoJuvenilModel).where(EmpreendedorismoJuvenilModel.jovem_id == jovem_id).order_by(EmpreendedorismoJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(EmpreendedorismoJuvenilModel)
+            .where(EmpreendedorismoJuvenilModel.jovem_id == jovem_id)
+            .order_by(EmpreendedorismoJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
     async def list_by_status(self, status: StatusEmpreendimento) -> list[EmpreendedorismoJuvenil]:
-        stmt = select(EmpreendedorismoJuvenilModel).where(EmpreendedorismoJuvenilModel.status == status.value).order_by(EmpreendedorismoJuvenilModel.data_cadastro.desc())
+        stmt = (
+            select(EmpreendedorismoJuvenilModel)
+            .where(EmpreendedorismoJuvenilModel.status == status.value)
+            .order_by(EmpreendedorismoJuvenilModel.data_cadastro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(i) for i in rows]
 
@@ -66,10 +90,26 @@ class SQLAlchemyEmpreendedorismoJuvenilRepository(EmpreendedorismoJuvenilReposit
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(EmpreendedorismoJuvenilModel).where(EmpreendedorismoJuvenilModel.codigo_empreendimento.like(f'EMPJ/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(EmpreendedorismoJuvenilModel)
+            .where(EmpreendedorismoJuvenilModel.codigo_empreendimento.like(f"EMPJ/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'EMPJ/{ano}/{count + 1:05d}'
+        return f"EMPJ/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: EmpreendedorismoJuvenilModel) -> EmpreendedorismoJuvenil:
-        return EmpreendedorismoJuvenil(id=model.id, codigo_empreendimento=model.codigo_empreendimento, jovem_id=model.jovem_id, nome_negocio=model.nome_negocio, area_interesse=AreaInteresse(model.area_interesse), status=StatusEmpreendimento(model.status), receita_mensal=model.receita_mensal, valor_credito=model.valor_credito, data_cadastro=model.data_cadastro or date.today(), observacoes=model.observacoes, ativo=model.ativo)
+        return EmpreendedorismoJuvenil(
+            id=model.id,
+            codigo_empreendimento=model.codigo_empreendimento,
+            jovem_id=model.jovem_id,
+            nome_negocio=model.nome_negocio,
+            area_interesse=AreaInteresse(model.area_interesse),
+            status=StatusEmpreendimento(model.status),
+            receita_mensal=model.receita_mensal,
+            valor_credito=model.valor_credito,
+            data_cadastro=model.data_cadastro or date.today(),
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

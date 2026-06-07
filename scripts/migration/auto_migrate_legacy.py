@@ -7,7 +7,6 @@ import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_BACKEND_ROOT = REPO_ROOT / "apps" / "backend"
 DEFAULT_LEGACY_ROOT = DEFAULT_BACKEND_ROOT / "modules"
@@ -132,7 +131,9 @@ def cleanup_empty_dirs(root: Path, *, dry_run: bool) -> int:
     return removed
 
 
-def print_summary(results: list[MigrationResult], *, removed_empty_dirs: int, dry_run: bool) -> None:
+def print_summary(
+    results: list[MigrationResult], *, removed_empty_dirs: int, dry_run: bool
+) -> None:
     mode = "DRY-RUN" if dry_run else "APPLY"
     print(f"[MODE] {mode}")
     print("[SUMMARY] Legacy module migration")

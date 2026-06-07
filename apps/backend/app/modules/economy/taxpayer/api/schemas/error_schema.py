@@ -1,18 +1,23 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+
 
 class ErrorDetail(BaseModel):
     """Detalhe de erro"""
-    field: Optional[str] = None
+
+    field: str | None = None
     message: str
-    code: Optional[str] = None
+    code: str | None = None
+
 
 class ErrorResponse(BaseModel):
     """Schema para resposta de erro"""
-    detail: str = Field(..., description='Mensagem de erro')
-    code: Optional[str] = Field(None, description='Código do erro')
-    errors: Optional[List[ErrorDetail]] = Field(None, description='Erros detalhados')
+
+    detail: str = Field(..., description="Mensagem de erro")
+    code: str | None = Field(None, description="Código do erro")
+    errors: list[ErrorDetail] | None = Field(None, description="Erros detalhados")
+
 
 class ValidationErrorResponse(ErrorResponse):
     """Schema para erro de validação"""
-    errors: List[ErrorDetail] = Field(..., description='Erros de validação')
+
+    errors: list[ErrorDetail] = Field(..., description="Erros de validação")

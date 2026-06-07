@@ -1,2 +1,5 @@
 from fastapi import APIRouter
-router = APIRouter(prefix='/pagamento_internacional', tags=['Comercio Externo - PagamentoInternacional'])
+
+router = APIRouter(
+    prefix="/pagamento_internacional", tags=["Comercio Externo - PagamentoInternacional"]
+)

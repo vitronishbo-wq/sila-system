@@ -1,6 +1,53 @@
-from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.abastecimento_schema import AbastecimentoCreate, AbastecimentoMotivoInput, AbastecimentoOperacaoInput, AbastecimentoResponse
-from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.consumo_schema import ConsumoCreate, ConsumoMotivoInput, ConsumoResponse
-from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.fatura_schema import FaturaEmitirInput, FaturaMotivoInput, FaturaPagamentoInput, FaturaResponse
-from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.infraestrutura_schema import InfraestruturaAtivacaoInput, InfraestruturaCreate, InfraestruturaMotivoInput, InfraestruturaResponse
-from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.outorga_schema import OutorgaCreate, OutorgaDeferimentoInput, OutorgaMotivoInput, OutorgaRenovacaoInput, OutorgaResponse
-__all__ = ['OutorgaCreate', 'OutorgaDeferimentoInput', 'OutorgaMotivoInput', 'OutorgaRenovacaoInput', 'OutorgaResponse', 'InfraestruturaCreate', 'InfraestruturaAtivacaoInput', 'InfraestruturaMotivoInput', 'InfraestruturaResponse', 'AbastecimentoCreate', 'AbastecimentoOperacaoInput', 'AbastecimentoMotivoInput', 'AbastecimentoResponse', 'ConsumoCreate', 'ConsumoMotivoInput', 'ConsumoResponse', 'FaturaEmitirInput', 'FaturaPagamentoInput', 'FaturaMotivoInput', 'FaturaResponse']
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.abastecimento_schema import (
+    AbastecimentoCreate,
+    AbastecimentoMotivoInput,
+    AbastecimentoOperacaoInput,
+    AbastecimentoResponse,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.consumo_schema import (
+    ConsumoCreate,
+    ConsumoMotivoInput,
+    ConsumoResponse,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.fatura_schema import (
+    FaturaEmitirInput,
+    FaturaMotivoInput,
+    FaturaPagamentoInput,
+    FaturaResponse,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.infraestrutura_schema import (
+    InfraestruturaAtivacaoInput,
+    InfraestruturaCreate,
+    InfraestruturaMotivoInput,
+    InfraestruturaResponse,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.api.schemas.outorga_schema import (
+    OutorgaCreate,
+    OutorgaDeferimentoInput,
+    OutorgaMotivoInput,
+    OutorgaRenovacaoInput,
+    OutorgaResponse,
+)
+
+__all__ = [
+    "OutorgaCreate",
+    "OutorgaDeferimentoInput",
+    "OutorgaMotivoInput",
+    "OutorgaRenovacaoInput",
+    "OutorgaResponse",
+    "InfraestruturaCreate",
+    "InfraestruturaAtivacaoInput",
+    "InfraestruturaMotivoInput",
+    "InfraestruturaResponse",
+    "AbastecimentoCreate",
+    "AbastecimentoOperacaoInput",
+    "AbastecimentoMotivoInput",
+    "AbastecimentoResponse",
+    "ConsumoCreate",
+    "ConsumoMotivoInput",
+    "ConsumoResponse",
+    "FaturaEmitirInput",
+    "FaturaPagamentoInput",
+    "FaturaMotivoInput",
+    "FaturaResponse",
+]

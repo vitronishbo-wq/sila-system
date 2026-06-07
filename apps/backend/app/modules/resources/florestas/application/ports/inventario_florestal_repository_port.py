@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import InventarioFlorestal
+
+from apps.backend.app.modules.resources.florestas.domain.models.inventario_florestal import (
+    InventarioFlorestal,
+)
+
 
 class InventarioFlorestalRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, inventario: InventarioFlorestal) -> InventarioFlorestal:
         pass

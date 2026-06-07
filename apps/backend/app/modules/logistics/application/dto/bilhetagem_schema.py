@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import datetime
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.logistics.domain.enums import StatusReconciliacaoFinanceira, TipoTarifa
+
+from apps.backend.app.modules.logistics.domain.enums import (
+    StatusReconciliacaoFinanceira,
+    TipoTarifa,
+)
+
 
 class BilhetagemEventoCreate(BaseModel):
     codigo_bilhete: str
@@ -13,9 +20,11 @@ class BilhetagemEventoCreate(BaseModel):
     forma_pagamento: str
     metadata: dict = Field(default_factory=dict)
 
+
 class BilhetagemReconciliacaoInput(BaseModel):
     confirmado: bool
     referencia_externa: str | None = None
+
 
 class BilhetagemEventoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

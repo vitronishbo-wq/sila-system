@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { TrendingUp, Download } from 'lucide-react';
-import { useTrendData } from '../hooks';
+import { useTrendData } from '@/modules/meteorologia/hooks';
 
 interface TrendsChartProps {
   estacaoId: string;

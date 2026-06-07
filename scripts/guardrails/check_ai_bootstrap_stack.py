@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-
 REQUIRED_FILES = (
     "docs/tree.md",
     "docs/AI_BOOTSTRAP_PROMPT.md",
@@ -20,16 +19,16 @@ REQUIRED_FILES = (
     "docs/architecture/entrypoints/DATA_FLOW.md",
     "docs/architecture/domains/governance/ARCHITECTURE.md",
     "docs/architecture/domains/economy/ARCHITECTURE.md",
-    "docs/architecture/domains/social/ARCHITECTURE.md",
-    "docs/architecture/domains/infrastructure/ARCHITECTURE.md",
-    "docs/architecture/domains/environment/ARCHITECTURE.md",
-    "docs/architecture/domains/security/ARCHITECTURE.md",
-    "docs/architecture/domains/identity/ARCHITECTURE.md",
-    "docs/architecture/domains/core_system/ARCHITECTURE.md",
-    "ARCHITECTURE_INDEX.yaml",
-    "ARCHITECTURE_DEPENDENCIES.yaml",
-    "API_MAP.yaml",
-    "AI_ENTRYPOINTS.yaml",
+    "docs/architecture/domains/educacao/ARCHITECTURE.md",
+    "docs/architecture/domains/infrastructure_sector/ARCHITECTURE.md",
+    "docs/architecture/domains/intelligence/ARCHITECTURE.md",
+    "docs/architecture/domains/justice/ARCHITECTURE.md",
+    "docs/architecture/domains/resources/ARCHITECTURE.md",
+    "docs/architecture/domains/society/ARCHITECTURE.md",
+    "docs/architecture/ARCHITECTURE_INDEX.yaml",
+    "docs/architecture/ARCHITECTURE_DEPENDENCIES.yaml",
+    "docs/architecture/API_MAP.yaml",
+    ".ai/AI_ENTRYPOINTS.yaml",
     "docs/AI_ARCHITECTURE_GRAPH.yaml",
     "docs/AI_DOMAIN_KERNEL.md",
     "reports/ai_architecture_graph_visual_report.md",
@@ -42,7 +41,7 @@ REQUIRED_FILES = (
     "scripts/guardrails/check_domain_dependencies.py",
     "scripts/arch_compiler.py",
     "scripts/guardrails/run_all_guardrails.sh",
-    "AI_FILE_SCOPE.yaml",
+    ".ai/AI_FILE_SCOPE.yaml",
 )
 
 REQUIRED_SCOPE_INCLUDE = (
@@ -50,10 +49,10 @@ REQUIRED_SCOPE_INCLUDE = (
     "docs/AI_BOOTSTRAP_PROMPT.md",
     "docs/AI_CONTEXT.md",
     "docs/architecture/**",
-    "ARCHITECTURE_INDEX.yaml",
-    "ARCHITECTURE_DEPENDENCIES.yaml",
-    "API_MAP.yaml",
-    "AI_ENTRYPOINTS.yaml",
+    "docs/architecture/ARCHITECTURE_INDEX.yaml",
+    "docs/architecture/ARCHITECTURE_DEPENDENCIES.yaml",
+    "docs/architecture/API_MAP.yaml",
+    ".ai/AI_ENTRYPOINTS.yaml",
     "docs/AI_ARCHITECTURE_GRAPH.yaml",
     "docs/AI_DOMAIN_KERNEL.md",
     "scripts/architecture/**",
@@ -66,9 +65,7 @@ REQUIRED_SCOPE_INCLUDE = (
     "apps/backend/app/modules/*/ARCHITECTURE.md",
 )
 
-DISALLOWED_REDUNDANT_FILES = (
-    "docs/architecture/SILA_DOMAIN_MAP.md",
-)
+DISALLOWED_REDUNDANT_FILES = ("docs/architecture/SILA_DOMAIN_MAP.md",)
 
 
 def parse_list_lines(lines: list[str], key: str) -> list[str]:
@@ -79,7 +76,7 @@ def parse_list_lines(lines: list[str], key: str) -> list[str]:
         if not line.strip() or line.lstrip().startswith("#"):
             continue
         if not line.startswith(" ") and line.endswith(":"):
-            in_key = (line[:-1] == key)
+            in_key = line[:-1] == key
             continue
         if in_key and line.lstrip().startswith("- "):
             values.append(line.split("- ", 1)[1].strip())
@@ -124,11 +121,9 @@ def main() -> int:
                     f"apps/backend/app/modules/{module_dir.name}/ARCHITECTURE.md"
                 )
             elif arch_doc.stat().st_size == 0:
-                empty_files.append(
-                    f"apps/backend/app/modules/{module_dir.name}/ARCHITECTURE.md"
-                )
+                empty_files.append(f"apps/backend/app/modules/{module_dir.name}/ARCHITECTURE.md")
 
-    scope_file = repo_root / "AI_FILE_SCOPE.yaml"
+    scope_file = repo_root / ".ai" / "AI_FILE_SCOPE.yaml"
     missing_scope_items: list[str] = []
     if scope_file.exists():
         content = scope_file.read_text(encoding="utf-8")
@@ -140,9 +135,7 @@ def main() -> int:
     else:
         missing_scope_items.extend(REQUIRED_SCOPE_INCLUDE)
 
-    redundant_files = [
-        rel for rel in DISALLOWED_REDUNDANT_FILES if (repo_root / rel).exists()
-    ]
+    redundant_files = [rel for rel in DISALLOWED_REDUNDANT_FILES if (repo_root / rel).exists()]
 
     if (
         not missing_files
@@ -165,7 +158,7 @@ def main() -> int:
         for item in empty_files:
             print(f"  - {item}")
     if missing_scope_items:
-        print("- Missing include entries in AI_FILE_SCOPE.yaml:")
+        print("- Missing include entries in .ai/AI_FILE_SCOPE.yaml:")
         for item in missing_scope_items:
             print(f"  - {item}")
     if missing_module_arch_docs:

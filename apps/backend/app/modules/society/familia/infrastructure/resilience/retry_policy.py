@@ -1,6 +1,7 @@
 import asyncio
 
-async def retry(coro, attempts: int=3):
+
+async def retry(coro, attempts: int = 3):
     last_exc = None
     for _ in range(attempts):
         try:

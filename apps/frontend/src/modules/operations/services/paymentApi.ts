@@ -1,5 +1,5 @@
 import type { Payment } from '@/types/api';
-import { operationsService } from './operationsService';
+import { operationsService } from '@/modules/operations/services/operationsService';
 
 export type ConfirmPaymentResponse = Payment;
 

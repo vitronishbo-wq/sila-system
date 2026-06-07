@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.public_security.domain.enums import StatusLaudo, TipoLaudo
 from apps.backend.app.modules.public_security.domain.models.laudo_pericial import LaudoPericial
 
-class LaudoPericialRepositoryPort(ABC):
 
+class LaudoPericialRepositoryPort(ABC):
     @abstractmethod
     async def save(self, laudo: LaudoPericial) -> LaudoPericial:
         raise NotImplementedError

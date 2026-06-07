@@ -1,10 +1,14 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import PropriedadePecuaria
+
+from apps.backend.app.modules.resources.pecuaria.domain.models.propriedade_pecuaria import (
+    PropriedadePecuaria,
+)
+
 
 class PropriedadePecuariaRepositoryPort(ABC):
-
     @abstractmethod
     async def save(self, item: PropriedadePecuaria) -> PropriedadePecuaria:
         pass
@@ -18,7 +22,9 @@ class PropriedadePecuariaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list_by_pecuarista(self, pecuarista_id: UUID | None=None) -> list[PropriedadePecuaria]:
+    async def list_by_pecuarista(
+        self, pecuarista_id: UUID | None = None
+    ) -> list[PropriedadePecuaria]:
         pass
 
     @abstractmethod

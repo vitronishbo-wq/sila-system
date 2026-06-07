@@ -1,11 +1,16 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
-from apps.backend.app.modules.economy.trade.services.domain.enums import RamoComercial, StatusComercial
+
+from apps.backend.app.modules.economy.trade.services.domain.enums import (
+    RamoComercial,
+    StatusComercial,
+)
 from apps.backend.app.modules.economy.trade.services.domain.models import EstabelecimentoComercial
 
-class EstabelecimentoComercialRepositoryPort(ABC):
 
+class EstabelecimentoComercialRepositoryPort(ABC):
     @abstractmethod
     async def save(self, item: EstabelecimentoComercial) -> EstabelecimentoComercial:
         pass
@@ -19,5 +24,11 @@ class EstabelecimentoComercialRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, status: StatusComercial | None=None, ramo: RamoComercial | None=None, municipio: str | None=None) -> list[EstabelecimentoComercial]:
+    async def list(
+        self,
+        *,
+        status: StatusComercial | None = None,
+        ramo: RamoComercial | None = None,
+        municipio: str | None = None,
+    ) -> list[EstabelecimentoComercial]:
         pass

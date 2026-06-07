@@ -1,8 +1,17 @@
 from __future__ import annotations
+
 from datetime import datetime
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import NaturezaVoo, RegrasVoo, StatusVoo, TipoVoo
+
+from apps.backend.app.modules.infrastructure_sector.aviacao_civil.domain.enums import (
+    NaturezaVoo,
+    RegrasVoo,
+    StatusVoo,
+    TipoVoo,
+)
+
 
 class VooCreate(BaseModel):
     numero_voo: str = Field(min_length=3, max_length=12)
@@ -18,8 +27,10 @@ class VooCreate(BaseModel):
     passageiros: int = Field(ge=0)
     tripulantes: list[dict] = Field(default_factory=list)
 
+
 class VooStatusInput(BaseModel):
     data_hora: datetime
+
 
 class VooResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

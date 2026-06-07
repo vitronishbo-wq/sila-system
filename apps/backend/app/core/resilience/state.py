@@ -1,6 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
-class CircuitState(str, Enum):
-    CLOSED = 'closed'
-    OPEN = 'open'
-    HALF_OPEN = 'half_open'
+
+class CircuitState(StrEnum):
+    CLOSED = "closed"
+    OPEN = "open"
+    HALF_OPEN = "half_open"

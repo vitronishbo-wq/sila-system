@@ -1,4 +1,31 @@
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.instituicao_pesquisa_schema import InstituicaoPesquisaCreate, InstituicaoPesquisaCredenciarInput, InstituicaoPesquisaResponse
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.pesquisador_schema import PesquisadorCreate, PesquisadorEncerrarVinculoInput, PesquisadorResponse, PesquisadorVincularInstituicaoInput
-from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.projeto_pesquisa_schema import ProjetoPesquisaCreate, ProjetoPesquisaEncerrarInput, ProjetoPesquisaResponse, ProjetoPesquisaVincularPesquisadoresInput
-__all__ = ['PesquisadorCreate', 'PesquisadorVincularInstituicaoInput', 'PesquisadorEncerrarVinculoInput', 'PesquisadorResponse', 'InstituicaoPesquisaCreate', 'InstituicaoPesquisaCredenciarInput', 'InstituicaoPesquisaResponse', 'ProjetoPesquisaCreate', 'ProjetoPesquisaVincularPesquisadoresInput', 'ProjetoPesquisaEncerrarInput', 'ProjetoPesquisaResponse']
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.instituicao_pesquisa_schema import (
+    InstituicaoPesquisaCreate,
+    InstituicaoPesquisaCredenciarInput,
+    InstituicaoPesquisaResponse,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.pesquisador_schema import (
+    PesquisadorCreate,
+    PesquisadorEncerrarVinculoInput,
+    PesquisadorResponse,
+    PesquisadorVincularInstituicaoInput,
+)
+from apps.backend.app.modules.intelligence.ciencia_pesquisa.api.schemas.projeto_pesquisa_schema import (
+    ProjetoPesquisaCreate,
+    ProjetoPesquisaEncerrarInput,
+    ProjetoPesquisaResponse,
+    ProjetoPesquisaVincularPesquisadoresInput,
+)
+
+__all__ = [
+    "PesquisadorCreate",
+    "PesquisadorVincularInstituicaoInput",
+    "PesquisadorEncerrarVinculoInput",
+    "PesquisadorResponse",
+    "InstituicaoPesquisaCreate",
+    "InstituicaoPesquisaCredenciarInput",
+    "InstituicaoPesquisaResponse",
+    "ProjetoPesquisaCreate",
+    "ProjetoPesquisaVincularPesquisadoresInput",
+    "ProjetoPesquisaEncerrarInput",
+    "ProjetoPesquisaResponse",
+]

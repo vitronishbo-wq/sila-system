@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import VisitaDomiciliarRepositoryPort
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.visita_domiciliar_repository_port import (
+    VisitaDomiciliarRepositoryPort,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.enums import ResultadoVisita
 from apps.backend.app.modules.society.assistencia_social.domain.models import VisitaDomiciliar
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import VisitaDomiciliarModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.visita_domiciliar_model import (
+    VisitaDomiciliarModel,
+)
+
 
 class SQLAlchemyVisitaDomiciliarRepository(VisitaDomiciliarRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -34,7 +41,11 @@ class SQLAlchemyVisitaDomiciliarRepository(VisitaDomiciliarRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[VisitaDomiciliar]:
-        stmt = select(VisitaDomiciliarModel).where(VisitaDomiciliarModel.beneficiario_id == beneficiario_id).order_by(VisitaDomiciliarModel.data_visita.desc())
+        stmt = (
+            select(VisitaDomiciliarModel)
+            .where(VisitaDomiciliarModel.beneficiario_id == beneficiario_id)
+            .order_by(VisitaDomiciliarModel.data_visita.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -53,4 +64,14 @@ class SQLAlchemyVisitaDomiciliarRepository(VisitaDomiciliarRepositoryPort):
 
     @staticmethod
     def _to_domain(model: VisitaDomiciliarModel) -> VisitaDomiciliar:
-        return VisitaDomiciliar(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, assistente_social_id=model.assistente_social_id, data_visita=model.data_visita, condicoes_moradia=model.condicoes_moradia, observacoes=model.observacoes, recomendacoes=model.recomendacoes or [], resultado=ResultadoVisita(model.resultado))
+        return VisitaDomiciliar(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            assistente_social_id=model.assistente_social_id,
+            data_visita=model.data_visita,
+            condicoes_moradia=model.condicoes_moradia,
+            observacoes=model.observacoes,
+            recomendacoes=model.recomendacoes or [],
+            resultado=ResultadoVisita(model.resultado),
+        )

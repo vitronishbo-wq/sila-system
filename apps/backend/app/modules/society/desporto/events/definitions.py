@@ -1,2 +1,19 @@
-from apps.backend.app.modules.society.desporto.application.events.definitions import ContratoAssinadoEvent, DomainEvent, EstadioCadastradoEvent, JogoAgendadoEvent, JogoResultadoRegistradoEvent, TransferenciaConcluidaEvent, TransferenciaSolicitadaEvent
-__all__ = ['DomainEvent', 'JogoAgendadoEvent', 'JogoResultadoRegistradoEvent', 'EstadioCadastradoEvent', 'TransferenciaSolicitadaEvent', 'TransferenciaConcluidaEvent', 'ContratoAssinadoEvent']
+from apps.backend.app.modules.society.desporto.application.events.definitions import (
+    ContratoAssinadoEvent,
+    DomainEvent,
+    EstadioCadastradoEvent,
+    JogoAgendadoEvent,
+    JogoResultadoRegistradoEvent,
+    TransferenciaConcluidaEvent,
+    TransferenciaSolicitadaEvent,
+)
+
+__all__ = [
+    "DomainEvent",
+    "JogoAgendadoEvent",
+    "JogoResultadoRegistradoEvent",
+    "EstadioCadastradoEvent",
+    "TransferenciaSolicitadaEvent",
+    "TransferenciaConcluidaEvent",
+    "ContratoAssinadoEvent",
+]

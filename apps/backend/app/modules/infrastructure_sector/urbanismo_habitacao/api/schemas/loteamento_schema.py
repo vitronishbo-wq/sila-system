@@ -1,9 +1,16 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import StatusLoteamento, TipoLoteamento
+
+from apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.domain.enums import (
+    StatusLoteamento,
+    TipoLoteamento,
+)
+
 
 class LoteamentoCreate(BaseModel):
     nome: str
@@ -22,17 +29,22 @@ class LoteamentoCreate(BaseModel):
     data_fim_prevista: date | None = None
     codigo_loteamento: str | None = None
 
+
 class LoteamentoInicioInput(BaseModel):
     data_inicio_real: date
+
 
 class LoteamentoImplantacaoInput(BaseModel):
     quantidade_lotes_implantada: int
 
+
 class LoteamentoConclusaoInput(BaseModel):
     data_fim_real: date
 
+
 class LoteamentoMotivoInput(BaseModel):
     motivo: str
+
 
 class LoteamentoResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

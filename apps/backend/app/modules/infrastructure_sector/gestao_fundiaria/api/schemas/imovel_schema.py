@@ -1,9 +1,18 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
-from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import NaturezaImovel, RegimePropriedade, SituacaoDominial, TipoImovel
+
+from apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.domain.enums import (
+    NaturezaImovel,
+    RegimePropriedade,
+    SituacaoDominial,
+    TipoImovel,
+)
+
 
 class ImovelCreate(BaseModel):
     tipo: TipoImovel
@@ -15,20 +24,26 @@ class ImovelCreate(BaseModel):
     provincia: str
     inscricao_imobiliaria: str | None = None
 
+
 class ImovelAreaInput(BaseModel):
     area_total: Decimal
+
 
 class ImovelProprietarioInput(BaseModel):
     proprietario_id: UUID
 
+
 class ImovelSituacaoInput(BaseModel):
     situacao: SituacaoDominial
+
 
 class ImovelMatriculaInput(BaseModel):
     matricula_id: UUID
 
+
 class ImovelMotivoInput(BaseModel):
     motivo: str
+
 
 class ImovelResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

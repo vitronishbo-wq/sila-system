@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { citizenService } from "../services/citizenService";
+import { citizenService } from "@/modules/citizen/services";
 
 export const useNotifications = () => {
   const [notifications, setNotifications] = useState([]);

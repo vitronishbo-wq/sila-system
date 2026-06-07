@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
-from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outorga_repository_port import OutorgaRepositoryPort
-from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import StatusOutorga, TipoOutorga
+
+from apps.backend.app.modules.resources.aguas_saneamento.application.ports.outorga_repository_port import (
+    OutorgaRepositoryPort,
+)
+from apps.backend.app.modules.resources.aguas_saneamento.domain.enums import (
+    StatusOutorga,
+    TipoOutorga,
+)
 from apps.backend.app.modules.resources.aguas_saneamento.domain.models.outorga import Outorga
+
 
 class SQLAlchemyOutorgaRepository(OutorgaRepositoryPort):
     """In-memory implementation with SQLAlchemy naming for progressive migration."""
@@ -19,7 +27,13 @@ class SQLAlchemyOutorgaRepository(OutorgaRepositoryPort):
     async def get_by_numero(self, numero_outorga: str) -> Outorga | None:
         return self._items.get(numero_outorga)
 
-    async def list(self, *, requerente_id: UUID | None=None, tipo: TipoOutorga | None=None, status: StatusOutorga | None=None) -> list[Outorga]:
+    async def list(
+        self,
+        *,
+        requerente_id: UUID | None = None,
+        tipo: TipoOutorga | None = None,
+        status: StatusOutorga | None = None,
+    ) -> list[Outorga]:
         values = list(self._items.values())
         if requerente_id:
             values = [item for item in values if item.requerente_id == requerente_id]
@@ -31,4 +45,4 @@ class SQLAlchemyOutorgaRepository(OutorgaRepositoryPort):
 
     async def next_numero(self) -> str:
         self._seq += 1
-        return f'OUT/{date.today().year}/{self._seq:06d}'
+        return f"OUT/{date.today().year}/{self._seq:06d}"

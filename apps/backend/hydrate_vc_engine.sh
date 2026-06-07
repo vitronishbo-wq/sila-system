@@ -32,7 +32,7 @@ import base64
 from datetime import datetime
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
-from app.modules.identity.subdomains.verifiable_credentials.domain.entities.credential import VerifiableCredential
+from apps.backend.app.modules.identity.subdomains.verifiable_credentials.domain.entities.credential import VerifiableCredential
 
 class CredentialSigner:
     def sign(self, vc: VerifiableCredential, private_key_pem: bytes) -> VerifiableCredential:
@@ -63,8 +63,8 @@ cat << 'INNER_EOF' > $TEST_PATH/test_vc_issuance.py
 import pytest
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
-from app.modules.identity.subdomains.verifiable_credentials.domain.entities.credential import VerifiableCredential
-from app.modules.identity.subdomains.verifiable_credentials.application.services.credential_signer import CredentialSigner
+from apps.backend.app.modules.identity.subdomains.verifiable_credentials.domain.entities.credential import VerifiableCredential
+from apps.backend.app.modules.identity.subdomains.verifiable_credentials.application.services.credential_signer import CredentialSigner
 
 def test_vc_issuance_and_signature_flow():
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)

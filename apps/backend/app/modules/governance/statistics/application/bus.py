@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 from collections import defaultdict
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
+
 
 class EventBus:
-
     def __init__(self) -> None:
         self._handlers: dict[str, list[Callable[[dict[str, Any]], None]]] = defaultdict(list)
 

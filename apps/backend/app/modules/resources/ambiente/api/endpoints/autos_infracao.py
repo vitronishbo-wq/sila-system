@@ -1,55 +1,105 @@
 from __future__ import annotations
+
 from fastapi import APIRouter, Depends, HTTPException, status
+
 from apps.backend.app.modules.resources.ambiente.api.deps import get_penalidade_service
-from apps.backend.app.modules.resources.ambiente.api.schemas.auto_infracao_schema import AutoInfracaoCreate, AutoInfracaoJulgamentoInput, AutoInfracaoResponse
-from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import PenalidadeService
-from apps.backend.app.modules.resources.ambiente.domain.enums import StatusAutoInfracao, TipoAutoInfracao
-from apps.backend.app.modules.resources.ambiente.exceptions import AutoInfracaoNotFoundError, FiscalizacaoNotFoundError
-router = APIRouter(prefix='/autos-infracao', tags=['Ambiente - Autos Infracao'])
+from apps.backend.app.modules.resources.ambiente.api.schemas.auto_infracao_schema import (
+    AutoInfracaoCreate,
+    AutoInfracaoJulgamentoInput,
+    AutoInfracaoResponse,
+)
+from apps.backend.app.modules.resources.ambiente.application.services.penalidade_service import (
+    PenalidadeService,
+)
+from apps.backend.app.modules.resources.ambiente.domain.enums import (
+    StatusAutoInfracao,
+    TipoAutoInfracao,
+)
+from apps.backend.app.modules.resources.ambiente.exceptions import (
+    AutoInfracaoNotFoundError,
+    FiscalizacaoNotFoundError,
+)
 
-@router.post('/', response_model=AutoInfracaoResponse, status_code=status.HTTP_201_CREATED)
-async def lavrar_auto_infracao(data: AutoInfracaoCreate, service: PenalidadeService=Depends(get_penalidade_service)):
+router = APIRouter(prefix="/autos-infracao", tags=["Ambiente - Autos Infracao"])
+
+penalidade_service_dep = Depends(get_penalidade_service)
+
+
+@router.post("/", response_model=AutoInfracaoResponse, status_code=status.HTTP_201_CREATED)
+async def lavrar_auto_infracao(
+    data: AutoInfracaoCreate, service: PenalidadeService = penalidade_service_dep
+):
     try:
-        return await service.lavrar_auto(numero_fiscalizacao=data.numero_fiscalizacao, tipo=data.tipo, descricao=data.descricao, fiscal_id=data.fiscal_id, valor_multa=data.valor_multa)
+        return await service.lavrar_auto(
+            numero_fiscalizacao=data.numero_fiscalizacao,
+            tipo=data.tipo,
+            descricao=data.descricao,
+            fiscal_id=data.fiscal_id,
+            valor_multa=data.valor_multa,
+        )
     except FiscalizacaoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.post('/{numero_auto:path}/notificar', response_model=AutoInfracaoResponse)
-async def notificar_auto_infracao(numero_auto: str, service: PenalidadeService=Depends(get_penalidade_service)):
+
+@router.post("/{numero_auto:path}/notificar", response_model=AutoInfracaoResponse)
+async def notificar_auto_infracao(
+    numero_auto: str, service: PenalidadeService = penalidade_service_dep
+):
     try:
         return await service.notificar_auto(numero_auto)
     except AutoInfracaoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.post('/{numero_auto:path}/recurso', response_model=AutoInfracaoResponse)
-async def registrar_recurso_auto_infracao(numero_auto: str, service: PenalidadeService=Depends(get_penalidade_service)):
+
+@router.post("/{numero_auto:path}/recurso", response_model=AutoInfracaoResponse)
+async def registrar_recurso_auto_infracao(
+    numero_auto: str, service: PenalidadeService = penalidade_service_dep
+):
     try:
         return await service.registrar_recurso_auto(numero_auto)
     except AutoInfracaoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.post('/{numero_auto:path}/julgar', response_model=AutoInfracaoResponse)
-async def julgar_auto_infracao(numero_auto: str, data: AutoInfracaoJulgamentoInput, service: PenalidadeService=Depends(get_penalidade_service)):
+
+@router.post("/{numero_auto:path}/julgar", response_model=AutoInfracaoResponse)
+async def julgar_auto_infracao(
+    numero_auto: str,
+    data: AutoInfracaoJulgamentoInput,
+    service: PenalidadeService = penalidade_service_dep,
+):
     try:
-        return await service.julgar_auto(numero_auto, mantido=data.mantido, observacoes=data.observacoes)
+        return await service.julgar_auto(
+            numero_auto, mantido=data.mantido, observacoes=data.observacoes
+        )
     except AutoInfracaoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-@router.get('/{numero_auto:path}', response_model=AutoInfracaoResponse)
-async def obter_auto_infracao(numero_auto: str, service: PenalidadeService=Depends(get_penalidade_service)):
+
+@router.get("/{numero_auto:path}", response_model=AutoInfracaoResponse)
+async def obter_auto_infracao(
+    numero_auto: str, service: PenalidadeService = penalidade_service_dep
+):
     try:
         return await service.obter_auto_por_numero(numero_auto)
     except AutoInfracaoNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
-@router.get('/', response_model=list[AutoInfracaoResponse])
-async def listar_autos_infracao(numero_fiscalizacao: str | None=None, tipo: TipoAutoInfracao | None=None, status_auto: StatusAutoInfracao | None=None, service: PenalidadeService=Depends(get_penalidade_service)):
-    return await service.listar_autos(numero_fiscalizacao=numero_fiscalizacao, tipo=tipo, status=status_auto)
+
+@router.get("/", response_model=list[AutoInfracaoResponse])
+async def listar_autos_infracao(
+    numero_fiscalizacao: str | None = None,
+    tipo: TipoAutoInfracao | None = None,
+    status_auto: StatusAutoInfracao | None = None,
+    service: PenalidadeService = penalidade_service_dep,
+):
+    return await service.listar_autos(
+        numero_fiscalizacao=numero_fiscalizacao, tipo=tipo, status=status_auto
+    )

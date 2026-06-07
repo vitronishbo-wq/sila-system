@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from uuid import UUID
+
 from apps.backend.app.modules.tourism.domain.enums import TipoAtracao
 from apps.backend.app.modules.tourism.domain.models.atracao_turistica import AtracaoTuristica
 
-class AtracaoTuristicaRepositoryPort(ABC):
 
+class AtracaoTuristicaRepositoryPort(ABC):
     @abstractmethod
     async def save(self, atracao: AtracaoTuristica) -> AtracaoTuristica:
         pass
@@ -19,7 +21,13 @@ class AtracaoTuristicaRepositoryPort(ABC):
         pass
 
     @abstractmethod
-    async def list(self, *, tipo: TipoAtracao | None=None, municipio: str | None=None, ativa: bool | None=None) -> list[AtracaoTuristica]:
+    async def list(
+        self,
+        *,
+        tipo: TipoAtracao | None = None,
+        municipio: str | None = None,
+        ativa: bool | None = None,
+    ) -> list[AtracaoTuristica]:
         pass
 
     @abstractmethod

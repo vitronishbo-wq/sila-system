@@ -1,5 +1,7 @@
 """Projection Worker - applies projections for incoming events."""
-from app.core.events.projection.projection_manager import ProjectionManager
+
+from apps.backend.app.core.events.projection.projection_manager import ProjectionManager
+
 
 class ProjectionWorker:
     """Simple projection worker used for audit tests."""

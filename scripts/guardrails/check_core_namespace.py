@@ -7,7 +7,6 @@ import argparse
 import re
 from pathlib import Path
 
-
 FROM_RE = re.compile(r"^\s*from\s+core\.")
 IMPORT_RE = re.compile(r"^\s*import\s+core\.")
 

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from alembic import op
 
-
 revision = "20260301_014_pescas_foundation"
 down_revision = "20260301_013_comex_drawback_modalidades_siscomex_verde_amarelo"
 branch_labels = None
@@ -54,9 +53,13 @@ def _create_pescadores_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_pescadores_numero_registro ON pescas_pescadores (numero_registro)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_pescadores_numero_registro ON pescas_pescadores (numero_registro)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_pescadores_tipo ON pescas_pescadores (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_pescadores_citizen_id ON pescas_pescadores (citizen_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_pescadores_citizen_id ON pescas_pescadores (citizen_id)"
+    )
 
 
 def _create_armadores_table() -> None:
@@ -161,11 +164,19 @@ def _create_embarcacoes_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_numero_inscricao ON pescas_embarcacoes (numero_inscricao)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_numero_inscricao ON pescas_embarcacoes (numero_inscricao)"
+    )
     op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_tipo ON pescas_embarcacoes (tipo)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_proprietario_id ON pescas_embarcacoes (proprietario_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_armador_id ON pescas_embarcacoes (armador_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_licenca_id ON pescas_embarcacoes (licenca_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_proprietario_id ON pescas_embarcacoes (proprietario_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_armador_id ON pescas_embarcacoes (armador_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_embarcacoes_licenca_id ON pescas_embarcacoes (licenca_id)"
+    )
 
 
 def _create_licencas_pesca_table() -> None:
@@ -222,12 +233,24 @@ def _create_licencas_pesca_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_numero_licenca ON pescas_licencas_pesca (numero_licenca)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_embarcacao_id ON pescas_licencas_pesca (embarcacao_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_titular_id ON pescas_licencas_pesca (titular_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_data_validade ON pescas_licencas_pesca (data_validade)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_status ON pescas_licencas_pesca (status)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_licencas_zona_pesca_id ON pescas_licencas_pesca (zona_pesca_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_numero_licenca ON pescas_licencas_pesca (numero_licenca)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_embarcacao_id ON pescas_licencas_pesca (embarcacao_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_titular_id ON pescas_licencas_pesca (titular_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_data_validade ON pescas_licencas_pesca (data_validade)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_status ON pescas_licencas_pesca (status)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_licencas_zona_pesca_id ON pescas_licencas_pesca (zona_pesca_id)"
+    )
 
 
 def _create_capturas_table() -> None:
@@ -289,10 +312,18 @@ def _create_capturas_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_capturas_embarcacao_id ON pescas_capturas (embarcacao_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_capturas_licenca_id ON pescas_capturas (licenca_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_capturas_zona_pesca_id ON pescas_capturas (zona_pesca_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_capturas_especie_id ON pescas_capturas (especie_id)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_capturas_embarcacao_id ON pescas_capturas (embarcacao_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_capturas_licenca_id ON pescas_capturas (licenca_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_capturas_zona_pesca_id ON pescas_capturas (zona_pesca_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_capturas_especie_id ON pescas_capturas (especie_id)"
+    )
 
 
 def _create_especies_table() -> None:
@@ -311,7 +342,9 @@ def _create_especies_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_especies_codigo_fao ON pescas_especies (codigo_fao)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_especies_codigo_fao ON pescas_especies (codigo_fao)"
+    )
 
 
 def _create_desembarques_table() -> None:
@@ -348,8 +381,12 @@ def _create_desembarques_table() -> None:
         """
     )
 
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_desembarques_captura_id ON pescas_desembarques (captura_id)")
-    op.execute("CREATE INDEX IF NOT EXISTS ix_pescas_desembarques_porto ON pescas_desembarques (porto_desembarque)")
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_desembarques_captura_id ON pescas_desembarques (captura_id)"
+    )
+    op.execute(
+        "CREATE INDEX IF NOT EXISTS ix_pescas_desembarques_porto ON pescas_desembarques (porto_desembarque)"
+    )
 
 
 def upgrade():

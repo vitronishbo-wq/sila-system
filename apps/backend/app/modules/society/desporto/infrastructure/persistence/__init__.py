@@ -1,2 +1,6 @@
-from apps.backend.app.modules.society.desporto.infrastructure.persistence.outbox import InMemoryOutboxRepository, SQLAlchemyOutboxRepository
-__all__ = ['InMemoryOutboxRepository', 'SQLAlchemyOutboxRepository']
+from apps.backend.app.modules.society.desporto.infrastructure.persistence.outbox import (
+    InMemoryOutboxRepository,
+    SQLAlchemyOutboxRepository,
+)
+
+__all__ = ["InMemoryOutboxRepository", "SQLAlchemyOutboxRepository"]

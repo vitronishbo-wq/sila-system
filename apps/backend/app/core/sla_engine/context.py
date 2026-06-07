@@ -1,11 +1,13 @@
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 from .models import SLAContext
 
 
-def build_context(payload: Dict[str, Any], current_user: Dict[str, Any] | None = None) -> SLAContext:
+def build_context(
+    payload: dict[str, Any], current_user: dict[str, Any] | None = None
+) -> SLAContext:
     data = dict(payload or {})
     user = current_user or {}
 

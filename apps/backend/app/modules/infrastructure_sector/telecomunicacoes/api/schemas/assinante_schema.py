@@ -1,9 +1,17 @@
 from __future__ import annotations
+
 from datetime import date
 from decimal import Decimal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict, Field
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoPlano, TipoServico
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusAssinante,
+    TipoPlano,
+    TipoServico,
+)
+
 
 class AssinanteCreate(BaseModel):
     operadora_id: UUID
@@ -19,8 +27,10 @@ class AssinanteCreate(BaseModel):
     valor_mensal: Decimal | None = Field(default=None, ge=0)
     observacoes: str | None = None
 
+
 class AssinanteStatusUpdate(BaseModel):
     status: StatusAssinante
+
 
 class AssinanteResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)

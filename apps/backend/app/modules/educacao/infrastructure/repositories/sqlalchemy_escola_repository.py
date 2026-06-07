@@ -1,12 +1,14 @@
 from __future__ import annotations
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from apps.backend.app.modules.educacao.application.ports import EscolaRepositoryPort
 from apps.backend.app.modules.educacao.domain.models import CicloEnsino, Escola, TipoEscola
 from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
 
-class SQLAlchemyEscolaRepository(EscolaRepositoryPort):
 
+class SQLAlchemyEscolaRepository(EscolaRepositoryPort):
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -40,7 +42,14 @@ class SQLAlchemyEscolaRepository(EscolaRepositoryPort):
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
-    async def list_by_filters(self, provincia=None, municipio=None, tipo: TipoEscola | None=None, ciclo: CicloEnsino | None=None, ativa: bool | None=None) -> list[Escola]:
+    async def list_by_filters(
+        self,
+        provincia=None,
+        municipio=None,
+        tipo: TipoEscola | None = None,
+        ciclo: CicloEnsino | None = None,
+        ativa: bool | None = None,
+    ) -> list[Escola]:
         stmt = select(EscolaModel)
         if provincia is not None:
             stmt = stmt.where(EscolaModel.provincia == provincia)
@@ -57,4 +66,18 @@ class SQLAlchemyEscolaRepository(EscolaRepositoryPort):
 
     @staticmethod
     def _to_domain(model: EscolaModel) -> Escola:
-        return Escola(id=model.id, codigo_med=model.codigo_med, nome=model.nome, tipo=TipoEscola(model.tipo), ciclos=[CicloEnsino(item) for item in model.ciclos or []], provincia=model.provincia, municipio=model.municipio, comuna=model.comuna, bairro=model.bairro, endereco=model.endereco, contacto=model.contacto, email=model.email, ativa=model.ativa)
+        return Escola(
+            id=model.id,
+            codigo_med=model.codigo_med,
+            nome=model.nome,
+            tipo=TipoEscola(model.tipo),
+            ciclos=[CicloEnsino(item) for item in model.ciclos or []],
+            provincia=model.provincia,
+            municipio=model.municipio,
+            comuna=model.comuna,
+            bairro=model.bairro,
+            endereco=model.endereco,
+            contacto=model.contacto,
+            email=model.email,
+            ativa=model.ativa,
+        )

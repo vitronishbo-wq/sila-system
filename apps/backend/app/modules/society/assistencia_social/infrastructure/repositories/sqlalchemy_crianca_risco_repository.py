@@ -1,14 +1,21 @@
 from __future__ import annotations
+
 from uuid import UUID
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import CriancaRiscoRepositoryPort
+
+from apps.backend.app.modules.society.assistencia_social.application.ports.crianca_risco_repository_port import (
+    CriancaRiscoRepositoryPort,
+)
 from apps.backend.app.modules.society.assistencia_social.domain.enums import StatusAcompanhamento
 from apps.backend.app.modules.society.assistencia_social.domain.models import CriancaRisco
-from apps.backend.app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import CriancaRiscoModel
+from apps.backend.app.modules.society.assistencia_social.infrastructure.models.crianca_risco_model import (
+    CriancaRiscoModel,
+)
+
 
 class SQLAlchemyCriancaRiscoRepository(CriancaRiscoRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -34,7 +41,11 @@ class SQLAlchemyCriancaRiscoRepository(CriancaRiscoRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def list_by_beneficiario(self, beneficiario_id: UUID) -> list[CriancaRisco]:
-        stmt = select(CriancaRiscoModel).where(CriancaRiscoModel.beneficiario_id == beneficiario_id).order_by(CriancaRiscoModel.data_registro.desc())
+        stmt = (
+            select(CriancaRiscoModel)
+            .where(CriancaRiscoModel.beneficiario_id == beneficiario_id)
+            .order_by(CriancaRiscoModel.data_registro.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(row) for row in rows]
 
@@ -53,4 +64,14 @@ class SQLAlchemyCriancaRiscoRepository(CriancaRiscoRepositoryPort):
 
     @staticmethod
     def _to_domain(model: CriancaRiscoModel) -> CriancaRisco:
-        return CriancaRisco(id=model.id, codigo=model.codigo, beneficiario_id=model.beneficiario_id, citizen_id_crianca=model.citizen_id_crianca, idade=model.idade, motivo=model.motivo, escolarizada=model.escolarizada, data_registro=model.data_registro, status=StatusAcompanhamento(model.status))
+        return CriancaRisco(
+            id=model.id,
+            codigo=model.codigo,
+            beneficiario_id=model.beneficiario_id,
+            citizen_id_crianca=model.citizen_id_crianca,
+            idade=model.idade,
+            motivo=model.motivo,
+            escolarizada=model.escolarizada,
+            data_registro=model.data_registro,
+            status=StatusAcompanhamento(model.status),
+        )

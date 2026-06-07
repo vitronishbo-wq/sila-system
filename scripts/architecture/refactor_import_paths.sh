@@ -36,13 +36,13 @@ root = Path(sys.argv[1])
 dry_run = bool(int(sys.argv[2]))
 
 replacements = [
-    ("app.modules.infrastructure_sector.transportes_logistica", "app.modules.infrastructure_sector.logistica.transport"),
-    ("app.modules.infrastructure_sector.portos_logistica", "app.modules.infrastructure_sector.logistica.ports"),
-    ("app.modules.resources.pescas_industriais", "app.modules.resources.pescas.industrial"),
-    ("app.modules.economy.financas_publicas", "app.modules.economy.financas.public_budget"),
-    ("app.modules.economy.financas_impostos", "app.modules.economy.financas.taxation"),
-    ("app.modules.economy.comercio_servicos", "app.modules.economy.trade.services"),
-    ("app.modules.economy.comercio_externo", "app.modules.economy.trade.external"),
+    ("apps.backend.app.modules.infrastructure_sector.transportes_logistica", "apps.backend.app.modules.infrastructure_sector.logistica.transport"),
+    ("apps.backend.app.modules.infrastructure_sector.portos_logistica", "apps.backend.app.modules.infrastructure_sector.logistica.ports"),
+    ("apps.backend.app.modules.resources.pescas_industriais", "apps.backend.app.modules.resources.pescas.industrial"),
+    ("apps.backend.app.modules.economy.financas_publicas", "apps.backend.app.modules.economy.financas.public_budget"),
+    ("apps.backend.app.modules.economy.financas_impostos", "apps.backend.app.modules.economy.financas.taxation"),
+    ("apps.backend.app.modules.economy.comercio_servicos", "apps.backend.app.modules.economy.trade.services"),
+    ("apps.backend.app.modules.economy.comercio_externo", "apps.backend.app.modules.economy.trade.external"),
     ("apps/backend/app/modules/infrastructure_sector/transportes_logistica", "apps/backend/app/modules/infrastructure_sector/logistica/transport"),
     ("apps/backend/app/modules/infrastructure_sector/portos_logistica", "apps/backend/app/modules/infrastructure_sector/logistica/ports"),
     ("apps/backend/app/modules/resources/pescas_industriais", "apps/backend/app/modules/resources/pescas/industrial"),

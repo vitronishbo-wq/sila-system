@@ -1,15 +1,28 @@
 from __future__ import annotations
+
 from datetime import date
 from uuid import UUID
+
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import AssinanteRepositoryPort
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import StatusAssinante, TipoPlano, TipoServico
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import Assinante
-from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import AssinanteModel
+
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.application.ports.assinante_repository_port import (
+    AssinanteRepositoryPort,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.enums import (
+    StatusAssinante,
+    TipoPlano,
+    TipoServico,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.domain.models.assinante import (
+    Assinante,
+)
+from apps.backend.app.modules.infrastructure_sector.telecomunicacoes.infrastructure.models.assinante_model import (
+    AssinanteModel,
+)
+
 
 class SQLAlchemyAssinanteRepository(AssinanteRepositoryPort):
-
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -43,12 +56,19 @@ class SQLAlchemyAssinanteRepository(AssinanteRepositoryPort):
         return self._to_domain(model) if model else None
 
     async def get_by_codigo(self, codigo_assinante: str) -> Assinante | None:
-        stmt = select(AssinanteModel).where(AssinanteModel.codigo_assinante == codigo_assinante.strip())
+        stmt = select(AssinanteModel).where(
+            AssinanteModel.codigo_assinante == codigo_assinante.strip()
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
     async def get_by_citizen(self, citizen_id: UUID) -> Assinante | None:
-        stmt = select(AssinanteModel).where(AssinanteModel.citizen_id == citizen_id).order_by(AssinanteModel.data_adesao.desc()).limit(1)
+        stmt = (
+            select(AssinanteModel)
+            .where(AssinanteModel.citizen_id == citizen_id)
+            .order_by(AssinanteModel.data_adesao.desc())
+            .limit(1)
+        )
         model = (await self.session.execute(stmt)).scalars().first()
         return self._to_domain(model) if model else None
 
@@ -58,18 +78,32 @@ class SQLAlchemyAssinanteRepository(AssinanteRepositoryPort):
         return [self._to_domain(item) for item in rows]
 
     async def list_by_operadora(self, operadora_id: UUID) -> list[Assinante]:
-        stmt = select(AssinanteModel).where(AssinanteModel.operadora_id == operadora_id).order_by(AssinanteModel.data_adesao.desc())
+        stmt = (
+            select(AssinanteModel)
+            .where(AssinanteModel.operadora_id == operadora_id)
+            .order_by(AssinanteModel.data_adesao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_by_municipio(self, municipio: str) -> list[Assinante]:
         normalized = municipio.strip().lower()
-        stmt = select(AssinanteModel).where(func.lower(AssinanteModel.municipio) == normalized).order_by(AssinanteModel.data_adesao.desc())
+        stmt = (
+            select(AssinanteModel)
+            .where(func.lower(AssinanteModel.municipio) == normalized)
+            .order_by(AssinanteModel.data_adesao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
     async def list_ativos(self) -> list[Assinante]:
-        stmt = select(AssinanteModel).where(AssinanteModel.ativo.is_(True), AssinanteModel.status == StatusAssinante.ATIVO.value).order_by(AssinanteModel.data_adesao.desc())
+        stmt = (
+            select(AssinanteModel)
+            .where(
+                AssinanteModel.ativo.is_(True), AssinanteModel.status == StatusAssinante.ATIVO.value
+            )
+            .order_by(AssinanteModel.data_adesao.desc())
+        )
         rows = (await self.session.execute(stmt)).scalars().all()
         return [self._to_domain(item) for item in rows]
 
@@ -83,10 +117,32 @@ class SQLAlchemyAssinanteRepository(AssinanteRepositoryPort):
 
     async def next_codigo(self) -> str:
         ano = date.today().year
-        stmt = select(func.count()).select_from(AssinanteModel).where(AssinanteModel.codigo_assinante.like(f'ASS/{ano}/%'))
+        stmt = (
+            select(func.count())
+            .select_from(AssinanteModel)
+            .where(AssinanteModel.codigo_assinante.like(f"ASS/{ano}/%"))
+        )
         count = (await self.session.execute(stmt)).scalar() or 0
-        return f'ASS/{ano}/{count + 1:05d}'
+        return f"ASS/{ano}/{count + 1:05d}"
 
     @staticmethod
     def _to_domain(model: AssinanteModel) -> Assinante:
-        return Assinante(id=model.id, codigo_assinante=model.codigo_assinante, operadora_id=model.operadora_id, tipo_plano=TipoPlano(model.tipo_plano), servico_principal=TipoServico(model.servico_principal), data_adesao=model.data_adesao, status=StatusAssinante(model.status), municipio=model.municipio, provincia=model.provincia, nome=model.nome, citizen_id=model.citizen_id, telefone_contato=model.telefone_contato, email_contato=model.email_contato, contrato_numero=model.contrato_numero, valor_mensal=float(model.valor_mensal) if model.valor_mensal is not None else None, observacoes=model.observacoes, ativo=model.ativo)
+        return Assinante(
+            id=model.id,
+            codigo_assinante=model.codigo_assinante,
+            operadora_id=model.operadora_id,
+            tipo_plano=TipoPlano(model.tipo_plano),
+            servico_principal=TipoServico(model.servico_principal),
+            data_adesao=model.data_adesao,
+            status=StatusAssinante(model.status),
+            municipio=model.municipio,
+            provincia=model.provincia,
+            nome=model.nome,
+            citizen_id=model.citizen_id,
+            telefone_contato=model.telefone_contato,
+            email_contato=model.email_contato,
+            contrato_numero=model.contrato_numero,
+            valor_mensal=float(model.valor_mensal) if model.valor_mensal is not None else None,
+            observacoes=model.observacoes,
+            ativo=model.ativo,
+        )

@@ -1,5 +1,8 @@
 from apps.backend.app.core.db import Base
-from apps.backend.app.modules.governance.statistics.infrastructure.models._generic_named_model import GenericNamedColumns
+from apps.backend.app.modules.governance.statistics.infrastructure.models._generic_named_model import (
+    GenericNamedColumns,
+)
+
 
 class AnaliseModel(GenericNamedColumns, Base):
-    __tablename__ = 'est_analises'
+    __tablename__ = "est_analises"

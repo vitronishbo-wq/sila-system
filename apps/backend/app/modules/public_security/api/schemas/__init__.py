@@ -1,11 +1,87 @@
-from apps.backend.app.modules.public_security.api.schemas.cadeia_custodia_schema import CadeiaCustodiaCreate, CadeiaCustodiaMovimentacao, CadeiaCustodiaResponse
-from apps.backend.app.modules.public_security.api.schemas.evidencia_schema import EvidenciaCreate, EvidenciaResponse, EvidenciaStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.investigacao_schema import InvestigacaoCreate, InvestigacaoResponse, InvestigacaoStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.laudo_pericial_schema import LaudoPericialCreate, LaudoPericialResponse, LaudoPericialStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.mandado_schema import MandadoCreate, MandadoResponse, MandadoStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.ocorrencia_schema import OcorrenciaCreate, OcorrenciaResponse, OcorrenciaStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.policial_schema import PolicialCreate, PolicialPorteUpdate, PolicialResponse, PolicialStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.prova_pericial_schema import ProvaPericialCreate, ProvaPericialResponse, ProvaPericialStatusUpdate, ProvaPericialVinculoCadeia
-from apps.backend.app.modules.public_security.api.schemas.unidade_policial_schema import UnidadePolicialCreate, UnidadePolicialResponse, UnidadePolicialStatusUpdate
-from apps.backend.app.modules.public_security.api.schemas.vestigio_schema import VestigioCreate, VestigioResponse, VestigioStatusUpdate
-__all__ = ['UnidadePolicialCreate', 'UnidadePolicialResponse', 'UnidadePolicialStatusUpdate', 'PolicialCreate', 'PolicialResponse', 'PolicialStatusUpdate', 'PolicialPorteUpdate', 'OcorrenciaCreate', 'OcorrenciaResponse', 'OcorrenciaStatusUpdate', 'MandadoCreate', 'MandadoResponse', 'MandadoStatusUpdate', 'InvestigacaoCreate', 'InvestigacaoResponse', 'InvestigacaoStatusUpdate', 'ProvaPericialCreate', 'ProvaPericialResponse', 'ProvaPericialStatusUpdate', 'ProvaPericialVinculoCadeia', 'CadeiaCustodiaCreate', 'CadeiaCustodiaMovimentacao', 'CadeiaCustodiaResponse', 'VestigioCreate', 'VestigioResponse', 'VestigioStatusUpdate', 'EvidenciaCreate', 'EvidenciaResponse', 'EvidenciaStatusUpdate', 'LaudoPericialCreate', 'LaudoPericialResponse', 'LaudoPericialStatusUpdate']
+from apps.backend.app.modules.public_security.api.schemas.cadeia_custodia_schema import (
+    CadeiaCustodiaCreate,
+    CadeiaCustodiaMovimentacao,
+    CadeiaCustodiaResponse,
+)
+from apps.backend.app.modules.public_security.api.schemas.evidencia_schema import (
+    EvidenciaCreate,
+    EvidenciaResponse,
+    EvidenciaStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.investigacao_schema import (
+    InvestigacaoCreate,
+    InvestigacaoResponse,
+    InvestigacaoStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.laudo_pericial_schema import (
+    LaudoPericialCreate,
+    LaudoPericialResponse,
+    LaudoPericialStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.mandado_schema import (
+    MandadoCreate,
+    MandadoResponse,
+    MandadoStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.ocorrencia_schema import (
+    OcorrenciaCreate,
+    OcorrenciaResponse,
+    OcorrenciaStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.policial_schema import (
+    PolicialCreate,
+    PolicialPorteUpdate,
+    PolicialResponse,
+    PolicialStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.prova_pericial_schema import (
+    ProvaPericialCreate,
+    ProvaPericialResponse,
+    ProvaPericialStatusUpdate,
+    ProvaPericialVinculoCadeia,
+)
+from apps.backend.app.modules.public_security.api.schemas.unidade_policial_schema import (
+    UnidadePolicialCreate,
+    UnidadePolicialResponse,
+    UnidadePolicialStatusUpdate,
+)
+from apps.backend.app.modules.public_security.api.schemas.vestigio_schema import (
+    VestigioCreate,
+    VestigioResponse,
+    VestigioStatusUpdate,
+)
+
+__all__ = [
+    "UnidadePolicialCreate",
+    "UnidadePolicialResponse",
+    "UnidadePolicialStatusUpdate",
+    "PolicialCreate",
+    "PolicialResponse",
+    "PolicialStatusUpdate",
+    "PolicialPorteUpdate",
+    "OcorrenciaCreate",
+    "OcorrenciaResponse",
+    "OcorrenciaStatusUpdate",
+    "MandadoCreate",
+    "MandadoResponse",
+    "MandadoStatusUpdate",
+    "InvestigacaoCreate",
+    "InvestigacaoResponse",
+    "InvestigacaoStatusUpdate",
+    "ProvaPericialCreate",
+    "ProvaPericialResponse",
+    "ProvaPericialStatusUpdate",
+    "ProvaPericialVinculoCadeia",
+    "CadeiaCustodiaCreate",
+    "CadeiaCustodiaMovimentacao",
+    "CadeiaCustodiaResponse",
+    "VestigioCreate",
+    "VestigioResponse",
+    "VestigioStatusUpdate",
+    "EvidenciaCreate",
+    "EvidenciaResponse",
+    "EvidenciaStatusUpdate",
+    "LaudoPericialCreate",
+    "LaudoPericialResponse",
+    "LaudoPericialStatusUpdate",
+]

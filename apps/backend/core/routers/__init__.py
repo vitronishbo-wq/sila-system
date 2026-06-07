@@ -1,6 +1,7 @@
 """Core routers module - shared across all domains"""
-from .router_factory import RouterFactory
+
 from .health_factory import HealthRouterFactory
+from .router_factory import RouterFactory
 
 __all__ = [
     "RouterFactory",
