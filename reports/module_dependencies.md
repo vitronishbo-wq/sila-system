@@ -1,6 +1,6 @@
 # Module Dependencies Report
 
-- Generated at: `2026-06-07 12:05:43Z`
+- Generated at: `2026-06-07 12:12:30Z`
 - Scope: `apps/backend/app/modules`
 
 ## Summary
@@ -25,25 +25,25 @@
 | `infrastructure` | `core` | 15 |
 | `public_security` | `core` | 12 |
 | `civil_protection` | `core` | 10 |
-| `logistics` | `core` | 6 |
 | `identity` | `core` | 6 |
+| `logistics` | `core` | 6 |
 | `audit` | `core` | 5 |
 | `saude` | `core` | 5 |
-| `energy` | `core` | 4 |
 | `procurement` | `core` | 4 |
-| `tourism` | `core` | 3 |
-| `payment` | `core` | 3 |
+| `energy` | `core` | 4 |
 | `compliance` | `core` | 3 |
+| `payment` | `core` | 3 |
+| `tourism` | `core` | 3 |
 | `industry` | `core` | 2 |
 | `documents` | `core` | 2 |
 | `api` | `core` | 2 |
 | `integracao-nacional` | `core` | 2 |
-| `administracao-local` | `core` | 1 |
 | `migration_service` | `core` | 1 |
 | `notifications` | `core` | 1 |
-| `xroad` | `core` | 1 |
+| `administracao-local` | `core` | 1 |
 | `registo-civil` | `core` | 1 |
 | `wallet` | `core` | 1 |
+| `xroad` | `core` | 1 |
 
 ## Hotspots
 
@@ -62,25 +62,25 @@
 | `infrastructure` | 15 | 1 |
 | `public_security` | 12 | 1 |
 | `civil_protection` | 10 | 1 |
-| `logistics` | 6 | 1 |
 | `identity` | 6 | 1 |
+| `logistics` | 6 | 1 |
 | `audit` | 5 | 1 |
 | `saude` | 5 | 1 |
-| `energy` | 4 | 1 |
 | `procurement` | 4 | 1 |
-| `tourism` | 3 | 1 |
-| `payment` | 3 | 1 |
+| `energy` | 4 | 1 |
 | `compliance` | 3 | 1 |
+| `payment` | 3 | 1 |
+| `tourism` | 3 | 1 |
 | `industry` | 2 | 1 |
 | `documents` | 2 | 1 |
 | `api` | 2 | 1 |
 | `integracao-nacional` | 2 | 1 |
-| `administracao-local` | 1 | 1 |
 | `migration_service` | 1 | 1 |
 | `notifications` | 1 | 1 |
-| `xroad` | 1 | 1 |
+| `administracao-local` | 1 | 1 |
 | `registo-civil` | 1 | 1 |
 | `wallet` | 1 | 1 |
+| `xroad` | 1 | 1 |
 
 ### Inbound
 
@@ -107,25 +107,25 @@ graph LR
   infrastructure -->|15| core
   public_security -->|12| core
   civil_protection -->|10| core
-  logistics -->|6| core
   identity -->|6| core
+  logistics -->|6| core
   audit -->|5| core
   saude -->|5| core
-  energy -->|4| core
   procurement -->|4| core
-  tourism -->|3| core
-  payment -->|3| core
+  energy -->|4| core
   compliance -->|3| core
+  payment -->|3| core
+  tourism -->|3| core
   industry -->|2| core
   documents -->|2| core
   api -->|2| core
   integracao-nacional -->|2| core
-  administracao-local -->|1| core
   migration_service -->|1| core
   notifications -->|1| core
-  xroad -->|1| core
+  administracao-local -->|1| core
   registo-civil -->|1| core
   wallet -->|1| core
+  xroad -->|1| core
 ```
 
 ## Evidence Samples
@@ -218,14 +218,6 @@ graph LR
 - `civil_protection/domain/events/__init__.py:10 from apps.backend.app.core.events.domain_event import (`
 - `civil_protection/infrastructure/orm/bombeiro_model.py:10 from apps.backend.app.core.db import Base`
 
-### `logistics` -> `core`
-
-- `logistics/infrastructure/orm/viagem_model.py:11 from apps.backend.app.core.db import Base`
-- `logistics/infrastructure/orm/toll_passage_model.py:11 from apps.backend.app.core.db import Base`
-- `logistics/infrastructure/orm/linha_model.py:11 from apps.backend.app.core.db import Base`
-- `logistics/infrastructure/orm/veiculo_model.py:11 from apps.backend.app.core.db import Base`
-- `logistics/infrastructure/orm/bilhetagem_evento_model.py:11 from apps.backend.app.core.db import Base`
-
 ### `identity` -> `core`
 
 - `identity/application/event_handlers.py:9 from apps.backend.app.core.events.domain_event import DomainEvent`
@@ -233,6 +225,14 @@ graph LR
 - `identity/domain/events/__init__.py:10 from apps.backend.app.core.events.domain_event import (`
 - `identity/infrastructure/models/biometric_model.py:8 from apps.backend.app.core.db import Base`
 - `identity/infrastructure/repositories/biometric_repository.py:5 from apps.backend.app.core.database.repositories.base_repository import BaseRepository`
+
+### `logistics` -> `core`
+
+- `logistics/infrastructure/orm/viagem_model.py:11 from apps.backend.app.core.db import Base`
+- `logistics/infrastructure/orm/toll_passage_model.py:11 from apps.backend.app.core.db import Base`
+- `logistics/infrastructure/orm/linha_model.py:11 from apps.backend.app.core.db import Base`
+- `logistics/infrastructure/orm/veiculo_model.py:11 from apps.backend.app.core.db import Base`
+- `logistics/infrastructure/orm/bilhetagem_evento_model.py:11 from apps.backend.app.core.db import Base`
 
 ### `audit` -> `core`
 
@@ -250,13 +250,6 @@ graph LR
 - `saude/domain/events/__init__.py:10 from apps.backend.app.core.events.domain_event import (`
 - `saude/application/vaccine/vaccine_service.py:6 from apps.backend.app.core.observability import trace`
 
-### `energy` -> `core`
-
-- `energy/infrastructure/persistence/outbox.py:11 from apps.backend.app.core.db import AsyncSessionLocal`
-- `energy/infrastructure/models/energy_invoice_model.py:11 from apps.backend.app.core.db import Base`
-- `energy/infrastructure/models/energy_telemetry_model.py:10 from apps.backend.app.core.db import Base`
-- `energy/infrastructure/models/outbox_event_model.py:10 from apps.backend.app.core.db import Base`
-
 ### `procurement` -> `core`
 
 - `procurement/infrastructure/orm/supplier_model.py:3 from apps.backend.app.core.db import Base`
@@ -264,11 +257,18 @@ graph LR
 - `procurement/infrastructure/orm/contract_model.py:3 from apps.backend.app.core.db import Base`
 - `procurement/infrastructure/orm/bid_model.py:3 from apps.backend.app.core.db import Base`
 
-### `tourism` -> `core`
+### `energy` -> `core`
 
-- `tourism/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
-- `tourism/infrastructure/adapters/request_service_adapter.py:7 from apps.backend.app.core.bridges import ServiceRequestLifecycleBridge`
-- `tourism/infrastructure/adapters/citizen_service_adapter.py:5 from apps.backend.app.core.bridges import CitizenRepositoryPort`
+- `energy/infrastructure/persistence/outbox.py:11 from apps.backend.app.core.db import AsyncSessionLocal`
+- `energy/infrastructure/models/energy_invoice_model.py:11 from apps.backend.app.core.db import Base`
+- `energy/infrastructure/models/energy_telemetry_model.py:10 from apps.backend.app.core.db import Base`
+- `energy/infrastructure/models/outbox_event_model.py:10 from apps.backend.app.core.db import Base`
+
+### `compliance` -> `core`
+
+- `compliance/application/event_handlers.py:9 from apps.backend.app.core.events.domain_event import DomainEvent`
+- `compliance/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
+- `compliance/domain/events/__init__.py:10 from apps.backend.app.core.events.domain_event import (`
 
 ### `payment` -> `core`
 
@@ -276,11 +276,11 @@ graph LR
 - `payment/domain/events/__init__.py:11 from apps.backend.app.core.events.domain_event import (`
 - `payment/infrastructure/adapters/multicaixa_real_provider.py:8 from apps.backend.app.core.settings import settings`
 
-### `compliance` -> `core`
+### `tourism` -> `core`
 
-- `compliance/application/event_handlers.py:9 from apps.backend.app.core.events.domain_event import DomainEvent`
-- `compliance/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
-- `compliance/domain/events/__init__.py:10 from apps.backend.app.core.events.domain_event import (`
+- `tourism/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
+- `tourism/infrastructure/adapters/request_service_adapter.py:7 from apps.backend.app.core.bridges import ServiceRequestLifecycleBridge`
+- `tourism/infrastructure/adapters/citizen_service_adapter.py:5 from apps.backend.app.core.bridges import CitizenRepositoryPort`
 
 ### `industry` -> `core`
 
@@ -302,10 +302,6 @@ graph LR
 - `integracao-nacional/subdomains/bi/infrastructure/adapters_real.py:7 from apps.backend.app.core.settings import settings`
 - `integracao-nacional/subdomains/nif/infrastructure/adapters_real.py:7 from apps.backend.app.core.settings import settings`
 
-### `administracao-local` -> `core`
-
-- `administracao-local/application/event_handlers.py:9 from apps.backend.app.core.events.domain_event import DomainEvent`
-
 ### `migration_service` -> `core`
 
 - `migration_service/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
@@ -314,9 +310,9 @@ graph LR
 
 - `notifications/models.py:8 from apps.backend.app.core.db import Base`
 
-### `xroad` -> `core`
+### `administracao-local` -> `core`
 
-- `xroad/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
+- `administracao-local/application/event_handlers.py:9 from apps.backend.app.core.events.domain_event import DomainEvent`
 
 ### `registo-civil` -> `core`
 
@@ -325,3 +321,7 @@ graph LR
 ### `wallet` -> `core`
 
 - `wallet/models.py:8 from apps.backend.app.core.db import Base`
+
+### `xroad` -> `core`
+
+- `xroad/application/commands.py:10 from apps.backend.app.core.events.event_bus import EventBus`
