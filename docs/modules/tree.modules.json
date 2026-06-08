@@ -1,0 +1,14 @@
+{
+  "module": "nascimento_bi_nif_ss",
+  "root": "apps/backend/app/processes/nascimento_bi_nif_ss/",
+  "purpose": "Módulo de execução e regras de negócio isoladas para nascimento_bi_nif_ss.",
+  "entrypoints": [],
+  "workflows": [
+    "apps/backend/app/processes/nascimento_bi_nif_ss/workflow.py"
+  ],
+  "tests": [
+    "apps/backend/app/processes/nascimento_bi_nif_ss/tests.py"
+  ],
+  "quick_run": "PYTHONPATH=. python -m pytest apps/backend/app/processes/nascimento_bi_nif_ss/tests.py",
+  "last_updated": "2026-06-08"
+}

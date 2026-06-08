@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-06-08",
+  "items": [
+    {
+      "area": "apps",
+      "path": "apps/",
+      "last_updated": "2026-06-08",
+      "purpose": "Core da aplicação, micro-serviços e routers de governança.",
+      "tags": [
+        "apps",
+        "monorepo",
+        "backend"
+      ]
+    },
+    {
+      "area": "scripts",
+      "path": "scripts/",
+      "last_updated": "2026-06-08",
+      "purpose": "Componentes auxiliares de infraestrutura do sistema.",
+      "tags": [
+        "scripts",
+        "devops"
+      ]
+    },
+    {
+      "area": "tests",
+      "path": "tests/",
+      "last_updated": "2026-06-08",
+      "purpose": "Suítes de testes de integração e cenários E2E governamentais.",
+      "tags": [
+        "tests",
+        "e2e",
+        "integration"
+      ]
+    },
+    {
+      "area": "docs",
+      "path": "docs/",
+      "last_updated": "2026-06-08",
+      "purpose": "Componentes auxiliares de infraestrutura do sistema.",
+      "tags": [
+        "docs",
+        "devops"
+      ]
+    }
+  ]
+}

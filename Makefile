@@ -11,6 +11,7 @@ MODULES_ROOT    := $(BACKEND_DIR)/app/modules
 REPORTS_DIR     := reports
 DOCS_DIR        := docs
 SCRIPTS_DIR     := scripts
+MODULO          ?= apps/backend/app/processes/nascimento_bi_nif_ss
 
 # Scripts de Guardrail
 CHECK_MACRO     := $(SCRIPTS_DIR)/guardrails/check_macro_boundaries_final.py
@@ -168,6 +169,16 @@ context-map:
 		--graph-json $(REPORTS_DIR)/module_dependency_graph.json \
 		--output $(DOCS_DIR)/architecture/context_map.md
 
+# ==============================================================================
+# SILA SYSTEM - AUTOMATED INDEXING RITUAL
+# ==============================================================================
+.PHONY: update-indexes
+
+update-indexes:
+	@echo "[SILA] A iniciar atualização cirúrgica dos índices..."
+	@python3 scripts/generate_indexes.py $(MODULO)
+	@echo "[SILA] Índices tree.md e tree.modules.txt sincronizados com sucesso."
+
 scaffold-module:
 	@$(PYTHON) $(SCRIPTS_DIR)/create_domain_module.py
 
@@ -202,6 +213,7 @@ arch-fix:
 daily-audit:
 	@echo "🕐 [Ritual] Executando auditoria diária..."
 	@mkdir -p $(REPORTS_DIR)/daily_audit
+	@$(MAKE) update-indexes
 	@bash $(SCRIPTS_DIR)/daily_audit.sh
 	@$(PYTHON) $(SCRIPTS_DIR)/consolidate_audit.py
 
