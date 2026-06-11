@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import uuid
 
-from sqlalchemy import Boolean, DateTime, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, String, Text
 from sqlalchemy.dialects.postgresql import JSONB, UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
 from apps.backend.app.core.db import Base
+from apps.backend.app.modules.educacao.territory.models import ComunaModel
 
 
 class EscolaModel(Base):
@@ -17,14 +18,21 @@ class EscolaModel(Base):
     nome: Mapped[str] = mapped_column(String(255), nullable=False)
     tipo: Mapped[str] = mapped_column(String(32), nullable=False)
     ciclos: Mapped[list[str]] = mapped_column(JSONB, nullable=False, default=list)
-    provincia: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
-    municipio: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
-    comuna: Mapped[str] = mapped_column(String(128), nullable=False)
+
+    # --- NEW TERRITORIAL TRUTH SOURCE ---
+    comuna_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("territorios_comunas.id"), 
+        nullable=False, 
+        index=True
+    )
+    comuna: Mapped["ComunaModel"] = relationship(lazy="joined")
+    
     bairro: Mapped[str] = mapped_column(String(128), nullable=False)
     endereco: Mapped[str] = mapped_column(Text, nullable=False)
     contacto: Mapped[str | None] = mapped_column(String(64), nullable=True)
     email: Mapped[str | None] = mapped_column(String(255), nullable=True)
     ativa: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True, index=True)
+    
     # Territorial and ownership metadata
     territory_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
     created_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)

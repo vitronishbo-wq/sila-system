@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 import uuid
@@ -137,6 +138,28 @@ class AcademicRecordService:
                 .where(AcademicRecordModel.academic_identity_id == identity_id)
                 .values(history_json=history)
             )
+        await self.session.execute(stmt)
+        return entry
+
+    async def record_event(
+        self,
+        identity_id: uuid.UUID,
+        event_type: str,
+        metadata: dict,
+    ) -> dict:
+        record = await self.ensure_record(identity_id)
+        entry = {
+            "type": event_type,
+            "metadata": metadata,
+            "timestamp": datetime.utcnow().isoformat(),
+        }
+        history = dict(record.history_json or {})
+        history.setdefault("events", []).append(entry)
+        stmt = (
+            update(AcademicRecordModel)
+            .where(AcademicRecordModel.academic_identity_id == identity_id)
+            .values(history_json=history)
+        )
         await self.session.execute(stmt)
         return entry
 

@@ -1,0 +1,6 @@
+| Campo | Modelo | Valores | Escritores | Leitores |
+| --- | --- | --- | --- | --- |
+| status | MatriculaModel | `PENDENTE`, `ATIVA`, `SUSPENSA`, `CONCLUIDA`, `CANCELADA`, `TRANSFERIDA`, `APROVADO`, `REJEITADO` | `SQLAlchemyMatriculaRepository.save` | `SQLAlchemyMatriculaRepository._to_domain` |
+| academic_status | AcademicIdentityModel | `ACTIVE`, `GRADUATED`, `TRANSFERRED`, `SUSPENDED`, `DROPPED`, `DECEASED` | `AcademicIdentityService.create_identity`, `AcademicIdentityService.update_status` | `AcademicIdentityService._model_to_entity`, `AcademicIdentityService.count_by_status` |
+| identity_status | AcademicIdentityModel | `VALID`, `SUSPECT_DUPLICATE`, `MERGED`, `INACTIVE` | `AcademicIdentityService.create_identity` | `AcademicIdentityService._model_to_entity` |
+| status | EnrollmentModel | `ACTIVE`, `PENDING`, `COMPLETED`, `TRANSFERRED` | `SQLAlchemyEnrollmentRepository.save`, `SQLAlchemyEnrollmentRepository.update_status`, `EnrollmentTransactionService.enroll_student_with_lock` | `SQLAlchemyEnrollmentRepository._to_dict`, `SQLAlchemyEnrollmentRepository.get_by_status`, `SQLAlchemyEnrollmentRepository.exists_active_enrollment` |

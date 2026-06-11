@@ -6,7 +6,8 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from apps.backend.app.modules.educacao.domain.enums import StatusFluxo
+# Importa o Enum canónico da sua fonte única de verdade no domínio
+from apps.backend.app.modules.educacao.domain.enums import CanonicalStatus
 
 
 class WorkflowCreate(BaseModel):
@@ -32,6 +33,10 @@ class WorkflowResponse(BaseModel):
     citizen_id: UUID
     instituicao_id: UUID
     data_registo: date
-    status: StatusFluxo
+    
+    # O campo de status agora usa o Enum canónico, garantindo consistência
+    # em todos os fluxos de trabalho que herdam deste schema.
+    status: CanonicalStatus
+    
     observacoes: str | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)

@@ -6,7 +6,8 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from apps.backend.app.modules.educacao.domain.models import StatusMatricula
+# Importa o Enum canónico da sua fonte única de verdade no domínio
+from apps.backend.app.modules.educacao.domain.enums import CanonicalStatus
 
 
 class MatriculaCreate(BaseModel):
@@ -30,11 +31,13 @@ class MatriculaResponse(BaseModel):
     turma_id: UUID
     ano_letivo_id: UUID
     data_matricula: date
-    status: StatusMatricula
+    # O campo de status agora usa o Enum canónico, garantindo consistência com o domínio
+    status: CanonicalStatus
     observacoes: str | None = None
 
 
 class MatriculaListFilter(BaseModel):
     ano_letivo_id: UUID | None = None
     escola_id: UUID | None = None
-    status: StatusMatricula | None = None
+    # O filtro também usa o Enum canónico, melhorando a validação de entrada
+    status: CanonicalStatus | None = None

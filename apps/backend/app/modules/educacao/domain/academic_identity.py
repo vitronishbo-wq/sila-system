@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -40,6 +41,9 @@ class AcademicIdentity:
     gender: Optional[str] = None
     nationality: str = "ANGOLANA"
     guardian_id: Optional[UUID] = None
+    territory_id: UUID  # Princípio 8
+    created_by: UUID  # Princípio 8
+    managed_by: UUID  # Princípio 8
     current_institution_id: Optional[UUID] = None
     current_grade: Optional[str] = None
     academic_status: AcademicStatus = AcademicStatus.ACTIVE
@@ -56,6 +60,9 @@ class AcademicIdentity:
             "gender": self.gender,
             "nationality": self.nationality,
             "guardian_id": self.guardian_id,
+            "territory_id": self.territory_id,
+            "created_by": self.created_by,
+            "managed_by": self.managed_by,
             "current_institution_id": self.current_institution_id,
             "current_grade": self.current_grade,
             "academic_status": self.academic_status.value if self.academic_status else None,
@@ -74,8 +81,9 @@ class Guardian:
     phone: Optional[str] = None
     email: Optional[str] = None
     address: Optional[str] = None
-    province: Optional[str] = None
-    municipio: Optional[str] = None
+    territory_id: UUID  # Princípio 8 e 9
+    created_by: UUID  # Princípio 8
+    managed_by: UUID  # Princípio 8
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 

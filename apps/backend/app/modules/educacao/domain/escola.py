@@ -1,8 +1,9 @@
+
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
-from uuid import UUID
+from uuid import UUID, uuid4
 
 
 class TipoEscola(StrEnum):
@@ -23,16 +24,15 @@ class CicloEnsino(StrEnum):
 
 @dataclass
 class Escola:
-    id: UUID
+    id: UUID = field(default_factory=uuid4)
     codigo_med: str
     nome: str
     tipo: TipoEscola
     ciclos: list[CicloEnsino]
-    provincia: str
-    municipio: str
-    comuna: str
-    bairro: str
+    territory_id: UUID  # Princípio 8 e 9: Apenas a referência direta
     endereco: str
+    created_by: UUID  # Princípio 8
+    managed_by: UUID  # Princípio 8
     contacto: str | None = None
     email: str | None = None
     ativa: bool = True

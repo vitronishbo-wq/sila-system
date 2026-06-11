@@ -1,54 +1,31 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional
+import uuid
+from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship, Mapped, mapped_column
+from apps.backend.app.core.db import Base
 
-from sila_platform.governance.territory.constants import NivelTerritorial
-from sila_platform.governance.territory.models import TerritorialScope as GovTerritorialScope
+class ProvinciaModel(Base):
+    __tablename__ = "territorios_provincias"
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    nome: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
 
+    municipios: Mapped[list["MunicipioModel"]] = relationship(back_populates="provincia")
 
-@dataclass
-class TerritorialScope:
-    """Âmbito territorial da Educação. Reutiliza a governance com alias para school."""
-    nivel: NivelTerritorial = NivelTerritorial.NACIONAL
-    province_id: Optional[str] = None
-    province_name: Optional[str] = None
-    municipality_id: Optional[str] = None
-    municipality_name: Optional[str] = None
-    school_id: Optional[str] = None
-    school_name: Optional[str] = None
-    institution_id: Optional[str] = None
-    institution_type: Optional[str] = None
+class MunicipioModel(Base):
+    __tablename__ = "territorios_municipios"
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    nome: Mapped[str] = mapped_column(String(128), nullable=False)
+    provincia_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("territorios_provincias.id"), nullable=False, index=True)
 
-    def _to_gov(self) -> GovTerritorialScope:
-        return GovTerritorialScope(
-            nivel=self.nivel,
-            province_id=self.province_id,
-            province_name=self.province_name,
-            municipality_id=self.municipality_id,
-            municipality_name=self.municipality_name,
-            unit_id=self.school_id,
-            unit_name=self.school_name,
-            institution_id=self.institution_id,
-            institution_type=self.institution_type,
-        )
+    provincia: Mapped["ProvinciaModel"] = relationship(back_populates="municipios")
+    comunas: Mapped[list["ComunaModel"]] = relationship(back_populates="municipio")
 
-    @classmethod
-    def _from_gov(cls, gov: GovTerritorialScope) -> TerritorialScope:
-        return cls(
-            nivel=gov.nivel,
-            province_id=gov.province_id,
-            province_name=gov.province_name,
-            municipality_id=gov.municipality_id,
-            municipality_name=gov.municipality_name,
-            school_id=gov.unit_id,
-            school_name=gov.unit_name,
-            institution_id=gov.institution_id,
-            institution_type=gov.institution_type,
-        )
+class ComunaModel(Base):
+    __tablename__ = "territorios_comunas"
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    nome: Mapped[str] = mapped_column(String(128), nullable=False)
+    municipio_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("territorios_municipios.id"), nullable=False, index=True)
 
-    def covers(self, other: TerritorialScope) -> bool:
-        return self._to_gov().covers(other._to_gov())
-
-    def to_dict(self) -> dict:
-        return self._to_gov().to_dict()
+    municipio: Mapped["MunicipioModel"] = relationship(back_populates="comunas")

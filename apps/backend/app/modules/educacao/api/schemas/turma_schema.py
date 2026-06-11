@@ -16,6 +16,15 @@ class TurmaCreate(BaseModel):
     capacidade: int = Field(default=40, ge=1)
 
 
+class TurmaUpdate(BaseModel):
+    """Schema para atualização parcial de uma turma."""
+    codigo: str | None = Field(default=None, max_length=32)
+    classe: str | None = Field(default=None, max_length=32)
+    turno: Turno | None = None
+    capacidade: int | None = Field(default=None, ge=1)
+    ativa: bool | None = None
+
+
 class TurmaResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: UUID

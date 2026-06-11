@@ -15,6 +15,7 @@ from apps.backend.app.modules.educacao.application.formacao_service import Forma
 from apps.backend.app.modules.educacao.application.inscricao_service import InscricaoService
 from apps.backend.app.modules.educacao.application.matricula_service import MatriculaService
 from apps.backend.app.modules.educacao.application.propina_service import PropinaService
+from apps.backend.app.modules.educacao.application.transactional_enrollment_service import TransactionalEnrollmentService
 from apps.backend.app.modules.educacao.application.transfer_transaction_service import (
     TransferTransactionService,
 )
@@ -76,6 +77,16 @@ async def get_matricula_service(session: AsyncSession = Depends(db_dep)) -> Matr
         store=_get_idempotency_store(),
     )(service.criar_matricula)
     return service
+
+
+async def get_transactional_enrollment_service(
+    session: AsyncSession = Depends(db_dep),
+) -> TransactionalEnrollmentService:
+    enrollment_repo = SQLAlchemyEnrollmentRepository(session)
+    capacity_repo = SQLAlchemyCapacityRepository(session)
+    return TransactionalEnrollmentService(
+        enrollment_repo=enrollment_repo, capacity_repo=capacity_repo
+    )
 
 
 async def get_inscricao_service(session: AsyncSession = Depends(db_dep)) -> InscricaoService:
