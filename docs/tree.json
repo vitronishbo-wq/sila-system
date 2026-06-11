@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-08",
+  "generated_at": "2026-06-11",
   "items": [
     {
       "area": "apps",
       "path": "apps/",
-      "last_updated": "2026-06-08",
+      "last_updated": "2026-06-11",
       "purpose": "Core da aplicação, micro-serviços e routers de governança.",
       "tags": [
         "apps",
@@ -15,8 +15,8 @@
     {
       "area": "scripts",
       "path": "scripts/",
-      "last_updated": "2026-06-08",
-      "purpose": "Componentes auxiliares de infraestrutura do sistema.",
+      "last_updated": "2026-06-11",
+      "purpose": "Componentes auxiliares de infraestrutura e automações de build/teste.",
       "tags": [
         "scripts",
         "devops"
@@ -25,7 +25,7 @@
     {
       "area": "tests",
       "path": "tests/",
-      "last_updated": "2026-06-08",
+      "last_updated": "2026-06-11",
       "purpose": "Suítes de testes de integração e cenários E2E governamentais.",
       "tags": [
         "tests",
@@ -36,11 +36,11 @@
     {
       "area": "docs",
       "path": "docs/",
-      "last_updated": "2026-06-08",
-      "purpose": "Componentes auxiliares de infraestrutura do sistema.",
+      "last_updated": "2026-06-11",
+      "purpose": "Documentação técnica, esquemas OpenAPI e índices de navegação modular.",
       "tags": [
         "docs",
-        "devops"
+        "documentation"
       ]
     }
   ]

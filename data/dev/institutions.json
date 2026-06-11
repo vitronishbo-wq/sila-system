@@ -1,0 +1,66 @@
+[
+  {
+    "id": "central",
+    "name": "CENTRAL",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "central@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "prov.huambo",
+    "name": "PROV HUAMBO",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "prov.huambo@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "prov.benguela",
+    "name": "PROV BENGUELA",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "prov.benguela@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "mun.caala",
+    "name": "MUN CAALA",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "mun.caala@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "mun.huambo",
+    "name": "MUN HUAMBO",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "mun.huambo@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "comun.huambo",
+    "name": "COMUN HUAMBO",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "comun.huambo@sila.gov.ao"
+    ]
+  },
+  {
+    "id": "truman",
+    "name": "TRUMAN",
+    "domain": "gmail.com",
+    "contacts": [
+      "truman@gmail.com"
+    ]
+  },
+  {
+    "id": "admin",
+    "name": "ADMIN",
+    "domain": "sila.gov.ao",
+    "contacts": [
+      "admin@sila.gov.ao"
+    ]
+  }
+]

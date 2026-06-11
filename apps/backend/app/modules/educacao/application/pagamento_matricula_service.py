@@ -84,6 +84,7 @@ class PagamentoMatriculaService:
                     "currency": "AOA",
                     "timestamp": datetime.now(UTC).isoformat(),
                 },
+                correlation_id=wizard_id,
             )
             await self._event_bus.publish(event)
         return referencia
@@ -107,5 +108,6 @@ class PagamentoMatriculaService:
                 "enrollment_id": str(enrollment_id),
                 "timestamp": datetime.now(UTC).isoformat(),
             },
+            correlation_id=wizard_id,
         )
         await self._event_bus.publish(event)

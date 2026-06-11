@@ -1,0 +1,46 @@
+{
+    "code": "TRANSFERENCIA_ESCOLAR",
+    "name": "Transferência Escolar",
+    "entity_type": "school_transfer",
+    "timeout_hours": 72,
+    "states": [
+        {
+            "code": "PEDIDO_TRANSFERENCIA",
+            "name": "Pedido de Transferência",
+            "is_initial": true
+        },
+        {
+            "code": "VALIDACAO_ESCOLA_ORIGEM",
+            "name": "Validação Escola Origem"
+        },
+        {
+            "code": "VALIDACAO_ESCOLA_DESTINO",
+            "name": "Validação Escola Destino"
+        },
+        {
+            "code": "MATRICULA_TRANSFERIDA",
+            "name": "Matrícula Transferida",
+            "is_final": true
+        }
+    ],
+    "transitions": [
+        {
+            "code": "TO_VALIDACAO_ORIGEM",
+            "name": "Validar Origem",
+            "from": "PEDIDO_TRANSFERENCIA",
+            "to": "VALIDACAO_ESCOLA_ORIGEM"
+        },
+        {
+            "code": "TO_VALIDACAO_DESTINO",
+            "name": "Validar Destino",
+            "from": "VALIDACAO_ESCOLA_ORIGEM",
+            "to": "VALIDACAO_ESCOLA_DESTINO"
+        },
+        {
+            "code": "TO_MATRICULA_TRANSFERIDA",
+            "name": "Transferir Matrícula",
+            "from": "VALIDACAO_ESCOLA_DESTINO",
+            "to": "MATRICULA_TRANSFERIDA"
+        }
+    ]
+}

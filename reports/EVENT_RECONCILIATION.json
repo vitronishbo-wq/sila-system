@@ -1,0 +1,1499 @@
+{
+  "timestamp": "2026-06-08",
+  "summary": {
+    "total_registry_events": 42,
+    "total_runtime_events": 75,
+    "total_reconciled": 108,
+    "valid": 9,
+    "registry_only": 33,
+    "runtime_only": 66,
+    "name_mismatch": 0
+  },
+  "events": [
+    {
+      "event": "APIAccessTokenIssued",
+      "registry_name": "APIAccessTokenIssued",
+      "runtime_name": "Apiaccesstokenissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "api(defines)",
+        "api(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "APIEndpointRegistered",
+      "registry_name": "APIEndpointRegistered",
+      "runtime_name": "Apiendpointregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "api(defines)",
+        "api(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "APIEndpointStatusChanged",
+      "registry_name": "APIEndpointStatusChanged",
+      "runtime_name": "Apiendpointstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "api(defines)",
+        "api(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "APIRequestProcessed",
+      "registry_name": "APIRequestProcessed",
+      "runtime_name": "Apirequestprocessed",
+      "registry_refs": [],
+      "runtime_refs": [
+        "api(defines)",
+        "api(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "APISecurityPolicyEnforced",
+      "registry_name": "APISecurityPolicyEnforced",
+      "runtime_name": "Apisecuritypolicyenforced",
+      "registry_refs": [],
+      "runtime_refs": [
+        "api(defines)",
+        "api(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AcademicDegreeAwarded",
+      "registry_name": "AcademicDegreeAwarded",
+      "runtime_name": "Academicdegreeawarded",
+      "registry_refs": [],
+      "runtime_refs": [
+        "educacao(defines)",
+        "educacao(class)",
+        "educacao(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AdminOfficeStatusChanged",
+      "registry_name": "AdminOfficeStatusChanged",
+      "runtime_name": "Adminofficestatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "governance(defines)",
+        "governance(class)",
+        "governance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AuditExecutionStarted",
+      "registry_name": "AuditExecutionStarted",
+      "runtime_name": "Auditexecutionstarted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "audit(defines)",
+        "audit(class)",
+        "audit(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AuditFindingReported",
+      "registry_name": "AuditFindingReported",
+      "runtime_name": "Auditfindingreported",
+      "registry_refs": [],
+      "runtime_refs": [
+        "audit(defines)",
+        "audit(class)",
+        "audit(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AuditProgramCreated",
+      "registry_name": "AuditProgramCreated",
+      "runtime_name": "Auditprogramcreated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "audit(defines)",
+        "audit(class)",
+        "audit(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "AuditReportSubmitted",
+      "registry_name": "AuditReportSubmitted",
+      "runtime_name": "Auditreportsubmitted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "audit(defines)",
+        "audit(class)",
+        "audit(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "BiometricDataEnrolled",
+      "registry_name": "BiometricDataEnrolled",
+      "runtime_name": "Biometricdataenrolled",
+      "registry_refs": [
+        "identity(exposes)"
+      ],
+      "runtime_refs": [
+        "identity(defines)",
+        "identity(class)",
+        "identity(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "BirthRecordCertificateIssued",
+      "registry_name": "BirthRecordCertificateIssued",
+      "runtime_name": "Birthrecordcertificateissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "BirthRecordCreated",
+      "registry_name": "BirthRecordCreated",
+      "runtime_name": "Birthrecordcreated",
+      "registry_refs": [
+        "identity(consumes)",
+        "registo-civil(exposes)"
+      ],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "CitizenCreated",
+      "registry_name": "CitizenCreated",
+      "runtime_name": "Citizencreated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "CitizenIdentityDocumentIssued",
+      "registry_name": "CitizenIdentityDocumentIssued",
+      "runtime_name": "Citizenidentitydocumentissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "CitizenStatusChanged",
+      "registry_name": "CitizenStatusChanged",
+      "runtime_name": "Citizenstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "CivilProtectionResourceStatusChanged",
+      "registry_name": "CivilProtectionResourceStatusChanged",
+      "runtime_name": "Civilprotectionresourcestatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "civil_protection(defines)",
+        "civil_protection(class)",
+        "civil_protection(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ComplianceCertificateIssued",
+      "registry_name": "ComplianceCertificateIssued",
+      "runtime_name": "Compliancecertificateissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "compliance(defines)",
+        "compliance(class)",
+        "compliance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ComplianceInspectionConducted",
+      "registry_name": "ComplianceInspectionConducted",
+      "runtime_name": "Complianceinspectionconducted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "compliance(defines)",
+        "compliance(class)",
+        "compliance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ComplianceObligationCreated",
+      "registry_name": "ComplianceObligationCreated",
+      "runtime_name": "Complianceobligationcreated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "compliance(defines)",
+        "compliance(class)",
+        "compliance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ComplianceObligationStatusChanged",
+      "registry_name": "ComplianceObligationStatusChanged",
+      "runtime_name": "Complianceobligationstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "compliance(defines)",
+        "compliance(class)",
+        "compliance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ComplianceViolationReported",
+      "registry_name": "ComplianceViolationReported",
+      "runtime_name": "Complianceviolationreported",
+      "registry_refs": [],
+      "runtime_refs": [
+        "compliance(defines)",
+        "compliance(class)",
+        "compliance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ControllerRecommendationIssued",
+      "registry_name": "ControllerRecommendationIssued",
+      "runtime_name": "Controllerrecommendationissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "audit(defines)",
+        "audit(class)",
+        "audit(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DeathCertificateIssued",
+      "registry_name": "DeathCertificateIssued",
+      "runtime_name": "Deathcertificateissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DeathRecorded",
+      "registry_name": "DeathRecorded",
+      "runtime_name": "Deathrecorded",
+      "registry_refs": [
+        "identity(consumes)",
+        "registo-civil(exposes)"
+      ],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "DisasterEventOccurred",
+      "registry_name": "DisasterEventOccurred",
+      "runtime_name": "Disastereventoccurred",
+      "registry_refs": [],
+      "runtime_refs": [
+        "civil_protection(defines)",
+        "civil_protection(class)",
+        "civil_protection(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DisasterRecoveryInitiated",
+      "registry_name": "DisasterRecoveryInitiated",
+      "runtime_name": "Disasterrecoveryinitiated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "civil_protection(defines)",
+        "civil_protection(class)",
+        "civil_protection(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DocumentArchived",
+      "registry_name": "DocumentArchived",
+      "runtime_name": "Documentarchived",
+      "registry_refs": [],
+      "runtime_refs": [
+        "documents(defines)",
+        "documents(class)",
+        "documents(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DocumentAuthenticated",
+      "registry_name": "DocumentAuthenticated",
+      "runtime_name": "Documentauthenticated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "documents(defines)",
+        "documents(class)",
+        "documents(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DocumentRegistered",
+      "registry_name": "DocumentRegistered",
+      "runtime_name": "Documentregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "documents(defines)",
+        "documents(class)",
+        "documents(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "DocumentStatusChanged",
+      "registry_name": "DocumentStatusChanged",
+      "runtime_name": "Documentstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "documents(defines)",
+        "documents(class)",
+        "documents(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EconomicActivityStarted",
+      "registry_name": "EconomicActivityStarted",
+      "runtime_name": "Economicactivitystarted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "economy(defines)",
+        "economy(class)",
+        "economy(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EconomicAgentRegistered",
+      "registry_name": "EconomicAgentRegistered",
+      "runtime_name": "Economicagentregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "economy(defines)",
+        "economy(class)",
+        "economy(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EconomicAgentStatusChanged",
+      "registry_name": "EconomicAgentStatusChanged",
+      "runtime_name": "Economicagentstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "economy(defines)",
+        "economy(class)",
+        "economy(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EconomicLicenseObtained",
+      "registry_name": "EconomicLicenseObtained",
+      "runtime_name": "Economiclicenseobtained",
+      "registry_refs": [],
+      "runtime_refs": [
+        "economy(defines)",
+        "economy(class)",
+        "economy(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EducationInstitutionRegistered",
+      "registry_name": "EducationInstitutionRegistered",
+      "runtime_name": "Educationinstitutionregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "educacao(defines)",
+        "educacao(class)",
+        "educacao(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EducationInstitutionStatusChanged",
+      "registry_name": "EducationInstitutionStatusChanged",
+      "runtime_name": "Educationinstitutionstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "educacao(defines)",
+        "educacao(class)",
+        "educacao(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EmergencyAlertIssued",
+      "registry_name": "EmergencyAlertIssued",
+      "runtime_name": "Emergencyalertissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "civil_protection(defines)",
+        "civil_protection(class)",
+        "civil_protection(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EnvironmentalImpactAssessmentApproved",
+      "registry_name": "EnvironmentalImpactAssessmentApproved",
+      "runtime_name": "Environmentalimpactassessmentapproved",
+      "registry_refs": [],
+      "runtime_refs": [
+        "resources(defines)",
+        "resources(class)",
+        "resources(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EnvironmentalPermitIssued",
+      "registry_name": "EnvironmentalPermitIssued",
+      "runtime_name": "Environmentalpermitissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "industry(defines)",
+        "industry(class)",
+        "industry(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "EvacuationInitiated",
+      "registry_name": "EvacuationInitiated",
+      "runtime_name": "Evacuationinitiated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "civil_protection(defines)",
+        "civil_protection(class)",
+        "civil_protection(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ExploitationLicenseIssued",
+      "registry_name": "ExploitationLicenseIssued",
+      "runtime_name": "Exploitationlicenseissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "resources(defines)",
+        "resources(class)",
+        "resources(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "GovernmentDecisionMade",
+      "registry_name": "GovernmentDecisionMade",
+      "runtime_name": "Governmentdecisionmade",
+      "registry_refs": [],
+      "runtime_refs": [
+        "governance(defines)",
+        "governance(class)",
+        "governance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "HealthProviderRegistered",
+      "registry_name": "HealthProviderRegistered",
+      "runtime_name": "Healthproviderregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "saude(defines)",
+        "saude(class)",
+        "saude(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "HealthProviderStatusChanged",
+      "registry_name": "HealthProviderStatusChanged",
+      "runtime_name": "Healthproviderstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "saude(defines)",
+        "saude(class)",
+        "saude(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "HealthVaccinationCompleted",
+      "registry_name": "HealthVaccinationCompleted",
+      "runtime_name": "Healthvaccinationcompleted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "saude(defines)",
+        "saude(class)",
+        "saude(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "IdentityCredentialIssued",
+      "registry_name": "IdentityCredentialIssued",
+      "runtime_name": "Identitycredentialissued",
+      "registry_refs": [
+        "educacao(consumes)",
+        "identity(exposes)"
+      ],
+      "runtime_refs": [
+        "identity(defines)",
+        "identity(class)",
+        "identity(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "IdentityDocumentRequested",
+      "registry_name": "IdentityDocumentRequested",
+      "runtime_name": "Identitydocumentrequested",
+      "registry_refs": [],
+      "runtime_refs": [
+        "identity(defines)",
+        "identity(class)",
+        "identity(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "IdentityDocumentStatusChanged",
+      "registry_name": "IdentityDocumentStatusChanged",
+      "runtime_name": "Identitydocumentstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "identity(defines)",
+        "identity(class)",
+        "identity(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "IdentityDocumentVerified",
+      "registry_name": "IdentityDocumentVerified",
+      "runtime_name": "Identitydocumentverified",
+      "registry_refs": [
+        "educacao(consumes)",
+        "saude(consumes)",
+        "justica(consumes)",
+        "identity(exposes)",
+        "payment(consumes)",
+        "registo-civil(consumes)",
+        "financas-impostos(consumes)",
+        "administracao-local(consumes)",
+        "seguranca-social(consumes)",
+        "integracao-nacional(consumes)",
+        "integracao-nacional-nif(consumes)",
+        "apoio-empresarial(consumes)",
+        "comercio(consumes)",
+        "emprego(consumes)",
+        "trabalho-inspecao(consumes)"
+      ],
+      "runtime_refs": [
+        "identity(defines)",
+        "identity(class)",
+        "identity(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "IndustrialFacilityRegistered",
+      "registry_name": "IndustrialFacilityRegistered",
+      "runtime_name": "Industrialfacilityregistered",
+      "registry_refs": [],
+      "runtime_refs": [
+        "industry(defines)",
+        "industry(class)",
+        "industry(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "IndustrialFacilityStatusChanged",
+      "registry_name": "IndustrialFacilityStatusChanged",
+      "runtime_name": "Industrialfacilitystatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "industry(defines)",
+        "industry(class)",
+        "industry(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "InvoiceIssued",
+      "registry_name": "InvoiceIssued",
+      "runtime_name": "Invoiceissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "payment(defines)",
+        "payment(class)",
+        "payment(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "MarriageCertificateIssued",
+      "registry_name": "MarriageCertificateIssued",
+      "runtime_name": "Marriagecertificateissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "MarriageRecorded",
+      "registry_name": "MarriageRecorded",
+      "runtime_name": "Marriagerecorded",
+      "registry_refs": [
+        "registo-civil(exposes)"
+      ],
+      "runtime_refs": [
+        "justice(class)",
+        "justice(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "MedicalLicenseIssued",
+      "registry_name": "MedicalLicenseIssued",
+      "runtime_name": "Medicallicenseissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "saude(defines)",
+        "saude(class)",
+        "saude(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "MedicalVisitRecorded",
+      "registry_name": "MedicalVisitRecorded",
+      "runtime_name": "Medicalvisitrecorded",
+      "registry_refs": [],
+      "runtime_refs": [
+        "saude(defines)",
+        "saude(class)",
+        "saude(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "OfficialDocumentIssued",
+      "registry_name": "OfficialDocumentIssued",
+      "runtime_name": "Officialdocumentissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "documents(defines)",
+        "documents(class)",
+        "documents(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "OfficialRequiredActionIssued",
+      "registry_name": "OfficialRequiredActionIssued",
+      "runtime_name": "Officialrequiredactionissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "governance(defines)",
+        "governance(class)",
+        "governance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "PaymentConfirmed",
+      "registry_name": "PaymentConfirmed",
+      "runtime_name": "Paymentconfirmed",
+      "registry_refs": [],
+      "runtime_refs": [
+        "administracao-local(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "PaymentProcessed",
+      "registry_name": "PaymentProcessed",
+      "runtime_name": "Paymentprocessed",
+      "registry_refs": [
+        "justica(consumes)",
+        "identity(consumes)",
+        "payment(exposes)",
+        "financas-impostos(consumes)",
+        "administracao-local(consumes)",
+        "seguranca-social(consumes)",
+        "apoio-empresarial(consumes)",
+        "comercio(consumes)"
+      ],
+      "runtime_refs": [
+        "payment(defines)",
+        "payment(class)",
+        "payment(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "PaymentReconciled",
+      "registry_name": "PaymentReconciled",
+      "runtime_name": "Paymentreconciled",
+      "registry_refs": [
+        "payment(exposes)"
+      ],
+      "runtime_refs": [
+        "payment(defines)",
+        "payment(class)",
+        "payment(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "PaymentStatusChanged",
+      "registry_name": "PaymentStatusChanged",
+      "runtime_name": "Paymentstatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "payment(defines)",
+        "payment(class)",
+        "payment(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "PaymentTransactionInitiated",
+      "registry_name": "PaymentTransactionInitiated",
+      "runtime_name": "Paymenttransactioninitiated",
+      "registry_refs": [],
+      "runtime_refs": [
+        "payment(defines)",
+        "payment(class)",
+        "payment(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "PolicyPublished",
+      "registry_name": "PolicyPublished",
+      "runtime_name": "Policypublished",
+      "registry_refs": [],
+      "runtime_refs": [
+        "governance(defines)",
+        "governance(class)",
+        "governance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "PublicServiceApproved",
+      "registry_name": "PublicServiceApproved",
+      "runtime_name": "Publicserviceapproved",
+      "registry_refs": [],
+      "runtime_refs": [
+        "governance(defines)",
+        "governance(class)",
+        "governance(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ResourceExplorationLicenseApplied",
+      "registry_name": "ResourceExplorationLicenseApplied",
+      "runtime_name": "Resourceexplorationlicenseapplied",
+      "registry_refs": [],
+      "runtime_refs": [
+        "resources(defines)",
+        "resources(class)",
+        "resources(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ResourceLicenseStatusChanged",
+      "registry_name": "ResourceLicenseStatusChanged",
+      "runtime_name": "Resourcelicensestatuschanged",
+      "registry_refs": [],
+      "runtime_refs": [
+        "resources(defines)",
+        "resources(class)",
+        "resources(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "ResourceMonitoringReportFiled",
+      "registry_name": "ResourceMonitoringReportFiled",
+      "runtime_name": "Resourcemonitoringreportfiled",
+      "registry_refs": [],
+      "runtime_refs": [
+        "resources(defines)",
+        "resources(class)",
+        "resources(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "SafetyCertificationIssued",
+      "registry_name": "SafetyCertificationIssued",
+      "runtime_name": "Safetycertificationissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "industry(defines)",
+        "industry(class)",
+        "industry(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "SafetyInspectionConducted",
+      "registry_name": "SafetyInspectionConducted",
+      "runtime_name": "Safetyinspectionconducted",
+      "registry_refs": [],
+      "runtime_refs": [
+        "industry(defines)",
+        "industry(class)",
+        "industry(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "StudentEnrolled",
+      "registry_name": "StudentEnrolled",
+      "runtime_name": "Studentenrolled",
+      "registry_refs": [
+        "educacao(exposes)",
+        "saude(consumes)",
+        "payment(consumes)"
+      ],
+      "runtime_refs": [
+        "educacao(defines)",
+        "educacao(class)",
+        "administracao-local(handles)",
+        "educacao(handles)",
+        "identity(handles)"
+      ],
+      "in_registry": true,
+      "in_runtime": true,
+      "status": "VALID"
+    },
+    {
+      "event": "TaxRegistrationIssued",
+      "registry_name": "TaxRegistrationIssued",
+      "runtime_name": "Taxregistrationissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "economy(defines)",
+        "economy(class)",
+        "economy(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "TeacherCertificationIssued",
+      "registry_name": "TeacherCertificationIssued",
+      "runtime_name": "Teachercertificationissued",
+      "registry_refs": [],
+      "runtime_refs": [
+        "educacao(defines)",
+        "educacao(class)",
+        "educacao(handles)"
+      ],
+      "in_registry": false,
+      "in_runtime": true,
+      "status": "RUNTIME_ONLY"
+    },
+    {
+      "event": "appointment_scheduled",
+      "registry_name": "appointment_scheduled",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "saude(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "benefit_granted",
+      "registry_name": "benefit_granted",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "seguranca-social(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "bi_consulted",
+      "registry_name": "bi_consulted",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "integracao-nacional(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "bi_verified",
+      "registry_name": "bi_verified",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "integracao-nacional(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "business_support_granted",
+      "registry_name": "business_support_granted",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "apoio-empresarial(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "certificate_issued",
+      "registry_name": "certificate_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "educacao(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "civil_registration_issued",
+      "registry_name": "civil_registration_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "justica(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "commercial_license_issued",
+      "registry_name": "commercial_license_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "apoio-empresarial(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "company_incorporated",
+      "registry_name": "company_incorporated",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "justica(exposes)",
+        "financas-impostos(consumes)",
+        "seguranca-social(consumes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "company_registered",
+      "registry_name": "company_registered",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "apoio-empresarial(exposes)",
+        "comercio(consumes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "employer_registered",
+      "registry_name": "employer_registered",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "seguranca-social(exposes)",
+        "emprego(consumes)",
+        "trabalho-inspecao(consumes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "employment_contract_registered",
+      "registry_name": "employment_contract_registered",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "emprego(exposes)",
+        "trabalho-inspecao(consumes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "fine_issued",
+      "registry_name": "fine_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "trabalho-inspecao(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "inspection_completed",
+      "registry_name": "inspection_completed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "comercio(exposes)",
+        "trabalho-inspecao(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "inspection_scheduled",
+      "registry_name": "inspection_scheduled",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "trabalho-inspecao(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "invoice_status_changed",
+      "registry_name": "invoice_status_changed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "payment(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "job_vacancy_created",
+      "registry_name": "job_vacancy_created",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "emprego(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "license_issued",
+      "registry_name": "license_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "administracao-local(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "license_permit_issued",
+      "registry_name": "license_permit_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "comercio(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "municipal_certificate_issued",
+      "registry_name": "municipal_certificate_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "administracao-local(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "nif_issued",
+      "registry_name": "nif_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "payment(consumes)",
+        "financas-impostos(exposes)",
+        "integracao-nacional-nif(consumes)",
+        "apoio-empresarial(consumes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "nif_verified",
+      "registry_name": "nif_verified",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "integracao-nacional-nif(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "notarial_act_signed",
+      "registry_name": "notarial_act_signed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "justica(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "payment_failed",
+      "registry_name": "payment_failed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "payment(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "placement_completed",
+      "registry_name": "placement_completed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "emprego(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "prescription_issued",
+      "registry_name": "prescription_issued",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "saude(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "referral_made",
+      "registry_name": "referral_made",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "saude(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "residence_confirmed",
+      "registry_name": "residence_confirmed",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "administracao-local(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "social_contribution_received",
+      "registry_name": "social_contribution_received",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "seguranca-social(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "student_transferred",
+      "registry_name": "student_transferred",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "educacao(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "tax_declaration_submitted",
+      "registry_name": "tax_declaration_submitted",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "financas-impostos(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "tax_payment_received",
+      "registry_name": "tax_payment_received",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "financas-impostos(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    },
+    {
+      "event": "trade_registered",
+      "registry_name": "trade_registered",
+      "runtime_name": "N/A",
+      "registry_refs": [
+        "comercio(exposes)"
+      ],
+      "runtime_refs": [],
+      "in_registry": true,
+      "in_runtime": false,
+      "status": "REGISTRY_ONLY"
+    }
+  ]
+}

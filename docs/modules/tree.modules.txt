@@ -7,10 +7,12 @@ ENTRYPOINTS (ROUTERS):
   - Nenhum router localizado neste escopo.
 
 CORE WORKFLOWS & PROCESSES:
-  - apps/backend/app/processes/nascimento_bi_nif_ss/workflow.py
+  - Operando via repositórios CRUD base padrão.
 
 TARGET TESTS:
-  - apps/backend/app/processes/nascimento_bi_nif_ss/tests.py
+  - apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_success_e2e.py
+  - apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_cancel_e2e.py
+  - apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_reject_e2e.py
 
-QUICK_RUN: PYTHONPATH=. python -m pytest apps/backend/app/processes/nascimento_bi_nif_ss/tests.py
+QUICK_RUN: PYTHONPATH=. python -m pytest apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_success_e2e.py
 ================================================================================

@@ -48,12 +48,12 @@ def seed_all_users():
     )
     truman_citizen_exists = False
 
+    # Para conformidade com GOVERNANCE_RULES: apenas o Super Admin é criado por seeds.
     users_data = [
-        # Admins
         {
-            "username": "central@sila.gov.ao",
-            "email": "central@sila.gov.ao",
-            "full_name": "Administrador Global",
+            "username": "admin@sila.gov.ao",
+            "email": "admin@sila.gov.ao",
+            "full_name": "SUPER_ADMIN_NACIONAL",
             "role_names": ["SUPERADMIN"],
             "department": "TI - SILA Central",
             "position": "Administrador Global",
@@ -61,72 +61,6 @@ def seed_all_users():
             "citizen_id": None,
             "phone": None,
             "custom_metadata": {},
-        },
-        {
-            "username": "admin@sila.gov.ao",
-            "email": "admin@sila.gov.ao",
-            "full_name": "Administrador de Plataforma",
-            "role_names": ["ADMIN", "SUPERADMIN"],
-            "department": "TI - SILA Central",
-            "position": "Administrador",
-            "is_superuser": True,
-            "citizen_id": None,
-            "phone": None,
-            "custom_metadata": {},
-        },
-        {
-            "username": "prov.huambo@sila.gov.ao",
-            "email": "prov.huambo@sila.gov.ao",
-            "full_name": "Gestor Provincial Huambo",
-            "role_names": ["MANAGER"],
-            "department": "Governo Provincial - Huambo",
-            "position": "Gestor Provincial",
-            "is_superuser": False,
-            "citizen_id": None,
-            "phone": None,
-            "custom_metadata": {},
-        },
-        {
-            "username": "mun.huambo@sila.gov.ao",
-            "email": "mun.huambo@sila.gov.ao",
-            "full_name": "Gestor Municipal Huambo",
-            "role_names": ["MANAGER"],
-            "department": "Prefeitura Municipal - Huambo",
-            "position": "Gestor Municipal",
-            "is_superuser": False,
-            "citizen_id": None,
-            "phone": None,
-            "custom_metadata": {},
-        },
-        {
-            "username": "comun.huambo@sila.gov.ao",
-            "email": "comun.huambo@sila.gov.ao",
-            "full_name": "Gestor Comunal Huambo",
-            "role_names": ["MANAGER"],
-            "department": "Administração Comunal - Huambo",
-            "position": "Gestor Comunal",
-            "is_superuser": False,
-            "citizen_id": None,
-            "phone": None,
-            "custom_metadata": {},
-        },
-        # Cidadão
-        {
-            "username": "truman@gmail.com",
-            "email": "truman@gmail.com",
-            "full_name": "Truman José Sapalo",
-            "role_names": ["CITIZEN"],
-            "department": None,
-            "position": None,
-            "is_superuser": False,
-            "citizen_id": truman_citizen_id,
-            "phone": None,
-            "custom_metadata": {
-                "citizen_id": truman_citizen_id,
-                "bi_number": "001508576HO034",
-                "birth_date": "1983-05-01",
-                "full_name": "Truman José Sapalo",
-            },
         },
     ]
 
@@ -344,48 +278,16 @@ def seed_all_users():
                         )
                         print(f"   ├─ Role {role_name} vinculada")
 
-                # Sincronizar tabela users (integração/compat)
+                # Apenas Super Admin permanece como seed canonical
                 users_table_data = [
                     {
-                        "email": "central@sila.gov.ao",
-                        "full_name": "Administrador Global",
+                        "email": "admin@sila.gov.ao",
+                        "full_name": "SUPER_ADMIN_NACIONAL",
                         "administrative_level": "SUPER",
                         "region_name": None,
                         "region_type": None,
                         "roles": ["SUPERADMIN"],
-                    },
-                    {
-                        "email": "prov.huambo@sila.gov.ao",
-                        "full_name": "Gestor Provincial Huambo",
-                        "administrative_level": "PROVINCIAL",
-                        "region_name": "Huambo",
-                        "region_type": "PROVINCIA",
-                        "roles": ["MANAGER"],
-                    },
-                    {
-                        "email": "mun.huambo@sila.gov.ao",
-                        "full_name": "Gestor Municipal Huambo",
-                        "administrative_level": "MUNICIPAL",
-                        "region_name": "Huambo (Município)",
-                        "region_type": "MUNICIPIO",
-                        "roles": ["MANAGER"],
-                    },
-                    {
-                        "email": "comun.huambo@sila.gov.ao",
-                        "full_name": "Gestor Comunal Huambo",
-                        "administrative_level": "COMMUNAL",
-                        "region_name": "Comuna Centro",
-                        "region_type": "COMUNA",
-                        "roles": ["MANAGER"],
-                    },
-                    {
-                        "email": "truman@gmail.com",
-                        "full_name": "Truman José Sapalo",
-                        "administrative_level": "LOCAL",
-                        "region_name": "Comuna Centro",
-                        "region_type": "COMUNA",
-                        "roles": ["CITIZEN"],
-                    },
+                    }
                 ]
 
                 def resolve_region_id(region_name, region_type):
@@ -468,15 +370,9 @@ def seed_all_users():
                 print("\n" + "=" * 60)
                 print("📊 RESUMO FINAL")
                 print("=" * 60)
-                print("\n🔐 CREDENCIAIS DE ACESSO:")
+                print("\n\n🔐 CREDENCIAIS DE ACESSO (SEED):")
                 print("\n👨‍💼 ADMINS:")
-                print("  1. central@sila.gov.ao        → SUPERADMIN")
-                print("  2. admin@sila.gov.ao          → ADMIN + SUPERADMIN")
-                print("  3. prov.huambo@sila.gov.ao    → MANAGER")
-                print("  4. mun.huambo@sila.gov.ao     → MANAGER")
-                print("  5. comun.huambo@sila.gov.ao   → MANAGER")
-                print("\n👤 CIDADÃO:")
-                print("  6. truman@gmail.com           → CITIZEN")
+                print("  1. admin@sila.gov.ao          → SUPERADMIN (bootstrap only)")
                 print(f"\n🔑 SENHA UNIVERSAL: {universal_password}")
                 print("\n" + "=" * 60)
                 print("✅ SEED CONCLUÍDO COM SUCESSO!")

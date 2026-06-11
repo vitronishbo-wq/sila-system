@@ -15,6 +15,31 @@ class RequestRepository(RequestRepositoryPort):
 
     def __init__(self, db: AsyncSession):
         self.db = db
+        # Pode ser populado externamente (via dependency) com lista de ids permitidos
+        self.allowed_territories: list[str] | None = None
+
+    def _append_territory_filter(self, where_clause):
+        """Anexa clausula de filtro territorial baseada em `self.allowed_territories`.
+
+        Se `allowed_territories` for `None` => acesso irrestrito (central).
+        Se for lista vazia => não retorna nada.
+        """
+        allowed = getattr(self, "allowed_territories", None)
+        if allowed is None:
+            return where_clause
+        # protege contra listas vazias
+        if not allowed:
+            from sqlalchemy import text
+
+            return text("1=0")
+
+        # metadata['territory_id'].astext é usado para extrair o campo JSON
+        territory_exprs = [ServiceRequestModel.metadata_["territory_id"].astext == t for t in allowed]
+        territory_or = or_(*territory_exprs)
+        # combined with existing where_clause
+        if where_clause is True:
+            return territory_or
+        return and_(where_clause, territory_or)
 
     async def save(self, request: ServiceRequest) -> ServiceRequest:
         """Salva um pedido"""
@@ -77,16 +102,14 @@ class RequestRepository(RequestRepositoryPort):
         self, citizen_id: UUID, skip: int = 0, limit: int = 100
     ) -> tuple[list[ServiceRequest], int]:
         """Busca pedidos por cidadão"""
-        count_stmt = (
-            select(func.count())
-            .select_from(ServiceRequestModel)
-            .where(ServiceRequestModel.citizen_id == citizen_id)
-        )
+        where_clause = ServiceRequestModel.citizen_id == citizen_id
+        where_clause = self._append_territory_filter(where_clause)
+        count_stmt = select(func.count()).select_from(ServiceRequestModel).where(where_clause)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
         stmt = (
             select(ServiceRequestModel)
-            .where(ServiceRequestModel.citizen_id == citizen_id)
+            .where(where_clause)
             .order_by(desc(ServiceRequestModel.created_at))
             .offset(skip)
             .limit(limit)
@@ -106,6 +129,7 @@ class RequestRepository(RequestRepositoryPort):
         where_clause = ServiceRequestModel.assigned_to_user_id == user_id
         if status:
             where_clause = and_(where_clause, ServiceRequestModel.status == status.value)
+        where_clause = self._append_territory_filter(where_clause)
         count_stmt = select(func.count()).select_from(ServiceRequestModel).where(where_clause)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
@@ -125,6 +149,7 @@ class RequestRepository(RequestRepositoryPort):
     ) -> tuple[list[ServiceRequest], int]:
         """Busca pedidos por status"""
         where_clause = ServiceRequestModel.status == status.value
+        where_clause = self._append_territory_filter(where_clause)
         count_stmt = select(func.count()).select_from(ServiceRequestModel).where(where_clause)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
@@ -144,6 +169,7 @@ class RequestRepository(RequestRepositoryPort):
     ) -> tuple[list[ServiceRequest], int]:
         """Busca pedidos por tipo de serviço"""
         where_clause = ServiceRequestModel.service_type == service_type.value
+        where_clause = self._append_territory_filter(where_clause)
         count_stmt = select(func.count()).select_from(ServiceRequestModel).where(where_clause)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
@@ -163,6 +189,7 @@ class RequestRepository(RequestRepositoryPort):
     ) -> tuple[list[ServiceRequest], int]:
         """Busca pedidos por intervalo de datas"""
         where_clause = ServiceRequestModel.created_at.between(start_date, end_date)
+        where_clause = self._append_territory_filter(where_clause)
         count_stmt = select(func.count()).select_from(ServiceRequestModel).where(where_clause)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
@@ -210,6 +237,7 @@ class RequestRepository(RequestRepositoryPort):
             if where_clauses
             else True
         )
+        combined_where = self._append_territory_filter(combined_where)
         count_stmt = select(func.count()).select_from(ServiceRequestModel).where(combined_where)
         count_result = await self.db.execute(count_stmt)
         total = count_result.scalar() or 0
@@ -226,8 +254,12 @@ class RequestRepository(RequestRepositoryPort):
 
     async def count_by_status(self) -> dict:
         """Contagem de pedidos por status"""
-        stmt = select(ServiceRequestModel.status, func.count().label("count")).group_by(
-            ServiceRequestModel.status
+        where_clause = True
+        where_clause = self._append_territory_filter(where_clause)
+        stmt = (
+            select(ServiceRequestModel.status, func.count().label("count"))
+            .where(where_clause)
+            .group_by(ServiceRequestModel.status)
         )
         result = await self.db.execute(stmt)
         rows = result.all()

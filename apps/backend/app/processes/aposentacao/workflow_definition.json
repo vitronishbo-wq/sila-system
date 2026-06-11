@@ -1,0 +1,46 @@
+{
+    "code": "APOSENTACAO",
+    "name": "Aposentação",
+    "entity_type": "retirement_request",
+    "timeout_hours": 168,
+    "states": [
+        {
+            "code": "PEDIDO_APOSENTACAO",
+            "name": "Pedido de Aposentação",
+            "is_initial": true
+        },
+        {
+            "code": "TEMPO_SERVICO_VALIDADO",
+            "name": "Tempo de Serviço Validado"
+        },
+        {
+            "code": "BENEFICIO_CALCULADO",
+            "name": "Benefício Calculado"
+        },
+        {
+            "code": "APOSENTACAO_CONCEDIDA",
+            "name": "Aposentação Concedida",
+            "is_final": true
+        }
+    ],
+    "transitions": [
+        {
+            "code": "TO_TEMPO_VALIDADO",
+            "name": "Validar Tempo de Serviço",
+            "from": "PEDIDO_APOSENTACAO",
+            "to": "TEMPO_SERVICO_VALIDADO"
+        },
+        {
+            "code": "TO_BENEFICIO_CALCULADO",
+            "name": "Calcular Benefício",
+            "from": "TEMPO_SERVICO_VALIDADO",
+            "to": "BENEFICIO_CALCULADO"
+        },
+        {
+            "code": "TO_APOSENTACAO_CONCEDIDA",
+            "name": "Conceder Aposentação",
+            "from": "BENEFICIO_CALCULADO",
+            "to": "APOSENTACAO_CONCEDIDA"
+        }
+    ]
+}

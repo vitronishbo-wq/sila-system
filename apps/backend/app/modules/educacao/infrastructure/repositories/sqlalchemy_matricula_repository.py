@@ -82,6 +82,18 @@ class SQLAlchemyMatriculaRepository(MatriculaRepositoryPort):
 
     @staticmethod
     def _to_domain(model: MatriculaModel) -> Matricula:
+        # Be tolerant of legacy/variant status strings stored in the DB.
+        try:
+            status = StatusMatricula(model.status)
+        except Exception:
+            # Known legacy mapping: 'confirmada' (legacy) -> 'concluida' (current)
+            legacy_map = {"confirmada": "concluida", "confirmado": "concluida"}
+            mapped = legacy_map.get(str(model.status).lower())
+            try:
+                status = StatusMatricula(mapped) if mapped else StatusMatricula.PENDENTE
+            except Exception:
+                status = StatusMatricula.PENDENTE
+
         return Matricula(
             id=model.id,
             numero_processo=model.numero_processo,
@@ -90,6 +102,6 @@ class SQLAlchemyMatriculaRepository(MatriculaRepositoryPort):
             turma_id=model.turma_id,
             ano_letivo_id=model.ano_letivo_id,
             data_matricula=model.data_matricula or date.today(),
-            status=StatusMatricula(model.status),
+            status=status,
             observacoes=model.observacoes,
         )

@@ -1,0 +1,918 @@
+{
+  "report": {
+    "loaded": [
+      {
+        "file": "audit/state_audit/api/router.py",
+        "module": "apps.backend.app.modules.audit.state_audit.api.router",
+        "prefix": "/audit/state_audit",
+        "tag": "audit"
+      },
+      {
+        "file": "economy/apoio_empresarial/api/router.py",
+        "module": "apps.backend.app.modules.economy.apoio_empresarial.api.router",
+        "prefix": "/economy/apoio_empresarial",
+        "tag": "economy"
+      },
+      {
+        "file": "educacao/marketplace/admissions/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.admissions.api.router",
+        "prefix": "/educacao/marketplace/admissions",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/booking/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.booking.api.router",
+        "prefix": "/educacao/marketplace/booking",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/discovery/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.discovery.api.router",
+        "prefix": "/educacao/marketplace/discovery",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/matching/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.matching.api.router",
+        "prefix": "/educacao/marketplace/matching",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/ranking/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.ranking.api.router",
+        "prefix": "/educacao/marketplace/ranking",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/recommendation/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.recommendation.api.router",
+        "prefix": "/educacao/marketplace/recommendation",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/search/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.search.api.router",
+        "prefix": "/educacao/marketplace/search",
+        "tag": "educacao"
+      },
+      {
+        "file": "educacao/marketplace/transfers/api/router.py",
+        "module": "apps.backend.app.modules.educacao.marketplace.transfers.api.router",
+        "prefix": "/educacao/marketplace/transfers",
+        "tag": "educacao"
+      },
+      {
+        "file": "governance/cooperacao_internacional/api/router.py",
+        "module": "apps.backend.app.modules.governance.cooperacao_internacional.api.router",
+        "prefix": "/governance/cooperacao_internacional",
+        "tag": "governance"
+      },
+      {
+        "file": "governance/planeamento/api/router.py",
+        "module": "apps.backend.app.modules.governance.planeamento.api.router",
+        "prefix": "/governance/planeamento",
+        "tag": "governance"
+      },
+      {
+        "file": "identity/subdomains/verifiable_credentials/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.verifiable_credentials.api.router",
+        "prefix": "/identity/subdomains/verifiable_credentials",
+        "tag": "identity"
+      },
+      {
+        "file": "infrastructure_sector/aviacao_civil/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.router",
+        "prefix": "/infrastructure_sector/aviacao_civil",
+        "tag": "infrastructure_sector"
+      },
+      {
+        "file": "infrastructure_sector/logistica/ports/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.logistica.ports.api.router",
+        "prefix": "/infrastructure_sector/logistica/ports",
+        "tag": "infrastructure_sector"
+      },
+      {
+        "file": "integracao-nacional/subdomains/bi/api/router.py",
+        "module": "apps.backend.app.modules.integracao-nacional.subdomains.bi.api.router",
+        "prefix": "/integracao-nacional/subdomains/bi",
+        "tag": "integracao-nacional"
+      },
+      {
+        "file": "integracao-nacional/subdomains/moradas/api/router.py",
+        "module": "apps.backend.app.modules.integracao-nacional.subdomains.moradas.api.router",
+        "prefix": "/integracao-nacional/subdomains/moradas",
+        "tag": "integracao-nacional"
+      },
+      {
+        "file": "integracao-nacional/subdomains/nif/api/router.py",
+        "module": "apps.backend.app.modules.integracao-nacional.subdomains.nif.api.router",
+        "prefix": "/integracao-nacional/subdomains/nif",
+        "tag": "integracao-nacional"
+      },
+      {
+        "file": "integracao-nacional/subdomains/verificacao-documental/api/router.py",
+        "module": "apps.backend.app.modules.integracao-nacional.subdomains.verificacao-documental.api.router",
+        "prefix": "/integracao-nacional/subdomains/verificacao-documental",
+        "tag": "integracao-nacional"
+      },
+      {
+        "file": "intelligence/arquivo_nacional/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.arquivo_nacional.api.router",
+        "prefix": "/intelligence/arquivo_nacional",
+        "tag": "intelligence"
+      },
+      {
+        "file": "intelligence/tecnologia_inovacao/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.tecnologia_inovacao.api.router",
+        "prefix": "/intelligence/tecnologia_inovacao",
+        "tag": "intelligence"
+      },
+      {
+        "file": "resources/aguas_saneamento/api/router.py",
+        "module": "apps.backend.app.modules.resources.aguas_saneamento.api.router",
+        "prefix": "/resources/aguas_saneamento",
+        "tag": "resources"
+      },
+      {
+        "file": "resources/ambiente/api/router.py",
+        "module": "apps.backend.app.modules.resources.ambiente.api.router",
+        "prefix": "/resources/ambiente",
+        "tag": "resources"
+      },
+      {
+        "file": "resources/petroleo_gas/api/router.py",
+        "module": "apps.backend.app.modules.resources.petroleo_gas.api.router",
+        "prefix": "/resources/petroleo_gas",
+        "tag": "resources"
+      },
+      {
+        "file": "resources/recursos_minerais/api/router.py",
+        "module": "apps.backend.app.modules.resources.recursos_minerais.api.router",
+        "prefix": "/resources/recursos_minerais",
+        "tag": "resources"
+      },
+      {
+        "file": "resources/seguranca_alimentar/api/router.py",
+        "module": "apps.backend.app.modules.resources.seguranca_alimentar.api.router",
+        "prefix": "/resources/seguranca_alimentar",
+        "tag": "resources"
+      },
+      {
+        "file": "society/igualdade/api/router.py",
+        "module": "apps.backend.app.modules.society.igualdade.api.router",
+        "prefix": "/society/igualdade",
+        "tag": "society"
+      },
+      {
+        "file": "society/trabalho_inspecao/api/router.py",
+        "module": "apps.backend.app.modules.society.trabalho_inspecao.api.router",
+        "prefix": "/society/trabalho_inspecao",
+        "tag": "society"
+      }
+    ],
+    "skipped": [
+      {
+        "file": "api/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "api/router.py",
+        "reason": "invalid_router_location"
+      },
+      {
+        "file": "audit/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "civil_protection/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "compliance/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "documents/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "economy/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "educacao/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "energy/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "governance/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "identity/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "industry/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "infrastructure/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "infrastructure_sector/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "intelligence/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "justice/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "logistics/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "marketplace/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "migration_service/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "operations/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "payment/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "procurement/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "public_security/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "registo-civil/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "resources/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "saude/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "society/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "tourism/api/router.py",
+        "reason": "depth_below_threshold"
+      },
+      {
+        "file": "xroad/api/router.py",
+        "reason": "depth_below_threshold"
+      }
+    ],
+    "failed": [
+      {
+        "file": "civil_protection/tests/api/router.py",
+        "module": "apps.backend.app.modules.civil_protection.tests.api.router",
+        "prefix": "/civil_protection/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "compliance/tests/api/router.py",
+        "module": "apps.backend.app.modules.compliance.tests.api.router",
+        "prefix": "/compliance/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/public_budget/api/router.py",
+        "module": "apps.backend.app.modules.economy.public_budget.api.router",
+        "prefix": "/economy/public_budget",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/taxpayer/api/router.py",
+        "module": "apps.backend.app.modules.economy.taxpayer.api.router",
+        "prefix": "/economy/taxpayer",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/tests/api/router.py",
+        "module": "apps.backend.app.modules.economy.tests.api.router",
+        "prefix": "/economy/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/trade/api/router.py",
+        "module": "apps.backend.app.modules.economy.trade.api.router",
+        "prefix": "/economy/trade",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/trade/external/api/router.py",
+        "module": "apps.backend.app.modules.economy.trade.external.api.router",
+        "prefix": "/economy/trade/external",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "economy/trade/services/api/router.py",
+        "module": "apps.backend.app.modules.economy.trade.services.api.router",
+        "prefix": "/economy/trade/services",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "educacao/tests/api/router.py",
+        "module": "apps.backend.app.modules.educacao.tests.api.router",
+        "prefix": "/educacao/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "energy/billing/api/router.py",
+        "module": "apps.backend.app.modules.energy.billing.api.router",
+        "prefix": "/energy/billing",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "energy/distribution/api/router.py",
+        "module": "apps.backend.app.modules.energy.distribution.api.router",
+        "prefix": "/energy/distribution",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "energy/generation/api/router.py",
+        "module": "apps.backend.app.modules.energy.generation.api.router",
+        "prefix": "/energy/generation",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "energy/tests/api/router.py",
+        "module": "apps.backend.app.modules.energy.tests.api.router",
+        "prefix": "/energy/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "governance/administracao_local/api/router.py",
+        "module": "apps.backend.app.modules.governance.administracao_local.api.router",
+        "prefix": "/governance/administracao_local",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "governance/service_requests/api/router.py",
+        "module": "apps.backend.app.modules.governance.service_requests.api.router",
+        "prefix": "/governance/service_requests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "governance/statistics/api/router.py",
+        "module": "apps.backend.app.modules.governance.statistics.api.router",
+        "prefix": "/governance/statistics",
+        "error": "ModuleNotFoundError: No module named 'app'"
+      },
+      {
+        "file": "governance/tests/api/router.py",
+        "module": "apps.backend.app.modules.governance.tests.api.router",
+        "prefix": "/governance/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "governance/workflow/api/router.py",
+        "module": "apps.backend.app.modules.governance.workflow.api.router",
+        "prefix": "/governance/workflow",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/middleware/api/router.py",
+        "module": "apps.backend.app.modules.identity.middleware.api.router",
+        "prefix": "/identity/middleware",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/biometric_identity/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.biometric_identity.api.router",
+        "prefix": "/identity/subdomains/biometric_identity",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/citizen_digital_wallet/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.citizen_digital_wallet.api.router",
+        "prefix": "/identity/subdomains/citizen_digital_wallet",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/citizen_identity_graph/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.citizen_identity_graph.api.router",
+        "prefix": "/identity/subdomains/citizen_identity_graph",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/cross_border_identity/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.cross_border_identity.api.router",
+        "prefix": "/identity/subdomains/cross_border_identity",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/decentralized_identity/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.decentralized_identity.api.router",
+        "prefix": "/identity/subdomains/decentralized_identity",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/device_identity/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.device_identity.api.router",
+        "prefix": "/identity/subdomains/device_identity",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/digital_signature_service/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.digital_signature_service.api.router",
+        "prefix": "/identity/subdomains/digital_signature_service",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/legal_signature_validation/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.legal_signature_validation.api.router",
+        "prefix": "/identity/subdomains/legal_signature_validation",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/national_certificate_authority/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.national_certificate_authority.api.router",
+        "prefix": "/identity/subdomains/national_certificate_authority",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/national_login/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.national_login.api.router",
+        "prefix": "/identity/subdomains/national_login",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/oidc_provider/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.oidc_provider.api.router",
+        "prefix": "/identity/subdomains/oidc_provider",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/permission_graph/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.permission_graph.api.router",
+        "prefix": "/identity/subdomains/permission_graph",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/policy_evaluator/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.policy_evaluator.api.router",
+        "prefix": "/identity/subdomains/policy_evaluator",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/role_engine/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.role_engine.api.router",
+        "prefix": "/identity/subdomains/role_engine",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/saml_gateway/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.saml_gateway.api.router",
+        "prefix": "/identity/subdomains/saml_gateway",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/smartcard_identity/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.smartcard_identity.api.router",
+        "prefix": "/identity/subdomains/smartcard_identity",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/sovereign_access_control/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.sovereign_access_control.api.router",
+        "prefix": "/identity/subdomains/sovereign_access_control",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "identity/subdomains/sovereign_trust_engine/api/router.py",
+        "module": "apps.backend.app.modules.identity.subdomains.sovereign_trust_engine.api.router",
+        "prefix": "/identity/subdomains/sovereign_trust_engine",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure/tests/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure.tests.api.router",
+        "prefix": "/infrastructure/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/gestao_fundiaria/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.gestao_fundiaria.api.router",
+        "prefix": "/infrastructure_sector/gestao_fundiaria",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/logistica/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.logistica.api.router",
+        "prefix": "/infrastructure_sector/logistica",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/meteorologia/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.meteorologia.api.router",
+        "prefix": "/infrastructure_sector/meteorologia",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/telecomunicacoes/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.telecomunicacoes.api.router",
+        "prefix": "/infrastructure_sector/telecomunicacoes",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/tests/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.tests.api.router",
+        "prefix": "/infrastructure_sector/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "infrastructure_sector/urbanismo_habitacao/api/router.py",
+        "module": "apps.backend.app.modules.infrastructure_sector.urbanismo_habitacao.api.router",
+        "prefix": "/infrastructure_sector/urbanismo_habitacao",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "intelligence/bi/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.bi.api.router",
+        "prefix": "/intelligence/bi",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "intelligence/ciencia_pesquisa/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.ciencia_pesquisa.api.router",
+        "prefix": "/intelligence/ciencia_pesquisa",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "intelligence/defesa_consumidor/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.defesa_consumidor.api.router",
+        "prefix": "/intelligence/defesa_consumidor",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "intelligence/operations/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.operations.api.router",
+        "prefix": "/intelligence/operations",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "intelligence/tests/api/router.py",
+        "module": "apps.backend.app.modules.intelligence.tests.api.router",
+        "prefix": "/intelligence/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "justice/_deprecated/api/router.py",
+        "module": "apps.backend.app.modules.justice._deprecated.api.router",
+        "prefix": "/justice/_deprecated",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "justice/events/api/router.py",
+        "module": "apps.backend.app.modules.justice.events.api.router",
+        "prefix": "/justice/events",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "justice/tests/api/router.py",
+        "module": "apps.backend.app.modules.justice.tests.api.router",
+        "prefix": "/justice/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "logistics/tests/api/router.py",
+        "module": "apps.backend.app.modules.logistics.tests.api.router",
+        "prefix": "/logistics/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "migration_service/tests/api/router.py",
+        "module": "apps.backend.app.modules.migration_service.tests.api.router",
+        "prefix": "/migration_service/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "procurement/tests/api/router.py",
+        "module": "apps.backend.app.modules.procurement.tests.api.router",
+        "prefix": "/procurement/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "public_security/tests/api/router.py",
+        "module": "apps.backend.app.modules.public_security.tests.api.router",
+        "prefix": "/public_security/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/agricultura/api/router.py",
+        "module": "apps.backend.app.modules.resources.agricultura.api.router",
+        "prefix": "/resources/agricultura",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/florestas/api/router.py",
+        "module": "apps.backend.app.modules.resources.florestas.api.router",
+        "prefix": "/resources/florestas",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/pecuaria/api/router.py",
+        "module": "apps.backend.app.modules.resources.pecuaria.api.router",
+        "prefix": "/resources/pecuaria",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/pescas/api/router.py",
+        "module": "apps.backend.app.modules.resources.pescas.api.router",
+        "prefix": "/resources/pescas",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/pescas/industrial/api/router.py",
+        "module": "apps.backend.app.modules.resources.pescas.industrial.api.router",
+        "prefix": "/resources/pescas/industrial",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "resources/tests/api/router.py",
+        "module": "apps.backend.app.modules.resources.tests.api.router",
+        "prefix": "/resources/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/assistencia_social/api/router.py",
+        "module": "apps.backend.app.modules.society.assistencia_social.api.router",
+        "prefix": "/society/assistencia_social",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/cultura/api/router.py",
+        "module": "apps.backend.app.modules.society.cultura.api.router",
+        "prefix": "/society/cultura",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/desporto/api/router.py",
+        "module": "apps.backend.app.modules.society.desporto.api.router",
+        "prefix": "/society/desporto",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/emprego/api/router.py",
+        "module": "apps.backend.app.modules.society.emprego.api.router",
+        "prefix": "/society/emprego",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/familia/api/router.py",
+        "module": "apps.backend.app.modules.society.familia.api.router",
+        "prefix": "/society/familia",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/juventude/api/router.py",
+        "module": "apps.backend.app.modules.society.juventude.api.router",
+        "prefix": "/society/juventude",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/patrimonio_cultural/api/router.py",
+        "module": "apps.backend.app.modules.society.patrimonio_cultural.api.router",
+        "prefix": "/society/patrimonio_cultural",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/seguranca_social/api/router.py",
+        "module": "apps.backend.app.modules.society.seguranca_social.api.router",
+        "prefix": "/society/seguranca_social",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      },
+      {
+        "file": "society/tests/api/router.py",
+        "module": "apps.backend.app.modules.society.tests.api.router",
+        "prefix": "/society/tests",
+        "error": "ModuleNotFoundError: No module named 'core'"
+      }
+    ]
+  },
+  "loaded_detail": [
+    {
+      "module": "apps.backend.app.modules.audit.state_audit.api.router",
+      "prefix": "/audit/state_audit",
+      "tag": "audit",
+      "endpoints": 3,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/audit/state_audit/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.economy.apoio_empresarial.api.router",
+      "prefix": "/economy/apoio_empresarial",
+      "tag": "economy",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/apoio_empresarial/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.admissions.api.router",
+      "prefix": "/educacao/marketplace/admissions",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/admissions/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.booking.api.router",
+      "prefix": "/educacao/marketplace/booking",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/booking/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.discovery.api.router",
+      "prefix": "/educacao/marketplace/discovery",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/discovery/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.matching.api.router",
+      "prefix": "/educacao/marketplace/matching",
+      "tag": "educacao",
+      "endpoints": 5,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/matching/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.ranking.api.router",
+      "prefix": "/educacao/marketplace/ranking",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/ranking/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.recommendation.api.router",
+      "prefix": "/educacao/marketplace/recommendation",
+      "tag": "educacao",
+      "endpoints": 3,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/recommendation/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.search.api.router",
+      "prefix": "/educacao/marketplace/search",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/search/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.educacao.marketplace.transfers.api.router",
+      "prefix": "/educacao/marketplace/transfers",
+      "tag": "educacao",
+      "endpoints": 4,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/transfers/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.governance.cooperacao_internacional.api.router",
+      "prefix": "/governance/cooperacao_internacional",
+      "tag": "governance",
+      "endpoints": 16,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/governance/cooperacao_internacional/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.governance.planeamento.api.router",
+      "prefix": "/governance/planeamento",
+      "tag": "governance",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/governance/planeamento/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.identity.subdomains.verifiable_credentials.api.router",
+      "prefix": "/identity/subdomains/verifiable_credentials",
+      "tag": "identity",
+      "endpoints": 2,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/identity/subdomains/verifiable_credentials/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.router",
+      "prefix": "/infrastructure_sector/aviacao_civil",
+      "tag": "infrastructure_sector",
+      "endpoints": 10,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure_sector/aviacao_civil/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.infrastructure_sector.logistica.ports.api.router",
+      "prefix": "/infrastructure_sector/logistica/ports",
+      "tag": "infrastructure_sector",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure_sector/logistica/ports/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.integracao-nacional.subdomains.bi.api.router",
+      "prefix": "/integracao-nacional/subdomains/bi",
+      "tag": "integracao-nacional",
+      "endpoints": 2,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/bi/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.integracao-nacional.subdomains.moradas.api.router",
+      "prefix": "/integracao-nacional/subdomains/moradas",
+      "tag": "integracao-nacional",
+      "endpoints": 2,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/moradas/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.integracao-nacional.subdomains.nif.api.router",
+      "prefix": "/integracao-nacional/subdomains/nif",
+      "tag": "integracao-nacional",
+      "endpoints": 2,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/nif/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.integracao-nacional.subdomains.verificacao-documental.api.router",
+      "prefix": "/integracao-nacional/subdomains/verificacao-documental",
+      "tag": "integracao-nacional",
+      "endpoints": 2,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/verificacao-documental/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.intelligence.arquivo_nacional.api.router",
+      "prefix": "/intelligence/arquivo_nacional",
+      "tag": "intelligence",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/intelligence/arquivo_nacional/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.intelligence.tecnologia_inovacao.api.router",
+      "prefix": "/intelligence/tecnologia_inovacao",
+      "tag": "intelligence",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/intelligence/tecnologia_inovacao/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.resources.aguas_saneamento.api.router",
+      "prefix": "/resources/aguas_saneamento",
+      "tag": "resources",
+      "endpoints": 35,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/aguas_saneamento/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.resources.ambiente.api.router",
+      "prefix": "/resources/ambiente",
+      "tag": "resources",
+      "endpoints": 52,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/ambiente/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.resources.petroleo_gas.api.router",
+      "prefix": "/resources/petroleo_gas",
+      "tag": "resources",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/petroleo_gas/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.resources.recursos_minerais.api.router",
+      "prefix": "/resources/recursos_minerais",
+      "tag": "resources",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/recursos_minerais/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.resources.seguranca_alimentar.api.router",
+      "prefix": "/resources/seguranca_alimentar",
+      "tag": "resources",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/seguranca_alimentar/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.society.igualdade.api.router",
+      "prefix": "/society/igualdade",
+      "tag": "society",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/society/igualdade/api/router.py"
+    },
+    {
+      "module": "apps.backend.app.modules.society.trabalho_inspecao.api.router",
+      "prefix": "/society/trabalho_inspecao",
+      "tag": "society",
+      "endpoints": 0,
+      "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/society/trabalho_inspecao/api/router.py"
+    }
+  ]
+}

@@ -3,8 +3,23 @@ from typing import Any
 from uuid import UUID
 
 from fastapi import APIRouter, Body, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from apps.backend.app.api.deps import get_current_user
+from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
+
+
+async def _check_instituicao_territory(instituicao_id: Any, user: dict, db: AsyncSession) -> None:
+    if instituicao_id is None:
+        return
+    try:
+        inst_id = UUID(str(instituicao_id))
+    except (ValueError, TypeError):
+        return
+    escola = await db.get(EscolaModel, inst_id)
+    if escola:
+        await verify_territorial_access(user=user, resource_territory_id=getattr(escola, "territory_id", None), db=db)
 
 
 def build_workflow_router(
@@ -31,7 +46,9 @@ def build_workflow_router(
             data: dict[str, Any] = Body(...),
             service: Any = Depends(get_service),
             user: dict = Depends(get_current_user),
+            db: AsyncSession = Depends(get_db),
         ):
+            await _check_instituicao_territory(data.get("instituicao_id"), user, db)
             try:
                 return await service.create_record(
                     service_type=service_type,
@@ -83,7 +100,11 @@ def build_workflow_router(
         data: dict[str, Any] = Body(...),
         service: Any = Depends(get_service),
         user: dict = Depends(get_current_user),
+        db: AsyncSession = Depends(get_db),
     ):
+        item = await service.get_record(record_id)
+        if item and hasattr(item, "get"):
+            await _check_instituicao_territory(item.get("instituicao_id"), user, db)
         try:
             return await service.conclude_record(record_id, user.get("user_id"), data.get("resumo"))
         except ValueError as exc:
@@ -95,7 +116,11 @@ def build_workflow_router(
         data: dict[str, Any] = Body(...),
         service: Any = Depends(get_service),
         user: dict = Depends(get_current_user),
+        db: AsyncSession = Depends(get_db),
     ):
+        item = await service.get_record(record_id)
+        if item and hasattr(item, "get"):
+            await _check_instituicao_territory(item.get("instituicao_id"), user, db)
         try:
             return await service.cancel_record(record_id, user.get("user_id"), data.get("motivo"))
         except ValueError as exc:

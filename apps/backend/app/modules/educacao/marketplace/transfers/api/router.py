@@ -1,7 +1,13 @@
 """Router for Transfers subdomain"""
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+import uuid
 
+from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
 from .health import transfers_health
+
 
 router = APIRouter(
     prefix="/marketplace/transfers",
@@ -22,6 +28,8 @@ async def request_transfer(
     destination_institution_id: str,
     source_program_id: str,
     destination_program_id: str,
+    user: dict = Depends(get_current_user),
+    session: AsyncSession = Depends(get_db),
 ):
     """Solicitar transferência self-service
     
@@ -35,7 +43,23 @@ async def request_transfer(
     Returns:
         Confirmação de solicitação
     """
-    # TODO: Implementar lógica
+    # Territorial checks: ensure user can access both source and destination institutions
+    src_escola = None
+    dst_escola = None
+    try:
+        src_id = uuid.UUID(source_institution_id)
+        src_escola = await session.get(EscolaModel, src_id)
+    except Exception:
+        src_escola = None
+    try:
+        dst_id = uuid.UUID(destination_institution_id)
+        dst_escola = await session.get(EscolaModel, dst_id)
+    except Exception:
+        dst_escola = None
+    # Verify access for source and destination; missing mapping -> best-effort
+    await verify_territorial_access(user=user, resource_territory_id=getattr(src_escola, "territory_id", None), db=session)
+    await verify_territorial_access(user=user, resource_territory_id=getattr(dst_escola, "territory_id", None), db=session)
+
     return {
         "transfer_id": "trans_123",
         "citizen_id": citizen_id,

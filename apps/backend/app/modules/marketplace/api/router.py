@@ -163,6 +163,25 @@ async def orchestrate_instant_transfer(session, payload: InstantTransferRequest)
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
+async def get_default_orchestrator(session: AsyncSession = Depends(get_db)) -> InstantTransferOrchestrator:
+    matching = RealMatchingAdapter(session)
+    reservation = RealReservationAdapter(session)
+    payment = RealPaymentAdapter(session)
+    transfer = RealTransferAdapter(session)
+    notification = NotificationAdapter()
+    # Prefer Redis store when REDIS_URL is set; otherwise fall back to in-memory store for tests
+    redis_url = os.getenv("REDIS_URL")
+    if redis_url:
+        try:
+            store = RedisOrchestrationStore.from_url(redis_url)
+        except Exception:
+            store = InMemoryOrchestrationStore()
+    else:
+        store = InMemoryOrchestrationStore()
+
+    return InstantTransferOrchestrator(matching, reservation, payment, transfer, notification, store)
+
+
 @router.post(
     "/instant-transfer",
     response_model=InstantTransferResponse,
@@ -197,21 +216,3 @@ async def post_instant_transfer(
     resp = await orchestrator.orchestrate(dto, idempotency_key=payload.idempotency_key)
     return InstantTransferResponse(**resp.dict())
 
-
-async def get_default_orchestrator(session: AsyncSession = Depends(get_db)) -> InstantTransferOrchestrator:
-    matching = RealMatchingAdapter(session)
-    reservation = RealReservationAdapter(session)
-    payment = RealPaymentAdapter(session)
-    transfer = RealTransferAdapter(session)
-    notification = NotificationAdapter()
-    # Prefer Redis store when REDIS_URL is set; otherwise fall back to in-memory store for tests
-    redis_url = os.getenv("REDIS_URL")
-    if redis_url:
-        try:
-            store = RedisOrchestrationStore.from_url(redis_url)
-        except Exception:
-            store = InMemoryOrchestrationStore()
-    else:
-        store = InMemoryOrchestrationStore()
-
-    return InstantTransferOrchestrator(matching, reservation, payment, transfer, notification, store)

@@ -1,0 +1,230 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "tests": [
+    {
+      "path": "/educacao/admin/roles",
+      "method": "GET",
+      "description": "List roles",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380a10>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381100>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643817f0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x76326434fcb0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643813d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632644f2990>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/roles/ROLE_MINISTERIAL/permissions",
+      "method": "GET",
+      "description": "Role permissions",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643807a0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382300>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382c00>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x76326434fb00>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643829f0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643810d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/scope/check",
+      "method": "GET",
+      "description": "Scope validation helper",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380680>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380f20>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381a90>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264383a10>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381cd0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643821e0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/matricula/criar",
+      "method": "POST",
+      "description": "Create matricula workflow",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380590>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381fd0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382c30>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264383ef0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381e50>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380b90>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/matricula/avancar",
+      "method": "POST",
+      "description": "Advance matricula workflow",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381490>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643833b0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x76326431af90>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c09b0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264442e10>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380e60>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/transferencia/criar",
+      "method": "POST",
+      "description": "Create transfer workflow",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380bf0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381f10>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382660>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c0410>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643826c0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643816d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/transferencia/avancar",
+      "method": "POST",
+      "description": "Advance transfer workflow",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380fb0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381ca0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x76326434fbc0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c0770>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x76326434f980>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380560>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/delegation/delegate",
+      "method": "POST",
+      "description": "Create delegation",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380da0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380350>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382b10>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c0590>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c1490>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643819d0>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    },
+    {
+      "path": "/educacao/admin/delegation/list/mun-001",
+      "method": "GET",
+      "description": "List delegations for delegate",
+      "by_profile": {
+        "citizen": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380b90>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "municipal_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264380f80>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "provincial_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264381430>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "central_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c1550>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        },
+        "super_admin": {
+          "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x7632643c1130>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+        }
+      },
+      "anonymous": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=8000) at 0x763264382840>, 'Connection to 127.0.0.1 timed out. (connect timeout=3)'))"
+      }
+    }
+  ]
+}

@@ -258,36 +258,14 @@ async def seed_users(session: AsyncSession, territory_ids: dict) -> None:
     """Insere usuários por níveis administrativos"""
     logger.info("👥 Iniciando seed de usuários (5 níveis)...")
 
+    # Apenas o Super Admin é criado por bootstrap — demais usuários devem
+    # ser criados via workflows administrativos do sistema.
     users_config = [
         {
             "email": "admin@sila.gov.ao",
-            "full_name": "Administrator SILA",
+            "full_name": "SUPER_ADMIN_NACIONAL",
             "level": "SUPER",
             "region_id": None,
-        },
-        {
-            "email": "provincial.luanda@sila.gov.ao",
-            "full_name": "Provincial Manager - Luanda",
-            "level": "PROVINCIAL",
-            "region_name": "Luanda",
-        },
-        {
-            "email": "provincial.huambo@sila.gov.ao",
-            "full_name": "Provincial Manager - Huambo",
-            "level": "PROVINCIAL",
-            "region_name": "Huambo",
-        },
-        {
-            "email": "municipal.huambo@sila.gov.ao",
-            "full_name": "Municipal Manager - Huambo",
-            "level": "MUNICIPAL",
-            "region_name": "Huambo (Município)",
-        },
-        {
-            "email": "commune.center.huambo@sila.gov.ao",
-            "full_name": "Commune Officer - Centro (Huambo)",
-            "level": "COMMUNAL",
-            "region_name": "Comuna Centro",
         },
     ]
 

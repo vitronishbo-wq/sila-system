@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from apps.backend.app.api.deps import get_identity_context, get_notification_service
+from apps.backend.app.api.deps import get_identity_context, get_notification_service, get_scope_from_user
 from apps.backend.app.core.bridges import CitizenRepository
 from apps.backend.app.core.bridges.society_repository_bridges import (
     make_assistencia_beneficiario_repository,
@@ -66,9 +66,16 @@ class RequestPermissions:
 async def get_request_service(
     db: AsyncSession = session_dep,
     notification_service: NotificationService = notification_service_dep,
+    scope: dict = Depends(get_scope_from_user),
 ) -> RequestService:
     """Dependency para obter serviço de pedidos (ASYNC)"""
     repository = RequestRepository(db)
+    # Apply territorial scope (set by outer dependency)
+    # Attach allowed territories resolved via DI (None == unrestricted)
+    try:
+        repository.allowed_territories = scope.get("allowed_territories") if isinstance(scope, dict) else None
+    except Exception:
+        repository.allowed_territories = None
     identidade_client = IdentidadeClient(citizen_repo=CitizenRepository(db))
     educacao_client = EducacaoClient(turma_repo=make_educacao_turma_repository(db))
     juventude_client = JuventudeClient(

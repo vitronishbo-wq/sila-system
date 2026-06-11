@@ -71,6 +71,12 @@ def gerar_macro_tree():
             elif pasta == "tests":
                 item["purpose"] = "Suítes de testes de integração e cenários E2E governamentais."
                 item["tags"] = ["tests", "e2e", "integration"]
+            elif pasta == "docs":
+                item["purpose"] = "Documentação técnica, esquemas OpenAPI e índices de navegação modular."
+                item["tags"] = ["docs", "documentation"]
+            elif pasta == "scripts":
+                item["purpose"] = "Componentes auxiliares de infraestrutura e automações de build/teste."
+                item["tags"] = ["scripts", "devops"]
             else:
                 item["purpose"] = "Componentes auxiliares de infraestrutura do sistema."
                 item["tags"] = [pasta, "devops"]

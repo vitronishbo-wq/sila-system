@@ -1,7 +1,13 @@
 """Router for Admissions subdomain"""
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+import uuid
 
+from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
 from .health import admissions_health
+
 
 router = APIRouter(
     prefix="/marketplace/admissions",
@@ -19,6 +25,8 @@ async def health_check():
 async def process_admission(
     citizen_id: str,
     opportunity_id: str,
+    user: dict = Depends(get_current_user),
+    session: AsyncSession = Depends(get_db),
 ):
     """Processar admissão automática
     
@@ -29,6 +37,14 @@ async def process_admission(
     Returns:
         Resultado do processamento
     """
+    # Attempt to resolve opportunity -> institution to check territorial access.
+    escola_model = None
+    try:
+        inst_id = uuid.UUID(opportunity_id)
+        escola_model = await session.get(EscolaModel, inst_id)
+    except Exception:
+        escola_model = None
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
     # TODO: Implementar lógica
     return {
         "admission_id": "adm_123",
@@ -64,6 +80,8 @@ async def get_admission_status(
 async def validate_eligibility(
     citizen_id: str,
     opportunity_id: str,
+    user: dict = Depends(get_current_user),
+    session: AsyncSession = Depends(get_db),
 ):
     """Validar elegibilidade
     
@@ -74,7 +92,13 @@ async def validate_eligibility(
     Returns:
         Resultado de validação
     """
-    # TODO: Implementar lógica
+    escola_model = None
+    try:
+        inst_id = uuid.UUID(opportunity_id)
+        escola_model = await session.get(EscolaModel, inst_id)
+    except Exception:
+        escola_model = None
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
     return {
         "citizen_id": citizen_id,
         "opportunity_id": opportunity_id,

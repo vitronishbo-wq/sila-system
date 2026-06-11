@@ -3,6 +3,16 @@ import { useParams } from 'react-router-dom';
 import { citizenService } from '@/modules/admin/services';
 import type { CitizenSummary } from '@/modules/admin/services';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
+interface EducacaoData {
+  identidades: Array<{ id: string; nome: string; ns_number: string; status: string }>;
+  matriculas: Array<{ id: string; numero_processo: string; escola_nome: string; data: string; status: string }>;
+  enrollments: Array<{ id: string; institution_id: string; academic_year: string; grade: string; status: string }>;
+  boletins: Array<{ id: string; numero_processo: string; data: string; status: string }>;
+  certificados: Array<{ id: string; numero_processo: string; data: string; status: string }>;
+}
+
 const formatDate = (value?: string | null) => {
   if (!value) return '—';
   const date = new Date(value);
@@ -10,9 +20,23 @@ const formatDate = (value?: string | null) => {
   return date.toLocaleDateString('pt-PT');
 };
 
+const StatusBadge = ({ status }: { status: string }) => {
+  const colors: Record<string, string> = {
+    ativa: 'bg-green-100 text-green-700',
+    activa: 'bg-green-100 text-green-700',
+    pendente: 'bg-yellow-100 text-yellow-700',
+    concluida: 'bg-blue-100 text-blue-700',
+    concluído: 'bg-blue-100 text-blue-700',
+    cancelada: 'bg-red-100 text-red-700',
+  };
+  const cls = colors[status?.toLowerCase()] || 'bg-gray-100 text-gray-600';
+  return <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${cls}`}>{status}</span>;
+};
+
 const AdminCitizenFuc: React.FC = () => {
   const { id } = useParams();
   const [citizen, setCitizen] = useState<CitizenSummary | null>(null);
+  const [educacao, setEducacao] = useState<EducacaoData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,8 +48,12 @@ const AdminCitizenFuc: React.FC = () => {
         return;
       }
       try {
-        const data = await citizenService.getById(id);
-        setCitizen(data);
+        const [citizenData, educData] = await Promise.all([
+          citizenService.getById(id),
+          fetch(`${API_BASE}/api/educacao/fuc/${id}/educacao`).then(r => r.ok ? r.json() : null),
+        ]);
+        setCitizen(citizenData);
+        setEducacao(educData);
       } catch (err) {
         console.error('Erro ao carregar FUC:', err);
         setError('Não foi possível carregar a FUC.');
@@ -52,6 +80,14 @@ const AdminCitizenFuc: React.FC = () => {
       </div>
     );
   }
+
+  const hasEducacao = educacao && (
+    educacao.matriculas.length > 0 ||
+    educacao.enrollments.length > 0 ||
+    educacao.boletins.length > 0 ||
+    educacao.certificados.length > 0 ||
+    educacao.identidades.length > 0
+  );
 
   return (
     <div className="space-y-6">
@@ -94,6 +130,86 @@ const AdminCitizenFuc: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {hasEducacao && educacao && (
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <h3 className="text-xl font-semibold text-slate-900 mb-6">Registo Educacional</h3>
+
+          {educacao.identidades.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Identidade Académica</h4>
+              <div className="space-y-2">
+                {educacao.identidades.map((ident) => (
+                  <div key={ident.id} className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-4 py-2">
+                    <span className="font-medium text-slate-900">{ident.nome}</span>
+                    <span className="text-gray-500">{ident.ns_number}</span>
+                    <StatusBadge status={ident.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {educacao.matriculas.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Matrículas</h4>
+              <div className="space-y-2">
+                {educacao.matriculas.map((m) => (
+                  <div key={m.id} className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-700">{m.escola_nome}</span>
+                    <span className="text-gray-500">{formatDate(m.data)}</span>
+                    <StatusBadge status={m.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {educacao.enrollments.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Histórico Escolar</h4>
+              <div className="space-y-2">
+                {educacao.enrollments.map((e) => (
+                  <div key={e.id} className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-700">{e.grade} — {e.academic_year}</span>
+                    <StatusBadge status={e.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {educacao.boletins.length > 0 && (
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Boletins</h4>
+              <div className="space-y-2">
+                {educacao.boletins.map((b) => (
+                  <div key={b.id} className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-500">{b.numero_processo}</span>
+                    <span className="text-gray-500">{formatDate(b.data)}</span>
+                    <StatusBadge status={b.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {educacao.certificados.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Certificados</h4>
+              <div className="space-y-2">
+                {educacao.certificados.map((c) => (
+                  <div key={c.id} className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-500">{c.numero_processo}</span>
+                    <span className="text-gray-500">{formatDate(c.data)}</span>
+                    <StatusBadge status={c.status} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

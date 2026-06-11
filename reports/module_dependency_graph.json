@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-07T12:12:30.845414+00:00",
+  "generated_at": "2026-06-08T18:34:11.823640+00:00",
   "modules_scanned": 82,
-  "files_scanned": 7556,
+  "files_scanned": 7566,
   "edges": [
     {
       "source": "society",
       "target": "core",
-      "weight": 104
+      "weight": 105
     },
     {
       "source": "educacao",
@@ -89,17 +89,17 @@
       "weight": 4
     },
     {
+      "source": "tourism",
+      "target": "core",
+      "weight": 3
+    },
+    {
       "source": "compliance",
       "target": "core",
       "weight": 3
     },
     {
       "source": "payment",
-      "target": "core",
-      "weight": 3
-    },
-    {
-      "source": "tourism",
       "target": "core",
       "weight": 3
     },
@@ -114,12 +114,12 @@
       "weight": 2
     },
     {
-      "source": "api",
+      "source": "integracao-nacional",
       "target": "core",
       "weight": 2
     },
     {
-      "source": "integracao-nacional",
+      "source": "api",
       "target": "core",
       "weight": 2
     },
@@ -134,7 +134,7 @@
       "weight": 1
     },
     {
-      "source": "administracao-local",
+      "source": "xroad",
       "target": "core",
       "weight": 1
     },
@@ -149,7 +149,7 @@
       "weight": 1
     },
     {
-      "source": "xroad",
+      "source": "administracao-local",
       "target": "core",
       "weight": 1
     }

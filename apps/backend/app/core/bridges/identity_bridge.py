@@ -51,6 +51,16 @@ class CitizenFUC(Base):
     document_number = Column(String(64), nullable=True)
     vital_status = Column(String(32), nullable=True)
 
+    def __init__(self, *args, **kwargs):
+        # Accept legacy 'gender' kw for test seeding without mapping it to DB
+        gender = kwargs.pop("gender", None)
+        # Assign known kwargs to attributes (mapped columns will be set)
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        # Keep gender as a transient attribute (not persisted)
+        if gender is not None:
+            setattr(self, "gender", gender)
+
 
 __all__ = [
     "BIEventRecord",

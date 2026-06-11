@@ -31,6 +31,9 @@ class SQLAlchemyEnrollmentRepository(EnrollmentRepositoryPort):
         model.ended_at = enrollment_data.get("ended_at")
         model.transfer_origin_id = enrollment_data.get("transfer_origin_id")
         model.transfer_destination_id = enrollment_data.get("transfer_destination_id")
+        model.territory_id = enrollment_data.get("territory_id")
+        model.created_by = enrollment_data.get("created_by")
+        model.managed_by = enrollment_data.get("managed_by")
 
         await self.session.flush()
         await self.session.refresh(model)
@@ -117,6 +120,9 @@ class SQLAlchemyEnrollmentRepository(EnrollmentRepositoryPort):
             "ended_at": model.ended_at,
             "transfer_origin_id": model.transfer_origin_id,
             "transfer_destination_id": model.transfer_destination_id,
+            "territory_id": model.territory_id,
+            "created_by": model.created_by,
+            "managed_by": model.managed_by,
             "created_at": model.created_at,
             "updated_at": model.updated_at,
         }

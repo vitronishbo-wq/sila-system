@@ -1,4 +1,55 @@
 #!/usr/bin/env python3
+"""Scan the repository for potential sqlite references and .db files.
+
+This helper aids the migration away from SQLite by listing occurrences of
+`sqlite`, `sqlite3` and `.db` tokens in Python files.
+"""
+from __future__ import annotations
+
+import argparse
+import re
+from pathlib import Path
+from typing import List, Tuple
+
+
+PATTERN = re.compile(r"\b(sqlite3|sqlite|\\.db)\b", re.I)
+
+
+def find_sqlite_usages(root: Path) -> List[Tuple[Path, int, str]]:
+    matches: List[Tuple[Path, int, str]] = []
+    for p in root.rglob("*.py"):
+        try:
+            text = p.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        for i, line in enumerate(text.splitlines(), start=1):
+            if PATTERN.search(line):
+                matches.append((p, i, line.strip()))
+    return matches
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-r", "--root", default=Path("."), type=Path)
+    parser.add_argument("--show-files", action="store_true")
+    args = parser.parse_args()
+    matches = find_sqlite_usages(args.root)
+    if not matches:
+        print("No sqlite references found.")
+        return
+    if args.show_files:
+        files = sorted({str(p) for p, _, _ in matches})
+        print("Files with sqlite references:")
+        for f in files:
+            print(" -", f)
+    print("Instances found:")
+    for p, i, line in matches:
+        print(f"{p}:{i}: {line}")
+
+
+if __name__ == "__main__":
+    main()
+#!/usr/bin/env python3
 """
 SQLITE COMPLETE REMOVAL AUTOMATION TOOL
 =========================================

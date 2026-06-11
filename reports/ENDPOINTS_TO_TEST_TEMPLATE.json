@@ -1,0 +1,64 @@
+[
+  {
+    "method": "GET",
+    "path": "/educacao/admin/roles",
+    "description": "List roles",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "GET",
+    "path": "/educacao/admin/roles/{role}/permissions",
+    "path_params": {"role": "ROLE_MINISTERIAL"},
+    "description": "Role permissions",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "GET",
+    "path": "/educacao/admin/scope/check",
+    "query_params": {"user_role": "MANAGER", "user_province": "prov-001", "user_municipality": "mun-001", "resource_nivel": "escola", "resource_province": "prov-001", "resource_municipality": "mun-001", "resource_school": "sch-001"},
+    "description": "Scope validation helper",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "POST",
+    "path": "/educacao/admin/workflows/matricula/criar",
+    "body": {"provider": "prov", "student_id": "stu-1", "school_id": "sch-1", "municipality_id": "mun-001", "province_id": "prov-001"},
+    "description": "Create matricula workflow",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "POST",
+    "path": "/educacao/admin/workflows/matricula/avancar",
+    "body": {"provider": "prov", "actor": "prov-001"},
+    "description": "Advance matricula workflow",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "POST",
+    "path": "/educacao/admin/workflows/transferencia/criar",
+    "body": {"provider": "prov", "student_id": "stu-1", "school_origin_id": "sch-1", "school_destination_id": "sch-2", "municipality_id": "mun-001", "province_id": "prov-001"},
+    "description": "Create transfer workflow",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "POST",
+    "path": "/educacao/admin/workflows/transferencia/avancar",
+    "body": {"provider": "prov", "actor": "prov-001"},
+    "description": "Advance transfer workflow",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "POST",
+    "path": "/educacao/admin/delegation/delegate",
+    "body": {"delegator_role": "MANAGER", "delegator_id": "prov-001", "delegate_role": "MANAGER", "delegate_id": "mun-001", "permission": "perm.read", "province_id": "prov-001", "municipality_id": "mun-001", "school_id": "sch-001"},
+    "description": "Create delegation",
+    "expected_by_profile": {}
+  },
+  {
+    "method": "GET",
+    "path": "/educacao/admin/delegation/list/{delegate_id}",
+    "path_params": {"delegate_id": "mun-001"},
+    "description": "List delegations for delegate",
+    "expected_by_profile": {}
+  }
+]

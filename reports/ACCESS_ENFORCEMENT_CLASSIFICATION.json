@@ -1,0 +1,83 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "generated_at": "2026-06-09T07:34:23.175318Z",
+  "summary": {
+    "CONFIRMADO": 0,
+    "FALSO_POSITIVO": 0,
+    "NÃO_TESTÁVEL": 9
+  },
+  "classification": [
+    {
+      "path": "/educacao/admin/roles",
+      "method": "GET",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/roles/ROLE_MINISTERIAL/permissions",
+      "method": "GET",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/roles/ROLE_MINISTERIAL/permissions (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/scope/check",
+      "method": "GET",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/scope/check?user_role=MANAGER&user_province=prov-001&user_municipality=mun-001&resource_nivel=escola&resource_province=prov-001&resource_municipality=mun-001&resource_school=sch-001 (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/matricula/criar",
+      "method": "POST",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/criar (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/matricula/avancar",
+      "method": "POST",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/matricula/avancar (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/transferencia/criar",
+      "method": "POST",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/criar (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/workflows/transferencia/avancar",
+      "method": "POST",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/workflows/transferencia/avancar (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/delegation/delegate",
+      "method": "POST",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/delegate (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    },
+    {
+      "path": "/educacao/admin/delegation/list/mun-001",
+      "method": "GET",
+      "classification": "NÃO_TESTÁVEL",
+      "anonymous_result": {
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /educacao/admin/delegation/list/mun-001 (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+      }
+    }
+  ]
+}

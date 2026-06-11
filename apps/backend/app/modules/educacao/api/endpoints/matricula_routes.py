@@ -4,7 +4,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, HTTPException, status
 
-from apps.backend.app.api.deps import get_current_user
+from apps.backend.app.api.deps import get_current_user, get_db
 from apps.backend.app.modules.educacao.api.deps import get_matricula_service
 from apps.backend.app.modules.educacao.api.schemas import (
     MatriculaAtivar,
@@ -12,6 +12,10 @@ from apps.backend.app.modules.educacao.api.schemas import (
     MatriculaResponse,
 )
 from apps.backend.app.modules.educacao.application.matricula_service import MatriculaService
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.modules.educacao.infrastructure.models.matricula_model import MatriculaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
+from sqlalchemy.ext.asyncio import AsyncSession
 from apps.backend.app.modules.educacao.exceptions import (
     CitizenNotFoundError,
     EscolaNotFoundError,
@@ -42,10 +46,16 @@ matricula_service_dep = Depends(get_matricula_service)
 async def criar_matricula(
     data: MatriculaCreate,
     service: MatriculaService = matricula_service_dep,
-    _: dict = current_user_dep,
+    user: dict = current_user_dep,
+    session: AsyncSession = Depends(get_db),
     idempotency_key: str | None = Header(None, alias="Idempotency-Key"),
 ):
     try:
+        # territorial check: ensure user can act on the escola's territory
+        escola_model = await session.get(EscolaModel, data.escola_id)
+        if not escola_model:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Escola {data.escola_id} nao encontrada")
+        await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
         return await service.criar_matricula(
             citizen_id=data.citizen_id,
             escola_id=data.escola_id,
@@ -79,13 +89,20 @@ async def ativar_matricula(
     matricula_id: UUID,
     data: MatriculaAtivar,
     service: MatriculaService = matricula_service_dep,
-    _: dict = current_user_dep,
+    user: dict = current_user_dep,
+    session: AsyncSession = Depends(get_db),
 ):
     if not data.confirmacao_documental:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Confirmacao documental obrigatoria"
         )
     try:
+        # territorial check: ensure user can act on the matricula's escola territory
+        matricula_model = await session.get(MatriculaModel, matricula_id)
+        if not matricula_model:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Matricula nao encontrada")
+        escola_model = await session.get(EscolaModel, matricula_model.escola_id)
+        await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
         return await service.ativar_matricula(matricula_id)
     except InvalidMatriculaStateError as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc

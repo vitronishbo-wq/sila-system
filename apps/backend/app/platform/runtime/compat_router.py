@@ -11,6 +11,8 @@ from typing import Any
 
 import yaml
 from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.api.deps import get_current_user, get_db, get_scope_from_user
+from apps.backend.app.core.catalog.models.service import Service as ServiceModel
 from apps.backend.app.core.audit import SLA_DEFINITIONS, evaluate_sla_status, get_sla_for_service
 from apps.backend.app.core.db import AsyncSessionLocal
 from apps.backend.app.core.observability import Metrics
@@ -1756,6 +1758,38 @@ async def admin_audit_sla_metrics(
         "sla_status": sla_status,
         "sla_target_seconds": target_seconds,
     }
+    
+@router.get("/api/admin/services/filtered")
+async def admin_services_filtered(
+    limit: int = Query(100, ge=1, le=1000),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
+    db: AsyncSession = Depends(get_db),
+) -> list[dict[str, Any]]:
+    """Demo endpoint: retorna serviços visíveis para o utilizador com base no âmbito territorial."""
+    role = scope.get("role")
+    allowed = scope.get("allowed_territories")
+    # Citizens should not access admin services
+    if role == "CITIZEN":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acesso negado")
+
+    stmt = None
+    if allowed is None:
+        stmt = select(ServiceModel).limit(limit)
+    else:
+        stmt = select(ServiceModel).where(ServiceModel.territory_id.in_(allowed)).limit(limit)
+
+    result = await db.execute(stmt)
+    services = result.scalars().all()
+    return [
+        {
+            "id": str(s.id),
+            "code": s.code,
+            "name": s.name,
+            "territory_id": str(s.territory_id) if s.territory_id else None,
+            "is_active": bool(s.is_active),
+        }
+        for s in services
+    ]
 
 
 @router.get("/api/admin/audit/sla/breakdown")
@@ -1832,6 +1866,7 @@ async def admin_list_citizens(
     offset: int = 0,
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> dict[str, Any]:
     _assert_admin(current_user)
     q_like = f"%{q}%" if q else None
@@ -1859,52 +1894,109 @@ async def admin_list_citizens(
         "limit": limit,
         "offset": offset,
     }
-    count_result = await db.execute(
-        text("""
+
+    allowed = scope.get("allowed_territories")
+
+    if allowed is None:
+        count_result = await db.execute(
+            text("""
+                SELECT count(*)
+                FROM citizenship_citizens
+                WHERE (:name IS NULL OR name ILIKE :name_like)
+                    AND (:bi IS NULL OR bi_number ILIKE :bi_like)
+                    AND (:email IS NULL OR email ILIKE :email_like)
+                    AND (:phone IS NULL OR phone ILIKE :phone_like)
+                    AND (:is_active IS NULL OR is_active = :is_active)
+                    AND (:created_from IS NULL OR created_at >= :created_from)
+                    AND (:created_to IS NULL OR created_at <= :created_to)
+                    AND (
+                        :q IS NULL
+                        OR name ILIKE :q_like
+                        OR email ILIKE :q_like
+                        OR bi_number ILIKE :q_like
+                        OR phone ILIKE :q_like
+                    )
+            """),
+            params,
+        )
+        total = count_result.scalar_one()
+
+        result = await db.execute(
+            text("""
+                SELECT id, name, email, phone, address, is_active, created_at, updated_at,
+                       bi_number, birth_date, birth_location_id, residence_location_id, user_id
+                FROM citizenship_citizens
+                WHERE (:name IS NULL OR name ILIKE :name_like)
+                  AND (:bi IS NULL OR bi_number ILIKE :bi_like)
+                  AND (:email IS NULL OR email ILIKE :email_like)
+                  AND (:phone IS NULL OR phone ILIKE :phone_like)
+                  AND (:is_active IS NULL OR is_active = :is_active)
+                  AND (:created_from IS NULL OR created_at >= :created_from)
+                  AND (:created_to IS NULL OR created_at <= :created_to)
+                  AND (
+                    :q IS NULL
+                    OR name ILIKE :q_like
+                    OR email ILIKE :q_like
+                    OR bi_number ILIKE :q_like
+                    OR phone ILIKE :q_like
+                  )
+                ORDER BY created_at DESC NULLS LAST
+                LIMIT :limit OFFSET :offset
+            """),
+            params,
+        )
+    else:
+        # Scoped users: filter by residence or birth location
+        count_q = text(
+            """
             SELECT count(*)
-            FROM citizenship_citizens
-            WHERE (:name IS NULL OR name ILIKE :name_like)
-              AND (:bi IS NULL OR bi_number ILIKE :bi_like)
-              AND (:email IS NULL OR email ILIKE :email_like)
-              AND (:phone IS NULL OR phone ILIKE :phone_like)
-              AND (:is_active IS NULL OR is_active = :is_active)
-              AND (:created_from IS NULL OR created_at >= :created_from)
-              AND (:created_to IS NULL OR created_at <= :created_to)
-              AND (
-                :q IS NULL
-                OR name ILIKE :q_like
-                OR email ILIKE :q_like
-                OR bi_number ILIKE :q_like
-                OR phone ILIKE :q_like
-              )
-        """),
-        params,
-    )
-    total = count_result.scalar_one()
-    result = await db.execute(
-        text("""
-            SELECT id, name, email, phone, address, is_active, created_at, updated_at,
-                   bi_number, birth_date, birth_location_id, residence_location_id, user_id
-                      FROM citizenship_citizens
-            WHERE (:name IS NULL OR name ILIKE :name_like)
-              AND (:bi IS NULL OR bi_number ILIKE :bi_like)
-              AND (:email IS NULL OR email ILIKE :email_like)
-              AND (:phone IS NULL OR phone ILIKE :phone_like)
-              AND (:is_active IS NULL OR is_active = :is_active)
-              AND (:created_from IS NULL OR created_at >= :created_from)
-              AND (:created_to IS NULL OR created_at <= :created_to)
-              AND (
-                :q IS NULL
-                OR name ILIKE :q_like
-                OR email ILIKE :q_like
-                OR bi_number ILIKE :q_like
-                OR phone ILIKE :q_like
-              )
-            ORDER BY created_at DESC NULLS LAST
+            FROM citizenship_citizens c
+            WHERE (:name IS NULL OR c.name ILIKE :name_like)
+                AND (:bi IS NULL OR c.bi_number ILIKE :bi_like)
+                AND (:email IS NULL OR c.email ILIKE :email_like)
+                AND (:phone IS NULL OR c.phone ILIKE :phone_like)
+                AND (:is_active IS NULL OR c.is_active = :is_active)
+                AND (:created_from IS NULL OR c.created_at >= :created_from)
+                AND (:created_to IS NULL OR c.created_at <= :created_to)
+                AND (
+                    :q IS NULL
+                    OR c.name ILIKE :q_like
+                    OR c.email ILIKE :q_like
+                    OR c.bi_number ILIKE :q_like
+                    OR c.phone ILIKE :q_like
+                )
+                AND (c.residence_location_id::text IN :allowed_ids OR c.birth_location_id::text IN :allowed_ids)
+            """
+        ).bindparams(bindparam("allowed_ids", expanding=True))
+        count_result = await db.execute(count_q, {**params, "allowed_ids": allowed})
+        total = count_result.scalar_one()
+
+        select_q = text(
+            """
+            SELECT c.id, c.name, c.email, c.phone, c.address, c.is_active, c.created_at, c.updated_at,
+                   c.bi_number, c.birth_date, c.birth_location_id, c.residence_location_id, c.user_id
+            FROM citizenship_citizens c
+            WHERE (:name IS NULL OR c.name ILIKE :name_like)
+                AND (:bi IS NULL OR c.bi_number ILIKE :bi_like)
+                AND (:email IS NULL OR c.email ILIKE :email_like)
+                AND (:phone IS NULL OR c.phone ILIKE :phone_like)
+                AND (:is_active IS NULL OR c.is_active = :is_active)
+                AND (:created_from IS NULL OR c.created_at >= :created_from)
+                AND (:created_to IS NULL OR c.created_at <= :created_to)
+                AND (
+                    :q IS NULL
+                    OR c.name ILIKE :q_like
+                    OR c.email ILIKE :q_like
+                    OR c.bi_number ILIKE :q_like
+                    OR c.phone ILIKE :q_like
+                )
+                AND (c.residence_location_id::text IN :allowed_ids OR c.birth_location_id::text IN :allowed_ids)
+            ORDER BY c.created_at DESC NULLS LAST
             LIMIT :limit OFFSET :offset
-        """),
-        params,
-    )
+            """
+        ).bindparams(bindparam("allowed_ids", expanding=True))
+        result = await db.execute(select_q, {**params, "allowed_ids": allowed})
+
     items = [_map_citizen_row(dict(row)) for row in result.mappings().all()]
     return {"items": items, "total": total, "limit": limit, "offset": offset}
 
@@ -1923,6 +2015,7 @@ async def admin_export_citizens(
     format: str | None = None,
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> Response:
     _assert_admin(current_user)
     name_like = f"%{name}%" if name else None
@@ -2272,6 +2365,7 @@ async def admin_export_documents(
     columns: str | None = None,
     format: str | None = None,
     current_user: dict[str, Any] = Depends(get_current_user),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     _assert_admin(current_user)
@@ -2295,8 +2389,49 @@ async def admin_export_documents(
         "issued_from": issued_from,
         "issued_to": issued_to,
     }
-    result = await db.execute(
-        text("""
+
+    allowed = scope.get("allowed_territories")
+    if allowed is None:
+        result = await db.execute(
+            text("""
+                SELECT d.id,
+                       d.citizen_id,
+                       d.document_type,
+                       d.file_url,
+                       d.issued_at,
+                       d.valid_until,
+                       c.name AS citizen_name,
+                       c.bi_number AS bi_number,
+                       c.email AS citizen_email
+                FROM wallet_documents d
+                LEFT JOIN citizenship_citizens c ON c.id::text = d.citizen_id
+                WHERE (:document_type IS NULL OR d.document_type ILIKE :document_type_like)
+                  AND (:bi IS NULL OR c.bi_number ILIKE :bi_like)
+                  AND (:email IS NULL OR c.email ILIKE :email_like)
+                  AND (:issued_from IS NULL OR d.issued_at >= :issued_from)
+                  AND (:issued_to IS NULL OR d.issued_at <= :issued_to)
+                  AND (
+                    :status IS NULL
+                    OR (:status = 'active' AND (d.valid_until IS NULL OR d.valid_until >= NOW()))
+                    OR (:status = 'expired' AND d.valid_until < NOW())
+                    OR (:status = 'unknown' AND d.valid_until IS NULL)
+                  )
+                  AND (
+                    :q IS NULL
+                    OR d.document_type ILIKE :q_like
+                    OR c.name ILIKE :q_like
+                    OR c.bi_number ILIKE :q_like
+                    OR c.email ILIKE :q_like
+                  )
+                ORDER BY d.issued_at DESC NULLS LAST
+            """),
+            params,
+        )
+        rows = [_map_document_row(dict(row)) for row in result.mappings().all()]
+    else:
+        params_with_allowed = {**params, "allowed_ids": allowed}
+        q_text = text(
+            """
             SELECT d.id,
                    d.citizen_id,
                    d.document_type,
@@ -2326,11 +2461,11 @@ async def admin_export_documents(
                 OR c.bi_number ILIKE :q_like
                 OR c.email ILIKE :q_like
               )
+              AND (c.residence_location_id::text IN :allowed_ids OR c.birth_location_id::text IN :allowed_ids)
             ORDER BY d.issued_at DESC NULLS LAST
-        """),
-        params,
-    )
-    rows = [_map_document_row(dict(row)) for row in result.mappings().all()]
+        """ ).bindparams(bindparam("allowed_ids", expanding=True))
+        result = await db.execute(q_text, params_with_allowed)
+        rows = [_map_document_row(dict(row)) for row in result.mappings().all()]
     import csv
     import io
 
@@ -3224,18 +3359,37 @@ async def admin_get_document(
 async def admin_list_provinces(
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
-    result = await db.execute(
+    allowed = scope.get("allowed_territories")
+    # Central users: full list
+    if allowed is None:
+        result = await db.execute(
+            text("""
+                SELECT id, name, code, type, parent_id
+                FROM locations
+                WHERE type = 'province'
+                  AND parent_id IS NULL
+                ORDER BY name
+            """),
+        )
+        return [_map_territory_row(dict(row)) for row in result.mappings().all()]
+
+    # Scoped users: return provinces that are ancestors of allowed territories
+    provinces_result = await db.execute(
         text("""
-            SELECT id, name, code, type, parent_id
-            FROM locations
-            WHERE type = 'province'
-              AND parent_id IS NULL
-            ORDER BY name
-        """),
+            SELECT DISTINCT a.id, a.name, a.code, a.type, a.parent_id
+            FROM territory_closure tc
+            JOIN locations a ON a.id = tc.ancestor_id
+            WHERE a.type = 'province'
+              AND tc.descendant_id::text IN :allowed_ids
+            ORDER BY a.name
+        """
+        ).bindparams(bindparam("allowed_ids", expanding=True)),
+        {"allowed_ids": allowed},
     )
-    return [_map_territory_row(dict(row)) for row in result.mappings().all()]
+    return [_map_territory_row(dict(row)) for row in provinces_result.mappings().all()]
 
 
 @router.get("/api/admin/territory/provinces/{province_id}/municipalities")
@@ -3243,19 +3397,52 @@ async def admin_list_municipalities(
     province_id: str,
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
-    result = await db.execute(
+    allowed = scope.get("allowed_territories")
+    # Unrestricted users: full list for province
+    if allowed is None:
+        result = await db.execute(
+            text("""
+                SELECT id, name, code, type, parent_id
+                FROM locations
+                WHERE type = 'municipality'
+                  AND parent_id = :province_id::uuid
+                ORDER BY name
+            """),
+            {"province_id": province_id},
+        )
+        return [_map_territory_row(dict(row)) for row in result.mappings().all()]
+
+    # Check permission: province must be ancestor of at least one allowed territory
+    perm = await db.execute(
         text("""
-            SELECT id, name, code, type, parent_id
-            FROM locations
-            WHERE type = 'municipality'
-              AND parent_id = :province_id::uuid
-            ORDER BY name
-        """),
-        {"province_id": province_id},
+            SELECT 1 FROM territory_closure
+            WHERE ancestor_id = :province_id
+              AND descendant_id::text IN :allowed_ids
+            LIMIT 1
+        """
+        ).bindparams(bindparam("allowed_ids", expanding=True)),
+        {"province_id": province_id, "allowed_ids": allowed},
     )
-    return [_map_territory_row(dict(row)) for row in result.mappings().all()]
+    if not perm.first():
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acesso negado")
+
+    municipalities_result = await db.execute(
+        text("""
+            SELECT DISTINCT m.id, m.name, m.code, m.type, m.parent_id
+            FROM locations m
+            LEFT JOIN territory_closure tc ON tc.ancestor_id = m.id
+            WHERE m.type = 'municipality'
+              AND m.parent_id = :province_id::uuid
+              AND (m.id::text IN :allowed_ids OR tc.descendant_id::text IN :allowed_ids)
+            ORDER BY m.name
+        """
+        ).bindparams(bindparam("allowed_ids", expanding=True)),
+        {"province_id": province_id, "allowed_ids": allowed},
+    )
+    return [_map_territory_row(dict(row)) for row in municipalities_result.mappings().all()]
 
 
 @router.get("/api/admin/territory/municipalities/{municipality_id}/communes")
@@ -3263,17 +3450,49 @@ async def admin_list_communes(
     municipality_id: str,
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
+    allowed = scope.get("allowed_territories")
+    if allowed is None:
+        result = await db.execute(
+            text("""
+                SELECT id, name, code, type, parent_id
+                FROM locations
+                WHERE type = 'commune'
+                  AND parent_id = :municipality_id::uuid
+                ORDER BY name
+            """),
+            {"municipality_id": municipality_id},
+        )
+        return [_map_territory_row(dict(row)) for row in result.mappings().all()]
+
+    # Check permission: municipality must be ancestor of at least one allowed territory
+    perm = await db.execute(
+        text("""
+            SELECT 1 FROM territory_closure
+            WHERE ancestor_id = :municipality_id
+              AND descendant_id::text IN :allowed_ids
+            LIMIT 1
+        """
+        ).bindparams(bindparam("allowed_ids", expanding=True)),
+        {"municipality_id": municipality_id, "allowed_ids": allowed},
+    )
+    if not perm.first():
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acesso negado")
+
     result = await db.execute(
         text("""
-            SELECT id, name, code, type, parent_id
-            FROM locations
-            WHERE type = 'commune'
-              AND parent_id = :municipality_id::uuid
-            ORDER BY name
-        """),
-        {"municipality_id": municipality_id},
+            SELECT DISTINCT c.id, c.name, c.code, c.type, c.parent_id
+            FROM locations c
+            LEFT JOIN territory_closure tc ON tc.ancestor_id = c.id
+            WHERE c.type = 'commune'
+              AND c.parent_id = :municipality_id::uuid
+              AND (c.id::text IN :allowed_ids OR tc.descendant_id::text IN :allowed_ids)
+            ORDER BY c.name
+        """
+        ).bindparams(bindparam("allowed_ids", expanding=True)),
+        {"municipality_id": municipality_id, "allowed_ids": allowed},
     )
     return [_map_territory_row(dict(row)) for row in result.mappings().all()]
 
@@ -3282,49 +3501,103 @@ async def admin_list_communes(
 async def admin_territory_tree(
     current_user: dict[str, Any] = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    scope: dict[str, Any] = Depends(get_scope_from_user),
 ) -> list[dict[str, Any]]:
     _assert_admin(current_user)
-    provinces_result = await db.execute(
-        text("""
-            SELECT id, name, code, type, parent_id
-            FROM locations
-            WHERE type = 'province'
-              AND parent_id IS NULL
-            ORDER BY name
-        """),
-    )
-    provinces = [_map_territory_row(dict(row)) for row in provinces_result.mappings().all()]
-    if not provinces:
-        return []
+    allowed = scope.get("allowed_territories")
 
-    province_ids = [row["id"] for row in provinces]
-    municipalities_result = await db.execute(
-        text("""
-            SELECT id, name, code, type, parent_id
-            FROM locations
-            WHERE type = 'municipality'
-              AND parent_id::text IN :province_ids
-            ORDER BY name
-        """).bindparams(bindparam("province_ids", expanding=True)),
-        {"province_ids": province_ids},
-    )
-    municipalities = [
-        _map_territory_row(dict(row)) for row in municipalities_result.mappings().all()
-    ]
-    municipality_ids = [row["id"] for row in municipalities]
-    communes: list[dict[str, Any]] = []
-    if municipality_ids:
-        communes_result = await db.execute(
+    # Full tree for central users
+    if allowed is None:
+        provinces_result = await db.execute(
             text("""
                 SELECT id, name, code, type, parent_id
                 FROM locations
-                WHERE type = 'commune'
-                  AND parent_id::text IN :municipality_ids
+                WHERE type = 'province'
+                  AND parent_id IS NULL
                 ORDER BY name
-            """).bindparams(bindparam("municipality_ids", expanding=True)),
-            {"municipality_ids": municipality_ids},
+            """),
         )
-        communes = [_map_territory_row(dict(row)) for row in communes_result.mappings().all()]
+        provinces = [_map_territory_row(dict(row)) for row in provinces_result.mappings().all()]
+        if not provinces:
+            return []
+
+        province_ids = [row["id"] for row in provinces]
+        municipalities_result = await db.execute(
+            text("""
+                SELECT id, name, code, type, parent_id
+                FROM locations
+                WHERE type = 'municipality'
+                  AND parent_id::text IN :province_ids
+                ORDER BY name
+            """).bindparams(bindparam("province_ids", expanding=True)),
+            {"province_ids": province_ids},
+        )
+        municipalities = [
+            _map_territory_row(dict(row)) for row in municipalities_result.mappings().all()
+        ]
+        municipality_ids = [row["id"] for row in municipalities]
+        communes: list[dict[str, Any]] = []
+        if municipality_ids:
+            communes_result = await db.execute(
+                text("""
+                    SELECT id, name, code, type, parent_id
+                    FROM locations
+                    WHERE type = 'commune'
+                      AND parent_id::text IN :municipality_ids
+                    ORDER BY name
+                """).bindparams(bindparam("municipality_ids", expanding=True)),
+                {"municipality_ids": municipality_ids},
+            )
+            communes = [_map_territory_row(dict(row)) for row in communes_result.mappings().all()]
+
+    else:
+        # Scoped users: build tree only for provinces that are ancestors of allowed territories
+        provinces_result = await db.execute(
+            text("""
+                SELECT DISTINCT a.id, a.name, a.code, a.type, a.parent_id
+                FROM territory_closure tc
+                JOIN locations a ON a.id = tc.ancestor_id
+                WHERE a.type = 'province'
+                  AND tc.descendant_id::text IN :allowed_ids
+                ORDER BY a.name
+            """
+            ).bindparams(bindparam("allowed_ids", expanding=True)),
+            {"allowed_ids": allowed},
+        )
+        provinces = [_map_territory_row(dict(row)) for row in provinces_result.mappings().all()]
+        if not provinces:
+            return []
+
+        province_ids = [row["id"] for row in provinces]
+        municipalities_result = await db.execute(
+            text("""
+                SELECT DISTINCT m.id, m.name, m.code, m.type, m.parent_id
+                FROM locations m
+                LEFT JOIN territory_closure tc ON tc.ancestor_id = m.id
+                WHERE m.type = 'municipality'
+                  AND m.parent_id::text IN :province_ids
+                  AND (m.id::text IN :allowed_ids OR tc.descendant_id::text IN :allowed_ids)
+                ORDER BY m.name
+            """ ).bindparams(bindparam("province_ids", expanding=True), bindparam("allowed_ids", expanding=True)),
+            {"province_ids": province_ids, "allowed_ids": allowed},
+        )
+        municipalities = [_map_territory_row(dict(row)) for row in municipalities_result.mappings().all()]
+        municipality_ids = [row["id"] for row in municipalities]
+        communes: list[dict[str, Any]] = []
+        if municipality_ids:
+            communes_result = await db.execute(
+                text("""
+                    SELECT DISTINCT c.id, c.name, c.code, c.type, c.parent_id
+                    FROM locations c
+                    LEFT JOIN territory_closure tc ON tc.ancestor_id = c.id
+                    WHERE c.type = 'commune'
+                      AND c.parent_id::text IN :municipality_ids
+                      AND (c.id::text IN :allowed_ids OR tc.descendant_id::text IN :allowed_ids)
+                    ORDER BY c.name
+                """ ).bindparams(bindparam("municipality_ids", expanding=True), bindparam("allowed_ids", expanding=True)),
+                {"municipality_ids": municipality_ids, "allowed_ids": allowed},
+            )
+            communes = [_map_territory_row(dict(row)) for row in communes_result.mappings().all()]
 
     municipalities_by_parent: dict[str, list[dict[str, Any]]] = {}
     for item in municipalities:

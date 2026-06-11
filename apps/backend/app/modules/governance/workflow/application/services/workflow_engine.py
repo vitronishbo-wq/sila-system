@@ -1,5 +1,5 @@
 import inspect
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 from uuid import UUID
 
@@ -100,7 +100,7 @@ class WorkflowEngine:
             citizen_id=citizen_id,
             created_by=created_by,
             variables=variables or {},
-            deadline=datetime.now() + timedelta(hours=definition.timeout_hours)
+            deadline=datetime.now(timezone.utc) + timedelta(hours=definition.timeout_hours)
             if definition.timeout_hours
             else None,
             timeout_hours=definition.timeout_hours,
@@ -141,10 +141,17 @@ class WorkflowEngine:
             transition.condition_expression, instance, form_data
         ):
             raise ValueError("Condição da transição não atendida")
-        user_info = await self.iam.get_user(str(actor_id))
-        permissions = list(getattr(user_info, "permissions", []) or [])
-        roles = list(getattr(user_info, "roles", []) or [])
+        permissions: list[str] = []
+        roles: list[str] = []
+        # Only call IAM client if the transition defines required permissions/roles
         if transition.required_permissions or transition.required_roles:
+            user_info = None
+            if hasattr(self.iam, "get_user"):
+                user_info = await self.iam.get_user(str(actor_id))
+            elif hasattr(self.iam, "get_current_user"):
+                user_info = await self.iam.get_current_user(str(actor_id))
+            permissions = list(getattr(user_info, "permissions", []) or [])
+            roles = list(getattr(user_info, "roles", []) or [])
             if not transition.can_execute(permissions, roles):
                 raise PermissionError("Usuário não tem permissão para executar esta transição")
         await self._execute_actions(transition.pre_actions, instance, form_data)

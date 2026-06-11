@@ -1,0 +1,68 @@
+[
+  {
+    "event_type": "PedidoBeneficioEvent",
+    "event_id": "7bc2a6b7-2a92-42a0-a284-c7d9763f2531",
+    "aggregate_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "correlation_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "causation_id": null,
+    "timestamp": "2026-06-08T14:58:30.253079",
+    "metadata": {
+      "event_id": "7bc2a6b7-2a92-42a0-a284-c7d9763f2531",
+      "timestamp": "2026-06-08T14:58:30.253079",
+      "version": 1,
+      "pedido_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+      "beneficiario_id": "f9eacdd8-5575-47f2-a3e6-676fa405c317",
+      "dados": {
+        "codigo": "BNF/2026/00001"
+      }
+    }
+  },
+  {
+    "event_type": "VerificacaoNifConcluidaEvent",
+    "event_id": "cf1013d2-8fba-47cc-96a1-4a20ff9123a4",
+    "aggregate_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "correlation_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "causation_id": "7bc2a6b7-2a92-42a0-a284-c7d9763f2531",
+    "timestamp": "2026-06-08T14:58:30.253251",
+    "metadata": {
+      "event_id": "cf1013d2-8fba-47cc-96a1-4a20ff9123a4",
+      "timestamp": "2026-06-08T14:58:30.253251",
+      "version": 1,
+      "pedido_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+      "nif": "123456789",
+      "valid": true
+    }
+  },
+  {
+    "event_type": "VerificacaoSSConcluidaEvent",
+    "event_id": "992cc2e0-eaf2-4227-820f-375d3a885437",
+    "aggregate_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "correlation_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "causation_id": "cf1013d2-8fba-47cc-96a1-4a20ff9123a4",
+    "timestamp": "2026-06-08T14:58:30.253360",
+    "metadata": {
+      "event_id": "992cc2e0-eaf2-4227-820f-375d3a885437",
+      "timestamp": "2026-06-08T14:58:30.253360",
+      "version": 1,
+      "pedido_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+      "ss_number": "SS123",
+      "valid": true
+    }
+  },
+  {
+    "event_type": "BeneficioAprovadoEvent",
+    "event_id": "b7aa4a5b-37cb-4314-bd4a-9e02b08041ab",
+    "aggregate_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "correlation_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+    "causation_id": "992cc2e0-eaf2-4227-820f-375d3a885437",
+    "timestamp": "2026-06-08T14:58:30.253469",
+    "metadata": {
+      "event_id": "b7aa4a5b-37cb-4314-bd4a-9e02b08041ab",
+      "timestamp": "2026-06-08T14:58:30.253469",
+      "version": 1,
+      "pedido_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+      "beneficio_id": "7ce4f326-d963-4f4a-9c7c-88741e09d2c0",
+      "valor": 100.0
+    }
+  }
+]

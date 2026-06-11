@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from apps.backend.app.modules.educacao.delegation.delegation_engine import DelegationEngine
 from apps.backend.app.modules.educacao.rbac.policies import check_permission, get_permissions
@@ -16,6 +16,9 @@ from apps.backend.app.modules.educacao.territory.service import (
 )
 from apps.backend.app.modules.educacao.workflows.matricula_workflow import MatriculaWorkflowEngine
 from apps.backend.app.modules.educacao.workflows.transferencia_workflow import TransferenciaWorkflowEngine
+from apps.backend.app.api.deps import get_current_user, get_db
+from sqlalchemy.ext.asyncio import AsyncSession
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
 
 router = APIRouter(prefix="/educacao/admin", tags=["Educacao Admin"])
 
@@ -25,7 +28,8 @@ _delegation = DelegationEngine()
 
 
 @router.get("/roles")
-def list_roles():
+def list_roles(user: dict = Depends(get_current_user)):
+    # Require authenticated user to access admin role metadata
     return {
         "roles": [r.value for r in ROLE_HIERARCHY],
         "hierarchy": [r.value for r in ROLE_HIERARCHY],
@@ -33,7 +37,7 @@ def list_roles():
 
 
 @router.get("/roles/{role}/permissions")
-def role_permissions(role: str):
+def role_permissions(role: str, user: dict = Depends(get_current_user)):
     try:
         r = RoleMinisterial(role)
         perms = get_permissions(r)
@@ -51,7 +55,7 @@ def role_permissions(role: str):
 
 @router.get("/scope/check")
 def check_scope(
-    user_role: str,
+    user_role: str = "",
     user_province: str = "",
     user_municipality: str = "",
     user_school: str = "",
@@ -59,9 +63,21 @@ def check_scope(
     resource_province: str = "",
     resource_municipality: str = "",
     resource_school: str = "",
+    user: dict = Depends(get_current_user),
 ):
+    """Validate whether a (authenticated) user or a provided role can access a resource scope.
+
+    Preference: if `user_role` is provided use it, otherwise use authenticated user's role.
+    """
     try:
-        role = RoleMinisterial(user_role)
+        if user_role:
+            role = RoleMinisterial(user_role)
+        else:
+            auth_role = user.get("role")
+            if not auth_role:
+                return {"error": "authenticated user has no role"}
+            role = RoleMinisterial(auth_role)
+
         user_scope = scope_from_role_and_ids(
             role, user_province or None, user_municipality or None, user_school or None,
         )
@@ -81,13 +97,18 @@ def check_scope(
 
 
 @router.post("/workflows/matricula/criar")
-def criar_matricula_workflow(
+async def criar_matricula_workflow(
     provider: str,
     student_id: str,
     school_id: str,
     municipality_id: str = "",
     province_id: str = "",
+    user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
 ):
+    # Enforce territorial access: prefer school -> municipality -> province
+    resource_territory = school_id or municipality_id or province_id or None
+    await verify_territorial_access(user, resource_territory, db)
     wf = _matricula_wf.criar(
         provider=provider,
         student_id=student_id,
@@ -99,7 +120,7 @@ def criar_matricula_workflow(
 
 
 @router.post("/workflows/matricula/avancar")
-def avancar_matricula_workflow(provider: str, actor: str):
+async def avancar_matricula_workflow(provider: str, actor: str, user: dict = Depends(get_current_user)):
     try:
         wf = _matricula_wf.avancar(provider, actor)
         return {"ok": True, "step": wf.step.value, "history": wf.history}
@@ -108,14 +129,21 @@ def avancar_matricula_workflow(provider: str, actor: str):
 
 
 @router.post("/workflows/transferencia/criar")
-def criar_transferencia_workflow(
+async def criar_transferencia_workflow(
     provider: str,
     student_id: str,
     school_origin_id: str,
     school_destination_id: str,
     municipality_id: str = "",
     province_id: str = "",
+    user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
 ):
+    # Ensure user can access both origin and destination schools
+    origin_territory = school_origin_id or municipality_id or province_id or None
+    dest_territory = school_destination_id or municipality_id or province_id or None
+    await verify_territorial_access(user, origin_territory, db)
+    await verify_territorial_access(user, dest_territory, db)
     wf = _transferencia_wf.criar(
         provider=provider,
         student_id=student_id,
@@ -128,7 +156,7 @@ def criar_transferencia_workflow(
 
 
 @router.post("/workflows/transferencia/avancar")
-def avancar_transferencia_workflow(provider: str, actor: str):
+async def avancar_transferencia_workflow(provider: str, actor: str, user: dict = Depends(get_current_user)):
     try:
         wf = _transferencia_wf.avancar(provider, actor)
         return {"ok": True, "step": wf.step.value, "history": wf.history}
@@ -137,7 +165,7 @@ def avancar_transferencia_workflow(provider: str, actor: str):
 
 
 @router.post("/delegation/delegate")
-def delegate_permission(
+async def delegate_permission(
     delegator_role: str,
     delegator_id: str,
     delegate_role: str,
@@ -146,8 +174,13 @@ def delegate_permission(
     province_id: str = "",
     municipality_id: str = "",
     school_id: str = "",
+    user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
 ):
     try:
+        # Ensure the delegator is allowed to assign the requested scope
+        resource_territory = school_id or municipality_id or province_id or None
+        await verify_territorial_access(user, resource_territory, db)
         d = _delegation.delegate(
             delegator_role=RoleMinisterial(delegator_role),
             delegator_id=delegator_id,
@@ -167,7 +200,9 @@ def delegate_permission(
 
 
 @router.get("/delegation/list/{delegate_id}")
-def list_delegations(delegate_id: str):
+async def list_delegations(delegate_id: str, user: dict = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
+    # Ensure the requesting user has territorial access to the delegate context
+    await verify_territorial_access(user, delegate_id, db)
     active = _delegation.get_active_delegations(delegate_id)
     return {
         "delegate_id": delegate_id,

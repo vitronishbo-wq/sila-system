@@ -32,6 +32,9 @@ from apps.backend.app.modules.educacao.infrastructure.repositories.marketplace_v
 from apps.backend.app.modules.educacao.infrastructure.repositories.seat_reservation_repository import (
     SeatReservationRepository,
 )
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(
     prefix="/marketplace",
@@ -199,11 +202,17 @@ async def recomendar_escolas(
 async def reservar_vaga(
     data: SeatReservationCreate,
     session: AsyncSession = Depends(get_db),
-    _: dict = Depends(get_current_user),
+    user: dict = Depends(get_current_user),
 ):
     vacancy_repo = MarketplaceVacancyRepository(session)
     reservation_repo = SeatReservationRepository(session)
     service = SeatReservationService(reservation_repo, vacancy_repo)
+    # territorial check: ensure user can act on the target institution territory
+    escola_model = await session.get(EscolaModel, data.institution_id)
+    if not escola_model:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Instituicao nao encontrada")
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
+
     result = await service.create_reservation(
         student_id=data.student_id,
         institution_id=data.institution_id,
@@ -231,12 +240,19 @@ async def listar_reservas(
 async def confirmar_reserva(
     reservation_id: uuid.UUID,
     session: AsyncSession = Depends(get_db),
-    _: dict = Depends(get_current_user),
+    user: dict = Depends(get_current_user),
     idempotency_key: str | None = None,
 ):
     reservation_repo = SeatReservationRepository(session)
     vacancy_repo = MarketplaceVacancyRepository(session)
     service = SeatReservationService(reservation_repo, vacancy_repo)
+    # territorial check: ensure user can act on the reservation's institution
+    reservation = await reservation_repo.get_by_id(reservation_id)
+    if not reservation:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reserva nao encontrada")
+    escola_model = await session.get(EscolaModel, reservation.institution_id)
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
+
     ok = await service.confirm_reservation(reservation_id, request_id=str(_idempotency_or_request_id(idempotency_key)))
     if not ok:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Nao foi possivel confirmar a reserva")
@@ -248,11 +264,18 @@ async def confirmar_reserva(
 async def cancelar_reserva(
     reservation_id: uuid.UUID,
     session: AsyncSession = Depends(get_db),
-    _: dict = Depends(get_current_user),
+    user: dict = Depends(get_current_user),
 ):
     reservation_repo = SeatReservationRepository(session)
     vacancy_repo = MarketplaceVacancyRepository(session)
     service = SeatReservationService(reservation_repo, vacancy_repo)
+    # territorial check: ensure user can act on the reservation's institution
+    reservation = await reservation_repo.get_by_id(reservation_id)
+    if not reservation:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reserva nao encontrada")
+    escola_model = await session.get(EscolaModel, reservation.institution_id)
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
+
     ok = await service.cancel_reservation(reservation_id, request_id=str(_idempotency_or_request_id(None)))
     if not ok:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Nao foi possivel cancelar a reserva")

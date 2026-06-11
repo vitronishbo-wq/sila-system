@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from core.auth import PermissionGuard, PolicyEngine
+from apps.backend.core.auth import PermissionGuard, PolicyEngine
 from fastapi import HTTPException, Request, status
 
 from .rate_limiter import RateLimiter

@@ -19,3 +19,7 @@ class TurmaModel(Base):
     turno: Mapped[str] = mapped_column(String(16), nullable=False)
     capacidade: Mapped[int] = mapped_column(Integer, nullable=False, default=40)
     ativa: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    # Territorial and ownership metadata
+    territory_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    created_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    managed_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)

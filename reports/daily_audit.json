@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-06-07T01:25:08.056631",
+  "timestamp": "2026-06-08T19:34:35.939367",
   "version": "1.0.0",
   "status": "COMPLETE",
   "metrics": {
-    "routers": 1387,
-    "health_endpoints": 177,
+    "routers": 1307,
+    "health_endpoints": 182,
     "total_checks": 6,
     "passed": 6,
     "failed": 0,
@@ -13,28 +13,428 @@
   "critical_modules": [],
   "warnings": [],
   "artifacts": {
-    "01_arch_sync_2026-06-07_01-24-35": {
-      "path": "reports/daily_audit/01_arch_sync_2026-06-07_01-24-35.log",
+    "04_import_scan_2026-06-08_17-07-59": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-07-59.log",
       "exists": true,
-      "size_kb": 3.1982421875
+      "size_kb": 0.0126953125
     },
-    "02_domain_audit_2026-06-07_01-24-35": {
-      "path": "reports/daily_audit/02_domain_audit_2026-06-07_01-24-35.log",
-      "exists": true,
-      "size_kb": 1.2958984375
-    },
-    "03_module_diagnostics_2026-06-07_01-24-35": {
-      "path": "reports/daily_audit/03_module_diagnostics_2026-06-07_01-24-35.log",
-      "exists": true,
-      "size_kb": 0.037109375
-    },
-    "05_router_scan_2026-06-07_01-24-35": {
-      "path": "reports/daily_audit/05_router_scan_2026-06-07_01-24-35.log",
+    "05_router_scan_2026-06-08_17-01-01": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-01-01.log",
       "exists": true,
       "size_kb": 0.0361328125
     },
-    "04_import_scan_2026-06-07_01-24-35": {
-      "path": "reports/daily_audit/04_import_scan_2026-06-07_01-24-35.log",
+    "03_module_diagnostics_2026-06-08_17-45-43": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-45-43.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "04_import_scan_2026-06-08_13-37-39": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_13-37-39.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "05_router_scan_2026-06-08_17-30-10": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-30-10.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "02_domain_audit_2026-06-08_09-52-39": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_09-52-39.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "02_domain_audit_2026-06-08_17-07-59": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-07-59.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "03_module_diagnostics_2026-06-08_13-37-39": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_13-37-39.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "05_router_scan_2026-06-08_09-52-39": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_09-52-39.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "05_router_scan_2026-06-08_12-46-07": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_12-46-07.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "04_import_scan_2026-06-08_17-45-43": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-45-43.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "02_domain_audit_2026-06-08_19-34-02": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_19-34-02.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "02_domain_audit_2026-06-08_17-39-53": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-39-53.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_18-48-14": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_18-48-14.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "01_arch_sync_2026-06-08_07-10-58": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_07-10-58.log",
+      "exists": true,
+      "size_kb": 3.4033203125
+    },
+    "03_module_diagnostics_2026-06-08_13-05-15": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_13-05-15.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "05_router_scan_2026-06-08_17-07-59": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-07-59.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "01_arch_sync_2026-06-08_17-01-01": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-01-01.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "04_import_scan_2026-06-08_19-34-02": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_19-34-02.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "02_domain_audit_2026-06-08_17-42-48": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-42-48.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_12-38-34": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_12-38-34.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "02_domain_audit_2026-06-08_12-31-38": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_12-31-38.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "02_domain_audit_2026-06-08_13-05-15": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_13-05-15.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "03_module_diagnostics_2026-06-08_17-39-53": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-39-53.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "01_arch_sync_2026-06-08_17-07-59": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-07-59.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "05_router_scan_2026-06-08_17-39-53": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-39-53.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "02_domain_audit_2026-06-08_12-46-07": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_12-46-07.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_09-52-39": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_09-52-39.log",
+      "exists": true,
+      "size_kb": 3.4033203125
+    },
+    "03_module_diagnostics_2026-06-08_17-01-01": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-01-01.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "03_module_diagnostics_2026-06-08_12-38-34": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_12-38-34.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "03_module_diagnostics_2026-06-08_18-48-14": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_18-48-14.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "01_arch_sync_2026-06-08_17-45-43": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-45-43.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "02_domain_audit_2026-06-08_12-38-34": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_12-38-34.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "02_domain_audit_2026-06-08_13-37-39": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_13-37-39.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "04_import_scan_2026-06-08_09-52-39": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_09-52-39.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "04_import_scan_2026-06-08_12-59-16": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_12-59-16.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "04_import_scan_2026-06-08_07-10-58": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_07-10-58.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "01_arch_sync_2026-06-08_17-42-48": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-42-48.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "03_module_diagnostics_2026-06-08_17-07-59": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-07-59.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "03_module_diagnostics_2026-06-08_09-52-39": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_09-52-39.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "03_module_diagnostics_2026-06-08_12-46-07": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_12-46-07.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "01_arch_sync_2026-06-08_17-30-10": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-30-10.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "02_domain_audit_2026-06-08_17-30-10": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-30-10.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "05_router_scan_2026-06-08_13-05-15": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_13-05-15.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "05_router_scan_2026-06-08_13-37-39": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_13-37-39.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "02_domain_audit_2026-06-08_17-01-01": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-01-01.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "05_router_scan_2026-06-08_18-48-14": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_18-48-14.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "04_import_scan_2026-06-08_17-39-53": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-39-53.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "05_router_scan_2026-06-08_07-10-58": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_07-10-58.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "04_import_scan_2026-06-08_18-48-14": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_18-48-14.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "02_domain_audit_2026-06-08_12-59-16": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_12-59-16.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_13-05-15": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_13-05-15.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "02_domain_audit_2026-06-08_07-10-58": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_07-10-58.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "05_router_scan_2026-06-08_19-34-02": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_19-34-02.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "04_import_scan_2026-06-08_17-42-48": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-42-48.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "05_router_scan_2026-06-08_17-43-23": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-43-23.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "05_router_scan_2026-06-08_12-31-38": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_12-31-38.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "03_module_diagnostics_2026-06-08_17-30-10": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-30-10.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "04_import_scan_2026-06-08_12-31-38": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_12-31-38.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "01_arch_sync_2026-06-08_17-39-53": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-39-53.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "05_router_scan_2026-06-08_12-38-34": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_12-38-34.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "02_domain_audit_2026-06-08_17-43-23": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-43-23.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_19-34-02": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_19-34-02.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "04_import_scan_2026-06-08_13-05-15": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_13-05-15.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "02_domain_audit_2026-06-08_18-48-14": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_18-48-14.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "01_arch_sync_2026-06-08_13-37-39": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_13-37-39.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "04_import_scan_2026-06-08_17-30-10": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-30-10.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "03_module_diagnostics_2026-06-08_19-34-02": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_19-34-02.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "05_router_scan_2026-06-08_17-42-48": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-42-48.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "03_module_diagnostics_2026-06-08_12-59-16": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_12-59-16.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "05_router_scan_2026-06-08_12-59-16": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_12-59-16.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "03_module_diagnostics_2026-06-08_07-10-58": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_07-10-58.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "01_arch_sync_2026-06-08_12-46-07": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_12-46-07.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "04_import_scan_2026-06-08_17-43-23": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-43-23.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "01_arch_sync_2026-06-08_12-31-38": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_12-31-38.log",
+      "exists": true,
+      "size_kb": 3.5791015625
+    },
+    "04_import_scan_2026-06-08_12-38-34": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_12-38-34.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "01_arch_sync_2026-06-08_12-59-16": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_12-59-16.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "03_module_diagnostics_2026-06-08_17-43-23": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-43-23.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "03_module_diagnostics_2026-06-08_17-42-48": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_17-42-48.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "02_domain_audit_2026-06-08_17-45-43": {
+      "path": "reports/daily_audit/02_domain_audit_2026-06-08_17-45-43.log",
+      "exists": true,
+      "size_kb": 1.296875
+    },
+    "03_module_diagnostics_2026-06-08_12-31-38": {
+      "path": "reports/daily_audit/03_module_diagnostics_2026-06-08_12-31-38.log",
+      "exists": true,
+      "size_kb": 0.037109375
+    },
+    "04_import_scan_2026-06-08_12-46-07": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_12-46-07.log",
+      "exists": true,
+      "size_kb": 0.0126953125
+    },
+    "05_router_scan_2026-06-08_17-45-43": {
+      "path": "reports/daily_audit/05_router_scan_2026-06-08_17-45-43.log",
+      "exists": true,
+      "size_kb": 0.0361328125
+    },
+    "01_arch_sync_2026-06-08_17-43-23": {
+      "path": "reports/daily_audit/01_arch_sync_2026-06-08_17-43-23.log",
+      "exists": true,
+      "size_kb": 3.443359375
+    },
+    "04_import_scan_2026-06-08_17-01-01": {
+      "path": "reports/daily_audit/04_import_scan_2026-06-08_17-01-01.log",
       "exists": true,
       "size_kb": 0.0126953125
     },
@@ -43,10 +443,20 @@
       "exists": true,
       "size_kb": 0.953125
     },
+    "report_BENEFICIO_SOCIAL_CONSOLIDATION": {
+      "path": "reports/BENEFICIO_SOCIAL_CONSOLIDATION.md",
+      "exists": true,
+      "size_kb": 0.3984375
+    },
     "report_migration_domain_inventory": {
       "path": "reports/migration_domain_inventory.md",
       "exists": true,
-      "size_kb": 11.5732421875
+      "size_kb": 11.9013671875
+    },
+    "report_EVENT_CLASSIFICATION": {
+      "path": "reports/EVENT_CLASSIFICATION.md",
+      "exists": true,
+      "size_kb": 11.384765625
     },
     "report_CHANGELOG": {
       "path": "reports/CHANGELOG.md",
@@ -58,25 +468,50 @@
       "exists": true,
       "size_kb": 1.7412109375
     },
+    "report_EVENT_GOVERNANCE_REPORT": {
+      "path": "reports/EVENT_GOVERNANCE_REPORT.md",
+      "exists": true,
+      "size_kb": 5.6435546875
+    },
     "report_domain_dependency_guardrail_report": {
       "path": "reports/domain_dependency_guardrail_report.md",
       "exists": true,
       "size_kb": 0.45703125
     },
-    "report_PR_DESCRIPTION": {
-      "path": "reports/PR_DESCRIPTION.md",
+    "report_EVENT_TRUTH_REPORT": {
+      "path": "reports/EVENT_TRUTH_REPORT.md",
       "exists": true,
-      "size_kb": 2.5771484375
+      "size_kb": 27.3017578125
+    },
+    "report_government_dependency_graph": {
+      "path": "reports/government_dependency_graph.md",
+      "exists": true,
+      "size_kb": 4.4619140625
     },
     "report_module_architecture_docs_visual_report": {
       "path": "reports/module_architecture_docs_visual_report.md",
       "exists": true,
       "size_kb": 5.216796875
     },
+    "report_BENEFICIO_SOCIAL_E2E_REPORT": {
+      "path": "reports/BENEFICIO_SOCIAL_E2E_REPORT.md",
+      "exists": true,
+      "size_kb": 0.2998046875
+    },
     "report_AUDIT_NOTES": {
       "path": "reports/AUDIT_NOTES.md",
       "exists": true,
       "size_kb": 1.66015625
+    },
+    "report_ministerial_validation": {
+      "path": "reports/ministerial_validation.md",
+      "exists": true,
+      "size_kb": 17.0537109375
+    },
+    "report_BENEFICIO_SOCIAL_CORRELATION_AUDIT": {
+      "path": "reports/BENEFICIO_SOCIAL_CORRELATION_AUDIT.md",
+      "exists": true,
+      "size_kb": 1.130859375
     },
     "report_locations_name_audit": {
       "path": "reports/locations_name_audit.md",
@@ -86,37 +521,47 @@
     "report_module_dependencies": {
       "path": "reports/module_dependencies.md",
       "exists": true,
-      "size_kb": 14.3134765625
+      "size_kb": 15.228515625
     },
     "report_ai_architecture_graph_visual_report": {
       "path": "reports/ai_architecture_graph_visual_report.md",
       "exists": true,
       "size_kb": 0.4892578125
     },
-    "report_sla_provinces_snapshot": {
-      "path": "reports/sla_provinces_snapshot.md",
+    "report_HIGH_COUPLING_EVENTS": {
+      "path": "reports/HIGH_COUPLING_EVENTS.md",
       "exists": true,
-      "size_kb": 2.5283203125
+      "size_kb": 4.2763671875
     },
     "report_ai_domain_kernel_visual_report": {
       "path": "reports/ai_domain_kernel_visual_report.md",
       "exists": true,
       "size_kb": 0.625
     },
+    "json_EVENT_RECONCILIATION": {
+      "path": "reports/EVENT_RECONCILIATION.json",
+      "exists": true,
+      "size_kb": 39.27734375
+    },
     "json_daily_audit": {
       "path": "reports/daily_audit.json",
       "exists": true,
-      "size_kb": 3.80859375
+      "size_kb": 18.3701171875
     },
     "json_module_dependency_graph": {
       "path": "reports/module_dependency_graph.json",
       "exists": true,
-      "size_kb": 2.3740234375
+      "size_kb": 2.6435546875
+    },
+    "json_process_validation_report": {
+      "path": "reports/process_validation_report.json",
+      "exists": true,
+      "size_kb": 0.330078125
     },
     "json_ai_architecture_graph": {
       "path": "reports/ai_architecture_graph.json",
       "exists": true,
-      "size_kb": 51.326171875
+      "size_kb": 51.55859375
     },
     "json_autonomy_100_percent": {
       "path": "reports/autonomy_100_percent.json",
@@ -126,7 +571,7 @@
     "json_module_manifest_graph": {
       "path": "reports/module_manifest_graph.json",
       "exists": true,
-      "size_kb": 3.4052734375
+      "size_kb": 4.705078125
     }
   }
 }

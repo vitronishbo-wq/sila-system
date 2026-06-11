@@ -1,0 +1,68 @@
+[
+  {
+    "route": "/educacao/admin/workflows/transferencia/criar",
+    "method_report": "POST",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/workflows/transferencia/avancar",
+    "method_report": "POST",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/registo-civil/health",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/administracao-local/administradores/{admin_id}",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/roles",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/roles/{role}/permissions",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/scope/check",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/workflows/matricula/criar",
+    "method_report": "POST",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/workflows/matricula/avancar",
+    "method_report": "POST",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/delegation/delegate",
+    "method_report": "POST",
+    "present_in_openapi": false,
+    "matched_path": null
+  },
+  {
+    "route": "/educacao/admin/delegation/list/{delegate_id}",
+    "method_report": "GET",
+    "present_in_openapi": false,
+    "matched_path": null
+  }
+]

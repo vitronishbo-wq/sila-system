@@ -88,12 +88,16 @@ class TerritoryType(StrEnum):
     PROVINCE = "province"
     MUNICIPALITY = "municipality"
     COMMUNE = "commune"
+    # Novo nível: Escola (unidade escolar sob o município)
+    SCHOOL = "school"
 
 
 TERRITORY_HIERARCHY = {
     TerritoryType.PROVINCE: None,
     TerritoryType.MUNICIPALITY: TerritoryType.PROVINCE,
     TerritoryType.COMMUNE: TerritoryType.MUNICIPALITY,
+    # A nova unidade `SCHOOL` é filha direta do MUNICIPALITY
+    TerritoryType.SCHOOL: TerritoryType.MUNICIPALITY,
 }
 VALID_TERRITORY_TYPES = [t.value for t in TerritoryType]
 

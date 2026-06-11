@@ -1,0 +1,1880 @@
+[
+  {
+    "module": "apps.backend.app.modules.audit.state_audit.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/audit/state_audit/api/router.py",
+    "prefix": "/audit/state_audit",
+    "tag": "audit",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/audit/cases",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_cases",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/audit/alerts",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_alerts",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/audit/event",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "register_event",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.economy.apoio_empresarial.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/economy/apoio_empresarial/api/router.py",
+    "prefix": "/economy/apoio_empresarial",
+    "tag": "economy",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.admissions.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/admissions/api/router.py",
+    "prefix": "/educacao/marketplace/admissions",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/admissions/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/admissions/process",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "process_admission",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/admissions/status/{admission_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "get_admission_status",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/admissions/validate",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "validate_eligibility",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.booking.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/booking/api/router.py",
+    "prefix": "/educacao/marketplace/booking",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/booking/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/booking/reserve",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "reserve_vacancy",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/booking/my-bookings/{citizen_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_citizen_bookings",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/booking/enroll",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "auto_enroll",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.discovery.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/discovery/api/router.py",
+    "prefix": "/educacao/marketplace/discovery",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/discovery/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/discovery/opportunities",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_opportunities",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/discovery/programs",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_programs",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/discovery/institutions",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_institutions",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.matching.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/matching/api/router.py",
+    "prefix": "/educacao/marketplace/matching",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/matching/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/matching/find-matches",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "find_matches",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/matching/eligibility/{student_id}/{institution_id}",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "check_eligibility",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/matching/recommendations",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "get_recommendations",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/matching/recommendations/{student_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "get_recommendations",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.ranking.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/ranking/api/router.py",
+    "prefix": "/educacao/marketplace/ranking",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/ranking/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/ranking/institutions",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "rank_institutions",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/ranking/programs",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "rank_programs",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/ranking/compare",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "compare_institutions",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.recommendation.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/recommendation/api/router.py",
+    "prefix": "/educacao/marketplace/recommendation",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/recommendation/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/recommendation/for-citizen/{citizen_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "get_recommendations",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/recommendation/refresh-model",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "refresh_model",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.search.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/search/api/router.py",
+    "prefix": "/educacao/marketplace/search",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/search/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/search/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "marketplace_search",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/search/advanced",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "advanced_search",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/search/nearby",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "search_nearby",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.educacao.marketplace.transfers.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/educacao/marketplace/transfers/api/router.py",
+    "prefix": "/educacao/marketplace/transfers",
+    "tag": "educacao",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/marketplace/transfers/health",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "health_check",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/transfers/request",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "request_transfer",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/transfers/my-transfers/{citizen_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "list_citizen_transfers",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/marketplace/transfers/compatibility",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "check_compatibility",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.governance.cooperacao_internacional.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/governance/cooperacao_internacional/api/router.py",
+    "prefix": "/governance/cooperacao_internacional",
+    "tag": "governance",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/cooperacao-internacional/acordos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_acordo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/acordos/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_acordos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/acordos/{acordo_id}/assinar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "assinar_acordo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/acordos/{acordo_id}/ratificar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "ratificar_acordo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/acordos/{acordo_id}/vigor",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_vigor_acordo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/acordos/vencimento/proximo",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "acordos_vencimento_proximo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/projetos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_projeto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/projetos/{projeto_id}/aprovar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aprovar_projeto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/projetos/{projeto_id}/iniciar-execucao",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_execucao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/projetos/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_projetos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "solicitar_visto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/{visto_id}/analisar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "analisar_visto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/{visto_id}/aprovar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aprovar_visto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/{visto_id}/emitir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "emitir_visto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/{visto_id}/negar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "negar_visto",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/cooperacao-internacional/vistos/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_vistos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.governance.planeamento.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/governance/planeamento/api/router.py",
+    "prefix": "/governance/planeamento",
+    "tag": "governance",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.identity.subdomains.verifiable_credentials.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/identity/subdomains/verifiable_credentials/api/router.py",
+    "prefix": "/identity/subdomains/verifiable_credentials",
+    "tag": "identity",
+    "router_has_auth": true,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/verifiable_credentials/status/{registry_index}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "get_credential_status",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/verifiable_credentials/revoke",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "revoke_credential",
+        "route_has_auth": true,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.infrastructure_sector.aviacao_civil.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure_sector/aviacao_civil/api/router.py",
+    "prefix": "/infrastructure_sector/aviacao_civil",
+    "tag": "infrastructure_sector",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/aviacao-civil/aeronaves/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_aeronave",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/aeronaves/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_aeronaves",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/aeronaves/{aeronave_id}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_aeronave",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/voos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "programar_voo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/voos/{voo_id}/decolagem",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_decolagem",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/voos/{voo_id}/pouso",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_pouso",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/voos/ativos",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_voos_ativos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/voos/estatisticas/dia",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "estatisticas_dia",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/ocorrencias/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_ocorrencia",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aviacao-civil/ocorrencias/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_ocorrencias",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.infrastructure_sector.logistica.ports.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/infrastructure_sector/logistica/ports/api/router.py",
+    "prefix": "/infrastructure_sector/logistica/ports",
+    "tag": "infrastructure_sector",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.integracao-nacional.subdomains.bi.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/bi/api/router.py",
+    "prefix": "/integracao-nacional/subdomains/bi",
+    "tag": "integracao-nacional",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/integracao-nacional/bi/validar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "validar_bi",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/integracao-nacional/bi/consultar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "consultar_bi",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.integracao-nacional.subdomains.moradas.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/moradas/api/router.py",
+    "prefix": "/integracao-nacional/subdomains/moradas",
+    "tag": "integracao-nacional",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/integracao-nacional/moradas/normalizar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "normalizar_morada",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/integracao-nacional/moradas/validar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "validar_morada",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.integracao-nacional.subdomains.nif.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/nif/api/router.py",
+    "prefix": "/integracao-nacional/subdomains/nif",
+    "tag": "integracao-nacional",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/integracao-nacional/nif/validar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "validar_nif",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/integracao-nacional/nif/consultar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "consultar_nif",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.integracao-nacional.subdomains.verificacao-documental.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/integracao-nacional/subdomains/verificacao-documental/api/router.py",
+    "prefix": "/integracao-nacional/subdomains/verificacao-documental",
+    "tag": "integracao-nacional",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/integracao-nacional/verificacao-documental/verificar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "verificar_documento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/integracao-nacional/verificacao-documental/tipos",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_tipos_documentais",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.intelligence.arquivo_nacional.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/intelligence/arquivo_nacional/api/router.py",
+    "prefix": "/intelligence/arquivo_nacional",
+    "tag": "intelligence",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.intelligence.tecnologia_inovacao.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/intelligence/tecnologia_inovacao/api/router.py",
+    "prefix": "/intelligence/tecnologia_inovacao",
+    "tag": "intelligence",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.resources.aguas_saneamento.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/aguas_saneamento/api/router.py",
+    "prefix": "/resources/aguas_saneamento",
+    "tag": "resources",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/aguas-saneamento/outorgas/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "requerer_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/analise",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_analise_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/deferir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "deferir_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/indeferir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "indeferir_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/suspender",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "suspender_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}/renovar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "renovar_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/{numero_outorga:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_outorga",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/outorgas/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_outorgas",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}/ativar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "ativar_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}/manutencao",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "manutencao_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}/interditar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "interditar_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}/reativar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "reativar_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}/desativar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "desativar_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/{codigo_infraestrutura:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_infraestrutura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/infraestrutura/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_infraestruturas",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/{codigo_abastecimento:path}/iniciar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_operacao_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/{codigo_abastecimento:path}/interromper",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "interromper_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/{codigo_abastecimento:path}/retomar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "retomar_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/{codigo_abastecimento:path}/encerrar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "encerrar_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/{codigo_abastecimento:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_abastecimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/abastecimento/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_abastecimentos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_consumo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/{codigo_consumo:path}/validar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "validar_consumo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/{codigo_consumo:path}/faturar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "faturar_consumo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/{codigo_consumo:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_consumo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/{codigo_consumo:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_consumo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/consumo/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_consumos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/faturas/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "emitir_fatura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/faturas/{numero_fatura:path}/pagar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_pagamento_fatura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/faturas/{numero_fatura:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_fatura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/faturas/{numero_fatura:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_fatura",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/aguas-saneamento/faturas/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_faturas",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.resources.ambiente.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/ambiente/api/router.py",
+    "prefix": "/resources/ambiente",
+    "tag": "resources",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": [
+      {
+        "path": "/ambiente/car/proprietarios",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cadastrar_proprietario",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/imoveis",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cadastrar_imovel",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/{numero_car:path}/areas",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "atualizar_areas_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/{numero_car:path}/submeter",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "submeter_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/{numero_car:path}/aprovar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aprovar_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/{numero_car:path}/pendencia",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "solicitar_pendencia_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/{numero_car:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_car",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/car/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_cars",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "requerer_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}/analise",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_analise",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}/deferir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "deferir_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}/indeferir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "indeferir_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}/suspender",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "suspender_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/{numero_licenca:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_licenca",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/licencas/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_licencas",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "submeter_estudo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/{numero_estudo:path}/analise",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_analise_estudo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/{numero_estudo:path}/aprovar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aprovar_estudo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/{numero_estudo:path}/complementacao",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "solicitar_complementacao_estudo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/{numero_estudo:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_estudo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/estudos/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_estudos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "criar_condicionante",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/{codigo_condicionante:path}/iniciar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_cumprimento",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/{codigo_condicionante:path}/concluir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "concluir_condicionante",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/{codigo_condicionante:path}/descumprir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "descumprir_condicionante",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/{codigo_condicionante:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_condicionante",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/condicionantes/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_condicionantes",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "agendar_fiscalizacao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/{numero_fiscalizacao:path}/iniciar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "iniciar_fiscalizacao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/{numero_fiscalizacao:path}/concluir",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "concluir_fiscalizacao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/{numero_fiscalizacao:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_fiscalizacao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/{numero_fiscalizacao:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_fiscalizacao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/fiscalizacoes/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_fiscalizacoes",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "lavrar_auto_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/{numero_auto:path}/notificar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "notificar_auto_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/{numero_auto:path}/recurso",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "registrar_recurso_auto_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/{numero_auto:path}/julgar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "julgar_auto_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/{numero_auto:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_auto_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/autos-infracao/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_autos_infracao",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/embargos/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aplicar_embargo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/embargos/{numero_embargo:path}/suspender",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "suspender_embargo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/embargos/{numero_embargo:path}/levantar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "levantar_embargo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/embargos/{numero_embargo:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_embargo",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/embargos/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_embargos",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "aplicar_multa",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/{numero_multa:path}/parcelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "parcelar_multa",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/{numero_multa:path}/pagar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "pagar_multa",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/{numero_multa:path}/cancelar",
+        "methods": [
+          "POST"
+        ],
+        "endpoint": "cancelar_multa",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/{numero_multa:path}",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "obter_multa",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      },
+      {
+        "path": "/ambiente/multas/",
+        "methods": [
+          "GET"
+        ],
+        "endpoint": "listar_multas",
+        "route_has_auth": false,
+        "route_has_permission": false,
+        "route_has_territorial": false
+      }
+    ]
+  },
+  {
+    "module": "apps.backend.app.modules.resources.petroleo_gas.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/petroleo_gas/api/router.py",
+    "prefix": "/resources/petroleo_gas",
+    "tag": "resources",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.resources.recursos_minerais.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/recursos_minerais/api/router.py",
+    "prefix": "/resources/recursos_minerais",
+    "tag": "resources",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.resources.seguranca_alimentar.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/resources/seguranca_alimentar/api/router.py",
+    "prefix": "/resources/seguranca_alimentar",
+    "tag": "resources",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.society.igualdade.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/society/igualdade/api/router.py",
+    "prefix": "/society/igualdade",
+    "tag": "society",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  },
+  {
+    "module": "apps.backend.app.modules.society.trabalho_inspecao.api.router",
+    "file": "/home/dev03wsl/sila-system/apps/backend/app/modules/society/trabalho_inspecao/api/router.py",
+    "prefix": "/society/trabalho_inspecao",
+    "tag": "society",
+    "router_has_auth": false,
+    "router_has_permission": false,
+    "router_has_territorial": false,
+    "routes": []
+  }
+]

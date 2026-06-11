@@ -24,6 +24,10 @@ from apps.backend.app.modules.educacao.emis.infrastructure.sync_log_model import
 from apps.backend.app.modules.educacao.infrastructure.models.enrollment_model import (
     EnrollmentModel,
 )
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.modules.educacao.infrastructure.models.academic_identity_model import AcademicIdentityModel
+from apps.backend.app.api.deps import get_current_user
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
 
 router = APIRouter(prefix="/emis", tags=["EMIS"])
 
@@ -57,9 +61,17 @@ async def emis_health():
 async def sync_enrollment(
     enrollment_id: uuid.UUID,
     engine: EmisSyncEngine = Depends(_get_sync_engine),
+    session: AsyncSession = Depends(get_db),
+    user: dict = Depends(get_current_user),
 ):
     """Push a single enrollment to EMIS."""
     try:
+        # territorial check: ensure caller can act on the enrollment's institution
+        enrollment = await session.get(EnrollmentModel, enrollment_id)
+        if not enrollment:
+            raise HTTPException(status_code=404, detail="Enrollment not found")
+        escola = await session.get(EscolaModel, enrollment.institution_id)
+        await verify_territorial_access(user=user, resource_territory_id=getattr(escola, "territory_id", None), db=session)
         result = await engine.push_enrollment(enrollment_id)
         return {"status": "success", "enrollment_id": str(enrollment_id), "result": result}
     except ValueError as exc:
@@ -72,9 +84,16 @@ async def sync_enrollment(
 async def sync_student(
     student_id: uuid.UUID,
     engine: EmisSyncEngine = Depends(_get_sync_engine),
+    session: AsyncSession = Depends(get_db),
+    user: dict = Depends(get_current_user),
 ):
     """Push a single student identity to EMIS."""
     try:
+        # territorial check: based on student's current_institution_id when available
+        student = await session.get(AcademicIdentityModel, student_id)
+        if student and getattr(student, "current_institution_id", None):
+            escola = await session.get(EscolaModel, student.current_institution_id)
+            await verify_territorial_access(user=user, resource_territory_id=getattr(escola, "territory_id", None), db=session)
         result = await engine.push_student(student_id)
         return {"status": "success", "student_id": str(student_id), "result": result}
     except ValueError as exc:
@@ -87,9 +106,13 @@ async def sync_student(
 async def sync_institution(
     institution_id: uuid.UUID,
     engine: EmisSyncEngine = Depends(_get_sync_engine),
+    session: AsyncSession = Depends(get_db),
+    user: dict = Depends(get_current_user),
 ):
     """Push a single institution to EMIS."""
     try:
+        escola = await session.get(EscolaModel, institution_id)
+        await verify_territorial_access(user=user, resource_territory_id=getattr(escola, "territory_id", None), db=session)
         result = await engine.push_institution(institution_id)
         return {"status": "success", "institution_id": str(institution_id), "result": result}
     except ValueError as exc:

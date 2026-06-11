@@ -39,6 +39,20 @@ class TerritorialAccessDenied(HTTPException):
         )
 
 
+def _get_user_attr(user, attr: str, default=None):
+    """Safe attribute getter for user objects or dicts."""
+    if user is None:
+        return default
+    try:
+        # Try mapping-like access first
+        if isinstance(user, dict):
+            return user.get(attr, default)
+        # Fallback to attribute access
+        return getattr(user, attr, default)
+    except Exception:
+        return default
+
+
 async def verify_territorial_access(
     user: User = current_user_dep,
     resource_territory_id: str | None = None,
@@ -65,8 +79,10 @@ async def verify_territorial_access(
     """
     if resource_territory_id is None:
         return user
-    if user.territory_id is None:
-        logger.info(f"✅ {user.email} (CENTRAL) has access to all territories")
+    user_territory = _get_user_attr(user, 'territory_id')
+    user_email = _get_user_attr(user, 'email')
+    if user_territory is None:
+        logger.info(f"✅ {user_email} (CENTRAL) has access to all territories")
         return user
     result = await db.execute(
         select(1)
@@ -82,11 +98,11 @@ async def verify_territorial_access(
     )
     if result.scalar() is not None:
         logger.info(
-            f"✅ {user.email} (territory={user.territory_id}) can access resource (territory={resource_territory_id})"
+            f"✅ {user_email} (territory={user_territory}) can access resource (territory={resource_territory_id})"
         )
         return user
     raise TerritorialAccessDenied(
-        user_email=user.email,
+        user_email=user_email,
         territory_id=resource_territory_id,
         detail="Você não tem permissão para acessar este recurso (fora da sua jurisdição territorial)",
     )
@@ -104,10 +120,12 @@ async def verify_same_territory_or_child(
     """
     if resource_territory_id is None:
         return user
-    if user.territory_id is None:
+    user_territory = _get_user_attr(user, 'territory_id')
+    user_email = _get_user_attr(user, 'email')
+    if user_territory is None:
         return user
-    if str(user.territory_id) == str(resource_territory_id):
-        logger.info(f"✅ {user.email} accessing own territory {resource_territory_id}")
+    if str(user_territory) == str(resource_territory_id):
+        logger.info(f"✅ {user_email} accessing own territory {resource_territory_id}")
         return user
     result = await db.execute(
         select(1)
@@ -123,10 +141,10 @@ async def verify_same_territory_or_child(
         .limit(1)
     )
     if result.scalar() is not None:
-        logger.info(f"✅ {user.email} (parent of {resource_territory_id}) can access")
+        logger.info(f"✅ {user_email} (parent of {resource_territory_id}) can access")
         return user
     raise TerritorialAccessDenied(
-        user_email=user.email,
+        user_email=user_email,
         territory_id=resource_territory_id,
         detail="Você não tem permissão (apenas superior hierárquico pode acessar este recurso)",
     )
@@ -147,17 +165,18 @@ def require_territorial_access(resource_territory_id: str | None = None):
     ) -> User:
         if resource_territory_id is None:
             return user
-        if user.territory_id is None:
+        user_territory = _get_user_attr(user, 'territory_id')
+        if user_territory is None:
             return user
         from sqlalchemy import text
 
         query = "\n        SELECT 1 FROM territory_closure \n        WHERE ancestor_id = %s AND descendant_id = %s\n        LIMIT 1\n        "
         result = await db.execute(
             text(query),
-            {"ancestor_id": str(user.territory_id), "descendant_id": str(resource_territory_id)},
+            {"ancestor_id": str(user_territory), "descendant_id": str(resource_territory_id)},
         )
         if result.scalar() is None:
-            raise TerritorialAccessDenied(user_email=user.email, territory_id=resource_territory_id)
+            raise TerritorialAccessDenied(user_email=_get_user_attr(user, 'email'), territory_id=resource_territory_id)
         return user
 
     return _verify

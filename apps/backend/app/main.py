@@ -20,6 +20,9 @@ from apps.backend.app.modules.educacao.foundation.observability.tracing import (
 _REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 if _REPO_ROOT not in sys.path:
     sys.path.append(_REPO_ROOT)
+_BACKEND_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if _BACKEND_ROOT not in sys.path:
+    sys.path.append(_BACKEND_ROOT)
 
 # NOTE: sys.path adjustment is required before these imports.
 from apps.backend.app.core.settings import settings  # noqa: E402
@@ -173,6 +176,14 @@ def create_app():
         logger.info("✓ Core API router loaded (events, etc.)")
     except Exception as e:
         logger.warning(f"Failed to load core API router: {e}")
+    # Ensure admin routes that are not auto-discovered are mounted for runtime tests
+    try:
+        from apps.backend.app.modules.educacao.rbac.admin_router import router as educacao_admin_router
+
+        app.include_router(educacao_admin_router)
+        logger.info("✓ Educacao admin router mounted (manual)")
+    except Exception as e:
+        logger.warning(f"Failed to mount educacao admin router: {e}")
     report = discover_and_register_routers(app)
     logger.info(
         f"Router discovery summary: loaded={len(report['loaded'])} skipped={len(report['skipped'])} failed={len(report['failed'])}"

@@ -1,6 +1,6 @@
 # Migration Domain Inventory
 
-- Generated at: `2026-06-07 12:05:44Z`
+- Generated at: `2026-06-08 18:34:13Z`
 - Total migration files: **111**
 
 ## Summary

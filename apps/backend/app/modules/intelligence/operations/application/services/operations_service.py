@@ -36,6 +36,13 @@ class OperationsService:
             )
             .order_by(Service.business_priority.asc(), Service.name.asc())
         )
+        # Apply territorial scoping if present on the service instance
+        allowed = getattr(self, "allowed_territories", None)
+        if allowed is not None:
+            # empty list -> nothing allowed
+            if not allowed:
+                return []
+            stmt = stmt.where(or_(Service.territory_id.is_(None), Service.territory_id.in_(allowed)))
         rows = (await self.db.execute(stmt)).scalars().all()
         result = []
         for row in rows:

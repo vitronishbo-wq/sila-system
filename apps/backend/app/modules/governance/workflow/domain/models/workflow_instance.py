@@ -1,9 +1,13 @@
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 from uuid import UUID, uuid4
 
 from apps.backend.app.modules.governance.workflow.domain.enums import WorkflowStatus
+
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 @dataclass
@@ -21,7 +25,7 @@ class WorkflowInstance:
     status: WorkflowStatus = WorkflowStatus.ACTIVE
     variables: dict[str, Any] = field(default_factory=dict)
     context: dict[str, Any] = field(default_factory=dict)
-    started_at: datetime = field(default_factory=datetime.now)
+    started_at: datetime = field(default_factory=_utcnow)
     completed_at: datetime | None = None
     deadline: datetime | None = None
     timeout_hours: int | None = None
@@ -39,45 +43,46 @@ class WorkflowInstance:
     @property
     def time_in_state(self) -> timedelta | None:
         """Tempo no estado atual"""
+        now = _utcnow()
         if self.updated_at:
-            return datetime.now() - self.updated_at
-        return datetime.now() - self.started_at
+            return now - self.updated_at
+        return now - self.started_at
 
     @property
     def is_overdue(self) -> bool:
         """Verifica se está atrasado"""
         if not self.deadline:
             return False
-        return datetime.now() > self.deadline
+        return _utcnow() > self.deadline
 
     def complete(self):
         """Completa a instância"""
         self.status = WorkflowStatus.COMPLETED
-        self.completed_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.completed_at = _utcnow()
+        self.updated_at = _utcnow()
 
     def terminate(self, reason: str = None):
         """Termina a instância"""
         self.status = WorkflowStatus.TERMINATED
-        self.completed_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.completed_at = _utcnow()
+        self.updated_at = _utcnow()
         if reason:
             self.metadata["termination_reason"] = reason
 
     def suspend(self):
         """Suspende a instância"""
         self.status = WorkflowStatus.SUSPENDED
-        self.updated_at = datetime.now()
+        self.updated_at = _utcnow()
 
     def resume(self):
         """Resume a instância"""
         self.status = WorkflowStatus.ACTIVE
-        self.updated_at = datetime.now()
+        self.updated_at = _utcnow()
 
     def set_variable(self, key: str, value: Any):
         """Define variável do processo"""
         self.variables[key] = value
-        self.updated_at = datetime.now()
+        self.updated_at = _utcnow()
 
     def get_variable(self, key: str, default: Any = None) -> Any:
         """Obtém variável do processo"""

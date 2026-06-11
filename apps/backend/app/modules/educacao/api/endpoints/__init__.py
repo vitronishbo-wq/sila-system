@@ -16,6 +16,9 @@ from .wizard_matricula import router as wizard_matricula_router
 from ...emis.api.endpoints import router as emis_router
 from .academic_identity import router as academic_identity_router
 from .academic_wallet import router as academic_wallet_router
+from .escolas_routes import router as escolas_router
+from .turmas_routes import router as turmas_router
+from .fuc_routes import router as fuc_router
 
 __all__ = [
     "marketplace_router",
@@ -36,4 +39,7 @@ __all__ = [
     "emis_router",
     "academic_identity_router",
     "academic_wallet_router",
+    "escolas_router",
+    "turmas_router",
+    "fuc_router",
 ]

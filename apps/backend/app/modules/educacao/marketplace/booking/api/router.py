@@ -1,7 +1,13 @@
 """Router for Booking subdomain"""
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+import uuid
 
+from apps.backend.app.api.deps import get_current_user, get_db
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
+from apps.backend.app.core.rbac.territorial_access import verify_territorial_access
 from .health import booking_health
+
 
 router = APIRouter(
     prefix="/marketplace/booking",
@@ -19,6 +25,8 @@ async def health_check():
 async def reserve_vacancy(
     citizen_id: str,
     opportunity_id: str,
+    user: dict = Depends(get_current_user),
+    session: AsyncSession = Depends(get_db),
 ):
     """Reservar vaga
     
@@ -29,7 +37,15 @@ async def reserve_vacancy(
     Returns:
         Confirmação de reserva
     """
-    # TODO: Implementar lógica
+    # Attempt to resolve opportunity -> institution to check territorial access.
+    escola_model = None
+    try:
+        inst_id = uuid.UUID(opportunity_id)
+        escola_model = await session.get(EscolaModel, inst_id)
+    except Exception:
+        escola_model = None
+    await verify_territorial_access(user=user, resource_territory_id=getattr(escola_model, "territory_id", None), db=session)
+    # TODO: Implementar lógica completa de reserva
     return {
         "booking_id": "book_123",
         "citizen_id": citizen_id,
@@ -62,6 +78,8 @@ async def list_citizen_bookings(
 @router.post("/enroll", name="auto_enroll")
 async def auto_enroll(
     booking_id: str,
+    user: dict = Depends(get_current_user),
+    session: AsyncSession = Depends(get_db),
 ):
     """Efetuar pré-matrícula automática
     
@@ -71,7 +89,8 @@ async def auto_enroll(
     Returns:
         Confirmação de matrícula
     """
-    # TODO: Implementar lógica
+    # TODO: Map booking -> institution and enforce territorial access once mapping exists
+    await verify_territorial_access(user=user, resource_territory_id=None, db=session)
     return {
         "booking_id": booking_id,
         "enrollment_id": "enr_123",

@@ -1,0 +1,235 @@
+"""
+DRAFT MIGRATION: EDUCACAO ALIGNMENT
+
+Este ficheiro é um rascunho gerado manualmente. NÃO APLICAR sem revisão.
+
+Conteúdo:
+- Cria tabela `educacao_institution_capacities` se não existir
+- Cria tabela `territory_closure` se não existir (tenta adicionar FKs para `locations` quando possível)
+- Adiciona colunas `territory_id`, `created_by`, `managed_by` nas tabelas de educacao quando ausentes
+- Tenta popular `territory_closure` a partir de `locations.parent_id` (backfill seguro com RECURSIVE CTE) quando `locations` existe
+
+Notas importantes:
+- A base canónica de geografia no repositório é `locations` (ver `seed_locations_dpa_2024.py` e testes).
+- Alguns scripts antigos usam `territories`. Antes de aplicar, confirme qual tabela é a fonte da verdade.
+- Esta migração adiciona FKs CONDICIONAIS: só cria constraints se as tabelas referenciadas existirem no banco.
+- A migração NÃO adiciona FKs para `created_by`/`managed_by` automaticamente — a origem (iam_users/identities) precisa ser congelada e verificada.
+
+Objetivo: fornecer um artefacto para revisão e aprovação antes de aplicar qualquer DDL.
+"""
+
+from alembic import op
+import sqlalchemy as sa
+from sqlalchemy.dialects import postgresql
+
+# Revision identifiers - adjust if/when promoting to real migration
+revision = "20260610_0001_educacao_alignment_draft"
+down_revision = "20260607_0003_create_provider_homologation_evidence"
+branch_labels = None
+depends_on = None
+
+
+def _column_exists(inspector, table_name: str, column_name: str) -> bool:
+    try:
+        cols = [c["name"] for c in inspector.get_columns(table_name)]
+        return column_name in cols
+    except Exception:
+        return False
+
+
+def _index_exists(inspector, table_name: str, index_name: str) -> bool:
+    try:
+        idxs = [i["name"] for i in inspector.get_indexes(table_name)]
+        return index_name in idxs
+    except Exception:
+        return False
+
+
+def upgrade():
+    bind = op.get_bind()
+    inspector = sa.inspect(bind)
+
+    # 1) Create educacao_institution_capacities (capacity management)
+    if "educacao_institution_capacities" not in inspector.get_table_names():
+        # If `educacao_escolas` exists we add a FK to it; otherwise create without FK and leave to later
+        if "educacao_escolas" in inspector.get_table_names():
+            institution_col = sa.Column(
+                "institution_id",
+                postgresql.UUID(as_uuid=True),
+                sa.ForeignKey("educacao_escolas.id", ondelete="CASCADE"),
+                nullable=False,
+            )
+        else:
+            institution_col = sa.Column(
+                "institution_id", postgresql.UUID(as_uuid=True), nullable=False
+            )
+
+        op.create_table(
+            "educacao_institution_capacities",
+            sa.Column("id", postgresql.UUID(as_uuid=True), primary_key=True, nullable=False),
+            institution_col,
+            sa.Column("grade", sa.String(32), nullable=False),
+            sa.Column("shift", sa.String(32), nullable=False),
+            sa.Column("capacity_total", sa.Integer(), nullable=False),
+            sa.Column("capacity_used", sa.Integer(), nullable=False, server_default="0"),
+            sa.Column("capacity_reserved", sa.Integer(), nullable=False, server_default="0"),
+            # Governance/territory fields (nullable to avoid blocking existing data)
+            sa.Column("territory_id", postgresql.UUID(as_uuid=True), nullable=True),
+            sa.Column("created_by", postgresql.UUID(as_uuid=True), nullable=True),
+            sa.Column("managed_by", postgresql.UUID(as_uuid=True), nullable=True),
+            sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+            sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), onupdate=sa.func.now(), nullable=True),
+            sa.UniqueConstraint("institution_id", "grade", "shift", name="uq_institution_grade_shift"),
+            sa.CheckConstraint("capacity_total > 0", name="chk_capacity_total_positive"),
+            sa.CheckConstraint("capacity_used >= 0", name="chk_capacity_used_non_negative"),
+            sa.CheckConstraint("capacity_reserved >= 0", name="chk_capacity_reserved_non_negative"),
+            sa.CheckConstraint("capacity_used + capacity_reserved <= capacity_total", name="chk_capacity_total_not_exceeded"),
+        )
+
+        # Ensure index on institution_id exists (created separately to be safe)
+        try:
+            op.create_index("ix_educacao_institution_capacities_institution_id", "educacao_institution_capacities", ["institution_id"])
+        except Exception:
+            pass
+
+    # 2) Create territory_closure (closure table used by RBAC)
+    # Prefer referencing `locations(id)` (canonical geographies) when present.
+    if "territory_closure" not in inspector.get_table_names():
+        if "locations" in inspector.get_table_names():
+            # Create closure with FKs to `locations(id)` if locations exists
+            op.create_table(
+                "territory_closure",
+                sa.Column("ancestor_id", postgresql.UUID(as_uuid=True), sa.ForeignKey("locations.id", ondelete="CASCADE"), nullable=False),
+                sa.Column("descendant_id", postgresql.UUID(as_uuid=True), sa.ForeignKey("locations.id", ondelete="CASCADE"), nullable=False),
+                sa.Column("depth", sa.Integer(), nullable=False, server_default="0"),
+                sa.PrimaryKeyConstraint("ancestor_id", "descendant_id", name="pk_territory_closure"),
+            )
+        else:
+            # Fallback: create closure without FK constraints to avoid failing when locations table missing
+            op.create_table(
+                "territory_closure",
+                sa.Column("ancestor_id", postgresql.UUID(as_uuid=True), nullable=False),
+                sa.Column("descendant_id", postgresql.UUID(as_uuid=True), nullable=False),
+                sa.Column("depth", sa.Integer(), nullable=False, server_default="0"),
+                sa.PrimaryKeyConstraint("ancestor_id", "descendant_id", name="pk_territory_closure"),
+            )
+
+        # If locations exists, attempt to backfill closure from locations.parent_id
+        if "locations" in inspector.get_table_names():
+            try:
+                op.execute("""
+                WITH RECURSIVE r AS (
+                    SELECT id AS ancestor_id, id AS descendant_id, 0 AS depth
+                    FROM locations
+                    UNION ALL
+                    SELECT l.parent_id AS ancestor_id, r.descendant_id, r.depth + 1
+                    FROM locations l
+                    JOIN r ON l.id = r.ancestor_id
+                    WHERE l.parent_id IS NOT NULL
+                )
+                INSERT INTO territory_closure (ancestor_id, descendant_id, depth)
+                SELECT ancestor_id, descendant_id, depth FROM r
+                ON CONFLICT DO NOTHING;
+                """)
+            except Exception:
+                # Backfill is best-effort during review; if it fails it should be executed manually after validation
+                pass
+
+    # 3) Add governance columns to core educacao tables when missing
+    educacao_tables = [
+        "educacao_escolas",
+        "educacao_turmas",
+        "educacao_matriculas",
+        "educacao_academic_identities",
+        "educacao_boletins",
+        "educacao_certificados",
+        "educacao_enrollments",
+    ]
+
+    for table in educacao_tables:
+        if table in inspector.get_table_names():
+            # territory_id
+            if not _column_exists(inspector, table, "territory_id"):
+                op.add_column(table, sa.Column("territory_id", postgresql.UUID(as_uuid=True), nullable=True))
+                try:
+                    op.create_index(f"ix_{table}_territory_id", table, ["territory_id"])
+                except Exception:
+                    pass
+
+            # created_by
+            # NOTE: origin of `created_by` (iam_users.id or other identity table) should be frozen before adding FK.
+            if not _column_exists(inspector, table, "created_by"):
+                op.add_column(table, sa.Column("created_by", postgresql.UUID(as_uuid=True), nullable=True))
+                try:
+                    op.create_index(f"ix_{table}_created_by", table, ["created_by"])
+                except Exception:
+                    pass
+
+            # managed_by
+            # NOTE: same as created_by — do not add FK until identity model is reconciled.
+            if not _column_exists(inspector, table, "managed_by"):
+                op.add_column(table, sa.Column("managed_by", postgresql.UUID(as_uuid=True), nullable=True))
+                try:
+                    op.create_index(f"ix_{table}_managed_by", table, ["managed_by"])
+                except Exception:
+                    pass
+
+
+def downgrade():
+    bind = op.get_bind()
+    inspector = sa.inspect(bind)
+
+    # Remove added columns if present (reverse order)
+    educacao_tables = [
+        "educacao_escolas",
+        "educacao_turmas",
+        "educacao_matriculas",
+        "educacao_academic_identities",
+        "educacao_boletins",
+        "educacao_certificados",
+        "educacao_enrollments",
+    ]
+
+    for table in educacao_tables:
+        if table in inspector.get_table_names():
+            # Drop indexes if exist, then drop columns
+            try:
+                if _index_exists(inspector, table, f"ix_{table}_managed_by"):
+                    op.drop_index(f"ix_{table}_managed_by", table_name=table)
+            except Exception:
+                pass
+            try:
+                if _column_exists(inspector, table, "managed_by"):
+                    op.drop_column(table, "managed_by")
+            except Exception:
+                pass
+
+            try:
+                if _index_exists(inspector, table, f"ix_{table}_created_by"):
+                    op.drop_index(f"ix_{table}_created_by", table_name=table)
+            except Exception:
+                pass
+            try:
+                if _column_exists(inspector, table, "created_by"):
+                    op.drop_column(table, "created_by")
+            except Exception:
+                pass
+
+            try:
+                if _index_exists(inspector, table, f"ix_{table}_territory_id"):
+                    op.drop_index(f"ix_{table}_territory_id", table_name=table)
+            except Exception:
+                pass
+            try:
+                if _column_exists(inspector, table, "territory_id"):
+                    op.drop_column(table, "territory_id")
+            except Exception:
+                pass
+
+    # Drop territory_closure if exists
+    if "territory_closure" in inspector.get_table_names():
+        op.drop_table("territory_closure")
+
+    # Drop educacao_institution_capacities if exists
+    if "educacao_institution_capacities" in inspector.get_table_names():
+        op.drop_table("educacao_institution_capacities")

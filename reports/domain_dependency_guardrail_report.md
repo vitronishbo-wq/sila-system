@@ -1,6 +1,6 @@
 # Domain Dependency Guardrail Report
 
-- Generated at: `2026-06-07 12:12:34Z`
+- Generated at: `2026-06-08 18:34:27Z`
 - Status: PASSED
 
 ## Summary

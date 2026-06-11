@@ -2,7 +2,6 @@
 
 from collections.abc import AsyncGenerator
 
-from core.security import IAMClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from apps.backend.app.core.db import AsyncSessionLocal
@@ -49,4 +48,5 @@ def get_iam_client():
         async def protected(iam = Depends(get_iam_client)):
             user = iam.get_current_user(token)
     """
+    from apps.backend.core.security import IAMClient
     return IAMClient()

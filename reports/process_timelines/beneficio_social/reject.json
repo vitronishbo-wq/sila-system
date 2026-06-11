@@ -1,0 +1,52 @@
+[
+  {
+    "event_type": "PedidoBeneficioEvent",
+    "event_id": "f5bb7e86-0c64-4a7d-81ea-ddd575442c3e",
+    "aggregate_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "correlation_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "causation_id": null,
+    "timestamp": "2026-06-08T14:58:30.253622",
+    "metadata": {
+      "event_id": "f5bb7e86-0c64-4a7d-81ea-ddd575442c3e",
+      "timestamp": "2026-06-08T14:58:30.253622",
+      "version": 1,
+      "pedido_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+      "beneficiario_id": "0a5781c6-4238-4479-b816-2a70d81ba786",
+      "dados": {
+        "codigo": "BNF/2026/00001"
+      }
+    }
+  },
+  {
+    "event_type": "VerificacaoNifConcluidaEvent",
+    "event_id": "c8d7131e-e417-407f-ae5e-7542cf0c6955",
+    "aggregate_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "correlation_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "causation_id": "f5bb7e86-0c64-4a7d-81ea-ddd575442c3e",
+    "timestamp": "2026-06-08T14:58:30.253712",
+    "metadata": {
+      "event_id": "c8d7131e-e417-407f-ae5e-7542cf0c6955",
+      "timestamp": "2026-06-08T14:58:30.253712",
+      "version": 1,
+      "pedido_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+      "nif": "123456789",
+      "valid": true
+    }
+  },
+  {
+    "event_type": "VerificacaoSSConcluidaEvent",
+    "event_id": "5dc762d4-3afd-4fb5-a7ae-2271801aff03",
+    "aggregate_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "correlation_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+    "causation_id": "c8d7131e-e417-407f-ae5e-7542cf0c6955",
+    "timestamp": "2026-06-08T14:58:30.253854",
+    "metadata": {
+      "event_id": "5dc762d4-3afd-4fb5-a7ae-2271801aff03",
+      "timestamp": "2026-06-08T14:58:30.253854",
+      "version": 1,
+      "pedido_id": "13eae692-3ecb-44d6-9084-be5268ee1d6e",
+      "ss_number": null,
+      "valid": false
+    }
+  }
+]

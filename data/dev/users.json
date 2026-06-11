@@ -1,0 +1,50 @@
+[
+  {
+    "username": "central@sila.gov.ao",
+    "email": "central@sila.gov.ao",
+    "role": "ADMIN_CENTRAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "prov.huambo@sila.gov.ao",
+    "email": "prov.huambo@sila.gov.ao",
+    "role": "ADMIN_PROVINCIAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "prov.benguela@sila.gov.ao",
+    "email": "prov.benguela@sila.gov.ao",
+    "role": "ADMIN_PROVINCIAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "mun.caala@sila.gov.ao",
+    "email": "mun.caala@sila.gov.ao",
+    "role": "ADMIN_MUNICIPAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "mun.huambo@sila.gov.ao",
+    "email": "mun.huambo@sila.gov.ao",
+    "role": "ADMIN_MUNICIPAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "comun.huambo@sila.gov.ao",
+    "email": "comun.huambo@sila.gov.ao",
+    "role": "ADMIN_COMMUNAL",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "truman@gmail.com",
+    "email": "truman@gmail.com",
+    "role": "CITIZEN",
+    "password": "Sila_1983"
+  },
+  {
+    "username": "admin@sila.gov.ao",
+    "email": "admin@sila.gov.ao",
+    "role": "ADMIN",
+    "password": "Sila_1983"
+  }
+]

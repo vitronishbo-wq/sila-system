@@ -4,7 +4,7 @@ from collections.abc import AsyncGenerator
 from typing import Any
 
 import jwt
-from core.auth import JWTHandler
+from apps.backend.core.auth import JWTHandler
 from fastapi import Depends, Header, HTTPException, status
 from jwt.exceptions import InvalidTokenError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -13,6 +13,7 @@ from apps.backend.app.core.db import get_db as core_get_db
 from apps.backend.app.core.identity.context import IdentityContext
 from apps.backend.app.core.notifications.services.notification_service import NotificationService
 from apps.backend.app.core.settings import settings
+from apps.backend.app.core.observability.context import set_request_context
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
@@ -118,6 +119,16 @@ async def get_current_user(authorization: str | None = Header(default=None)) -> 
                 user.setdefault("level", level_lower)
             if level_upper:
                 user.setdefault("administrative_level", level_upper)
+    # Populate observability/request context with territorial info for downstream filters
+    try:
+        territory_id = user.get("territory_id") or (user.get("custom_metadata") or {}).get("territory_id")
+    except Exception:
+        territory_id = None
+    try:
+        set_request_context(user_id=user.get("sub") or user.get("email"), territory_id=territory_id, user_roles=user.get("roles"))
+    except Exception:
+        # non-fatal: continue without failing authentication
+        pass
     return user
 
 
@@ -140,3 +151,53 @@ db_dep = Depends(get_db)
 
 async def get_notification_service(db: AsyncSession = db_dep) -> NotificationService:
     return NotificationService(db)
+
+
+async def get_scope_from_user(
+    current_user: dict[str, Any] = current_user_dep,
+    db: AsyncSession = db_dep,
+) -> dict[str, Any]:
+    """
+    Resolve territorial scope for the authenticated user.
+
+    Returns a dict with keys:
+      - role: user's primary role
+      - allowed_territories: None (means unrestricted / central) or list of territory ids (strings)
+
+    Usage: inject this dependency in endpoints and apply filter like:
+
+        scope = await get_scope_from_user(current_user, db)
+        if scope['allowed_territories'] is not None:
+            query = query.filter(entity.territory_id.in_(scope['allowed_territories']))
+
+    The function first checks for `territory_id` in the token claims (current_user),
+    otherwise it will attempt to resolve territory metadata from the DB using the
+    user's email as fallback.
+    """
+    user_role = current_user.get("role")
+    territory_id = current_user.get("territory_id") or None
+    # try nested custom metadata if present
+    if not territory_id:
+        custom = current_user.get("custom_metadata") or {}
+        if isinstance(custom, dict):
+            territory_id = custom.get("territory_id")
+
+    # If still no territory_id -> unrestricted (central / national)
+    if not territory_id:
+        return {"role": user_role, "allowed_territories": None}
+
+    # Resolve descendant territories via closure table
+    try:
+        from sqlalchemy import text
+
+        q = text("SELECT descendant_id FROM territory_closure WHERE ancestor_id = :ancestor_id")
+        res = await db.execute(q, {"ancestor_id": str(territory_id)})
+        rows = res.fetchall()
+        if not rows:
+            # fallback: include only the user's own territory
+            return {"role": user_role, "allowed_territories": [str(territory_id)]}
+        allowed = [str(r[0]) for r in rows]
+        return {"role": user_role, "allowed_territories": allowed}
+    except Exception:
+        # On any failure, be conservative: restrict to user's own territory
+        return {"role": user_role, "allowed_territories": [str(territory_id)]}

@@ -1,6 +1,6 @@
 # SILA MODULE MATURITY REPORT
 
-Total modules analyzed: 72
+Total modules analyzed: 73
 
 ## economy.domain
 - models: ✗
@@ -193,6 +193,16 @@ score: 60%
 score: 60%
 
 ## justice.civil_registry
+- models: ✓
+- services: ✓
+- router: ✗
+- health: ✗
+- infrastructure: ✓
+
+**score:** 60%
+score: 60%
+
+## society.educacao
 - models: ✓
 - services: ✓
 - router: ✗

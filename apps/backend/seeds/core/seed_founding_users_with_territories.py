@@ -30,43 +30,12 @@ DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 
 # Configuration
 FOUNDING_USERS = [
+    # Apenas o usuário central/super admin é referenciado no fluxo de bootstrap.
     {
-        "email": "central@sila.gov.ao",
+        "email": "admin@sila.gov.ao",
         "role": "ADMIN_CENTRAL",
         "level": "national",
         "territory_query": None,  # NULL territory = national access
-    },
-    {
-        "email": "prov.huambo@sila.gov.ao",
-        "role": "ADMIN_PROVINCIAL",
-        "level": "provincial",
-        "territory_query": "SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA' LIMIT 1",
-    },
-    {
-        "email": "mun.huambo@sila.gov.ao",
-        "role": "ADMIN_MUNICIPAL",
-        "level": "municipal",
-        "territory_query": """
-            SELECT id FROM locations
-            WHERE name='Huambo (Município)' AND type='MUNICIPIO'
-            AND parent_id = (SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA')
-            LIMIT 1
-        """,
-    },
-    {
-        "email": "comun.huambo@sila.gov.ao",
-        "role": "ADMIN_COMMUNAL",
-        "level": "communal",
-        "territory_query": """
-            SELECT id FROM locations
-            WHERE type='COMUNA'
-            AND parent_id IN (
-                SELECT id FROM locations
-                WHERE name='Huambo (Município)' AND type='MUNICIPIO'
-                AND parent_id = (SELECT id FROM locations WHERE name='Huambo' AND type='PROVINCIA')
-            )
-            ORDER BY name LIMIT 1
-        """,
     },
 ]
 

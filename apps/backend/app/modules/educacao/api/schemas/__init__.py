@@ -7,8 +7,9 @@ from .certificado_schema import (
 )
 from .concurso_schema import ConcursoCancelar, ConcursoConcluir, ConcursoCreate, ConcursoResponse
 from .emprego_schema import EmpregoCancelar, EmpregoConcluir, EmpregoCreate, EmpregoResponse
-from .escola_schema import EscolaResponse
+from .escola_schema import EscolaCreate, EscolaResponse
 from .formacao_schema import FormacaoCancelar, FormacaoConcluir, FormacaoCreate, FormacaoResponse
+from .turma_schema import TurmaCreate, TurmaResponse
 from .inscricao_schema import (
     InscricaoCancelar,
     InscricaoConfirmar,
@@ -79,7 +80,10 @@ __all__ = [
     "MatriculaAtivar",
     "MatriculaResponse",
     "MatriculaListFilter",
+    "EscolaCreate",
     "EscolaResponse",
+    "TurmaCreate",
+    "TurmaResponse",
     "InscricaoCreate",
     "InscricaoConfirmar",
     "InscricaoCancelar",

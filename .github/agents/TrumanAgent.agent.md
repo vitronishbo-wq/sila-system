@@ -1,83 +1,75 @@
-# SILA System Workspace
+# SILA CORE v3 — AGENT EXECUTION PROTOCOL
 
-Root Path:
-/home/dev03wsl/sila-system
+## WORKSPACE IDENTITY
 
-Primary Backend Root:
-/home/dev03wsl/sila-system/apps/backend/app/modules
+## MANDATORY STARTUP SEQUENCE
 
-Environment:
-- WSL2 Ubuntu 24.04
-- Windows 11 Host
-- Python enterprise backend
-- Hexagonal architecture
-- X-Road interoperability strategy
-- PostgreSQL
-- Redis
-- Celery
+Antes de responder a qualquer pedido técnico:
 
-Repository Characteristics:
-- Massive modular monolith / federated services architecture
-- 900+ service domains consolidated into module structure
-- Parallel infrastructure and domain segmentation
-- Heavy compliance and audit requirements
-- Multi-sector governmental architecture
+Resolver o módulo alvo.
 
-Critical Index Files:
-- docs/tree.md
-- docs/modules/tree.modules.txt
+Ler docs/tree.json.
 
-Primary Architecture:
-Hexagonal Architecture + X-Road interoperability
+Ler docs/modules/tree.modules.json.
 
-Core Module Location:
-apps/backend/app/modules/
+Usar tree.md e tree.modules.txt apenas como fallback.
 
-Workspace Rules:
-- Use docs/tree.md and docs/modules/tree.modules.txt strictly as indexes
-- Never recursively scan the entire repository
-- Use grep/find/Select-String for targeted discovery
-- Read only relevant files after path discovery
-- Preserve context window efficiency
-- Preserve architecture boundaries strictly
-- Never collapse domain/infrastructure separation
-- Never introduce circular dependencies
-- Prefer root-cause fixes over superficial patches
+## HARD CONSTRAINTS
 
-Execution Strategy:
-- Parallel batch normalization
-- Compliance-first operations
-- Audit-before-purge
-- Infrastructure/domain isolation
-- X-Road port-based interoperability
-- Structured consolidation workflows
+PROIBIDO
 
-Important Commands:
-cd ~/sila-system
-make clean-audit
-make daily-audit
-cat reports/daily_audit.md
+Recursively scan the repository.
 
-Validation Commands:
-pytest
-make clean-audit
-make daily-audit
+Infer file paths.
 
-Expected Agent Behavior:
-- Autonomous repository analysis
-- Intelligent module discovery
-- Runtime validation
-- Dependency inspection
-- Safe architectural refactoring
-- Compliance reporting
-- Batch-based normalization
-- Infrastructure-safe execution
+Open entire directories.
 
-Never:
-- recursively load the full repository
-- purge before successful audit
-- refactor blindly across modules
-- break bounded contexts
-- violate hexagonal architecture
-- bypass X-Road interoperability boundaries
-- modify unrelated modules during normalization
+Read more than 200 lines per file chunk.
+
+Read more than 5 files per cycle.
+
+Modify files that were not explicitly read.
+
+Break hexagonal architecture boundaries.
+
+Introduce circular dependencies.
+
+Modify generated audit reports.
+
+## REQUIRED WORKFLOW
+
+BEFORE EDITING
+
+Return exactly:
+
+AFTER EDITING
+
+Execute exactly:
+
+## BLOCKING CONDITIONS
+
+Stop immediately and return:
+
+If any of these are missing:
+
+resolved paths
+
+entrypoints
+
+workflows
+
+tests
+
+## SUCCESS CRITERIA
+
+Only return STATUS: OK if all are true:
+
+imports valid
+
+tests passed
+
+daily-audit passed
+
+indexes updated
+
+## MANDATORY OUTPUT FORMAT

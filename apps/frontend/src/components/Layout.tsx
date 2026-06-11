@@ -241,11 +241,28 @@ const Layout: React.FC<LayoutProps> = ({ user, children, onLogout }) => {
     { label: 'Documentos', icon: 'fa-file-invoice', path: '#/admin/documents', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL, UserRole.ADMIN_PROVINCIAL, UserRole.ADMIN_MUNICIPAL] },
     { label: 'Exportações', icon: 'fa-file-export', path: '#/admin/exports', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL, UserRole.ADMIN_PROVINCIAL, UserRole.ADMIN_MUNICIPAL] },
     { label: 'Pagamentos', icon: 'fa-credit-card', path: '#/admin/payments', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL, UserRole.ADMIN_PROVINCIAL, UserRole.ADMIN_MUNICIPAL] },
-    { label: 'Territórios', icon: 'fa-map-marked-alt', path: '#/admin/territory', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL] },
-    { label: 'Observabilidade', icon: 'fa-eye', path: '#/admin/observability', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL] },
+    { label: 'Territórios', icon: 'fa-map-marked-alt', path: '#/admin/territory', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL], module: null },
+    { label: 'Observabilidade', icon: 'fa-eye', path: '#/admin/observability', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL], module: null },
+    // Module entries (module-aware)
+    { label: 'Educação', icon: 'fa-graduation-cap', path: '#/educacao/admin', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL, UserRole.ADMIN_PROVINCIAL, UserRole.ADMIN_MUNICIPAL], module: 'educacao' },
+    { label: 'Saúde', icon: 'fa-hospital', path: '#/saude/admin', roles: [UserRole.ADMIN_SUPER, UserRole.ADMIN_CENTRAL, UserRole.ADMIN_PROVINCIAL, UserRole.ADMIN_MUNICIPAL], module: 'saude' },
   ];
 
-  const filteredItems = menuItems.filter(item => item.roles.includes(user.role));
+  // Derive allowed modules from JWT scopes (e.g. "educacao:admin") or demo override
+  const rawScopes = (user as any)?.scopes || [];
+  const scopesList = Array.isArray(rawScopes) ? rawScopes : typeof rawScopes === 'string' ? rawScopes.split(' ') : [];
+  const allowedModulesFromScopes = new Set(scopesList.map((s: string) => (s || '').toLowerCase().split(':')[0]));
+  const demoModulesRaw = typeof window !== 'undefined' ? localStorage.getItem('demo_allowed_modules') || '' : '';
+  const demoModules = demoModulesRaw.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+  const allowedModulesSet = new Set([...Array.from(allowedModulesFromScopes), ...demoModules]);
+
+  const filteredItems = menuItems.filter((item: any) => {
+    if (!item.roles.includes(user.role)) return false;
+    if (!item.module) return true; // general admin items
+    // central and super admins see everything
+    if (user.role === UserRole.ADMIN_SUPER || user.role === UserRole.ADMIN_CENTRAL) return true;
+    return allowedModulesSet.has(item.module);
+  });
   const moduleOptions = ['all', ...Array.from(new Set(liveLogs.map((log) => log.module).filter((m): m is string => Boolean(m))))];
   const exportBadgeCount = Object.values(moduleNewCounts).reduce((acc, v) => acc + v, 0);
   const exportBadgeItems = Object.entries(moduleNewCounts)

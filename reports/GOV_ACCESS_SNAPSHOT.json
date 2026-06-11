@@ -1,0 +1,4919 @@
+{
+  "status": {
+    "total_endpoints": 1553,
+    "endpoints_with_auth": 83,
+    "endpoints_with_permission": 45,
+    "endpoints_with_territorial": 70
+  },
+  "roles": [],
+  "essential_services": [
+    "BI",
+    "RC",
+    "SA",
+    "ED",
+    "AS",
+    "EN",
+    "EM",
+    "MO",
+    "TR",
+    "NO",
+    "LI",
+    "NIF"
+  ],
+  "central_services": [
+    "doc_validation",
+    "service_mgmt"
+  ],
+  "modules": {
+    "visible": [
+      {
+        "module": "api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "telecomunicacoes/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "industry/api/endpoints/catalogos.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "urbanismo/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "planeamento/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "api/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "api/api/health.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "payment/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "payment/api/health.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "petroleo-gas/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "assistencia-social/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "registo-civil/api/router.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "registo-civil/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "apoio-empresarial/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/verificacao-documental/api/router.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/verificacao-documental/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/bi/api/router.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/bi/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/moradas/api/router.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/moradas/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/nif/api/router.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "integracao-nacional/subdomains/nif/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/api/endpoints/biometrics.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/api/endpoints/qr.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/api/endpoints/qr_validator.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/subdomains/verifiable_credentials/api/router.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/subdomains/oidc_provider/api/router.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "identity/subdomains/oidc_provider/api/health.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "comercio-externo/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "protecao-dados/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "migracao/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "financas-impostos/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "aviacao-civil/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/api/transactions.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/external/api/endpoints/_operador_logistico_router.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/external/api/endpoints/importador.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/external/api/endpoints/_habilitacao_router.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/external/api/endpoints/exportadores.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/services/api/endpoints/estabelecimentos_comerciais.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "economy/trade/services/api/endpoints/catalogos.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/zoneamento.py",
+        "total": 11,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/certificacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/propriedades.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/insumos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/operacoes.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/colheitas.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/plantios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/produtores.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/comercializacao.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/safras.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/fitossanidade.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/creditos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/equipamentos.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/talhoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/culturas.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/assistencia.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/agricultura/api/endpoints/estoques.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/aguas_saneamento/api/endpoints/consumo.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/aguas_saneamento/api/endpoints/abastecimento.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/aguas_saneamento/api/endpoints/faturas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/aguas_saneamento/api/endpoints/outorgas.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/aguas_saneamento/api/endpoints/infraestrutura.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/propriedades.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/sanidade.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/rebanhos.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/producao.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/animais.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pecuaria/api/endpoints/pecuaristas.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/fiscalizacoes.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/embargos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/multas.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/car.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/autos_infracao.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/condicionantes.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/licencas.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/ambiente/api/endpoints/estudos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/certificacoes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/lotes_producao.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/armadores_industriais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/licencas_operacao.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/rastreabilidade.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/unidades_processamento.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/embarcacoes_industriais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/frigorificos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/produtos_processados.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/exportacoes_industriais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/inspecoes_sanitarias.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/industrial/api/endpoints/estatisticas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/quotas.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/desembarques.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/capturas.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/licencas_pesca.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/rastreabilidade.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/pescadores.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/especies.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/producao.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/comercializacao.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/armadores.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/fiscalizacao.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/defesos.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/pescas/api/endpoints/embarcacoes.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/exportacoes_madeira.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/ocorrencias_incendio.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/comercializacao_florestal.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/autos_infracao_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/pnfms.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/creditos_carbono.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/certificacoes_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/fiscalizacoes_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/projetos_carbono.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/produtos_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/reservas_legais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/planos_manejo.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/reflorestamentos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/licencas_manejo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/cras.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/autorizacoes_supressao.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/car_florestal.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/estatisticas_florestais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/recuperacoes_area.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/inventarios.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/focos_calor.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/operadores_florestais.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/unidades_manejo.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/dofs.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/comunidades.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/apreensoes_madeira.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/reposicoes_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/desmatamentos_ilegais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/exploracoes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/especies_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/empresas_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/multas_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/monitoramentos_satelite.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/madeiras.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/combates_incendio.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/incendios_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/embargos_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/outorgas_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/concessoes_florestais.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/talhoes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/alertas_desmatamento.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/viveiros.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "resources/florestas/api/endpoints/redds.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "_scaffold/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "igualdade/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "seguranca-publica/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "gestao-fundiaria/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "seguranca-social/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "agricultura/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "administracao-local/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/workflow/api/router.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/administracao_local/presentation/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/router.py",
+        "total": 18,
+        "auth": 0,
+        "perm": 18,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/kpis.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/relatorios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/metricas.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/exportacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/agregacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/analises.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/previsoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/tendencias.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/timeseries.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/dashboards.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/alertas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/comparativos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/rankings.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/statistics/api/endpoints/indicadores.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/service_requests/api/router.py",
+        "total": 11,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/cooperacao_internacional/api/endpoints/acordos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/cooperacao_internacional/api/endpoints/vistos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "governance/cooperacao_internacional/api/endpoints/projetos.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "juventude/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "defesa-consumidor/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "pecuaria/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "ciencia-pesquisa/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "desporto/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "marketplace/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "familia/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/infraestruturas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/indicadores_qualidade.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/slas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/qualidade_servico.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/operadoras.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/assinantes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/outorgas_espectro.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/faturas.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/reclamacoes.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/telecomunicacoes/api/endpoints/espectros.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/zoneamento.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/parcelamentos.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/habitese.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/licencas_urbanisticas.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/planos_diretores.py",
+        "total": 10,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/loteamentos.py",
+        "total": 10,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/operacoes_urbanas.py",
+        "total": 10,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/urbanismo_habitacao/api/endpoints/alvaras.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/aviacao_civil/api/endpoints/ocorrencias.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/aviacao_civil/api/endpoints/aeronaves.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/aviacao_civil/api/endpoints/voos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/georreferenciamentos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/oneracoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/matriculas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/desapropriacoes.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/proprietarios.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/meteorologia/api/endpoints/estacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure_sector/meteorologia/api/endpoints/observacoes.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "aguas-saneamento/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "obras-publicas/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "seguranca-alimentar/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "patrimonio-cultural/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "pescas-industriais/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/consumo.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/linha_transmissao.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/subestacao.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/geracao.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/central_geradora.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/faturas.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energy/api/endpoints/usinas.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "audit/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "audit/api/health.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "audit/state_audit/api/router.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "xroad/api/router.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "cultura/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "habitacao/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/investigacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/cadeias_custodia.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/provas_periciais.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/laudos_periciais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/ocorrencias.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/evidencias.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/mandados.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/vestigios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/policiais.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "public_security/api/endpoints/unidades_policiais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "arquivo-nacional/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "justice/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "procurement/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "procurement/api/routers.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "portos-logistica/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "logistics/api/endpoints/analytics.py",
+        "total": 2,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "logistics/api/endpoints/linhas.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "logistics/api/endpoints/bilhetagem.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "logistics/api/endpoints/viagens.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "logistics/api/endpoints/frotas.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure/api/endpoints/obras.py",
+        "total": 19,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure/api/endpoints/licitacoes.py",
+        "total": 13,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure/api/endpoints/dashboard.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure/api/endpoints/projetos.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "infrastructure/api/endpoints/editais.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "recursos-minerais/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "turismo/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tecnologia-inovacao/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "ambiente/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "protecao-civil/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "trabalho-inspecao/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "emprego/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "comercio/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "industria/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "transportes/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/voluntariados.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/bolsas_estudo.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/programas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/mentores.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/formacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/empreendedorismo_juvenil.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/saude_juvenil.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/acompanhamentos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/eventos_juvenis.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/inscricoes_programa.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/politicas_juventude.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/auxilios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/estagios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/intercambios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/jovens.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/risco_evasao.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/criancas_risco.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/cadastros_unicos.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/beneficios.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/visitas_domiciliares.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/programas_sociais.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/atendimentos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/idosos_vulneraveis.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/beneficiarios.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/situacoes_rua.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/assistencia_social/api/endpoints/pcd.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/desporto/api/endpoints/atletas.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/desporto/api/endpoints/estadios.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/desporto/api/endpoints/jogos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/desporto/api/endpoints/clubes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/desporto/api/endpoints/competicoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/history.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/relationships.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/members.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/aggregates.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 3,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/projections.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/familia/api/endpoints/dependencies.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/patrimonio_cultural/api/endpoints/assets.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/projetos_culturais.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/espacos_culturais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/bens_culturais.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/grupos_artisticos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/patrimonios_imateriais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/eventos_culturais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/artistas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/cultura/api/endpoints/editais.py",
+        "total": 8,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/emprego/api/endpoints/candidatos.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/emprego/api/endpoints/_workflow_endpoints.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/seguranca_social/api/endpoints/beneficiarios.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "society/seguranca_social/api/endpoints/pensoes.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/api/router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/ciencia_pesquisa/api/endpoints/instituicoes.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/ciencia_pesquisa/api/endpoints/pesquisadores.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/ciencia_pesquisa/api/endpoints/projetos.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/arquivo_nacional/api/routers/tabela_temporalidade_router.py",
+        "total": 15,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/arquivo_nacional/api/routers/documento_router.py",
+        "total": 10,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/arquivo_nacional/api/routers/plano_classificacao_router.py",
+        "total": 15,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/arquivo_nacional/api/routers/processo_router.py",
+        "total": 11,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/operations/api/router.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/bi/api/router.py",
+        "total": 25,
+        "auth": 0,
+        "perm": 25,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/mediacao.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/recalls.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/sancoes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/estabelecimentos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/arbitragem.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/produtos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/reclamacoes.py",
+        "total": 7,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "intelligence/defesa_consumidor/api/endpoints/consumidores.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "meteorologia/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "cooperacao-internacional/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "justica/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "estatistica/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "pescas/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/rbac/admin_router.py",
+        "total": 9,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/api/vacancies_router.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/api/endpoints/academic_wallet.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/api/endpoints/vacancies.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/api/endpoints/academic_identity.py",
+        "total": 20,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/emis/api/endpoints.py",
+        "total": 10,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/search/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/recommendation/api/router.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/discovery/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/transfers/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 2,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/ranking/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/booking/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 2,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/admissions/api/router.py",
+        "total": 4,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 2,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "educacao/marketplace/matching/api/router.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "energia/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "saude/api/v1/endpoints.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "civil_protection/api/endpoints/corporacoes.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "civil_protection/api/endpoints/despachos.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "civil_protection/api/endpoints/bombeiros.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "civil_protection/api/endpoints/atendimentos.py",
+        "total": 6,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "civil_protection/api/endpoints/ocorrencias_emergenciais.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/ocupacao_hoteleira.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/licencas_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/autos_infracao_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/hoteis.py",
+        "total": 3,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/receitas_turisticas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/temporadas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/roteiros.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/registros_guia.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/promocoes_turisticas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/agencias_viagens.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/classificacoes_hoteleiras.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/certificacoes_turisticas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/operadores_turisticos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/reclamacoes_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/chegadas_turistas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/cadastro_turistas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/pontos_turisticos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/reservas.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/resorts.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/avaliacoes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/pousadas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/eventos.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/fiscalizacoes_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/tarifas_hotel.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/pacotes.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/atracao_turisticas.py",
+        "total": 5,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/fluxo_turistico.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/multas_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/estatisticas_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/guias_turismo.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "tourism/api/endpoints/cadastur.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      },
+      {
+        "module": "florestas/api/health.py",
+        "total": 1,
+        "auth": 0,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.0
+      }
+    ],
+    "blocked": [
+      {
+        "module": "wallet/router.py",
+        "total": 1,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "notifications/router.py",
+        "total": 1,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "economy/taxpayer/api/router.py",
+        "total": 13,
+        "auth": 6,
+        "perm": 2,
+        "territorial": 9,
+        "role_check": 0,
+        "auth_ratio": 0.462
+      },
+      {
+        "module": "justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+        "total": 5,
+        "auth": 5,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+        "total": 4,
+        "auth": 3,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.75
+      },
+      {
+        "module": "justice/_deprecated/bounded_contexts/vital_events/api/birth_routes.py",
+        "total": 1,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "justice/_deprecated/bounded_contexts/vital_events/api/death_routes.py",
+        "total": 1,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "justice/_deprecated/bounded_contexts/vital_events/api/marriage_routes.py",
+        "total": 1,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "society/juventude/api/endpoints/_workflow_endpoints.py",
+        "total": 4,
+        "auth": 4,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/matricula_routes.py",
+        "total": 3,
+        "auth": 3,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/marketplace_endpoints.py",
+        "total": 8,
+        "auth": 8,
+        "perm": 0,
+        "territorial": 3,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/wizard_matricula.py",
+        "total": 17,
+        "auth": 17,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/transferencias.py",
+        "total": 6,
+        "auth": 6,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/inscricoes.py",
+        "total": 7,
+        "auth": 7,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/transferencias_automacao.py",
+        "total": 2,
+        "auth": 2,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/_workflow_endpoints.py",
+        "total": 4,
+        "auth": 4,
+        "perm": 0,
+        "territorial": 1,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/transfer_wizard.py",
+        "total": 9,
+        "auth": 9,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      },
+      {
+        "module": "educacao/api/endpoints/metrics_endpoints.py",
+        "total": 3,
+        "auth": 3,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 1.0
+      }
+    ],
+    "mixed": [
+      {
+        "module": "educacao/marketplace/router.py",
+        "total": 3,
+        "auth": 1,
+        "perm": 0,
+        "territorial": 0,
+        "role_check": 0,
+        "auth_ratio": 0.333
+      }
+    ]
+  },
+  "top50": [
+    {
+      "route": "/citizens/{citizen_id}/biometric/enroll",
+      "file": "apps/backend/app/modules/identity/api/endpoints/biometrics.py",
+      "module": "identity/api/endpoints/biometrics.py",
+      "function": "enroll_biometric",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": true,
+      "has_role_check": false,
+      "protected_correctly": true,
+      "sem_protecao": false,
+      "sem_restricao_territorial": false,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 85
+    },
+    {
+      "route": "/identidade/bi/emit",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "function": "emit_bi",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/identidade/bi/renew/{bi_number}",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "function": "renew_bi",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/identidade/bi/cancel/{bi_number}",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "function": "cancel_bi",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "create_student",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/{identity_id}",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "update_student",
+      "method": "PATCH",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/{identity_id}/mark-duplicate",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "mark_as_duplicate",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/merge/propose",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "propose_merge",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/merge/{merge_id}/approve",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "approve_merge",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/merge/{merge_id}/execute",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "execute_merge",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/merge/{merge_id}/reject",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "reject_merge",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/guardians",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "create_guardian",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/students/guardians/link",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "link_guardian",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/transferencias/wizard/{wizard_id}/passo3/elegibilidade",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "verificar_elegibilidade",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 67
+    },
+    {
+      "route": "/identidade/bi/tipos-evento",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/bi_routes.py",
+      "function": "get_supported_events",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/wallet/{identity_id}",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_wallet.py",
+      "module": "educacao/api/endpoints/academic_wallet.py",
+      "function": "academic_wallet",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/{identity_id}",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "get_student",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "list_students",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/search/by-name",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "search_students_by_name",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/search/by-ns",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "search_student_by_ns",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/duplicates",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "detect_duplicates",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/merge/pending",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "list_pending_merges",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/merge/list",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "list_all_merges",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/guardians/{guardian_id}",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "get_guardian",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/{identity_id}/guardians",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "list_student_guardians",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/metrics/identity",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "identity_metrics",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/students/dashboard",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/academic_identity.py",
+      "module": "educacao/api/endpoints/academic_identity.py",
+      "function": "identity_dashboard",
+      "method": "GET",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 62
+    },
+    {
+      "route": "/documents/citizen/{citizen_id}",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "function": "get_documents_by_citizen",
+      "method": "GET",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": true,
+      "has_role_check": false,
+      "protected_correctly": true,
+      "sem_protecao": false,
+      "sem_restricao_territorial": false,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 60
+    },
+    {
+      "route": "/transferencias/citizen/{citizen_id}",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias.py",
+      "module": "educacao/api/endpoints/transferencias.py",
+      "function": "listar_transferencias_cidadao",
+      "method": "GET",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": true,
+      "has_role_check": false,
+      "protected_correctly": true,
+      "sem_protecao": false,
+      "sem_restricao_territorial": false,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 60
+    },
+    {
+      "route": "/taxpayer/payments/{payment_id}/reverse",
+      "file": "apps/backend/app/modules/economy/taxpayer/api/router.py",
+      "module": "economy/taxpayer/api/router.py",
+      "function": "reverse_payment",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": true,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": true,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": false,
+      "critical_score": 50
+    },
+    {
+      "route": "/imoveis/{inscricao_imobiliaria:path}/area",
+      "file": "apps/backend/app/modules/infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "function": "atualizar_area_imovel",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/imoveis/{inscricao_imobiliaria:path}/proprietario",
+      "file": "apps/backend/app/modules/infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "function": "atualizar_proprietario_imovel",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/imoveis/{inscricao_imobiliaria:path}/situacao",
+      "file": "apps/backend/app/modules/infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "function": "atualizar_situacao_imovel",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/imoveis/{inscricao_imobiliaria:path}/matricula",
+      "file": "apps/backend/app/modules/infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "function": "vincular_matricula_imovel",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/imoveis/{inscricao_imobiliaria:path}/desativar",
+      "file": "apps/backend/app/modules/infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "module": "infrastructure_sector/gestao_fundiaria/api/endpoints/imoveis.py",
+      "function": "desativar_imovel",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/documents/",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "function": "create_document",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/documents/{document_id}/status",
+      "file": "apps/backend/app/modules/justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "module": "justice/_deprecated/bounded_contexts/identity_documents/api/documents_routes.py",
+      "function": "update_document_status",
+      "method": "PATCH",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/educacao/admin/workflows/transferencia/criar",
+      "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+      "module": "educacao/rbac/admin_router.py",
+      "function": "criar_transferencia_workflow",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/educacao/admin/workflows/transferencia/avancar",
+      "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+      "module": "educacao/rbac/admin_router.py",
+      "function": "avancar_transferencia_workflow",
+      "method": "POST",
+      "has_auth": false,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": true,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias.py",
+      "module": "educacao/api/endpoints/transferencias.py",
+      "function": "solicitar_transferencia",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/transacional",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias.py",
+      "module": "educacao/api/endpoints/transferencias.py",
+      "function": "executar_transferencia_transacional",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/{transferencia_id}/aprovar",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias.py",
+      "module": "educacao/api/endpoints/transferencias.py",
+      "function": "aprovar_transferencia",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/{transferencia_id}/rejeitar",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias.py",
+      "module": "educacao/api/endpoints/transferencias.py",
+      "function": "rejeitar_transferencia",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/automacao/async",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias_automacao.py",
+      "module": "educacao/api/endpoints/transferencias_automacao.py",
+      "function": "request_transfer_async",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/automacao/sync",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transferencias_automacao.py",
+      "module": "educacao/api/endpoints/transferencias_automacao.py",
+      "function": "request_transfer_sync",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/wizard/iniciar",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "iniciar",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/wizard/{wizard_id}/passo1/origem",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "salvar_origem",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/wizard/{wizard_id}/passo2/destino",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "salvar_destino",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/wizard/{wizard_id}/passo4/reservar",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "reservar_vaga",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    },
+    {
+      "route": "/transferencias/wizard/{wizard_id}/passo5/confirmar",
+      "file": "apps/backend/app/modules/educacao/api/endpoints/transfer_wizard.py",
+      "module": "educacao/api/endpoints/transfer_wizard.py",
+      "function": "confirmar_transferencia",
+      "method": "POST",
+      "has_auth": true,
+      "has_permission": false,
+      "has_territorial": false,
+      "has_role_check": false,
+      "protected_correctly": false,
+      "sem_protecao": false,
+      "sem_restricao_territorial": true,
+      "sem_restricao_de_funcao": true,
+      "critical_score": 47
+    }
+  ],
+  "cases": [
+    {
+      "case": "CASO_A",
+      "label": "Administrador Nacional",
+      "verdict": "PASSA",
+      "reason": "Administrador central tem acesso institucional (nível central) e políticas/guards existem no código.",
+      "examples": []
+    },
+    {
+      "case": "CASO_B",
+      "label": "Administrador Provincial (Huambo)",
+      "verdict": "FALHA",
+      "reason": "Detectados endpoints nacionais sem proteção suficiente (1356), logo um admin provincial/municipal pode aceder a recursos nacionais.",
+      "examples": [
+        {
+          "route": "/registo-civil/health",
+          "module": "telecomunicacoes/api/health.py",
+          "file": "apps/backend/app/modules/telecomunicacoes/api/health.py"
+        },
+        {
+          "route": "/estabelecimentos_industriais/",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py"
+        },
+        {
+          "route": "/estabelecimentos_industriais/{item_id}/iniciar_atividades",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py"
+        }
+      ]
+    },
+    {
+      "case": "CASO_C",
+      "label": "Administrador Municipal (Caála)",
+      "verdict": "FALHA",
+      "reason": "Detectados endpoints nacionais sem proteção suficiente (1356), logo um admin provincial/municipal pode aceder a recursos nacionais.",
+      "examples": [
+        {
+          "route": "/registo-civil/health",
+          "module": "telecomunicacoes/api/health.py",
+          "file": "apps/backend/app/modules/telecomunicacoes/api/health.py"
+        },
+        {
+          "route": "/estabelecimentos_industriais/",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py"
+        },
+        {
+          "route": "/estabelecimentos_industriais/{item_id}/iniciar_atividades",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py"
+        }
+      ]
+    },
+    {
+      "case": "CASO_D",
+      "label": "Diretor Escola",
+      "verdict": "FALHA",
+      "reason": "Endpoints da área de Educação sem proteção detectados (69).",
+      "examples": [
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "list_roles",
+          "method": "GET",
+          "route": "/educacao/admin/roles",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "role_permissions",
+          "method": "GET",
+          "route": "/educacao/admin/roles/{role}/permissions",
+          "route_name": null,
+          "dependencies": [],
+          "params": [
+            {
+              "name": "role",
+              "dependency": null
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "check_scope",
+          "method": "GET",
+          "route": "/educacao/admin/scope/check",
+          "route_name": null,
+          "dependencies": [],
+          "params": [
+            {
+              "name": "user_role",
+              "dependency": null
+            },
+            {
+              "name": "user_province",
+              "dependency": null
+            },
+            {
+              "name": "user_municipality",
+              "dependency": null
+            },
+            {
+              "name": "user_school",
+              "dependency": null
+            },
+            {
+              "name": "resource_nivel",
+              "dependency": null
+            },
+            {
+              "name": "resource_province",
+              "dependency": null
+            },
+            {
+              "name": "resource_municipality",
+              "dependency": null
+            },
+            {
+              "name": "resource_school",
+              "dependency": null
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        }
+      ]
+    },
+    {
+      "case": "CASO_E",
+      "label": "Funcionário Escola",
+      "verdict": "FALHA",
+      "reason": "Endpoints da área de Educação sem proteção detectados (69).",
+      "examples": [
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "list_roles",
+          "method": "GET",
+          "route": "/educacao/admin/roles",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "role_permissions",
+          "method": "GET",
+          "route": "/educacao/admin/roles/{role}/permissions",
+          "route_name": null,
+          "dependencies": [],
+          "params": [
+            {
+              "name": "role",
+              "dependency": null
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/educacao/rbac/admin_router.py",
+          "module": "educacao/rbac/admin_router.py",
+          "function": "check_scope",
+          "method": "GET",
+          "route": "/educacao/admin/scope/check",
+          "route_name": null,
+          "dependencies": [],
+          "params": [
+            {
+              "name": "user_role",
+              "dependency": null
+            },
+            {
+              "name": "user_province",
+              "dependency": null
+            },
+            {
+              "name": "user_municipality",
+              "dependency": null
+            },
+            {
+              "name": "user_school",
+              "dependency": null
+            },
+            {
+              "name": "resource_nivel",
+              "dependency": null
+            },
+            {
+              "name": "resource_province",
+              "dependency": null
+            },
+            {
+              "name": "resource_municipality",
+              "dependency": null
+            },
+            {
+              "name": "resource_school",
+              "dependency": null
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        }
+      ]
+    },
+    {
+      "case": "CASO_F",
+      "label": "Técnico Assistência Social",
+      "verdict": "FALHA",
+      "reason": "Existem muitos endpoints expostos sem restrições (ex.: /ping).",
+      "examples": [
+        {
+          "file": "apps/backend/app/modules/api/router.py",
+          "module": "api/router.py",
+          "function": "ping",
+          "method": "GET",
+          "route": "/ping",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/telecomunicacoes/api/health.py",
+          "module": "telecomunicacoes/api/health.py",
+          "function": "health",
+          "method": "GET",
+          "route": "/registo-civil/health",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "function": "cadastrar_estabelecimento_industrial",
+          "method": "POST",
+          "route": "/estabelecimentos_industriais/",
+          "route_name": null,
+          "dependencies": [
+            "get_estabelecimento_industrial_service"
+          ],
+          "params": [
+            {
+              "name": "data",
+              "dependency": null
+            },
+            {
+              "name": "service",
+              "dependency": "get_estabelecimento_industrial_service"
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 7
+        }
+      ]
+    },
+    {
+      "case": "CASO_G",
+      "label": "Cidadão",
+      "verdict": "FALHA",
+      "reason": "Existem muitos endpoints expostos sem restrições (ex.: /ping).",
+      "examples": [
+        {
+          "file": "apps/backend/app/modules/api/router.py",
+          "module": "api/router.py",
+          "function": "ping",
+          "method": "GET",
+          "route": "/ping",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/telecomunicacoes/api/health.py",
+          "module": "telecomunicacoes/api/health.py",
+          "function": "health",
+          "method": "GET",
+          "route": "/registo-civil/health",
+          "route_name": null,
+          "dependencies": [],
+          "params": [],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 2
+        },
+        {
+          "file": "apps/backend/app/modules/industry/api/endpoints/estabelecimentos_industriais.py",
+          "module": "industry/api/endpoints/estabelecimentos_industriais.py",
+          "function": "cadastrar_estabelecimento_industrial",
+          "method": "POST",
+          "route": "/estabelecimentos_industriais/",
+          "route_name": null,
+          "dependencies": [
+            "get_estabelecimento_industrial_service"
+          ],
+          "params": [
+            {
+              "name": "data",
+              "dependency": null
+            },
+            {
+              "name": "service",
+              "dependency": "get_estabelecimento_industrial_service"
+            }
+          ],
+          "has_auth": false,
+          "has_permission": false,
+          "has_territorial": false,
+          "has_role_check": false,
+          "critical_score": 7
+        }
+      ]
+    }
+  ]
+}

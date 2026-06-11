@@ -16,6 +16,8 @@ export interface User {
     administrative_level: AdminLevel;
     region_id?: number;
     roles: string[];
+    // Optional scopes returned from the JWT (used to determine allowed modules)
+    scopes?: string[];
     created_at?: string;
     updated_at?: string;
     last_login?: string;

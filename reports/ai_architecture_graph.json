@@ -1,6 +1,6 @@
 {
   "system": "sila-system",
-  "generated_at": "2026-06-07T12:05:44.635768+00:00",
+  "generated_at": "2026-06-08T18:34:13.525629+00:00",
   "modules": {
     "_scaffold": {
       "path": "apps/backend/app/modules/_scaffold",
@@ -18,7 +18,7 @@
     "administracao-local": {
       "path": "apps/backend/app/modules/administracao-local",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -31,7 +31,7 @@
     "agricultura": {
       "path": "apps/backend/app/modules/agricultura",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -44,7 +44,7 @@
     "aguas-saneamento": {
       "path": "apps/backend/app/modules/aguas-saneamento",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -57,7 +57,7 @@
     "ambiente": {
       "path": "apps/backend/app/modules/ambiente",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -99,7 +99,7 @@
     "apoio-empresarial": {
       "path": "apps/backend/app/modules/apoio-empresarial",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -112,7 +112,7 @@
     "arquivo-nacional": {
       "path": "apps/backend/app/modules/arquivo-nacional",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -125,7 +125,7 @@
     "assistencia-social": {
       "path": "apps/backend/app/modules/assistencia-social",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -167,7 +167,7 @@
     "aviacao-civil": {
       "path": "apps/backend/app/modules/aviacao-civil",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -180,7 +180,7 @@
     "ciencia-pesquisa": {
       "path": "apps/backend/app/modules/ciencia-pesquisa",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -267,7 +267,7 @@
     "comercio": {
       "path": "apps/backend/app/modules/comercio",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -280,7 +280,7 @@
     "comercio-externo": {
       "path": "apps/backend/app/modules/comercio-externo",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -326,7 +326,7 @@
     "cooperacao-internacional": {
       "path": "apps/backend/app/modules/cooperacao-internacional",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -339,7 +339,7 @@
     "cultura": {
       "path": "apps/backend/app/modules/cultura",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -352,7 +352,7 @@
     "defesa-consumidor": {
       "path": "apps/backend/app/modules/defesa-consumidor",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -365,7 +365,7 @@
     "desporto": {
       "path": "apps/backend/app/modules/desporto",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -514,7 +514,7 @@
     "emprego": {
       "path": "apps/backend/app/modules/emprego",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -527,7 +527,7 @@
     "energia": {
       "path": "apps/backend/app/modules/energia",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -613,7 +613,7 @@
     "estatistica": {
       "path": "apps/backend/app/modules/estatistica",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -626,7 +626,7 @@
     "familia": {
       "path": "apps/backend/app/modules/familia",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -639,7 +639,7 @@
     "financas-impostos": {
       "path": "apps/backend/app/modules/financas-impostos",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -652,7 +652,7 @@
     "florestas": {
       "path": "apps/backend/app/modules/florestas",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -665,7 +665,7 @@
     "gestao-fundiaria": {
       "path": "apps/backend/app/modules/gestao-fundiaria",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -715,7 +715,7 @@
     "habitacao": {
       "path": "apps/backend/app/modules/habitacao",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -765,7 +765,7 @@
     "igualdade": {
       "path": "apps/backend/app/modules/igualdade",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -778,7 +778,7 @@
     "industria": {
       "path": "apps/backend/app/modules/industria",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -973,7 +973,7 @@
     "justica": {
       "path": "apps/backend/app/modules/justica",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1024,7 +1024,7 @@
     "juventude": {
       "path": "apps/backend/app/modules/juventude",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1167,7 +1167,7 @@
     "meteorologia": {
       "path": "apps/backend/app/modules/meteorologia",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1180,7 +1180,7 @@
     "migracao": {
       "path": "apps/backend/app/modules/migracao",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1242,7 +1242,7 @@
     "obras-publicas": {
       "path": "apps/backend/app/modules/obras-publicas",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1288,7 +1288,7 @@
     "patrimonio-cultural": {
       "path": "apps/backend/app/modules/patrimonio-cultural",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1359,7 +1359,7 @@
     "pecuaria": {
       "path": "apps/backend/app/modules/pecuaria",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1372,7 +1372,7 @@
     "pescas": {
       "path": "apps/backend/app/modules/pescas",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1385,7 +1385,7 @@
     "pescas-industriais": {
       "path": "apps/backend/app/modules/pescas-industriais",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1398,7 +1398,7 @@
     "petroleo-gas": {
       "path": "apps/backend/app/modules/petroleo-gas",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1411,7 +1411,7 @@
     "planeamento": {
       "path": "apps/backend/app/modules/planeamento",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1424,7 +1424,7 @@
     "portos-logistica": {
       "path": "apps/backend/app/modules/portos-logistica",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1496,7 +1496,7 @@
     "protecao-civil": {
       "path": "apps/backend/app/modules/protecao-civil",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1509,7 +1509,7 @@
     "protecao-dados": {
       "path": "apps/backend/app/modules/protecao-dados",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1635,7 +1635,7 @@
     "recursos-minerais": {
       "path": "apps/backend/app/modules/recursos-minerais",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1724,7 +1724,7 @@
     "seguranca-alimentar": {
       "path": "apps/backend/app/modules/seguranca-alimentar",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1737,7 +1737,7 @@
     "seguranca-publica": {
       "path": "apps/backend/app/modules/seguranca-publica",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1750,7 +1750,7 @@
     "seguranca-social": {
       "path": "apps/backend/app/modules/seguranca-social",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1793,7 +1793,7 @@
     "tecnologia-inovacao": {
       "path": "apps/backend/app/modules/tecnologia-inovacao",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1806,7 +1806,7 @@
     "telecomunicacoes": {
       "path": "apps/backend/app/modules/telecomunicacoes",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1963,7 +1963,7 @@
     "trabalho-inspecao": {
       "path": "apps/backend/app/modules/trabalho-inspecao",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1976,7 +1976,7 @@
     "transportes": {
       "path": "apps/backend/app/modules/transportes",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -1989,7 +1989,7 @@
     "turismo": {
       "path": "apps/backend/app/modules/turismo",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],
@@ -2002,7 +2002,7 @@
     "urbanismo": {
       "path": "apps/backend/app/modules/urbanismo",
       "domain_group": "unknown",
-      "layered_architecture": true,
+      "layered_architecture": false,
       "entities": [
         "PlaceholderModel"
       ],

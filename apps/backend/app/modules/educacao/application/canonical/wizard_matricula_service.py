@@ -42,6 +42,7 @@ from apps.backend.app.modules.educacao.exceptions import (
     TurmaSemVagasError,
 )
 from apps.backend.app.modules.educacao.infrastructure.models import EnrollmentModel
+from apps.backend.app.modules.educacao.infrastructure.models.escola_model import EscolaModel
 
 
 class WizardMatriculaService:
@@ -293,15 +294,19 @@ class WizardMatriculaService:
 
         # ── Create Enrollment record ──
         if self._session is not None:
+            escola_id = UUID(escola_sel["escola_id"])
+            escola_model = await self._session.get(EscolaModel, escola_id)
+            territory_id = getattr(escola_model, "territory_id", None) if escola_model else None
             enrollment = EnrollmentModel(
                 id=uuid_lib.uuid4(),
                 student_id=identity_id,
-                institution_id=UUID(escola_sel["escola_id"]),
+                institution_id=escola_id,
                 academic_year=str(escola_sel.get("ano_letivo_id", "")),
                 grade=escola_sel.get("classe", ""),
                 status="ACTIVE",
                 started_at=datetime.utcnow(),
                 academic_identity_id=identity_id,
+                territory_id=territory_id,
             )
             self._session.add(enrollment)
 
@@ -334,6 +339,7 @@ class WizardMatriculaService:
                     "national_student_number": ns_number,
                     "timestamp": datetime.utcnow().isoformat(),
                 },
+                correlation_id=session.id,
             )
             await self._event_bus.publish(event)
 
@@ -368,6 +374,24 @@ class WizardMatriculaService:
             "qr_code_url": f"/api/v1/educacao/matriculas/wizard/{wizard_id}/qrcode",
             "comprovativo_url": f"/api/v1/educacao/matriculas/wizard/{wizard_id}/comprovativo",
         }
+
+    async def cancelar(self, wizard_id: UUID) -> WizardSession:
+        """Cancel a wizard session and publish a cancellation event."""
+        session = await self.wizard_repo.get_by_id(wizard_id)
+        if not session:
+            raise ValueError("Sessao wizard nao encontrada")
+        session.cancelar()
+        saved = await self.wizard_repo.save(session)
+        if self._event_bus:
+            event = AuditableEvent(
+                aggregate_id=wizard_id,
+                aggregate_type="WizardMatricula",
+                event_type="WizardCancelled",
+                metadata={"reason": "cancelled_by_system", "timestamp": datetime.utcnow().isoformat()},
+                correlation_id=wizard_id,
+            )
+            await self._event_bus.publish(event)
+        return saved
 
     @staticmethod
     def _validar_idade_minima(estudante: dict, escola_sel: dict) -> dict:

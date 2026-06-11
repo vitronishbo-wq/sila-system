@@ -1,5 +1,5 @@
 system: sila-system
-generated_at: '2026-06-07T12:05:44Z'
+generated_at: '2026-06-08T18:34:13Z'
 modules:
   _scaffold:
     path: apps/backend/app/modules/_scaffold
@@ -14,7 +14,7 @@ modules:
   administracao-local:
     path: apps/backend/app/modules/administracao-local
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -24,7 +24,7 @@ modules:
   agricultura:
     path: apps/backend/app/modules/agricultura
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -34,7 +34,7 @@ modules:
   aguas-saneamento:
     path: apps/backend/app/modules/aguas-saneamento
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -44,7 +44,7 @@ modules:
   ambiente:
     path: apps/backend/app/modules/ambiente
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -79,7 +79,7 @@ modules:
   apoio-empresarial:
     path: apps/backend/app/modules/apoio-empresarial
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -89,7 +89,7 @@ modules:
   arquivo-nacional:
     path: apps/backend/app/modules/arquivo-nacional
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -99,7 +99,7 @@ modules:
   assistencia-social:
     path: apps/backend/app/modules/assistencia-social
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -134,7 +134,7 @@ modules:
   aviacao-civil:
     path: apps/backend/app/modules/aviacao-civil
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -144,7 +144,7 @@ modules:
   ciencia-pesquisa:
     path: apps/backend/app/modules/ciencia-pesquisa
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -225,7 +225,7 @@ modules:
   comercio:
     path: apps/backend/app/modules/comercio
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -235,7 +235,7 @@ modules:
   comercio-externo:
     path: apps/backend/app/modules/comercio-externo
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -275,7 +275,7 @@ modules:
   cooperacao-internacional:
     path: apps/backend/app/modules/cooperacao-internacional
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -285,7 +285,7 @@ modules:
   cultura:
     path: apps/backend/app/modules/cultura
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -295,7 +295,7 @@ modules:
   defesa-consumidor:
     path: apps/backend/app/modules/defesa-consumidor
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -305,7 +305,7 @@ modules:
   desporto:
     path: apps/backend/app/modules/desporto
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -440,7 +440,7 @@ modules:
   emprego:
     path: apps/backend/app/modules/emprego
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -450,7 +450,7 @@ modules:
   energia:
     path: apps/backend/app/modules/energia
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -530,7 +530,7 @@ modules:
   estatistica:
     path: apps/backend/app/modules/estatistica
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -540,7 +540,7 @@ modules:
   familia:
     path: apps/backend/app/modules/familia
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -550,7 +550,7 @@ modules:
   financas-impostos:
     path: apps/backend/app/modules/financas-impostos
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -560,7 +560,7 @@ modules:
   florestas:
     path: apps/backend/app/modules/florestas
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -570,7 +570,7 @@ modules:
   gestao-fundiaria:
     path: apps/backend/app/modules/gestao-fundiaria
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -613,7 +613,7 @@ modules:
   habitacao:
     path: apps/backend/app/modules/habitacao
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -657,7 +657,7 @@ modules:
   igualdade:
     path: apps/backend/app/modules/igualdade
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -667,7 +667,7 @@ modules:
   industria:
     path: apps/backend/app/modules/industria
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -844,7 +844,7 @@ modules:
   justica:
     path: apps/backend/app/modules/justica
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -888,7 +888,7 @@ modules:
   juventude:
     path: apps/backend/app/modules/juventude
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1022,7 +1022,7 @@ modules:
   meteorologia:
     path: apps/backend/app/modules/meteorologia
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1032,7 +1032,7 @@ modules:
   migracao:
     path: apps/backend/app/modules/migracao
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1085,7 +1085,7 @@ modules:
   obras-publicas:
     path: apps/backend/app/modules/obras-publicas
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1125,7 +1125,7 @@ modules:
   patrimonio-cultural:
     path: apps/backend/app/modules/patrimonio-cultural
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1189,7 +1189,7 @@ modules:
   pecuaria:
     path: apps/backend/app/modules/pecuaria
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1199,7 +1199,7 @@ modules:
   pescas:
     path: apps/backend/app/modules/pescas
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1209,7 +1209,7 @@ modules:
   pescas-industriais:
     path: apps/backend/app/modules/pescas-industriais
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1219,7 +1219,7 @@ modules:
   petroleo-gas:
     path: apps/backend/app/modules/petroleo-gas
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1229,7 +1229,7 @@ modules:
   planeamento:
     path: apps/backend/app/modules/planeamento
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1239,7 +1239,7 @@ modules:
   portos-logistica:
     path: apps/backend/app/modules/portos-logistica
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1304,7 +1304,7 @@ modules:
   protecao-civil:
     path: apps/backend/app/modules/protecao-civil
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1314,7 +1314,7 @@ modules:
   protecao-dados:
     path: apps/backend/app/modules/protecao-dados
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1434,7 +1434,7 @@ modules:
   recursos-minerais:
     path: apps/backend/app/modules/recursos-minerais
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1512,7 +1512,7 @@ modules:
   seguranca-alimentar:
     path: apps/backend/app/modules/seguranca-alimentar
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1522,7 +1522,7 @@ modules:
   seguranca-publica:
     path: apps/backend/app/modules/seguranca-publica
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1532,7 +1532,7 @@ modules:
   seguranca-social:
     path: apps/backend/app/modules/seguranca-social
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1568,7 +1568,7 @@ modules:
   tecnologia-inovacao:
     path: apps/backend/app/modules/tecnologia-inovacao
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1578,7 +1578,7 @@ modules:
   telecomunicacoes:
     path: apps/backend/app/modules/telecomunicacoes
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1728,7 +1728,7 @@ modules:
   trabalho-inspecao:
     path: apps/backend/app/modules/trabalho-inspecao
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1738,7 +1738,7 @@ modules:
   transportes:
     path: apps/backend/app/modules/transportes
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1748,7 +1748,7 @@ modules:
   turismo:
     path: apps/backend/app/modules/turismo
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []
@@ -1758,7 +1758,7 @@ modules:
   urbanismo:
     path: apps/backend/app/modules/urbanismo
     domain_group: unknown
-    layered_architecture: true
+    layered_architecture: false
     entities:
       - PlaceholderModel
     use_cases: []

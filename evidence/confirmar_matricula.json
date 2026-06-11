@@ -1,0 +1,9 @@
+{
+  "flow": "Confirmar Matrícula",
+  "result": "PASS",
+  "time_s": 0.0,
+  "details": {
+    "current_step": 1,
+    "status": "in_progress"
+  }
+}

@@ -1,0 +1,46 @@
+{
+    "code": "CONTRATACAO_PUBLICA",
+    "name": "Contratação Pública",
+    "entity_type": "procurement",
+    "timeout_hours": 168,
+    "states": [
+        {
+            "code": "PUBLICADO",
+            "name": "Concurso Publicado",
+            "is_initial": true
+        },
+        {
+            "code": "PROPOSTA_SUBMETIDA",
+            "name": "Proposta Submetida"
+        },
+        {
+            "code": "AVALIACAO_CONCLUIDA",
+            "name": "Avaliação Concluída"
+        },
+        {
+            "code": "ADJUDICACAO_EMITIDA",
+            "name": "Adjudicação Emitida",
+            "is_final": true
+        }
+    ],
+    "transitions": [
+        {
+            "code": "TO_PROPOSTA_SUBMETIDA",
+            "name": "Submeter Proposta",
+            "from": "PUBLICADO",
+            "to": "PROPOSTA_SUBMETIDA"
+        },
+        {
+            "code": "TO_AVALIACAO_CONCLUIDA",
+            "name": "Concluir Avaliação",
+            "from": "PROPOSTA_SUBMETIDA",
+            "to": "AVALIACAO_CONCLUIDA"
+        },
+        {
+            "code": "TO_ADJUDICACAO_EMITIDA",
+            "name": "Emitir Adjudicação",
+            "from": "AVALIACAO_CONCLUIDA",
+            "to": "ADJUDICACAO_EMITIDA"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+  "code": "NASCIMENTO_BI_NIF_SS",
+  "name": "Registo de Nascimento, BI, NIF e Segurança Social",
+  "entity_type": "birth_record",
+  "timeout_hours": 168,
+  "states": [
+    {
+      "code": "REGISTADO",
+      "name": "Registo Criado",
+      "is_initial": true
+    },
+    {
+      "code": "CERTIDAO_EMITIDA",
+      "name": "Certidão Emitida"
+    },
+    {
+      "code": "NIF_ATRIBUIDO",
+      "name": "NIF Atribuído"
+    },
+    {
+      "code": "SS_ATRIBUIDO",
+      "name": "Segurança Social Atribuída",
+      "is_final": true
+    }
+  ],
+  "transitions": [
+    {
+      "code": "TO_CERTIDAO",
+      "name": "Emitir Certidão",
+      "from": "REGISTADO",
+      "to": "CERTIDAO_EMITIDA"
+    },
+    {
+      "code": "TO_NIF",
+      "name": "Atribuir NIF",
+      "from": "CERTIDAO_EMITIDA",
+      "to": "NIF_ATRIBUIDO"
+    },
+    {
+      "code": "TO_SS",
+      "name": "Atribuir Segurança Social",
+      "from": "NIF_ATRIBUIDO",
+      "to": "SS_ATRIBUIDO"
+    }
+  ]
+}

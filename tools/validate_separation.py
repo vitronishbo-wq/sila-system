@@ -1,4 +1,40 @@
 #!/usr/bin/env python3
+"""Validate test separation rules using `test_separation_system`.
+
+Checks basic invariants like: integration/e2e tests should not live under
+`tests/unit` directories and returns non-zero on violations.
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+import sys
+
+from tools.test_separation_system import collect_tests
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-r", "--root", default=Path("tests"), type=Path)
+    args = parser.parse_args()
+
+    issues = []
+    for p, category in collect_tests(args.root):
+        if category in ("integration", "e2e") and "unit" in p.parts:
+            issues.append((p, category))
+
+    if issues:
+        print("Separation issues found:")
+        for p, cat in issues:
+            print(f" - {p}: classified as {cat} but located in a 'unit' path")
+        sys.exit(2)
+
+    print("No separation issues found.")
+
+
+if __name__ == "__main__":
+    main()
+#!/usr/bin/env python3
 """
 ✅ SILA Separation Validator
 =============================

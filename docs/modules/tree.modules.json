@@ -3,12 +3,12 @@
   "root": "apps/backend/app/processes/nascimento_bi_nif_ss/",
   "purpose": "Módulo de execução e regras de negócio isoladas para nascimento_bi_nif_ss.",
   "entrypoints": [],
-  "workflows": [
-    "apps/backend/app/processes/nascimento_bi_nif_ss/workflow.py"
-  ],
+  "workflows": [],
   "tests": [
-    "apps/backend/app/processes/nascimento_bi_nif_ss/tests.py"
+    "apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_success_e2e.py",
+    "apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_cancel_e2e.py",
+    "apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_reject_e2e.py"
   ],
-  "quick_run": "PYTHONPATH=. python -m pytest apps/backend/app/processes/nascimento_bi_nif_ss/tests.py",
-  "last_updated": "2026-06-08"
+  "quick_run": "PYTHONPATH=. python -m pytest apps/backend/app/processes/nascimento_bi_nif_ss/tests/e2e/test_nascimento_success_e2e.py",
+  "last_updated": "2026-06-11"
 }

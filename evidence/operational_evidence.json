@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "flow": "AnoLetivo",
+      "created": false,
+      "id": "36a95d8c-8f7a-4d1b-b5f1-2ec39570ab7f"
+    },
+    {
+      "flow": "Escola Huambo",
+      "created": true,
+      "id": "a1a4cc9b-dcba-4d8b-a037-8ab2d95306f8"
+    },
+    {
+      "flow": "Turma Huambo",
+      "created": true,
+      "id": "627bd300-862d-477b-b810-e5d923828e5e"
+    },
+    {
+      "flow": "Criar Matrícula",
+      "created": true,
+      "id": "e828052e-94fc-4b29-8e24-2c622b99c3b3",
+      "student_id": "fe499e94-47f7-4202-bbb9-e8b9e9587ff2"
+    },
+    {
+      "flow": "Emitir Boletim",
+      "created": true,
+      "id": "5992b685-785f-495f-bd21-f50e491a7c74"
+    },
+    {
+      "flow": "Emitir Certificado",
+      "created": true,
+      "id": "7736192f-ce51-4194-b575-1c7429de9027"
+    },
+    {
+      "flow": "Escola Benguela",
+      "created": true,
+      "id": "139209d6-3783-49db-ab6d-b642b3bbb335"
+    },
+    {
+      "flow": "Territorialidade Huambo",
+      "count": 2,
+      "pass": true
+    },
+    {
+      "flow": "Territorialidade Benguela",
+      "count": 2,
+      "pass": true
+    }
+  ]
+}

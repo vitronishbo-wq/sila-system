@@ -1,0 +1,475 @@
+#!/usr/bin/env python3
+"""
+repo-nav: navegação rápida pelo repositório usando os índices em `docs/tree.json`
+
+Funcionalidades principais:
+- `search` — procurar por nomes de ficheiros (prefix/smart/fuzzy/regex)
+- `open` — abrir ficheiro/linha no editor configurado (`$REPO_NAV_EDITOR` ou `$EDITOR`)
+- `show` — mostrar trecho de ficheiro com contexto
+- `modules` — listar módulos a partir de `docs/modules/*.json`
+
+Design constraints:
+- Usa apenas os caminhos listados em `docs/tree.json` como raiz da pesquisa (regra do repositório).
+- Evita varridas globais; usa `find`/`rg`/`grep` restrito às áreas conhecidas.
+"""
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+import re
+import datetime
+from difflib import SequenceMatcher
+
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DOCS_TREE = os.path.join(ROOT, "docs", "tree.json")
+MODULES_GLOB = os.path.join(ROOT, "docs", "modules")
+
+
+def load_tree_roots():
+    if not os.path.exists(DOCS_TREE):
+        print(f"ERRO: índice não encontrado: {DOCS_TREE}")
+        sys.exit(2)
+    with open(DOCS_TREE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    roots = []
+    for it in data.get("items", []):
+        p = it.get("path")
+        if not p:
+            continue
+        # make absolute
+        roots.append(os.path.join(ROOT, p))
+    return roots
+
+
+def load_modules():
+    modules = []
+    if os.path.isdir(MODULES_GLOB):
+        for name in os.listdir(MODULES_GLOB):
+            if not name.endswith('.json'):
+                continue
+            path = os.path.join(MODULES_GLOB, name)
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    modules.append(json.load(f))
+            except Exception:
+                continue
+    return modules
+
+
+def load_modules_with_source():
+    modules = []
+    if os.path.isdir(MODULES_GLOB):
+        for name in os.listdir(MODULES_GLOB):
+            if not name.endswith('.json'):
+                continue
+            path = os.path.join(MODULES_GLOB, name)
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                data['_source_path'] = path
+                modules.append(data)
+            except Exception:
+                continue
+    return modules
+
+
+def load_agent_rules_owners():
+    """Tenta extrair a lista `owners` de `AGENT_RULES.md`. Retorna lista ou fallback."""
+    path = os.path.join(ROOT, 'AGENT_RULES.md')
+    owners = []
+    if not os.path.exists(path):
+        return ['platform-team']
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+        inside = False
+        for ln in lines:
+            s = ln.strip()
+            if s.startswith('owners:'):
+                inside = True
+                continue
+            if inside:
+                if s.startswith('-'):
+                    owners.append(s.lstrip('-').strip())
+                elif s == '' or s.endswith(':'):
+                    break
+        if owners:
+            return owners
+    except Exception:
+        pass
+    return ['platform-team']
+
+
+def load_module_jsons():
+    """Carrega `module.json` dos módulos indicados em `docs/modules/*.json`.
+
+    Retorna um dicionário: { module_name: metadata_dict }
+    """
+    meta = {}
+    mods = load_modules()
+    for m in mods:
+        root = m.get('root')
+        if not root:
+            continue
+        module_name = m.get('module') or os.path.basename(root.rstrip('/'))
+        ab_root = os.path.join(ROOT, root) if not os.path.isabs(root) else root
+        module_json_path = os.path.join(ab_root, 'module.json')
+        if os.path.exists(module_json_path):
+            try:
+                with open(module_json_path, 'r', encoding='utf-8') as f:
+                    meta[module_name] = json.load(f)
+            except Exception as e:
+                meta[module_name] = {'_load_error': str(e)}
+    return meta
+
+
+def run_find(roots):
+    # use find to list files under the provided roots; keep it simple
+    cmd = ["find"] + roots + ["-type", "f", "-print"]
+    try:
+        out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL, text=True)
+        files = [p for p in out.splitlines() if p]
+        return files
+    except Exception:
+        # fallback to os.walk (limited to roots)
+        files = []
+        for r in roots:
+            for dirpath, dirnames, filenames in os.walk(r):
+                for fn in filenames:
+                    files.append(os.path.join(dirpath, fn))
+        return files
+
+
+def fuzzy_score(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+
+def search_by_name(pattern, roots, fuzzy=False, regex=False, case_sensitive=False, limit=20):
+    files = run_find(roots)
+    if not case_sensitive:
+        pattern_cmp = pattern.lower()
+    else:
+        pattern_cmp = pattern
+
+    results = []
+    if regex:
+        flags = 0 if case_sensitive else re.IGNORECASE
+        rx = re.compile(pattern, flags)
+        for p in files:
+            if rx.search(p):
+                results.append((1.0, p))
+    elif fuzzy:
+        for p in files:
+            score = max(fuzzy_score(os.path.basename(p), pattern), fuzzy_score(p, pattern))
+            if score > 0.25:
+                results.append((score, p))
+        results.sort(key=lambda x: x[0], reverse=True)
+    else:
+        for p in files:
+            cmp_p = p if case_sensitive else p.lower()
+            if pattern_cmp in cmp_p:
+                results.append((1.0, p))
+
+    # limit and return
+    return [p for _, p in results][:limit]
+
+
+def search_content(pattern, roots, case_sensitive=False, limit=20):
+    # prefer ripgrep if present
+    rg = shutil.which("rg")
+    cmd = None
+    if rg:
+        cmd = [rg, "--no-ignore-vcs", "--hidden", "-n", pattern] + roots
+    else:
+        # fallback to grep
+        cmd = ["grep", "-R", "-n"]
+        if not case_sensitive:
+            cmd.insert(1, "-i")
+        cmd += [pattern] + roots
+
+    try:
+        out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL, text=True)
+        lines = out.splitlines()
+        # each line: file:line:content or file:line:... for rg
+        results = []
+        for ln in lines[:limit]:
+            parts = ln.split(':', 2)
+            if len(parts) >= 3:
+                results.append({'file': parts[0], 'line': int(parts[1]), 'text': parts[2]})
+        return results
+    except subprocess.CalledProcessError as e:
+        return []
+    except Exception:
+        return []
+
+
+def show_file(path, line=None, context=3):
+    try:
+        with open(path, 'r', encoding='utf-8', errors='replace') as f:
+            lines = f.readlines()
+    except Exception as e:
+        print(f"Erro a abrir {path}: {e}")
+        return
+    total = len(lines)
+    if line is None:
+        start = 0
+        end = min(total, context)
+    else:
+        idx = max(0, line - 1)
+        start = max(0, idx - context)
+        end = min(total, idx + context + 1)
+
+    print(f"-- {path} (lines {start+1}-{end}) --")
+    for i in range(start, end):
+        prefix = '>' if (line is not None and i == line - 1) else ' '
+        print(f"{prefix} {i+1:5d}: {lines[i].rstrip()}" )
+
+
+def open_in_editor(path, line=None, editor=None, exec_cmd=False):
+    editor = editor or os.environ.get('REPO_NAV_EDITOR') or os.environ.get('EDITOR')
+    if not editor:
+        print("Nenhum editor definido. Defina $REPO_NAV_EDITOR ou $EDITOR, ou use --editor.")
+        return
+    # support code -g, vim +line, nano +line
+    cmd = None
+    if 'code' in os.path.basename(editor):
+        if line:
+            cmd = [editor, "-g", f"{path}:{line}"]
+        else:
+            cmd = [editor, path]
+    elif 'vim' in os.path.basename(editor) or 'nvim' in os.path.basename(editor):
+        if line:
+            cmd = [editor, f"+{line}", path]
+        else:
+            cmd = [editor, path]
+    else:
+        # generic: open path, ignore line
+        cmd = [editor, path]
+
+    print("Executando:", " ".join(cmd))
+    if exec_cmd:
+        try:
+            subprocess.Popen(cmd)
+        except Exception as e:
+            print("Falha ao executar editor:", e)
+
+
+def cmd_search(args):
+    roots = load_tree_roots()
+    if args.content:
+        res = search_content(args.pattern, roots, case_sensitive=args.case)
+        for r in res:
+            print(f"{r['file']}:{r['line']}: {r['text']}")
+        return
+
+    files = search_by_name(args.pattern, roots, fuzzy=args.fuzzy, regex=args.regex, case_sensitive=args.case, limit=args.limit)
+    for f in files:
+        print(f)
+
+
+def cmd_open(args):
+    roots = load_tree_roots()
+    files = search_by_name(args.pattern, roots, fuzzy=args.fuzzy, regex=args.regex, case_sensitive=args.case, limit=1)
+    if not files:
+        print("Nenhum ficheiro encontrado")
+        return
+    path = files[0]
+    if args.line:
+        show_file(path, line=args.line, context=args.context)
+    open_in_editor(path, line=args.line, editor=args.editor, exec_cmd=args.exec)
+
+
+def cmd_show(args):
+    path = args.path
+    if not os.path.isabs(path):
+        path = os.path.join(ROOT, path)
+    if not os.path.exists(path):
+        print("Ficheiro não existe:", path)
+        return
+    show_file(path, line=args.line, context=args.context)
+
+
+def cmd_modules(args):
+    modules = load_modules()
+    module_meta = load_module_jsons()
+    if args.module:
+        q = args.module
+        # prefer module.json metadata if available
+        if q in module_meta:
+            print(json.dumps(module_meta[q], indent=2, ensure_ascii=False))
+            return
+        for m in modules:
+            if m.get('module') == q or os.path.basename(m.get('root','')) == q:
+                # merge module doc + module.json if present
+                merged = dict(m)
+                name = m.get('module') or os.path.basename(m.get('root',''))
+                if name in module_meta:
+                    merged.update(module_meta[name])
+                print(json.dumps(merged, indent=2, ensure_ascii=False))
+                return
+        print('Módulo não encontrado')
+        return
+
+    # list module names with available metadata summary
+    for m in modules:
+        name = m.get('module') or os.path.basename(m.get('root',''))
+        root = m.get('root')
+        meta = module_meta.get(name)
+        if meta:
+            owners = ','.join(meta.get('owners', [])) if isinstance(meta.get('owners', []), list) else str(meta.get('owners'))
+            maturity = meta.get('maturity', 'unknown')
+            last = meta.get('last_updated', m.get('last_updated', 'unknown'))
+            print(f"{name} -> {root} | owners: {owners} | maturity: {maturity} | last_updated: {last}")
+        else:
+            print(f"{name} -> {root}")
+
+
+def cmd_generate_modules(args):
+    mods = load_modules_with_source()
+    owners_default = load_agent_rules_owners()
+    created = []
+    skipped = []
+    for m in mods:
+        root = m.get('root')
+        if not root:
+            print(f"[SKIP] módulo sem 'root' em source {m.get('_source_path')}")
+            skipped.append((m.get('module','?'), 'no_root'))
+            continue
+        name = m.get('module') or os.path.basename(root.rstrip('/'))
+        ab_root = os.path.join(ROOT, root) if not os.path.isabs(root) else root
+        module_json_path = os.path.join(ab_root, 'module.json')
+        if not os.path.exists(ab_root):
+            print(f"[WARN] root do módulo ausente, saltando: {name} -> {ab_root}")
+            skipped.append((name, 'missing_root'))
+            continue
+        if os.path.exists(module_json_path) and not args.force:
+            print(f"[SKIP] {name}: module.json já existe (use --force para sobrescrever)")
+            skipped.append((name, 'exists'))
+            continue
+
+        meta = {
+            'module': name,
+            'name': name,
+            'description': m.get('purpose') or m.get('description') or '',
+            'owners': m.get('owners') or owners_default,
+            'maturity': m.get('maturity') or 'unknown',
+            'last_updated': m.get('last_updated') or datetime.date.today().isoformat(),
+            'entrypoints': m.get('entrypoints') or [],
+            'workflows': m.get('workflows') or [],
+            'tests': m.get('tests') or [],
+            'quick_run': m.get('quick_run'),
+            'source_index': m.get('_source_path')
+        }
+
+        if args.dry_run:
+            print(f"[DRY] Criaria {module_json_path} -> {json.dumps(meta, ensure_ascii=False)[:200]}...")
+            created.append(name)
+            continue
+
+        # ensure dir exists
+        try:
+            os.makedirs(ab_root, exist_ok=True)
+            with open(module_json_path, 'w', encoding='utf-8') as f:
+                json.dump(meta, f, ensure_ascii=False, indent=2)
+            print(f"[CREATED] {module_json_path}")
+            created.append(name)
+        except Exception as e:
+            print(f"[ERROR] escrevendo {module_json_path}: {e}")
+            skipped.append((name, 'error'))
+
+    print(f"Resumo: criados={len(created)} ignorados={len(skipped)}")
+    if args.fail_on_error and skipped:
+        sys.exit(4)
+
+
+def cmd_verify(args):
+    roots = load_tree_roots()
+    print("[repo-nav] Verificando índices em docs/tree.json e módulos em docs/modules/ ...")
+    ok = True
+    files_sample = 0
+    for r in roots:
+        if not os.path.exists(r):
+            print(f"[WARN] root path não existe: {r}")
+            ok = False
+        else:
+            try:
+                with os.scandir(r) as it:
+                    c = sum(1 for _ in it)
+                    files_sample += c
+            except Exception:
+                pass
+    modules = load_modules()
+    if not modules:
+        print("[WARN] nenhum módulo encontrado em docs/modules")
+    else:
+        for m in modules:
+            root = m.get('root')
+            if root:
+                ab = os.path.join(ROOT, root) if not os.path.isabs(root) else root
+                if not os.path.exists(ab):
+                    print(f"[WARN] module root ausente: {m.get('module')} -> {ab}")
+                    ok = False
+    if ok:
+        print(f"[OK] Verificação concluída. roots={len(roots)} modules={len(modules)} sample_files={files_sample}")
+        sys.exit(0)
+    else:
+        print("[FAIL] Verificação falhou. Corrija os warnings acima.")
+        sys.exit(4)
+
+
+def main():
+    parser = argparse.ArgumentParser(prog='repo-nav', description='Navegação leve usando índices em docs/tree.json')
+    sub = parser.add_subparsers(dest='cmd')
+
+    p_search = sub.add_parser('search')
+    p_search.add_argument('pattern')
+    p_search.add_argument('--regex', action='store_true')
+    p_search.add_argument('--fuzzy', action='store_true')
+    p_search.add_argument('--content', action='store_true', help='procurar no conteúdo (usa rg/grep)')
+    p_search.add_argument('--case', action='store_true')
+    p_search.add_argument('-l', '--limit', type=int, default=20)
+    p_search.set_defaults(func=cmd_search)
+
+    p_open = sub.add_parser('open')
+    p_open.add_argument('pattern')
+    p_open.add_argument('--editor')
+    p_open.add_argument('--line', type=int)
+    p_open.add_argument('--context', type=int, default=3)
+    p_open.add_argument('--exec', action='store_true', help='executa o editor localmente')
+    p_open.add_argument('--regex', action='store_true')
+    p_open.add_argument('--fuzzy', action='store_true')
+    p_open.add_argument('--case', action='store_true')
+    p_open.set_defaults(func=cmd_open)
+
+    p_show = sub.add_parser('show')
+    p_show.add_argument('path')
+    p_show.add_argument('--line', type=int)
+    p_show.add_argument('--context', type=int, default=3)
+    p_show.set_defaults(func=cmd_show)
+
+    p_mod = sub.add_parser('modules')
+    p_mod.add_argument('--module')
+    p_mod.set_defaults(func=cmd_modules)
+
+    p_verify = sub.add_parser('verify', help='Verifica existência e integridade mínima dos índices (destinado ao CI)')
+    p_verify.add_argument('--strict', action='store_true', help='Trata avisos como erros')
+    p_verify.set_defaults(func=cmd_verify)
+
+    p_gen = sub.add_parser('generate-modules', help='Gera module.json para módulos listados em docs/modules (use --force para sobrescrever)')
+    p_gen.add_argument('--dry-run', action='store_true', help='Não escreve, apenas mostra o que faria')
+    p_gen.add_argument('--force', action='store_true', help='Sobrescreve module.json existente')
+    p_gen.add_argument('--fail-on-error', action='store_true', help='Sai com erro se houver falhas')
+    p_gen.set_defaults(func=cmd_generate_modules)
+
+    args = parser.parse_args()
+    if not args.cmd:
+        parser.print_help()
+        sys.exit(0)
+    args.func(args)
+
+
+if __name__ == '__main__':
+    main()

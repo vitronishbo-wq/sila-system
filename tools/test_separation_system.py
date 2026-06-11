@@ -1,4 +1,56 @@
 #!/usr/bin/env python3
+"""Classify tests into unit/integration/e2e categories.
+
+This script scans for `test_*.py` files (recursively) and classifies them
+based on filename patterns and simple marker heuristics.
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+from typing import List, Tuple
+
+
+def classify_test(path: Path) -> str:
+    name = path.name.lower()
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore").lower()
+    except OSError:
+        text = ""
+    if "e2e" in name or "@pytest.mark.e2e" in text:
+        return "e2e"
+    if "integration" in name or "@pytest.mark.integration" in text:
+        return "integration"
+    return "unit"
+
+
+def collect_tests(root: Path) -> List[Tuple[Path, str]]:
+    out: List[Tuple[Path, str]] = []
+    for p in root.rglob("test_*.py"):
+        out.append((p, classify_test(p)))
+    return out
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-r", "--root", default=Path("tests"), type=Path)
+    parser.add_argument("--summary", action="store_true")
+    args = parser.parse_args()
+
+    entries = collect_tests(args.root)
+    if args.summary:
+        from collections import Counter
+
+        c = Counter([t for _, t in entries])
+        print("Summary:", dict(c))
+
+    for p, t in sorted(entries):
+        print(f"{t}\t{p}")
+
+
+if __name__ == "__main__":
+    main()
+#!/usr/bin/env python3
 """
 🧪 Test Suite - Sistema de Separação Models/Schemas
 ====================================================

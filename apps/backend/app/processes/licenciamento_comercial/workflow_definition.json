@@ -1,0 +1,46 @@
+{
+    "code": "LICENCIAMENTO_COMERCIAL",
+    "name": "Licenciamento Comercial",
+    "entity_type": "service_request",
+    "timeout_hours": 72,
+    "states": [
+        {
+            "code": "SUBMETIDO",
+            "name": "Pedido Submetido",
+            "is_initial": true
+        },
+        {
+            "code": "VALIDACAO_FISCAL",
+            "name": "Validação Fiscal"
+        },
+        {
+            "code": "VALIDACAO_LOCAL",
+            "name": "Validação Local"
+        },
+        {
+            "code": "LICENCA_EMITIDA",
+            "name": "Licença Emitida",
+            "is_final": true
+        }
+    ],
+    "transitions": [
+        {
+            "code": "TO_VALIDACAO_FISCAL",
+            "name": "Para Validação Fiscal",
+            "from": "SUBMETIDO",
+            "to": "VALIDACAO_FISCAL"
+        },
+        {
+            "code": "TO_VALIDACAO_LOCAL",
+            "name": "Para Validação Local",
+            "from": "VALIDACAO_FISCAL",
+            "to": "VALIDACAO_LOCAL"
+        },
+        {
+            "code": "TO_LICENCA_EMITIDA",
+            "name": "Emitir Licença",
+            "from": "VALIDACAO_LOCAL",
+            "to": "LICENCA_EMITIDA"
+        }
+    ]
+}

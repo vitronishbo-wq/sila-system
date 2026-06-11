@@ -1,0 +1,16 @@
+[
+  {
+    "process": "beneficio_social",
+    "previous_status": "PARTIAL",
+    "status": "OPERATIONAL_VALIDATED",
+    "timeline_coverage": 100,
+    "e2e_count": 3
+  },
+  {
+    "process": "nascimento_bi_nif_ss",
+    "previous_status": "PARTIAL",
+    "status": "OPERATIONAL_VALIDATED",
+    "timeline_coverage": 100,
+    "e2e_count": 3
+  }
+]

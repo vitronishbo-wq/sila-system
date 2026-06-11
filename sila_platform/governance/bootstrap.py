@@ -47,8 +47,8 @@ def _build_educacao(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         enabled_services=["matricula", "transferencia", "certificado", "declaracao"],
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_ESCOLA"],
         api_prefix="/api/v1/educacao",
-        exposed_events=["student_enrolled", "student_transferred", "certificate_issued"],
-        consumed_events=["citizen_updated", "identity_verified", "bi_issued"],
+        exposed_events=["StudentEnrolled", "student_transferred", "certificate_issued"],
+        consumed_events=["IdentityDocumentVerified", "IdentityCredentialIssued"],
     ))
 
 
@@ -80,7 +80,7 @@ def _build_saude(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/saude",
         exposed_events=["appointment_scheduled", "prescription_issued", "referral_made"],
-        consumed_events=["citizen_updated", "identity_verified", "student_enrolled"],
+        consumed_events=["IdentityDocumentVerified", "StudentEnrolled"],
     ))
 
 
@@ -113,7 +113,7 @@ def _build_justica(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/justica",
         exposed_events=["civil_registration_issued", "company_incorporated", "notarial_act_signed"],
-        consumed_events=["citizen_updated", "identity_verified", "payment_confirmed"],
+        consumed_events=["IdentityDocumentVerified", "PaymentProcessed"],
     ))
 
 
@@ -138,8 +138,8 @@ def _build_identity(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         enabled_services=["emitir_bi", "verificar_identidade", "autenticar_cidadao", "renovar_bi"],
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/identity",
-        exposed_events=["citizen_updated", "identity_verified", "bi_issued", "biometric_enrolled"],
-        consumed_events=["birth_registered", "payment_confirmed", "death_registered"],
+        exposed_events=["IdentityDocumentVerified", "IdentityCredentialIssued", "BiometricDataEnrolled"],
+        consumed_events=["BirthRecordCreated", "PaymentProcessed", "DeathRecorded"],
     ))
 
 
@@ -164,8 +164,8 @@ def _build_payment(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         enabled_services=["pagamento_taxas", "consultar_pagamento", "reembolso", "conciliacao"],
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/payment",
-        exposed_events=["payment_confirmed", "payment_failed", "invoice_status_changed", "payment_reconciled"],
-        consumed_events=["citizen_updated", "identity_verified", "student_enrolled", "nif_issued"],
+        exposed_events=["PaymentProcessed", "payment_failed", "invoice_status_changed", "PaymentReconciled"],
+        consumed_events=["IdentityDocumentVerified", "StudentEnrolled", "nif_issued"],
     ))
 
 
@@ -191,8 +191,8 @@ def _build_registo_civil(orgs: OrganizationTree, registry: RegistryCatalog) -> N
         enabled_services=["registar_nascimento", "registar_casamento", "registar_obito", "consultar_registo"],
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/registo-civil",
-        exposed_events=["birth_registered", "marriage_registered", "death_registered"],
-        consumed_events=["citizen_updated", "identity_verified"],
+        exposed_events=["BirthRecordCreated", "MarriageRecorded", "DeathRecorded"],
+        consumed_events=["IdentityDocumentVerified"],
     ))
 
 
@@ -218,7 +218,7 @@ def _build_financas_impostos(orgs: OrganizationTree, registry: RegistryCatalog) 
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/financas-impostos",
         exposed_events=["nif_issued", "tax_declaration_submitted", "tax_payment_received"],
-        consumed_events=["citizen_updated", "identity_verified", "company_incorporated", "payment_confirmed"],
+        consumed_events=["IdentityDocumentVerified", "company_incorporated", "PaymentProcessed"],
     ))
 
 
@@ -240,7 +240,7 @@ def _build_administracao_local(orgs: OrganizationTree, registry: RegistryCatalog
         required_roles=["ROLE_PROVINCIA", "ROLE_MUNICIPIO"],
         api_prefix="/api/v1/administracao-local",
         exposed_events=["license_issued", "residence_confirmed", "municipal_certificate_issued"],
-        consumed_events=["citizen_updated", "identity_verified", "payment_confirmed"],
+        consumed_events=["IdentityDocumentVerified", "PaymentProcessed"],
     ))
 
 
@@ -267,7 +267,7 @@ def _build_seguranca_social(orgs: OrganizationTree, registry: RegistryCatalog) -
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_MUNICIPIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/seguranca-social",
         exposed_events=["employer_registered", "social_contribution_received", "benefit_granted"],
-        consumed_events=["citizen_updated", "identity_verified", "payment_confirmed", "company_incorporated"],
+        consumed_events=["IdentityDocumentVerified", "PaymentProcessed", "company_incorporated"],
     ))
 
 
@@ -289,7 +289,7 @@ def _build_integracao_nacional(orgs: OrganizationTree, registry: RegistryCatalog
         required_roles=["ROLE_MINISTERIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/integracao-nacional/bi",
         exposed_events=["bi_verified", "bi_consulted"],
-        consumed_events=["citizen_updated", "identity_verified"],
+        consumed_events=["IdentityDocumentVerified"],
     ))
     # Subdomínio NIF
     registry.register(ModuleRegistry(
@@ -304,7 +304,7 @@ def _build_integracao_nacional(orgs: OrganizationTree, registry: RegistryCatalog
         required_roles=["ROLE_MINISTERIO", "ROLE_UNIDADE"],
         api_prefix="/api/v1/integracao-nacional/nif",
         exposed_events=["nif_verified"],
-        consumed_events=["citizen_updated", "nif_issued"],
+        consumed_events=["IdentityDocumentVerified", "nif_issued"],
     ))
 
 
@@ -325,7 +325,7 @@ def _build_apoio_empresarial(orgs: OrganizationTree, registry: RegistryCatalog) 
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/apoio-empresarial",
         exposed_events=["company_registered", "commercial_license_issued", "business_support_granted"],
-        consumed_events=["citizen_updated", "identity_verified", "payment_confirmed", "nif_issued"],
+        consumed_events=["IdentityDocumentVerified", "PaymentProcessed", "nif_issued"],
     ))
 
 
@@ -346,7 +346,7 @@ def _build_comercio(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/comercio",
         exposed_events=["trade_registered", "license_permit_issued", "inspection_completed"],
-        consumed_events=["citizen_updated", "identity_verified", "company_registered", "payment_confirmed"],
+        consumed_events=["IdentityDocumentVerified", "company_registered", "PaymentProcessed"],
     ))
 
 
@@ -367,7 +367,7 @@ def _build_emprego(orgs: OrganizationTree, registry: RegistryCatalog) -> None:
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/emprego",
         exposed_events=["employment_contract_registered", "job_vacancy_created", "placement_completed"],
-        consumed_events=["citizen_updated", "identity_verified", "employer_registered"],
+        consumed_events=["IdentityDocumentVerified", "employer_registered"],
     ))
 
 
@@ -388,7 +388,7 @@ def _build_trabalho_inspecao(orgs: OrganizationTree, registry: RegistryCatalog) 
         required_roles=["ROLE_MINISTERIO", "ROLE_PROVINCIA", "ROLE_UNIDADE"],
         api_prefix="/api/v1/trabalho-inspecao",
         exposed_events=["inspection_scheduled", "inspection_completed", "fine_issued"],
-        consumed_events=["citizen_updated", "identity_verified", "employer_registered", "employment_contract_registered"],
+        consumed_events=["IdentityDocumentVerified", "employer_registered", "employment_contract_registered"],
     ))
 
 

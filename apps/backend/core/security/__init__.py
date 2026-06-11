@@ -4,8 +4,8 @@ import logging
 from typing import Optional
 
 import bcrypt
-from config.database import get_db
-from core.auth import JWTHandler
+from apps.backend.config.database import get_db
+from apps.backend.core.auth import JWTHandler
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -41,7 +41,7 @@ async def get_current_user(
     db: AsyncSession = db_dep,
 ):
     """Get current authenticated user."""
-    from config.settings import settings
+    from apps.backend.config.settings import settings
 
     from apps.backend.app.modules.identity.models.user import User
 

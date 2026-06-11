@@ -63,6 +63,11 @@ class AcademicIdentityModel(Base):
         nullable=True
     )
 
+    # Territorial and ownership metadata
+    territory_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    created_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    managed_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+
     __table_args__ = (
         UniqueConstraint(
             "national_student_number", 

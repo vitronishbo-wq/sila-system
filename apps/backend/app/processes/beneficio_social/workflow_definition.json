@@ -1,0 +1,46 @@
+{
+    "code": "BENEFICIO_SOCIAL",
+    "name": "Benefício Social",
+    "entity_type": "benefit_request",
+    "timeout_hours": 72,
+    "states": [
+        {
+            "code": "PEDIDO",
+            "name": "Pedido de Benefício",
+            "is_initial": true
+        },
+        {
+            "code": "VERIFICACAO_NIF",
+            "name": "Verificação NIF"
+        },
+        {
+            "code": "VERIFICACAO_SS",
+            "name": "Verificação Segurança Social"
+        },
+        {
+            "code": "APROVADO",
+            "name": "Benefício Aprovado",
+            "is_final": true
+        }
+    ],
+    "transitions": [
+        {
+            "code": "TO_VERIFICACAO_NIF",
+            "name": "Para Verificação NIF",
+            "from": "PEDIDO",
+            "to": "VERIFICACAO_NIF"
+        },
+        {
+            "code": "TO_VERIFICACAO_SS",
+            "name": "Para Verificação SS",
+            "from": "VERIFICACAO_NIF",
+            "to": "VERIFICACAO_SS"
+        },
+        {
+            "code": "TO_APROVADO",
+            "name": "Aprovar Benefício",
+            "from": "VERIFICACAO_SS",
+            "to": "APROVADO"
+        }
+    ]
+}

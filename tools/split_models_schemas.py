@@ -1,4 +1,35 @@
 #!/usr/bin/env python3
+"""Split combined model/schema files into per-model files (minimal helper).
+
+This is a lightweight helper that currently copies the input file into an
+output directory and prints a note. A more advanced splitter (Pydantic/AST)
+can be added later.
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+
+def split_file(input_path: Path, outdir: Path) -> None:
+    outdir.mkdir(parents=True, exist_ok=True)
+    target = outdir / input_path.name
+    text = input_path.read_text(encoding="utf-8", errors="ignore")
+    target.write_text(text, encoding="utf-8")
+    print(f"Wrote {target} (full copy).")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", required=True, type=Path, help="Input combined file")
+    parser.add_argument("-o", "--outdir", default=Path("split_models"), type=Path, help="Output directory")
+    args = parser.parse_args()
+    split_file(args.input, args.outdir)
+
+
+if __name__ == "__main__":
+    main()
+#!/usr/bin/env python3
 """
 🧠 SILA Model/Schema Separator
 ================================

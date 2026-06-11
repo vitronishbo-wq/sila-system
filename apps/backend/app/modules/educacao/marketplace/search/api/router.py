@@ -29,7 +29,7 @@ async def get_db():
 
 
 @router.get("/health", name="search_health")
-async def health_check() -> dict[str, str]:
+async def health_check() -> dict[str, object]:
     """Health check para Search"""
     return await search_health()
 
