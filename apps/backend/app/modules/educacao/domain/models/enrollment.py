@@ -8,10 +8,10 @@ from apps.backend.app.modules.educacao.domain.enums import CanonicalStatus
 
 @dataclass
 class Enrollment:
-    id: uuid.UUID = field(default_factory=uuid.uuid4)
     student_id: uuid.UUID
     institution_id: uuid.UUID
     academic_year: str
+    id: uuid.UUID = field(default_factory=uuid.uuid4)
     grade: str | None = None
     status: CanonicalStatus = CanonicalStatus.PENDENTE
     started_at: date | None = None

@@ -1,6 +1,6 @@
 """Domain enumerations module"""
 
-from enum import StrEnum
+from enum import StrEnum, Enum
 
 from .status_enum import AuditStatus, EntityStatus, LifecycleStatus, ProcessStatus
 from .type_enum import (
@@ -32,6 +32,15 @@ class TipoInscricao(StrEnum):
     TECNICO = "tecnico"
 
 
+class CanonicalStatus(str, Enum):
+    PENDENTE = "PENDENTE"
+    VALIDACAO = "VALIDACAO"
+    ANALISE = "ANALISE"
+    APROVADO = "APROVADO"
+    CONCLUIDO = "CONCLUIDO"
+    REJEITADO = "REJEITADO"
+
+
 __all__ = [
     "EntityStatus",
     "ProcessStatus",
@@ -45,4 +54,5 @@ __all__ = [
     "ValidationLevel",
     "StatusFluxo",
     "TipoInscricao",
+    "CanonicalStatus",
 ]
