@@ -10,6 +10,7 @@ import { withApiOrigin } from '@/utils/runtime';
 // Pages
 import PublicLanding from '@/pages/PublicLanding';
 import Login from '@/pages/Login';
+import { LoginModalProvider } from '@/hooks/useLoginModal';
 import Dashboard from '@/pages/Dashboard';
 import Layout from '@/components/Layout';
 import PaymentsPage from '@/modules/pagamentos/PaymentsPage';
@@ -32,6 +33,7 @@ import UploadDocuments from '@/pages/UploadDocuments';
 import MyDocuments from '@/pages/MyDocuments';
 import SearchDocuments from '@/pages/SearchDocuments';
 import Register from '@/pages/Register';
+import QAReview from '@/pages/QAReview';
 import AdminCitizens from '@/pages/AdminCitizens';
 import AdminCitizenProfile from '@/pages/AdminCitizenProfile';
 import AdminCitizenFuc from '@/pages/AdminCitizenFuc';
@@ -191,7 +193,8 @@ const App: React.FC = () => {
 
   return (
     <HashRouter>
-      <Routes>
+      <LoginModalProvider>
+        <Routes>
         {/* Public Routes */}
         <Route path="/" element={<PublicLanding />} />
         <Route path="/login" element={
@@ -201,6 +204,7 @@ const App: React.FC = () => {
           user ? <Navigate to="/dashboard" /> : <CitizenLogin onLoginSuccess={handleLoginSuccess} onBackClick={() => window.location.hash = '/'} />
         } />
         <Route path="/register" element={<Register />} />
+        <Route path="/qa" element={<QAReview />} />
 
         {/* Diagnostic Route */}
         <Route path="/debug-auth" element={<AuthDebugger />} />
@@ -271,7 +275,8 @@ const App: React.FC = () => {
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
+        </Routes>
+      </LoginModalProvider>
     </HashRouter>
   );
 };
