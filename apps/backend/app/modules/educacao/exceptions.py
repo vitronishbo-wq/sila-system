@@ -71,6 +71,16 @@ class TurmaSemVagasError(BaseRequestException):
     detail = "Turma sem vagas"
 
 
+class CapacityUndefinedError(BaseRequestException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Capacidade nao definida para a instituicao"
+
+
+class InstitutionCapacityExceededError(BaseRequestException):
+    status_code = status.HTTP_409_CONFLICT
+    detail = "Capacidade maxima da instituicao excedida"
+
+
 __all__ = [
     "EscolaNotFoundError",
     "MatriculaNotFoundError",
@@ -83,4 +93,6 @@ __all__ = [
     "TransferenciaNotFoundError",
     "TurmaNotFoundError",
     "TurmaSemVagasError",
+    "CapacityUndefinedError",
+    "InstitutionCapacityExceededError",
 ]

@@ -18,14 +18,12 @@ from apps.backend.app.modules.educacao.application.transactional_enrollment_serv
     TransactionalEnrollmentService,
 )
 # Importa as exceções de domínio e de aplicação
-from apps.backend.app.modules.educacao.domain.exceptions import (
-    CapacityUndefinedError,
-    InstitutionCapacityExceededError,
-)
 from apps.backend.app.modules.educacao.exceptions import (
+    CapacityUndefinedError,
     CitizenNotFoundError,
     EscolaNotFoundError,
     IdadeMinimaNaoAtendidaError,
+    InstitutionCapacityExceededError,
     InvalidMatriculaStateError,
     MatriculaAlreadyExistsError,
     TurmaNotFoundError,
